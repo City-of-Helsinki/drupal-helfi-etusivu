@@ -1,0 +1,14 @@
+uuid: 7b5f5dbb-0182-4fc9-a7c5-5f0f6f1781d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.content_liftup
+_core:
+  default_config_hash: ye6NcMF3kU9sj6VD5kRrFG_o9h2rbjfrVAWCO9MAFUE
+id: paragraph.content_liftup.default
+targetEntityType: paragraph
+bundle: content_liftup
+mode: default
+content: {  }
+hidden: {  }

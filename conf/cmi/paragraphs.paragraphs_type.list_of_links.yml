@@ -1,0 +1,17 @@
+uuid: d2c6fd96-f729-4ff0-8f3b-ad3b8b3d1821
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+_core:
+  default_config_hash: rlTppk1e9-X4A1utAhQ2iP-NbeR3H15DOMrpb--XdVY
+id: list_of_links
+label: 'List of links'
+icon_uuid: null
+icon_default: null
+description: 'List of internal or external links. Different designs available.'
+behavior_plugins: {  }

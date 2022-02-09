@@ -1,0 +1,18 @@
+uuid: e25921aa-d82b-4834-b4dc-bc87a09b9d48
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.soundcloud
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+_core:
+  default_config_hash: CTeM98pvlMZ4uvX52DfiTqpxVhdXZA86ba0crMGMIVg
+id: media.soundcloud
+target_entity_type_id: media
+target_bundle: soundcloud
+default_langcode: fi
+language_alterable: true

@@ -1,0 +1,13 @@
+uuid: dd66d469-f7be-4c35-8832-f649c0c24915
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.helfi_chart
+_core:
+  default_config_hash: 2BVN4f7oVA6fKcWq9zF90vKpBQ122PgyhnrbvoSn_gk
+id: media.helfi_chart
+target_entity_type_id: media
+target_bundle: helfi_chart
+default_langcode: site_default
+language_alterable: false

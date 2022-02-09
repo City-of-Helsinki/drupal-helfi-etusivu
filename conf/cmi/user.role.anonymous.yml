@@ -1,0 +1,22 @@
+uuid: 9e02d19c-4b75-449c-870c-89bf51cd6820
+langcode: en
+status: true
+dependencies:
+  module:
+    - eu_cookie_compliance
+    - media
+    - system
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
+  - 'display eu cookie compliance popup'
+  - 'view media'
+  - 'view media'
+  - 'access content'
+  - 'view remote entities'
+  - 'display eu cookie compliance popup'

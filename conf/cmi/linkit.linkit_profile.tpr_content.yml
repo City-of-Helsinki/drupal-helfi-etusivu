@@ -1,0 +1,23 @@
+uuid: 595b00fb-2355-4035-a48d-e58aefc4ef42
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: mbweO2IrTRDfreAcuD6mePc4J5hsE_WoxC5IQ07SrCA
+id: tpr_content
+label: TPR/content
+description: ''
+matchers:
+  8ffea69f-853b-42d7-8171-80fbcb5a813c:
+    uuid: 8ffea69f-853b-42d7-8171-80fbcb5a813c
+    id: 'entity:node'
+    weight: 0
+    settings:
+      include_unpublished: false
+      metadata: ''
+      bundles: {  }
+      group_by_bundle: false
+      substitution_type: canonical
+      limit: 20

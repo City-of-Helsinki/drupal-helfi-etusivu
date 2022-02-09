@@ -1,0 +1,12 @@
+uuid: 94b60b94-15cd-49ec-866a-e8af17f69b28
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ONSzgYJ_Jc8pZ002ZLaFDdkbCXm0lKyjjWMpiEYA3v8
+id: content_liftup
+label: 'Content liftup'
+icon_uuid: null
+icon_default: null
+description: 'With content liftup you can reference to a single content inside this site. The information about the content is automatically fetched through the reference.'
+behavior_plugins: {  }

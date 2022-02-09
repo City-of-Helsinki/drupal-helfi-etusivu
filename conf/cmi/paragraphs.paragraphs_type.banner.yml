@@ -1,0 +1,17 @@
+uuid: 2f1e8b34-f89c-4e33-82c7-05e3610ca5ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+_core:
+  default_config_hash: 5psLSGdGhJB25T2TTd44M1_ObQNb2ii3jKv5ebjaDT4
+id: banner
+label: Banner
+icon_uuid: null
+icon_default: null
+description: 'Banner is a simple full-width element that you can use to promote for example important links or phone numbers. '
+behavior_plugins: {  }

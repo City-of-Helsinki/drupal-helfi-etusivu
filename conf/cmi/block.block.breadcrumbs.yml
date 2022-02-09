@@ -1,0 +1,22 @@
+uuid: 25fe508b-df3c-431c-8b18-93c7b07b30c3
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hdbt
+_core:
+  default_config_hash: X6F3oSAls1r1jwOVU5n7EG6Uaz0yFqo-GQcEXDzxxLk
+id: breadcrumbs
+theme: hdbt
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

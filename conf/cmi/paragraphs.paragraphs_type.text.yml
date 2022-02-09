@@ -1,0 +1,17 @@
+uuid: 6bc34aa6-6114-4db7-8c49-aeeda100acd4
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+_core:
+  default_config_hash: quCqNy8X3E6ITit4b7BJnq9E6Ai6Tx3xYpBz1pByy0E
+id: text
+label: Text
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

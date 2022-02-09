@@ -1,0 +1,27 @@
+uuid: b67a4df1-44b3-459f-a248-8d3b933bbcce
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - system
+  theme:
+    - hdbt_admin
+_core:
+  default_config_hash: EgdQi5I38A9g1z8A-zNybRrIkjKM_M0sYfkG53hDJwc
+id: language_switcher_admin
+theme: hdbt_admin
+region: header
+weight: -3
+provider: null
+plugin: 'language_block:language_content'
+settings:
+  id: 'language_block:language_content'
+  label: 'Language switcher'
+  label_display: '0'
+  provider: language
+visibility:
+  request_path:
+    id: request_path
+    pages: "/node/*\r\n/admin/content/integrations/tpr-unit/*/edit\r\n/admin/content/integrations/tpr-service/*/edit"
+    negate: true

@@ -1,0 +1,11 @@
+label: Innehåll
+display:
+  default:
+    display_options:
+      title: Innehåll
+  page_1:
+    display_options:
+      menu:
+        title: Innehåll
+      tab_options:
+        title: Innehåll

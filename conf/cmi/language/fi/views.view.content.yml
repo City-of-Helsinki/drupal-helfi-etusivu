@@ -1,0 +1,11 @@
+label: Sisältö
+display:
+  default:
+    display_options:
+      title: Sisältö
+  page_1:
+    display_options:
+      menu:
+        title: Sisältö
+      tab_options:
+        title: Sisältö

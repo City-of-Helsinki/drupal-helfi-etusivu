@@ -1,0 +1,22 @@
+uuid: 1f0c3dcf-3021-4d40-be06-f81dc0b80cf6
+langcode: en
+status: true
+dependencies:
+  module:
+    - hdbt_content
+  theme:
+    - hdbt
+_core:
+  default_config_hash: IsZxrQIR5fs_5xZDQ1BJ8K5LXwiaRAM3Gk-HY4vuVb4
+id: footertopblock
+theme: hdbt
+region: footer_top
+weight: -3
+provider: null
+plugin: footer_top_block
+settings:
+  id: footer_top_block
+  label: 'Footer top block'
+  label_display: '0'
+  provider: hdbt_content
+visibility: {  }

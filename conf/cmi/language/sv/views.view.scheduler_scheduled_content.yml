@@ -1,0 +1,9 @@
+display:
+  overview:
+    display_options:
+      tab_options:
+        title: Innehåll
+  user_page:
+    display_options:
+      tab_options:
+        title: Innehåll
