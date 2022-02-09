@@ -1,0 +1,12 @@
+linkedevents_event.settings:
+  title: Linked Events - Event settings
+  description: Configure Linked Events event entity type
+  route_name:  linkedevents_event.settings
+  parent: system.admin_structure
+
+entity.linkedevents_event.collection:
+  title: Linked Events - Event entities
+  description: List of Linked Events event entities
+  route_name: entity.linkedevents_event.collection
+  parent: system.admin_content
+

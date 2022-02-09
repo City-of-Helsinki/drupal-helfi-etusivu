@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - helfi_linkedevents
+id: linkedevents_offer
+migration_tags:
+  - linkedevents
+label: 'Linked Events Offer'
+source:
+  plugin: linkedevents_offer:linkedevents_event
+  add_revision_id: false
+  include_translations: false
+  track_changes: true
+  ids:
+    id:
+      type: string
+    langcode:
+      type: string
+process:
+  id: id
+  is_free: is_free
+  price: price
+destination:
+  plugin: linkedevents_offer
+migration_dependencies:
+  optional:
+    - linkedevents_event
