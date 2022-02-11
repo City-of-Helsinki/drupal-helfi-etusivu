@@ -1,4 +1,4 @@
-# City of Helsinki - Rekry Drupal 9 project
+# City of Helsinki - Etusivu Drupal 9 project
 
 Description of your project.
 
@@ -6,7 +6,7 @@ Description of your project.
 
 Env | Branch | Drush alias | URL
 --- | ------ | ----------- | ---
-development | * | - | http://helfi-rekry.docker.so/
+development | * | - | http://helfi-etusivu.docker.so/
 production | main | @main | TBD
 
 ## Requirements
