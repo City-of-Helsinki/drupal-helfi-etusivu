@@ -32,7 +32,6 @@ default_value_callback: ''
 settings:
   handler: default
   handler_settings:
-    negate: '0'
     target_bundles:
       accordion: accordion
       banner: banner
@@ -45,6 +44,7 @@ settings:
       list_of_links: list_of_links
       sidebar_text: sidebar_text
       text: text
+    negate: '0'
     target_bundles_drag_drop:
       accordion:
         enabled: '1'
