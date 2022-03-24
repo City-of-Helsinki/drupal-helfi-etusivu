@@ -53,6 +53,10 @@ if (isset($_SERVER['WODBY_APP_NAME'])) {
 $config['openid_connect.client.tunnistamo']['settings']['client_id'] = getenv('TUNNISTAMO_CLIENT_ID');
 $config['openid_connect.client.tunnistamo']['settings']['client_secret'] = getenv('TUNNISTAMO_CLIENT_SECRET');
 
+if ($tunnistamo_environment_url = getenv('TUNNISTAMO_ENVIRONMENT_URL')) {
+  $config['openid_connect.client.tunnistamo']['settings']['environment_url'] = $tunnistamo_environment_url;
+}
+
 $config['siteimprove.settings']['prepublish_enabled'] = TRUE;
 $config['siteimprove.settings']['api_username'] = getenv('SITEIMPROVE_API_USERNAME');
 $config['siteimprove.settings']['api_key'] = getenv('SITEIMPROVE_API_KEY');
@@ -185,6 +189,15 @@ if ($stage_file_proxy_origin = getenv('STAGE_FILE_PROXY_ORIGIN')) {
   $config['stage_file_proxy.settings']['use_imagecache_root'] = FALSE;
 }
 
+// Override session suffix when present.
+if ($session_suffix = getenv('DRUPAL_SESSION_SUFFIX')) {
+  $config['helfi_proxy.settings']['session_suffix'] = $session_suffix;
+}
+
+if ($robots_header_enabled = getenv('DRUPAL_X_ROBOTS_TAG_HEADER')) {
+  $config['helfi_proxy.settings']['robots_header_enabled'] = (bool) $robots_header_enabled;
+}
+
 if (
   ($redis_host = getenv('REDIS_HOST')) &&
   file_exists('modules/contrib/redis/example.services.yml') &&
@@ -195,11 +208,6 @@ if (
   // this configuration when the module is installed, but not yet enabled.
   $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
   $redis_port = getenv('REDIS_PORT') ?: 6379;
-
-  // Force SSL on azure.
-  if (getenv('AZURE_SQL_SSL_CA_PATH')) {
-    $redis_host = 'tls://' . $redis_host;
-  }
 
   if ($redis_prefix = getenv('REDIS_PREFIX')) {
     $settings['cache_prefix']['default'] = $redis_prefix;
