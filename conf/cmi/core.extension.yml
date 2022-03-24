@@ -38,6 +38,7 @@ module:
   hdbt_component_library: 0
   hdbt_content: 0
   helfi_api_base: 0
+  helfi_azure_fs: 0
   helfi_base_config: 0
   helfi_charts: 0
   helfi_content: 0
@@ -45,6 +46,7 @@ module:
   helfi_languages: 0
   helfi_media: 0
   helfi_platform_config: 0
+  helfi_proxy: 0
   helfi_toc: 0
   image: 0
   image_style_quality: 0
@@ -71,6 +73,11 @@ module:
   paragraphs_library: 0
   path: 0
   path_alias: 0
+  purge: 0
+  purge_drush: 0
+  purge_processor_cron: 0
+  purge_queuer_coretags: 0
+  purge_tokens: 0
   redirect: 0
   responsive_image: 0
   role_delegation: 0
@@ -90,6 +97,8 @@ module:
   update: 0
   update_helper: 0
   user: 0
+  varnish_purge_tags: 0
+  varnish_purger: 0
   view_unpublished: 0
   views_ui: 0
   pathauto: 1
