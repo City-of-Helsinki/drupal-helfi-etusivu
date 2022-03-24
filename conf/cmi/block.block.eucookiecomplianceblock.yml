@@ -27,5 +27,5 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: /cookie-information-and-settings
     negate: false
+    pages: /cookie-information-and-settings
