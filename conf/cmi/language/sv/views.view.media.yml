@@ -1,0 +1,26 @@
+display:
+  default:
+    display_options:
+      fields:
+        media_bulk_form:
+          action_title: Åtgärd
+        uid:
+          label: Författare
+        status:
+          settings:
+            format_custom_false: 'Ej publicerad'
+            format_custom_true: Publicerad
+        operations:
+          label: Funktioner
+      filters:
+        status:
+          group_info:
+            label: 'Status för publicering'
+            group_items:
+              1:
+                title: Publicerad
+              2:
+                title: 'Ej publicerad'
+        langcode:
+          expose:
+            label: Språk

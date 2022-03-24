@@ -3,6 +3,37 @@ display:
   default:
     display_options:
       title: Innehåll
+      fields:
+        title:
+          label: Titel
+        type:
+          label: Innehållstyp
+        name:
+          label: Författare
+        status:
+          settings:
+            format_custom_false: 'Ej publicerad'
+            format_custom_true: Publicerad
+        operations:
+          label: Funktioner
+      filters:
+        title:
+          expose:
+            label: Titel
+        type:
+          expose:
+            label: Innehållstyp
+        status:
+          group_info:
+            label: 'Status för publicering'
+            group_items:
+              1:
+                title: Publicerad
+              2:
+                title: 'Ej publicerad'
+        langcode:
+          expose:
+            label: Språk
   page_1:
     display_options:
       menu:

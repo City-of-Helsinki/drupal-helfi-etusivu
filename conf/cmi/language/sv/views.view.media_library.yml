@@ -1,0 +1,36 @@
+display:
+  default:
+    display_options:
+      fields:
+        media_bulk_form:
+          action_title: Åtgärd
+      filters:
+        status:
+          group_info:
+            label: Publicerad
+            group_items:
+              1:
+                title: Publicerad
+        langcode:
+          expose:
+            label: Språk
+  page:
+    display_options:
+      fields:
+        media_bulk_form:
+          action_title: Åtgärd
+  widget:
+    display_options:
+      arguments:
+        bundle:
+          exception:
+            title: Alla
+  widget_table:
+    display_options:
+      fields:
+        uid:
+          label: Författare
+      arguments:
+        bundle:
+          exception:
+            title: Alla

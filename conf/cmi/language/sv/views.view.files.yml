@@ -1,0 +1,7 @@
+display:
+  page_2:
+    display_options:
+      arguments:
+        fid:
+          exception:
+            title: Alla

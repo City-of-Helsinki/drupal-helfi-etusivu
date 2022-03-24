@@ -1,6 +1,11 @@
 display:
   default:
+    display_title: Förvald
     display_options:
       fields:
+        langcode:
+          label: Språk
         changed:
           label: Ändrad
+        operations:
+          label: Funktioner

@@ -1,4 +1,4 @@
-uuid: b3ca5d05-e5a3-4a75-838f-b4af757c0d5f
+uuid: a54acaca-ea36-482c-9f99-1e0a636cf641
 langcode: en
 status: true
 dependencies:
@@ -17,7 +17,7 @@ dependencies:
     - path
     - scheduler
 _core:
-  default_config_hash: 2UzmhcoLdP813geh94iPT1sXBgLAMVxYuUQcmTqnl5M
+  default_config_hash: Pd-f3rGttRwDhQat3uCTa7QBK0xZQWgsvcSwr9RPx1A
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
@@ -93,7 +93,7 @@ content:
     weight: 0
     region: content
     settings:
-      include_locked: true
+      include_locked: false
     third_party_settings: {  }
   path:
     type: path

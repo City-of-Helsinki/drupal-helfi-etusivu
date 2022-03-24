@@ -1,0 +1,21 @@
+uuid: b0c7a184-412c-4d4c-a0bf-352e5fb5fa81
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+_core:
+  default_config_hash: j86-6zpgZg50s_H3TClf9Soi0TR-N1JMtPIEcskvxTo
+id: paragraph.field_remote_video_video_desc
+field_name: field_remote_video_video_desc
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

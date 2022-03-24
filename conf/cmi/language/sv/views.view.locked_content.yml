@@ -1,0 +1,30 @@
+display:
+  default:
+    display_title: Förvald
+    display_options:
+      fields:
+        node_bulk_form:
+          action_title: Åtgärd
+        title:
+          label: Titel
+        type:
+          label: Innehållstyp
+        operations:
+          label: Funktioner
+      filters:
+        status:
+          expose:
+            label: 'Status för publicering'
+          group_info:
+            label: 'Status för publicering'
+            group_items:
+              1:
+                title: Publicerad
+              2:
+                title: 'Ej publicerad'
+        type:
+          expose:
+            label: Innehållstyp
+        title:
+          expose:
+            label: Titel
