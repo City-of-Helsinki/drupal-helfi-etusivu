@@ -1,4 +1,4 @@
-uuid: 0266ae7c-4dca-454f-9c9f-ac80393ff3e7
+uuid: 07cdc7b8-0420-48d4-846a-5952df3865ec
 langcode: en
 status: true
 dependencies:
@@ -6,13 +6,13 @@ dependencies:
     - field.storage.node.field_has_hero
     - node.type.landing_page
 _core:
-  default_config_hash: rT_f5pnvC_sD05FKSnu6t_QWElHLz3MWNzz-knMiCOs
+  default_config_hash: 9YN8dmUhU-XhgxPRCb4x-ghOzqatFuntD6iIFhL9G3k
 id: node.landing_page.field_has_hero
 field_name: field_has_hero
 entity_type: node
 bundle: landing_page
 label: Hero
-description: 'Check this box if you want to use hero-block on the page. If you choose this the heros title field will define the heading level 1 title for the page.'
+description: 'Select whether you wish to display a hero highlight element on the page. If a hero is selected, it''s heading will be used as the main heading for the page.'
 required: false
 translatable: true
 default_value:

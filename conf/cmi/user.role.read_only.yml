@@ -1,9 +1,15 @@
+uuid: 5b91e155-d600-4c64-8cfd-9f240153d9be
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - paragraphs
+    - toolbar
+_core:
+  default_config_hash: syTv0h1MUcZ35TjmApRsR9znnDRN-fk-wxfZjABkkbw
 id: read_only
 label: 'Read only'
-weight: 4
+weight: 2
 is_admin: null
 permissions:
   - 'access toolbar'

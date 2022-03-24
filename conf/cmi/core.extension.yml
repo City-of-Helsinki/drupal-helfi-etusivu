@@ -13,6 +13,8 @@ module:
   config_rewrite: 0
   config_translation: 0
   config_update: 0
+  content_lock: 0
+  content_lock_timeout: 0
   crop: 0
   ctools: 0
   datetime: 0
@@ -36,7 +38,6 @@ module:
   hdbt_component_library: 0
   hdbt_content: 0
   helfi_api_base: 0
-  helfi_azure_fs: 0
   helfi_base_config: 0
   helfi_charts: 0
   helfi_content: 0
@@ -44,7 +45,6 @@ module:
   helfi_languages: 0
   helfi_media: 0
   helfi_platform_config: 0
-  helfi_proxy: 0
   helfi_toc: 0
   image: 0
   image_style_quality: 0

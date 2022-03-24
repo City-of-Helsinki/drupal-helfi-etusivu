@@ -1,0 +1,33 @@
+display:
+  default:
+    display_options:
+      fields:
+        media_bulk_form:
+          action_title: Toiminto
+        uid:
+          label: Kirjoittaja
+        status:
+          label: Tila
+          settings:
+            format_custom_false: Julkaisematon
+            format_custom_true: Julkaistu
+        operations:
+          label: Toimenpiteet
+      exposed_form:
+        options:
+          submit_button: Suodata
+      empty:
+        area_text_custom:
+          content: 'Ei mediatiedostoja saatavilla.'
+      filters:
+        status:
+          group_info:
+            label: Julkaisutila
+            group_items:
+              1:
+                title: Julkaistu
+              2:
+                title: Julkaisematon
+        langcode:
+          expose:
+            label: Kieli

@@ -1,4 +1,4 @@
-uuid: 8a715c20-10f4-40ea-83ba-6db9da19984c
+uuid: 805fd63d-1339-4347-b3a6-368ff56fa097
 langcode: en
 status: true
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - media
     - token_filter
 _core:
-  default_config_hash: 403AFqsCfQ79aYtSD9wBuEvq_Fh_4ACJv1K4Pj0cS4M
+  default_config_hash: 6Mnys3fZa4E9hBevfCJqL49NBKWIijbh2ubAzUeCvTk
 name: HTML
 format: full_html
 weight: 0
@@ -25,7 +25,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<em> <strong> <cite> <blockquote role aria-* cite class=""> <code> <ul type class=""> <ol start type> <li class=""> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <p class=""> <footer class=""> <br> <div role aria-* class=""> <img src alt height width data-entity-type data-entity-uuid data-align data-caption data-responsive-image-style> <a href hreflang !href accesskey id rel target title data-design data-link-text data-icon data-protocol class=""> <pre> <s> <sup> <sub> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <span role aria-* class="">'
+      allowed_html: '<em> <strong> <cite> <blockquote role aria-* cite class=""> <code> <ul type class=""> <ol start type> <li class=""> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <p class=""> <footer class=""> <br> <div role aria-* class=""> <img src alt height width data-entity-type data-entity-uuid data-align data-caption data-responsive-image-style> <a href hreflang !href accesskey id rel target title data-design data-link-text data-selected-icon data-is-external data-protocol class=""> <pre> <s> <sup> <sub> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <span role aria-* class="">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:

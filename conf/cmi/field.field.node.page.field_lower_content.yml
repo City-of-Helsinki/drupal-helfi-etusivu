@@ -1,4 +1,4 @@
-uuid: a3efdac5-e894-4b52-b09b-fc7b5e9e510c
+uuid: 2ea3276f-f46a-42c2-884b-48f555d1300d
 langcode: en
 status: true
 dependencies:
@@ -33,7 +33,6 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       text: text
       columns: columns
@@ -46,31 +45,36 @@ settings:
       banner: banner
       from_library: from_library
       remote_video: remote_video
+      chart: chart
+    negate: 0
     target_bundles_drag_drop:
       accordion:
-        enabled: true
         weight: -27
+        enabled: true
       accordion_item:
         weight: -22
         enabled: false
       banner:
-        enabled: true
         weight: -21
+        enabled: true
+      chart:
+        weight: 25
+        enabled: true
       columns:
-        enabled: true
         weight: -28
+        enabled: true
       content_cards:
-        enabled: true
         weight: -23
+        enabled: true
       content_liftup:
-        enabled: true
         weight: -22
+        enabled: true
       from_library:
-        enabled: true
         weight: 21
-      gallery:
         enabled: true
+      gallery:
         weight: -25
+        enabled: true
       gallery_slide:
         weight: -20
         enabled: false
@@ -78,21 +82,21 @@ settings:
         weight: -19
         enabled: false
       image:
-        enabled: true
         weight: -26
+        enabled: true
       liftup_with_image:
         weight: -18
         enabled: false
       list_of_links:
-        enabled: true
         weight: -24
+        enabled: true
       list_of_links_item:
         weight: -17
         enabled: false
       remote_video:
-        enabled: true
         weight: 32
-      text:
         enabled: true
+      text:
         weight: -29
+        enabled: true
 field_type: entity_reference_revisions
