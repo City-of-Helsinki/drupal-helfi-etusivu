@@ -18,7 +18,6 @@ module:
   crop: 0
   ctools: 0
   datetime: 0
-  dblog: 0
   diff: 0
   dynamic_page_cache: 0
   easy_breadcrumb: 0
@@ -38,6 +37,7 @@ module:
   hdbt_component_library: 0
   hdbt_content: 0
   helfi_api_base: 0
+  helfi_azure_fs: 0
   helfi_base_config: 0
   helfi_charts: 0
   helfi_content: 0
@@ -45,6 +45,7 @@ module:
   helfi_languages: 0
   helfi_media: 0
   helfi_platform_config: 0
+  helfi_proxy: 0
   helfi_toc: 0
   image: 0
   image_style_quality: 0
@@ -71,14 +72,22 @@ module:
   paragraphs_library: 0
   path: 0
   path_alias: 0
+  purge: 0
+  purge_drush: 0
+  purge_processor_cron: 0
+  purge_queuer_coretags: 0
+  purge_tokens: 0
   redirect: 0
   responsive_image: 0
+  rest: 0
   role_delegation: 0
   scheduler: 0
   select2: 0
   select2_icon: 0
+  serialization: 0
   simple_sitemap: 0
   social_media: 0
+  syslog: 0
   system: 0
   taxonomy: 0
   text: 0
@@ -90,6 +99,8 @@ module:
   update: 0
   update_helper: 0
   user: 0
+  varnish_purge_tags: 0
+  varnish_purger: 0
   view_unpublished: 0
   views_ui: 0
   pathauto: 1
