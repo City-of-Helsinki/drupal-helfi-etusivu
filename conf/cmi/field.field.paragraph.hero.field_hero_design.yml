@@ -1,4 +1,4 @@
-uuid: 6f0b5735-523f-408c-a48c-95fe8b16bf3b
+uuid: a3c7d35d-06f1-4676-a535-b1711b74bfc7
 langcode: en
 status: true
 dependencies:
@@ -8,13 +8,13 @@ dependencies:
   module:
     - options
 _core:
-  default_config_hash: 9KgNBd64HSwUebcuo0heXEkb24dttr05fyWT52PJfQ0
+  default_config_hash: W-Ej7hRIIq05fIx6kriSo9ZN35ZSYAOtMiV44HiPeU4
 id: paragraph.hero.field_hero_design
 field_name: field_hero_design
 entity_type: paragraph
 bundle: hero
-label: Design
-description: 'Choose the paragraph design from the dropdown. Depending on what design you choose there may be different fields that you need to fill.'
+label: Layout
+description: 'Set the hero layout from the menu. The layout affects what information is required below.'
 required: true
 translatable: false
 default_value:

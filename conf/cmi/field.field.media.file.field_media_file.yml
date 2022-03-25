@@ -1,4 +1,4 @@
-uuid: 7d284f7c-2fc6-4501-add5-48129c79f22b
+uuid: f91fdfbc-97a6-4812-85d2-61470829c2b8
 langcode: en
 status: true
 dependencies:
@@ -20,10 +20,10 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
+  handler: 'default:file'
+  handler_settings: {  }
   file_directory: ''
   file_extensions: 'txt doc docx pdf xls xlsx'
   max_filesize: ''
   description_field: false
-  handler: 'default:file'
-  handler_settings: {  }
 field_type: file

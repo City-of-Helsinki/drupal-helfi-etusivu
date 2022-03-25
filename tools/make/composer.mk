@@ -1,5 +1,6 @@
-BUILD_TARGETS := composer-install
+BUILD_TARGETS += composer-install
 CLEAN_FOLDERS += $(COMPOSER_JSON_PATH)/vendor
+COMPOSER_PROD_FLAGS := --no-dev --optimize-autoloader --prefer-dist
 
 PHONY += composer-info
 composer-info: ## Composer info
@@ -15,7 +16,7 @@ PHONY += composer-install
 composer-install: ## Install Composer packages
 	$(call step,Do Composer install...\n)
 ifeq ($(ENV),production)
-	$(call composer,install --no-dev --optimize-autoloader --prefer-dist)
+	$(call composer,install $(COMPOSER_PROD_FLAGS))
 else
 	$(call composer,install)
 endif
@@ -27,10 +28,10 @@ composer-outdated: ## Show outdated Composer packages
 
 ifeq ($(RUN_ON),docker)
 define composer
-	$(call docker_run_cmd,cd ${DOCKER_PROJECT_ROOT} && composer --ansi --working-dir=$(COMPOSER_JSON_PATH) $(1))
+	$(call docker_run_cmd,cd $(DOCKER_PROJECT_ROOT) && composer --ansi$(if $(filter $(COMPOSER_JSON_PATH),.),, --working-dir=$(COMPOSER_JSON_PATH)) $(1))
 endef
 else
 define composer
-	@composer --ansi --working-dir=$(COMPOSER_JSON_PATH) $(1)
+	@composer --ansi$(if $(filter $(COMPOSER_JSON_PATH),.),, --working-dir=$(COMPOSER_JSON_PATH)) $(1)
 endef
 endif

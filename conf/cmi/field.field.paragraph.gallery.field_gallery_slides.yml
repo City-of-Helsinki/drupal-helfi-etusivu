@@ -1,4 +1,4 @@
-uuid: 46804a56-c2a3-4f1a-a22f-fc1ed66df8bb
+uuid: 312969c7-f677-4678-8cc0-2243494841b0
 langcode: en
 status: true
 dependencies:
@@ -23,16 +23,16 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       gallery_slide: gallery_slide
+    negate: 0
     target_bundles_drag_drop:
       gallery:
         weight: 9
         enabled: false
       gallery_slide:
-        enabled: true
         weight: 10
+        enabled: true
       hero:
         weight: 11
         enabled: false

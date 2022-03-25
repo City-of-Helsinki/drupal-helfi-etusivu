@@ -1,4 +1,4 @@
-uuid: 7491f780-ea21-4cea-bad8-ff270da741f2
+uuid: e541f8fe-b6b6-4c30-9c73-d33b2b7ad698
 langcode: en
 status: true
 dependencies:
@@ -23,9 +23,9 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       hero: hero
+    negate: 0
     target_bundles_drag_drop:
       columns:
         weight: 10
@@ -37,8 +37,8 @@ settings:
         weight: 12
         enabled: false
       hero:
-        enabled: true
         weight: 13
+        enabled: true
       image:
         weight: 14
         enabled: false

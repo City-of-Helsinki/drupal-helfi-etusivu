@@ -1,4 +1,4 @@
-uuid: b67a4df1-44b3-459f-a248-8d3b933bbcce
+uuid: fe10655a-c871-4c45-aa60-71d00fd36db8
 langcode: en
 status: true
 dependencies:
@@ -23,5 +23,5 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/node/*\r\n/admin/content/integrations/tpr-unit/*/edit\r\n/admin/content/integrations/tpr-service/*/edit"
     negate: true
+    pages: "/node/*\r\n/admin/content/integrations/tpr-unit/*/edit\r\n/admin/content/integrations/tpr-service/*/edit"

@@ -1,0 +1,30 @@
+display:
+  default:
+    display_title: Oletus
+    display_options:
+      fields:
+        node_bulk_form:
+          action_title: Toiminto
+        title:
+          label: Otsikko
+        type:
+          label: Sisältötyyppi
+        operations:
+          label: Toimenpiteet
+      filters:
+        status:
+          expose:
+            label: Julkaisutila
+          group_info:
+            label: Julkaisutila
+            group_items:
+              1:
+                title: Julkaistu
+              2:
+                title: Julkaisematon
+        type:
+          expose:
+            label: Sisältötyyppi
+        title:
+          expose:
+            label: Otsikko

@@ -1,4 +1,4 @@
-uuid: 4c3509c5-26ec-4266-be8c-850b205aaa3d
+uuid: 61d97ee7-5f0b-46c4-a8b4-09b59dbd8330
 langcode: en
 status: true
 dependencies:
@@ -20,7 +20,7 @@ dependencies:
     - path
     - scheduler
 _core:
-  default_config_hash: ovxh0W5mFYp8gQbwRzU26jMLwUerrg8oJT-enNnUxe4
+  default_config_hash: DOmyO7EbPLR4QT_AFZyGKWuDjwDK_6cxtWsqZ0RI3qQ
 id: node.page.default
 targetEntityType: node
 bundle: page
@@ -142,7 +142,7 @@ content:
     weight: 0
     region: content
     settings:
-      include_locked: true
+      include_locked: false
     third_party_settings: {  }
   path:
     type: path

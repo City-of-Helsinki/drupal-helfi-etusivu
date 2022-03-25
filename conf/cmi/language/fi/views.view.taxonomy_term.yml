@@ -1,0 +1,7 @@
+display:
+  default:
+    display_options:
+      arguments:
+        tid:
+          exception:
+            title: Kaikki

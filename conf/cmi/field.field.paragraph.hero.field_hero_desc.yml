@@ -1,4 +1,4 @@
-uuid: 494e7f1c-30bf-44b5-a34c-f7c455d80917
+uuid: 3c5c1a98-e642-47e0-b517-cb6104f62bd2
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,19 @@ dependencies:
     - field.storage.paragraph.field_hero_desc
     - paragraphs.paragraphs_type.hero
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats: {  }
 _core:
-  default_config_hash: GnZymgGfpVTqsKATa5zkIXdscsZxW3ZkKMGmL9mDy8g
+  default_config_hash: 8R816KbWZKNUvPgCHKY1nRR0RRNTUOhsmU9s2eQCy-c
 id: paragraph.hero.field_hero_desc
 field_name: field_hero_desc
 entity_type: paragraph
 bundle: hero
-label: Description
-description: 'Optional short description for hero block.'
+label: 'Hero text'
+description: 'Paragraph visible on the hero. Can be left empty.'
 required: false
 translatable: false
 default_value: {  }

@@ -1,4 +1,4 @@
-uuid: 64e80226-ec2b-4bdf-b495-358b25e4583d
+uuid: 2e4b658d-869c-4159-b711-e00b06341bd0
 langcode: en
 status: true
 dependencies:
@@ -19,7 +19,7 @@ dependencies:
     - scheduler
     - select2
 _core:
-  default_config_hash: pCNOhgqtZB0RYWLFELZhHp654GnKfoQ_Dbd2v2MIrWU
+  default_config_hash: 6rXVT3BlE3mfxdEeXEG7HkTF-djBkSvX8okBYDbkD74
 id: node.article.default
 targetEntityType: node
 bundle: article
@@ -95,7 +95,7 @@ content:
     weight: 0
     region: content
     settings:
-      include_locked: true
+      include_locked: false
     third_party_settings: {  }
   path:
     type: path
