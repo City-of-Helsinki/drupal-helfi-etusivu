@@ -1,12 +1,18 @@
-uuid: cfb3c7f7-28e9-4868-b1c3-bf749a0a440c
+uuid: d555acf0-e37c-48c6-b855-b252cc17e444
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.paragraph.remote_video.field_remote_video
+    - field.field.paragraph.remote_video.field_remote_video_description
+    - field.field.paragraph.remote_video.field_remote_video_title
+    - field.field.paragraph.remote_video.field_remote_video_video_desc
+    - field.field.paragraph.remote_video.field_remote_video_video_title
     - paragraphs.paragraphs_type.remote_video
+  module:
+    - text
 _core:
-  default_config_hash: gmvd3NpBqlZGO-d_PTKw53sTWYa01VHkHeH0-D1GGLI
+  default_config_hash: MOnn4AFhzDjCTeqfjs5VvI3wK128ulmu_tPpo2VZ7YA
 id: paragraph.remote_video.default
 targetEntityType: paragraph
 bundle: remote_video
@@ -19,6 +25,36 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    weight: 2
+    region: content
+  field_remote_video_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_remote_video_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 0
+    region: content
+  field_remote_video_video_desc:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_remote_video_video_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden: {  }

@@ -1,4 +1,4 @@
-uuid: cab359c4-cd9f-4a55-b461-55bac011c7b5
+uuid: 272fff00-4238-4c96-a07d-7860a400690a
 langcode: en
 status: true
 dependencies:
@@ -20,6 +20,6 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  link_type: 17
   title: 2
+  link_type: 17
 field_type: link

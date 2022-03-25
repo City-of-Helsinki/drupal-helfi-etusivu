@@ -1,4 +1,4 @@
-uuid: 9531e66b-42bd-4120-8295-9f0e4a87d4af
+uuid: 8e5b6d5d-cc28-4eae-a7d8-dc4c10c736a9
 langcode: en
 status: true
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - media
     - token_filter
 _core:
-  default_config_hash: rPfSn6HhVRcP1eR3cJR8Dn5fcv2gnRaSGuABkDE6mE0
+  default_config_hash: YlaoBcuAJpSVYNyFRvINta5VOMhxaLZFWICOnoCY7Lk
 name: Minimal
 format: minimal
 weight: 0
@@ -43,7 +43,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<em> <strong> <ul type> <ol start type> <li> <p class=""> <a href hreflang !href accesskey id rel target title data-design data-link-text data-icon data-protocol class="">'
+      allowed_html: '<em> <strong> <ul type> <ol start type> <li> <p class=""> <a href hreflang !href accesskey id rel target title data-design data-link-text data-selected-icon data-is-external data-protocol class="">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:

@@ -1,4 +1,4 @@
-uuid: e4b355d2-2fa4-47b6-846d-f93ed42f9c33
+uuid: 87ef9236-bfe7-469c-8b12-8e04d909566b
 langcode: en
 status: true
 dependencies:
@@ -21,11 +21,11 @@ settings:
   label: 'City of Helsinki'
   label_display: visible
   provider: menu_block_current_language
+  level: 1
+  expand_all_items: false
+  depth: 1
   translation_providers:
     views: views
     menu_link_content: menu_link_content
     default: '0'
-  level: 1
-  depth: 1
-  expand_all_items: false
 visibility: {  }

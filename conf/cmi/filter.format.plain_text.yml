@@ -1,7 +1,9 @@
-uuid: 7b3a60da-46e9-4066-81fe-3b21f9e8d7a0
+uuid: 9643138b-02a0-4f04-ab71-95d7b84e9496
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - helfi_api_base
 _core:
   default_config_hash: NIKBt6kw_uPhNI0qtR2DnRf7mSOgAQdx7Q94SKMjXbQ
 name: 'Plain text'
@@ -26,4 +28,10 @@ filters:
     provider: filter
     status: true
     weight: 0
+    settings: {  }
+  helfi_link_converter:
+    id: helfi_link_converter
+    provider: helfi_api_base
+    status: true
+    weight: -10
     settings: {  }
