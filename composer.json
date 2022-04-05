@@ -18,6 +18,9 @@
         "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_proxy": "^2.0",
         "drupal/helfi_tunnistamo": "^2.0",
+        "drupal/jsonapi_extras": "^3.20",
+        "drupal/openapi_jsonapi": "^3.0",
+        "drupal/openapi_ui_redoc": "^1.0@RC",
         "drupal/redis": "^1.5",
         "drush/drush": "^10.4"
     },

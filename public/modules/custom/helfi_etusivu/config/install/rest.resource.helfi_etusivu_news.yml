@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+    - node
+    - serialization
+id: helfi_etusivu_news
+plugin_id: 'helfi_etusivu_news'
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

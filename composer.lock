@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa766294c742f31004e8599f4b9649f1",
+    "content-hash": "4ecf4cb1eeb907b78f79fb6af9e79afa",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4395,6 +4395,68 @@
             }
         },
         {
+            "name": "drupal/jsonapi_extras",
+            "version": "3.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jsonapi_extras.git",
+                "reference": "8.x-3.20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jsonapi_extras-8.x-3.20.zip",
+                "reference": "8.x-3.20",
+                "shasum": "54bec6ae2b9261a53645182121ae16d3183e43ec"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/jsonapi": "*",
+                "e0ipso/shaper": "^1"
+            },
+            "require-dev": {
+                "drupal/jsonapi": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.20",
+                    "datestamp": "1639580049",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mateu Aguiló Bosch",
+                    "homepage": "https://www.drupal.org/user/3366066",
+                    "email": "mateu.aguilo.bosch@gmail.com"
+                },
+                {
+                    "name": "Martin Kolar",
+                    "homepage": "https://www.drupal.org/u/mkolar"
+                },
+                {
+                    "name": "Karel Majzlik",
+                    "homepage": "https://www.drupal.org/u/karlos007"
+                },
+                {
+                    "name": "Björn Brala",
+                    "homepage": "https://www.drupal.org/u/bbrala"
+                }
+            ],
+            "description": "JSON:API Extras provides a means to override and provide limited configurations to the default zero-configuration implementation provided by the JSON:API module.",
+            "homepage": "https://www.drupal.org/project/jsonapi_extras",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jsonapi_extras"
+            }
+        },
+        {
             "name": "drupal/linkit",
             "version": "6.0.0-beta3",
             "source": {
@@ -4846,6 +4908,222 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/oembed_providers",
                 "issues": "https://www.drupal.org/project/issues/oembed_providers"
+            }
+        },
+        {
+            "name": "drupal/openapi",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/openapi.git",
+                "reference": "8.x-2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/openapi-8.x-2.0.zip",
+                "reference": "8.x-2.0",
+                "shasum": "4562a072dde9d1b5f3249b292d49ee0c489ace7a"
+            },
+            "require": {
+                "drupal/core": "^8.7.0 || ^9"
+            },
+            "require-dev": {
+                "vijaycs85/drupal-quality-checker": "^1.2"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0",
+                    "datestamp": "1632637188",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "e0ipso",
+                    "homepage": "https://www.drupal.org/user/550110"
+                },
+                {
+                    "name": "mrjmd",
+                    "homepage": "https://www.drupal.org/user/1800446"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
+                },
+                {
+                    "name": "richgerdes",
+                    "homepage": "https://www.drupal.org/user/3437973"
+                },
+                {
+                    "name": "rogierbom",
+                    "homepage": "https://www.drupal.org/user/1352176"
+                },
+                {
+                    "name": "tedbow",
+                    "homepage": "https://www.drupal.org/user/240860"
+                }
+            ],
+            "description": "Creates OpenAPI specification for Drupal resources.",
+            "homepage": "https://www.drupal.org/project/openapi",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/openapi",
+                "issues": "http://drupal.org/project/issues/openapi"
+            }
+        },
+        {
+            "name": "drupal/openapi_jsonapi",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/openapi_jsonapi.git",
+                "reference": "3.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/openapi_jsonapi-3.0.2.zip",
+                "reference": "3.0.2",
+                "shasum": "8e027d581270702fc3ed075759336457cc567a92"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/openapi": "^2",
+                "drupal/schemata": "^1",
+                "drupal/schemata_json_schema": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.2",
+                    "datestamp": "1632062730",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mateu Aguiló Bosch",
+                    "homepage": "https://www.drupal.org/user/3616626",
+                    "email": "mateu.aguilo.bosch@gmail.com"
+                },
+                {
+                    "name": "e0ipso",
+                    "homepage": "https://www.drupal.org/user/550110"
+                },
+                {
+                    "name": "richgerdes",
+                    "homepage": "https://www.drupal.org/user/3437973"
+                }
+            ],
+            "description": "OpenAPI support for the JSON:API module.",
+            "homepage": "https://www.drupal.org/project/openapi_jsonapi",
+            "support": {
+                "source": "https://git.drupalcode.org/project/openapi_jsonapi"
+            }
+        },
+        {
+            "name": "drupal/openapi_ui",
+            "version": "1.0.0-rc3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/openapi_ui.git",
+                "reference": "8.x-1.0-rc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/openapi_ui-8.x-1.0-rc3.zip",
+                "reference": "8.x-1.0-rc3",
+                "shasum": "31f0dee0242b29aa90310b486c3d5fb441ceb44d"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-rc3",
+                    "datestamp": "1598462015",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "richgerdes",
+                    "homepage": "https://www.drupal.org/user/3437973"
+                }
+            ],
+            "description": "Provides plugin system for OpenAPI/Swagger Interface libraries.",
+            "homepage": "https://www.drupal.org/project/openapi_ui",
+            "support": {
+                "source": "https://git.drupalcode.org/project/openapi_ui"
+            }
+        },
+        {
+            "name": "drupal/openapi_ui_redoc",
+            "version": "1.0.0-rc3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/openapi_ui_redoc.git",
+                "reference": "8.x-1.0-rc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/openapi_ui_redoc-8.x-1.0-rc3.zip",
+                "reference": "8.x-1.0-rc3",
+                "shasum": "453028a4c5474ed9e372d1bc435952ea90133902"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/openapi_ui": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-rc3",
+                    "datestamp": "1598462000",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "richgerdes",
+                    "homepage": "https://www.drupal.org/user/3437973"
+                }
+            ],
+            "description": "Provides display of OpenAPI docs using the ReDoc library.",
+            "homepage": "https://www.drupal.org/project/openapi_ui_redoc",
+            "support": {
+                "source": "https://git.drupalcode.org/project/openapi_ui_redoc"
             }
         },
         {
@@ -5528,6 +5806,168 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/scheduler",
                 "issues": "https://www.drupal.org/project/issues/scheduler"
+            }
+        },
+        {
+            "name": "drupal/schemata",
+            "version": "1.0.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/schemata.git",
+                "reference": "8.x-1.0-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/schemata-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "c50bc45c370073224877a8c72e6d8d5b2ec732d3"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "require-dev": {
+                "drupal/coder": "^8.2",
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
+                "league/json-guard": "^1.0",
+                "league/json-reference": "^1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1585777919",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "scripts": {
+                "phpcs": [
+                    "phpcs --standard=tests/phpcs.xml"
+                ],
+                "phpcbf": [
+                    "phpcbf --standard=tests/phpcs.xml"
+                ],
+                "lint": [
+                    "parallel-lint -e php,module,install,profile,theme,inc --exclude vendor/ --blame ."
+                ],
+                "quality": [
+                    "@lint",
+                    "@phpcs"
+                ]
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Ross",
+                    "homepage": "https://www.drupal.org/user/346868",
+                    "email": "grayside@gmail.com"
+                },
+                {
+                    "name": "HalfChem",
+                    "homepage": "https://www.drupal.org/user/1608382"
+                },
+                {
+                    "name": "e0ipso",
+                    "homepage": "https://www.drupal.org/user/550110"
+                },
+                {
+                    "name": "febbraro",
+                    "homepage": "https://www.drupal.org/user/43670"
+                },
+                {
+                    "name": "jhedstrom",
+                    "homepage": "https://www.drupal.org/user/208732"
+                },
+                {
+                    "name": "mpotter",
+                    "homepage": "https://www.drupal.org/user/616192"
+                },
+                {
+                    "name": "richgerdes",
+                    "homepage": "https://www.drupal.org/user/3437973"
+                },
+                {
+                    "name": "tekante",
+                    "homepage": "https://www.drupal.org/user/640024"
+                }
+            ],
+            "description": "Facilitate generation of schema definitions of Drupal 8 data models.",
+            "homepage": "https://drupal.org/project/schemata",
+            "keywords": [
+                "Drupal",
+                "json",
+                "schema"
+            ],
+            "support": {
+                "source": "https://cgit.drupalcode.org/schemata",
+                "issues": "https://drupal.org/project/issues/schemata"
+            }
+        },
+        {
+            "name": "drupal/schemata_json_schema",
+            "version": "1.0.0-beta2",
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/schemata": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1585777919",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Grayside",
+                    "homepage": "https://www.drupal.org/user/346868"
+                },
+                {
+                    "name": "HalfChem",
+                    "homepage": "https://www.drupal.org/user/1608382"
+                },
+                {
+                    "name": "e0ipso",
+                    "homepage": "https://www.drupal.org/user/550110"
+                },
+                {
+                    "name": "febbraro",
+                    "homepage": "https://www.drupal.org/user/43670"
+                },
+                {
+                    "name": "jhedstrom",
+                    "homepage": "https://www.drupal.org/user/208732"
+                },
+                {
+                    "name": "mpotter",
+                    "homepage": "https://www.drupal.org/user/616192"
+                },
+                {
+                    "name": "richgerdes",
+                    "homepage": "https://www.drupal.org/user/3437973"
+                },
+                {
+                    "name": "tekante",
+                    "homepage": "https://www.drupal.org/user/640024"
+                }
+            ],
+            "description": "Provides a data models for entity types and bundles in JSON schema format.",
+            "homepage": "https://www.drupal.org/project/schemata",
+            "support": {
+                "source": "https://git.drupalcode.org/project/schemata"
             }
         },
         {
@@ -6597,6 +7037,52 @@
             "time": "2021-12-15T17:09:54+00:00"
         },
         {
+            "name": "e0ipso/shaper",
+            "version": "1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/e0ipso/shaper.git",
+                "reference": "7d73018ec4fe8de9730dfe755067cc02460e1a38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/e0ipso/shaper/zipball/7d73018ec4fe8de9730dfe755067cc02460e1a38",
+                "reference": "7d73018ec4fe8de9730dfe755067cc02460e1a38",
+                "shasum": ""
+            },
+            "require": {
+                "justinrainbow/json-schema": "^5.2"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpcov": "^8.2",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shaper\\": "src",
+                    "Shaper\\Tests\\": "tests/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mateu Aguiló Bosch",
+                    "email": "mateu.aguilo.bosch@gmail.com"
+                }
+            ],
+            "description": "Lightweight library to handle in and out transformations in PHP.",
+            "support": {
+                "issues": "https://github.com/e0ipso/shaper/issues",
+                "source": "https://github.com/e0ipso/shaper/tree/1.2.4"
+            },
+            "time": "2021-05-19T09:42:57+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "3.1.2",
             "source": {
@@ -7325,6 +7811,76 @@
                 }
             ],
             "time": "2022-03-20T21:51:18+00:00"
+        },
+        {
+            "name": "justinrainbow/json-schema",
+            "version": "5.2.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/justinrainbow/json-schema.git",
+                "reference": "2ab6744b7296ded80f8cc4f9509abbff393399aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/2ab6744b7296ded80f8cc4f9509abbff393399aa",
+                "reference": "2ab6744b7296ded80f8cc4f9509abbff393399aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.2.20||~2.15.1",
+                "json-schema/json-schema-test-suite": "1.2.0",
+                "phpunit/phpunit": "^4.8.35"
+            },
+            "bin": [
+                "bin/validate-json"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JsonSchema\\": "src/JsonSchema/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Prieto Reis",
+                    "email": "bruno.p.reis@gmail.com"
+                },
+                {
+                    "name": "Justin Rainbow",
+                    "email": "justin.rainbow@gmail.com"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                },
+                {
+                    "name": "Robert Schönthal",
+                    "email": "seroscho@googlemail.com"
+                }
+            ],
+            "description": "A library to validate a json schema.",
+            "homepage": "https://github.com/justinrainbow/json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "support": {
+                "issues": "https://github.com/justinrainbow/json-schema/issues",
+                "source": "https://github.com/justinrainbow/json-schema/tree/5.2.11"
+            },
+            "time": "2021-07-22T09:24:00+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -13370,76 +13926,6 @@
             "time": "2021-10-14T03:25:34+00:00"
         },
         {
-            "name": "justinrainbow/json-schema",
-            "version": "5.2.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "2ab6744b7296ded80f8cc4f9509abbff393399aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/2ab6744b7296ded80f8cc4f9509abbff393399aa",
-                "reference": "2ab6744b7296ded80f8cc4f9509abbff393399aa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2.2.20||~2.15.1",
-                "json-schema/json-schema-test-suite": "1.2.0",
-                "phpunit/phpunit": "^4.8.35"
-            },
-            "bin": [
-                "bin/validate-json"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "JsonSchema\\": "src/JsonSchema/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bruno Prieto Reis",
-                    "email": "bruno.p.reis@gmail.com"
-                },
-                {
-                    "name": "Justin Rainbow",
-                    "email": "justin.rainbow@gmail.com"
-                },
-                {
-                    "name": "Igor Wiedler",
-                    "email": "igor@wiedler.ch"
-                },
-                {
-                    "name": "Robert Schönthal",
-                    "email": "seroscho@googlemail.com"
-                }
-            ],
-            "description": "A library to validate a json schema.",
-            "homepage": "https://github.com/justinrainbow/json-schema",
-            "keywords": [
-                "json",
-                "schema"
-            ],
-            "support": {
-                "issues": "https://github.com/justinrainbow/json-schema/issues",
-                "source": "https://github.com/justinrainbow/json-schema/tree/5.2.11"
-            },
-            "time": "2021-07-22T09:24:00+00:00"
-        },
-        {
             "name": "mglaman/phpstan-drupal",
             "version": "1.1.14",
             "source": {
@@ -16340,7 +16826,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/helfi_drupal_tools": 20
+        "drupal/helfi_drupal_tools": 20,
+        "drupal/openapi_ui_redoc": 5
     },
     "prefer-stable": true,
     "prefer-lowest": false,

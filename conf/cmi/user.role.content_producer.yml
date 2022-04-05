@@ -6,10 +6,12 @@ dependencies:
     - filter.format.full_html
     - filter.format.minimal
     - media.type.file
+    - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
     - media.type.soundcloud
     - node.type.landing_page
+    - node.type.news_item
     - node.type.page
     - taxonomy.vocabulary.keywords
   module:
@@ -22,10 +24,12 @@ dependencies:
     - paragraphs
     - paragraphs_library
     - path
+    - publication_date
     - scheduler
     - system
     - taxonomy
     - toolbar
+    - view_unpublished
 _core:
   default_config_hash: viSgvM0-88JonuEOigzOLS-5SZVM7AkhvD2CfKpIgFM
 id: content_producer
@@ -46,9 +50,11 @@ permissions:
   - 'cancel account'
   - 'change own username'
   - 'create file media'
+  - 'create helfi_chart media'
   - 'create image media'
   - 'create landing_page content'
   - 'create media'
+  - 'create news_item content'
   - 'create page content'
   - 'create paragraph library item'
   - 'create remote_video media'
@@ -57,29 +63,37 @@ permissions:
   - 'create url aliases'
   - 'delete media'
   - 'delete own file media'
+  - 'delete own helfi_chart media'
   - 'delete own image media'
   - 'delete own landing_page content'
+  - 'delete own news_item content'
   - 'delete own page content'
   - 'delete own remote_video media'
   - 'delete own soundcloud media'
   - 'edit any file media'
+  - 'edit any helfi_chart media'
   - 'edit any image media'
   - 'edit any landing_page content'
+  - 'edit any news_item content'
   - 'edit any page content'
   - 'edit any remote_video media'
   - 'edit any soundcloud media'
   - 'edit own file media'
+  - 'edit own helfi_chart media'
   - 'edit own image media'
   - 'edit own landing_page content'
+  - 'edit own news_item content'
   - 'edit own page content'
   - 'edit own remote_video media'
   - 'edit own soundcloud media'
   - 'edit paragraph library item'
   - 'edit terms in keywords'
   - 'revert landing_page revisions'
+  - 'revert news_item revisions'
   - 'revert page revisions'
   - 'schedule publishing of nodes'
   - 'set landing_page published on date'
+  - 'set news_item published on date'
   - 'set page published on date'
   - 'translate editable entities'
   - 'update media'
@@ -89,6 +103,7 @@ permissions:
   - 'view all revisions'
   - 'view any unpublished content'
   - 'view landing_page revisions'
+  - 'view news_item revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view page revisions'
@@ -96,7 +111,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'create helfi_chart media'
-  - 'delete own helfi_chart media'
-  - 'edit any helfi_chart media'
-  - 'edit own helfi_chart media'
