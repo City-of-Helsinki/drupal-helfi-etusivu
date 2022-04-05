@@ -1,0 +1,24 @@
+uuid: c5cecc6e-2d82-4f3c-87f3-85b7c0966005
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.news_item
+_core:
+  default_config_hash: tW6uICs7J075Iv83bMyKi93RrQGrvD6kuJR-WgiBCvY
+id: node.news_item.status
+field_name: status
+entity_type: node
+bundle: news_item
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
