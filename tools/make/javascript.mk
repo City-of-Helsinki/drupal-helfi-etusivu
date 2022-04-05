@@ -1,5 +1,4 @@
 BUILD_TARGETS += js-install
-CLEAN_FOLDERS += $(PACKAGE_JSON_PATH)/node_modules
 JS_PACKAGE_MANAGER ?= yarn
 JS_PACKAGE_MANAGER_CWD_FLAG_NPM ?= --prefix
 JS_PACKAGE_MANAGER_CWD_FLAG_YARN ?= --cwd
@@ -16,7 +15,7 @@ js-install: ## Install JS packages
 ifeq ($(JS_PACKAGE_MANAGER),yarn)
 	$(call node_run,install --frozen-lockfile)
 else
-	$(call node_run,install --engine-strict true)
+	$(call node_run,install --no-audit --no-fund --engine-strict true)
 endif
 
 PHONY += js-outdated

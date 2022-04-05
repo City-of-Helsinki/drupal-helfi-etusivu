@@ -32,6 +32,7 @@ dependencies:
     - system
     - taxonomy
     - toolbar
+    - views_bulk_edit
 _core:
   default_config_hash: ObmmYGxNS3gwXYiYXXNN9BuGDoRqxkmD3bXdhWCciU0
 id: admin
@@ -155,3 +156,4 @@ permissions:
   - 'delete own helfi_chart media'
   - 'edit any helfi_chart media'
   - 'edit own helfi_chart media'
+  - 'use views bulk edit'

@@ -39,11 +39,9 @@ build-production:
 	@$(MAKE) build ENV=production
 
 PHONY += clean
-clean: ## Clean folders
-	$(call step,Clean folders:$(NO_COLOR) $(CLEAN_FOLDERS)\n)
-	@rm -rf $(CLEAN_FOLDERS)
+clean: ## Cleanup
 	$(call step,Do Git clean\n)
-	@git clean -fdx -e .idea -e $(WEBROOT)/sites/default/files
+	@git clean -fdx $(foreach item,$(CLEAN_EXCLUDE),-e $(item))
 
 PHONY += self-update
 self-update: ## Self-update makefiles from druidfi/tools

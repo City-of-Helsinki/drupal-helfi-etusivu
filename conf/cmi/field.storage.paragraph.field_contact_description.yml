@@ -1,0 +1,21 @@
+uuid: 389a0a7b-7c61-4443-b50e-22ff3fcc6b6b
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: h8k3-JFE3HxS1yyyweppUr448WgNYGgkn-ostZDPY28
+id: paragraph.field_contact_description
+field_name: field_contact_description
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
