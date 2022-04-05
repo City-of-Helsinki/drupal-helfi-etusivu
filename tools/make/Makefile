@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 
 BUILD_TARGETS :=
-CLEAN_FOLDERS :=
+CLEAN_EXCLUDE := .idea dump.sql .env.local
 COMPOSER_BIN := $(shell command -v composer || echo no)
 COMPOSER_JSON_PATH ?= .
 DOCKER_BIN := $(shell command -v docker > /dev/null 2>&1 && command -v docker || echo no)
@@ -49,7 +49,6 @@ debug: ## Show debug information
 	@printf "${GREEN}Debug starts:${NO_COLOR}\n"
 	$(call dbg,COMPOSER_BIN,${COMPOSER_BIN})
 	$(call dbg,COMPOSER_JSON_EXISTS,${COMPOSER_JSON_EXISTS})
-	$(call dbg,CLEAN_FOLDERS,${CLEAN_FOLDERS})
 	$(call dbg,CLI_SERVICE,${CLI_SERVICE})
 	$(call dbg,CLI_USER,${CLI_USER})
 	$(call dbg,CLI_SHELL,${CLI_SHELL})

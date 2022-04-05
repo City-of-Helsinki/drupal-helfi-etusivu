@@ -32,6 +32,7 @@ settings:
         -
           name: Tools
           items:
+            - language_selector
             - Source
   plugins:
     drupallink:

@@ -20,7 +20,7 @@ else
 endif
 
 PHONY += --open-db-gui
---open-db-gui: ## Open database with GUI tool (MySQL/MariaDB only)
+--open-db-gui:
 	@open mysql://$(DB_USER):$(DB_PASS)@$(shell docker port $(DB_CONTAINER) 3306)/$(DB_NAME)
 
 define dbg
