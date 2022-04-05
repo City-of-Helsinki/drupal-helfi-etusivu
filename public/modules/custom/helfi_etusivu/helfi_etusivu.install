@@ -1,11 +1,13 @@
 <?php
 
-use Drupal\path_alias\Entity\PathAlias;
-
 /**
  * @file
  * Contains etusivu installation hooks.
  */
+
+declare(strict_types = 1);
+
+use Drupal\path_alias\Entity\PathAlias;
 
 /**
  * Implements hook_install().
