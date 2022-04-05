@@ -1,0 +1,20 @@
+<?php
+
+use Drupal\path_alias\Entity\PathAlias;
+
+/**
+ * @file
+ * Contains etusivu installation hooks.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function helfi_etusivu_install() : void {
+  // Create easier to remember URL alias for ReDoc UI.
+  PathAlias::create([
+    'path' => '/admin/config/services/openapi/redoc/jsonapi',
+    'alias' => '/openapi/jsonapi/redoc',
+  ])
+    ->save();
+}
