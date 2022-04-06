@@ -22,10 +22,12 @@
         "drupal/openapi_jsonapi": "^3.0",
         "drupal/openapi_ui_redoc": "^1.0@RC",
         "drupal/redis": "^1.5",
-        "drush/drush": "^10.4"
+        "drush/drush": "^10.4",
+        "ext-libxml": "*"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "dmore/chrome-mink-driver": "^2.8",
         "drupal/coder": "^8.3",
         "drupal/core-dev": "^9.3",
         "mglaman/phpstan-drupal": "^1.0",
@@ -33,7 +35,8 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpunit/phpunit": "~9.4.0"
+        "phpunit/phpunit": "~9.4.0",
+        "weitzman/drupal-test-traits": "^1.5"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -88,6 +91,11 @@
             "drush/Commands/{$name}": [
                 "type:drupal-drush"
             ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Drupal\\Tests\\dtt\\": "tests/dtt/src"
         }
     },
     "repositories": [
