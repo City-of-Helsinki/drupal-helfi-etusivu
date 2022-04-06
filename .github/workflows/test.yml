@@ -55,3 +55,13 @@ jobs:
         run: |
           composer test-php public/modules/custom
           composer test-php tests/
+
+      - name: Create an artifact from test report
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: results
+          path: |
+            public/sites/simpletest/browser_output/
+            public/sites/default/files/logs/drupal.log
+          retention-days: 1
