@@ -38,15 +38,19 @@ jobs:
       - name: Download latest dump
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh run download -n latest.sql
+        run: gh run download -n latest.sql
 
-      - name: Install Drupal
-        run: mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql
-
-      - name: Run PHPUnit tests
+      - name: Start services
         run: |
           drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
           chromedriver --port=4444 > /dev/null 2>&1 &
+
+      - name: Install Drupal
+        run: |
+          mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql
+          drush deploy
+
+      - name: Run PHPUnit tests
+        run: |
           composer test-php public/modules/custom
           composer test-php tests/
