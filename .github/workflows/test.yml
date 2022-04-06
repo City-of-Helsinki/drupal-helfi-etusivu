@@ -49,3 +49,4 @@ jobs:
           drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
           chromedriver --port=4444 > /dev/null 2>&1 &
           composer test-php public/modules/custom
+          composer test-php tests/
