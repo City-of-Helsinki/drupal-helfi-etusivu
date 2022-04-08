@@ -13,10 +13,47 @@ use Drupal\path_alias\Entity\PathAlias;
  * Implements hook_install().
  */
 function helfi_etusivu_install() : void {
-  // Create easier to remember URL alias for ReDoc UI.
-  PathAlias::create([
-    'path' => '/admin/config/services/openapi/redoc/jsonapi',
-    'alias' => '/openapi/jsonapi/redoc',
-  ])
-    ->save();
+  /** @var \Drupal\Core\Extension\ModuleHandler $moduleHandler */
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('path_alias')) {
+    $storage = \Drupal::entityTypeManager()
+      ->getStorage('path_alias');
+
+    if (!$storage->loadByProperties(['alias' => '/openapi/jsonapi/redoc'])) {
+      // Create easier to remember URL alias for ReDoc UI.
+      $storage->create([
+        'path' => '/admin/config/services/openapi/redoc/jsonapi',
+        'alias' => '/openapi/jsonapi/redoc',
+      ])
+        ->save();
+    }
+  }
+
+  if ($moduleHandler->moduleExists('consumer_image_styles')) {
+    $storage = \Drupal::entityTypeManager()
+      ->getStorage('consumer');
+
+    /** @var \Drupal\consumers\Entity\Consumer $consumer */
+    foreach ($storage->loadMultiple() as $consumer) {
+      if (!$consumer->get('third_party')->value) {
+        continue;
+      }
+
+      if (!$consumer->hasField('image_styles')) {
+        continue;
+      }
+      $consumer->set('image_styles', [
+        'original_l',
+      ])
+        ->save();
+    }
+  }
+}
+
+/**
+ * Set default consumer image styles.
+ */
+function helfi_etusivu_update_9001() : void {
+  helfi_etusivu_install();
 }
