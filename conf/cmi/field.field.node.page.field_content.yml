@@ -7,7 +7,9 @@ dependencies:
     - node.type.page
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.banner
+    - paragraphs.paragraphs_type.chart
     - paragraphs.paragraphs_type.columns
+    - paragraphs.paragraphs_type.contact_card_listing
     - paragraphs.paragraphs_type.content_cards
     - paragraphs.paragraphs_type.content_liftup
     - paragraphs.paragraphs_type.from_library
@@ -39,13 +41,13 @@ settings:
       accordion: accordion
       image: image
       gallery: gallery
+      content_liftup: content_liftup
       list_of_links: list_of_links
       content_cards: content_cards
-      content_liftup: content_liftup
       banner: banner
       from_library: from_library
-      remote_video: remote_video
       chart: chart
+      remote_video: remote_video
       contact_card_listing: contact_card_listing
     negate: 0
     target_bundles_drag_drop:
@@ -103,6 +105,9 @@ settings:
       remote_video:
         weight: 27
         enabled: true
+      sidebar_text:
+        weight: 42
+        enabled: false
       social_media_link:
         weight: 46
         enabled: false

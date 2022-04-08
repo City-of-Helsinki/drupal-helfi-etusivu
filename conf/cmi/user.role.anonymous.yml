@@ -4,7 +4,9 @@ status: true
 dependencies:
   module:
     - eu_cookie_compliance
+    - helfi_api_base
     - media
+    - openapi
     - system
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
@@ -14,6 +16,7 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'access openapi api docs'
   - 'display eu cookie compliance popup'
   - 'view media'
   - 'view remote entities'

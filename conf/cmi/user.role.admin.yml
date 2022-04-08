@@ -6,12 +6,15 @@ dependencies:
     - filter.format.full_html
     - filter.format.minimal
     - media.type.file
+    - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
     - media.type.soundcloud
     - node.type.landing_page
+    - node.type.news_item
     - node.type.page
     - taxonomy.vocabulary.keywords
+    - taxonomy.vocabulary.news_tags
   module:
     - block
     - config_translation
@@ -22,16 +25,22 @@ dependencies:
     - helfi_api_base
     - locale
     - media
+    - menu_link_attributes
+    - menu_link_content
     - node
     - paragraphs
     - paragraphs_library
     - path
     - pathauto
+    - publication_date
     - redirect
+    - role_delegation
     - scheduler
+    - simple_sitemap
     - system
     - taxonomy
     - toolbar
+    - view_unpublished
     - views_bulk_edit
 _core:
   default_config_hash: ObmmYGxNS3gwXYiYXXNN9BuGDoRqxkmD3bXdhWCciU0
@@ -70,56 +79,72 @@ permissions:
   - 'change own username'
   - 'create content translations'
   - 'create file media'
+  - 'create helfi_chart media'
   - 'create image media'
   - 'create landing_page content'
   - 'create media'
+  - 'create news_item content'
   - 'create page content'
   - 'create paragraph library item'
   - 'create remote entities'
   - 'create remote_video media'
   - 'create soundcloud media'
   - 'create terms in keywords'
+  - 'create terms in news_tags'
   - 'create url aliases'
   - 'delete all revisions'
   - 'delete any file media'
+  - 'delete any helfi_chart media'
   - 'delete any image media'
   - 'delete any landing_page content'
   - 'delete any media'
+  - 'delete any news_item content'
   - 'delete any page content'
   - 'delete any remote_video media'
   - 'delete any soundcloud media'
   - 'delete content translations'
   - 'delete landing_page revisions'
   - 'delete media'
+  - 'delete news_item revisions'
   - 'delete own file media'
+  - 'delete own helfi_chart media'
   - 'delete own image media'
   - 'delete own landing_page content'
+  - 'delete own news_item content'
   - 'delete own page content'
   - 'delete own remote_video media'
   - 'delete own soundcloud media'
   - 'delete page revisions'
   - 'delete remote entities'
   - 'delete terms in keywords'
+  - 'delete terms in news_tags'
   - 'edit any file media'
+  - 'edit any helfi_chart media'
   - 'edit any image media'
   - 'edit any landing_page content'
+  - 'edit any news_item content'
   - 'edit any page content'
   - 'edit any remote_video media'
   - 'edit any soundcloud media'
   - 'edit own file media'
+  - 'edit own helfi_chart media'
   - 'edit own image media'
   - 'edit own landing_page content'
+  - 'edit own news_item content'
   - 'edit own page content'
   - 'edit own remote_video media'
   - 'edit own soundcloud media'
   - 'edit paragraph library item'
   - 'edit remote entities'
   - 'edit terms in keywords'
+  - 'edit terms in news_tags'
   - 'revert all revisions'
   - 'revert landing_page revisions'
+  - 'revert news_item revisions'
   - 'revert page revisions'
   - 'schedule publishing of nodes'
   - 'set landing_page published on date'
+  - 'set news_item published on date'
   - 'set page published on date'
   - 'translate any entity'
   - 'translate configuration'
@@ -130,6 +155,8 @@ permissions:
   - 'translate keywords taxonomy_term'
   - 'translate landing_page node'
   - 'translate menu_link_content'
+  - 'translate news_item node'
+  - 'translate news_tags taxonomy_term'
   - 'translate page node'
   - 'translate remote_video media'
   - 'translate soundcloud media'
@@ -139,11 +166,13 @@ permissions:
   - 'use menu link attributes'
   - 'use text format full_html'
   - 'use text format minimal'
+  - 'use views bulk edit'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any unpublished content'
   - 'view landing_page revisions'
   - 'view media'
+  - 'view news_item revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view page revisions'
@@ -151,9 +180,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'create helfi_chart media'
-  - 'delete any helfi_chart media'
-  - 'delete own helfi_chart media'
-  - 'edit any helfi_chart media'
-  - 'edit own helfi_chart media'
-  - 'use views bulk edit'

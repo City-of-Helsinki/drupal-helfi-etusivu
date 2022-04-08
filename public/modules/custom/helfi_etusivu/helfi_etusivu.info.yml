@@ -1,0 +1,7 @@
+name: helfi_etusivu
+type: module
+description: Etusivu specific functionality
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - rest
