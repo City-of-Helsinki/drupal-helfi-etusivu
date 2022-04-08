@@ -42,6 +42,7 @@ dependencies:
     - toolbar
     - view_unpublished
     - views_bulk_edit
+    - views_bulk_edit
 _core:
   default_config_hash: ObmmYGxNS3gwXYiYXXNN9BuGDoRqxkmD3bXdhWCciU0
 id: admin
@@ -180,3 +181,4 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
+  - 'use views bulk edit'
