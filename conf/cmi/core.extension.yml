@@ -13,6 +13,8 @@ module:
   config_rewrite: 0
   config_translation: 0
   config_update: 0
+  consumer_image_styles: 0
+  consumers: 0
   content_lock: 0
   content_lock_timeout: 0
   crop: 0
@@ -45,14 +47,19 @@ module:
   helfi_charts: 0
   helfi_contact_cards: 0
   helfi_content: 0
+  helfi_etusivu: 0
   helfi_gdpr_compliance: 0
   helfi_languages: 0
   helfi_media: 0
+  helfi_news_item: 0
   helfi_platform_config: 0
   helfi_proxy: 0
   helfi_toc: 0
   image: 0
   image_style_quality: 0
+  imagecache_external: 0
+  jsonapi: 0
+  jsonapi_extras: 0
   language: 0
   link: 0
   linkit: 0
@@ -70,8 +77,11 @@ module:
   migrate: 0
   node: 0
   oembed_providers: 0
+  openapi: 0
+  openapi_jsonapi: 0
+  openapi_ui: 0
+  openapi_ui_redoc: 0
   options: 0
-  page_cache: 0
   paragraphs_asymmetric_translation_widgets: 0
   paragraphs_library: 0
   path: 0
@@ -87,6 +97,8 @@ module:
   rest: 0
   role_delegation: 0
   scheduler: 0
+  schemata: 0
+  schemata_json_schema: 0
   select2: 0
   select2_icon: 0
   serialization: 0
@@ -114,6 +126,7 @@ module:
   content_translation: 10
   views: 10
   paragraphs: 11
+  publication_date: 99
   minimal: 1000
   eu_cookie_compliance: 1001
 theme:
