@@ -27,7 +27,6 @@ module:
   entity: 0
   entity_reference_revisions: 0
   entity_usage: 0
-  external_entities: 0
   field: 0
   field_group: 0
   field_ui: 0
@@ -52,7 +51,6 @@ module:
   helfi_gdpr_compliance: 0
   helfi_languages: 0
   helfi_media: 0
-  helfi_news_feed: 0
   helfi_news_item: 0
   helfi_platform_config: 0
   helfi_proxy: 0
