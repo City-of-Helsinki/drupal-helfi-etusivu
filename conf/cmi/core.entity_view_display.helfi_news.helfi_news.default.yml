@@ -1,0 +1,20 @@
+uuid: 19d608fe-f790-425b-a40b-c38cc3fe6f84
+langcode: en
+status: true
+dependencies:
+  module:
+    - external_entities
+id: helfi_news.helfi_news.default
+targetEntityType: helfi_news
+bundle: helfi_news
+mode: default
+content:
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

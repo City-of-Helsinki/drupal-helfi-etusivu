@@ -7,13 +7,16 @@ dependencies:
     - node.type.page
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.banner
+    - paragraphs.paragraphs_type.chart
     - paragraphs.paragraphs_type.columns
+    - paragraphs.paragraphs_type.contact_card_listing
     - paragraphs.paragraphs_type.content_cards
     - paragraphs.paragraphs_type.content_liftup
     - paragraphs.paragraphs_type.from_library
     - paragraphs.paragraphs_type.gallery
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.list_of_links
+    - paragraphs.paragraphs_type.news_list
     - paragraphs.paragraphs_type.remote_video
     - paragraphs.paragraphs_type.text
   module:
@@ -39,14 +42,15 @@ settings:
       accordion: accordion
       image: image
       gallery: gallery
+      content_liftup: content_liftup
       list_of_links: list_of_links
       content_cards: content_cards
-      content_liftup: content_liftup
       banner: banner
       from_library: from_library
-      remote_video: remote_video
       chart: chart
+      remote_video: remote_video
       contact_card_listing: contact_card_listing
+      news_list: news_list
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -100,9 +104,15 @@ settings:
       list_of_links_item:
         weight: -17
         enabled: false
+      news_list:
+        weight: 40
+        enabled: true
       remote_video:
         weight: 27
         enabled: true
+      sidebar_text:
+        weight: 42
+        enabled: false
       social_media_link:
         weight: 46
         enabled: false

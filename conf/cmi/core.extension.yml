@@ -13,6 +13,8 @@ module:
   config_rewrite: 0
   config_translation: 0
   config_update: 0
+  consumer_image_styles: 0
+  consumers: 0
   content_lock: 0
   content_lock_timeout: 0
   crop: 0
@@ -25,6 +27,7 @@ module:
   entity: 0
   entity_reference_revisions: 0
   entity_usage: 0
+  external_entities: 0
   field: 0
   field_group: 0
   field_ui: 0
@@ -49,6 +52,7 @@ module:
   helfi_gdpr_compliance: 0
   helfi_languages: 0
   helfi_media: 0
+  helfi_news_feed: 0
   helfi_news_item: 0
   helfi_platform_config: 0
   helfi_proxy: 0
@@ -80,7 +84,6 @@ module:
   openapi_ui: 0
   openapi_ui_redoc: 0
   options: 0
-  page_cache: 0
   paragraphs_asymmetric_translation_widgets: 0
   paragraphs_library: 0
   path: 0

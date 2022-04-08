@@ -1,0 +1,25 @@
+uuid: 1bda9a01-4190-40bb-aaa5-dca10c9da2be
+langcode: en
+status: true
+dependencies: {  }
+id: helfi_news
+label: 'Helfi: News'
+label_plural: 'Helfi: News'
+description: ''
+read_only: true
+field_mapper_id: jsonpath
+field_mapper_config:
+  field_mappings:
+    id:
+      value: $.id
+    uuid:
+      value: $.id
+    title:
+      value: '$.attributes[''title'']'
+storage_client_id: helfi_news
+storage_client_config: null
+persistent_cache_max_age: -1
+annotation_entity_type_id: null
+annotation_bundle_id: null
+annotation_field_name: null
+inherits_annotation_fields: false
