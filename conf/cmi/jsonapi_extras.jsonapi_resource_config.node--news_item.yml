@@ -7,7 +7,7 @@ dependencies:
 id: node--news_item
 disabled: false
 path: node/news
-resourceType: news
+resourceType: node--news_item
 resourceFields:
   nid:
     disabled: false

@@ -7,10 +7,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "ext-libxml": "*",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.6.7",
+        "drupal/consumer_image_styles": "^4.0",
         "drupal/core-composer-scaffold": "^9.3",
         "drupal/core-recommended": "^9.3",
+        "drupal/external_entities": "^2.0@alpha",
         "drupal/hdbt": "^2.0",
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_azure_fs": "^1.0",
@@ -22,8 +25,7 @@
         "drupal/openapi_jsonapi": "^3.0",
         "drupal/openapi_ui_redoc": "^1.0@RC",
         "drupal/redis": "^1.5",
-        "drush/drush": "^10.4",
-        "ext-libxml": "*"
+        "drush/drush": "^10.4"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",

@@ -1,14 +1,12 @@
-uuid: 131f571e-4246-455d-ba36-b52908dc1161
+uuid: 3b76b047-c061-4681-91b5-1e66bb3a491a
 langcode: en
 status: true
 dependencies:
   module:
-    - node
-_core:
-  default_config_hash: YHlhJO2EOeNVFvWcKqa3EMF3M9w0rqfWVNyqGHVgIa8
-id: node.field_short_title
-field_name: field_short_title
-entity_type: node
+    - paragraphs
+id: paragraph.field_tags
+field_name: field_tags
+entity_type: paragraph
 type: string
 settings:
   max_length: 255
@@ -16,7 +14,7 @@ settings:
   is_ascii: false
 module: core
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
