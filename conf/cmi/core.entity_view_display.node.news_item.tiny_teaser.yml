@@ -8,9 +8,11 @@ dependencies:
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
     - field.field.node.news_item.field_main_image_caption
+    - field.field.node.news_item.field_news_groups
     - field.field.node.news_item.field_news_item_links_link
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_short_title
     - image.style.tiny_square_image
     - node.type.news_item
@@ -60,8 +62,10 @@ hidden:
   field_content: true
   field_lead_in: true
   field_main_image_caption: true
+  field_news_groups: true
   field_news_item_links_link: true
   field_news_item_links_title: true
   field_news_item_tags: true
+  field_news_neighbourhoods: true
   langcode: true
   toc_enabled: true
