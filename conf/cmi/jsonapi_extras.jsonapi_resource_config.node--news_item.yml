@@ -210,7 +210,7 @@ resourceFields:
   field_news_groups:
     disabled: false
     fieldName: field_news_groups
-    publicName: news_groups
+    publicName: groups
     enhancer:
       id: ''
   field_news_item_links_link:
