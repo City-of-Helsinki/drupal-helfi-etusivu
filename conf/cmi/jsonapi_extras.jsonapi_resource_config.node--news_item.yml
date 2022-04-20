@@ -207,22 +207,34 @@ resourceFields:
     publicName: main_image_caption
     enhancer:
       id: ''
+  field_news_groups:
+    disabled: false
+    fieldName: field_news_groups
+    publicName: news_groups
+    enhancer:
+      id: ''
   field_news_item_links_link:
     disabled: false
     fieldName: field_news_item_links_link
-    publicName: news_item_links_link
+    publicName: links_link
     enhancer:
       id: ''
   field_news_item_links_title:
     disabled: false
     fieldName: field_news_item_links_title
-    publicName: news_item_links_title
+    publicName: links_title
     enhancer:
       id: ''
   field_news_item_tags:
     disabled: false
     fieldName: field_news_item_tags
-    publicName: news_item_tags
+    publicName: tags
+    enhancer:
+      id: ''
+  field_news_neighbourhoods:
+    disabled: false
+    fieldName: field_news_neighbourhoods
+    publicName: neighbourhoods
     enhancer:
       id: ''
   field_short_title:
