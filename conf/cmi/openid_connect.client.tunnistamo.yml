@@ -10,10 +10,10 @@ id: tunnistamo
 label: Tunnistamo
 plugin: tunnistamo
 settings:
-  is_production: 0
-  client_scopes: 'openid,email'
-  environment_url: ''
-  auto_login: 0
-  client_roles: {  }
   client_id: placeholder
   client_secret: placeholder
+  is_production: 0
+  auto_login: 0
+  environment_url: ''
+  client_scopes: 'openid,email'
+  client_roles: {  }
