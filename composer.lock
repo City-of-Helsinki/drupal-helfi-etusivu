@@ -4012,16 +4012,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "2.3.11",
+            "version": "2.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "2f0ffdac9e7a054b92772fa30cc2d7836257f0d7"
+                "reference": "1977419cbfb3c6ef523d7d103d4661bdc58859d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/2f0ffdac9e7a054b92772fa30cc2d7836257f0d7",
-                "reference": "2f0ffdac9e7a054b92772fa30cc2d7836257f0d7",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/1977419cbfb3c6ef523d7d103d4661bdc58859d6",
+                "reference": "1977419cbfb3c6ef523d7d103d4661bdc58859d6",
                 "shasum": ""
             },
             "require": {
@@ -4036,10 +4036,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/2.3.11",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/2.3.12",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2022-04-12T08:25:43+00:00"
+            "time": "2022-04-14T08:36:45+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4239,16 +4239,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.6.14",
+            "version": "2.6.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "d16769bb7f6794d061b3a707585e194d70da5c5c"
+                "reference": "7b484e90eac8e83fa03ecef977b4bc9191a38aea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/d16769bb7f6794d061b3a707585e194d70da5c5c",
-                "reference": "d16769bb7f6794d061b3a707585e194d70da5c5c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/7b484e90eac8e83fa03ecef977b4bc9191a38aea",
+                "reference": "7b484e90eac8e83fa03ecef977b4bc9191a38aea",
                 "shasum": ""
             },
             "require": {
@@ -4281,6 +4281,7 @@
                 "drupal/linkit": "^6.0@beta",
                 "drupal/matomo": "^1.11",
                 "drupal/matomo_reports": "^1.1",
+                "drupal/media_entity_file_replace": "^1.0",
                 "drupal/media_entity_soundcloud": "^3.0.0",
                 "drupal/menu_block_current_language": "^1.5",
                 "drupal/menu_link_attributes": "^1.2",
@@ -4355,10 +4356,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.6.14",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.6.16",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-04-13T06:13:53+00:00"
+            "time": "2022-04-14T09:52:40+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -4401,16 +4402,16 @@
         },
         {
             "name": "drupal/helfi_tpr",
-            "version": "2.0.8",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr.git",
-                "reference": "09ddbc6900eb7db839bfdbb19c5d2413443415d0"
+                "reference": "60456551a03deb0ce195230b5aa1fc5550a07b4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/09ddbc6900eb7db839bfdbb19c5d2413443415d0",
-                "reference": "09ddbc6900eb7db839bfdbb19c5d2413443415d0",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/60456551a03deb0ce195230b5aa1fc5550a07b4e",
+                "reference": "60456551a03deb0ce195230b5aa1fc5550a07b4e",
                 "shasum": ""
             },
             "require": {
@@ -4432,10 +4433,10 @@
             ],
             "description": "TPR integration",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/2.0.8",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/2.0.9",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/issues"
             },
-            "time": "2022-04-05T06:08:39+00:00"
+            "time": "2022-04-13T06:12:30+00:00"
         },
         {
             "name": "drupal/helfi_tunnistamo",
@@ -4799,6 +4800,50 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/matomo_reports",
                 "issues": "https://www.drupal.org/project/issues/matomo_reports"
+            }
+        },
+        {
+            "name": "drupal/media_entity_file_replace",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/media_entity_file_replace.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/media_entity_file_replace-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "a22fb6b946dade434301b85c249d8621d0fc6654"
+            },
+            "require": {
+                "drupal/core": "^8.7.7 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1618180544",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bkosborne",
+                    "homepage": "https://www.drupal.org/user/788032"
+                }
+            ],
+            "description": "Allows content editors to easily replace source files associated with any file-based media entity, preserving the original filename.",
+            "homepage": "https://www.drupal.org/project/media_entity_file_replace",
+            "support": {
+                "source": "https://git.drupalcode.org/project/media_entity_file_replace"
             }
         },
         {
