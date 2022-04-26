@@ -5,6 +5,7 @@ dependencies:
   module:
     - paragraphs
     - toolbar
+    - view_unpublished
 _core:
   default_config_hash: syTv0h1MUcZ35TjmApRsR9znnDRN-fk-wxfZjABkkbw
 id: read_only
@@ -14,5 +15,6 @@ is_admin: null
 permissions:
   - 'access toolbar'
   - 'view any unpublished landing_page content'
+  - 'view any unpublished news_item content'
   - 'view any unpublished page content'
   - 'view unpublished paragraphs'

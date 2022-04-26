@@ -7,10 +7,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "ext-libxml": "*",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.6.7",
+        "drupal/consumer_image_styles": "^4.0",
         "drupal/core-composer-scaffold": "^9.3",
         "drupal/core-recommended": "^9.3",
+        "drupal/external_entities": "^2.0@alpha",
         "drupal/hdbt": "^2.0",
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_azure_fs": "^1.0",
@@ -18,10 +21,15 @@
         "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_proxy": "^2.0",
         "drupal/helfi_tunnistamo": "^2.0",
+        "drupal/jsonapi_extras": "^3.20",
+        "drupal/openapi_jsonapi": "^3.0",
+        "drupal/openapi_ui_redoc": "^1.0@RC",
+        "drupal/redis": "^1.5",
         "drush/drush": "^10.4"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "dmore/chrome-mink-driver": "^2.8",
         "drupal/coder": "^8.3",
         "drupal/core-dev": "^9.3",
         "mglaman/phpstan-drupal": "^1.0",
@@ -29,7 +37,8 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpunit/phpunit": "~9.4.0"
+        "phpunit/phpunit": "~9.4.0",
+        "weitzman/drupal-test-traits": "^1.5"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -84,6 +93,11 @@
             "drush/Commands/{$name}": [
                 "type:drupal-drush"
             ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Drupal\\Tests\\dtt\\": "tests/dtt/src"
         }
     },
     "repositories": [

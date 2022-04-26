@@ -1,0 +1,166 @@
+<?php
+
+/**
+ * @file
+ * Contains etusivu installation hooks.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_install().
+ */
+function helfi_etusivu_install() : void {
+  /** @var \Drupal\Core\Extension\ModuleHandler $moduleHandler */
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('path_alias')) {
+    $storage = \Drupal::entityTypeManager()
+      ->getStorage('path_alias');
+
+    if (!$storage->loadByProperties(['alias' => '/openapi/jsonapi/redoc'])) {
+      // Create easier to remember URL alias for ReDoc UI.
+      $storage->create([
+        'path' => '/admin/config/services/openapi/redoc/jsonapi',
+        'alias' => '/openapi/jsonapi/redoc',
+      ])
+        ->save();
+    }
+  }
+
+  if ($moduleHandler->moduleExists('consumer_image_styles')) {
+    $storage = \Drupal::entityTypeManager()
+      ->getStorage('consumer');
+
+    /** @var \Drupal\consumers\Entity\Consumer $consumer */
+    foreach ($storage->loadMultiple() as $consumer) {
+      if (!$consumer->get('third_party')->value) {
+        continue;
+      }
+
+      if (!$consumer->hasField('image_styles')) {
+        continue;
+      }
+
+      // Never override image style settings.
+      if ($consumer->get('image_styles')->isEmpty()) {
+        $consumer->set('image_styles', [
+          'original_l',
+        ])
+          ->save();
+      }
+    }
+  }
+
+  if ($moduleHandler->moduleExists('taxonomy')) {
+    helfi_etusivu_create_default_terms('news_tags', [
+      [
+        'fi' => 'Kaupunki ja hallinto',
+        'en' => 'City administration',
+        'sv' => 'Stad och förvaltning',
+      ],
+      [
+        'fi' => 'Terveys- ja sosiaalipalvelut',
+        'en' => 'Health care and social services',
+        'sv' => 'Social- och hälsovårdstjänster',
+      ],
+    ]);
+    helfi_etusivu_create_default_terms('news_group', [
+      [
+        'fi' => 'Lapset ja lapsiperheet',
+        'en' => 'Children and families',
+        'sv' => 'Barn och barnfamiljer',
+      ],
+      [
+        'fi' => 'Maahanmuuttajat',
+        'en' => 'Immigrants',
+        'sv' => 'Invandrare',
+      ],
+      [
+        'fi' => 'Nuoret',
+        'en' => 'Youth',
+        'sv' => 'Unga',
+      ],
+      [
+        'fi' => 'Vammaiset',
+        'en' => 'Disabled',
+        'sv' => 'Funktionshindrade',
+      ],
+      [
+        'fi' => 'Vanhukset',
+        'en' => 'Elderly',
+        'sv' => 'Älde personer',
+      ],
+      [
+        'fi' => 'Yritykset',
+        'en' => 'Enterprises',
+        'sv' => 'Företag',
+      ],
+    ]);
+    helfi_etusivu_create_default_terms('news_neighbourhoods', [
+      [
+        'fi' => 'Kruununhaka',
+        'en' => 'Kruununhaka',
+        'sv' => 'Kronohagen',
+      ],
+      [
+        'fi' => 'Kluuvi',
+        'en' => 'Kluuvi',
+        'sv' => 'Gloet',
+      ],
+      [
+        'fi' => 'Kaartinkaupunki',
+        'en' => 'Kaartinkaupunki',
+        'sv' => 'Gardestaden',
+      ]
+    ]);
+  }
+}
+
+/**
+ * Creates placeholder terms.
+ *
+ * @param string $vocabulary
+ *   The vocabulary.
+ * @param array $items
+ *   The items.
+ */
+function helfi_etusivu_create_default_terms(string $vocabulary, array $items) : void {
+  $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  foreach ($items as $item) {
+    $term = $storage->create([
+      'name' => $item['en'],
+      'langcode' => 'en',
+      'vid' => $vocabulary,
+    ]);
+    if ($entities = $storage->loadByProperties(['name' => $item['en']])) {
+      $term = reset($entities);
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    foreach (['fi', 'sv'] as $langcode) {
+      if ($term->hasTranslation($langcode)) {
+        continue;
+      }
+      $term->addTranslation($langcode, [
+        'name' => $item[$langcode],
+      ]);
+    }
+    $term->save();
+  }
+}
+
+/**
+ * Set default consumer image styles.
+ */
+function helfi_etusivu_update_9001() : void {
+  helfi_etusivu_install();
+}
+
+/**
+ * Placeholder terms.
+ */
+function helfi_etusivu_update_9002() : void {
+  helfi_etusivu_install();
+}

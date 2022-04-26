@@ -1,0 +1,12 @@
+uuid: 20ac08aa-ce1e-432f-81b1-ff64886e5ef9
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: O5xf9wOwKSAh88H1rnkoppQV-VCePrxHd3AAJV8gfm4
+id: social_media_link
+label: 'Social media link'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }
