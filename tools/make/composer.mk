@@ -1,5 +1,4 @@
 BUILD_TARGETS += composer-install
-CLEAN_FOLDERS += $(COMPOSER_JSON_PATH)/vendor
 COMPOSER_PROD_FLAGS := --no-dev --optimize-autoloader --prefer-dist
 
 PHONY += composer-info

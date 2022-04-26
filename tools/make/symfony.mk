@@ -1,7 +1,6 @@
 SF_FRESH_TARGETS := up build sf-cw sf-about sf-open
 FIX_TARGETS += fix-symfony
 LINT_PHP_TARGETS += lint-symfony
-CLEAN_FOLDERS += $(COMPOSER_JSON_PATH)/var
 
 PHONY += encore-dev
 encore-dev: ## Do Encore development build

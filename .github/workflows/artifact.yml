@@ -18,7 +18,12 @@ jobs:
 
     services:
       db:
-        image: druidfi/db:mysql5.7-drupal
+        image: mariadb:10.7
+        env:
+          MYSQL_USER: drupal
+          MYSQL_PASSWORD: drupal
+          MYSQL_DATABASE: drupal
+          MYSQL_ROOT_PASSWORD: drupal
         ports:
           - 3306:3306
 
@@ -36,7 +41,7 @@ jobs:
           drush sql-dump --result-file=${GITHUB_WORKSPACE}/latest.sql
 
       - name: Upload latest database dump
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: latest.sql
           path: latest.sql

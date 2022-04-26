@@ -2,9 +2,8 @@ on: [push]
 name: CI
 env:
   SIMPLETEST_DB: "mysql://drupal:drupal@db:3306/drupal"
-  SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
+  SIMPLETEST_BASE_URL: "http://127.0.0.1:8888"
   SYMFONY_DEPRECATIONS_HELPER: disabled
-  XDEBUG_MODE: off
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -13,7 +12,12 @@ jobs:
 
     services:
       db:
-        image: druidfi/db:mysql5.7-drupal
+        image: mariadb:10.7
+        env:
+          MYSQL_USER: drupal
+          MYSQL_PASSWORD: drupal
+          MYSQL_DATABASE: drupal
+          MYSQL_ROOT_PASSWORD: drupal
         ports:
           - 3306:3306
 
@@ -33,14 +37,31 @@ jobs:
       - name: Download latest dump
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh run download -n latest.sql
+        run: gh run download -n latest.sql
 
       - name: Install Drupal
-        run: mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql
+        run: |
+          mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql
+          drush deploy
 
-      - name: Run PHPUnit tests
+      - name: Start services
         run: |
           drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
           chromedriver --port=4444 > /dev/null 2>&1 &
+          # Wait for drush server to start.
+          for i in {1..5}; do RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$SIMPLETEST_BASE_URL" || true); if [ "$RESPONSE_CODE" -gt "301" ] || [ "$RESPONSE_CODE" -lt "200" ]; then sleep 2; fi; done
+
+      - name: Run PHPUnit tests
+        run: |
           composer test-php public/modules/custom
+          composer test-php tests/
+
+      - name: Create an artifact from test report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: results
+          path: |
+            public/sites/simpletest/browser_output/
+            public/sites/default/files/logs/drupal.log
+          retention-days: 1

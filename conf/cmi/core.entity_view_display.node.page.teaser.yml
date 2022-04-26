@@ -41,4 +41,5 @@ hidden:
   field_sidebar_content: true
   langcode: true
   links: true
+  published_at: true
   toc_enabled: true
