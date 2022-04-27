@@ -1,0 +1,202 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 45482389-2f78-4b67-b7a7-fc3ec53f9899
+  bundle: news_item
+  default_langcode: fi
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Häivemustesieni
+  created:
+    -
+      value: 1650953816
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /haivemustesieni
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650953831
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0004d5eb-d511-4ed3-a23f-c907cbbb49eb
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650953831
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Häivemustesieni</strong>&nbsp;(<em>Coprinellus ephemerus</em>&nbsp;syn.&nbsp;<em>Coprinus ephemerus</em>) on laidunmailla ja lannassa viihtyvä&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Mustesienet\" title=\"Mustesienet\">mustesienilaji</a>. Se kasvaa oljilla, sekä&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Hevonen\" title=\"Hevonen\">hevosten</a>,&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Hirvi\" title=\"Hirvi\">hirvien</a>&nbsp;ja&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Lehm%C3%A4\" title=\"Lehmä\">lehmien</a>&nbsp;lantakasoissa. Laji on&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Suomi\" title=\"Suomi\">Suomessa</a>&nbsp;melko yleinen. Lakki on tyypilliesti kapea&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Ellipsoidi\" title=\"Ellipsoidi\">ellipsoidi</a>&nbsp;enintään 20 mm läpimitaltaan. Myöhemmin se levenee alaosastaan. Siinä havaitaan säteittäistä uraisuutta. Keskustastaan lakki on kanelinruskea, reunemmalta vaalempi. Helttojen etäisyys toisistaan on suvun lajeille keskimääräistä luokkaa. Varmimmin lajin tunnistaa kasvupaikan ohella mikroskooppisista tuntomerkeistään ja mahdollisesti DNA-analyysillä.<sup><a href=\"https://fi.wikipedia.org/wiki/H%C3%A4ivemustesieni#cite_note-Vesterholt-2\" title=\"\">[2]</a></sup></p>\r\n"
+              format: full_html
+translations:
+  sv:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Coprinellus ephemerus'
+    created:
+      -
+        value: 1650953834
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /coprinellus-ephemerus
+        langcode: sv
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650953831
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: f08bf1ad-a20d-4066-baba-7a8b09c8a02a
+            bundle: text
+            default_langcode: sv
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650953831
+            behavior_settings:
+              -
+                value: {  }
+            revision_translation_affected:
+              -
+                value: true
+            field_text:
+              -
+                value: "<p><em><strong>Coprinellus ephemerus</strong></em>&nbsp;är en&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Svampar\" title=\"Svampar\">svampart</a><sup><a href=\"https://sv.wikipedia.org/wiki/Coprinellus_ephemerus#cite_note-4\">[4]</a></sup>&nbsp;som först beskrevs av&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Pierre_Bulliard\" title=\"Pierre Bulliard\">Pierre Bulliard</a>&nbsp;(v. 1742–1793), och fick sitt nu gällande namn av Redhead, Vilgalys &amp; Moncalvo 2001.&nbsp;<em>Coprinellus ephemerus</em>&nbsp;ingår i&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Sl%C3%A4kte\" title=\"Släkte\">släktet</a>&nbsp;<em><a href=\"https://sv.wikipedia.org/wiki/Coprinellus\" title=\"Coprinellus\">Coprinellus</a></em>&nbsp;och&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Familj_(biologi)\" title=\"Familj (biologi)\">familjen</a>&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Psathyrellaceae\" title=\"Psathyrellaceae\">Psathyrellaceae</a>.<sup><a href=\"https://sv.wikipedia.org/wiki/Coprinellus_ephemerus#cite_note-COL-5\">[5]</a></sup><sup><a href=\"https://sv.wikipedia.org/wiki/Coprinellus_ephemerus#cite_note-6\">[6]</a></sup><sup><a href=\"https://sv.wikipedia.org/wiki/Coprinellus_ephemerus#cite_note-dyn-7\">[7]</a></sup>&nbsp;Arten är&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Fortplantning\" title=\"Fortplantning\">reproducerande</a>&nbsp;i&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Sverige\" title=\"Sverige\">Sverige</a>.<sup><a href=\"https://sv.wikipedia.org/wiki/Coprinellus_ephemerus#cite_note-dyn-7\">[7]</a></sup>&nbsp;Inga&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Underart\" title=\"Underart\">underarter</a>&nbsp;finns listade i&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Catalogue_of_Life\" title=\"Catalogue of Life\">Catalogue of Life</a>.<sup><a href=\"https://sv.wikipedia.org/wiki/Coprinellus_ephemerus#cite_note-COL-5\">[5]</a></sup></p>\r\n"
+                format: full_html
+  en:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Coprinellus ephemerus'
+    created:
+      -
+        value: 1650953856
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /coprinellus-ephemerus
+        langcode: en
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650953831
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: 413c72a0-43b6-427a-af07-0db2ee3f4ca3
+            bundle: text
+            default_langcode: en
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650953831
+            behavior_settings:
+              -
+                value: {  }
+            field_text:
+              -
+                value: "<p><em><strong>Coprinellus ephemerus</strong></em>&nbsp;is a species of&nbsp;<a href=\"https://en.wikipedia.org/wiki/Mushroom\" title=\"Mushroom\">mushroom</a>&nbsp;in the family&nbsp;<a href=\"https://en.wikipedia.org/wiki/Psathyrellaceae\" title=\"Psathyrellaceae\">Psathyrellaceae</a>. First&nbsp;<a href=\"https://en.wikipedia.org/wiki/Species_description\" title=\"Species description\">described</a>&nbsp;as&nbsp;<em>Agaricus ephemerus</em>&nbsp;by French mycologist&nbsp;<a href=\"https://en.wikipedia.org/wiki/Jean_Baptiste_Fran%C3%A7ois_Pierre_Bulliard\" title=\"Jean Baptiste François Pierre Bulliard\">Jean Baptiste François Pierre Bulliard</a>&nbsp;in 1786, it was later transferred to the genus&nbsp;<em><a href=\"https://en.wikipedia.org/wiki/Coprinellus\" title=\"Coprinellus\">Coprinellus</a></em>&nbsp;in 2001.<sup><a href=\"https://en.wikipedia.org/wiki/Coprinellus_ephemerus#cite_note-Redhead_2001-1\">[1]</a></sup></p>\r\n"
+                format: full_html

@@ -1,0 +1,202 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: e5aa68f1-f7bd-4543-b83f-9134a7f42292
+  bundle: news_item
+  default_langcode: fi
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'George Anson (paroni)'
+  created:
+    -
+      value: 1650953920
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /george-anson-paroni
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650953955
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: dc98cfae-cb23-451f-a763-049808e54d1e
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650953955
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>George Anson, Ansonin 1. paroni</strong>&nbsp;(<a href=\"https://fi.wikipedia.org/wiki/23._huhtikuuta\" title=\"23. huhtikuuta\">23. huhtikuuta</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/1697\" title=\"1697\">1697</a>&nbsp;–&nbsp;<a href=\"https://fi.wikipedia.org/wiki/6._kes%C3%A4kuuta\" title=\"6. kesäkuuta\">6. kesäkuuta</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/1762\" title=\"1762\">1762</a>) oli&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Englanti\" title=\"Englanti\">englantilainen</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Amiraali\" title=\"Amiraali\">amiraali</a>&nbsp;ja rikas&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Aristokraatti\" title=\"Aristokraatti\">aristokraatti</a>, joka muistetaan maailmanympäripurjehduksestaan ja kuninkaallisen laivaston johtamisesta seitsenvuotisen sodan aikana.</p>\r\n\r\n<p>Ansonin isä oli Shugboroughin William Anson ja hänen äitinsä Isabella Carrier. Äiti oli Macclesfieldin jaarlin ja&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Lordikansleri\" title=\"Lordikansleri\">lordikansleri</a>&nbsp;<a href=\"https://fi.wikipedia.org/w/index.php?title=Thomas_Parker_(lordikansleri)&amp;action=edit&amp;redlink=1\" title=\"Thomas Parker (lordikansleri) (sivua ei ole)\">Thomas Parkerin</a>&nbsp;käly. Tästä sukusiteestä oli hyötyä tulevalle meriupseerille.</p>\r\n\r\n<p>George Anson liittyi laivastoon helmikuussa 1712 ja yleni nopeasti luutnantiksi. Hän sai ensimmäisen komentajuutensa 1722, ja kapteeniksi hänet ylennettiin 1724. Hän palveli Pohjois-Amerikassa 1724-30 ja uudelleen 1733-35 laivojen&nbsp;<em><a href=\"https://fi.wikipedia.org/w/index.php?title=HMS_Scarborough_(1711)&amp;action=edit&amp;redlink=1\" title=\"HMS Scarborough (1711) (sivua ei ole)\">HMS Scarborough</a></em>&nbsp;ja&nbsp;<em><a href=\"https://fi.wikipedia.org/w/index.php?title=HMS_Squirrel_(1707)&amp;action=edit&amp;redlink=1\" title=\"HMS Squirrel (1707) (sivua ei ole)\">HMS Squirrel</a></em>&nbsp;kapteenina. Vuonna 1737 hän sai 60-tykkisen&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Linjalaiva\" title=\"Linjalaiva\">linjalaivan</a>&nbsp;<em><a href=\"https://fi.wikipedia.org/w/index.php?title=HMS_Centurion_(1732)&amp;action=edit&amp;redlink=1\" title=\"HMS Centurion (1732) (sivua ei ole)\">HMS Centurionin</a></em>&nbsp;komentajuuden.</p>\r\n"
+              format: full_html
+translations:
+  sv:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'George Anson, 1:e baron Anson'
+    created:
+      -
+        value: 1650953978
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /george-anson-1e-baron-anson
+        langcode: sv
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650953955
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: 1947e07e-a9bb-40b8-8726-caf3a7c1884d
+            bundle: text
+            default_langcode: sv
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650953955
+            behavior_settings:
+              -
+                value: {  }
+            revision_translation_affected:
+              -
+                value: true
+            field_text:
+              -
+                value: "<p>Efter att ha kämpat i de amerikanska farvattnen mot spanska&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Kapare\" title=\"Kapare\">kapare</a>&nbsp;och&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Sj%C3%B6r%C3%B6vare\" title=\"Sjörövare\">sjörövare</a>&nbsp;utsågs Anson 1739 till chef för en liten&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Eskader\" title=\"Eskader\">eskader</a>&nbsp;beordrad till&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Stilla_havet\" title=\"Stilla havet\">Stilla havet</a>. Han rundade&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Kap_Horn\" title=\"Kap Horn\">Kap Horn</a>, landsteg i&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Peru\" title=\"Peru\">Peru</a>&nbsp;och&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Chile\" title=\"Chile\">Chile</a>&nbsp;och gjorde rikt byte, överfor&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Stilla_havet\" title=\"Stilla havet\">Stilla havet</a>&nbsp;och återvände hem söder om&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Afrika\" title=\"Afrika\">Afrika</a>&nbsp;1744.<sup><a href=\"https://sv.wikipedia.org/wiki/George_Anson,_1:e_baron_Anson#cite_note-1\">[1]</a></sup>&nbsp;En skildring av Ansons&nbsp;<a href=\"https://sv.wikipedia.org/wiki/V%C3%A4rldsomsegling\" title=\"Världsomsegling\">världsomsegling</a>&nbsp;utkom 1748. Under de engelsk-franska sjöstriderna på 1740-talet tjänstgjorde Anson som&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Viceamiral\" title=\"Viceamiral\">viceamiral</a>&nbsp;och besegrade 1747 vid&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Kap_Finisterre\" title=\"Kap Finisterre\">Kap Finisterre</a>&nbsp;den franska flottan under&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Jacques-Pierre_de_Taffanel_de_la_Jonqui%C3%A8re\" title=\"Jacques-Pierre de Taffanel de la Jonquière\">La Jonquière</a>, blev 1751&nbsp;<a href=\"https://sv.wikipedia.org/wiki/F%C3%B6rste_amiralitetslord\" title=\"Förste amiralitetslord\">förste amiralitetslord</a>, ledde som sådan de sjömilitära operationerna mot&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Frankrike\" title=\"Frankrike\">Frankrike</a>&nbsp;och&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Spanien\" title=\"Spanien\">Spanien</a>&nbsp;på 1750-talet och utnämndes 1761 till&nbsp;<em><a href=\"https://sv.wikipedia.org/wiki/Fleet_Admiral#Storbritannien\" title=\"Fleet Admiral\">admiral of the fleet</a></em>.</p>\r\n"
+                format: full_html
+  en:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'George Anson, 1st Baron Anson'
+    created:
+      -
+        value: 1650953958
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /george-anson-1st-baron-anson
+        langcode: en
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650953955
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: 44fbd04d-72b8-4d03-87bb-bd10bcac37e6
+            bundle: text
+            default_langcode: en
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650953955
+            behavior_settings:
+              -
+                value: {  }
+            field_text:
+              -
+                value: "<p><a href=\"https://en.wikipedia.org/wiki/Admiral_of_the_Fleet_(Royal_Navy)\" title=\"Admiral of the Fleet (Royal Navy)\">Admiral of the Fleet</a>&nbsp;<strong>George Anson, 1st Baron Anson</strong>,&nbsp;<a href=\"https://en.wikipedia.org/wiki/Privy_Council_of_the_United_Kingdom\" title=\"Privy Council of the United Kingdom\">PC</a>,&nbsp;<a href=\"https://en.wikipedia.org/wiki/Fellow_of_the_Royal_Society\" title=\"Fellow of the Royal Society\">FRS</a>&nbsp;(23 April 1697&nbsp;– 6 June 1762) was a&nbsp;<a href=\"https://en.wikipedia.org/wiki/Royal_Navy\" title=\"Royal Navy\">Royal Navy</a>&nbsp;officer. Anson served as a junior officer during the&nbsp;<a href=\"https://en.wikipedia.org/wiki/War_of_the_Spanish_Succession\" title=\"War of the Spanish Succession\">War of the Spanish Succession</a>&nbsp;and then saw active service against Spain at the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Battle_of_Cape_Passaro\" title=\"Battle of Cape Passaro\">Battle of Cape Passaro</a>&nbsp;during the&nbsp;<a href=\"https://en.wikipedia.org/wiki/War_of_the_Quadruple_Alliance\" title=\"War of the Quadruple Alliance\">War of the Quadruple Alliance</a>. He then undertook a&nbsp;<a href=\"https://en.wikipedia.org/wiki/Circumnavigation\" title=\"Circumnavigation\">circumnavigation</a>&nbsp;of the globe during the&nbsp;<a href=\"https://en.wikipedia.org/wiki/War_of_Jenkins%27_Ear\" title=\"War of Jenkins' Ear\">War of Jenkins' Ear</a>. Anson commanded the fleet that defeated the French&nbsp;<a href=\"https://en.wikipedia.org/wiki/Jacques-Pierre_de_Taffanel_de_la_Jonqui%C3%A8re,_Marquis_de_la_Jonqui%C3%A8re\" title=\"Jacques-Pierre de Taffanel de la Jonquière, Marquis de la Jonquière\">Admiral de la Jonquière</a>&nbsp;at the&nbsp;<a href=\"https://en.wikipedia.org/wiki/First_Battle_of_Cape_Finisterre_(1747)\" title=\"First Battle of Cape Finisterre (1747)\">First Battle of Cape Finisterre</a>&nbsp;during the&nbsp;<a href=\"https://en.wikipedia.org/wiki/War_of_the_Austrian_Succession\" title=\"War of the Austrian Succession\">War of the Austrian Succession</a>.</p>\r\n\r\n<p>Anson went on to be&nbsp;<a href=\"https://en.wikipedia.org/wiki/First_Lord_of_the_Admiralty\" title=\"First Lord of the Admiralty\">First Lord of the Admiralty</a>&nbsp;during the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Seven_Years%27_War\" title=\"Seven Years' War\">Seven Years' War</a>. Among his reforms were the removal of corrupt defence contractors, improved medical care, submitting a revision of the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Articles_of_War_(Royal_Navy)\" title=\"Articles of War (Royal Navy)\">Articles of War</a>&nbsp;to Parliament to tighten discipline throughout the Navy,&nbsp;<a href=\"https://en.wikipedia.org/wiki/Military_uniform\" title=\"Military uniform\">uniforms</a>&nbsp;for commissioned&nbsp;<a href=\"https://en.wikipedia.org/wiki/Officer_(armed_forces)\" title=\"Officer (armed forces)\">officers</a>, the transfer of the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Royal_Marines\" title=\"Royal Marines\">Marines</a>&nbsp;from Army to Navy authority, and a system for rating ships according to their number of guns.</p>\r\n"
+                format: full_html

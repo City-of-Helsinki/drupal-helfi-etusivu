@@ -20,6 +20,7 @@ module:
   crop: 0
   ctools: 0
   datetime: 0
+  default_content: 0
   diff: 0
   dynamic_page_cache: 0
   easy_breadcrumb: 0
@@ -38,6 +39,7 @@ module:
   flysystem_azure: 0
   focal_point: 0
   gin_toolbar: 0
+  hal: 0
   hdbt_admin_editorial: 0
   hdbt_admin_tools: 0
   hdbt_component_library: 0
