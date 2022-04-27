@@ -1,0 +1,140 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 264380ed-2c91-421c-8866-d7888724e975
+  bundle: news_item
+  default_langcode: fi
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Paul Lanneau'
+  created:
+    -
+      value: 1650954046
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /paul-lanneau
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650954059
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: b520983c-74c9-40ae-9cdf-51df883fdf0d
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650954059
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Paul Lanneau</strong>&nbsp;(<a href=\"https://fi.wikipedia.org/wiki/22._hein%C3%A4kuuta\" title=\"22. heinäkuuta\">22. heinäkuuta</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/1925\" title=\"1925\">1925</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Anderlecht\" title=\"Anderlecht\">Anderlecht</a>&nbsp;–&nbsp;<a href=\"https://fi.wikipedia.org/wiki/26._tammikuuta\" title=\"26. tammikuuta\">26. tammikuuta</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/2017\" title=\"2017\">2017</a>) oli&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Belgia\" title=\"Belgia\">belgialainen</a>&nbsp;roomalaiskatolinen&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Piispa\" title=\"Piispa\">piispa</a>. Hänet vihittiin&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Pappi\" title=\"Pappi\">papiksi</a>&nbsp;<a href=\"https://fi.wikipedia.org/w/index.php?title=Mechelen-Brysselin_roomalaiskatolinen_arkkihiippakunta&amp;action=edit&amp;redlink=1\" title=\"Mechelen-Brysselin roomalaiskatolinen arkkihiippakunta (sivua ei ole)\">Mecheleniin</a>&nbsp;(myöh. Mechelen-Bryssel) 24. heinäkuuta 1949 ja nimitettiin Mechelen-Brysselin&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Vihkipiispa\" title=\"Vihkipiispa\">vihkipiispaksi</a>&nbsp;sekä Tusuroksen&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Titulaaripiispa\" title=\"Titulaaripiispa\">titulaaripiispaksi</a>&nbsp;14. helmikuuta 1982. Piispaksi vihkiminen seurasi 20. maaliskuuta. Pääkonsekraattorina toimi&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Godfried_Danneels\" title=\"\">Godfried Danneels</a>, jota avustivat&nbsp;<a href=\"https://fi.wikipedia.org/w/index.php?title=Emiel-Jozef_De_Smedt&amp;action=edit&amp;redlink=1\" title=\"Emiel-Jozef De Smedt (sivua ei ole)\">Emiel-Jozef De Smedt</a>,&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Guillaume_Marie_van_Zuylen\" title=\"Guillaume Marie van Zuylen\">Guillaume Marie van Zuylen</a>,&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Jean_Huard\" title=\"Jean Huard\">Jean Huard</a>&nbsp;ja&nbsp;<a href=\"https://fi.wikipedia.org/w/index.php?title=Paul_Constant_Schoenmaekers&amp;action=edit&amp;redlink=1\" title=\"Paul Constant Schoenmaekers (sivua ei ole)\">Paul Constant Schoenmaekers</a>.<sup><a href=\"https://fi.wikipedia.org/wiki/Paul_Lanneau#cite_note-Catholic-Hierarchy-1\">[1]</a></sup></p>\r\n\r\n<p>Lanneau jäi eläkkeelle 20. maaliskuuta 2002.<sup><a href=\"https://fi.wikipedia.org/wiki/Paul_Lanneau#cite_note-Catholic-Hierarchy-1\" title=\"\">[1]</a></sup></p>\r\n"
+              format: full_html
+translations:
+  en:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Paul Lanneau'
+    created:
+      -
+        value: 1650954067
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /paul-lanneau
+        langcode: en
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650954059
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: 76307b1a-aae4-48ad-8155-0a07f50d11f5
+            bundle: text
+            default_langcode: en
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650954059
+            behavior_settings:
+              -
+                value: {  }
+            revision_translation_affected:
+              -
+                value: true
+            field_text:
+              -
+                value: "<p><strong>Paul Lanneau</strong>&nbsp;(22 July 1925 – 26 January 2017) was a&nbsp;<a href=\"https://en.wikipedia.org/wiki/Roman_Catholic\" title=\"Roman Catholic\">Roman Catholic</a>&nbsp;bishop.</p>\r\n\r\n<p>Ordained to the priesthood in 1949, Lanneau served as auxiliary bishop of the Roman Catholic Archdiocese of Mechelen-Brussels, Belgium from 1982 to 2002.<sup><a href=\"https://en.wikipedia.org/wiki/Paul_Lanneau#cite_note-1\">[1]</a></sup></p>\r\n\r\n<p>&nbsp;</p>\r\n"
+                format: full_html

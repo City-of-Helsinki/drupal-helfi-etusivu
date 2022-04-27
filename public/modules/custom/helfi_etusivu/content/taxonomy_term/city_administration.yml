@@ -1,0 +1,94 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: fd1fdd10-d72b-436d-bdef-a92540c1daae
+  bundle: news_tags
+  default_langcode: en
+translations:
+  fi:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: 'Kaupunki ja hallinto'
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: ''
+        langcode: fi
+        pathauto: 1
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_created:
+      -
+        value: 1650952533
+  sv:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: 'Stad och förvaltning'
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: ''
+        langcode: sv
+        pathauto: 1
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_created:
+      -
+        value: 1650952533
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: 'City administration'
+  weight:
+    -
+      value: 0
+  parent:
+    -
+      target_id: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  content_translation_created:
+    -
+      value: 1650952533

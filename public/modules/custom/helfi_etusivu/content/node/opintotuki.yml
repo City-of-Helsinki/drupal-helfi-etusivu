@@ -1,0 +1,199 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 52c4c46a-472b-4891-9e38-3dc3feac40db
+  bundle: news_item
+  default_langcode: fi
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Opintotuki suomessa'
+  created:
+    -
+      value: 1650953413
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /opintotuki-suomessa
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650953429
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: d0c382d1-dd68-48fe-87db-e030148ebce0
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650953429
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Opintotuki</strong>&nbsp;on&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Valtio\" title=\"Valtio\">valtion</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Opiskelija\" title=\"\">opiskelijalle</a>&nbsp;maksama tuki oppivelvollisuuden (<a href=\"https://fi.wikipedia.org/wiki/Peruskoulu_Suomessa\" title=\"Peruskoulu Suomessa\">peruskoulun</a>) jälkeisien opintojen rahoittamiseen. Suomessa sen osia ovat opintoraha, asumislisä, opintolainan valtiontakaus, myös ateriatuki lasketaan opintotueksi. Opintolaina on tavallinen pankkilaina, johon valtio antaa&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Takaus\" title=\"Takaus\">takauksen</a>.</p>\r\n\r\n<p>Lukuvuonna 2015–2016 opintotukea sai 286&nbsp;262 henkilöä, joista ammatillisissa oppilaitoksissa opiskeli 87&nbsp;009, yleissivistävissä oppilaitoksissa 28&nbsp;505 ja korkeakouluissa 162&nbsp;364. Lisäksi opintotukea sai 8&nbsp;380 ulkomailla opiskelevaa. Vuonna 2015 opintotukia maksettiin yhteensä 792 miljoonaa euroa, josta opintorahan osuus oli 503 miljoonaa euroa ja asumislisän 266 miljoonaa euroa.<sup><a href=\"https://fi.wikipedia.org/wiki/Opintotuki#cite_note-tilasto15-1\" title=\"\">[1]</a></sup></p>\r\n\r\n<p>Syksystä 2017 alkaen opintotuki muuttui lainapainotteisemmaksi ja opintotuen oma asumislisä korvattiin yleisellä asumistuella. Opintolainakanta on uudistuksen jälkeen kaksinkertaistunut 5,5 miljardiin maaliskuussa 2022.<sup><a href=\"https://fi.wikipedia.org/wiki/Opintotuki#cite_note-2\" title=\"\">[2]</a></sup></p>\r\n"
+              format: full_html
+translations:
+  sv:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: Studiestöd
+    created:
+      -
+        value: 1650953461
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /studiestod
+        langcode: sv
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650953429
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: 5c741b57-7de4-4347-b19f-bcdf634f7541
+            bundle: text
+            default_langcode: sv
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650953429
+            behavior_settings:
+              -
+                value: {  }
+            field_text:
+              -
+                value: "<p><strong>Studiestöd</strong>&nbsp;består i första hand av&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Studiehj%C3%A4lp\" title=\"Studiehjälp\">studiehjälp</a>&nbsp;och&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Studiemedel\" title=\"Studiemedel\">studiemedel</a>. Studiehjälp lämnas i form av studiebidrag, extra tillägg och inackorderingstillägg till yngre studerande vid utbildningar på grundskole- och gymnasienivå. Studiemedel lämnas i form av bidrag och studielån till äldre studerande vid alla typer av utbildningar som studiestöd kan lämnas för. Studiehjälp och studiemedel kan under vissa förutsättningar också lämnas för studier utomlands.</p>\r\n\r\n<p>Studiestöd lämnas som huvudregel endast för den tid då studier bedrivs. Studiestöd kan emellertid också under vissa förutsättningar lämnas vid sjukdom, vård av barn och vård av närstående.</p>\r\n\r\n<p>&nbsp;</p>\r\n"
+                format: full_html
+  en:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Student financial aid'
+    created:
+      -
+        value: 1650953441
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /student-financial-aid
+        langcode: en
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650953429
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: c8763a38-7c1e-4456-9469-5b2af86daa2f
+            bundle: text
+            default_langcode: en
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650953429
+            behavior_settings:
+              -
+                value: {  }
+            field_text:
+              -
+                value: "<p><strong>Student financial aid</strong>&nbsp;in Finland consists of government payments (through&nbsp;<a href=\"https://en.wikipedia.org/wiki/Kela_(Finnish_institution)\" title=\"Kela (Finnish institution)\">Kela</a>) that provide economic security to students and enable all students to study. Almost all Finnish students receive financial aid, including foreigners who are permanent residents or EU citizens.<sup><a href=\"https://en.wikipedia.org/wiki/Student_financial_aid_in_Finland#cite_note-1\">[1]</a></sup>&nbsp;It is available in the form of:</p>\r\n\r\n<ul>\r\n\t<li>a study grant</li>\r\n\t<li>a government-backed student loan</li>\r\n\t<li>a housing supplement (starting 1 August 2017, available only to those who are studying abroad or enrolled in a tuition-based programme at a folk high school or sports institute and living in the school dormitory).<sup><a href=\"https://en.wikipedia.org/wiki/Student_financial_aid_in_Finland#cite_note-2\">[2]</a></sup>\r\n\t<ul>\r\n\t\t<li>students are eligible for general housing benefits&nbsp;<sup><a href=\"https://en.wikipedia.org/wiki/Student_financial_aid_in_Finland#cite_note-3\">[3]</a></sup></li>\r\n\t</ul>\r\n\t</li>\r\n</ul>\r\n\r\n<p>The qualifying conditions for student financial aid are:</p>\r\n\r\n<ul>\r\n\t<li>admission to a school</li>\r\n\t<li>full-time study</li>\r\n\t<li>academic progress</li>\r\n\t<li>need of financial assistance.</li>\r\n</ul>\r\n\r\n<p>They are a kind of&nbsp;<a href=\"https://en.wikipedia.org/wiki/Transfer_payment\" title=\"Transfer payment\">transfer payment</a>. Similar systems, some of which are older, exist in some other countries where education is free of charge, e.g.&nbsp;<a href=\"https://en.wikipedia.org/wiki/Germany\" title=\"Germany\">Germany</a>&nbsp;and&nbsp;<a href=\"https://en.wikipedia.org/wiki/Sweden\" title=\"Sweden\">Sweden</a>. Student benefit is paid by the state to all qualifying students, excluding only those with full-time employment and income, and is thus distinct from an individually evaluated&nbsp;<a href=\"https://en.wikipedia.org/wiki/Scholarship\" title=\"Scholarship\">scholarship</a>.</p>\r\n\r\n<p>In addition, Finnish students enjoy several kinds of student benefits such as:</p>\r\n\r\n<ul>\r\n\t<li>Partially state-funded meals at student cafeterias.</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n"
+                format: full_html

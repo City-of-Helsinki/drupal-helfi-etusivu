@@ -1,0 +1,90 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 99604707-f8f8-4006-8817-23bfc0247748
+  bundle: news_item
+  default_langcode: fi
+  depends:
+    31f6d9e7-5267-4de3-a67d-174af15758ab: taxonomy_term
+    d023b042-40e6-4c24-935b-df648efb296d: taxonomy_term
+    fd1fdd10-d72b-436d-bdef-a92540c1daae: taxonomy_term
+    1a69ff8a-8d30-4c0c-a3da-7dce306887f4: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Multamäen rautatieasema'
+  created:
+    -
+      value: 1650956746
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /multamaen-rautatieasema
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650956820
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: c452d6d1-47f6-43ea-9148-51901924bc0d
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650956820
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Multamäen rautatieasema</strong>&nbsp;(<a href=\"https://fi.wikipedia.org/wiki/Luettelo_Suomen_rautatieliikennepaikoista\" title=\"Luettelo Suomen rautatieliikennepaikoista\">lyh.</a>&nbsp;Mum) on lakkautettu&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Rautatieliikennepaikka\" title=\"Rautatieliikennepaikka\">rautatieliikennepaikka</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Savon_rata\" title=\"Savon rata\">Savon radalla</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Kouvola\" title=\"Kouvola\">Kouvolan</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Kuusankoski\" title=\"Kuusankoski\">Kuusankoskella</a>, Multamäellä. Se perustettiin seisakevaihteena 4. marraskuuta 1910. Vuonna 1946 se miehitettiin ja muutettiin kohtauspaikaksi, koska Kouvolan ja Mikkelin välisellä rataosuudella oli pitkiä osuuksia ilman kohtauspaikkaa. Paikalle rakennettiin vaatimaton asemarakennus, jonka suunnitteli&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Jarl_Ungern\" title=\"Jarl Ungern\">Jarl Ungern</a>. Miehitys lopetettiin vuonna 1963 ja&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Voikkaa%E2%80%93Haarankallio-rata\" title=\"Voikkaa–Haarankallio-rata\">rata Voikkaalle</a>&nbsp;rakennettiin alkamaan Multamäeltä 1970. Henkilöliikenne lakkautettiin 1. kesäkuuta 1980 ja rata Voikkaalle purettiin 1981. Junakohtaukset Multamäellä lopetettiin ja ratapiha purettiin vuonna 2000. Liikennepaikka lakkautettiin 9. lokakuuta 2001.<sup><a href=\"https://fi.wikipedia.org/wiki/Multam%C3%A4en_rautatieasema#cite_note-1\" title=\"\">[1]</a></sup><sup><a href=\"https://fi.wikipedia.org/wiki/Multam%C3%A4en_rautatieasema#cite_note-iltanen-2\" title=\"\">[2]</a></sup></p>\r\n"
+              format: full_html
+  field_news_groups:
+    -
+      entity: 31f6d9e7-5267-4de3-a67d-174af15758ab
+    -
+      entity: d023b042-40e6-4c24-935b-df648efb296d
+  field_news_item_tags:
+    -
+      entity: fd1fdd10-d72b-436d-bdef-a92540c1daae
+  field_news_neighbourhoods:
+    -
+      entity: 1a69ff8a-8d30-4c0c-a3da-7dce306887f4
