@@ -19,6 +19,7 @@ dependencies:
     - block
     - config_translation
     - content_translation
+    - editoria11y
     - eu_cookie_compliance
     - file
     - filter
@@ -41,7 +42,6 @@ dependencies:
     - taxonomy
     - toolbar
     - view_unpublished
-    - views_bulk_edit
     - views_bulk_edit
 _core:
   default_config_hash: ObmmYGxNS3gwXYiYXXNN9BuGDoRqxkmD3bXdhWCciU0
@@ -168,9 +168,11 @@ permissions:
   - 'use text format full_html'
   - 'use text format minimal'
   - 'use views bulk edit'
+  - 'use views bulk edit'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any unpublished content'
+  - 'view editoria11y checker'
   - 'view landing_page revisions'
   - 'view media'
   - 'view news_item revisions'
@@ -181,4 +183,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'use views bulk edit'
