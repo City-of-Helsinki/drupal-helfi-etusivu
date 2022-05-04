@@ -1,0 +1,7 @@
+display:
+  default:
+    display_options:
+      title: 'Luetuimmat uutiset'
+  block_1:
+    display_options:
+      block_description: 'Luetuimmat uutiset'
