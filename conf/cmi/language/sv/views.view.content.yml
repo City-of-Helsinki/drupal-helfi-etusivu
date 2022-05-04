@@ -1,6 +1,8 @@
 label: Innehåll
+description: 'Find and manage content.'
 display:
   default:
+    display_title: Default
     display_options:
       title: Innehåll
       fields:
@@ -8,14 +10,35 @@ display:
           label: Titel
         type:
           label: Innehållstyp
+          separator: ', '
         name:
           label: Författare
         status:
+          label: Status
           settings:
             format_custom_false: 'Ej publicerad'
             format_custom_true: Publicerad
+        changed:
+          label: Updated
         operations:
           label: Funktioner
+      pager:
+        options:
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
+      exposed_form:
+        options:
+          submit_button: Filter
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      empty:
+        area_text_custom:
+          content: 'No content available.'
       filters:
         title:
           expose:
@@ -24,6 +47,8 @@ display:
           expose:
             label: Innehållstyp
         status:
+          expose:
+            label: Status
           group_info:
             label: 'Status för publicering'
             group_items:
@@ -35,8 +60,10 @@ display:
           expose:
             label: Språk
   page_1:
+    display_title: Page
     display_options:
       menu:
         title: Innehåll
       tab_options:
         title: Innehåll
+        description: 'Find and manage content'

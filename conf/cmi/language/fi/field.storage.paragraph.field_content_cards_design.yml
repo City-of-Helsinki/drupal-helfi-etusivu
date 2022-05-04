@@ -1,0 +1,10 @@
+settings:
+  allowed_values:
+    -
+      label: 'Small cards'
+    -
+      label: 'Large cards'
+    -
+      label: 'Small cards, grey background'
+    -
+      label: 'Large cards, grey background'

@@ -1,13 +1,16 @@
 label: Sisältö
+description: 'Find and manage content.'
 display:
   default:
+    display_title: Default
     display_options:
       title: Sisältö
       fields:
         title:
-          label: Otsikko
+          label: Titteli
         type:
           label: Sisältötyyppi
+          separator: ', '
         name:
           label: Kirjoittaja
         status:
@@ -15,15 +18,31 @@ display:
           settings:
             format_custom_false: Julkaisematon
             format_custom_true: Julkaistu
+        changed:
+          label: Updated
         operations:
           label: Toimenpiteet
+      pager:
+        options:
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
       exposed_form:
         options:
           submit_button: Suodata
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      empty:
+        area_text_custom:
+          content: 'No content available.'
       filters:
         title:
           expose:
-            label: Otsikko
+            label: Titteli
         type:
           expose:
             label: Sisältötyyppi
@@ -41,6 +60,7 @@ display:
           expose:
             label: Kieli
   page_1:
+    display_title: Page
     display_options:
       menu:
         title: Sisältö

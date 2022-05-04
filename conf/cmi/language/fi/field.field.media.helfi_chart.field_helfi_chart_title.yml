@@ -1,1 +1,2 @@
-label: Otsikko
+label: Titteli
+description: 'The chart is rendered via inline frame. Iframe needs a label so users can determine what content is being presented in the iframe.'

@@ -1,0 +1,2 @@
+label: 'Content liftup'
+description: 'With content liftup you can reference to a single content inside this site. The information about the content is automatically fetched through the reference.'
