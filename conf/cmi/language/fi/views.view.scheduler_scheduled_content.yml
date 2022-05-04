@@ -3,9 +3,6 @@ description: 'Etsi ja ylläpidä ajastettua sisältöä.'
 display:
   default:
     display_options:
-      exposed_form:
-        options:
-          submit_button: Suodata
       fields:
         node_bulk_form:
           action_title: Toiminto

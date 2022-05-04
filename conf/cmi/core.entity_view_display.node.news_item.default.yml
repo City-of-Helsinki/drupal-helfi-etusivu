@@ -12,12 +12,14 @@ dependencies:
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
     - field.field.node.news_item.field_news_neighbourhoods
+    - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:
     - entity_reference_revisions
     - helfi_content
     - link
+    - radioactivity
     - user
 _core:
   default_config_hash: tqlFC6ku-KOPGVDzzfRA0SSzFD_5iAMqKfpTMcUyqBg
@@ -77,6 +79,16 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_radioactivity:
+    type: radioactivity_reference_emitter
+    label: above
+    settings:
+      energy: !!float 10
+      display: false
+      decimals: !!float 0
+    third_party_settings: {  }
+    weight: 9
     region: content
   field_short_title:
     type: string

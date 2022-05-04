@@ -98,6 +98,7 @@ module:
   purge_processor_cron: 0
   purge_queuer_coretags: 0
   purge_tokens: 0
+  radioactivity: 0
   redirect: 0
   redis: 0
   responsive_image: 0
@@ -137,10 +138,9 @@ module:
   minimal: 1000
   eu_cookie_compliance: 1001
 theme:
-  stark: 0
-  stable9: 0
   claro: 0
-  gin: 0
+  stable9: 0
   hdbt: 0
+  gin: 0
   hdbt_admin: 0
 profile: minimal
