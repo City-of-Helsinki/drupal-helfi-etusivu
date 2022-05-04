@@ -13,7 +13,7 @@ social_media:
     img: facebook
     library: ''
   facebook_msg:
-    enable: 1
+    enable: 0
     api_url: 'FB.ui({method: ''send'',link: ''[current-page:url]''})'
     api_event: onclick
     drupalSettings: 'application_id|Your Application ID'
@@ -21,17 +21,15 @@ social_media:
     text: 'Facebook messenger'
     default_img: 1
     weight: 2
-    attributes: |-
-      target|_blank
-      class|facebook-msg
-      rel|noopener noreferrer
+    attributes: "target|_blank\r\nclass|facebook-msg\r\nrel|noopener noreferrer"
+    img: ''
   linkedin:
     enable: 1
     api_url: 'http://www.linkedin.com/shareArticle?mini=true&url=[current-page:url]&title=[current-page:title]&source=[current-page:url]'
     api_event: href
     text: 'Share in Linkedin'
     default_img: 0
-    weight: 3
+    weight: '3'
     attributes: "target|_blank\r\nclass|linkedin"
     drupalSettings: ''
     img: linkedin
@@ -42,31 +40,33 @@ social_media:
     api_event: href
     text: 'Share in Twitter'
     default_img: 0
-    weight: 4
+    weight: 3
     attributes: "target|_blank\r\nclass|twitter"
     drupalSettings: ''
     img: twitter
     library: ''
   pinterest:
-    enable: 1
+    enable: 0
     api_url: 'https://www.pinterest.com/pin/create/button/?url=[current-page:url]&description=[current-page:title]'
     api_event: href
     text: Pinterest
     default_img: 1
     weight: 5
-    attributes: |-
-      target|_blank
-      class|pinterest
-      rel|noopener noreferrer
+    attributes: "target|_blank\r\nclass|pinterest\r\nrel|noopener noreferrer"
+    drupalSettings: ''
+    library: ''
+    img: ''
   whatsapp:
     enable: 0
     api_url: 'https://wa.me/?text=[current-page:url]'
     api_event: href
     default_img: 1
-    attributes: |-
-      class|whatsapp show-for-small-only
-      data-action|share/whatsapp/share
+    attributes: "class|whatsapp show-for-small-only\r\ndata-action|share/whatsapp/share"
     weight: 6
+    drupalSettings: ''
+    library: ''
+    text: ''
+    img: ''
   email:
     enable: 1
     api_url: 'mailto:?subject=[current-page:title]&body=Check out this site [current-page:url]'
@@ -79,7 +79,7 @@ social_media:
     enable_forward: 0
     img: email
     library: ''
-    show_forward: 1
+    show_forward: '1'
   print:
     enable: 0
     api_url: window.print()
@@ -88,4 +88,7 @@ social_media:
     default_img: 1
     attributes: class|print
     weight: 8
+    drupalSettings: ''
+    library: ''
+    img: ''
 langcode: en

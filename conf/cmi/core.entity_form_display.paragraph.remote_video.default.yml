@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.remote_video.field_iframe_title
     - field.field.paragraph.remote_video.field_remote_video
     - field.field.paragraph.remote_video.field_remote_video_description
     - field.field.paragraph.remote_video.field_remote_video_title
@@ -58,6 +59,15 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_iframe_title:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
 hidden:
   created: true
+  field_iframe_title: true
   status: true
