@@ -1,4 +1,4 @@
-label: 'Visas på startsidan'
+label: 'Näytetään etusivulla'
 settings:
-  on_label: På
-  off_label: Av
+  on_label: Käytössä
+  off_label: 'Pois päältä'
