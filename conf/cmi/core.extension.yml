@@ -98,6 +98,7 @@ module:
   purge_processor_cron: 0
   purge_queuer_coretags: 0
   purge_tokens: 0
+  radioactivity: 0
   redirect: 0
   redis: 0
   responsive_image: 0
