@@ -1,0 +1,14 @@
+settings:
+  allowed_values:
+    -
+      label: 'Image on right'
+    -
+      label: 'Image on left'
+    -
+      label: 'Image on right, secondary color'
+    -
+      label: 'Image on left, secondary color'
+    -
+      label: 'Background image, text on right'
+    -
+      label: 'Background image, text on left'

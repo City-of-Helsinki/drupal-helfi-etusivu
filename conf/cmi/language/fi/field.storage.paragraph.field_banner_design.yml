@@ -1,0 +1,10 @@
+settings:
+  allowed_values:
+    -
+      label: 'Aligned to the center'
+    -
+      label: 'Aligned to the left'
+    -
+      label: 'Aligned to the center, secondary color'
+    -
+      label: 'Aligned to the left, secondary color'

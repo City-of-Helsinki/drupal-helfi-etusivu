@@ -1,14 +1,41 @@
+label: 'Locked content'
 display:
   default:
     display_title: Oletus
     display_options:
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        options:
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       fields:
         node_bulk_form:
+          label: 'Node operations bulk form'
           action_title: Toiminto
         title:
-          label: Otsikko
+          label: Titteli
+          separator: ', '
         type:
           label: Sisältötyyppi
+          separator: ', '
+        timestamp:
+          label: 'Lock Date/Time'
+        name:
+          label: 'Lock owner'
+          separator: ', '
         operations:
           label: Toimenpiteet
       filters:
@@ -27,4 +54,13 @@ display:
             label: Sisältötyyppi
         title:
           expose:
-            label: Otsikko
+            label: Titteli
+      title: 'Locked content'
+      empty:
+        area_text_custom:
+          content: 'There is no content currently locked.'
+  page_1:
+    display_title: Page
+    display_options:
+      menu:
+        title: 'Locked content'
