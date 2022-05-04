@@ -1,8 +1,0 @@
-settings:
-  allowed_values:
-    -
-      label: 'Full colour background'
-    -
-      label: 'Only borders'
-    -
-      label: 'No borders or background colour'

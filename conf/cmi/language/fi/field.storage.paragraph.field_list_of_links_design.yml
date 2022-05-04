@@ -1,8 +1,0 @@
-settings:
-  allowed_values:
-    -
-      label: 'With image'
-    -
-      label: 'Without image'
-    -
-      label: 'Without image and description'
