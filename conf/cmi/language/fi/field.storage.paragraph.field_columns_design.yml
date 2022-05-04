@@ -1,8 +1,0 @@
-settings:
-  allowed_values:
-    -
-      label: 'Divided 50/50'
-    -
-      label: 'Divided 30/70'
-    -
-      label: 'Divided 70/30'
