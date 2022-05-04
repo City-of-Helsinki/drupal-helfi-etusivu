@@ -1,11 +1,11 @@
 display:
   default:
-    display_title: Default
+    display_title: Förvald
     display_options:
       pager:
         options:
           expose:
-            offset_label: Offset
+            offset_label: Kompensera
           tags:
             previous: ‹‹
             next: ››
@@ -19,4 +19,4 @@ display:
           expose:
             label: Label
   entity_reference:
-    display_title: 'Entity reference'
+    display_title: Objektsreferens

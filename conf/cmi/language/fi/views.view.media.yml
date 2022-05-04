@@ -1,21 +1,21 @@
 label: Media
-description: 'Find and manage media.'
+description: 'Etsi ja ylläpidä mediatiedostoja.'
 display:
   default:
-    display_title: Default
+    display_title: Oletus
     display_options:
       title: Media
       fields:
         media_bulk_form:
           action_title: Toiminto
         thumbnail__target_id:
-          label: Thumbnail
+          label: Pienoiskuva
           separator: ', '
         name:
-          label: 'Media name'
+          label: 'Mediatiedoston nimi'
           separator: ', '
         bundle:
-          label: Type
+          label: Tyyppi
           separator: ', '
         uid:
           label: Kirjoittaja
@@ -27,41 +27,41 @@ display:
             format_custom_true: Julkaistu
           separator: ', '
         changed:
-          label: Updated
+          label: Päivitetty
           separator: ', '
         operations:
           label: Toimenpiteet
       pager:
         options:
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
+            next: 'Seuraava ›'
+            previous: '‹ Edellinen'
+            first: '« Ensimmäinen'
+            last: 'Viimeinen »'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
+            items_per_page_label: 'Merkintöjä sivua kohti'
+            items_per_page_options_all_label: '- Kaikki -'
             offset_label: Offset
       exposed_form:
         options:
           submit_button: Suodata
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
       empty:
         area_text_custom:
           content: 'Ei mediatiedostoja saatavilla.'
       filters:
         name:
           expose:
-            label: 'Media name'
+            label: 'Mediatiedoston nimi'
         bundle:
           expose:
-            label: Type
+            label: Tyyppi
         status:
           expose:
-            label: 'True'
+            label: Tosi
           group_info:
             label: Julkaisutila
             group_items:

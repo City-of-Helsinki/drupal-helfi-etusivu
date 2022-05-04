@@ -1,53 +1,56 @@
-label: Redirect
-description: 'List of redirects'
+label: Omdirigera
+description: 'Lista över omdirigeringar'
 display:
   default:
     display_title: Förvald
     display_options:
       exposed_form:
         options:
-          submit_button: Filter
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Filtrera
+          reset_button_label: Återställ
+          exposed_sorts_label: 'Sortera efter'
+          sort_asc_label: Stigande
+          sort_desc_label: Fallande
       pager:
         options:
           tags:
-            previous: '‹ previous'
-            next: 'next ›'
-            first: '« first'
-            last: 'last »'
+            previous: '‹ föregående'
+            next: 'nästa ›'
+            first: '« första'
+            last: 'sista »'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Inlägg per sida'
+            items_per_page_options_all_label: '- Alla -'
+            offset_label: Kompensera
       fields:
         redirect_bulk_form:
-          action_title: 'With selection'
+          action_title: 'Med urval'
         redirect_source__path:
-          label: From
+          label: Från
           separator: ', '
         created:
-          label: Created
+          label: Skapad
       filters:
         redirect_source__path:
           expose:
-            label: From
+            label: Från
         redirect_redirect__uri:
           expose:
-            label: To
+            label: Till
         status_code:
           expose:
-            label: 'Status code'
+            label: Statuskod
           group_info:
-            label: 'Status code'
+            label: Statuskod
+            group_items:
+              7:
+                title: '300 Multiple Choices'
         language:
           expose:
-            label: 'Original language'
-      title: Redirect
+            label: Ursprungsspråk
+      title: Omdirigera
       empty:
         area_text_custom:
-          content: 'There is no redirect yet.'
+          content: 'Det finns ingen omdirigering ännu.'
   page_1:
-    display_title: Page
+    display_title: Sida

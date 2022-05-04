@@ -1,21 +1,21 @@
 label: Media
-description: 'Find and manage media.'
+description: 'Hitta och hantera media.'
 display:
   default:
-    display_title: Default
+    display_title: Förvald
     display_options:
       title: Media
       fields:
         media_bulk_form:
           action_title: Åtgärd
         thumbnail__target_id:
-          label: Thumbnail
+          label: Miniatyr
           separator: ', '
         name:
-          label: 'Media name'
+          label: Medianamn
           separator: ', '
         bundle:
-          label: Type
+          label: Typ
           separator: ', '
         uid:
           label: Författare
@@ -27,41 +27,41 @@ display:
             format_custom_true: Publicerad
           separator: ', '
         changed:
-          label: Updated
+          label: Uppdaterad
           separator: ', '
         operations:
           label: Funktioner
       pager:
         options:
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
+            next: 'Nästa ›'
+            previous: '‹ Föregående'
+            first: '« Första'
+            last: 'Sista »'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Inlägg per sida'
+            items_per_page_options_all_label: '- Alla -'
+            offset_label: Kompensera
       exposed_form:
         options:
-          submit_button: Filter
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Filtrera
+          reset_button_label: Återställ
+          exposed_sorts_label: 'Sortera efter'
+          sort_asc_label: Stigande
+          sort_desc_label: Fallande
       empty:
         area_text_custom:
-          content: 'No media available.'
+          content: 'Ingen media tillgänglig.'
       filters:
         name:
           expose:
-            label: 'Media name'
+            label: Medianamn
         bundle:
           expose:
-            label: Type
+            label: Typ
         status:
           expose:
-            label: 'True'
+            label: Sant
           group_info:
             label: 'Status för publicering'
             group_items:

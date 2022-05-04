@@ -1,2 +1,2 @@
-label: Hero
-description: 'Select whether you wish to display a hero highlight element on the page. If a hero is selected, it''s heading will be used as the main heading for the page.'
+label: Hero-lohko
+description: 'Valitse haluatko näyttää hero-nostoelementin sivulla. Jos valitset heron, sen otsikkoa käytetään sivun pääotsikkona.'

@@ -1,16 +1,16 @@
 settings:
   allowed_values:
     -
-      label: 'Without image, align left'
+      label: 'Ilman kuvaa, tasattu vasemmalle'
     -
-      label: 'Without image, align center'
+      label: 'Ilman kuvaa, tasattu keskelle'
     -
-      label: 'Image on the right'
+      label: 'Kuva oikealla'
     -
-      label: 'Image on the left'
+      label: 'Kuva vasemmalla'
     -
-      label: 'Image on the bottom'
+      label: 'Kuva alhaalla'
     -
-      label: 'Background image'
+      label: Taustakuva
     -
-      label: Diagonal
+      label: Diagonaalinen

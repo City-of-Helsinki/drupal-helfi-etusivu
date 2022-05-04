@@ -1,28 +1,26 @@
-label: People
-description: 'Find and manage people interacting with your site.'
+label: Personer
+description: 'Hitta och hantera personer som använder din webbplats.'
 display:
   default:
-    display_title: Default
+    display_title: Förvald
     display_options:
-      title: People
+      title: Personer
       fields:
         user_bulk_form:
-          label: 'Bulk update'
+          label: Massuppdatera
         name:
-          label: Username
+          label: Användarnamn
         status:
           label: Status
           settings:
-            format_custom_false: Blocked
-            format_custom_true: Active
+            format_custom_false: Spärrad
+            format_custom_true: Aktiv
         roles_target_id:
-          label: Roles
+          label: Roller
         created:
-          label: 'Member for'
+          label: 'Medlem i'
         access:
-          label: 'Last access'
-          settings:
-            past_format: '@interval ago'
+          label: 'Senast åtkomst'
         operations:
           label: Funktioner
         mail:
@@ -30,49 +28,49 @@ display:
       pager:
         options:
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
+            next: 'Nästa ›'
+            previous: '‹ Föregående'
+            first: '« Första'
+            last: 'Sista »'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Inlägg per sida'
+            items_per_page_options_all_label: '- Alla -'
+            offset_label: Kompensera
       exposed_form:
         options:
-          submit_button: Filter
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Filtrera
+          reset_button_label: Återställ
+          exposed_sorts_label: 'Sortera efter'
+          sort_asc_label: Stigande
+          sort_desc_label: Fallande
       empty:
         area_text_custom:
-          content: 'No people available.'
+          content: 'Inga personer tillgängliga.'
       filters:
         combine:
           expose:
-            label: 'Name or email contains'
+            label: 'Namn eller e-post innehåller'
         status:
           group_info:
             label: Status
             group_items:
               1:
-                title: Active
+                title: Aktiv
               2:
-                title: Blocked
+                title: Spärrad
         roles_target_id:
           expose:
-            label: Role
+            label: Roll
         permission:
           expose:
-            label: Permission
-      use_more_text: more
+            label: Behörighet
+      use_more_text: mer
   page_1:
-    display_title: Page
+    display_title: Sida
     display_options:
       menu:
-        title: List
-        description: 'Find and manage people interacting with your site.'
+        title: Lista
+        description: 'Hitta och hantera personer som använder din webbplats.'
       tab_options:
-        title: People
-        description: 'Manage user accounts, roles, and permissions.'
+        title: Personer
+        description: 'Hantera användarkonton, roller och behörigheter.'

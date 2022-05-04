@@ -1,2 +1,2 @@
-label: 'Content cards'
-description: 'With content cards you can reference to content inside this site. The information about the content is automatically fetched through the reference.'
+label: Sisältökortit
+description: 'Sisältökorteilla voit nostaa sivuston sisäistä sisältöä korteiksi lohkoon. Kortin sisältö haetaan automaattisesti siitä sisällöstä jonka valitsit.'

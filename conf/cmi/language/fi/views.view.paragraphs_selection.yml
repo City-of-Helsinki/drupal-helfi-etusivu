@@ -1,14 +1,14 @@
 display:
   default:
-    display_title: Default
+    display_title: Oletus
     display_options:
       pager:
         options:
           expose:
             offset_label: Offset
           tags:
-            previous: ‹‹
-            next: ››
+            previous: '‹ Edellinen'
+            next: 'Seuraava ›'
       fields:
         id:
           separator: ', '
@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: Label
+            label: Otsikko
   entity_reference:
-    display_title: 'Entity reference'
+    display_title: Entiteettiviittaus

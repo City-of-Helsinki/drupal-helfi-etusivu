@@ -1,8 +1,7 @@
-label: 'Media library'
-description: 'Find and manage media.'
+description: 'Hitta och hantera media.'
 display:
   default:
-    display_title: Default
+    display_title: Förvald
     display_options:
       title: Media
       fields:
@@ -14,51 +13,53 @@ display:
             next: ››
             previous: ‹‹
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Inlägg per sida'
+            items_per_page_options_all_label: '- Alla -'
+            offset_label: Kompensera
       exposed_form:
         options:
-          submit_button: 'Apply filters'
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: 'Tillämpa filter'
+          reset_button_label: Återställ
+          exposed_sorts_label: 'Sortera efter'
+          sort_asc_label: Stigande
+          sort_desc_label: Fallande
       empty:
         area_text_custom:
-          content: 'No media available.'
+          content: 'Ingen media tillgänglig.'
       sorts:
         created:
           expose:
-            label: 'Newest first'
+            label: 'Nyaste först'
         name:
           expose:
-            label: 'Name (A-Z)'
+            label: 'Namn (A-Z)'
         name_1:
           expose:
-            label: 'Name (Z-A)'
+            label: 'Namn (Z-A)'
       filters:
         status:
           expose:
-            label: 'Publishing status'
+            label: 'Status för publicering'
           group_info:
             label: Publicerad
             group_items:
               1:
                 title: Publicerad
+              2:
+                title: 'Ej publicerad'
         name:
           expose:
             label: Namn
         bundle:
           expose:
-            label: 'Media type'
+            label: Mediatyp
           group_info:
-            label: 'Media type'
+            label: Mediatyp
         langcode:
           expose:
             label: Språk
   page:
-    display_title: Page
+    display_title: Sida
     display_options:
       fields:
         media_bulk_form:
@@ -67,14 +68,14 @@ display:
           separator: ', '
         edit_media:
           alter:
-            text: 'Edit {{ name }}'
-            alt: 'Edit {{ name }}'
-          text: Edit
+            text: 'Redigera {{ name }}'
+            alt: 'Redigera {{ name }}'
+          text: Redigera
         delete_media:
           alter:
-            text: 'Delete {{ name }}'
-            alt: 'Delete {{ name }}'
-          text: Delete
+            text: 'Radera {{ name }}'
+            alt: 'Radera {{ name }}'
+          text: Radera
   widget:
     display_title: Widget
     display_options:
@@ -88,21 +89,21 @@ display:
             label: Namn
       header:
         display_link_grid:
-          label: Grid
+          label: Rutnät
         display_link_table:
-          label: Table
+          label: Tabell
   widget_table:
-    display_title: 'Widget (table)'
+    display_title: 'Gränssnittskomponent (tabell)'
     display_options:
       fields:
         thumbnail__target_id:
-          label: Thumbnail
+          label: Miniatyr
         name:
           label: Namn
         uid:
           label: Författare
         changed:
-          label: Updated
+          label: Uppdaterad
       arguments:
         bundle:
           exception:
@@ -113,6 +114,6 @@ display:
             label: Namn
       header:
         display_link_grid:
-          label: Grid
+          label: Rutnät
         display_link_table:
-          label: Table
+          label: Tabell

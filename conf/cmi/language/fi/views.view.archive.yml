@@ -1,27 +1,27 @@
-label: Archive
-description: 'All content, by month.'
+label: Arkisto
+description: 'Kaikki sisältö, kuukausittain lajiteltuna.'
 display:
   default:
-    display_title: Default
+    display_title: Oletus
     display_options:
-      title: 'Monthly archive'
+      title: Arkisto
       pager:
         options:
           tags:
-            next: ››
-            previous: ‹‹
+            next: 'Seuraava ›'
+            previous: '‹ Edellinen'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
+            items_per_page_label: 'Merkintöjä sivua kohti'
+            items_per_page_options_all_label: '- Kaikki -'
             offset_label: Offset
       exposed_form:
         options:
-          submit_button: Apply
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Käytä
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
   block_1:
-    display_title: Block
+    display_title: Lohko
   page_1:
-    display_title: Page
+    display_title: Sivu
