@@ -1,10 +1,10 @@
 settings:
   allowed_values:
     -
-      label: 'Aligned to the center'
+      label: Keskitetty
     -
-      label: 'Aligned to the left'
+      label: 'Tasattu vasemmalle'
     -
-      label: 'Aligned to the center, secondary color'
+      label: 'Keskitetty, toissijainen väri'
     -
-      label: 'Aligned to the left, secondary color'
+      label: 'Tasattu vasemmalle, toissijainen väri'

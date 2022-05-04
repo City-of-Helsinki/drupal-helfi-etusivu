@@ -1,2 +1,2 @@
-label: 'Content liftup'
-description: 'With content liftup you can reference to a single content inside this site. The information about the content is automatically fetched through the reference.'
+label: Sisältönosto
+description: 'Sisältönostolla voit nostaa yksittäisen sisällön tämän sivuston sisältä. Sisällön tiedot haetaan automaattisesti viitteen kautta ja sisältö esitetään korttinäkymässä.'

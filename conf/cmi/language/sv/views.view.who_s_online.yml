@@ -1,30 +1,30 @@
-label: 'Who''s online block'
-description: 'Shows the user names of the most recently active users, and the total number of active users.'
+label: 'Block för vilka som är inloggade'
+description: 'Visar de användarnamnen för de senast aktiva användarna samt de totalt antal aktiva användare.'
 display:
   default:
-    display_title: Default
+    display_title: Förvald
     display_options:
-      title: 'Who''s online'
+      title: 'Vilka är inloggade'
       exposed_form:
         options:
-          submit_button: Apply
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Verkställ
+          reset_button_label: Återställ
+          exposed_sorts_label: 'Sortera efter'
+          sort_asc_label: Stigande
+          sort_desc_label: Fallande
       empty:
         area_text_custom:
-          content: 'There are currently 0 users online.'
+          content: 'För närvarande är 0 användare inloggade.'
       filters:
         access:
           expose:
-            label: 'Last access'
-            description: 'A user is considered online for this long after they have last viewed a page.'
+            label: 'Senast åtkomst'
+            description: 'En användare anses vara inloggad så här länge efter att de senast tittat på en sida.'
       header:
         result:
-          content: 'There are currently @total users online.'
+          content: 'För närvarande är @total användare inloggade.'
   who_s_online_block:
-    display_title: 'Who''s online'
+    display_title: 'Vilka är inloggade'
     display_options:
-      display_description: 'A list of users that are currently logged in.'
-      block_description: 'Who''s online'
+      display_description: 'En lista på användare som för närvarande är inloggade.'
+      block_description: 'Vilka är inloggade'

@@ -1,2 +1,2 @@
-label: 'Use original aspect ratio'
-description: 'If you have to use the original aspect ratio of the image you can do so by choosing this option. However it is recommended to let the system crop your image so that it will look balanced on the page.'
+label: 'Käytä alkuperäistä kuvasuhdetta'
+description: 'Jos sinun on käytettävä kuvan alkuperäistä kuvasuhdetta voit tehdä sen valitsemalla tämän. On kuitenkin suositeltavaa antaa järjestelmän skaalata ja leikata kuvasi jotta sisältö näyttää tasapainoiselta.'

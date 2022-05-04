@@ -1,2 +1,2 @@
-label: 'Default medium date'
-pattern: 'j. F Y'
+label: 'Päivämäärä keskipitkässä muodossa'
+pattern: 'j. F\t\a Y'

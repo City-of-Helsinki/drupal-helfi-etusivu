@@ -1,22 +1,23 @@
-label: 'Recent content'
+label: 'Uusin sisältö'
+description: 'Uusin sisältö.'
 display:
   default:
-    display_title: Default
+    display_title: Oletus
     display_options:
-      title: 'Recent content'
+      title: 'Uusin sisältö'
       fields:
         changed:
           separator: ', '
       exposed_form:
         options:
-          submit_button: Apply
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Käytä
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
       empty:
         area_text_custom:
-          content: 'No content available.'
-      use_more_text: More
+          content: 'Ei sisältöä.'
+      use_more_text: Lisää
   block_1:
-    display_title: Block
+    display_title: Lohko

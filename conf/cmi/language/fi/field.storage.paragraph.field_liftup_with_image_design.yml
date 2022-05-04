@@ -1,14 +1,14 @@
 settings:
   allowed_values:
     -
-      label: 'Image on right'
+      label: 'Kuva oikealla'
     -
-      label: 'Image on left'
+      label: 'Kuva vasemmalla'
     -
-      label: 'Image on right, secondary color'
+      label: 'Kuva oikealla, toissijainen väri'
     -
-      label: 'Image on left, secondary color'
+      label: 'Kuva vasemmalla, toissijainen väri'
     -
-      label: 'Background image, text on right'
+      label: 'Taustakuva, teksti oikealla'
     -
-      label: 'Background image, text on left'
+      label: 'Taustakuva, teksti vasemmalla'

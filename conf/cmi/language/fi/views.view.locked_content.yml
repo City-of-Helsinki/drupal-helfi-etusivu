@@ -1,43 +1,42 @@
-label: 'Locked content'
+label: 'Lukitut sisällöt'
 display:
   default:
     display_title: Oletus
     display_options:
+      title: 'Lukitut sisällöt'
       exposed_form:
         options:
-          submit_button: Apply
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Käytä
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
       pager:
         options:
           tags:
-            previous: ‹‹
-            next: ››
-            first: '« First'
-            last: 'Last »'
+            previous: '‹ Edellinen'
+            next: 'Seuraava ›'
+            first: '« Ensimmäinen'
+            last: 'Viimeinen »'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Merkintöjä sivua kohti'
+            items_per_page_options_all_label: '- Kaikki -'
       fields:
         node_bulk_form:
-          label: 'Node operations bulk form'
+          label: 'Solmujen bulkkitoimintojen lomake'
           action_title: Toiminto
         title:
-          label: Titteli
-          separator: ', '
+          label: Otsikko
         type:
           label: Sisältötyyppi
-          separator: ', '
-        timestamp:
-          label: 'Lock Date/Time'
         name:
-          label: 'Lock owner'
-          separator: ', '
+          label: 'Lukituksen tekijä'
         operations:
           label: Toimenpiteet
+        timestamp:
+          label: 'Lukituksen ajankohta'
+        langcode_1:
+          label: 'Sisällön kieli'
       filters:
         status:
           expose:
@@ -47,20 +46,14 @@ display:
             group_items:
               1:
                 title: Julkaistu
-              2:
-                title: Julkaisematon
         type:
           expose:
             label: Sisältötyyppi
         title:
           expose:
-            label: Titteli
-      title: 'Locked content'
+            label: Otsikko
       empty:
         area_text_custom:
-          content: 'There is no content currently locked.'
+          content: 'Lukittua sisältöä ei ole.'
   page_1:
-    display_title: Page
-    display_options:
-      menu:
-        title: 'Locked content'
+    display_title: Sivu

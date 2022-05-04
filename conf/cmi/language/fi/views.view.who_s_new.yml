@@ -1,20 +1,20 @@
-label: 'Who''s new'
-description: 'Shows a list of the newest user accounts on the site.'
+label: 'Uudet käyttäjät'
+description: 'Näyttää listan sivuston uusimmista käyttäjätileistä.'
 display:
   default:
-    display_title: Default
+    display_title: Oletus
     display_options:
-      title: 'Who''s new'
+      title: 'Uudet käyttäjät'
       exposed_form:
         options:
-          submit_button: Apply
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Käytä
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
   block_1:
-    display_title: 'Who''s new'
+    display_title: 'Uudet käyttäjät'
     display_options:
-      display_description: 'A list of new users'
-      block_description: 'Who''s new'
-      block_category: User
+      display_description: 'Lista uusista käyttäjistä'
+      block_description: 'Uudet käyttäjät'
+      block_category: Käyttäjä

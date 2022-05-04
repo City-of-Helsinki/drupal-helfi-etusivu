@@ -1,8 +1,8 @@
 settings:
   allowed_values:
     -
-      label: 'With image'
+      label: Kuvallinen
     -
-      label: 'Without image'
+      label: 'Ilman kuvaa'
     -
-      label: 'Without image and description'
+      label: 'Ilman kuvaa ja kuvausta'
