@@ -1,13 +1,15 @@
-label: Sisältö
 display:
   default:
     display_options:
-      title: Sisältö
       fields:
+        langcode:
+          label: Kieli
+          separator: ', '
         title:
           label: Otsikko
         type:
           label: Sisältötyyppi
+          separator: ', '
         name:
           label: Kirjoittaja
         status:
@@ -15,11 +17,28 @@ display:
           settings:
             format_custom_false: Julkaisematon
             format_custom_true: Julkaistu
+        changed:
+          label: Päivitetty
         operations:
           label: Toimenpiteet
+      title: Sisältö
+      pager:
+        options:
+          tags:
+            next: 'Seuraava ›'
+            previous: '‹ Edellinen'
+            first: '« Ensimmäinen'
+            last: 'Viimeinen »'
       exposed_form:
         options:
           submit_button: Suodata
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
+      empty:
+        area_text_custom:
+          content: 'Ei sisältöä.'
       filters:
         title:
           expose:
@@ -40,10 +59,14 @@ display:
         langcode:
           expose:
             label: Kieli
+    display_title: Oletus
   page_1:
+    display_title: Sivu
     display_options:
       menu:
         title: Sisältö
       tab_options:
         title: Sisältö
         description: 'Etsi ja hallitse sisältöä'
+label: Sisältö
+description: 'Etsi ja ylläpidä sisältöä.'
