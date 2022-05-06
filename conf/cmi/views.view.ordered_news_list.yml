@@ -346,7 +346,7 @@ display:
       tags: {  }
   ordered_news:
     id: ordered_news
-    display_title: 'Ordered news'
+    display_title: 'Ordered news list'
     display_plugin: page
     position: 1
     display_options:
