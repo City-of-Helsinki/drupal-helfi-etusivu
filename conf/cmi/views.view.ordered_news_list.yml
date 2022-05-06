@@ -8,7 +8,7 @@ dependencies:
     - draggableviews
     - node
     - user
-id: news_list
+id: ordered_news_list
 label: 'News list'
 module: views
 description: 'Order front page main news'
@@ -263,7 +263,7 @@ display:
           plugin_id: language
           operator: in
           value:
-            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            '***LANGUAGE_language_content***': '***LANGUAGE_language_content***'
           group: 1
           exposed: false
           expose:
