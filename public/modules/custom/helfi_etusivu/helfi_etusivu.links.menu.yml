@@ -1,0 +1,6 @@
+helfi_etusivu.ordered_news:
+  title: Ordered news
+  route_name: view.ordered_news_list.ordered_news
+  parent: hdbt_admin_tools.overview
+  weight: 99
+

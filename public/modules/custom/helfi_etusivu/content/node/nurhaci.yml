@@ -1,0 +1,202 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 4b125162-73e1-4528-bb96-be9fd883dfa1
+  bundle: news_item
+  default_langcode: fi
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Nurhaci
+  created:
+    -
+      value: 1650954186
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /nurhaci
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650954197
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 5a2660a5-e8b0-4b05-b624-562a4526a6e1
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650954197
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Nurhaci</strong>&nbsp;tai&nbsp;<strong>Nurhachi</strong>&nbsp;(<a href=\"https://fi.wikipedia.org/wiki/Mant%C5%A1un_kieli\" title=\"Mantšun kieli\">mantšuksi</a>&nbsp;ᠨᡠᡵᡤᠠᠴᡳ&nbsp;<em>nurgaci</em>,&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Kiinan_kieli\" title=\"Kiinan kieli\">kiin.</a>&nbsp;努爾哈赤,&nbsp;<a href=\"https://fi.wikipedia.org/wiki/21._helmikuuta\" title=\"21. helmikuuta\">21. helmikuuta</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/1559\" title=\"1559\">1559</a>&nbsp;–&nbsp;<a href=\"https://fi.wikipedia.org/wiki/30._syyskuuta\" title=\"30. syyskuuta\">30. syyskuuta</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/1626\" title=\"1626\">1626</a>) oli alkujaan&nbsp;<a href=\"https://fi.wikipedia.org/wiki/D%C5%BEurt%C5%A1enit\" title=\"Džurtšenit\">džurtšenien</a>&nbsp;heimo­päällikkö ja myöhemmin&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Kaani\" title=\"Kaani\">kaani</a>, joka 1500-luvun lopulla nousi&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Mant%C5%A1uria\" title=\"Mantšuria\">Mantšuriassa</a>&nbsp;huomattavaan asemaan. Hän kuului&nbsp;<a href=\"https://fi.wikipedia.org/w/index.php?title=Aisin_Gioro&amp;action=edit&amp;redlink=1\" title=\"Aisin Gioro (sivua ei ole)\">Aisin Gioro</a>&nbsp;-klaaniin ja hallitsi džurtšeneja, myöhempien&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Mant%C5%A1ut\" title=\"Mantšut\">mantšujen</a>&nbsp;edeltäjiä, vuodesta 1616 kuolemaansa saakka syys­kuussa 1626.</p>\r\n\r\n<p>Nurchaci järjesteli džurtšenien eri heimot uudestaan ja yhdisti heidät, perusti&nbsp;<a href=\"https://fi.wikipedia.org/w/index.php?title=Kahdeksan_lippukuntaa&amp;action=edit&amp;redlink=1\" title=\"Kahdeksan lippukuntaa (sivua ei ole)\">Kahdeksan lippu­kunnan</a>&nbsp;sotilaallisen järjestelmän ja hyökkäsi lopulta&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Kiina\" title=\"Kiina\">Kiinan</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Ming-dynastia\" title=\"Ming-dynastia\">Ming-dynastiaa</a>&nbsp;sekä&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Korea\" title=\"Korea\">Korean</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Choseon-dynastia\" title=\"Choseon-dynastia\">Choseon-dynastiaa</a>&nbsp;vastaan. Valloittamalla Kiinan koillisen&nbsp;<a href=\"https://fi.wikipedia.org/w/index.php?title=Laining&amp;action=edit&amp;redlink=1\" title=\"Laining (sivua ei ole)\">Lainingin</a>&nbsp;maa­kunnan hän loi edellytykset mantšujen vuonna 1644 suorittamalle Kiinan valloitukselle, jolloin Kiinassa nousi valtaan mantšulais­peräinen&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Qing-dynastia\" title=\"Qing-dynastia\">Qing-dynastia</a>. Hänen on yleensä katsottu myös kehittäneen&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Mant%C5%A1un_kieli\" title=\"Mantšun kieli\">mantšun kielen</a>&nbsp;kirjoitus­järjestelmän.<sup><a href=\"https://fi.wikipedia.org/wiki/Nurhaci#cite_note-China-2\">[2]</a></sup></p>\r\n"
+              format: full_html
+translations:
+  sv:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: Nurhaci
+    created:
+      -
+        value: 1650954224
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /nurhaci
+        langcode: sv
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650954197
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: 349b83f4-a0a7-4c00-830b-5b6c7f23ee9d
+            bundle: text
+            default_langcode: sv
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650954197
+            behavior_settings:
+              -
+                value: {  }
+            revision_translation_affected:
+              -
+                value: true
+            field_text:
+              -
+                value: "<p><strong>Nurhaci</strong>&nbsp;eller&nbsp;<strong>Nurgaci</strong>, född&nbsp;<a href=\"https://sv.wikipedia.org/wiki/21_februari\" title=\"21 februari\">21 februari</a>&nbsp;<a href=\"https://sv.wikipedia.org/wiki/1559\" title=\"\">1559</a>, död&nbsp;<a href=\"https://sv.wikipedia.org/wiki/30_september\" title=\"30 september\">30 september</a>&nbsp;<a href=\"https://sv.wikipedia.org/wiki/1626\" title=\"1626\">1626</a>, var&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Jurchen\" title=\"Jurchen\">jurchen</a>-hövding och&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Khan\" title=\"Khan\">khan</a>&nbsp;över den senare Jindynastin, som han grundade 1616. Även om det var hans son Hung Taiji som ändrade folkets namn till&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Manchuer\" title=\"Manchuer\">manchuer</a>&nbsp;och dynastins till Qing anses han vara grundaren av&nbsp;<a href=\"https://sv.wikipedia.org/wiki/Qingdynastin\" title=\"Qingdynastin\">Qingdynastin</a>&nbsp;(1636-1912).</p>\r\n"
+                format: full_html
+  en:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: Nurhaci
+    created:
+      -
+        value: 1650954208
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /nurhaci
+        langcode: en
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650954197
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: c67718b4-74ce-4c26-a8a9-9b1027ac1821
+            bundle: text
+            default_langcode: en
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650954197
+            behavior_settings:
+              -
+                value: {  }
+            field_text:
+              -
+                value: "<p><strong>Nurhaci</strong>&nbsp;(1559 – 30 September 1626) was a&nbsp;<a href=\"https://en.wikipedia.org/wiki/Jurchen_people\" title=\"Jurchen people\">Jurchen</a>&nbsp;chieftain who rose to prominence in the late 16th century in&nbsp;<a href=\"https://en.wikipedia.org/wiki/Manchuria\" title=\"Manchuria\">Manchuria</a>. He was a member of the&nbsp;<a href=\"https://en.wikipedia.org/wiki/House_of_Aisin-Gioro\" title=\"House of Aisin-Gioro\">House of Aisin-Gioro</a>, and reigned as the founding&nbsp;<a href=\"https://en.wikipedia.org/wiki/Khan_(title)\" title=\"Khan (title)\">khan</a>&nbsp;of the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Later_Jin_(1616%E2%80%931636)\" title=\"Later Jin (1616–1636)\">Later Jin dynasty</a>&nbsp;from 1616 to 1626.</p>\r\n\r\n<p>Nurhaci reorganized and united various Jurchen tribes (the later \"<a href=\"https://en.wikipedia.org/wiki/Manchu_people\" title=\"Manchu people\">Manchu</a>\"), consolidated the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Eight_Banners\" title=\"Eight Banners\">Eight Banners</a>&nbsp;military system, and eventually launched attacks on both the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Ming_dynasty\" title=\"Ming dynasty\">Ming</a>&nbsp;and&nbsp;<a href=\"https://en.wikipedia.org/wiki/Joseon\" title=\"Joseon\">Joseon</a>&nbsp;dynasties. His conquest of Ming dynasty's northeastern&nbsp;<a href=\"https://en.wikipedia.org/wiki/Liaodong\" title=\"Liaodong\">Liaodong</a>&nbsp;province laid the groundwork for the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Qing_conquest_of_the_Ming\" title=\"Qing conquest of the Ming\">Qing conquest of the Ming</a>&nbsp;by his descendants, who founded the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Qing_dynasty\" title=\"Qing dynasty\">Qing dynasty</a>&nbsp;in 1636. He is also generally credited with ordering the creation of a new written script for the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Manchu_language\" title=\"Manchu language\">Manchu language</a>&nbsp;based on the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Mongolian_script\" title=\"Mongolian script\">Mongolian vertical script</a>.</p>\r\n\r\n<p>&nbsp;</p>\r\n"
+                format: full_html

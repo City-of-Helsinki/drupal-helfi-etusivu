@@ -1,0 +1,87 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 1594a4fc-9101-4d03-9310-2c2baf0c7f63
+  bundle: news_item
+  default_langcode: fi
+  depends:
+    d023b042-40e6-4c24-935b-df648efb296d: taxonomy_term
+    fd1fdd10-d72b-436d-bdef-a92540c1daae: taxonomy_term
+    1e80e394-0329-4f80-aed9-8938ae736d8b: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Pienojanlampi
+  created:
+    -
+      value: 1650954904
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /pienojanlampi
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650954916
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: e8e46f99-402c-4841-b4b3-3f6697a71daa
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650954912
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Pienojanlampi</strong>&nbsp;on rehevähkö metsäjärvi&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Karkkila\" title=\"Karkkila\">Karkkilan</a>&nbsp;luoteisosassa luoteisella&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Uudenmaan_maakunta\" title=\"\">Uudellamaalla</a>. Sen pinta-ala on 9,7 hehtaaria. Etäisyys Karkkilan keskustasta on seitsemän kilometriä länsiluoteeseen.<sup><a href=\"https://fi.wikipedia.org/wiki/Pienojanlampi#cite_note-hertta-2\">[2]</a></sup><sup><a href=\"https://fi.wikipedia.org/wiki/Pienojanlampi#cite_note-retki-1\">[1]</a></sup><sup><a href=\"https://fi.wikipedia.org/wiki/Pienojanlampi#cite_note-vesien-3\">[3]</a></sup><sup><a href=\"https://fi.wikipedia.org/wiki/Pienojanlampi#cite_note-jw-4\">[4]</a></sup></p>\r\n"
+              format: full_html
+  field_news_groups:
+    -
+      entity: d023b042-40e6-4c24-935b-df648efb296d
+  field_news_item_tags:
+    -
+      entity: fd1fdd10-d72b-436d-bdef-a92540c1daae
+  field_news_neighbourhoods:
+    -
+      entity: 1e80e394-0329-4f80-aed9-8938ae736d8b

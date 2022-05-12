@@ -13,6 +13,7 @@
         "drupal/consumer_image_styles": "^4.0",
         "drupal/core-composer-scaffold": "^9.3",
         "drupal/core-recommended": "^9.3",
+        "drupal/draggableviews": "^2.0",
         "drupal/external_entities": "^2.0@alpha",
         "drupal/hdbt": "^2.0",
         "drupal/hdbt_admin": "^1.0",
@@ -24,6 +25,7 @@
         "drupal/jsonapi_extras": "^3.20",
         "drupal/openapi_jsonapi": "^3.0",
         "drupal/openapi_ui_redoc": "^1.0@RC",
+        "drupal/radioactivity": "^4.0",
         "drupal/redis": "^1.5",
         "drush/drush": "^10.4"
     },
