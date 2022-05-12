@@ -1,0 +1,143 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d6ed6c1e-d910-4406-bdba-40899b23ea4b
+  bundle: news_item
+  default_langcode: fi
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Teollinen symbioosi'
+  created:
+    -
+      value: 1650953137
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /teollinen-symbioosi
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650953173
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 6e647db2-5ffa-4c14-9c21-6914cdd9f73f
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650953162
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Teollinen symbioosi</strong>&nbsp;on teollisuuden ja yritysten prosessien ja virtojen&nbsp;symbioosin&nbsp;kaltaista vuorovaikutusta ja hyödyntämistä, mikä tuottaa luonnollisen kaltaisia ainekiertoja ja lisäarvoa teollisessa tuotannossa. Tästä esimerkkinä jäännösvirtojen prosessointi uusiksi symbioosituotteiksi. Yksinkertaistettuna teollinen symbioosi on kahden teollisen yksikön väline suhde, jossa toisen jäte on toisen raaka-ainetta. Teolliset symbioosit eivät rajoitu sektoraalisesti tai maantieteellisesti. Poikkiteollisuudesta johtuva monipuolisuus ja avoimuus tekevät teollisista symbiooseista erityisen lähestymistavan ekologisesti kestävän teollisuuden kehitykselle. Teollinen symbioosi on osa&nbsp;teollista ekologiaa&nbsp;ja edistävät&nbsp;kiertotaloutta.</p>\r\n"
+              format: full_html
+  field_lead_in:
+    -
+      value: Ingressi
+translations:
+  en:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Industrial symbiosis'
+    created:
+      -
+        value: 1650953249
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /industrial-symbiosis
+        langcode: en
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650953173
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: 04f86c77-711c-4624-9907-3e73ed5e6681
+            bundle: text
+            default_langcode: en
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650953162
+            behavior_settings:
+              -
+                value: {  }
+            field_text:
+              -
+                value: "<p><span><span><span><span><span><span><span><span><span><span><span><strong>Industrial symbiosis</strong><sup>[1]</sup>&nbsp;a subset of&nbsp;industrial ecology. It describes how a network of diverse organizations can foster eco-innovation and long-term culture change, create and share mutually profitable transactions—and improve business and technical processes.</span></span></span></span></span></span></span></span></span></span></span></p>\r\n\r\n<p><span><span><span><span><span><span><span><span><span><span><span>Although geographic proximity is often associated with industrial symbiosis, it is neither necessary nor sufficient—nor is a singular focus on physical resource exchange. Strategic planning is required to optimize the synergies of co-location. In practice, using industrial symbiosis as an approach to commercial operations—using, recovering and redirecting resources for reuse—results in resources remaining in productive use in the economy for longer. This in turn creates business opportunities, reduces demands on the earth's&nbsp;resources, and provides a stepping-stone towards creating a&nbsp;circular economy.<sup>[2]</sup></span></span></span></span></span></span></span></span></span></span></span></p>\r\n\r\n<p><span><span><span><span><span><span><span><span><span><span><span>Industrial symbiosis is a subset of&nbsp;industrial ecology, with a particular focus on material and energy exchange. Industrial ecology is a relatively new field that is based on a natural paradigm, claiming that an&nbsp;industrial ecosystem&nbsp;may behave in a similar way to the natural&nbsp;ecosystem&nbsp;wherein everything gets recycled, albeit the simplicity and applicability of this paradigm has been questioned.<sup>[3]</sup></span></span></span></span></span></span></span></span></span></span></span></p>\r\n"
+                format: full_html
+    field_lead_in:
+      -
+        value: Lead

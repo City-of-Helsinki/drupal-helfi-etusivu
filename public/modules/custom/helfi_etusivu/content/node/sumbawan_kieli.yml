@@ -1,0 +1,218 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d8009074-a348-4fc0-a3be-c5fa080fcdb1
+  bundle: news_item
+  default_langcode: fi
+  depends:
+    920f37f4-eb46-4f0a-b0fd-a14c155e00dd: taxonomy_term
+    96bd44b6-5677-448a-8c49-4eac6260dc99: taxonomy_term
+    1e80e394-0329-4f80-aed9-8938ae736d8b: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Sumbawan kieli'
+  created:
+    -
+      value: 1650955728
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /sumbawan-kieli
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650955745
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: 0b63abfe-6c88-4e03-bfbc-8e9928cceb2d
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650955745
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Sumbawa</strong>&nbsp;on eräs&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Austronesialaiset_kielet\" title=\"\">austronesialainen kieli</a>, jota puhutaan pääasiassa&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Indonesia\" title=\"Indonesia\">Indonesiaan</a>&nbsp;kuuluvalla&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Sumbawa\" title=\"Sumbawa\">Sumbawan</a>&nbsp;saarella. Sumbawa kuuluu&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Malaijilais-polynesialaiset_kielet\" title=\"Malaijilais-polynesialaiset kielet\">malaijilais-polynesialaisten kielten</a>&nbsp;ryhmään. Sillä on noin 300 000 puhujaa (<a href=\"https://fi.wikipedia.org/wiki/1989\" title=\"1989\">1989</a>).<sup><a href=\"https://fi.wikipedia.org/wiki/Sumbawan_kieli#cite_note-1\" title=\"\">[1]</a></sup></p>\r\n"
+              format: full_html
+  field_news_groups:
+    -
+      entity: 920f37f4-eb46-4f0a-b0fd-a14c155e00dd
+  field_news_item_tags:
+    -
+      entity: 96bd44b6-5677-448a-8c49-4eac6260dc99
+  field_news_neighbourhoods:
+    -
+      entity: 1e80e394-0329-4f80-aed9-8938ae736d8b
+translations:
+  sv:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Sumbawan kieli'
+    created:
+      -
+        value: 1650955769
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /sumbawan-kieli
+        langcode: sv
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650955745
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: e8587d34-882c-4563-ac8e-a305cde89691
+            bundle: text
+            default_langcode: sv
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650955745
+            behavior_settings:
+              -
+                value: {  }
+            field_text:
+              -
+                value: "<p><strong>Sumbawa</strong>&nbsp;on eräs&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Austronesialaiset_kielet\" title=\"\">austronesialainen kieli</a>, jota puhutaan pääasiassa&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Indonesia\" title=\"Indonesia\">Indonesiaan</a>&nbsp;kuuluvalla&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Sumbawa\" title=\"Sumbawa\">Sumbawan</a>&nbsp;saarella. Sumbawa kuuluu&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Malaijilais-polynesialaiset_kielet\" title=\"Malaijilais-polynesialaiset kielet\">malaijilais-polynesialaisten kielten</a>&nbsp;ryhmään. Sillä on noin 300 000 puhujaa (<a href=\"https://fi.wikipedia.org/wiki/1989\" title=\"1989\">1989</a>).<sup><a href=\"https://fi.wikipedia.org/wiki/Sumbawan_kieli#cite_note-1\" title=\"\">[1]</a></sup></p>\r\n"
+                format: full_html
+  en:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Sumbawa language'
+    created:
+      -
+        value: 1650955756
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    toc_enabled:
+      -
+        value: false
+    toc_title:
+      -
+        value: 'Table of contents'
+    path:
+      -
+        alias: /sumbawa-language
+        langcode: en
+        pathauto: 1
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    published_at:
+      -
+        value: 1650955745
+    field_content:
+      -
+        entity:
+          _meta:
+            version: '1.0'
+            entity_type: paragraph
+            uuid: 33312b36-a48b-4d36-80ee-7d2463ce6cd2
+            bundle: text
+            default_langcode: en
+          default:
+            status:
+              -
+                value: true
+            created:
+              -
+                value: 1650955745
+            behavior_settings:
+              -
+                value: {  }
+            field_text:
+              -
+                value: "<p><strong>Sumbawa</strong>&nbsp;(<em lang=\"smw\">basa Semawa</em>;&nbsp;<a href=\"https://en.wikipedia.org/wiki/Indonesian_language\" title=\"Indonesian language\">Indonesian</a>:&nbsp;<em lang=\"id\">bahasa Sumbawa</em>) or&nbsp;<strong>Sumbawarese</strong>&nbsp;is a&nbsp;<a href=\"https://en.wikipedia.org/wiki/Malayo-Polynesian_languages\" title=\"Malayo-Polynesian languages\">Malayo-Polynesian</a>&nbsp;language of the western half of&nbsp;<a href=\"https://en.wikipedia.org/wiki/Sumbawa\" title=\"Sumbawa\">Sumbawa</a>&nbsp;Island,&nbsp;<a href=\"https://en.wikipedia.org/wiki/Indonesia\" title=\"Indonesia\">Indonesia</a>, which it shares with speakers of&nbsp;<a href=\"https://en.wikipedia.org/wiki/Bima_language\" title=\"Bima language\">Bima</a>. It is closely related to the languages of adjacent&nbsp;<a href=\"https://en.wikipedia.org/wiki/Lombok\" title=\"Lombok\">Lombok</a>&nbsp;and&nbsp;<a href=\"https://en.wikipedia.org/wiki/Bali\" title=\"Bali\">Bali</a>; indeed, it is the easternmost Austronesian language in the south of Indonesia that is not part of the&nbsp;<a href=\"https://en.wikipedia.org/wiki/Central_Malayo-Polynesian\" title=\"Central Malayo-Polynesian\">Central Malayo-Polynesian</a>&nbsp;<em><a href=\"https://en.wikipedia.org/wiki/Sprachbund\" title=\"Sprachbund\">Sprachbund</a></em>. The Sumbawa write their language with their own native script commonly known in their homeland as&nbsp;<a href=\"https://en.wikipedia.org/wiki/Satera_Jontal\" title=\"Satera Jontal\">Satera Jontal</a>&nbsp;and they also use the Latin script.<sup><a href=\"https://en.wikipedia.org/wiki/Sumbawa_language#cite_note-2\">[2]</a></sup></p>\r\n"
+                format: full_html

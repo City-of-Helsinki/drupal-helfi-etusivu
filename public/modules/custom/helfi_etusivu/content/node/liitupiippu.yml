@@ -1,0 +1,83 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 3896a980-827c-478c-9ec6-c892aa08f1c8
+  bundle: news_item
+  default_langcode: fi
+  depends:
+    920f37f4-eb46-4f0a-b0fd-a14c155e00dd: taxonomy_term
+    96bd44b6-5677-448a-8c49-4eac6260dc99: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: Liitupiippu
+  created:
+    -
+      value: 1650955685
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /liitupiippu
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650955695
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: ddc8f9cd-30ef-4ec6-b42f-ad57bbfb81b1
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650955695
+          behavior_settings:
+            -
+              value: {  }
+          field_text:
+            -
+              value: "<p><strong>Liitupiippu</strong>&nbsp;(myös&nbsp;<strong>savipiippu</strong>) on&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Savi\" title=\"Savi\">savesta</a>&nbsp;valmistettu historiallinen&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Piippu\" title=\"Piippu\">tupakointiväline</a>. Nimestään huolimatta liitupiippuja ei ole tehty&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Kalsiumkarbonaatti\" title=\"Kalsiumkarbonaatti\">liidusta</a>, vaan yleensä valkoisesta savesta. Myös musta- ja punasavisia liitupiippuja valmistettiin. Liitupiiput olivat&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Eurooppa\" title=\"Eurooppa\">Euroopassa</a>&nbsp;yleinen piipputyyppi 1500-luvulta 1800-luvulle. Erityisen suosittuja ne olivat 1600-luvulla.<sup><a href=\"https://fi.wikipedia.org/wiki/Liitupiippu#cite_note-1\">[1]</a></sup>&nbsp;Piippujen pääasiallisia valmistajamaita olivat&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Englanti\" title=\"Englanti\">Englanti</a>&nbsp;ja&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Alankomaat\" title=\"Alankomaat\">Alankomaat</a>. 1900-luvun alussa&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Savuke\" title=\"Savuke\">savukkeiden</a>&nbsp;yleistyminen hävitti aiemmin yleisen liitupiipputeollisuuden lähes kokonaan.</p>\r\n\r\n<p>Liitupiiput ovat yleisyytensä vuoksi merkittävä&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Arkeologia\" title=\"Arkeologia\">arkeologisten</a>&nbsp;kohteiden ajoittamisessa käytetty löytöryhmä.</p>\r\n"
+              format: full_html
+  field_news_groups:
+    -
+      entity: 920f37f4-eb46-4f0a-b0fd-a14c155e00dd
+  field_news_item_tags:
+    -
+      entity: 96bd44b6-5677-448a-8c49-4eac6260dc99
