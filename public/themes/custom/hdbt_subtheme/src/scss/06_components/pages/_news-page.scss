@@ -1,0 +1,13 @@
+.block--news-of-interest {
+  @include component-side-padding();
+  @include components-container-max-width();
+  @include component-margin-top();
+  margin: auto;
+
+  width: 100%;
+
+  h2 {
+    margin-bottom: $spacing-triple;
+    margin-top: 0;
+  }
+}
