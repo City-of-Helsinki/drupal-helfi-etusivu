@@ -1,0 +1,25 @@
+uuid: 1470295b-4f6f-4eee-abdf-3d4f5337fe04
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hdbt_subtheme
+_core:
+  default_config_hash: zieswfNu7cMhhsRwkEpe2HFgOvWeHcKNW9iXlTcq49k
+id: hdbt_subtheme_sitebranding
+theme: hdbt_subtheme
+region: header_branding
+weight: 1
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Sivuston brändäys'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

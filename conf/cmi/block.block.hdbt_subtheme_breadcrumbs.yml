@@ -1,0 +1,22 @@
+uuid: 044313f2-17fb-425f-b68d-6bb8014b8380
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hdbt_subtheme
+_core:
+  default_config_hash: X6F3oSAls1r1jwOVU5n7EG6Uaz0yFqo-GQcEXDzxxLk
+id: hdbt_subtheme_breadcrumbs
+theme: hdbt_subtheme
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Murupolku
+  label_display: '0'
+  provider: system
+visibility: {  }
