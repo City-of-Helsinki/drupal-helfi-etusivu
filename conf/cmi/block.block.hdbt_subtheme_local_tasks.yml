@@ -1,0 +1,22 @@
+uuid: 24f9f1be-a61f-483d-9717-91c0c7ada032
+langcode: en
+status: true
+dependencies:
+  theme:
+    - hdbt_subtheme
+_core:
+  default_config_hash: _UoTG8MagibHn89173NtrwtSq5ylXJRanQkHTZmRGe4
+id: hdbt_subtheme_local_tasks
+theme: hdbt_subtheme
+region: tools
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Välilehdet
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

@@ -1,22 +1,22 @@
-uuid: 8db5e9d9-21d0-47b3-8424-cd88f80b7afd
+uuid: 2780cd50-1615-40f6-a1eb-7a193bad7c9a
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.news
+    - views.view.frontpage_news
   module:
     - node
     - views
   theme:
-    - hdbt
-id: views_block__news_of_interest
-theme: hdbt
+    - hdbt_subtheme
+id: hdbt_subtheme_views_block__frontpage_news_of_interest
+theme: hdbt_subtheme
 region: after_content
 weight: 0
 provider: null
-plugin: 'views_block:news-of_interest'
+plugin: 'views_block:frontpage_news-of_interest'
 settings:
-  id: 'views_block:news-of_interest'
+  id: 'views_block:frontpage_news-of_interest'
   label: ''
   label_display: visible
   provider: views
