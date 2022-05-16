@@ -18,7 +18,7 @@ provider: null
 plugin: 'menu_block_current_language:main'
 settings:
   id: 'menu_block_current_language:main'
-  label: Päävalikko
+  label: 'Main navigation'
   label_display: '0'
   provider: menu_block_current_language
   level: 1
