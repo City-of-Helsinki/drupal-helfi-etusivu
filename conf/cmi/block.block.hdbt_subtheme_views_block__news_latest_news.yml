@@ -19,10 +19,10 @@ provider: null
 plugin: 'views_block:news-latest_news'
 settings:
   id: 'views_block:news-latest_news'
-  label: 'Uusimmat uutiset'
+  label: 'Latest news'
   label_display: visible
   provider: views
-  views_label: 'Uusimmat uutiset'
+  views_label: 'Latest news'
   items_per_page: none
 visibility:
   'entity_bundle:node':
