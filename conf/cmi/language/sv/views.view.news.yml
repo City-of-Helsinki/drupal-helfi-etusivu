@@ -16,7 +16,3 @@ display:
           separator: ', '
         view_node:
           text: visa
-      arguments:
-        nid:
-          exception:
-            title: Alla

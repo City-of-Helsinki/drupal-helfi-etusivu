@@ -16,7 +16,3 @@ display:
           separator: ', '
         view_node:
           text: näkymä
-      arguments:
-        nid:
-          exception:
-            title: Kaikki
