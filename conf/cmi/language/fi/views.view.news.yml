@@ -1,18 +1,15 @@
 display:
-  default:
-    display_title: Default
+  latest_news:
     display_options:
-      exposed_form:
-        options:
-          submit_button: Apply
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+      title: 'Uusimmat uutiset'
+    display_title: 'Uusimmat uutiset'
+  default:
+    display_options:
       fields:
-        published_at:
-          separator: ', '
-        field_main_image:
-          separator: ', '
         view_node:
           text: näkymä
+      title: 'Uusimmat uutiset'
+      arguments:
+        nid:
+          exception:
+            title: Kaikki

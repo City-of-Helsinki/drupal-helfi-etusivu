@@ -11,7 +11,7 @@ _core:
 id: reactandshare
 theme: hdbt
 region: after_content
-weight: -7
+weight: -8
 provider: null
 plugin: react_and_share
 settings:

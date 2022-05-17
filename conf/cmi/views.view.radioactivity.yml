@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.tiny_teaser
     - field.storage.node.field_radioactivity
     - node.type.news_item
   module:
@@ -343,7 +344,10 @@ display:
       style:
         type: default
       row:
-        type: fields
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: tiny_teaser
       query:
         type: views_query
         options:
@@ -362,6 +366,9 @@ display:
           admin_label: 'field_radioactivity: Radioactivity'
           plugin_id: standard
           required: false
+      use_more: false
+      use_more_always: true
+      use_more_text: 'Read all news'
       header: {  }
       footer: {  }
       display_extenders: {  }

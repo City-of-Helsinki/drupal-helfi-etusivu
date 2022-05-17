@@ -60,6 +60,14 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
+  field_news_groups:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
   field_news_item_links_link:
     type: link
     label: hidden
@@ -79,6 +87,22 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_news_item_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_news_neighbourhoods:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 12
     region: content
   field_radioactivity:
     type: radioactivity_reference_emitter
@@ -114,8 +138,5 @@ content:
     weight: 3
     region: content
 hidden:
-  field_news_groups: true
-  field_news_item_tags: true
-  field_news_neighbourhoods: true
   langcode: true
   toc_enabled: true

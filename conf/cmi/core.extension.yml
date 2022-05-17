@@ -46,6 +46,7 @@ module:
   hdbt_admin_tools: 0
   hdbt_component_library: 0
   hdbt_content: 0
+  helfi_announcements: 0
   helfi_api_base: 0
   helfi_azure_fs: 0
   helfi_base_config: 0
@@ -144,4 +145,5 @@ theme:
   hdbt: 0
   gin: 0
   hdbt_admin: 0
+  hdbt_subtheme: 0
 profile: minimal
