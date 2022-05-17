@@ -1,0 +1,32 @@
+uuid: 2930927e-bdd9-4feb-8e01-ad8333771f53
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.radioactivity
+  module:
+    - node
+    - views
+  theme:
+    - hdbt
+id: views_block__news_most_read
+theme: hdbt
+region: sidebar_second
+weight: -10
+provider: null
+plugin: 'views_block:radioactivity-block_1'
+settings:
+  id: 'views_block:radioactivity-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      news_item: news_item

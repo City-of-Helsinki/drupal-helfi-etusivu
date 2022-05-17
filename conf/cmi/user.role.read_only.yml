@@ -18,3 +18,4 @@ permissions:
   - 'view any unpublished news_item content'
   - 'view any unpublished page content'
   - 'view unpublished paragraphs'
+  - 'view any unpublished announcement content'

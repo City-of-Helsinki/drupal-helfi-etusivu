@@ -1,0 +1,33 @@
+uuid: df65e011-cef3-426e-a76f-4aa08e197e10
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.frontpage_news
+  module:
+    - node
+    - views
+  theme:
+    - hdbt
+id: views_block__frontpage_news_of_interest
+theme: hdbt
+region: after_content
+weight: 0
+provider: null
+plugin: 'views_block:frontpage_news-of_interest'
+settings:
+  id: 'views_block:frontpage_news-of_interest'
+  label: ''
+  label_display: visible
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      news_item: news_item
