@@ -1,0 +1,9 @@
+{% embed "@hdbt/layout/page.html.twig" with { has_sidebar_second: true, has_hero: true } %}
+  {% block page_before_content %}
+    {{ page.content[active_theme ~ '_page_title'] }}
+  {% endblock page_before_content %}
+
+  {% block page_sidebar_second %}
+    {{ drupal_entity('block', 'views_block__radioactivity_most_read_news', check_access=false) }}
+  {% endblock page_sidebar_second %}
+{% endembed %}

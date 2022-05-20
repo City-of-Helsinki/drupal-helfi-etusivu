@@ -29,7 +29,6 @@ mode: tiny_teaser
 content:
   field_main_image:
     settings: {  }
-    region: content
   field_short_title:
     type: string
     label: hidden
@@ -56,7 +55,6 @@ content:
 hidden:
   field_content: true
   field_lead_in: true
-  field_main_image: true
   field_main_image_caption: true
   field_news_groups: true
   field_news_item_links_link: true
@@ -66,3 +64,4 @@ hidden:
   field_radioactivity: true
   langcode: true
   toc_enabled: true
+  field_main_image: true
