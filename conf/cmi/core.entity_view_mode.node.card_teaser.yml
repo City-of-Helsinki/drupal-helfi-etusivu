@@ -1,0 +1,10 @@
+uuid: ee378cd6-8205-480d-89bf-b762b9deeb70
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.card_teaser
+label: 'Card Teaser'
+targetEntityType: node
+cache: true

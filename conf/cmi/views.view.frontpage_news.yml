@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card_teaser
     - core.entity_view_mode.node.medium_teaser
-    - core.entity_view_mode.node.tiny_teaser
     - field.storage.node.field_main_image
     - field.storage.node.field_news_groups
     - field.storage.node.field_news_item_tags
@@ -677,7 +677,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: tiny_teaser
+          view_mode: card_teaser
       defaults:
         title: false
         style: false
