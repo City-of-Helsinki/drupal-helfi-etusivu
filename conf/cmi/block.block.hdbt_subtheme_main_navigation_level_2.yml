@@ -6,7 +6,6 @@ dependencies:
     - system.menu.main
   module:
     - menu_block_current_language
-    - node
   theme:
     - hdbt_subtheme
 _core:
