@@ -1,0 +1,19 @@
+uuid: 63303923-11f5-4fdd-a4f4-e2ae37e82782
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.target_group_link_item
+id: paragraph.target_group_link_item.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: target_group_link_item
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
