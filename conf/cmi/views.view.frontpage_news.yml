@@ -34,7 +34,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Latest news'
+      title: 'Frontpage news'
       fields:
         published_at:
           id: published_at
@@ -223,7 +223,7 @@ display:
         type: some
         options:
           offset: 0
-          items_per_page: 6
+          items_per_page: 4
       exposed_form:
         type: basic
         options:
@@ -464,7 +464,7 @@ display:
     display_plugin: block
     position: 2
     display_options:
-      title: 'Main news'
+      title: 'Top news'
       fields:
         published_at:
           id: published_at
@@ -666,6 +666,7 @@ display:
           draggable_views_reference: 'ordered_news_list:ordered_news'
           draggable_views_null_order: after
           draggable_views_pass_arguments: false
+      arguments: {  }
       style:
         type: default
         options:
@@ -683,6 +684,7 @@ display:
         row: false
         fields: false
         sorts: false
+        arguments: false
       display_description: ''
       display_extenders: {  }
       block_description: 'Main news'
@@ -691,7 +693,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - 'user.node_grants:view'
         - user.permissions
       tags:
