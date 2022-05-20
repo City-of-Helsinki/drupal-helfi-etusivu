@@ -2,8 +2,6 @@ uuid: 134b4338-9e51-447b-9ccc-c4834f75a3ce
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
   theme:
     - hdbt_subtheme
 _core:
