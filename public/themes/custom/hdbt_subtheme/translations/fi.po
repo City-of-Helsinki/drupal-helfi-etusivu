@@ -1,3 +1,5 @@
-# Swedish translations
 msgid ""
 msgstr ""
+
+msgid "Current right now"
+msgstr "Pinnalla juuri nyt"
