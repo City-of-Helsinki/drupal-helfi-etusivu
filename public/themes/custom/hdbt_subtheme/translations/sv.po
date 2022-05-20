@@ -1,3 +1,5 @@
-# Finnish translations
 msgid ""
 msgstr ""
+
+msgid "Current right now"
+msgstr "Aktuell just nu"

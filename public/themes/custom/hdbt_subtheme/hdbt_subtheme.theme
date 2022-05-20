@@ -56,3 +56,51 @@ function hdbt_subtheme_theme_suggestions_menu_alter(&$suggestions, $variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_subtheme_preprocess_field(&$variables) {
+  // Add needed attributes to links.
+  if ($variables['field_name'] === 'field_current_links') {
+    foreach ($variables['items'] as &$item) {
+      $existing = $item['content']['#url']->getOption('attributes');
+      $attributes = array_merge($existing ?? [], [
+        'class' => [
+          'current__link',
+        ],
+      ]);
+
+      $item['content']['#url']->setOption('attributes', $attributes);
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ *   - paragraph: The paragraph object.
+ *   - view_mode: View mode; e.g., 'full', 'teaser'...
+ */
+function hdbt_subtheme_preprocess_paragraph(array &$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $paragraph_type = $paragraph->getType();
+  $path = '/themes/custom/hdbt_subtheme/src/images/';
+
+  if ($paragraph_type == 'current') {
+    $illustration = match($paragraph->get('field_seasons')->value) {
+      'spring' => $path . 'spring.svg',
+      'summer' => $path . 'summer.svg',
+      'autumn' => $path . 'autumn.svg',
+      'winter' => $path . 'winter.svg'
+    };
+
+    if ($illustration) {
+      $variables['seasonal_illustration'] = $illustration;
+    }
+  }
+}
