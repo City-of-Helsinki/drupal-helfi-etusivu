@@ -40,6 +40,7 @@ settings:
       from_library: from_library
       remote_video: remote_video
       chart: chart
+      event_list: event_list
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -62,6 +63,9 @@ settings:
         enabled: true
       content_liftup:
         weight: -32
+        enabled: true
+      event_list:
+        weight: 30
         enabled: true
       from_library:
         weight: 21

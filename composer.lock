@@ -4147,16 +4147,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "3.0.0",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "c98fe0c1285cd187281ec49b5fe1a3e043277b7f"
+                "reference": "d7a3a5dbaffdb5852ca316cc60e3c6abc7afd7ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/c98fe0c1285cd187281ec49b5fe1a3e043277b7f",
-                "reference": "c98fe0c1285cd187281ec49b5fe1a3e043277b7f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/d7a3a5dbaffdb5852ca316cc60e3c6abc7afd7ae",
+                "reference": "d7a3a5dbaffdb5852ca316cc60e3c6abc7afd7ae",
                 "shasum": ""
             },
             "require": {
@@ -4171,10 +4171,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/3.0.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/3.0.3",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2022-05-19T07:13:39+00:00"
+            "time": "2022-05-23T06:44:26+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4374,16 +4374,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.9.0",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "87703d81de820ac1b29157da65a84b59c3af86cf"
+                "reference": "506b239ce7cbd04e7cb225f01f6c11ab8e2b5d34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/87703d81de820ac1b29157da65a84b59c3af86cf",
-                "reference": "87703d81de820ac1b29157da65a84b59c3af86cf",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/506b239ce7cbd04e7cb225f01f6c11ab8e2b5d34",
+                "reference": "506b239ce7cbd04e7cb225f01f6c11ab8e2b5d34",
                 "shasum": ""
             },
             "require": {
@@ -4493,10 +4493,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.9.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.9.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-05-19T07:06:25+00:00"
+            "time": "2022-05-20T10:50:37+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -4824,17 +4824,17 @@
         },
         {
             "name": "drupal/matomo",
-            "version": "1.18.0",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/matomo.git",
-                "reference": "8.x-1.18"
+                "reference": "8.x-1.19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/matomo-8.x-1.18.zip",
-                "reference": "8.x-1.18",
-                "shasum": "ad0d24ba12bca16e666a5f9d404cd56926839169"
+                "url": "https://ftp.drupal.org/files/projects/matomo-8.x-1.19.zip",
+                "reference": "8.x-1.19",
+                "shasum": "87fde54ef969522afba2cbf6847520c457055808"
             },
             "require": {
                 "drupal/core": "^8.8.0 || ^9.0.0"
@@ -4850,8 +4850,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.18",
-                    "datestamp": "1649792938",
+                    "version": "8.x-1.19",
+                    "datestamp": "1653236432",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
