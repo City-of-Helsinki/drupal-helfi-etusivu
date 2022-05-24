@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.target_group_link_item.field_icon
     - field.field.paragraph.target_group_link_item.field_target_group_item_link
     - field.field.paragraph.target_group_link_item.field_target_group_item_subtitle
-    - field.field.paragraph.target_group_link_item.field_title
+    - field.field.paragraph.target_group_link_item.field_target_group_item_title
     - paragraphs.paragraphs_type.target_group_link_item
   module:
     - link
@@ -18,7 +18,7 @@ mode: default
 content:
   field_icon:
     type: select2_icon_widget
-    weight: 0
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -32,15 +32,15 @@ content:
     third_party_settings: {  }
   field_target_group_item_subtitle:
     type: string_textfield
-    weight: 2
+    weight: 1
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_title:
+  field_target_group_item_title:
     type: string_textfield
-    weight: 1
+    weight: 0
     region: content
     settings:
       size: 60
