@@ -15,8 +15,10 @@ dependencies:
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
+    - image.style.3_2_m
     - node.type.news_item
   module:
+    - media
     - user
 _core:
   default_config_hash: tqlFC6ku-KOPGVDzzfRA0SSzFD_5iAMqKfpTMcUyqBg
@@ -26,11 +28,11 @@ bundle: news_item
 mode: card_teaser
 content:
   field_main_image:
-    type: entity_reference_entity_view
+    type: media_thumbnail
     label: hidden
     settings:
-      view_mode: image
-      link: false
+      image_link: ''
+      image_style: 3_2_m
     third_party_settings: {  }
     weight: 1
     region: content
