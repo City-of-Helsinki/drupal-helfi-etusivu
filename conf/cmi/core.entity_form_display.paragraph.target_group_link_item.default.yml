@@ -18,13 +18,13 @@ mode: default
 content:
   field_icon:
     type: select2_icon_widget
-    weight: 2
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
   field_target_group_item_link:
     type: link_default
-    weight: 3
+    weight: 2
     region: content
     settings:
       placeholder_url: ''
@@ -32,7 +32,7 @@ content:
     third_party_settings: {  }
   field_target_group_item_subtitle:
     type: string_textfield
-    weight: 1
+    weight: 3
     region: content
     settings:
       size: 60
@@ -40,7 +40,7 @@ content:
     third_party_settings: {  }
   field_target_group_item_title:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
