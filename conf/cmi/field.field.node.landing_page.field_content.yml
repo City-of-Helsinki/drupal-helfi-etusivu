@@ -43,6 +43,7 @@ settings:
       target_group_links: target_group_links
       chart: chart
       remote_video: remote_video
+      event_list: event_list
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -71,6 +72,9 @@ settings:
         enabled: true
       content_liftup:
         weight: -32
+        enabled: true
+      event_list:
+        weight: 30
         enabled: true
       from_library:
         weight: 21
