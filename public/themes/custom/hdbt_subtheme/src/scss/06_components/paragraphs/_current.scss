@@ -49,11 +49,14 @@ $illustration-aspect-ratio: 1;
 .current__links-container {
   padding-bottom: $spacing;
   padding-top: $spacing;
-  padding-right: $spacing;
 
   @include breakpoint($breakpoint-s) {
     padding-bottom: $spacing-and-half;
     padding-top: $spacing-and-half;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    padding-right: $spacing;
   }
 
   @include breakpoint($breakpoint-l) {
