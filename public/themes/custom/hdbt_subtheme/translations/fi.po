@@ -3,3 +3,6 @@ msgstr ""
 
 msgid "Current right now"
 msgstr "Pinnalla juuri nyt"
+
+msgid "Seasonal illustration"
+msgstr "Vuodenajallinen kuvituskuva"
