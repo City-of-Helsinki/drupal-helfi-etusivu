@@ -46,6 +46,7 @@ settings:
       remote_video: remote_video
       event_list: event_list
       current: current
+      popular_services: popular_services
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -75,11 +76,11 @@ settings:
       content_liftup:
         weight: -32
         enabled: true
-      event_list:
-        weight: 30
       current:
         weight: 32
         enabled: true
+      event_list:
+        weight: 30
       from_library:
         weight: 21
         enabled: true
@@ -104,6 +105,9 @@ settings:
       list_of_links_item:
         weight: -16
         enabled: false
+      popular_services:
+        weight: 42
+        enabled: true
       remote_video:
         weight: 27
         enabled: true
