@@ -1,0 +1,25 @@
+display:
+  default:
+    display_options:
+      title: Uutiset
+      pager:
+        options:
+          tags:
+            next: Seuraava
+            previous: Edellinen
+            first: Ensimmäinen
+            last: Viimeinen
+      exposed_form:
+        options:
+          submit_button: Suodata
+          reset_button_label: 'Tyhjennä valinnat'
+      filters:
+        field_news_groups_target_id:
+          expose:
+            label: Kohderyhmät
+        field_news_item_tags_target_id:
+          expose:
+            label: Aihealueet
+        field_news_neighbourhoods_target_id:
+          expose:
+            label: Kaupunginosat

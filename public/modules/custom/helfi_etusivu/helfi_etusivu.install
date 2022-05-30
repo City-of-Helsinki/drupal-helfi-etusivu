@@ -66,3 +66,37 @@ function helfi_etusivu_update_9001() : void {
 function helfi_etusivu_update_9002() : void {
   helfi_etusivu_install();
 }
+
+/**
+ * Add translated path aliases for the News archive view.
+ */
+function helfi_etusivu_update_9003() : void {
+
+  /** @var \Drupal\Core\Extension\ModuleHandler $moduleHandler */
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('path_alias')) {
+    $storage = \Drupal::entityTypeManager()
+      ->getStorage('path_alias');
+
+    $path = '/news';
+    $aliases = [
+      'fi' => '/uutiset',
+      'sv' => '/nyheter',
+    ];
+
+    foreach ($aliases as $lang_code => $alias) {
+      if (!$storage->loadByProperties([
+        'path' => $path,
+        'langcode' => $lang_code
+      ])) {
+        // Create alias based on current language.
+        $storage->create([
+          'langcode' => $lang_code,
+          'path' => $path,
+          'alias' => $alias,
+        ])->save();
+      }
+    }
+  }
+}
