@@ -1,0 +1,7 @@
+display:
+  main_news:
+    display_options:
+      title: Toppnyheter
+  of_interest:
+    display_options:
+      title: 'Detta kan intressera dig'

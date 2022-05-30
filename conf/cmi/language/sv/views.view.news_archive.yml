@@ -1,0 +1,25 @@
+display:
+  default:
+    display_options:
+      title: Nyheter
+      pager:
+        options:
+          tags:
+            next: Nästa
+            previous: Tidigare
+            first: Först
+            last: Sista
+      exposed_form:
+        options:
+          submit_button: Filtrer
+          reset_button_label: 'Töm urvalet'
+      filters:
+        field_news_groups_target_id:
+          expose:
+            label: Målgrupper
+        field_news_item_tags_target_id:
+          expose:
+            label: Ämnesområde
+        field_news_neighbourhoods_target_id:
+          expose:
+            label: Stadsdel

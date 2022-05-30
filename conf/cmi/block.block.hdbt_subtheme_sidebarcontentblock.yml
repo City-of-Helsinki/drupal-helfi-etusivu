@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - hdbt_content
-    - node
   theme:
     - hdbt_subtheme
 _core:

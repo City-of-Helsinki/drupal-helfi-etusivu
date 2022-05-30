@@ -10,7 +10,7 @@ dependencies:
     - node
     - radioactivity
 id: radioactivity
-label: Radioactivity
+label: 'Radioactivity news'
 module: views
 description: 'Most viewed news items sorted by radioactivity'
 tag: ''
@@ -23,7 +23,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Most read news'
+      title: 'Most read news items in the last 7 days'
       fields:
         title:
           id: title
@@ -366,9 +366,11 @@ display:
           admin_label: 'field_radioactivity: Radioactivity'
           plugin_id: standard
           required: false
-      use_more: false
+      use_more: true
       use_more_always: true
-      use_more_text: 'Read all news'
+      use_more_text: 'See all news'
+      link_display: custom_url
+      link_url: /news
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -380,8 +382,8 @@ display:
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.field_radioactivity'
-  block_1:
-    id: block_1
+  most_read_news:
+    id: most_read_news
     display_title: Block
     display_plugin: block
     position: 1
