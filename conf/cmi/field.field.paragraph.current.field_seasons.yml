@@ -1,0 +1,21 @@
+uuid: 82a0e768-d351-4603-a658-b845956ab6a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_seasons
+    - paragraphs.paragraphs_type.current
+  module:
+    - options
+id: paragraph.current.field_seasons
+field_name: field_seasons
+entity_type: paragraph
+bundle: current
+label: Seasons
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
