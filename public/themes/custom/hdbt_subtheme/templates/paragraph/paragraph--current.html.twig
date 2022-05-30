@@ -2,10 +2,10 @@
 {% set container_attr = create_attribute() %}
 
 {% set component_classes = ['component--current'] %}
-{% set component_title = 'Current right now'|t %}
+{% set component_title = 'Trending'|t({}, {'context': 'Current paragraph title'}) %}
 {% set component_content_class = 'current' %}
 
-{% set illustration_alt = 'Seasonal illustration'|t %}
+{% set illustration_alt = 'Seasonal illustration'|t({}, {'context': 'Seasonal illustration alt text'}) %}
 
 <div{{ component_attr.addClass('component', component_classes) }}>
   <div class="current__content">

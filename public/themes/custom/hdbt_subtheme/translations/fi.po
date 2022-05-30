@@ -1,8 +1,10 @@
 msgid ""
 msgstr ""
 
-msgid "Current right now"
+msgctxt "Current paragraph title"
+msgid "Trending"
 msgstr "Pinnalla juuri nyt"
 
+msgctxt "Seasonal illustration alt text"
 msgid "Seasonal illustration"
 msgstr "Vuodenajallinen kuvituskuva"
