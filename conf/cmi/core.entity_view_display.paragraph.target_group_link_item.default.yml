@@ -6,7 +6,6 @@ dependencies:
     - field.field.paragraph.target_group_link_item.field_icon
     - field.field.paragraph.target_group_link_item.field_target_group_item_link
     - field.field.paragraph.target_group_link_item.field_target_group_item_subtitle
-    - field.field.paragraph.target_group_link_item.field_target_group_item_title
     - paragraphs.paragraphs_type.target_group_link_item
   module:
     - link
@@ -42,13 +41,5 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 3
-    region: content
-  field_target_group_item_title:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
     region: content
 hidden: {  }

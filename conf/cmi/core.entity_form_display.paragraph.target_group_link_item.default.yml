@@ -6,7 +6,6 @@ dependencies:
     - field.field.paragraph.target_group_link_item.field_icon
     - field.field.paragraph.target_group_link_item.field_target_group_item_link
     - field.field.paragraph.target_group_link_item.field_target_group_item_subtitle
-    - field.field.paragraph.target_group_link_item.field_target_group_item_title
     - paragraphs.paragraphs_type.target_group_link_item
   module:
     - link
@@ -33,14 +32,6 @@ content:
   field_target_group_item_subtitle:
     type: string_textfield
     weight: 3
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_target_group_item_title:
-    type: string_textfield
-    weight: 1
     region: content
     settings:
       size: 60
