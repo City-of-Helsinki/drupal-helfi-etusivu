@@ -1,7 +1,6 @@
 display:
   default:
     display_options:
-      title: 'Luetuimmat uutiset'
-  block_1:
-    display_options:
-      block_description: 'Luetuimmat uutiset'
+      title: 'Luetuimmat uutiset 7 päivän ajalta'
+      use_more_text: 'Katso kaikki uutiset'
+      link_url: /uutiset

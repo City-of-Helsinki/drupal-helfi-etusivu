@@ -1,0 +1,30 @@
+uuid: 61c3d989-bbab-409a-a7c2-f12ef34cb0f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.current.field_current_links
+    - field.field.paragraph.current.field_seasons
+    - paragraphs.paragraphs_type.current
+  module:
+    - linkit
+id: paragraph.current.default
+targetEntityType: paragraph
+bundle: current
+mode: default
+content:
+  field_current_links:
+    type: linkit
+    label: hidden
+    settings:
+      trim_length: 128
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+      linkit_profile: default
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_seasons: true

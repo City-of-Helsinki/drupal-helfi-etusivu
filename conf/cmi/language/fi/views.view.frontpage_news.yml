@@ -1,0 +1,7 @@
+display:
+  main_news:
+    display_options:
+      title: Pääuutiset
+  of_interest:
+    display_options:
+      title: 'Sinua voisi kiinnostaa'

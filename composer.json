@@ -15,7 +15,7 @@
         "drupal/core-recommended": "^9.3",
         "drupal/draggableviews": "^2.0",
         "drupal/external_entities": "^2.0@alpha",
-        "drupal/hdbt": "^2.0",
+        "drupal/hdbt": "^3.0",
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_azure_fs": "^1.0",
         "drupal/helfi_drupal_tools": "dev-main",

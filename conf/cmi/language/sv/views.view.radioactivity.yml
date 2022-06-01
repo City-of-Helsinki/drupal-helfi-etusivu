@@ -1,0 +1,6 @@
+display:
+  default:
+    display_options:
+      title: 'Mest lästa nyheter under senaste 7 dagar'
+      use_more_text: 'Se alla nyheter'
+      link_url: /nyheter

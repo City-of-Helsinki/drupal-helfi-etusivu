@@ -1,0 +1,10 @@
+settings:
+  allowed_values:
+    -
+      label: Kevät
+    -
+      label: Kesä
+    -
+      label: Syksy
+    -
+      label: Talvi
