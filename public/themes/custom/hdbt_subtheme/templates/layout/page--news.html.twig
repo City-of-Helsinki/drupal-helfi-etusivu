@@ -1,0 +1,16 @@
+{% embed "@hdbt/layout/page.html.twig" with { has_sidebar_second: true, has_hero: true } %}
+  {% block page_before_content %}
+    {# Render the page title in before content to apply Hero theme for it. #}
+    {# TODO: This is a bandage. Remove once the actual news acrhive is beind developed. #}
+    <div class="no-sidebar enriched-content">
+      {{ page.content[active_theme ~ '_page_title'] }}
+    </div>
+    {# Render the main news block in before content. #}
+    {{ drupal_entity('block', 'views_block__frontpage_news_main_news', check_access=false) }}
+  {% endblock page_before_content %}
+
+  {# Create sidebar second block and render most read news in it. #}
+  {% block page_sidebar_second %}
+    {{ drupal_entity('block', 'views_block__radioactivity_most_read_news', check_access=false) }}
+  {% endblock page_sidebar_second %}
+{% endembed %}

@@ -1,0 +1,10 @@
+uuid: 4dffe2da-3f1a-4ec0-b1ce-09169d1f7884
+langcode: en
+status: true
+dependencies: {  }
+id: current
+label: 'Current (frontpage only)'
+icon_uuid: null
+icon_default: null
+description: 'ONLY use on fronpage. Showcases some current issues in the form of a link list.'
+behavior_plugins: {  }

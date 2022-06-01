@@ -111,10 +111,10 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: ››
-            previous: ‹‹
-            first: '« First'
-            last: 'Last »'
+            next: Next
+            previous: Previous
+            first: First
+            last: Last
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -127,9 +127,9 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Filter
           reset_button: true
-          reset_button_label: Reset
+          reset_button_label: 'Clear selections'
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
@@ -242,7 +242,7 @@ display:
           exposed: true
           expose:
             operator_id: field_news_groups_target_id_op
-            label: Groups
+            label: 'Target groups'
             description: ''
             use_operator: false
             operator: field_news_groups_target_id_op
@@ -292,7 +292,7 @@ display:
           exposed: true
           expose:
             operator_id: field_news_item_tags_target_id_op
-            label: Tags
+            label: Topics
             description: ''
             use_operator: false
             operator: field_news_item_tags_target_id_op
@@ -342,7 +342,7 @@ display:
           exposed: true
           expose:
             operator_id: field_news_neighbourhoods_target_id_op
-            label: Neighbourhoods
+            label: 'City districts'
             description: ''
             use_operator: false
             operator: field_news_neighbourhoods_target_id_op

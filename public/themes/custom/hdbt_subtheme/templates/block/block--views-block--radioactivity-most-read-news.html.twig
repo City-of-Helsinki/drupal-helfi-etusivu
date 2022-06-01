@@ -1,0 +1,6 @@
+{% if label %}
+  <h2{{ title_attributes.addClass('sidebar_block_heading') }}>{{ label }}</h2>
+{% endif %}
+{% block content %}
+  {{ content }}
+{% endblock %}
