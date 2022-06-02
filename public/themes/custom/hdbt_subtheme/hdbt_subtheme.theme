@@ -67,7 +67,7 @@ function hdbt_subtheme_preprocess_field(&$variables) {
       $existing = $item['content']['#url']->getOption('attributes');
       $attributes = array_merge($existing ?? [], [
         'class' => [
-          'current__link',
+          'link__style--highlight',
         ],
       ]);
 
