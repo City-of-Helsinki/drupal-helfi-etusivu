@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Contains necessary alterations for the Helfi etusivu instance.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * Alter promoted to front page label value and position in news item forms.
+ *
+ * This module alter hook is too early to fully handle the
+ * "promote" field alterations, as the entity add/edit form sidebar variables
+ * are altered by Gin theme and HDBT Admin theme.
+ * See: hdbt_admin/hdbt_admin.theme / hdbt_admin_apply_form_theme().
+ */
+function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (!str_contains($form_id, 'news_item') || !isset($form['promote'])) {
+    return;
+  }
+
+  // Pass "should_move" variable to form element and update the widget title.
+  $form['promote']['#should_move'] = TRUE;
+  $form['promote']['widget']['value']['#title'] = t('Publish the news item in the top news flow', [], ['context' => 'News item promoted field title']);
+  $form['promote']['widget']['#title'] = t('Top news flow', [], ['context' => 'News item promoted field wrapper title']);
+  $form['promote']['widget']['#title_display'] = 'above';
+}
