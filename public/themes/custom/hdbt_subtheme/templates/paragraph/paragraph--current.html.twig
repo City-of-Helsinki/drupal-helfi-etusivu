@@ -5,8 +5,6 @@
 {% set component_title = 'Trending'|t({}, {'context': 'Current paragraph title'}) %}
 {% set component_content_class = 'current' %}
 
-{% set illustration_alt = 'Seasonal illustration'|t({}, {'context': 'Seasonal illustration alt text'}) %}
-
 <div{{ component_attr.addClass('component', component_classes) }}>
   <div class="current__content">
 
@@ -31,7 +29,7 @@
     </div>
 
     <div class="current__illustration-container">
-      <img src="{{ seasonal_illustration }}" alt="{{ illustration_alt }}" class="current__seasonal-illustration" />
+      <img src="{{ seasonal_illustration }}" class="current__seasonal-illustration" />
     </div>
 
   </div>
