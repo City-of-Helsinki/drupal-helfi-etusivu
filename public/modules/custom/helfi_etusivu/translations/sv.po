@@ -1,0 +1,13 @@
+msgid ""
+msgstr ""
+
+msgctxt "News item promoted field title"
+msgid "Publish the news item in the top news flow"
+msgstr "Publicera nyheten i toppnyheterna"
+
+msgctxt "News item promoted field wrapper title"
+msgid "Top news flow"
+msgstr "Toppnyheterna"
+
+msgid "Organize top news feed"
+msgstr "Ordna toppnyheterna"
