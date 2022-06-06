@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 
 msgctxt "News item promoted field title"
-msgid "Publish the news item in the top news feed"
+msgid "Publish the news item in the top news flow"
 msgstr "Publicera nyheten i toppnyheterna"
 
 msgctxt "News item promoted field wrapper title"
