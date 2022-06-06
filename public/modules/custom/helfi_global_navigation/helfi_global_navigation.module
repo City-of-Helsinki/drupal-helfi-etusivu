@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityInterface;
+
+function helfi_global_navigation_menu_link_content_update(EntityInterface $entity) {
+  $menu = $entity->getMenuName();
+
+  if($menu === 'main') {
+    $queue = \Drupal::queue('menu_queue');
+    // Menu tree get built when queue executes, no need to hold old items
+    $queue->createQueue();
+    $queue->createItem($menu);
+  }
+
+  return $entity;
+}
