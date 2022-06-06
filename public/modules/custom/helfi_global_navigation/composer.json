@@ -1,0 +1,13 @@
+{
+    "name": "drupal/helfi_global_navigation",
+    "description": "HELfi Global Navigation",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/helfi_api_base": "^2.0 || dev-main",
+        "drupal/json_field": "^1.0@RC",
+        "drupal/readonly_field_widget": "^1.0",
+        "josdejong/jsoneditor": "^5.29"
+    }
+}
