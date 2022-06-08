@@ -93,10 +93,22 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
 
   if ($paragraph_type == 'current') {
     $illustration = match($paragraph->get('field_seasons')->value) {
-      'spring' => $path . 'spring.svg',
-      'summer' => $path . 'summer.svg',
-      'autumn' => $path . 'autumn.svg',
-      'winter' => $path . 'winter.svg'
+      'spring' => [
+        'url' => $path . 'spring.svg',
+        'photographer' => 'Lille Santanen',
+      ],
+      'summer' => [
+        'url' => $path . 'summer.svg',
+        'photographer' => 'Lille Santanen',
+      ],
+      'autumn' => [
+        'url' => $path . 'autumn.svg',
+        'photographer' => 'Lille Santanen',
+      ],
+      'winter' => [
+        'url' => $path . 'winter.svg',
+        'photographer' => 'Lille Santanen',
+      ],
     };
 
     if ($illustration) {
