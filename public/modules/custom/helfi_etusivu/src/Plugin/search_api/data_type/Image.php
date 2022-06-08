@@ -16,18 +16,19 @@ use Drupal\search_api\Plugin\search_api\data_type\StringDataType;
  * )
  */
 class Image extends StringDataType {
+
+  /**
+   * {@inheritDoc}
+   */
   public function getValue($value) {
     if (!$value->hasField('field_media_image')) {
       return '';
     }
 
     if ($file = $value->get('field_media_image')->entity) {
-      try {
-        $imageStyle = ImageStyle::load('3_2_l');
-        return $imageStyle->buildUrl($file->getFileUri());
-      }
-      catch (\Exception) {
-      }
+      $imageStyle = ImageStyle::load('3_2_l');
+      return $imageStyle->buildUrl($file->getFileUri());
     }
   }
+
 }
