@@ -1,0 +1,19 @@
+uuid: d3bd7e12-ae1b-415e-9d88-ca161c6a578a
+langcode: en
+status: '1'
+dependencies: {  }
+cluster_id: news
+name: Uutiset
+url: 'http://elastic:9200'
+options:
+  multiple_nodes_connection: false
+  use_authentication: 0
+  authentication_type: Basic
+  username: ''
+  password: ''
+  timeout: '3'
+  rewrite:
+    rewrite_index: 1
+    index:
+      prefix: ''
+      suffix: ''
