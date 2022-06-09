@@ -1,3 +1,4 @@
+uuid: 9015b116-293c-4c92-8b63-c83180d5dabd
 langcode: en
 status: true
 dependencies:
@@ -65,7 +66,10 @@ hidden:
   field_content: true
   field_lead_in: true
   field_main_image_caption: true
+  field_news_groups: true
   field_news_item_links_link: true
   field_news_item_tags: true
+  field_news_neighbourhoods: true
+  field_radioactivity: true
   langcode: true
   toc_enabled: true
