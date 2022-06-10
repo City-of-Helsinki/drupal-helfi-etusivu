@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-id: top_news
+id: front_page_latest_news
 label: 'Latest news'
 icon_uuid: null
 icon_default: null
