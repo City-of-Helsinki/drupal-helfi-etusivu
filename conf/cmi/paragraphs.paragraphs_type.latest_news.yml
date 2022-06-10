@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: top_news
+label: 'Latest news'
+icon_uuid: null
+icon_default: null
+description: 'Use only on front page.'
+behavior_plugins: {  }
