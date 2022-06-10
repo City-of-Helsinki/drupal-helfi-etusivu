@@ -104,16 +104,16 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
     }
   }
 
-  // Handle Top news paragraph.
-  if ($paragraph_type === 'top_news') {
+  // Handle the front page top news paragraph.
+  if ($paragraph_type === 'front_page_top_news') {
     $block = Block::load('views_block__frontpage_news_main_news');
     $variables['content'] = \Drupal::entityTypeManager()
       ->getViewBuilder('block')
       ->view($block);
   }
 
-  // Handle Front page latest news paragraph.
-  if ($paragraph_type === 'latest_news') {
+  // Handle the front page latest news paragraph.
+  if ($paragraph_type === 'front_page_latest_news') {
     $block = Block::load('views_block__frontpage_news_latest_news');
     $variables['content'] = \Drupal::entityTypeManager()
       ->getViewBuilder('block')
