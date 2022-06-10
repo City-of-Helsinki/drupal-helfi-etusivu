@@ -5,6 +5,8 @@
  * Functions to support theming in the HDBT Subtheme.
  */
 
+use Drupal\block\Entity\Block;
+
 /**
  * Implements hook_preprocess_HOOK().
  */
@@ -33,27 +35,13 @@ function hdbt_subtheme_theme_suggestions_menu_alter(&$suggestions, $variables) {
   if (isset($variables['attributes']['block_id'])) {
     $block_id = str_replace('hdbt_subtheme_', '', $variables['attributes']['block_id']);
 
-    switch ($block_id) {
-      case 'mobile_navigation':
-        $suggestions[] = 'menu__mobile';
-        break;
-
-      case 'mainnavigation':
-        $suggestions[] = 'menu__main__desktop';
-        break;
-
-      case 'main_navigation_level_2':
-        $suggestions[] = 'menu__main__sidebar';
-        break;
-
-      case 'brandingnavigation':
-        $suggestions[] = 'menu__main__branding';
-        break;
-
-      default:
-        $suggestions[] = 'menu__' . $variables['attributes']['block_id'];
-        break;
-    }
+    $suggestions[] = match ($block_id) {
+      'mobile_navigation' => 'menu__mobile',
+      'mainnavigation' => 'menu__main__desktop',
+      'main_navigation_level_2' => 'menu__main__sidebar',
+      'brandingnavigation' => 'menu__main__branding',
+      default => 'menu__' . $variables['attributes']['block_id'],
+    };
   }
 }
 
@@ -114,5 +102,21 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
     if ($illustration) {
       $variables['seasonal_illustration'] = $illustration;
     }
+  }
+
+  // Handle Top news paragraph.
+  if ($paragraph_type === 'top_news') {
+    $block = Block::load('views_block__frontpage_news_main_news');
+    $variables['content'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  // Handle Front page latest news paragraph.
+  if ($paragraph_type === 'latest_news') {
+    $block = Block::load('views_block__frontpage_news_latest_news');
+    $variables['content'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
   }
 }
