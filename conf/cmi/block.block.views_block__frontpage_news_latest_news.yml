@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.frontpage_news
   module:
-    - system
     - views
   theme:
     - hdbt_subtheme
