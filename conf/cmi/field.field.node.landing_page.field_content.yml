@@ -88,6 +88,12 @@ settings:
       from_library:
         weight: 21
         enabled: true
+      front_page_latest_news:
+        weight: 24
+        enabled: true
+      front_page_top_news:
+        weight: 25
+        enabled: true
       gallery:
         weight: -20
         enabled: false
@@ -130,10 +136,4 @@ settings:
       text:
         weight: -15
         enabled: false
-      front_page_latest_news:
-        weight: 24
-        enabled: true
-      front_page_top_news:
-        weight: 25
-        enabled: true
 field_type: entity_reference_revisions

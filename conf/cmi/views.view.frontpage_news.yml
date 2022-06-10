@@ -562,6 +562,11 @@ display:
         operator: AND
         groups:
           1: AND
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
       defaults:
         title: false
         pager: false
@@ -574,11 +579,6 @@ display:
         arguments: false
         filters: false
         filter_groups: false
-      row:
-        type: 'entity:node'
-        options:
-          relationship: none
-          view_mode: teaser
       display_description: ''
       use_more: true
       use_more_always: true
