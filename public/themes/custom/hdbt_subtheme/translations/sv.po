@@ -5,6 +5,10 @@ msgctxt "Current paragraph title"
 msgid "Trending"
 msgstr "Trendar nu"
 
-msgctxt "Seasonal illustration alt text"
-msgid "Seasonal illustration"
-msgstr "Säsongsbetonad illustration"
+msgctxt "Front page top news paragraph title"
+msgid "Top news"
+msgstr "Toppnyheter"
+
+msgctxt "Front page latest news paragraph title"
+msgid "Latest news"
+msgstr "Senaste nytt"
