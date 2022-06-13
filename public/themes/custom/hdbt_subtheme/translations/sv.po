@@ -4,3 +4,11 @@ msgstr ""
 msgctxt "Current paragraph title"
 msgid "Trending"
 msgstr "Trendar nu"
+
+msgctxt "Front page top news paragraph title"
+msgid "Top news"
+msgstr "Toppnyheter"
+
+msgctxt "Front page latest news paragraph title"
+msgid "Latest news"
+msgstr "Senaste nytt"
