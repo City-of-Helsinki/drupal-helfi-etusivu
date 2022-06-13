@@ -51,7 +51,7 @@ $settings['matomo_site_id'] = getenv('MATOMO_SITE_ID');
 $settings['siteimprove_id'] = getenv('SITEIMPROVE_ID');
 
 // Elasticsearch settings.
-if(getenv('ELASTIC_CONNECTOR_URL')) {
+if(getenv('ELASTICSEARCH_URL')) {
   $config['elasticsearch_connector.cluster.news']['url'] = getenv('ELASTICSEARCH_URL');
 
   if(getenv('ELASTIC_USER') && getenv('PASSWORD')) {
