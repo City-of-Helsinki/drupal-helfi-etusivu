@@ -54,11 +54,11 @@ $settings['siteimprove_id'] = getenv('SITEIMPROVE_ID');
 if(getenv('ELASTICSEARCH_URL')) {
   $config['elasticsearch_connector.cluster.news']['url'] = getenv('ELASTICSEARCH_URL');
 
-  if(getenv('ELASTIC_USER') && getenv('PASSWORD')) {
+  if(getenv('ELASTIC_USER') && getenv('ELASTIC_PASSWORD')) {
     $config['elasticsearch_connector.cluster.news']['options']['use_authentication'] = '1';
     $config['elasticsearch_connector.cluster.news']['options']['authentication_type'] = 'Basic';
     $config['elasticsearch_connector.cluster.news']['options']['username'] = getenv('ELASTIC_USER');
-    $config['elasticsearch_connector.cluster.news']['options']['password'] = getenv('ELASTIC-PASSWORD');
+    $config['elasticsearch_connector.cluster.news']['options']['password'] = getenv('ELASTIC_PASSWORD');
   }
 }
 
