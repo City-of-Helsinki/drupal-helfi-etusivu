@@ -1,0 +1,10 @@
+uuid: 8871b8fd-d78d-4328-aa89-16205f62e01f
+langcode: en
+status: true
+dependencies: {  }
+id: front_page_top_news
+label: 'Top news'
+icon_uuid: null
+icon_default: null
+description: 'Use only on front page.'
+behavior_plugins: {  }
