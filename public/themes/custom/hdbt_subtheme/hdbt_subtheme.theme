@@ -5,8 +5,6 @@
  * Functions to support theming in the HDBT Subtheme.
  */
 
-use Drupal\block\Entity\Block;
-
 /**
  * Implements hook_preprocess_HOOK().
  */
