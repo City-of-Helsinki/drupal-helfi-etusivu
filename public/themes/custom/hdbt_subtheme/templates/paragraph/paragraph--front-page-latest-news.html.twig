@@ -1,0 +1,13 @@
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--latest-news' ],
+      component_title: 'Latest news'|t({}, {'context': 'Front page latest news paragraph title'}),
+      component_content_class: 'latest-news',
+    }
+  %}
+    {% block component_content %}
+      {{ drupal_view('frontpage_news', 'latest_news') }}
+    {% endblock component_content %}
+  {% endembed %}
+{% endblock paragraph %}
