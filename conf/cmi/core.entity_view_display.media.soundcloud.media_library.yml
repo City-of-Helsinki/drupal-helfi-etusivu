@@ -22,8 +22,6 @@ content:
     settings:
       image_link: ''
       image_style: medium
-      image_loading:
-        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content
@@ -32,5 +30,4 @@ hidden:
   field_media_soundcloud: true
   langcode: true
   name: true
-  search_api_excerpt: true
   uid: true
