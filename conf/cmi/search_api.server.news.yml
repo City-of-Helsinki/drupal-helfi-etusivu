@@ -1,0 +1,15 @@
+uuid: c7760bbd-13db-44f6-822e-e450a80d088c
+langcode: en
+status: true
+dependencies:
+  module:
+    - elasticsearch_connector
+id: news
+name: news
+description: ''
+backend: elasticsearch
+backend_config:
+  server_description: ''
+  cluster_settings:
+    cluster: news
+  fuzziness: auto
