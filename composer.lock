@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "15469aef90354539fd59de9013ca6da4",
+    "content-hash": "b9a08ecd3910066d42246f0f6ac33dd4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2439,7 +2439,7 @@
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "9.3.13",
+            "version": "9.3.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2483,7 +2483,7 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.13"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.16"
             },
             "time": "2022-02-24T17:40:56+00:00"
         },
@@ -3805,28 +3805,28 @@
         },
         {
             "name": "drupal/filelog",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/filelog.git",
-                "reference": "2.1.0"
+                "reference": "2.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/filelog-2.1.0.zip",
-                "reference": "2.1.0",
-                "shasum": "989d9d9913c0a3da9b0575aa42e6611f877a690f"
+                "url": "https://ftp.drupal.org/files/projects/filelog-2.1.1.zip",
+                "reference": "2.1.1",
+                "shasum": "647180cbfcb727a057bc3556b8f571946963bba6"
             },
             "require": {
-                "drupal/core": "^9",
+                "drupal/core": "^9 || ^10",
                 "ext-zlib": "*",
                 "php": "^8"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.1.0",
-                    "datestamp": "1639679025",
+                    "version": "2.1.1",
+                    "datestamp": "1655354915",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4152,16 +4152,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "3.0.14",
+            "version": "3.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "31958465641d5675cff168bb0c9afa7fce88a3e9"
+                "reference": "731de610f49135fa972886c636e18af541b45287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/31958465641d5675cff168bb0c9afa7fce88a3e9",
-                "reference": "31958465641d5675cff168bb0c9afa7fce88a3e9",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/731de610f49135fa972886c636e18af541b45287",
+                "reference": "731de610f49135fa972886c636e18af541b45287",
                 "shasum": ""
             },
             "require": {
@@ -4176,10 +4176,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/3.0.14",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/3.0.15",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2022-06-14T08:00:50+00:00"
+            "time": "2022-06-15T11:39:38+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -6580,27 +6580,27 @@
         },
         {
             "name": "drupal/simple_sitemap",
-            "version": "4.1.1",
+            "version": "4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/simple_sitemap.git",
-                "reference": "4.1.1"
+                "reference": "4.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/simple_sitemap-4.1.1.zip",
-                "reference": "4.1.1",
-                "shasum": "ac23939364505d2e6b9d8c741b306c1b84059dfc"
+                "url": "https://ftp.drupal.org/files/projects/simple_sitemap-4.1.2.zip",
+                "reference": "4.1.2",
+                "shasum": "0b695684d0a6dd2a6162051aac7dab4852d72214"
             },
             "require": {
-                "drupal/core": "^8.7.7 || ^9",
+                "drupal/core": "^9.3 || ^10",
                 "ext-xmlwriter": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.1.1",
-                    "datestamp": "1645003699",
+                    "version": "4.1.2",
+                    "datestamp": "1655334556",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -17867,5 +17867,5 @@
         "ext-libxml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
