@@ -1,0 +1,11 @@
+{% set link_attributes = {
+  'class': [
+    'hds-button',
+    'hds-button--primary',
+  ],
+} %}
+{% set link_title %}
+  <span class="hds-button__label">{{ element['#title'] }}</span>
+{% endset %}
+
+{{ link(link_title, element['#url'], link_attributes) }}

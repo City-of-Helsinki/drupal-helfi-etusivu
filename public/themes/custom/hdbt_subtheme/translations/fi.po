@@ -5,6 +5,11 @@ msgctxt "Current paragraph title"
 msgid "Trending"
 msgstr "Pinnalla juuri nyt"
 
-msgctxt "Seasonal illustration alt text"
-msgid "Seasonal illustration"
-msgstr "Vuodenajallinen kuvituskuva"
+msgctxt "Front page top news paragraph title"
+msgid "Top news"
+msgstr "Pääuutiset"
+
+msgctxt "Front page latest news paragraph title"
+msgid "Latest news"
+msgstr "Uusimmat uutiset"
+

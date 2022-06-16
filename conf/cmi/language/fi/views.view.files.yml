@@ -86,4 +86,3 @@ display:
         fid:
           exception:
             title: Kaikki
-          title: 'File usage information for {{ arguments.fid }}'
