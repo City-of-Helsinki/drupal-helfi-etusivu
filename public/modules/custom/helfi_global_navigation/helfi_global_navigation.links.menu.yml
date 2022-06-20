@@ -3,3 +3,7 @@ entity.global_menu.collection:
   description: View synchronized menus
   route_name: entity.global_menu.collection
   parent: helfi_api_base.integrations
+helfi_global_navigation.mega_menu:
+  class: Drupal\helfi_global_navigation\Plugin\Menu\ExternalMenuLink
+  deriver: Drupal\helfi_global_navigation\Plugin\Derivative\ExternalMenuLink
+  menu_name: helfi-mega-menu

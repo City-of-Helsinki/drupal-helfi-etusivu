@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Menu tree",
+  "description": "A JSON representation of a Drupal menu tree",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "menu_tree": { 
+        "type": "array",
+        "items": {"$ref": "#/definitions/tree"}
+      }
+    }
+  },
+  "definitions": {
+    "tree": {
+      "type": "object",
+      "required": ["name", "url"],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
