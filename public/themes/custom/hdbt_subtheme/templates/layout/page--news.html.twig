@@ -1,5 +1,8 @@
 {% embed "@hdbt/layout/page.html.twig" with { has_sidebar_second: true, has_hero: true } %}
   {% block page_before_content %}
+    {# Render the announcements block in before content. #}
+    {{ drupal_entity('block', 'announcements') }}
+
     {# Render the page title in before content to apply Hero theme for it. #}
     {# TODO: This is a bandage. Remove once the actual news acrhive is beind developed. #}
     <div class="no-sidebar enriched-content">
