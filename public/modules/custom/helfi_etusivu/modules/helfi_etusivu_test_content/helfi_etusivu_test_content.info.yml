@@ -3,6 +3,8 @@ type: module
 description: Etusivu specific test content
 package: Custom
 core_version_requirement: ^9 || ^10
+dependencies:
+  - default_content
 default_content:
   node:
     - george_anson
