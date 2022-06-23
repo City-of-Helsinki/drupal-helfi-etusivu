@@ -6,8 +6,6 @@ namespace Drupal\helfi_global_navigation\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Template\Attribute;
-use Drupal\Core\Url;
 use Drupal\helfi_global_navigation\ExternalMenuTree;
 use Drupal\helfi_global_navigation\ExternalMenuTreeFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -86,36 +84,12 @@ abstract class ExternalMenuBlockBase extends BlockBase implements ContainerFacto
    */
   protected function buildFromJson(string $json):? ExternalMenuTree {
     try {
-      $menuTree = $this->menuTreeFactory->fromJson($json);
+      $menuTree = $this->menuTreeFactory->fromJson($json, $this->maxDepth());
       return $menuTree;
     }
     catch (\throwable $e) {
       return NULL;
     }
-  }
-
-  /**
-   * Build renderable array of menu items.
-   *
-   * @param \Drupal\helfi_global_navigation\ExternalMenuTree $menuTree
-   *   The ExternalMenuTree instance.
-   *
-   * @return array
-   *   Resuling renderable array.
-   */
-  protected function buildItems(ExternalMenuTree $menuTree): array {
-    $items = [];
-
-    foreach ($menuTree->getTree() as $item) {
-      $items[] = [
-        'attributes' => new Attribute(),
-        'title' => $item->name,
-        'original_link' => NULL,
-        'url' => Url::fromUri($item->menu_tree->url),
-      ];
-    }
-
-    return $items;
   }
 
 }
