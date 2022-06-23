@@ -6,7 +6,7 @@ services:
     arguments: ['helfi_global_navigation']
   helfi_global_navigation.external_menu_tree_factory:
     class: \Drupal\helfi_global_navigation\ExternalMenuTreeFactory
-    arguments: ['@helfi_global_navigation.json_validator', '@logger.channel.helfi_global_navigation', '@plugin.manager.menu.link']
+    arguments: ['@helfi_global_navigation.json_validator', '@logger.channel.helfi_global_navigation']
   helfi_global_navigation.external_menu_block_base:
     class: \Drupal\helfi_global_navigation\Plugin\Block\ExternalMenuBlockBase
     arguments: ['@helfi_global_navigation.external_menu_tree_factory']
