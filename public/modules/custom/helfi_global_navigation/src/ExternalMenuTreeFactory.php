@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation;
 
-use Drupal\Core\Menu\MenuLinkManagerInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\helfi_global_navigation\Plugin\Menu\ExternalMenuLink;
 use function GuzzleHttp\json_decode;
 use JsonSchema\Validator;
 use Psr\Log\LoggerInterface;
@@ -30,13 +30,10 @@ class ExternalMenuTreeFactory {
    *   JSON validator.
    * @param \Psr\Log\LoggerInterface $logger
    *   Logger channel.
-   * @param \Drupal\Core\Menu\MenuLinkManagerInterface $menuLinkManager
-   *   Menu link plugin manager.
    */
   public function __construct(
     protected Validator $validator,
-    protected LoggerInterface $logger,
-    protected MenuLinkManagerInterface $menuLinkManager
+    protected LoggerInterface $logger
   ) {
     $this->schema = file_get_contents(__DIR__ . '/../assets/schema.json');
   }
@@ -50,7 +47,7 @@ class ExternalMenuTreeFactory {
    * @return \Drupal\helfi_global_navigation\ExternalMenuTree
    *   The resulting menu tree instance.
    */
-  public function fromJson($json): ExternalMenuTree {
+  public function fromJson($json):? ExternalMenuTree {
     $isValid = $this->validate($json);
 
     if (!$isValid) {
@@ -94,23 +91,44 @@ class ExternalMenuTreeFactory {
    *
    * @param array $items
    *   Provided JSON input.
+   * @param string $name
+   *   Menu name.
    *
    * @return array
    *   Resuliting array of menu links.
    */
-  protected function transformItems(array $items): array {
+  protected function transformItems(array $items, string $name = NULL): array {
     $transformedItems = [];
 
     foreach ($items as $key => $item) {
+      $menuName = $name ?? $item->name;
+
+      $linkDefinition = [
+        'menu_name' => $menuName,
+        'options' => [],
+        'title' => $item->name,
+      ];
+
+      if (isset($item->description)) {
+        $linkDefinition['description'] = $item->description;
+      }
+
+      if (isset($item->weight)) {
+        $linkDefinition['weight'] = $item->weight;
+      }
 
       $transformedItems[] = [
         'attributes' => new Attribute(),
-        'below' => [],
+        'below' => isset($item->menu_tree) ? $this->transformItems($item->menu_tree, $menuName) : [],
         'title' => $item->name,
-        'original_link' => NULL,
-        'url' => Url::fromUri($item->menu_tree->url),
+        'original_link' => new ExternalMenuLink([], $item->id, $linkDefinition),
+        'url' => Url::fromUri($item->url),
       ];
     }
+
+    usort($transformedItems, function ($a, $b) {
+      return $a['original_link']->getWeight() - $b['original_link']->getWeight();
+    });
 
     return $transformedItems;
   }
