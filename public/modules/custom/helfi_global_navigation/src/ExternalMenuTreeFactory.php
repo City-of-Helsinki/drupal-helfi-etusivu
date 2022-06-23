@@ -8,6 +8,8 @@ use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\helfi_global_navigation\Plugin\Menu\ExternalMenuLink;
 use function GuzzleHttp\json_decode;
+use JsonSchema\Constraints\Factory;
+use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 use Psr\Log\LoggerInterface;
 
@@ -19,23 +21,32 @@ class ExternalMenuTreeFactory {
   /**
    * The JSON schema.
    *
-   * @var string
+   * @var object
    */
-  protected string $schema;
+  protected object $schema;
+
+  /**
+   * The JSON validator.
+   *
+   * @var JsonSchema\Validator
+   */
+  protected Validator $validator;
 
   /**
    * Constructs a tree instance from supplied JSON.
    *
-   * @param \JsonSchema\Validator $validator
-   *   JSON validator.
+   * @param \JsonSchema\SchemaStorage $schemaStorage
+   *   JSON Schema storage.
    * @param \Psr\Log\LoggerInterface $logger
    *   Logger channel.
    */
   public function __construct(
-    protected Validator $validator,
+    protected SchemaStorage $schemaStorage,
     protected LoggerInterface $logger
   ) {
-    $this->schema = file_get_contents(__DIR__ . '/../assets/schema.json');
+    $this->schema = json_decode(file_get_contents(__DIR__ . '/../assets/schema.json'));
+    $this->schemaStorage->addSchema('file://schema', $this->schema);
+    $this->validator = new Validator(new Factory($this->schemaStorage));
   }
 
   /**
@@ -43,18 +54,21 @@ class ExternalMenuTreeFactory {
    *
    * @param string $json
    *   The JSON string.
+   * @param int $maxDepth
+   *   Determies how deep of an array is returned.
    *
    * @return \Drupal\helfi_global_navigation\ExternalMenuTree
    *   The resulting menu tree instance.
    */
-  public function fromJson($json):? ExternalMenuTree {
-    $isValid = $this->validate($json);
+  public function fromJson(string $json, int $maxDepth):? ExternalMenuTree {
+    $data = json_decode($json);
+    $isValid = $this->validate($data);
 
     if (!$isValid) {
       throw new \Exception('Invalid JSON input');
     }
 
-    $tree = $this->transformItems(json_decode($json));
+    $tree = $this->transformItems($data, $maxDepth);
 
     if (!empty($tree)) {
       return new ExternalMenuTree($tree);
@@ -66,10 +80,10 @@ class ExternalMenuTreeFactory {
   /**
    * Validates JSON against the schema.
    *
-   * @param string $json
+   * @param array $json
    *   The json string to validate.
    */
-  protected function validate(string $json): bool {
+  protected function validate(array $json): bool {
     $this->validator->validate($json, $this->schema);
 
     if ($this->validator->isValid()) {
@@ -78,10 +92,10 @@ class ExternalMenuTreeFactory {
     else {
       $errorString = '';
       foreach ($this->validator->getErrors() as $error) {
-        $errorString += sprintf('[%s] %s \n', $error['property'], $error['message']);
+        $errorString .= sprintf('[%s] %s \n', $error['property'], $error['message']);
       }
 
-      $logger->notice('Validation failed for external menu. Violations: \n' . $errorString);
+      $this->logger->notice('Validation failed for external menu. Violations: \n' . $errorString);
       return FALSE;
     }
   }
@@ -91,13 +105,17 @@ class ExternalMenuTreeFactory {
    *
    * @param array $items
    *   Provided JSON input.
+   * @param int $maxDepth
+   *   Determines how deep the function recurses.
    * @param string $name
    *   Menu name.
+   * @param int $depth
+   *   Defines how deep into recursion the function is already.
    *
    * @return array
    *   Resuliting array of menu links.
    */
-  protected function transformItems(array $items, string $name = NULL): array {
+  protected function transformItems(array $items, int $maxDepth, string $name = NULL, $depth = 0): array {
     $transformedItems = [];
 
     foreach ($items as $key => $item) {
@@ -117,13 +135,21 @@ class ExternalMenuTreeFactory {
         $linkDefinition['weight'] = $item->weight;
       }
 
-      $transformedItems[] = [
+      $transformedItem = [
         'attributes' => new Attribute(),
-        'below' => isset($item->menu_tree) ? $this->transformItems($item->menu_tree, $menuName) : [],
         'title' => $item->name,
         'original_link' => new ExternalMenuLink([], $item->id, $linkDefinition),
         'url' => Url::fromUri($item->url),
       ];
+
+      if (isset($item->menu_tree) && $depth <= $maxDepth) {
+        $transformedItem['below'] = $this->transformItems($item->menu_tree, $maxDepth, $menuName, $depth + 1);
+      }
+      else {
+        $transformedItem['below'] = [];
+      }
+
+      $transformedItems[] = $transformedItem;
     }
 
     usort($transformedItems, function ($a, $b) {
