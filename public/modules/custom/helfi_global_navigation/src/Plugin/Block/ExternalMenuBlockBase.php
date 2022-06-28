@@ -8,6 +8,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\helfi_global_navigation\ExternalMenuTree;
 use Drupal\helfi_global_navigation\ExternalMenuTreeFactory;
+use Drupal\helfi_global_navigation\Service\GlobalNavigationService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -26,8 +27,10 @@ abstract class ExternalMenuBlockBase extends BlockBase implements ContainerFacto
    *   The plugin implementation definition.
    * @param \Drupal\helfi_global_navigation\ExternalMenuTreeFactory $menuTreeFactory
    *   Factory class for creating an instance of ExternalMenuTree.
+   * @param \Drupal\helfi_global_navigation\Service\GlobalNavigationService $globalNavigationService
+   *   Global navigation service.
    */
-  public function __construct(array $configuration, string $plugin_id, array $plugin_definition, protected ExternalMenuTreeFactory $menuTreeFactory) {
+  public function __construct(array $configuration, string $plugin_id, array $plugin_definition, protected ExternalMenuTreeFactory $menuTreeFactory, protected GlobalNavigationService $globalNavigationService) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
 
@@ -39,7 +42,8 @@ abstract class ExternalMenuBlockBase extends BlockBase implements ContainerFacto
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('helfi_global_navigation.external_menu_tree_factory')
+      $container->get('helfi_global_navigation.external_menu_tree_factory'),
+      $container->get('helfi_global_navigation.global_navigation_service')
     );
   }
 
