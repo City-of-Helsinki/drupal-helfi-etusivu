@@ -1,0 +1,30 @@
+name: helfi_etusivu_test_content
+type: module
+description: Etusivu specific test content
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - default_content
+default_content:
+  node:
+    - george_anson
+    - haivemustesieni
+    - liitupiippu
+    - multamaen_rautatieasema
+    - nurhaci
+    - opintotuki
+    - paullaneau
+    - pienojanlampi
+    - sahkoteknillinen_koulu
+    - sumbawan_kieli
+    - teollinen_symbioosi
+  taxonomy_term:
+    - children_and_families
+    - city_administration
+    - disabled
+    - elderly
+    - enterprises
+    - healthcare
+    - kaartinkaupunki
+    - kluuvi
+    - kruununhaka

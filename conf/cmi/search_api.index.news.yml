@@ -1,0 +1,132 @@
+uuid: e0d1f3e4-dd1b-4f4d-84c5-09260d669dbd
+langcode: fi
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_file
+    - field.storage.node.field_main_image
+    - field.storage.node.field_news_groups
+    - field.storage.node.field_news_neighbourhoods
+    - field.storage.node.field_news_item_tags
+    - field.storage.node.field_short_title
+    - search_api.server.news
+  module:
+    - node
+    - publication_date
+    - file
+    - media
+    - taxonomy
+    - search_api
+id: news
+name: news
+description: ''
+read_only: false
+field_settings:
+  changed:
+    label: Changed
+    datasource_id: 'entity:node'
+    property_path: changed
+    type: date
+    dependencies:
+      module:
+        - node
+  field_main_image:
+    label: 'Main image » Media » File » Tiedosto » URI'
+    datasource_id: 'entity:node'
+    property_path: 'field_main_image:entity'
+    type: etusivu_image
+    dependencies:
+      config:
+        - field.storage.node.field_main_image
+  field_news_groups:
+    label: 'News groups '
+    datasource_id: 'entity:node'
+    property_path: 'field_news_groups:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_news_groups
+      module:
+        - taxonomy
+  field_news_item_tags:
+    label: 'News tags'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_item_tags:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_news_item_tags
+      module:
+        - taxonomy
+  field_news_neighbourhoods:
+    label: 'News neighbourhoods'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_neighbourhoods:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_news_neighbourhoods
+      module:
+        - taxonomy
+  field_short_title:
+    label: 'Short title'
+    datasource_id: 'entity:node'
+    property_path: field_short_title
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_short_title
+  published_at:
+    label: Julkaisuaika
+    datasource_id: 'entity:node'
+    property_path: published_at
+    type: date
+    dependencies:
+      module:
+        - publication_date
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - node
+  url:
+    label: URI
+    property_path: search_api_url
+    type: string
+    configuration:
+      absolute: true
+  uuid:
+    label: UUID
+    datasource_id: 'entity:node'
+    property_path: uuid
+    type: string
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - news_item
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_status: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: lifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: news
