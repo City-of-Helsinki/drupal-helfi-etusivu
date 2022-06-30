@@ -11,4 +11,5 @@ targetEntityType: paragraph
 bundle: content_liftup
 mode: default
 content: {  }
-hidden: {  }
+hidden:
+  search_api_excerpt: true
