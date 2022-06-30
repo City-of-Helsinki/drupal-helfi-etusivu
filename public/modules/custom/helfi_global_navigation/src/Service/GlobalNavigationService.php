@@ -11,7 +11,6 @@ use Drupal\helfi_api_base\Environment\Environment;
 use Drupal\helfi_api_base\Environment\EnvironmentResolver;
 use Drupal\helfi_api_base\Environment\Project;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\json_decode;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
