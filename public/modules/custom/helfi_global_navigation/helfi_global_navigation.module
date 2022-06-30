@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Contains alterations for the global navigation.
  */
 
 declare(strict_types = 1);
@@ -9,7 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\EntityInterface;
 
 /**
- * Implement hook_ENTITY_TYPE_update().
+ * Implements hook_ENTITY_TYPE_update().
  */
 function helfi_global_navigation_menu_link_content_update(EntityInterface $entity) {
   $menu = $entity->getMenuName();
