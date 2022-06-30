@@ -75,4 +75,5 @@ hidden:
   field_news_neighbourhoods: true
   field_radioactivity: true
   langcode: true
+  search_api_excerpt: true
   toc_enabled: true

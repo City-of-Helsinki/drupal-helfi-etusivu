@@ -3,7 +3,7 @@ $illustration-width: 258px;
 $illustration-width-l: 378px;
 $illustration-width-xl: 486px;
 
-//Illustration offsets by screen size.
+// Illustration offsets by screen size.
 $illustration-offset: $spacing-double;
 $illustration-offset-l: $spacing-triple;
 $illustration-offset-xl: $spacing-quadruple;
@@ -14,24 +14,6 @@ $illustration-aspect-ratio: 1;
 .component--current {
   background-color: var(--hdbt-color-palette--secondary);
   color: var(--hdbt-color-palette-text--secondary);
-}
-
-.component--current::before {
-  @include breakpoint($breakpoint-m) {
-    content: "";
-    display: block;
-
-    //Set the illustration offset to match the padding container padding
-    margin-top: $illustration-offset;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    margin-top: $illustration-offset-l;
-  }
-
-  @include breakpoint($breakpoint-xl) {
-    margin-top: $illustration-offset-xl;
-  }
 }
 
 .current__content {
@@ -75,24 +57,13 @@ $illustration-aspect-ratio: 1;
   flex-direction: column;
 }
 
-.current__link {
-  @include font('special.large_link');
-  display: flex;
-  margin-bottom: $spacing;
-
-  &::before {
-    @include pseudo-icon('arrow-right');
-    margin-right: $spacing-half;
-    min-width: $spacing-and-half;
-  }
-}
-
 .current__illustration-container {
   @include breakpoint($breakpoint-m) {
     margin-left: auto;
+    margin-top: -$illustration-offset;
   }
 
-  //Set the illustration offset to match the padding container padding
+  // Set the illustration offset to match the padding container padding
   @include breakpoint($breakpoint-l) {
     margin-top: -$illustration-offset-l;
   }
@@ -104,6 +75,7 @@ $illustration-aspect-ratio: 1;
 
 .current__seasonal-illustration {
   aspect-ratio: $illustration-aspect-ratio;
+  display: block;
   width: $illustration-width;
 
   @include breakpoint($breakpoint-l) {

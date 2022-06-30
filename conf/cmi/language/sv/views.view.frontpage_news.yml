@@ -5,3 +5,8 @@ display:
   of_interest:
     display_options:
       title: 'Detta kan intressera dig'
+  latest_news:
+    display_options:
+      title: 'Senaste nyheter'
+      use_more_text: 'Se alla nyheter'
+      link_url: /nyheter

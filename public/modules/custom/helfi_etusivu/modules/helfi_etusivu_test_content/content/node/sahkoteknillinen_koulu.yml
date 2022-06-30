@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 34f43918-a7c5-4a54-89db-1608a0975eec
+  bundle: news_item
+  default_langcode: fi
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Sähköteknillinen koulu'
+  created:
+    -
+      value: 1650954080
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  toc_enabled:
+    -
+      value: false
+  toc_title:
+    -
+      value: 'Table of contents'
+  path:
+    -
+      alias: /sahkoteknillinen-koulu
+      langcode: fi
+      pathauto: 1
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  published_at:
+    -
+      value: 1650954152
+  field_content:
+    -
+      entity:
+        _meta:
+          version: '1.0'
+          entity_type: paragraph
+          uuid: cc9bac34-4abd-4146-bc29-abe70e1f1641
+          bundle: text
+          default_langcode: fi
+        default:
+          status:
+            -
+              value: true
+          created:
+            -
+              value: 1650954152
+          behavior_settings:
+            -
+              value: {  }
+          revision_translation_affected:
+            -
+              value: true
+          field_text:
+            -
+              value: "<p><strong>Sähköteknillinen Koulu</strong>&nbsp;(lyh.&nbsp;<em>SähkötK</em>) oli&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Riihim%C3%A4ki\" title=\"Riihimäki\">Riihimäellä</a>&nbsp;ja pääkaupunkiseudulla sijainnut&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Suomen_puolustusvoimat\" title=\"Suomen puolustusvoimat\">Suomen puolustusvoimien</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Tutka\" title=\"Tutka\">tutka-alan</a>&nbsp;tekniikan sotilasopetuslaitos. Koulu lakkautettiin 1. tammikuuta 2003 ja se toiminnat siirrettiin samaan aikaan perustettuun&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Viesti-_ja_s%C3%A4hk%C3%B6tekninen_koulu\" title=\"Viesti- ja sähkötekninen koulu\">Viesti- ja sähkötekniseen kouluun</a>.&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Viestikoulu\" title=\"Viestikoulu\">Viestikoulu</a>&nbsp;lakkautettiin samalla päivämäärällä ja senkin toiminnat siirrettiin Viesti- ja sähkötekniseen kouluun.</p>\r\n\r\n<p>Sähköteknillinen Koulu itsenäistyi 1. maaliskuuta 1953. Koulu toimi tuolloin&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Helsinki\" title=\"Helsinki\">Helsingin</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Kruununhaka\" title=\"Kruununhaka\">Kruununhaassa</a>. Koulu siirtyi Stensvikiin eli&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Kivenlahti\" title=\"Kivenlahti\">Kivenlahteen</a>&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Espoo\" title=\"Espoo\">Espooseen</a>&nbsp;5. marraskuuta 1956, entisen Espoonlahden rajavartioaseman tiloihin, Porkkalan vuokra-alueen luovutuksen aikaan. Sen osia toimi myös Porkkalan varuskunnassa, todennäköisesti&nbsp;<a href=\"https://fi.wikipedia.org/wiki/Porkkalanniemi\" title=\"Porkkalanniemi\">Porkkalanniemellä</a>. Riihimäelle koulu muutti syksyllä 1959. Koulun koeosasto jäi Stensvikiin ja itsenäistyi sittemmin Sähköteknilliseksi tutkimuslaitokseksi.</p>\r\n"
+              format: full_html

@@ -1,0 +1,15 @@
+services:
+  helfi_global_navigation.schema_storage:
+    class: \JsonSchema\SchemaStorage
+  logger.channel.helfi_global_navigation:
+    parent: logger.channel_base
+    arguments: ['helfi_global_navigation']
+  helfi_global_navigation.external_menu_tree_factory:
+    class: \Drupal\helfi_global_navigation\ExternalMenuTreeFactory
+    arguments: ['@helfi_global_navigation.schema_storage', '@logger.channel.helfi_global_navigation']
+  helfi_global_navigation.external_menu_block_base:
+    class: \Drupal\helfi_global_navigation\Plugin\Block\ExternalMenuBlockBase
+    arguments: ['@helfi_global_navigation.external_menu_tree_factory']
+  helfi_global_navigation.menu_updater:
+    class: \Drupal\helfi_global_navigation\MenuUpdater
+    arguments: ['@config.factory', '@helfi_api_base.environment_resolver', '@http_client', '@language_manager']
