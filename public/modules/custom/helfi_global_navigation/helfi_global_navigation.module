@@ -7,19 +7,18 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Entity\EntityInterface;
+use Drupal\system\MenuInterface;
 
 /**
  * Implements hook_ENTITY_TYPE_update().
  */
-function helfi_global_navigation_menu_link_content_update(EntityInterface $entity) {
-  $menu = $entity->getMenuName();
-
-  if ($menu === 'main') {
+function helfi_global_navigation_menu_update(MenuInterface $entity) {
+  if($entity->id() === 'main') {
+    $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
     $queue = \Drupal::queue('menu_queue');
     // Menu tree get built when queue executes, no need to hold old items.
     $queue->createQueue();
-    $queue->createItem($menu);
+    $queue->createItem($langcode);
   }
 
   return $entity;
