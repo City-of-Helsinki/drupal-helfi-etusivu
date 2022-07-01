@@ -37,11 +37,15 @@ jobs:
           vendor/bin/phpcs public/modules/custom/ --ignore="*.js,*.css" --standard=Drupal
           vendor/bin/phpcs public/themes/custom/ --ignore="*.js,*.css" --standard=Drupal
 
-      - name: Run SCSS linters
-        uses: actions-hub/stylelint@master
-        env:
-          PATTERN: "*.scss"
-          CONFIG_PATH: ./public/themes/custom/${DRUPAL_THEME_NAME}
+      - name: Use Node.js $NODE_VERSION
+        uses: actions/setup-node@v3
+        with:
+          node-version: $NODE_VERSION
+
+      - name: Build and test
+        run: |
+          npm ci --prefix ./public/themes/custom/${DRUPAL_THEME_NAME} --engine-strict true
+          npm exec stylelint --prefix ./public/themes/custom/${DRUPAL_THEME_NAME} "**/*.scss" 
 
 #      - name: Download latest dump
 #        env:
