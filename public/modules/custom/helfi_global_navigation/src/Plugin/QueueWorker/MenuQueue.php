@@ -46,7 +46,7 @@ class MenuQueue extends QueueWorkerBase {
    * {@inheritdoc}
    */
   public function processItem($data) {
-    $this->menuUpdater->syncMenu();
+    $this->menuUpdater->syncMenu($data);
   }
 
 }

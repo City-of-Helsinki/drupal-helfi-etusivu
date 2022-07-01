@@ -40,8 +40,11 @@ class MenuUpdater {
 
   /**
    * Sends main menu tree to frontpage instance.
+   *
+   * @param string $langcode
+   *   Language for the menu.
    */
-  public function syncMenu(): void {
+  public function syncMenu($langcode): void {
     if ($this->globalNavigationService->inFrontPage()) {
       return;
     }
