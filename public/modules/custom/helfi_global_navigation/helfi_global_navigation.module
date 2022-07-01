@@ -14,6 +14,7 @@ use Drupal\system\MenuInterface;
  */
 function helfi_global_navigation_menu_update(MenuInterface $entity) {
   if($entity->id() === 'main') {
+    // @todo figure out if there's a better way of determining the language.
     $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
     $queue = \Drupal::queue('menu_queue');
     // Menu tree get built when queue executes, no need to hold old items.
