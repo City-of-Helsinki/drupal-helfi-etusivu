@@ -5,7 +5,6 @@ env:
   SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
   SYMFONY_DEPRECATIONS_HELPER: disabled
   XDEBUG_MODE: off
-  NODE_VERSION: 16
   DRUPAL_THEME_NAME: "hdbt_subtheme"
 jobs:
   tests:
@@ -37,10 +36,10 @@ jobs:
           vendor/bin/phpcs public/modules/custom/ --ignore="*.js,*.css" --standard=Drupal
           vendor/bin/phpcs public/themes/custom/ --ignore="*.js,*.css" --standard=Drupal
 
-      - name: Use Node.js ${NODE_VERSION}
+      - name: Use Node.js v.16
         uses: actions/setup-node@v3
         with:
-          node-version: ${NODE_VERSION}
+          node-version: 16
 
       - name: Build and test
         run: |
