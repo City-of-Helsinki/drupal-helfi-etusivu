@@ -61,7 +61,7 @@ class ExternalMenuTreeFactory {
    *   The resulting menu tree instance.
    */
   public function fromJson(string $json, int $maxDepth):? ExternalMenuTree {
-    $data = json_decode($json);
+    $data = (array) json_decode($json);
     $isValid = $this->validate($data);
 
     if (!$isValid) {

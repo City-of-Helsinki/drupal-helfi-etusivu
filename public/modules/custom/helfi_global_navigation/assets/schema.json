@@ -28,7 +28,7 @@
   "$defs": {
     "tree": {
       "type": "object",
-      "required": ["id", "name", "url", "weight"],
+      "required": ["id", "name", "url"],
       "properties": {
         "description": {
           "type": "string"
