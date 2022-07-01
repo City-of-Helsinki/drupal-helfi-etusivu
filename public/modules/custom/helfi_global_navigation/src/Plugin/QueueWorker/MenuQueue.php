@@ -46,7 +46,8 @@ class MenuQueue extends QueueWorkerBase {
    * {@inheritdoc}
    */
   public function processItem($data) {
-    $this->menuUpdater->syncMenu($data);
+    $this->menuUpdater->setLangcode($data);
+    $this->menuUpdater->syncMenu();
   }
 
 }

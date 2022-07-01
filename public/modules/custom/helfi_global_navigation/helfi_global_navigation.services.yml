@@ -15,4 +15,7 @@ services:
     arguments: ['@helfi_global_navigation.external_menu_tree_factory', '@helfi_global_navigation.global_navigation_service']
   helfi_global_navigation.menu_updater:
     class: \Drupal\helfi_global_navigation\MenuUpdater
-    arguments: ['@config.factory', '@helfi_global_navigation.global_navigation_service']
+    arguments: ['@config.factory', '@entity_type.manager', '@helfi_global_navigation.global_navigation_service']
+  helfi_global_navigation.menu_controller:
+    class: \Drupal\helfi_global_navigation\Controller\MenuController:
+    arguments: ['@language_manager']

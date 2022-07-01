@@ -41,13 +41,12 @@ class MenuController extends ControllerBase {
   public function post(string $id, Request $request): JsonResponse {
     $data = json_decode($request->getContent());
 
-    $existingId = \Drupal::entityQuery('global_menu')
-      ->condition('project', $id)
-      ->range(0, 1)
-      ->execute();
+    $existing = GlobalMenu::load($id);
 
-    if (!empty($existingId)) {
-      $existing = GlobalMenu::load(reset($existingId));
+    if ($existing) {
+      
+
+      $langcode = $data->langcode;
       $existing->name = $data->name;
       $existing->menu_tree = json_encode($data->menu_tree);
       $existing->save();
