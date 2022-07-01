@@ -5,7 +5,6 @@ env:
   SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
   SYMFONY_DEPRECATIONS_HELPER: disabled
   XDEBUG_MODE: off
-  DRUPAL_THEME_NAME: "hdbt_subtheme"
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -43,8 +42,8 @@ jobs:
 
       - name: Build and test
         run: |
-          npm ci --prefix public/themes/custom/$DRUPAL_THEME_NAME --engine-strict true
-          npm exec stylelint --prefix public/themes/custom/$DRUPAL_THEME_NAME "**/*.scss" 
+          npm ci --prefix public/themes/custom/hdbt_subtheme --engine-strict true
+          npm exec stylelint --prefix public/themes/custom/hdbt_subtheme "**/*.scss" 
 
 #      - name: Download latest dump
 #        env:
