@@ -35,12 +35,10 @@ jobs:
           vendor/bin/phpcs public/modules/custom/ --ignore="*.js,*.css" --standard=Drupal
           vendor/bin/phpcs public/themes/custom/ --ignore="*.js,*.css" --standard=Drupal
 
-      - name: Use Node.js v.16
+      - name: Build and test styles
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Build and test
         run: |
           npm ci --prefix public/themes/custom/hdbt_subtheme --engine-strict true
           npm exec stylelint --prefix public/themes/custom/hdbt_subtheme "**/*.scss" 
