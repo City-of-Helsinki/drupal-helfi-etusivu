@@ -6,8 +6,6 @@ namespace Drupal\helfi_global_navigation\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
-use GuzzleHttp\json_decode;
-use GuzzleHttp\json_encode;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,7 +17,7 @@ class MenuController extends ControllerBase {
   /**
    * Return all global menu entities.
    *
-   * @return Symfony\Component\HttpFoundation\JsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   List of global menu entities.
    */
   public function list(): JsonResponse {
@@ -35,16 +33,21 @@ class MenuController extends ControllerBase {
   /**
    * Create or update menu entity.
    *
-   * @return Symfony\Component\HttpFoundation\JsonResponse
+   * @param string $project_id
+   *   Project ID.
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   The resulting menu entity.
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function post(string $id, Request $request): JsonResponse {
+  public function post(string $project_id, Request $request): JsonResponse {
     $data = json_decode($request->getContent());
 
-    $existing = GlobalMenu::load($id);
+    $existing = GlobalMenu::load($project_id);
 
     if ($existing) {
-      
 
       $langcode = $data->langcode;
       $existing->name = $data->name;
@@ -55,7 +58,7 @@ class MenuController extends ControllerBase {
     }
 
     $menu = GlobalMenu::create([
-      'project' => $id,
+      'project' => $project_id,
       'name' => $data->name,
       'menu_tree' => json_encode($data->menu_tree),
     ]);
