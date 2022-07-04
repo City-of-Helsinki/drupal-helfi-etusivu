@@ -15,7 +15,7 @@ class ListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function buildHeader() {
+  public function buildHeader() : array {
     $header['id'] = $this->t('ID');
     $header['project'] = $this->t('Project');
     return $header + parent::buildHeader();
@@ -24,7 +24,7 @@ class ListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function buildRow(EntityInterface $entity) {
+  public function buildRow(EntityInterface $entity) : array {
     $row['id'] = $entity->id();
     $row['project'] = $entity->toLink($entity->get('project')->value);
     return $row + parent::buildRow($entity);
@@ -33,7 +33,7 @@ class ListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  protected function getDefaultOperations(EntityInterface $entity) {
+  protected function getDefaultOperations(EntityInterface $entity) : array {
     $operations = parent::getDefaultOperations($entity);
     $destination = $this->redirectDestination->getAsArray();
     foreach ($operations as $key => $operation) {

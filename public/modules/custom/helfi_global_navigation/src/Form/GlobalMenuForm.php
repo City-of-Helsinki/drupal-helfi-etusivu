@@ -15,10 +15,8 @@ class GlobalMenuForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function form(array $form, FormStateInterface $form_state) {
-    $form = parent::form($form, $form_state);
-
-    return $form;
+  public function form(array $form, FormStateInterface $form_state): array {
+    return parent::form($form, $form_state);
   }
 
 }
