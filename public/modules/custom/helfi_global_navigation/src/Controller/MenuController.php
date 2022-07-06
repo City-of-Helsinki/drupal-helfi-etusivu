@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Controller;
 
+use _PHPStan_43cb6abb8\Nette\Utils\JsonException;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -19,6 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class MenuController extends ControllerBase implements ContainerInjectionInterface {
 
+  private string $default_language_id;
+
   /**
    * Constructs a MenuController object.
    *
@@ -26,11 +29,10 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    *   The entity type manager.
    */
   public function __construct(
-    EntityTypeManagerInterface $entity_type_manager,
-    LanguageManagerInterface $language_manager
+    protected $entityTypeManager,
+    protected $languageManager
   ) {
-    $this->entityTypeManager = $this->entityTypeManager ?: $entity_type_manager;
-    $this->languageManager = $this->languageManager ?: $language_manager;
+    $this->default_language_id = $this->languageManager->getDefaultLanguage()->getId();
   }
 
   /**
@@ -81,7 +83,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
 
     // Retrieve existing global menu entities.
     $storage = $this->entityTypeManager->getStorage('global_menu');
-    $existing = $storage->loadByProperties(['project' => $project_name]);
+    $existing = $storage->loadByProperties(['project' => $project_name, 'langcode' => $this->default_language_id]);
 
     try {
       if (!empty($existing)) {
@@ -111,18 +113,24 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function createNewMenu(string $project_name, ProjectMenu $project): void {
+    $menu = GlobalMenu::create([
+      'language' => $this->default_language_id,
+      'project' => $project_name,
+      'name' => $project->getSiteName($this->default_language_id),
+      'menu_tree' => json_encode($project->getMenuTree($this->default_language_id)),
+    ]);
+    $menu->save();
 
     foreach ($this->languageManager()->getLanguages() as $language) {
-
       $lang_code = $language->getId();
+      if ($lang_code === $this->default_language_id) {
+        continue;
+      }
 
-      $menu = GlobalMenu::create([
-        'langcode' => $lang_code,
-        'project' => $project_name,
-        'name' => $project->getSiteName($lang_code),
-        'menu_tree' => json_encode($project->getMenuTree($lang_code)),
-      ]);
-      $menu->save();
+      $menu->addTranslation($lang_code)
+        ->set('name', $project->getSiteName($lang_code))
+        ->set('menu_tree', json_encode($project->getMenuTree($lang_code)))
+        ->save();
     }
   }
 
@@ -137,16 +145,28 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    * @return void
    */
   protected function updateMenu(array $global_menus, ProjectMenu $project): void {
-    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $entity */
-    foreach ($global_menus as $menu_entity) {
-      $lang_code = $menu_entity->language()->getId();
+    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $menu_entity */
+    $menu_entity = reset($global_menus);
+    $menu_tree = $project->getMenuTree($this->default_language_id)
 
-      if ($menu_tree = $project->getMenuTree($lang_code)) {
-        $menu_entity
-          ->set('menu_tree', json_encode($menu_tree))
-          ->set('name', $project->getSiteName($lang_code))
-          ->save();
+    $menu_entity
+      ->set('menu_tree', json_encode($menu_tree))
+      ->set('name', $project->getSiteName($this->default_language_id))
+      ->save();
+
+    foreach ($this->languageManager()->getLanguages() as $language) {
+      $lang_code = $language->getId();
+      if ($lang_code === $this->default_language_id) {
+        continue;
       }
+
+      $translation = $menu_entity->hasTranslation($lang_code) ?
+        $menu_entity->getTranslation($lang_code) : $menu_entity->addTranslation($lang_code);
+
+      $translation
+        ->set('name', $project->getSiteName($lang_code))
+        ->set('menu_tree', json_encode($project->getMenuTree($lang_code)))
+        ->save();
     }
   }
 
