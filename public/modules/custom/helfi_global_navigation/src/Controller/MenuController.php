@@ -4,11 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Controller;
 
-use _PHPStan_43cb6abb8\Nette\Utils\JsonException;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\ProjectMenu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -143,11 +140,12 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    *   Project menu class.
    *
    * @return void
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function updateMenu(array $global_menus, ProjectMenu $project): void {
     /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $menu_entity */
     $menu_entity = reset($global_menus);
-    $menu_tree = $project->getMenuTree($this->default_language_id)
+    $menu_tree = $project->getMenuTree($this->default_language_id);
 
     $menu_entity
       ->set('menu_tree', json_encode($menu_tree))
@@ -160,8 +158,9 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
         continue;
       }
 
-      $translation = $menu_entity->hasTranslation($lang_code) ?
-        $menu_entity->getTranslation($lang_code) : $menu_entity->addTranslation($lang_code);
+      $translation = $menu_entity->hasTranslation($lang_code)
+        ? $menu_entity->getTranslation($lang_code)
+        : $menu_entity->addTranslation($lang_code);
 
       $translation
         ->set('name', $project->getSiteName($lang_code))
