@@ -5,14 +5,35 @@ declare(strict_types = 1);
 namespace Drupal\helfi_global_navigation\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
+use Drupal\helfi_global_navigation\ProjectMenu;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller for global menu entities.
  */
-class MenuController extends ControllerBase {
+class MenuController extends ControllerBase implements ContainerInjectionInterface {
+
+  // /**
+  //   * Constructs a MenuController object.
+  //   *
+  //   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+  //   *   The entity type manager.
+  //   */
+  //  public function __construct(
+  //    protected EntityTypeManagerInterface $entity_type_manager
+  //  ) {}
+  //
+  //  /**
+  //   * {@inheritdoc}
+  //   */
+  //  public static function create(ContainerInterface $container) {
+  //    return new static(
+  //      $container->get('entity_type.manager'),
+  //    );
+  //  }
 
   /**
    * Return all global menu entities.
@@ -33,39 +54,91 @@ class MenuController extends ControllerBase {
   /**
    * Create or update menu entity.
    *
-   * @param string $project_id
-   *   Project ID.
+   * @param string $project_name
+   *   Project name.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   The resulting menu entity.
-   * @throws \Drupal\Core\Entity\EntityStorageException
+   *
+   * @throws \JsonException
+   * @throws \WebDriver\Exception\JsonParameterExpected
    */
-  public function post(string $project_id, Request $request): JsonResponse {
-    $data = json_decode($request->getContent());
+  public function post(string $project_name, Request $request): JsonResponse {
+    $data = json_decode($request->getContent(), TRUE);
 
-    $existing = GlobalMenu::load($project_id);
+    // @todo Do we need a timestamp for created/updated information for GlobalMenu entity?
+    $project = new ProjectMenu($project_name, $data);
 
-    if ($existing) {
+    // Retrieve existing global menu entities.
+    $storage = \Drupal::service('entity_type.manager')->getStorage('global_menu');
+    $existing = $storage->loadByProperties(['project' => $project_name]);
 
-      $langcode = $data->langcode;
-      $existing->name = $data->name;
-      $existing->menu_tree = json_encode($data->menu_tree);
-      $existing->save();
-
-      return new JsonResponse($existing);
+    try {
+      if (!empty($existing)) {
+        $this->updateMenu($existing, $project);
+      }
+      else {
+        $this->createNewMenu($project_name, $project);
+      }
+    }
+    catch (\Exception $exception) {
+      throw new \JsonException($exception->getMessage());
     }
 
-    $menu = GlobalMenu::create([
-      'project' => $project_id,
-      'name' => $data->name,
-      'menu_tree' => json_encode($data->menu_tree),
-    ]);
+    return new JsonResponse([], 201);
+  }
 
-    $menu->save();
+  /**
+   * Create Global menu entity for each language for the first time.
+   *
+   * @param string $project_name
+   *   Project name. Eg. "liikenne".
+   * @param \Drupal\helfi_global_navigation\ProjectMenu $project
+   *   Project menu class.
+   *
+   * @return void
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  protected function createNewMenu(string $project_name, ProjectMenu $project): void {
 
-    return new JsonResponse($menu, 201);
+    foreach (\Drupal::languageManager()->getLanguages() as $language) {
+      $lang_code = $language->getId();
+
+      $menu = GlobalMenu::create([
+        'langcode' => $lang_code,
+        'project' => $project_name,
+        'name' => $project->getSiteName($lang_code),
+        'menu_tree' => json_encode($project->getMenuTree($lang_code)),
+      ]);
+      $menu->save();
+    }
+  }
+
+  /**
+   * Update existing global menu entity.
+   *
+   * @param array $global_menus
+   *   Translated global menu entities as array.
+   * @param \Drupal\helfi_global_navigation\ProjectMenu $project
+   *   Project menu class.
+   *
+   * @return void
+   */
+  protected function updateMenu(array $global_menus, ProjectMenu $project): void {
+    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $entity */
+    foreach ($global_menus as $menu_entity) {
+      $lang_code = $menu_entity->language()->getId();
+
+      if ($menu_tree = $project->getMenuTree($lang_code)) {
+        $menu_entity
+          ->set('menu_tree', json_encode($menu_tree))
+          ->set('name', $project->getSiteName($lang_code))
+          ->save();
+      }
+    }
   }
 
 }

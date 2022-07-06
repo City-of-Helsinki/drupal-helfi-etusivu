@@ -21,7 +21,7 @@ final class GlobalMenuRouteProvider extends AdminHtmlRouteProvider {
    * {@inheritdoc}
    */
   public function getRoutes(EntityTypeInterface $entity_type) : RouteCollection {
-    /** @var RouteCollection $collection */
+    /** @var \Symfony\Component\Routing\RouteCollection $collection */
     $collection = parent::getRoutes($entity_type);
 
     $route = (new Route('/admin/content/integrations/global_menu/add'))
