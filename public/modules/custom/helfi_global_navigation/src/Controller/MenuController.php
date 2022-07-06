@@ -6,8 +6,11 @@ namespace Drupal\helfi_global_navigation\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\ProjectMenu;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -16,24 +19,29 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class MenuController extends ControllerBase implements ContainerInjectionInterface {
 
-  // /**
-  //   * Constructs a MenuController object.
-  //   *
-  //   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-  //   *   The entity type manager.
-  //   */
-  //  public function __construct(
-  //    protected EntityTypeManagerInterface $entity_type_manager
-  //  ) {}
-  //
-  //  /**
-  //   * {@inheritdoc}
-  //   */
-  //  public static function create(ContainerInterface $container) {
-  //    return new static(
-  //      $container->get('entity_type.manager'),
-  //    );
-  //  }
+  /**
+   * Constructs a MenuController object.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   */
+  public function __construct(
+    EntityTypeManagerInterface $entity_type_manager,
+    LanguageManagerInterface $language_manager
+  ) {
+    $this->entityTypeManager = $this->entityTypeManager ?: $entity_type_manager;
+    $this->languageManager = $this->languageManager ?: $language_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity_type.manager'),
+      $container->get('language_manager')
+    );
+  }
 
   /**
    * Return all global menu entities.
@@ -72,7 +80,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $project = new ProjectMenu($project_name, $data);
 
     // Retrieve existing global menu entities.
-    $storage = \Drupal::service('entity_type.manager')->getStorage('global_menu');
+    $storage = $this->entityTypeManager->getStorage('global_menu');
     $existing = $storage->loadByProperties(['project' => $project_name]);
 
     try {
@@ -104,7 +112,8 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    */
   protected function createNewMenu(string $project_name, ProjectMenu $project): void {
 
-    foreach (\Drupal::languageManager()->getLanguages() as $language) {
+    foreach ($this->languageManager()->getLanguages() as $language) {
+
       $lang_code = $language->getId();
 
       $menu = GlobalMenu::create([
