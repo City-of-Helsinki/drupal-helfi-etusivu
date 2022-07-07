@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_translation
+    - helfi_global_navigation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: global_menu.global_menu
+target_entity_type_id: global_menu
+target_bundle: global_menu
+default_langcode: site_default
+language_alterable: true
