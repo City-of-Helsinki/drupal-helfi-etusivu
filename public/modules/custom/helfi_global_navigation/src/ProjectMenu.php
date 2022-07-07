@@ -26,6 +26,13 @@ class ProjectMenu {
   protected array $siteName;
 
   /**
+   * Key for the project.
+   *
+   * @var string
+   */
+  protected string $project_name;
+
+  /**
    * Constructor for ProjectMenu object.
    *
    * @param string $project_name
@@ -36,6 +43,10 @@ class ProjectMenu {
    * @throws \WebDriver\Exception\JsonParameterExpected
    */
   public function __construct(string $project_name, array $data) {
+    if (!$project_name) {
+      throw new JsonParameterExpected('Project name does not exist in menu data for ');
+    }
+
     if (!array_key_exists('menu_tree', $data)) {
       throw new JsonParameterExpected('Menu data does not exist for project' . $project_name);
     }
@@ -44,6 +55,9 @@ class ProjectMenu {
       throw new JsonParameterExpected('Site name(s) does not exist in menu data for ' . $project_name);
     }
 
+
+
+    $this->project_name = $project_name;
     $this->menuTree = $data['menu_tree'];
     $this->siteName = $data['site_name'];
   }
@@ -78,6 +92,15 @@ class ProjectMenu {
       return $this->siteName[$lang_code];
     }
     return $this->siteName['fi'];
+  }
+
+  /**
+   * Get project identifier.
+   *
+   * @return string
+   */
+  public function getProjectName(): string {
+    return $this->project_name;
   }
 
 }

@@ -8,6 +8,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\ProjectMenu;
+use Hoa\Iterator\Glob;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -119,6 +120,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
       'language' => $this->default_language_id,
       'project' => $project_name,
       'name' => $project->getSiteName($this->default_language_id),
+      'weight' => GlobalMenu::getProjectWeight($project->getProjectName()),
       'menu_tree' => json_encode($project->getMenuTree($this->default_language_id)),
     ]);
     $menu->save();
@@ -154,6 +156,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
 
     $menu_entity
       ->set('menu_tree', json_encode($menu_tree))
+      ->set('weight', GlobalMenu::getProjectWeight($project->getProjectName()))
       ->set('name', $project->getSiteName($this->default_language_id))
       ->save();
 
