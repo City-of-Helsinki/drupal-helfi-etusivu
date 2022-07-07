@@ -67,6 +67,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       ->setLabel(new TranslatableMarkup('Name'))
       ->setSetting('max_length', 50)
       ->setRequired(TRUE)
+      ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
         'label' => 'inline',
         'type' => 'readonly_field_widget',
@@ -78,6 +79,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       ->setDisplayOptions('form', [
         'type' => 'json_editor',
       ])
+      ->setTranslatable(TRUE)
       ->setReadOnly(TRUE)
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
@@ -90,7 +92,6 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the menu was created.'))
-      ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
         'label' => 'hidden',
         'type' => 'timestamp',
@@ -104,8 +105,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the menu was last edited.'))
-      ->setTranslatable(TRUE);
+      ->setDescription(t('The time that the menu was last edited.'));
 
     return $fields;
   }
