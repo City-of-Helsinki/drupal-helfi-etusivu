@@ -47,6 +47,17 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  */
 class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
 
+  private CONST WEIGHTS = [
+    'terveys' => 0,
+    'kasvatus-koulutus' => 1,
+    'asuminen' => 2,
+    'liikenne' => 3,
+    'kuva' => 4,
+    'tyo-yrittaminen' => 5,
+    'strategia' => 6,
+    'rekry' => 7,
+  ];
+
   /**
    * {@inheritdoc}
    */
@@ -108,6 +119,28 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       ->setTranslatable(TRUE);
 
     return $fields;
+  }
+
+  /**
+   * Get project menu weight list.
+   *
+   * @return array
+   */
+  public static function getProjectWeights(): array{
+    return self::WEIGHTS;
+  }
+
+  /**
+   * Get project menu weight by project name.
+   *
+   * @param $project_name
+   *
+   * @return int|false
+   */
+  public static function getProjectWeight($project_name = NULL): int|false{
+    return array_key_exists($project_name, self::WEIGHTS)
+      ? self::WEIGHTS[$project_name]
+      : FALSE;
   }
 
 }
