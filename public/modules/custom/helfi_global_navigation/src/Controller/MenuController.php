@@ -49,11 +49,16 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    *   List of global menu entities.
    */
   public function list(): JsonResponse {
-    $menus = array_map(function ($menu) {
-      if ($tree = $menu->get('menu_tree')->value) {
-        return json_decode($tree);
-      }
-    }, GlobalMenu::loadMultiple());
+    $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $global_menus = GlobalMenu::loadMultiple();
+
+    $menus = [];
+    foreach($global_menus as $menu) {
+      $menu = $menu->hasTranslation($language_id) ? $menu->getTranslation($language_id) : [];
+      $menus[$menu->get('project')->value] = $menu instanceof GlobalMenu
+        ? json_decode($menu->get('menu_tree')->value)
+        : [];
+    }
 
     return new JsonResponse($menus);
   }
