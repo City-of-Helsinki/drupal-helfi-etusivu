@@ -89,7 +89,11 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
 
     // Retrieve existing global menu entities.
     $storage = $this->entityTypeManager->getStorage('global_menu');
-    $existing = $storage->loadByProperties(['project' => $project_name, 'langcode' => $this->default_language_id]);
+    $existing = $storage->loadByProperties([
+      'project' => $project_name,
+      'menu_type' => GlobalMenu::MAIN_MENU,
+      'langcode' => $this->default_language_id
+    ]);
 
     try {
       if (!empty($existing)) {
@@ -100,7 +104,12 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
       }
     }
     catch (\Exception $exception) {
-      throw new \JsonException($exception->getMessage());
+      throw new \JsonException(sprintf(
+        '%s in %s on line %s',
+        $exception->getMessage(),
+        $exception->getFile(),
+        $exception->getLine()
+      ));
     }
 
     return new JsonResponse([], 201);
@@ -122,6 +131,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $menu = GlobalMenu::create([
       'language' => $this->default_language_id,
       'project' => $project_name,
+      'menu_type' => GlobalMenu::MAIN_MENU,
       'name' => $project->getSiteName($this->default_language_id),
       'weight' => GlobalMenu::getProjectWeight($project->getProjectName()),
       'menu_tree' => json_encode($project->getMenuTree($this->default_language_id)),
@@ -161,7 +171,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $menu_entity
       ->set('menu_tree', json_encode($menu_tree))
       ->set('weight', GlobalMenu::getProjectWeight($project->getProjectName()))
-      ->set('name', $project->getSiteName($this->default_language_id))
+      ->set('site_name', $project->getSiteName($this->default_language_id))
       ->save();
 
     foreach ($this->languageManager()->getLanguages() as $language) {
@@ -175,7 +185,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
         : $menu_entity->addTranslation($lang_code);
 
       $translation
-        ->set('name', $project->getSiteName($lang_code))
+        ->set('site_name', $project->getSiteName($lang_code))
         ->set('menu_tree', json_encode($project->getMenuTree($lang_code)))
         ->save();
     }

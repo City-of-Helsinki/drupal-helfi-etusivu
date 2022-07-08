@@ -47,7 +47,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  */
 class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
 
-  private const WEIGHTS = [
+  private const PROJECT_WEIGHTS = [
     'terveys' => 0,
     'kasvatus-koulutus' => 1,
     'asuminen' => 2,
@@ -57,6 +57,12 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
     'strategia' => 6,
     'rekry' => 7,
   ];
+
+  const UNIVERSAL_HEADER_MENU = 'universal_header_menu';
+  const MAIN_MENU = 'main_menu';
+  const FOOTER_TOP_MENU = 'footer_top_menu';
+  const FOOTER_TOP_MENU_2 = 'footer_top_menu_2';
+  const FOOTER_BOTTOM_MENU = 'footer_bottom_menu';
 
   /**
    * {@inheritdoc}
@@ -74,8 +80,19 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       ])
       ->setDisplayConfigurable('form', TRUE);
 
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(new TranslatableMarkup('Name'))
+    $fields['site_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(new TranslatableMarkup('Site name'))
+      ->setSetting('max_length', 50)
+      ->setRequired(FALSE)
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('form', [
+        'label' => 'inline',
+        'type' => 'readonly_field_widget',
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['menu_type'] = BaseFieldDefinition::create('string')
+      ->setLabel(new TranslatableMarkup('Menu type'))
       ->setSetting('max_length', 50)
       ->setRequired(TRUE)
       ->setTranslatable(TRUE)
@@ -122,15 +139,6 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
-   * Get project menu weight list.
-   *
-   * @return array
-   */
-  public static function getProjectWeights(): array {
-    return self::WEIGHTS;
-  }
-
-  /**
    * Get project menu weight by project name.
    *
    * @param $project_name
@@ -138,8 +146,8 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
    * @return int|false
    */
   public static function getProjectWeight($project_name = NULL): int|FALSE {
-    return array_key_exists($project_name, self::WEIGHTS)
-      ? self::WEIGHTS[$project_name]
+    return array_key_exists($project_name, self::PROJECT_WEIGHTS)
+      ? self::PROJECT_WEIGHTS[$project_name]
       : FALSE;
   }
 
