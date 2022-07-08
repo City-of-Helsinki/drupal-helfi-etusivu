@@ -6,7 +6,6 @@ namespace Drupal\helfi_global_navigation\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\ProjectMenu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -54,11 +53,14 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
       throw new \JsonException('Requested menu type doesn\'t exist.');
     }
 
-    /** @var EntityStorageInterface $storage */
+    /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
     $storage = $this->entityTypeManager->getStorage('global_menu');
 
     $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
-    $global_menus = $storage->loadByProperties(['menu_type' => $menu_type, 'langcode' => $this->default_language_id]);
+    $global_menus = $storage->loadByProperties([
+      'menu_type' => $menu_type,
+      'langcode' => $this->default_language_id,
+    ]);
 
     $menus = [];
     foreach ($global_menus as $menu) {
@@ -93,7 +95,6 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
   public function post(string $project_name, Request $request): JsonResponse {
     $data = json_decode($request->getContent(), TRUE);
 
-    // @todo Do we need a timestamp for created/updated information for GlobalMenu entity?
     $project = new ProjectMenu($project_name, $data);
 
     // Retrieve existing global menu entities.
@@ -101,7 +102,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $existing = $storage->loadByProperties([
       'project' => $project_name,
       'menu_type' => GlobalMenu::MAIN_MENU,
-      'langcode' => $this->default_language_id
+      'langcode' => $this->default_language_id,
     ]);
 
     try {
