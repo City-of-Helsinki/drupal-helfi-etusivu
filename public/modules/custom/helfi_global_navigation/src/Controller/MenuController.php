@@ -6,6 +6,7 @@ namespace Drupal\helfi_global_navigation\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\ProjectMenu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -48,19 +49,27 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   List of global menu entities.
    */
-  public function list(): JsonResponse {
+  public function list(string $menu_type = NULL): JsonResponse {
+    if (!$menu_type || !GlobalMenu::menuExists($menu_type)) {
+      throw new \JsonException('Requested menu type doesn\'t exist.');
+    }
+
+    /** @var EntityStorageInterface $storage */
+    $storage = $this->entityTypeManager->getStorage('global_menu');
+
     $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
-    $global_menus = GlobalMenu::loadMultiple();
+    $global_menus = $storage->loadByProperties(['menu_type' => $menu_type, 'langcode' => $this->default_language_id]);
 
     $menus = [];
     foreach ($global_menus as $menu) {
       $menu = $menu->hasTranslation($language_id) ? $menu->getTranslation($language_id) : [];
-      $menus[] = [
+      $menus[$menu->project->value] = [
         'project' => $menu->project->value,
         'site_name' => $menu->name->value,
         'changed' => $menu->changed->value,
         'menu_tree' => $menu instanceof GlobalMenu ? json_decode($menu->menu_tree->value) : [],
         'weight' => $menu->getProjectWeight($menu->project->value),
+        'lang_code' => $menu->language()->getId(),
       ];
     }
 

@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation;
 
-use WebDriver\Exception\JsonParameterExpected;
-
 /**
  * Wrapper class for JSON request.
  */
@@ -40,19 +38,19 @@ class ProjectMenu {
    * @param array $data
    *   Decoded JSON data from Request.
    *
-   * @throws \WebDriver\Exception\JsonParameterExpected
+   * @throws \JsonException
    */
   public function __construct(string $project_name, array $data) {
     if (!$project_name) {
-      throw new JsonParameterExpected('Project name does not exist in menu data for ');
+      throw new \JsonException('Project name does not exist in menu data for ');
     }
 
     if (!array_key_exists('menu_tree', $data)) {
-      throw new JsonParameterExpected('Menu data does not exist for project' . $project_name);
+      throw new \JsonException('Menu data does not exist for project' . $project_name);
     }
 
     if (!array_key_exists('site_name', $data) && is_array($data['site_name'])) {
-      throw new JsonParameterExpected('Site name(s) does not exist in menu data for ' . $project_name);
+      throw new \JsonException('Site name(s) does not exist in menu data for ' . $project_name);
     }
 
     $this->project_name = $project_name;
