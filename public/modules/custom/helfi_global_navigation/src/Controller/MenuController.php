@@ -8,7 +8,6 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\ProjectMenu;
-use Hoa\Iterator\Glob;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,11 +53,15 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $global_menus = GlobalMenu::loadMultiple();
 
     $menus = [];
-    foreach($global_menus as $menu) {
+    foreach ($global_menus as $menu) {
       $menu = $menu->hasTranslation($language_id) ? $menu->getTranslation($language_id) : [];
-      $menus[$menu->get('project')->value] = $menu instanceof GlobalMenu
-        ? json_decode($menu->get('menu_tree')->value)
-        : [];
+      $menus[] = [
+        'project' => $menu->project->value,
+        'site_name' => $menu->name->value,
+        'changed' => $menu->changed->value,
+        'menu_tree' => $menu instanceof GlobalMenu ? json_decode($menu->menu_tree->value) : [],
+        'weight' => $menu->getProjectWeight($menu->project->value),
+      ];
     }
 
     return new JsonResponse($menus);
@@ -147,6 +150,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    *   Project menu class.
    *
    * @return void
+   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function updateMenu(array $global_menus, ProjectMenu $project): void {

@@ -47,7 +47,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  */
 class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
 
-  private CONST WEIGHTS = [
+  private const WEIGHTS = [
     'terveys' => 0,
     'kasvatus-koulutus' => 1,
     'asuminen' => 2,
@@ -126,7 +126,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
    *
    * @return array
    */
-  public static function getProjectWeights(): array{
+  public static function getProjectWeights(): array {
     return self::WEIGHTS;
   }
 
@@ -137,7 +137,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
    *
    * @return int|false
    */
-  public static function getProjectWeight($project_name = NULL): int|false{
+  public static function getProjectWeight($project_name = NULL): int|FALSE {
     return array_key_exists($project_name, self::WEIGHTS)
       ? self::WEIGHTS[$project_name]
       : FALSE;

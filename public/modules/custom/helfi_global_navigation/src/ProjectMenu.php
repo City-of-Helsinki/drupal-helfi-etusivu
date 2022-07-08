@@ -55,8 +55,6 @@ class ProjectMenu {
       throw new JsonParameterExpected('Site name(s) does not exist in menu data for ' . $project_name);
     }
 
-
-
     $this->project_name = $project_name;
     $this->menuTree = $data['menu_tree'];
     $this->siteName = $data['site_name'];
