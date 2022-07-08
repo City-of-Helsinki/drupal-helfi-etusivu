@@ -151,10 +151,16 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       : FALSE;
   }
 
+  /**
+   *
+   */
   public static function menuExists(string $menu_type = '') {
     return defined(sprintf('%s::%s', self::class, strtoupper($menu_type)));
   }
 
+  /**
+   *
+   */
   public static function getMenuName(string $menu_type = '') {
     return constant(sprintf('%s::%s', self::class, strtoupper($menu_type)));
   }
