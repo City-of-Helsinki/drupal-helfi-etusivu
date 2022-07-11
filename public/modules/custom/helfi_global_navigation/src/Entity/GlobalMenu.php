@@ -163,7 +163,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
    * Does the global menu exist.
    *
    * @param string $menu_type
-   *   Type of menu to check
+   *   Type of menu to check.
    *
    * @return bool
    *   Menu exists.

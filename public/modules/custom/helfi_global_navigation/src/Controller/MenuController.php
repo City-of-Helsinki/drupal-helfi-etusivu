@@ -17,6 +17,11 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class MenuController extends ControllerBase implements ContainerInjectionInterface {
 
+  /**
+   * Site default language code.
+   *
+   * @var string
+   */
   private string $default_language_id;
 
   /**
@@ -49,7 +54,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    *   List of global menu entities.
    */
   public function list(string $menu_type = NULL): JsonResponse {
-    if (!$menu_type || !GlobalMenu::menuExists($menu_type)) {
+    if (!GlobalMenu::menuExists($menu_type)) {
       throw new \JsonException('Requested menu type doesn\'t exist.');
     }
 
