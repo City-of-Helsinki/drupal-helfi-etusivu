@@ -77,6 +77,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
         'menu_tree' => $menu instanceof GlobalMenu ? json_decode($menu->menu_tree->value) : [],
         'weight' => $menu->getProjectWeight($menu->project->value),
         'lang_code' => $menu->language()->getId(),
+        'menu_type' => $menu_type,
       ];
     }
 
@@ -162,6 +163,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
       $menu->addTranslation($lang_code)
         ->set('name', $project->getSiteName($lang_code))
         ->set('menu_tree', json_encode($project->getMenuTree($lang_code)))
+        ->set('menu_type', GlobalMenu::MAIN_MENU)
         ->save();
     }
   }
@@ -202,6 +204,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
       $translation
         ->set('site_name', $project->getSiteName($lang_code))
         ->set('menu_tree', json_encode($project->getMenuTree($lang_code)))
+        ->set('menu_type', GlobalMenu::MAIN_MENU)
         ->save();
     }
   }
