@@ -108,7 +108,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $storage = $this->entityTypeManager->getStorage('global_menu');
     $existing = $storage->loadByProperties([
       'project' => $project_name,
-      'menu_type' => GlobalMenu::MAIN_MENU,
+      'menu_type' => Menu::MAIN_MENU,
       'langcode' => $this->default_language_id,
     ]);
 
