@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Contains necessary alterations for the Helfi global navigation.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\helfi_api_base\Environment\Project;
+use Drupal\helfi_global_navigation\Entity\GlobalMenu;
+use Drupal\menu_link_content\MenuLinkContentInterface;
+use Drupal\system\MenuInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function helfi_global_navigation_menu_update(MenuInterface $entity) {
+  if (GlobalMenu::menuExists($entity->id())) {
+    _helfi_global_navigation_create_menu($entity->id());
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function helfi_global_navigation_menu_link_content_update(MenuLinkContentInterface $entity) {
+  if (GlobalMenu::menuExists($entity->getMenuName())) {
+    _helfi_global_navigation_create_menu($entity->getMenuName());
+  }
+}
+
+/**
+ * Create menu update queue item.
+ */
+function _helfi_global_navigation_create_menu(string $menu_type) {
+  $menu_tree_builder = \Drupal::service('helfi_navigation.menu_tree_builder_service');
+  $entity_storage = \Drupal::entityTypeManager()->getStorage('global_menu');
+  $default_language = \Drupal::languageManager()->getDefaultLanguage()->getId();
+  $languages = \Drupal::languageManager()->getLanguages();
+
+  $existing = $entity_storage->loadByProperties([
+    'menu_type' => $menu_type,
+    'langcode' => $default_language,
+  ]);
+
+  $menu = $existing ? reset($existing) : NULL;
+
+  // Handle default language first.
+  $language_codes = array_keys($languages);
+  if (($key = array_search($default_language, $language_codes)) !== FALSE) {
+    unset($language_codes[$key]);
+  }
+  $ordered_language_codes = array_merge([$default_language], $language_codes);
+
+  foreach ($ordered_language_codes as $lang_code) {
+    $tree = $menu_tree_builder->buildMenuTree($menu_type, $lang_code);
+    $site_name = \Drupal::configFactory()
+      ->get('system.site')
+      ->getOriginal('name', $default_language);
+
+    if (!$existing && !$menu) {
+      $menu = GlobalMenu::create([
+        'language' => $lang_code,
+        'project' => Project::ETUSIVU,
+        'menu_type' => $menu_type,
+        'site_name' => $site_name,
+        'weight' => 0,
+        'menu_tree' => json_encode($tree),
+      ]);
+      $menu->save();
+    }
+    else {
+      $translation = $menu->hasTranslation($lang_code)
+        ? $menu->getTranslation($lang_code)
+        : $menu->addTranslation($lang_code);
+
+      $translation->set('menu_tree', json_encode($tree))
+        ->set('menu_type', $menu_type)
+        ->save();
+    }
+  }
+
+}
