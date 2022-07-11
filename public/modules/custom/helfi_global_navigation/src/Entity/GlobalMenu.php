@@ -58,11 +58,19 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
     'rekry' => 7,
   ];
 
-  const UNIVERSAL_HEADER_MENU = 'universal_header_menu';
-  const MAIN_MENU = 'main_menu';
-  const FOOTER_TOP_MENU = 'footer_top_menu';
-  const FOOTER_TOP_MENU_2 = 'footer_top_menu_2';
-  const FOOTER_BOTTOM_MENU = 'footer_bottom_menu';
+  const MENUS = [
+    'footer-bottom-navigation',
+    'footer-top-navigation',
+    'footer-top-navigation-2',
+    'header-top-navigation',
+    'main',
+  ];
+
+  const FOOTER_TOP_NAVIGATION = 'footer-top-navigation';
+  const FOOTER_TOP_NAVIGATION_2 = 'footer-top-navigation-2';
+  const FOOTER_BOTTOM_NAVIGATION = 'footer-bottom-navigation';
+  const HEADER_TOP_NAVIGATION = 'header-top-navigation';
+  const MAIN_MENU = 'main';
 
   /**
    * {@inheritdoc}
@@ -152,17 +160,16 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
+   * Does the global menu exist.
    *
-   */
-  public static function menuExists(string $menu_type = '') {
-    return defined(sprintf('%s::%s', self::class, strtoupper($menu_type)));
-  }
-
-  /**
+   * @param string $menu_type
+   *   Type of menu to check
    *
+   * @return bool
+   *   Menu exists.
    */
-  public static function getMenuName(string $menu_type = '') {
-    return constant(sprintf('%s::%s', self::class, strtoupper($menu_type)));
+  public static function menuExists(string $menu_type = ''): bool {
+    return $menu_type && in_array($menu_type, self::MENUS);
   }
 
 }
