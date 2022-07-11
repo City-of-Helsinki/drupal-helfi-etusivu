@@ -6,6 +6,7 @@ namespace Drupal\helfi_global_navigation\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\helfi_api_base\Menu\Menu;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\ProjectMenu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -54,7 +55,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    *   List of global menu entities.
    */
   public function list(string $menu_type = NULL): JsonResponse {
-    if (!GlobalMenu::menuExists($menu_type)) {
+    if (!Menu::menuExists($menu_type)) {
       throw new \JsonException('Requested menu type doesn\'t exist.');
     }
 
