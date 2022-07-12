@@ -47,12 +47,10 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
 
   $menu = $existing ? reset($existing) : NULL;
 
-  // Handle default language first.
-  $language_codes = array_keys($languages);
-  if (($key = array_search($default_language, $language_codes)) !== FALSE) {
-    unset($language_codes[$key]);
-  }
-  $ordered_language_codes = array_merge([$default_language], $language_codes);
+  // Handle default language first to make sure the entity is created with default language.
+  $ordered_language_codes = array_unique(
+    array_merge([$default_language], array_keys($languages))
+  );
 
   foreach ($ordered_language_codes as $lang_code) {
     $tree = $menu_tree_builder->buildMenuTree($menu_type, $lang_code);
