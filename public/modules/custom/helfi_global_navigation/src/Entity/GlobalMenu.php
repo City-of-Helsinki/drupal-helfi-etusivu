@@ -9,6 +9,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\helfi_api_base\Menu\Menu;
 
 /**
  * Defines global_menu entity class.
@@ -155,7 +156,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
    *   Menu exists.
    */
   public static function menuExists(string $menu_type = ''): bool {
-    return $menu_type && in_array($menu_type, self::MENUS);
+    return $menu_type && in_array($menu_type, Menu::MENUS);
   }
 
 }
