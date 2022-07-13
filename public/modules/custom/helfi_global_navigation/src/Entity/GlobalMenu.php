@@ -9,7 +9,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\helfi_api_base\Menu\Menu;
+use Drupal\helfi_navigation\Menu\Menu;
 
 /**
  * Defines global_menu entity class.

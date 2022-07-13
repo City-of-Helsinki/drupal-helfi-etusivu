@@ -8,7 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\helfi_api_base\Environment\Project;
-use Drupal\helfi_api_base\Menu\Menu;
+use Drupal\helfi_navigation\Menu\Menu;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\system\MenuInterface;
@@ -17,7 +17,10 @@ use Drupal\system\MenuInterface;
  * Implements hook_ENTITY_TYPE_update().
  */
 function helfi_global_navigation_menu_update(MenuInterface $entity) {
-  if (Menu::menuExists($entity->id())) {
+  if (
+    Menu::menuExists($entity->id()) &&
+    $entity->id() != Menu::MAIN_MENU
+  ) {
     _helfi_global_navigation_create_menu($entity->id());
   }
 }
@@ -26,7 +29,10 @@ function helfi_global_navigation_menu_update(MenuInterface $entity) {
  * Implements hook_ENTITY_TYPE_update().
  */
 function helfi_global_navigation_menu_link_content_update(MenuLinkContentInterface $entity) {
-  if (Menu::menuExists($entity->getMenuName())) {
+  if (
+    Menu::menuExists($entity->getMenuName()) &&
+    $entity->getMenuName() != Menu::MAIN_MENU
+  ) {
     _helfi_global_navigation_create_menu($entity->getMenuName());
   }
 }
@@ -35,7 +41,7 @@ function helfi_global_navigation_menu_link_content_update(MenuLinkContentInterfa
  * Create menu update queue item.
  */
 function _helfi_global_navigation_create_menu(string $menu_type) {
-  $menu_tree_builder = \Drupal::service('helfi_api_base.menu_tree_builder_service');
+  $menu_tree_builder = \Drupal::service('helfi_navigation.menu_tree_builder_service');
   $entity_storage = \Drupal::entityTypeManager()->getStorage('global_menu');
   $default_language = \Drupal::languageManager()->getDefaultLanguage()->getId();
   $languages = \Drupal::languageManager()->getLanguages();
