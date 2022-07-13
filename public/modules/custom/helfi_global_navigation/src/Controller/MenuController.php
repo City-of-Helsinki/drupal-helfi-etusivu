@@ -6,6 +6,8 @@ namespace Drupal\helfi_global_navigation\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\helfi_navigation\Menu\Menu;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\ProjectMenu;
@@ -23,19 +25,23 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    *
    * @var string
    */
-  private string $default_language_id;
+  private string $defaultLanguageId;
 
   /**
    * Constructs a MenuController object.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   Entity type manager.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
+   *   Language manager.
    */
   public function __construct(
-    protected $entityTypeManager,
-    protected $languageManager
+    EntityTypeManagerInterface $entityTypeManager,
+    LanguageManagerInterface $languageManager
   ) {
-    $this->default_language_id = $this->languageManager->getDefaultLanguage()->getId();
+    $this->entityTypeManager = $entityTypeManager;
+    $this->languageManager = $languageManager;
+    $this->defaultLanguageId = $this->languageManager->getDefaultLanguage()->getId();
   }
 
   /**
@@ -65,7 +71,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
     $global_menus = $storage->loadByProperties([
       'menu_type' => $menu_type,
-      'langcode' => $this->default_language_id,
+      'langcode' => $this->defaultLanguageId,
     ]);
 
     $menus = [];
@@ -109,7 +115,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $existing = $storage->loadByProperties([
       'project' => $project_name,
       'menu_type' => Menu::MAIN_MENU,
-      'langcode' => $this->default_language_id,
+      'langcode' => $this->defaultLanguageId,
     ]);
 
     try {
@@ -140,24 +146,22 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    * @param \Drupal\helfi_global_navigation\ProjectMenu $project
    *   Project menu class.
    *
-   * @return void
-   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function createNewMenu(string $project_name, ProjectMenu $project): void {
     $menu = GlobalMenu::create([
-      'language' => $this->default_language_id,
+      'language' => $this->defaultLanguageId,
       'project' => $project_name,
       'menu_type' => Menu::MAIN_MENU,
-      'name' => $project->getSiteName($this->default_language_id),
+      'name' => $project->getSiteName($this->defaultLanguageId),
       'weight' => GlobalMenu::getProjectWeight($project->getProjectName()),
-      'menu_tree' => json_encode($project->getMenuTree($this->default_language_id)),
+      'menu_tree' => json_encode($project->getMenuTree($this->defaultLanguageId)),
     ]);
     $menu->save();
 
     foreach ($this->languageManager()->getLanguages() as $language) {
       $lang_code = $language->getId();
-      if ($lang_code === $this->default_language_id) {
+      if ($lang_code === $this->defaultLanguageId) {
         continue;
       }
 
@@ -177,24 +181,22 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    * @param \Drupal\helfi_global_navigation\ProjectMenu $project
    *   Project menu class.
    *
-   * @return void
-   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function updateMenu(array $global_menus, ProjectMenu $project): void {
     /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $menu_entity */
     $menu_entity = reset($global_menus);
-    $menu_tree = $project->getMenuTree($this->default_language_id);
+    $menu_tree = $project->getMenuTree($this->defaultLanguageId);
 
     $menu_entity
       ->set('menu_tree', json_encode($menu_tree))
       ->set('weight', GlobalMenu::getProjectWeight($project->getProjectName()))
-      ->set('site_name', $project->getSiteName($this->default_language_id))
+      ->set('site_name', $project->getSiteName($this->defaultLanguageId))
       ->save();
 
     foreach ($this->languageManager()->getLanguages() as $language) {
       $lang_code = $language->getId();
-      if ($lang_code === $this->default_language_id) {
+      if ($lang_code === $this->defaultLanguageId) {
         continue;
       }
 

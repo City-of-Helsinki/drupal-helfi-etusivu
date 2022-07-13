@@ -136,11 +136,13 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
   /**
    * Get project menu weight by project name.
    *
-   * @param $project_name
+   * @param string $project_name
+   *   Project name.
    *
    * @return int|false
+   *   Returns weight or false.
    */
-  public static function getProjectWeight($project_name = NULL): int|FALSE {
+  public static function getProjectWeight(string $project_name = ''): int|FALSE {
     return array_key_exists($project_name, self::PROJECT_WEIGHTS)
       ? self::PROJECT_WEIGHTS[$project_name]
       : FALSE;
