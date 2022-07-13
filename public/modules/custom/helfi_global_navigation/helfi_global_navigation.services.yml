@@ -5,3 +5,7 @@ services:
   helfi_global_navigation.menu_controller:
     class: \Drupal\helfi_global_navigation\Controller\MenuController
     arguments: ['@language_manager']
+  helfi_global_navigation.helfi_authentication:
+    class: Drupal\helfi_global_navigation\Authentication\HelfiNavigationAuthentication
+    tags:
+      - { name: authentication_provider, provider_id: 'helfi_navigation_authentication', priority: 100 }
