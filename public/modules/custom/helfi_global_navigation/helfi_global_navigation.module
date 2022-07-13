@@ -53,7 +53,8 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
 
   $menu = $existing ? reset($existing) : NULL;
 
-  // Handle default language first to make sure the entity is created with default language.
+  // Handle default language first to make sure the entity is
+  // created with default language.
   $ordered_language_codes = array_unique(
     array_merge([$default_language], array_keys($languages))
   );
