@@ -28,7 +28,7 @@ class ProjectMenu {
    *
    * @var string
    */
-  protected string $project_name;
+  protected string $projectName;
 
   /**
    * Constructor for ProjectMenu object.
@@ -53,7 +53,7 @@ class ProjectMenu {
       throw new \JsonException('Site name(s) does not exist in menu data for ' . $project_name);
     }
 
-    $this->project_name = $project_name;
+    $this->projectName = $project_name;
     $this->menuTree = $data['menu_tree'];
     $this->siteName = $data['site_name'];
   }
@@ -94,9 +94,10 @@ class ProjectMenu {
    * Get project identifier.
    *
    * @return string
+   *   Returns project name.
    */
   public function getProjectName(): string {
-    return $this->project_name;
+    return $this->projectName;
   }
 
 }
