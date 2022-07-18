@@ -75,17 +75,23 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     ]);
 
     $menus = [];
-    foreach ($global_menus as $menu) {
-      $menu = $menu->hasTranslation($language_id) ? $menu->getTranslation($language_id) : [];
-      $menus[$menu->project->value] = [
-        'project' => $menu->project->value,
-        'site_name' => $menu->site_name->value,
-        'changed' => $menu->changed->value,
-        'menu_tree' => $menu instanceof GlobalMenu ? json_decode($menu->menu_tree->value) : [],
-        'weight' => $menu->getProjectWeight($menu->project->value),
-        'lang_code' => $menu->language()->getId(),
+    foreach ($global_menus as $global_menu) {
+      $menus[$global_menu->project->value] = [
+        'project' => $global_menu->project->value,
+        'site_name' => $global_menu->site_name->value,
+        'changed' => $global_menu->changed->value,
+        'weight' => $global_menu->getProjectWeight($global_menu->project->value),
+        'lang_code' => $language_id,
         'menu_type' => $menu_type,
+        'menu_tree' => [],
+        'site_name' => $global_menu->site_name->value,
       ];
+
+      if ($global_menu->hasTranslation($language_id)) {
+        $menu = $global_menu->getTranslation($language_id);
+        $menus[$menu->project->value]['menu_tree'] = json_decode($menu->menu_tree->value);
+        $menus[$menu->project->value]['site_name'] = $menu->site_name->value;
+      }
     }
 
     return new JsonResponse($menus);
@@ -153,7 +159,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
       'language' => $this->defaultLanguageId,
       'project' => $project_name,
       'menu_type' => Menu::MAIN_MENU,
-      'name' => $project->getSiteName($this->defaultLanguageId),
+      'site_name' => $project->getSiteName($this->defaultLanguageId),
       'weight' => GlobalMenu::getProjectWeight($project->getProjectName()),
       'menu_tree' => json_encode($project->getMenuTree($this->defaultLanguageId)),
     ]);
@@ -166,7 +172,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
       }
 
       $menu->addTranslation($lang_code)
-        ->set('name', $project->getSiteName($lang_code))
+        ->set('site_name', $project->getSiteName($lang_code))
         ->set('menu_tree', json_encode($project->getMenuTree($lang_code)))
         ->set('menu_type', Menu::MAIN_MENU)
         ->save();
