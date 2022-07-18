@@ -7,7 +7,7 @@ namespace Drupal\helfi_global_navigation;
 /**
  * Wrapper class for JSON request.
  */
-class ProjectMenu {
+class MenuRequest {
 
   /**
    * Menu tree as array.
@@ -31,7 +31,7 @@ class ProjectMenu {
   protected string $projectName;
 
   /**
-   * Constructor for ProjectMenu object.
+   * Constructor for MenuRequest object.
    *
    * @param string $project_name
    *   Project name. Eg. "liikenne".
