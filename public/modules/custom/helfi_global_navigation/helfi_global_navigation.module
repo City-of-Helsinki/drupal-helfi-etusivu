@@ -60,7 +60,11 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
   );
 
   foreach ($ordered_language_codes as $lang_code) {
-    $tree = $menu_tree_builder->buildMenuTree($menu_type, $lang_code);
+    $tree = [
+      'project' => Project::ETUSIVU,
+      'menu_tree' => $menu_tree_builder->buildMenuTree($menu_type, $lang_code),
+    ];
+
     $site_name = \Drupal::configFactory()
       ->get('system.site')
       ->getOriginal('name', $default_language);

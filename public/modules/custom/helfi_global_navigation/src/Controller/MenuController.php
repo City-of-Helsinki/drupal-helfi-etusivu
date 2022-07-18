@@ -65,7 +65,6 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
       throw new \JsonException('Requested menu type doesn\'t exist.');
     }
 
-    /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
     $storage = $this->entityTypeManager->getStorage('global_menu');
 
     $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -78,7 +77,6 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     foreach ($global_menus as $global_menu) {
       $menus[$global_menu->project->value] = [
         'project' => $global_menu->project->value,
-        'site_name' => $global_menu->site_name->value,
         'changed' => $global_menu->changed->value,
         'weight' => $global_menu->getProjectWeight($global_menu->project->value),
         'lang_code' => $language_id,
