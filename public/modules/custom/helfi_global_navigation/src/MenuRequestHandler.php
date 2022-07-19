@@ -189,7 +189,7 @@ class MenuRequestHandler {
 
       if ($global_menu->hasTranslation($lang_code)) {
         $menu = $global_menu->getTranslation($lang_code);
-        $menuResponse[$menu->project->value]['menu_tree'] = $menu->getMenuTree();
+        $menuResponse[$menu->project->value]['menu_tree'] = $menu->getMenuTree($lang_code);
         $menuResponse[$menu->project->value]['site_name'] = $menu->getSiteName();
       }
     }
