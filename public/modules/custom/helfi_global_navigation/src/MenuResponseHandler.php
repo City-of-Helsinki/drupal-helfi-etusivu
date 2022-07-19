@@ -16,7 +16,7 @@ class MenuResponseHandler {
   /**
    * Entity storage.
    *
-   * @var EntityStorageInterface
+   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   private EntityStorageInterface $entityStorage;
 
@@ -25,17 +25,41 @@ class MenuResponseHandler {
    *
    * @var string
    */
-  private string $default_language;
+  private string $defaultLanguageId;
 
+  /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   Entitytype manager.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
+   *   Language manager.
+   * @param MenuCache $menuCache
+   *   Menu cache.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
     LanguageManagerInterface $languageManager,
     private MenuCache $menuCache
   ) {
     $this->entityStorage = $entityTypeManager->getStorage('global_menu');
-    $this->default_language = $languageManager->getDefaultLanguage()->getId();
+    $this->defaultLanguageId = $languageManager->getDefaultLanguage()->getId();
   }
 
+  /**
+   * Get response for menu GET request.
+   *
+   * @param string $menu_type
+   *   Menu type.
+   * @param string $lang_code
+   *   Language code id.
+   *
+   * @return array
+   *   Request response data.
+   */
   public function getMenuResponse(string $menu_type, string $lang_code): array {
     if ($cached = $this->menuCache->getCached($menu_type, $lang_code)) {
       return $cached;
@@ -44,10 +68,22 @@ class MenuResponseHandler {
     return $this->createMenuResponse($menu_type, $lang_code);
   }
 
+  /**
+   * Create the response.
+   *
+   * @param string $menu_type
+   *   Menu type.
+   * @param string $lang_code
+   *   Language code id.
+   *
+   * @return array
+   *   Request response data.
+   */
   public function createMenuResponse(string $menu_type, string $lang_code): array {
+    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $global_menus */
     $global_menus = $this->entityStorage->loadByProperties([
       'menu_type' => $menu_type,
-      'langcode' => $this->default_language,
+      'langcode' => $this->defaultLanguageId,
     ]);
 
     $menuResponse = [];
@@ -63,9 +99,10 @@ class MenuResponseHandler {
       ];
 
       if ($global_menu->hasTranslation($lang_code)) {
+        /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $menu */
         $menu = $global_menu->getTranslation($lang_code);
-        $menuResponse[$menu->project->value]['menu_tree'] = $menu->getMenuTree($lang_code);
-        $menuResponse[$menu->project->value]['site_name'] = $menu->getSiteName();
+        $menuResponse[$menu->getProject()]['menu_tree'] = $menu->getMenuTree();
+        $menuResponse[$menu->getProject()]['site_name'] = $menu->getSiteName();
       }
     }
 

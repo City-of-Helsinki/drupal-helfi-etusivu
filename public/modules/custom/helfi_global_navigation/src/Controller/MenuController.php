@@ -22,15 +22,12 @@ use Symfony\Component\HttpFoundation\Request;
 class MenuController extends ControllerBase implements ContainerInjectionInterface {
 
   /**
-   * Site default language code.
-   *
-   * @var string
-   */
-  private string $defaultLanguageId;
-
-  /**
    * Constructs a MenuController object.
    *
+   * @param \Drupal\helfi_global_navigation\MenuRequestHandler $menuRequestHandler
+   *   Menu request handler.
+   * @param \Drupal\helfi_global_navigation\MenuResponseHandler $menuResponseHandler
+   *   Menu response handler.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   Entity type manager.
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
@@ -44,7 +41,6 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
   ) {
     $this->entityTypeManager = $entityTypeManager;
     $this->languageManager = $languageManager;
-    $this->defaultLanguageId = $this->languageManager->getDefaultLanguage()->getId();
   }
 
   /**
@@ -87,7 +83,6 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    *   The resulting menu entity.
    *
    * @throws \JsonException
-   * @throws \WebDriver\Exception\JsonParameterExpected
    */
   public function post(string $project_name, Request $request): JsonResponse {
     $data = json_decode($request->getContent(), TRUE);
@@ -97,7 +92,5 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
 
     return new JsonResponse([], 201);
   }
-
-
 
 }
