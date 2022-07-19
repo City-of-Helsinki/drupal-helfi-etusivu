@@ -57,8 +57,15 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
   /**
    * Return all global menu entities.
    *
+   * @param string|null $menu_type
+   *   Menu type.
+   *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
-   *   List of global menu entities.
+   *   Returns a JSON response of requested menu type.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \JsonException
    */
   public function list(string $menu_type = NULL): JsonResponse {
     if (!Menu::menuExists($menu_type)) {
@@ -75,24 +82,23 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
 
     $menus = [];
     foreach ($global_menus as $global_menu) {
-      $menus[$global_menu->project->value] = [
-        'project' => $global_menu->project->value,
-        'changed' => $global_menu->changed->value,
-        'weight' => $global_menu->getProjectWeight($global_menu->project->value),
-        'lang_code' => $language_id,
-        'menu_type' => $menu_type,
-        'menu_tree' => [],
-        'site_name' => $global_menu->site_name->value,
-      ];
-
       if ($global_menu->hasTranslation($language_id)) {
         $menu = $global_menu->getTranslation($language_id);
-        $menus[$menu->project->value]['menu_tree'] = json_decode($menu->menu_tree->value);
-        $menus[$menu->project->value]['site_name'] = $menu->site_name->value;
+
+        if ($menu_type === 'main') {
+          $menus[] = json_decode($menu->menu_tree->value);
+        }
+        else {
+          $menus = json_decode($menu->menu_tree->value);
+        }
       }
     }
 
-    return new JsonResponse($menus);
+    return new JsonResponse([
+      'lang_code' => $language_id,
+      'menu_type' => $menu_type,
+      'menu_tree' => $menus,
+    ]);
   }
 
   /**
@@ -111,7 +117,8 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    */
   public function post(string $project_name, Request $request): JsonResponse {
     $data = json_decode($request->getContent(), TRUE);
-    $menu_request = new MenuRequest($project_name, $data);
+    $weight = GlobalMenu::getProjectWeight($project_name);
+    $menu_request = new MenuRequest($project_name, $data, $weight);
 
     // Retrieve existing global menu entities.
     $storage = $this->entityTypeManager->getStorage('global_menu');
