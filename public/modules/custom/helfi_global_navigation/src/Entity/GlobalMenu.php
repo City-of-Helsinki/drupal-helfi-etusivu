@@ -134,6 +134,52 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
+   * Get the name of the project.
+   *
+   * @return string|null
+   *   Project name.
+   */
+  public function getProject(): ?string {
+    return $this->get('project')->value;
+  }
+
+  /**
+   * Get human readable name of the site.
+   *
+   * @return string|null
+   *   Name of the site.
+   */
+  public function getSiteName(): ?string {
+    return $this->get('site_name')->value;
+  }
+
+  /**
+   * Get the type of the menu.
+   *
+   * @return string|null
+   *   Type of the menu.
+   */
+  public function getMenuType(): ?string {
+    return $this->get('menu_type')->value;
+  }
+
+  /**
+   * Get menu tree.
+   *
+   * @param bool $associative
+   *   Return as associative array instead of object.
+   *
+   * @return object|array
+   *   Menu tree.
+   */
+  public function getMenuTree(bool $associative = FALSE): object|array {
+    if ($menu_tree = $this->get('menu_tree')->value){
+      return json_decode($menu_tree, $associative);
+    }
+    return [];
+  }
+
+  /**
    * Get project menu weight by project name.
    *
    * @param string $project_name
