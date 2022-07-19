@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_global_navigation;
 
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
@@ -24,17 +25,23 @@ class MenuRequestHandler {
   /**
    * Language manager.
    *
-   * @var LanguageManagerInterface
+   * @var \Drupal\Core\Language\LanguageManagerInterface
    */
   private LanguageManagerInterface $languageManager;
 
   /**
    * EntityType Manager.
    *
-   * @var EntityTypeManagerInterface
-   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   private EntityTypeManagerInterface $entityTypeManager;
+
+  /**
+   * Entity storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface|string
+   */
+  private EntityStorageInterface $storage;
 
   /**
    * Constructs a MenuController object.
@@ -43,6 +50,11 @@ class MenuRequestHandler {
    *   Entity type manager.
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    *   Language manager.
+   * @param \Drupal\helfi_navigation\Menu\MenuCache $menuCache
+   *   Menu request cache.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
@@ -51,13 +63,21 @@ class MenuRequestHandler {
   ) {
     $this->entityTypeManager = $entityTypeManager;
     $this->languageManager = $languageManager;
+    $this->storage = $entityTypeManager->getStorage('global_menu');
     $this->defaultLanguageId = $this->languageManager->getDefaultLanguage()->getId();
   }
 
+  /**
+   * Handle global navigation post request.
+   *
+   * @param \Drupal\helfi_navigation\Menu\MenuRequest $menu_request
+   *   Menu request.
+   *
+   * @throws \JsonException
+   */
   public function handleRequest(MenuRequest $menu_request): void {
     // Retrieve existing global menu entities.
-    $storage = $this->entityTypeManager->getStorage('global_menu');
-    $existing = $storage->loadByProperties([
+    $existing = $this->storage->loadByProperties([
       'project' => $menu_request->getProjectName(),
       'menu_type' => Menu::MAIN_MENU,
       'langcode' => $this->defaultLanguageId,
@@ -166,13 +186,11 @@ class MenuRequestHandler {
    *   Menu type.
    * @param string $lang_code
    *   Language code id.
-   *
-   * @return void
    */
-  private function setCache(string $menu_type, string $lang_code): void{
-    $global_menus = $this->entityStorage->loadByProperties([
+  private function setCache(string $menu_type, string $lang_code): void {
+    $global_menus = $this->storage->loadByProperties([
       'menu_type' => $menu_type,
-      'langcode' => $this->default_language,
+      'langcode' => $this->defaultLanguageId,
     ]);
 
     $menuResponse = [];
@@ -189,7 +207,7 @@ class MenuRequestHandler {
 
       if ($global_menu->hasTranslation($lang_code)) {
         $menu = $global_menu->getTranslation($lang_code);
-        $menuResponse[$menu->project->value]['menu_tree'] = $menu->getMenuTree($lang_code);
+        $menuResponse[$menu->project->value]['menu_tree'] = $menu->getMenuTree();
         $menuResponse[$menu->project->value]['site_name'] = $menu->getSiteName();
       }
     }
