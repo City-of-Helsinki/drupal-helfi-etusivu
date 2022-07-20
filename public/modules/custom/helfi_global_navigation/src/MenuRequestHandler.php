@@ -185,11 +185,11 @@ class MenuRequestHandler {
    *
    * @param string $menu_type
    *   Menu type.
-   * @param string $lang_code
+   * @param string $current_language_id
    *   Language code id.
    */
   private function setCache(string $menu_type, string $current_language_id): void {
-    /** @var GlobalMenu[] $global_menus */
+    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $global_menus */
     $global_menus = $this->storage->loadByProperties([
       'menu_type' => $menu_type,
       'langcode' => $this->defaultLanguageId,
