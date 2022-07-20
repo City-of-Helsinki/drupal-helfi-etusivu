@@ -125,10 +125,12 @@ class MenuRequest {
    *
    * @param string $menu_type
    *   Type of the menu.
-   * @param string $current_language_id
+   * @param string $language_id
    *   Current language.
    * @param array $global_menus
    *   Array of global menu objects.
+   * @param int $current_time
+   *   When the response was created.
    *
    * @return array
    *   Return value.
