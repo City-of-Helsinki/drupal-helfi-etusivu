@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\helfi_api_base\Environment\Project;
+use Drupal\helfi_global_navigation\MenuRequest;
 use Drupal\helfi_navigation\Menu\Menu;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\menu_link_content\MenuLinkContentInterface;
@@ -45,6 +46,7 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
   $entity_storage = \Drupal::entityTypeManager()->getStorage('global_menu');
   $default_language = \Drupal::languageManager()->getDefaultLanguage()->getId();
   $languages = \Drupal::languageManager()->getLanguages();
+  $cache = \Drupal::service('helfi_global_navigation.menu_cache');
 
   $existing = $entity_storage->loadByProperties([
     'menu_type' => $menu_type,
@@ -69,6 +71,8 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
       ->get('system.site')
       ->getOriginal('name', $default_language);
 
+    $time = \Drupal::time()->getCurrentTime();
+
     if (!$existing && !$menu) {
       $menu = GlobalMenu::create([
         'language' => $lang_code,
@@ -89,6 +93,10 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
         ->set('menu_type', $menu_type)
         ->save();
     }
+
+    // Cache all languages separately.
+    $response = MenuRequest::createResponse($menu_type, $lang_code, [$menu], $time);
+    $cache->setCache($menu_type, $lang_code, $response);
   }
 
 }
