@@ -8,10 +8,11 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\helfi_global_navigation\Entity\GlobalMenu;
+use Drupal\helfi_global_navigation\MenuRequest;
 use Drupal\helfi_global_navigation\MenuRequestHandler;
 use Drupal\helfi_global_navigation\MenuResponseHandler;
 use Drupal\helfi_navigation\Menu\Menu;
-use Drupal\helfi_global_navigation\MenuRequest;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,8 +59,15 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
   /**
    * Return all global menu entities.
    *
+   * @param string|null $menu_type
+   *   Menu type.
+   *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
-   *   List of global menu entities.
+   *   Returns a JSON response of requested menu type.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \JsonException
    */
   public function list(string $menu_type = NULL): JsonResponse {
     if (!Menu::menuExists($menu_type)) {
@@ -86,7 +94,8 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
    */
   public function post(string $project_name, Request $request): JsonResponse {
     $data = json_decode($request->getContent(), TRUE);
-    $menu_request = new MenuRequest($project_name, $data);
+    $weight = GlobalMenu::getProjectWeight($project_name);
+    $menu_request = new MenuRequest($project_name, $data, $weight);
 
     $this->menuRequestHandler->handleRequest($menu_request);
 
