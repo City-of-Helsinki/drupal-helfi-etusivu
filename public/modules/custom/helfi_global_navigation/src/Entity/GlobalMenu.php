@@ -173,7 +173,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
    *   Menu tree.
    */
   public function getMenuTree(bool $associative = FALSE): object|array {
-    if ($menu_tree = $this->get('menu_tree')->value){
+    if ($menu_tree = $this->get('menu_tree')->value) {
       return json_decode($menu_tree, $associative);
     }
     return [];
