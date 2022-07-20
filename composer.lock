@@ -4704,16 +4704,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "3.0.19",
+            "version": "3.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "d79b81bc16f49949da7c24f017c49c2420b531d9"
+                "reference": "0909c1784119ee0c41d3b2584b1709e9a2cee223"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/d79b81bc16f49949da7c24f017c49c2420b531d9",
-                "reference": "d79b81bc16f49949da7c24f017c49c2420b531d9",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/0909c1784119ee0c41d3b2584b1709e9a2cee223",
+                "reference": "0909c1784119ee0c41d3b2584b1709e9a2cee223",
                 "shasum": ""
             },
             "require": {
@@ -4728,10 +4728,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/3.0.19",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/3.0.20",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2022-06-30T12:47:35+00:00"
+            "time": "2022-07-20T11:23:45+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4931,16 +4931,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.9.15",
+            "version": "2.9.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "91d79c956b38c35486f344ee0ac6c5c70cf446c7"
+                "reference": "810ebc2a2ef68dad8d12d77bbe411193a3c63ddd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/91d79c956b38c35486f344ee0ac6c5c70cf446c7",
-                "reference": "91d79c956b38c35486f344ee0ac6c5c70cf446c7",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/810ebc2a2ef68dad8d12d77bbe411193a3c63ddd",
+                "reference": "810ebc2a2ef68dad8d12d77bbe411193a3c63ddd",
                 "shasum": ""
             },
             "require": {
@@ -5050,10 +5050,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.9.15",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.9.16",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-07-05T08:53:40+00:00"
+            "time": "2022-07-20T10:58:41+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -6259,17 +6259,17 @@
         },
         {
             "name": "drupal/paragraphs_asymmetric_translation_widgets",
-            "version": "1.0.0-beta4",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/paragraphs_asymmetric_translation_widgets.git",
-                "reference": "8.x-1.0-beta4"
+                "reference": "8.x-1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs_asymmetric_translation_widgets-8.x-1.0-beta4.zip",
-                "reference": "8.x-1.0-beta4",
-                "shasum": "6c524f787a25654b5d2c43afd92e3766ff1ba532"
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_asymmetric_translation_widgets-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "be49a32345b9a231ee5316bc5cd12160960b5264"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -6278,11 +6278,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-beta4",
-                    "datestamp": "1594979926",
+                    "version": "8.x-1.0",
+                    "datestamp": "1658305808",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -6292,16 +6292,16 @@
             ],
             "authors": [
                 {
-                    "name": "Grayle",
-                    "homepage": "https://www.drupal.org/user/3145497"
-                },
-                {
                     "name": "efpapado",
                     "homepage": "https://www.drupal.org/user/1009348"
                 },
                 {
                     "name": "esolitos",
                     "homepage": "https://www.drupal.org/user/1567500"
+                },
+                {
+                    "name": "Grayle",
+                    "homepage": "https://www.drupal.org/user/3145497"
                 },
                 {
                     "name": "penyaskito",
@@ -10990,12 +10990,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ruflin/Elastica.git",
-                "reference": "f72262d1cb68668d7a370fb113e04b4809f92e7a"
+                "reference": "0015bf0805712aba78da81cc59f6a28c0c12ca3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/f72262d1cb68668d7a370fb113e04b4809f92e7a",
-                "reference": "f72262d1cb68668d7a370fb113e04b4809f92e7a",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/0015bf0805712aba78da81cc59f6a28c0c12ca3d",
+                "reference": "0015bf0805712aba78da81cc59f6a28c0c12ca3d",
                 "shasum": ""
             },
             "require": {
@@ -11052,7 +11052,7 @@
                 "issues": "https://github.com/ruflin/Elastica/issues",
                 "source": "https://github.com/ruflin/Elastica/tree/master"
             },
-            "time": "2022-07-04T12:20:29+00:00"
+            "time": "2022-07-19T13:30:39+00:00"
         },
         {
             "name": "stack/builder",
