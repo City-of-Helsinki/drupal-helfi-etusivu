@@ -37,10 +37,12 @@ class MenuRequest {
    *   Project name. Eg. "liikenne".
    * @param array $data
    *   Decoded JSON data from Request.
+   * @param int $weight
+   *   Project weight.
    *
    * @throws \JsonException
    */
-  public function __construct(string $project_name, array $data) {
+  public function __construct(string $project_name, array $data, int $weight) {
     if (!$project_name) {
       throw new \JsonException('Project name does not exist in menu data for ');
     }
@@ -54,7 +56,7 @@ class MenuRequest {
     }
 
     $this->projectName = $project_name;
-    $this->menuTree = $data['menu_tree'];
+    $this->menuTree = $this->processWeight($data['menu_tree'], $weight);
     $this->siteName = $data['site_name'];
   }
 
@@ -98,6 +100,59 @@ class MenuRequest {
    */
   public function getProjectName(): string {
     return $this->projectName;
+  }
+
+  /**
+   * Process menu tree weight.
+   *
+   * @param array $menu_tree
+   *   Menu tree.
+   * @param int $weight
+   *   Project weight.
+   *
+   * @return array
+   *   Returns the processed menu tree.
+   */
+  protected function processWeight(array $menu_tree, int $weight = 0): array {
+    foreach ($menu_tree as &$branch) {
+      $branch['weight'] = $weight;
+    }
+    return $menu_tree;
+  }
+
+  /**
+   * Create the response for global navigation menu requests.
+   *
+   * @param string $menu_type
+   *   Type of the menu.
+   * @param string $current_language_id
+   *   Current language.
+   * @param array $global_menus
+   *   Array of global menu objects.
+   *
+   * @return array
+   *   Return value.
+   */
+  public static function createResponse(string $menu_type, string $language_id, array $global_menus, int $current_time): array {
+    $menus = [];
+    foreach ($global_menus as $global_menu) {
+      if ($global_menu->hasTranslation($language_id)) {
+        $menu = $global_menu->getTranslation($language_id);
+        if ($menu_type === 'main') {
+          $menus[] = json_decode($menu->menu_tree->value);
+        }
+        else {
+          $menus = json_decode($menu->menu_tree->value);
+        }
+      }
+    }
+
+    return [
+      'lang_code' => $language_id,
+      'created_at' => $current_time,
+      'menu_type' => $menu_type,
+      'menu_tree' => $menus,
+    ];
   }
 
 }

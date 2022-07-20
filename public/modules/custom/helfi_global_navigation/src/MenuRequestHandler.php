@@ -11,7 +11,7 @@ use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_navigation\Menu\Menu;
 
 /**
- * Wrapper class for JSON request.
+ * Handle menu creation request.
  */
 class MenuRequestHandler {
 
@@ -95,6 +95,7 @@ class MenuRequestHandler {
         $menu->getMenuType(),
         $this->languageManager->getCurrentLanguage()->getId()
       );
+
     }
     catch (\Exception $exception) {
       throw new \JsonException(sprintf(
@@ -187,32 +188,19 @@ class MenuRequestHandler {
    * @param string $lang_code
    *   Language code id.
    */
-  private function setCache(string $menu_type, string $lang_code): void {
+  private function setCache(string $menu_type, string $current_language_id): void {
+    /** @var GlobalMenu[] $global_menus */
     $global_menus = $this->storage->loadByProperties([
       'menu_type' => $menu_type,
       'langcode' => $this->defaultLanguageId,
     ]);
-
-    $menuResponse = [];
-    foreach ($global_menus as $global_menu) {
-      $menuResponse[$global_menu->getProject()] = [
-        'project' => $global_menu->getProject(),
-        'changed' => $global_menu->changed->value,
-        'weight' => $global_menu->getProjectWeight($global_menu->project->value),
-        'lang_code' => $lang_code,
-        'menu_type' => $menu_type,
-        'menu_tree' => [],
-        'site_name' => $global_menu->getSiteName(),
-      ];
-
-      if ($global_menu->hasTranslation($lang_code)) {
-        $menu = $global_menu->getTranslation($lang_code);
-        $menuResponse[$menu->project->value]['menu_tree'] = $menu->getMenuTree();
-        $menuResponse[$menu->project->value]['site_name'] = $menu->getSiteName();
-      }
-    }
-
-    $this->menuCache->setCache($menu_type, $lang_code, $menuResponse);
+    $response = MenuRequest::createResponse(
+      $menu_type,
+      $current_language_id,
+      $global_menus,
+      \Drupal::time()->getCurrentTime()
+    );
+    $this->menuCache->setCache($menu_type, $current_language_id, $response);
   }
 
 }

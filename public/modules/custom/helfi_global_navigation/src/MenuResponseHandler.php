@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 
 /**
- * Wrapper class for JSON request.
+ * Handle menu request.
  */
 class MenuResponseHandler {
 
@@ -64,7 +64,6 @@ class MenuResponseHandler {
     if ($cached = $this->menuCache->getCached($menu_type, $lang_code)) {
       return $cached;
     }
-
     return $this->createMenuResponse($menu_type, $lang_code);
   }
 
@@ -79,36 +78,19 @@ class MenuResponseHandler {
    * @return array
    *   Request response data.
    */
-  public function createMenuResponse(string $menu_type, string $lang_code): array {
+  public function createMenuResponse(string $menu_type, string $current_language_id): array {
     /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $global_menus */
     $global_menus = $this->entityStorage->loadByProperties([
       'menu_type' => $menu_type,
       'langcode' => $this->defaultLanguageId,
     ]);
 
-    $menuResponse = [];
-    foreach ($global_menus as $global_menu) {
-      $menuResponse[$global_menu->getProject()] = [
-        'project' => $global_menu->getProject(),
-        'changed' => $global_menu->changed->value,
-        'weight' => $global_menu->getProjectWeight($global_menu->project->value),
-        'lang_code' => $lang_code,
-        'menu_type' => $menu_type,
-        'menu_tree' => [],
-        'site_name' => $global_menu->getSiteName(),
-      ];
-
-      if ($global_menu->hasTranslation($lang_code)) {
-        /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $menu */
-        $menu = $global_menu->getTranslation($lang_code);
-        $menuResponse[$menu->getProject()]['menu_tree'] = $menu->getMenuTree();
-        $menuResponse[$menu->getProject()]['site_name'] = $menu->getSiteName();
-      }
-    }
-
-    $this->menuCache->setCache($menu_type, $lang_code, $menuResponse);
-
-    return $menuResponse;
+    return MenuRequest::createResponse(
+      $menu_type,
+      $current_language_id,
+      $global_menus,
+      \Drupal::time()->getCurrentTime()
+    );
   }
 
 }
