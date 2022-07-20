@@ -89,8 +89,10 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
         ? $menu->getTranslation($lang_code)
         : $menu->addTranslation($lang_code);
 
+      // @todo Get the correct language version of site name.
       $translation->set('menu_tree', json_encode($tree))
         ->set('menu_type', $menu_type)
+        ->set('site_name', $site_name)
         ->save();
     }
 
