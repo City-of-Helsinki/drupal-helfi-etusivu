@@ -60,11 +60,6 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
   );
 
   foreach ($ordered_language_codes as $lang_code) {
-    $tree = [
-      'project' => Project::ETUSIVU,
-      'menu_tree' => $menu_tree_builder->buildMenuTree($menu_type, $lang_code),
-    ];
-
     $site_name = \Drupal::configFactory()
       ->get('system.site')
       ->getOriginal('name', $default_language);
@@ -76,7 +71,7 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
         'menu_type' => $menu_type,
         'site_name' => $site_name,
         'weight' => 0,
-        'menu_tree' => json_encode($tree),
+        'menu_tree' => json_encode($menu_tree_builder->buildMenuTree($menu_type, $lang_code)),
       ]);
       $menu->save();
     }
@@ -85,7 +80,7 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
         ? $menu->getTranslation($lang_code)
         : $menu->addTranslation($lang_code);
 
-      $translation->set('menu_tree', json_encode($tree))
+      $translation->set('menu_tree', json_encode($menu_tree_builder->buildMenuTree($menu_type, $lang_code)))
         ->set('menu_type', $menu_type)
         ->save();
     }
