@@ -8,7 +8,6 @@
 declare(strict_types = 1);
 
 use Drupal\helfi_api_base\Environment\Project;
-use Drupal\helfi_global_navigation\MenuRequest;
 use Drupal\helfi_navigation\Menu\Menu;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\menu_link_content\MenuLinkContentInterface;
@@ -89,8 +88,6 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
         ->save();
     }
 
-    // Cache all languages separately.
-    $response = MenuRequest::createResponse($menu_type, $lang_code, [$menu], $time);
   }
 
 }

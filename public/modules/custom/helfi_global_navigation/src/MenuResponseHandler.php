@@ -57,34 +57,34 @@ class MenuResponseHandler {
    * @return array
    *   Request response data.
    */
-  public function getMenuResponse(string $menu_type, string $lang_code): array {
-    return $this->createMenuResponse($menu_type, $lang_code);
-  }
-
-  /**
-   * Create the response.
-   *
-   * @param string $menu_type
-   *   Menu type.
-   * @param string $current_language_id
-   *   Language code id.
-   *
-   * @return array
-   *   Request response data.
-   */
-  public function createMenuResponse(string $menu_type, string $current_language_id): array {
+  public function getMenuResponse(string $menu_type, string $current_language_id): array {
     /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $global_menus */
     $global_menus = $this->entityStorage->loadByProperties([
       'menu_type' => $menu_type,
       'langcode' => $this->defaultLanguageId,
     ]);
 
-    return MenuRequest::createResponse(
-      $menu_type,
-      $current_language_id,
-      $global_menus,
-      \Drupal::time()->getCurrentTime()
-    );
+    $latest_created_at = 0;
+    $menus = [];
+    foreach ($global_menus as $global_menu) {
+      if ($global_menu->hasTranslation($current_language_id)) {
+        $menu = $global_menu->getTranslation($current_language_id);
+        if ($menu_type === 'main') {
+          $menus[] = json_decode($menu->menu_tree->value);
+        }
+        else {
+          $menus = json_decode($menu->menu_tree->value);
+        }
+        $latest_created_at = max([$menu->created->value, $latest_created_at]);
+      }
+    }
+
+    return [
+      'lang_code' => $current_language_id,
+      'created_at' => $latest_created_at,
+      'menu_type' => $menu_type,
+      'menu_tree' => $menus,
+    ];
   }
 
 }
