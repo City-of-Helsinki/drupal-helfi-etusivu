@@ -21,7 +21,7 @@
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_azure_fs": "^1.0",
         "drupal/helfi_drupal_tools": "dev-main",
-        "drupal/helfi_platform_config": "^2.0",
+        "drupal/helfi_platform_config": "dev-UHF-6038-menu-data-syncing",
         "drupal/helfi_proxy": "^2.0",
         "drupal/helfi_tunnistamo": "^2.0",
         "drupal/json_field": "^1.0@RC",

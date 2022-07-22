@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Controller;
 
+use Drupal\Core\Cache\CacheableJsonResponse;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -75,8 +77,21 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     }
 
     $language_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
-    $response = $this->menuResponseHandler->getMenuResponse($menu_type, $language_id);
-    return new JsonResponse($response, 201);
+    $menu = $this->menuResponseHandler->getMenuResponse($menu_type, $language_id);
+
+    $cache['#cache'] = [
+      'tags' => [
+        "config:system.menu.$menu_type",
+      ],
+      'contexts' => [
+        'languages:language_content'
+      ],
+    ];
+
+    $response =  new CacheableJsonResponse($menu, 201);
+    $response->addCacheableDependency(CacheableMetadata::createFromRenderArray($cache));
+
+    return $response;
   }
 
   /**
