@@ -51,7 +51,7 @@ class MenuResponseHandler {
    *
    * @param string $menu_type
    *   Menu type.
-   * @param string $lang_code
+   * @param string $current_language_id
    *   Language code id.
    *
    * @return array
