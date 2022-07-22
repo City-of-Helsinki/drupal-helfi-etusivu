@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0402a5dea5d1ddecedc2024ae32317f",
+    "content-hash": "6b67beda3eef476c7e32add9c855c85b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4931,16 +4931,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "dev-UHF-6038-menu-data-syncing",
+            "version": "2.9.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "3b96be3f7f77919d3ec86f1252de0452d6abe98c"
+                "reference": "810ebc2a2ef68dad8d12d77bbe411193a3c63ddd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/3b96be3f7f77919d3ec86f1252de0452d6abe98c",
-                "reference": "3b96be3f7f77919d3ec86f1252de0452d6abe98c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/810ebc2a2ef68dad8d12d77bbe411193a3c63ddd",
+                "reference": "810ebc2a2ef68dad8d12d77bbe411193a3c63ddd",
                 "shasum": ""
             },
             "require": {
@@ -5050,10 +5050,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/UHF-6038-menu-data-syncing",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.9.16",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-07-21T13:56:36+00:00"
+            "time": "2022-07-20T10:58:41+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -18420,7 +18420,6 @@
         "drupal/elasticsearch_connector": 15,
         "drupal/external_entities": 15,
         "drupal/helfi_drupal_tools": 20,
-        "drupal/helfi_platform_config": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5
     },
