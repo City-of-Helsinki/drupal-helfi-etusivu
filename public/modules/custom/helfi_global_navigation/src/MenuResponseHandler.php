@@ -34,16 +34,13 @@ class MenuResponseHandler {
    *   Entitytype manager.
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    *   Language manager.
-   * @param MenuCache $menuCache
-   *   Menu cache.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    LanguageManagerInterface $languageManager,
-    private MenuCache $menuCache
+    LanguageManagerInterface $languageManager
   ) {
     $this->entityStorage = $entityTypeManager->getStorage('global_menu');
     $this->defaultLanguageId = $languageManager->getDefaultLanguage()->getId();
@@ -61,9 +58,6 @@ class MenuResponseHandler {
    *   Request response data.
    */
   public function getMenuResponse(string $menu_type, string $lang_code): array {
-    if ($cached = $this->menuCache->getCached($menu_type, $lang_code)) {
-      return $cached;
-    }
     return $this->createMenuResponse($menu_type, $lang_code);
   }
 

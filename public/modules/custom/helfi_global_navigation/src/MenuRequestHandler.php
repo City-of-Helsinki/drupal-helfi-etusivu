@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_global_navigation;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -50,16 +51,13 @@ class MenuRequestHandler {
    *   Entity type manager.
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    *   Language manager.
-   * @param \Drupal\helfi_navigation\Menu\MenuCache $menuCache
-   *   Menu request cache.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    LanguageManagerInterface $languageManager,
-    private MenuCache $menuCache
+    LanguageManagerInterface $languageManager
   ) {
     $this->entityTypeManager = $entityTypeManager;
     $this->languageManager = $languageManager;
@@ -85,17 +83,12 @@ class MenuRequestHandler {
 
     try {
       if (empty($existing)) {
-        $menu = $this->createNewMenu($menu_request);
+        $this->createNewMenu($menu_request);
       }
       else {
-        $menu = $this->updateMenu($existing, $menu_request);
+        $this->updateMenu($existing, $menu_request);
       }
-
-      $this->setCache(
-        $menu->getMenuType(),
-        $this->languageManager->getCurrentLanguage()->getId()
-      );
-
+      Cache::invalidateTags([sprintf('config:system.menu.%s', Menu::MAIN_MENU)]);
     }
     catch (\Exception $exception) {
       throw new \JsonException(sprintf(
@@ -178,29 +171,6 @@ class MenuRequestHandler {
         ->save();
     }
     return $menu;
-  }
-
-  /**
-   * Set main menu response to cache.
-   *
-   * @param string $menu_type
-   *   Menu type.
-   * @param string $current_language_id
-   *   Language code id.
-   */
-  private function setCache(string $menu_type, string $current_language_id): void {
-    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $global_menus */
-    $global_menus = $this->storage->loadByProperties([
-      'menu_type' => $menu_type,
-      'langcode' => $this->defaultLanguageId,
-    ]);
-    $response = MenuRequest::createResponse(
-      $menu_type,
-      $current_language_id,
-      $global_menus,
-      \Drupal::time()->getCurrentTime()
-    );
-    $this->menuCache->setCache($menu_type, $current_language_id, $response);
   }
 
 }

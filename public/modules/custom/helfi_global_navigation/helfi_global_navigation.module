@@ -46,7 +46,6 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
   $entity_storage = \Drupal::entityTypeManager()->getStorage('global_menu');
   $default_language = \Drupal::languageManager()->getDefaultLanguage()->getId();
   $languages = \Drupal::languageManager()->getLanguages();
-  $cache = \Drupal::service('helfi_global_navigation.menu_cache');
 
   $existing = $entity_storage->loadByProperties([
     'menu_type' => $menu_type,
@@ -98,7 +97,6 @@ function _helfi_global_navigation_create_menu(string $menu_type) {
 
     // Cache all languages separately.
     $response = MenuRequest::createResponse($menu_type, $lang_code, [$menu], $time);
-    $cache->setCache($menu_type, $lang_code, $response);
   }
 
 }
