@@ -120,41 +120,4 @@ class MenuRequest {
     return $menu_tree;
   }
 
-  /**
-   * Create the response for global navigation menu requests.
-   *
-   * @param string $menu_type
-   *   Type of the menu.
-   * @param string $language_id
-   *   Current language.
-   * @param array $global_menus
-   *   Array of global menu objects.
-   * @param int $current_time
-   *   When the response was created.
-   *
-   * @return array
-   *   Return value.
-   */
-  public static function createResponse(string $menu_type, string $language_id, array $global_menus, int $current_time): array {
-    $menus = [];
-    foreach ($global_menus as $global_menu) {
-      if ($global_menu->hasTranslation($language_id)) {
-        $menu = $global_menu->getTranslation($language_id);
-        if ($menu_type === 'main') {
-          $menus[] = json_decode($menu->menu_tree->value);
-        }
-        else {
-          $menus = json_decode($menu->menu_tree->value);
-        }
-      }
-    }
-
-    return [
-      'lang_code' => $language_id,
-      'created_at' => $current_time,
-      'menu_type' => $menu_type,
-      'menu_tree' => $menus,
-    ];
-  }
-
 }
