@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Controller;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableJsonResponse;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
@@ -97,7 +98,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
   }
 
   /**
-   * Create or update menu entity.
+   * Create or update "main" GlobalMenu entity.
    *
    * @param string $project_name
    *   Project name.
@@ -115,6 +116,7 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
     $menu_request = new MenuRequest($project_name, $data, $weight);
 
     $this->menuRequestHandler->handleRequest($menu_request);
+    Cache::invalidateTags([sprintf('config:system.menu.%s', Menu::MAIN_MENU)]);
 
     return new JsonResponse([], 201);
   }
