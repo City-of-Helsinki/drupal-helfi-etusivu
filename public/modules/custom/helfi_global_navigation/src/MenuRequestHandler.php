@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_global_navigation;
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -88,7 +87,6 @@ class MenuRequestHandler {
       else {
         $this->updateMenu($existing, $menu_request);
       }
-      Cache::invalidateTags([sprintf('config:system.menu.%s', Menu::MAIN_MENU)]);
     }
     catch (\Exception $exception) {
       throw new \JsonException(sprintf(
