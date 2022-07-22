@@ -84,12 +84,14 @@ class MenuController extends ControllerBase implements ContainerInjectionInterfa
         "config:system.menu.$menu_type",
       ],
       'contexts' => [
-        'languages:language_content'
+        'languages:language_content',
       ],
     ];
 
-    $response =  new CacheableJsonResponse($menu, 201);
-    $response->addCacheableDependency(CacheableMetadata::createFromRenderArray($cache));
+    $response = new CacheableJsonResponse($menu, 201);
+    $response->addCacheableDependency(
+      CacheableMetadata::createFromRenderArray($cache)
+    );
 
     return $response;
   }
