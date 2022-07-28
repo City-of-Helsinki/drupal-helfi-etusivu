@@ -62,7 +62,7 @@ class LocalExternalMenuBlock extends ExternalMenuBlockBase {
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    // @todo: If you want to make other menu blocks.
+    // @todo If you want to make other menu blocks.
     // instead of :main use $this->getDerivativeId()
     return [
       "config:system.menu.main",
