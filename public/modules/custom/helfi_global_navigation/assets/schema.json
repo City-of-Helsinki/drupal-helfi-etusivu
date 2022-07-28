@@ -2,32 +2,38 @@
   "title": "Menu tree",
   "description": "A JSON representation of a Drupal menu tree",
   "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "string"
-      },
-      "name": {
-        "type": "string"
-      },
-      "url": {
-        "type": "string"
-      },
-      "weight": {
-        "type": "integer"
-      },
-      "sub_tree": {
-        "type": "array",
-        "items": {"$ref": "#/$defs/tree"},
-        "minimum": 1
-      }
-    },
-    "required": ["id", "name", "url", "sub_tree"]
-  },
+  "items": {"$ref":  "#/$defs/langcode"},
   "$defs": {
+    "langcode": {
+      "type": "array",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "langcode": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "hasItems": {
+          "type": "boolean"
+        },
+        "weight": {
+          "type": "integer"
+        },
+        "sub_tree": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/tree"}
+        }
+      },
+      "required": ["name", "langcode", "url"]
+    },
     "tree": {
-      "type": "object",
+      "type": "array",
       "required": ["id", "name", "url"],
       "properties": {
         "description": {
@@ -53,36 +59,4 @@
       }
     }
   }
-},
-{
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object",
-  "properties": {
-    "name": {
-      "type": "string"
-    },
-    "url": {
-      "type": "string"
-    },
-    "external": {
-      "type": "boolean"
-    },
-    "hasItems": {
-      "type": "boolean"
-    },
-    "weight": {
-      "type": "integer"
-    },
-    "sub_tree": {
-      "type": "array"
-    }
-  },
-  "required": [
-    "name",
-    "url",
-    "external",
-    "hasItems",
-    "weight",
-    "sub_tree"
-  ]
 }

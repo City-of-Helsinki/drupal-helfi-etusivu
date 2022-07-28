@@ -39,7 +39,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   base_table = "global_menu",
  *   data_table = "global_menu_field_data",
  *   entity_keys = {
- *     "id" = "id",
+ *     "id" = "project",
  *     "uuid" = "uuid",
  *     "langcode" = "langcode"
  *   },
@@ -67,6 +67,16 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       ->setLabel(new TranslatableMarkup('ID'))
       ->setSettings([
         'is_ascii' => TRUE,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+
+    $fields['name'] = BaseFieldDefinition::create('string')
+      ->setLabel(new TranslatableMarkup('Name'))
+      ->setSetting('max_length', 50)
+      ->setRequired(TRUE)
+      ->setDisplayOptions('form', [
+        'label' => 'inline',
+        'type' => 'readonly_field_widget',
       ])
       ->setDisplayConfigurable('form', TRUE);
 

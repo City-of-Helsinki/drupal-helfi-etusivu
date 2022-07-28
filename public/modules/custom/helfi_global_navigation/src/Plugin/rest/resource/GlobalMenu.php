@@ -10,8 +10,6 @@ use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\Plugin\rest\resource\EntityResourceValidationTrait;
 use Drupal\rest\ResourceResponse;
-use JsonSchema\Constraints\Factory;
-use JsonSchema\SchemaStorage;
 use JsonSchema\Validator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -83,14 +81,10 @@ final class GlobalMenu extends ResourceBase {
     if (!$entity = GlobalMenuEntity::load($id)) {
       throw new NotFoundHttpException();
     }
-
-    if (!$content = $request->getContent()) {
-      throw new BadRequestHttpException('Invalid content');
-    }
     try {
-      $content = \GuzzleHttp\json_decode($content, TRUE);
+      $content = \GuzzleHttp\json_decode($request->getContent(), TRUE);
     }
-    catch (\InvalidArgumentException $e) {
+    catch (\InvalidArgumentException) {
       throw new BadRequestHttpException('Invalid JSON.');
     }
     $entity->set('menu_tree', $content);
