@@ -28,7 +28,7 @@ class ExternalMenuTreeFactory {
   /**
    * The JSON validator.
    *
-   * @var JsonSchema\Validator
+   * @var \JsonSchema\Validator
    */
   protected Validator $validator;
 

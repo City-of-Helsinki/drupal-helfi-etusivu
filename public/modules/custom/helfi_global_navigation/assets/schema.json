@@ -17,13 +17,13 @@
       "weight": {
         "type": "integer"
       },
-      "menu_tree": { 
+      "sub_tree": {
         "type": "array",
         "items": {"$ref": "#/$defs/tree"},
         "minimum": 1
       }
     },
-    "required": ["id", "name", "url", "menu_tree"]
+    "required": ["id", "name", "url", "sub_tree"]
   },
   "$defs": {
     "tree": {
@@ -42,7 +42,7 @@
         "url": {
           "type": "string"
         },
-        "menu_tree": { 
+        "sub_tree": {
           "type": "array",
           "items": {"$ref": "#/$defs/tree"}
         },
@@ -53,4 +53,36 @@
       }
     }
   }
+},
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "external": {
+      "type": "boolean"
+    },
+    "hasItems": {
+      "type": "boolean"
+    },
+    "weight": {
+      "type": "integer"
+    },
+    "sub_tree": {
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "url",
+    "external",
+    "hasItems",
+    "weight",
+    "sub_tree"
+  ]
 }
