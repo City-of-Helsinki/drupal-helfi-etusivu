@@ -7,6 +7,7 @@ namespace Drupal\helfi_global_navigation\Plugin\Block;
 use Drupal\helfi_navigation\ExternalMenuTree;
 use Drupal\helfi_navigation\Menu\Menu;
 use Drupal\helfi_navigation\Plugin\Block\ExternalMenuBlockBase;
+use GuzzleHttp\json_encode;
 
 /**
  * Provides an external menu block to etusivu.
@@ -19,6 +20,16 @@ use Drupal\helfi_navigation\Plugin\Block\ExternalMenuBlockBase;
  * )
  */
 class LocalExternalMenuBlock extends ExternalMenuBlockBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getConfiguration(): array {
+    return [
+      'expand_all_items' => TRUE,
+      'depth' => 2,
+    ] + parent::getConfiguration();
+  }
 
   /**
    * Build external menu render array.
@@ -34,10 +45,10 @@ class LocalExternalMenuBlock extends ExternalMenuBlockBase {
 
     $menu_type = $this->getDerivativeId();
     $menu_tree = $this->buildFromJson(
-      $local_menu_service->getMenuResponse(
+      json_encode($local_menu_service->getMenuResponse(
         Menu::MAIN_MENU,
         $current_language_id
-      )
+      ))
     );
 
     // @todo UHF-5828: local external menu block.
@@ -51,8 +62,10 @@ class LocalExternalMenuBlock extends ExternalMenuBlockBase {
 
       $build['#sorted'] = TRUE;
       $build['#items'] = $menu_tree->getTree();
-      $build['#theme'] = 'menu__external_menu';
+      $build['#theme'] = 'menu__main__desktop__external';
       $build['#menu_type'] = $menu_type;
+      $build['#attached']['library'][] = 'hdbt/desktop-menu-toggle';
+      $build['#attributes']['class'][] = 'desktop-menu';
     }
 
     return $build;

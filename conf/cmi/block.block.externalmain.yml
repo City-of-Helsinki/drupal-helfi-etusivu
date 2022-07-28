@@ -1,0 +1,25 @@
+uuid: bcfde4d9-b1da-4847-b80e-76e1434d6a00
+langcode: en
+status: true
+dependencies:
+  config:
+    - main
+  module:
+    - helfi_global_navigation
+  theme:
+    - hdbt_subtheme
+id: externalmain
+theme: hdbt_subtheme
+region: header_bottom
+weight: 0
+provider: null
+plugin: 'local_external_menu_block:main'
+settings:
+  id: 'local_external_menu_block:main'
+  label: 'External - Main'
+  label_display: '0'
+  provider: helfi_global_navigation
+  expand_all_items: true
+  depth: 2
+  level: '1'
+visibility: {  }
