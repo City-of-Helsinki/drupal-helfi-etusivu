@@ -40,6 +40,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   data_table = "global_menu_field_data",
  *   entity_keys = {
  *     "id" = "project",
+ *     "label" = "name",
  *     "uuid" = "uuid",
  *     "langcode" = "langcode"
  *   },
@@ -55,7 +56,38 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   field_ui_base_route = "global_menu.settings"
  * )
  */
-class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
+final class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
+
+  /**
+   * Setter for menu_tree field.
+   *
+   * @param mixed $tree
+   *   The menu tree.
+   *
+   * @return $this
+   *   The self.
+   */
+  public function setMenuTree(mixed $tree) : self {
+    if (!is_string($tree)) {
+      $tree = json_encode($tree);
+    }
+    $this->set('menu_tree', $tree);
+    return $this;
+  }
+
+  /**
+   * Setter for label field.
+   *
+   * @param string $label
+   *   The label.
+   *
+   * @return $this
+   *   The self.
+   */
+  public function setLabel(string $label) : self {
+    $this->set($this->getEntityType()->getKey('label'), $label);
+    return $this;
+  }
 
   /**
    * {@inheritdoc}
@@ -74,6 +106,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       ->setLabel(new TranslatableMarkup('Name'))
       ->setSetting('max_length', 50)
       ->setRequired(TRUE)
+      ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
         'label' => 'inline',
         'type' => 'readonly_field_widget',
@@ -82,6 +115,7 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
 
     $fields['menu_tree'] = BaseFieldDefinition::create('json')
       ->setLabel(new TranslatableMarkup('Menu tree'))
+      ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'json_editor',
       ])
