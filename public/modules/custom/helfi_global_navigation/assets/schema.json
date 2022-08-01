@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "parentId": { "type": "string" },
+    "external": { "type": "boolean" },
+    "hasItems": { "type": "boolean" },
+    "description": { "type": "string" },
+    "weight": { "type": "integer" },
+    "url": { "type": "string" },
+    "sub_tree": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sub_tree" }
+    }
+  },
+  "required": ["sub_tree", "name"],
+  "$defs": {
+    "sub_tree": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "parentId": { "type": "string" },
+        "external": { "type": "boolean" },
+        "hasItems": { "type": "boolean" },
+        "description": { "type": "string" },
+        "url": { "type": "string" },
+        "sub_tree": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sub_tree" }
+        },
+        "weight": { "type": "integer" }
+      },
+      "required": ["id", "name", "url"]
+    }
+  }
+}
