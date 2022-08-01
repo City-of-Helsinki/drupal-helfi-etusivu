@@ -22,42 +22,40 @@ use Drupal\helfi_navigation\Menu\Menu;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\helfi_global_navigation\Entity\Listing\ListBuilder",
  *     "form" = {
- *       "default" = "Drupal\helfi_global_navigation\Form\GlobalMenuForm",
- *       "delete" = "Drupal\Core\Entity\EntityDeleteForm"
+ *       "default" = "Drupal\Core\Entity\ContentEntityForm",
+ *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm"
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\helfi_global_navigation\Entity\Routing\GlobalMenuRouteProvider"
- *     }
+ *       "html" = "Drupal\helfi_api_base\Entity\Routing\EntityRouteProvider",
+ *     },
+ *     "local_action_provider" = {
+ *       "collection" = "Drupal\entity\Menu\EntityCollectionLocalActionProvider",
+ *     },
+ *     "local_task_provider" = {
+ *       "default" = "Drupal\entity\Menu\DefaultEntityLocalTaskProvider",
+ *     },
  *   },
  *   base_table = "global_menu",
  *   data_table = "global_menu_field_data",
  *   entity_keys = {
- *     "id" = "id",
+ *     "id" = "project",
+ *     "label" = "name",
  *     "uuid" = "uuid",
  *     "langcode" = "langcode"
  *   },
  *   translatable = TRUE,
- *   admin_permission = "access content",
+ *   admin_permission = "administer global_menu",
  *   links = {
  *     "canonical" = "/global_menu/{global_menu}",
+ *     "add-form" = "/admin/content/integrations/global_menu/add",
  *     "edit-form" = "/admin/content/integrations/global_menu/{global_menu}/edit",
  *     "collection" = "/admin/content/integrations/global_menu",
  *     "delete-form" = "/admin/content/integrations/global_menu/{global_menu}/delete"
- *   }
+ *   },
+ *   field_ui_base_route = "global_menu.settings"
  * )
  */
-class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
-
-  private const PROJECT_WEIGHTS = [
-    'terveys' => 0,
-    'kasvatus-koulutus' => 1,
-    'asuminen' => 2,
-    'liikenne' => 3,
-    'kuva' => 4,
-    'tyo-yrittaminen' => 5,
-    'strategia' => 6,
-    'rekry' => 7,
-  ];
+final class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
 
   /**
    * {@inheritdoc}
@@ -65,17 +63,14 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['project'] = BaseFieldDefinition::create('string')
-      ->setLabel(new TranslatableMarkup('Project'))
-      ->setSetting('max_length', 50)
-      ->setRequired(TRUE)
-      ->setDisplayOptions('form', [
-        'label' => 'inline',
-        'type' => 'readonly_field_widget',
+    $fields[$entity_type->getKey('id')] = BaseFieldDefinition::create('string')
+      ->setLabel(new TranslatableMarkup('ID'))
+      ->setSettings([
+        'is_ascii' => TRUE,
       ])
       ->setDisplayConfigurable('form', TRUE);
 
-    $fields['site_name'] = BaseFieldDefinition::create('string')
+    $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Site name'))
       ->setSetting('max_length', 50)
       ->setRequired(FALSE)
@@ -95,6 +90,9 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
         'label' => 'inline',
         'type' => 'readonly_field_widget',
       ])
+      ->addConstraint('JsonSchema', [
+        'schema' => 'file://' . realpath(__DIR__ . '/../../assets/schema.json'),
+      ])
       ->setDisplayConfigurable('form', TRUE);
 
     $fields['menu_tree'] = BaseFieldDefinition::create('json')
@@ -112,25 +110,38 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       ->setDescription(t('The weight of this menu in relation to other menus.'))
       ->setDefaultValue(0);
 
-    $fields['created'] = BaseFieldDefinition::create('created')
-      ->setLabel(t('Created'))
-      ->setDescription(t('The time that the menu was created.'))
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'timestamp',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'datetime_timestamp',
-        'weight' => 10,
-      ])
-      ->setDisplayConfigurable('form', TRUE);
-
-    $fields['changed'] = BaseFieldDefinition::create('changed')
-      ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the menu was last edited.'));
-
     return $fields;
+  }
+
+  /**
+   * Setter for menu_tree field.
+   *
+   * @param mixed $tree
+   *   The menu tree.
+   *
+   * @return $this
+   *   The self.
+   */
+  public function setMenuTree(mixed $tree) : self {
+    if (!is_string($tree)) {
+      $tree = json_encode($tree);
+    }
+    $this->set('menu_tree', $tree);
+    return $this;
+  }
+
+  /**
+   * Setter for label field.
+   *
+   * @param string $label
+   *   The label.
+   *
+   * @return $this
+   *   The self.
+   */
+  public function setLabel(string $label) : self {
+    $this->set($this->getEntityType()->getKey('label'), $label);
+    return $this;
   }
 
   /**
@@ -177,34 +188,6 @@ class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
       return json_decode($menu_tree, $associative);
     }
     return [];
-  }
-
-  /**
-   * Get project menu weight by project name.
-   *
-   * @param string $project_name
-   *   Project name.
-   *
-   * @return int|false
-   *   Returns weight or false.
-   */
-  public static function getProjectWeight(string $project_name = ''): int|FALSE {
-    return array_key_exists($project_name, self::PROJECT_WEIGHTS)
-      ? self::PROJECT_WEIGHTS[$project_name]
-      : FALSE;
-  }
-
-  /**
-   * Does the global menu exist.
-   *
-   * @param string $menu_type
-   *   Type of menu to check.
-   *
-   * @return bool
-   *   Menu exists.
-   */
-  public static function menuExists(string $menu_type = ''): bool {
-    return $menu_type && in_array($menu_type, Menu::MENUS);
   }
 
 }
