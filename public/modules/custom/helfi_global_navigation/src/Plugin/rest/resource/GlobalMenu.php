@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @RestResource(
  *   id = "helfi_global_menu",
- *   label = @Translation("Global menu entity"),
+ *   label = @Translation("Global menu"),
  *   uri_paths = {
  *     "canonical" = "/api/v1/global-menu/{entity}",
  *   }
