@@ -81,24 +81,13 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
       ])
       ->setDisplayConfigurable('form', TRUE);
 
-    $fields['menu_type'] = BaseFieldDefinition::create('string')
-      ->setLabel(new TranslatableMarkup('Menu type'))
-      ->setSetting('max_length', 50)
-      ->setRequired(TRUE)
-      ->setTranslatable(TRUE)
-      ->setDisplayOptions('form', [
-        'label' => 'inline',
-        'type' => 'readonly_field_widget',
-      ])
-      ->addConstraint('JsonSchema', [
-        'schema' => 'file://' . realpath(__DIR__ . '/../../assets/schema.json'),
-      ])
-      ->setDisplayConfigurable('form', TRUE);
-
     $fields['menu_tree'] = BaseFieldDefinition::create('json')
       ->setLabel(new TranslatableMarkup('Menu tree'))
       ->setDisplayOptions('form', [
         'type' => 'json_editor',
+      ])
+      ->addConstraint('JsonSchema', [
+        'schema' => 'file://' . realpath(__DIR__ . '/../../assets/schema.json'),
       ])
       ->setTranslatable(TRUE)
       ->setReadOnly(TRUE)
@@ -123,8 +112,8 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
    *   The self.
    */
   public function setMenuTree(mixed $tree) : self {
-    if (!is_string($tree)) {
-      $tree = json_encode($tree);
+    if (!is_object($tree)) {
+      $tree = \GuzzleHttp\json_encode($tree);
     }
     $this->set('menu_tree', $tree);
     return $this;
@@ -142,36 +131,6 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
   public function setLabel(string $label) : self {
     $this->set($this->getEntityType()->getKey('label'), $label);
     return $this;
-  }
-
-  /**
-   * Get the name of the project.
-   *
-   * @return string|null
-   *   Project name.
-   */
-  public function getProject(): ?string {
-    return $this->get('project')->value;
-  }
-
-  /**
-   * Get human readable name of the site.
-   *
-   * @return string|null
-   *   Name of the site.
-   */
-  public function getSiteName(): ?string {
-    return $this->get('site_name')->value;
-  }
-
-  /**
-   * Get the type of the menu.
-   *
-   * @return string|null
-   *   Type of the menu.
-   */
-  public function getMenuType(): ?string {
-    return $this->get('menu_type')->value;
   }
 
   /**
