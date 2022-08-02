@@ -13,7 +13,7 @@ use Drupal\rest\ResourceResponse;
  *
  * @RestResource(
  *   id = "helfi_global_menu_collection",
- *   label = @Translation("Global menu entity - Collection"),
+ *   label = @Translation("Global menu - Collection"),
  *   uri_paths = {
  *     "canonical" = "/api/v1/global-menu",
  *   }
