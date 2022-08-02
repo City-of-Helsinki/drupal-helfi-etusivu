@@ -1,0 +1,19 @@
+uuid: 77603760-269c-44eb-9d64-837869b07de4
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_translation
+    - helfi_global_navigation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+_core:
+  default_config_hash: KFSz4DWTkaulFES3benTB9tM57w_1T6Fmvaz1YEQ4ao
+id: global_menu.global_menu
+target_entity_type_id: global_menu
+target_bundle: global_menu
+default_langcode: site_default
+language_alterable: true
