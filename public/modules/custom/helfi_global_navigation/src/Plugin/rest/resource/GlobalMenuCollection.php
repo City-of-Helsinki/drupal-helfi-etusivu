@@ -28,13 +28,13 @@ final class GlobalMenuCollection extends GlobalMenuBase {
    *   The response.
    */
   public function get(): ResourceResponse {
-    $langcode = $this->getCurrentLanguageId();
     $cacheableMetadata = new CacheableMetadata();
 
-    $entities = array_map(function (GlobalMenuEntity $entity) use ($cacheableMetadata, $langcode) : GlobalMenuEntity {
+    $entities = array_map(function (GlobalMenuEntity $entity) use ($cacheableMetadata) : GlobalMenuEntity {
       $cacheableMetadata->addCacheableDependency($entity);
 
-      return $this->entityRepository->getTranslationFromContext($entity, $langcode);
+      return $this->entityRepository
+        ->getTranslationFromContext($entity, $this->getCurrentLanguageId());
     }, GlobalMenuEntity::loadMultiple());
     $response = new ResourceResponse($entities, 200);
     $response->addCacheableDependency($cacheableMetadata);

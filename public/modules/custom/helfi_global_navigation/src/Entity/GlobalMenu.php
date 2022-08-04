@@ -19,13 +19,14 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   label = @Translation("HELfi Global menu"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\helfi_global_navigation\Entity\Listing\ListBuilder",
+ *     "list_builder" = "Drupal\Core\Entity\EntityListBuilder",
  *     "form" = {
  *       "default" = "Drupal\Core\Entity\ContentEntityForm",
- *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm"
+ *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
+ *       "overview" = "Drupal\helfi_global_navigation\Entity\Form\GlobalMenuOverviewForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\helfi_api_base\Entity\Routing\EntityRouteProvider",
+ *       "html" = "Drupal\helfi_global_navigation\Entity\Routing\GlobalMenuRouteProvider",
  *     },
  *     "local_action_provider" = {
  *       "collection" = "Drupal\entity\Menu\EntityCollectionLocalActionProvider",
@@ -51,7 +52,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *     "collection" = "/admin/content/integrations/global_menu",
  *     "delete-form" = "/admin/content/integrations/global_menu/{global_menu}/delete"
  *   },
- *   field_ui_base_route = "global_menu.settings"
+ *   field_ui_base_route = "entity.global_menu.collection"
  * )
  */
 final class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
@@ -66,6 +67,10 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
       ->setLabel(new TranslatableMarkup('ID'))
       ->setSettings([
         'is_ascii' => TRUE,
+      ])
+      ->setDisplayOptions('form', [
+        'label' => 'inline',
+        'type' => 'string_textfield',
       ])
       ->setDisplayConfigurable('form', TRUE);
 
@@ -82,9 +87,6 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
 
     $fields['menu_tree'] = BaseFieldDefinition::create('json')
       ->setLabel(new TranslatableMarkup('Menu tree'))
-      ->setDisplayOptions('form', [
-        'type' => 'json_editor',
-      ])
       ->addConstraint('JsonSchema', [
         'schema' => 'file://' . realpath(__DIR__ . '/../../assets/schema.json'),
       ])
@@ -102,6 +104,30 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
   }
 
   /**
+   * Gets the weight.
+   *
+   * @return int
+   *   The weight.
+   */
+  public function getWeight() : int {
+    return (int) $this->get('weight')->value ?? 0;
+  }
+
+  /**
+   * Sets the weight.
+   *
+   * @param int $weight
+   *   The weight.
+   *
+   * @return $this
+   *   The self.
+   */
+  public function setWeight(int $weight) : self {
+    $this->set('weight', $weight);
+    return $this;
+  }
+
+  /**
    * Setter for menu_tree field.
    *
    * @param mixed $tree
@@ -111,7 +137,7 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
    *   The self.
    */
   public function setMenuTree(mixed $tree) : self {
-    if (!is_object($tree)) {
+    if (is_object($tree)) {
       $tree = \GuzzleHttp\json_encode($tree);
     }
     $this->set('menu_tree', $tree);
