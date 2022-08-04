@@ -1,0 +1,46 @@
+uuid: 51dc5e47-01df-46e5-836d-4475b042ddd3
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_global_navigation
+    - readonly_field_widget
+id: global_menu.global_menu.default
+targetEntityType: global_menu
+bundle: global_menu
+mode: default
+content:
+  langcode:
+    type: language_select
+    weight: 0
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: readonly_field_widget
+    weight: 3
+    region: content
+    settings:
+      label: above
+      formatter_type: null
+      formatter_settings: null
+      show_description: false
+    third_party_settings: {  }
+    label: inline
+  project:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    label: inline
+  translation:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  menu_tree: true
