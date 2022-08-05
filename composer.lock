@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de98d57e43c232c00c503e6a046af876",
+    "content-hash": "630073d1c8174e27aec0cefb724fb332",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4767,16 +4767,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "b2823f78c23c8d9ff87fa8a39e788aff087083c8"
+                "reference": "fb62abcf6fff68313de698f966e5f26460594601"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/b2823f78c23c8d9ff87fa8a39e788aff087083c8",
-                "reference": "b2823f78c23c8d9ff87fa8a39e788aff087083c8",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/fb62abcf6fff68313de698f966e5f26460594601",
+                "reference": "fb62abcf6fff68313de698f966e5f26460594601",
                 "shasum": ""
             },
             "require": {
@@ -4799,10 +4799,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.2.3",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.2.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2022-07-19T05:56:30+00:00"
+            "time": "2022-07-30T05:35:40+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",

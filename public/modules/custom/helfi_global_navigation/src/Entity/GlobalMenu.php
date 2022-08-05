@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\helfi_global_navigation\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -56,6 +57,33 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  * )
  */
 final class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
+
+  /**
+   * Creates a new entity for given id.
+   *
+   * @param string $id
+   *   The project ID.
+   *
+   * @return static
+   *   The self.
+   */
+  public static function createById(string $id) : self {
+    return self::create([
+      'project' => $id,
+    ]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(EntityStorageInterface $storage) {
+    parent::preSave($storage);
+
+    // Make sure entity id is set manually before saving.
+    if (!$this->id()) {
+      throw new \InvalidArgumentException('ID must be set before saving the entity.');
+    }
+  }
 
   /**
    * {@inheritdoc}

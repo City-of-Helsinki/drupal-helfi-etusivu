@@ -13,7 +13,7 @@ granularity: resource
 configuration:
   methods:
     - GET
-    - PATCH
+    - POST
   formats:
     - json
   authentication:

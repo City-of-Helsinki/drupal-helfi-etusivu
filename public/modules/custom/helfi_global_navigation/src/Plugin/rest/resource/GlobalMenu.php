@@ -5,11 +5,14 @@ declare(strict_types = 1);
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\EntityStorageException;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu as GlobalMenuEntity;
 use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -20,6 +23,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *   label = @Translation("Global menu"),
  *   uri_paths = {
  *     "canonical" = "/api/v1/global-menu/{entity}",
+ *     "create" = "/api/v1/global-menu/{entity}",
  *   }
  * )
  */
@@ -35,9 +39,11 @@ final class GlobalMenu extends GlobalMenuBase {
    *   The entity or null.
    */
   private function getRequestEntity(Request $request) : ? GlobalMenuEntity {
-    $id = $request->attributes->get('entity');
+    if (!$id = $request->attributes->get('entity')) {
+      throw new BadRequestHttpException('Missing required "entity" parameter.');
+    }
 
-    if (!$id || !$entity = GlobalMenuEntity::load($id)) {
+    if (!$entity = GlobalMenuEntity::load($id)) {
       return NULL;
     }
     return $entity;
@@ -58,6 +64,8 @@ final class GlobalMenu extends GlobalMenuBase {
     if (!$entity = $this->getRequestEntity($request)) {
       throw new NotFoundHttpException();
     }
+    $this->assertPermission($entity, 'view');
+
     $cacheableMetadata->addCacheableDependency($entity);
 
     $entity = $this->entityRepository->getTranslationFromContext($entity, $this->getCurrentLanguageId());
@@ -66,20 +74,29 @@ final class GlobalMenu extends GlobalMenuBase {
   }
 
   /**
-   * Callback for PATCH requests.
+   * Callback for POST requests.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
    *
    * @return \Drupal\rest\ModifiedResourceResponse
    *   The response.
-   *
-   * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function patch(Request $request) : ModifiedResourceResponse {
+  public function post(Request $request) : ModifiedResourceResponse {
+    // Attempt to create a new entity if one does not exist yet.
     if (!$entity = $this->getRequestEntity($request)) {
-      throw new NotFoundHttpException();
+      $entity = GlobalMenuEntity::createById($request->attributes->get('entity'));
+      $this->assertPermission($entity, 'create');
     }
+    else {
+      $langcode = $this->getCurrentLanguageId();
+
+      /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $entity */
+      $entity = $entity->hasTranslation($langcode) ?
+        $entity->getTranslation($langcode) :
+        $entity->addTranslation($langcode);
+    }
+    $this->assertPermission($entity, 'update');
 
     try {
       $content = \GuzzleHttp\json_decode($request->getContent());
@@ -93,20 +110,20 @@ final class GlobalMenu extends GlobalMenuBase {
         throw new BadRequestHttpException(sprintf('Missing required: %s', $required));
       }
     }
-    $langcode = $this->getCurrentLanguageId();
 
-    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $entity */
-    $entity = $entity->hasTranslation($langcode) ?
-      $entity->getTranslation($langcode) :
-      $entity->addTranslation($langcode);
+    try {
+      $entity->setMenuTree($content->menu_tree)
+        ->setLabel($content->site_name);
+      $this->validate($entity);
+      $entity->save();
 
-    $entity->setMenuTree($content->menu_tree)
-      ->setLabel($content->site_name);
+      $responseCode = $entity->isNew() ? Response::HTTP_CREATED : Response::HTTP_OK;
 
-    $this->validate($entity);
-    $entity->save();
-
-    return new ModifiedResourceResponse($entity, 201);
+      return new ModifiedResourceResponse($entity, $responseCode);
+    }
+    catch (EntityStorageException $e) {
+      throw new HttpException(500, 'Internal Server Error', $e);
+    }
   }
 
 }
