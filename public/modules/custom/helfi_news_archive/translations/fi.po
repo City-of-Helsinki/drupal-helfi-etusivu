@@ -1,0 +1,6 @@
+msgid ""
+msgstr ""
+
+msgctxt "News archive heading"
+msgid "All news"
+msgstr "Kaikki uutiset"
