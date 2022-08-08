@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b67beda3eef476c7e32add9c855c85b",
+    "content-hash": "eca2fb46e3a5378a98a61310bd882d78",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -174,6 +174,20 @@
                 "source": "https://github.com/Chi-teck/drupal-code-generator/tree/1.33.1"
             },
             "time": "2020-12-05T05:59:11+00:00"
+        },
+        {
+            "name": "city-of-helsinki/helfi-etusivu-news-search",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search",
+                "reference": "0.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search/releases/download/0.1.0/helfi-etusivu-news-search.zip"
+            },
+            "type": "library"
         },
         {
             "name": "commerceguys/addressing",
