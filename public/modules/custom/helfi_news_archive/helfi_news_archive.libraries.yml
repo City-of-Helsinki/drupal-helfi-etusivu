@@ -1,6 +1,6 @@
 news-archive:
-  version: 0.1.0
+  version: 0.2.0
   js:
-    assets/main.4211c1d4.js: {}
+    assets/main.bff99276.js: {}
   dependencies:
     - core/drupal
