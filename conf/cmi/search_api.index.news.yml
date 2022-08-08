@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_main_image_caption
     - field.storage.node.field_main_image
     - field.storage.media.field_media_image
     - field.storage.media.field_photographer
@@ -51,6 +52,14 @@ field_settings:
         - field.storage.node.field_main_image
       module:
         - media
+  field_main_image_caption:
+    label: Caption
+    datasource_id: 'entity:node'
+    property_path: field_main_image_caption
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_main_image_caption
   field_news_groups:
     label: 'News groups '
     datasource_id: 'entity:node'
