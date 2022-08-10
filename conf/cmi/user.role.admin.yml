@@ -31,6 +31,7 @@ dependencies:
     - node
     - paragraphs
     - paragraphs_library
+    - paragraphs_type_permissions
     - path
     - pathauto
     - publication_date
@@ -76,6 +77,7 @@ permissions:
   - 'assign content_producer role'
   - 'assign editor role'
   - 'assign read_only role'
+  - 'bypass paragraphs type content access'
   - 'cancel account'
   - 'change own username'
   - 'create content translations'
