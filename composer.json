@@ -31,6 +31,7 @@
         "drupal/openapi_ui_redoc": "^1.0@RC",
         "drupal/radioactivity": "^4.0",
         "drupal/redis": "^1.5",
+        "drupal/restui": "^1.21",
         "drupal/search_api": "^1.23",
         "drush/drush": "^10.4",
         "josdejong/jsoneditor": "^5.29",
