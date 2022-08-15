@@ -2,15 +2,6 @@ services:
   logger.channel.helfi_global_navigation:
     parent: logger.channel_base
     arguments: ['helfi_global_navigation']
-  helfi_global_navigation.menu_controller:
-    class: \Drupal\helfi_global_navigation\Controller\MenuController
-    arguments: ['@helfi_global_navigation.menu_request_handler','helfi_global_navigation.menu_response_handler', '@entity_type.manager', '@language_manager']
-  helfi_global_navigation.menu_request_handler:
-    class: \Drupal\helfi_global_navigation\MenuRequestHandler
-    arguments: ['@entity_type.manager','@language_manager']
-  helfi_global_navigation.menu_response_handler:
-    class: \Drupal\helfi_global_navigation\MenuResponseHandler
-    arguments: ['@entity_type.manager','@language_manager']
   helfi_navigation.menu_tree_normalizer:
     class: \Drupal\helfi_global_navigation\Normalizer\MenuTreeNormalizer
     arguments: ['@entity_type.manager', '@entity_type.repository', '@entity_field.manager']
