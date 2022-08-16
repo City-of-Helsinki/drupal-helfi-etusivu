@@ -1,0 +1,21 @@
+uuid: 7fc90f02-fe9b-42bf-a838-5f9728e4d92f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_atomid
+field_name: field_atomid
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
