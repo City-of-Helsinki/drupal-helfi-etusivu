@@ -52,7 +52,6 @@ process:
 migration_dependencies:
   required:
     - newsitem_term
-    - newsitem_user
 dependencies:
   enforced:
     module:
