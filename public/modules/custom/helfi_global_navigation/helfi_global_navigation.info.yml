@@ -6,4 +6,5 @@ dependencies:
   - json_field
   - entity
   - text
+  - user
   - readonly_field_widget
