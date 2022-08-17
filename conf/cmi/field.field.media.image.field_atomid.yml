@@ -1,0 +1,19 @@
+uuid: 7d60ead9-d406-47c6-a59e-28f9122ed5c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_atomid
+    - media.type.image
+id: media.image.field_atomid
+field_name: field_atomid
+entity_type: media
+bundle: image
+label: AtomID
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
