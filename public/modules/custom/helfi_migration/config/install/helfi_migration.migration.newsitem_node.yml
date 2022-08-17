@@ -1,0 +1,59 @@
+# Migration configuration for newsitem content.
+id: newsitem_node
+label: News items
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls: https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/Category/fi/wcmrest%3A1c4e68f6-84c4-42b7-a126-dc98dd7db2d3
+  item_selector: /atom:feed/atom:entry
+destination:
+  plugin: entity:node
+process:
+  # Hardcode the destination node type (bundle) as 'helfi_migration_newsitem  '.
+  type:
+    plugin: default_value
+    default_value: news_item
+  title: name
+  nid: bid
+  uid:
+    plugin: migration_lookup
+    migration: newsitem_user
+    source: aid
+  sticky:
+    plugin: default_value
+    default_value: 0
+  field_migrate_example_country: countries
+  field_migrate_example_beer_style:
+    plugin: migration_lookup
+    migration: newsitem_term
+    source: terms
+  # Some Drupal fields may have multiple components we may want to set
+  # separately. For example, text fields may have summaries (teasers) in
+  # addition to the full text value. We use / to separate the field name from
+  # the internal field value being set, and put it in quotes because / is a
+  # YAML special character.
+  'body/value': body
+  'body/summary': excerpt
+# Our news_item nodes have references to terms and users, so we want those to be
+# imported first. We make that dependency explicit here - by putting those
+# migrations under the 'required' key, we ensure that the tools will prevent
+# us from running the newsitem_node migration unless the newsitem_term and newsitem_user
+# migrations are complete (although we can override the dependency check by
+# passing --force to the drush migrate-import command). We can also add
+# 'optional' dependencies - these affect the order in which migrations are
+# displayed, and run by default, but does not force you run them in that
+# order.
+# The general rule of thumb is that any migrations referenced by migration
+# process plugins should be required here.
+migration_dependencies:
+  required:
+    - newsitem_term
+    - newsitem_user
+dependencies:
+  enforced:
+    module:
+      - helfi_migration
