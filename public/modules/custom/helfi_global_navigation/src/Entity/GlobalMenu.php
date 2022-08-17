@@ -21,6 +21,8 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\Core\Entity\EntityListBuilder",
+ *     "access" = "Drupal\entity\EntityAccessControlHandler",
+ *     "permission_provider" = "Drupal\entity\EntityPermissionProvider",
  *     "form" = {
  *       "default" = "Drupal\Core\Entity\ContentEntityForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",

@@ -6,6 +6,7 @@ namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityStorageException;
+use Drupal\Core\Routing\AccessAwareRouterInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu as GlobalMenuEntity;
 use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * Represents Global menu records as resources.
@@ -50,6 +52,14 @@ final class GlobalMenu extends GlobalMenuBase {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function permissions() : array {
+    // We check individual entity permissions later.
+    return [];
+  }
+
+  /**
    * Callback for GET requests.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
@@ -66,7 +76,8 @@ final class GlobalMenu extends GlobalMenuBase {
     }
     $this->assertPermission($entity, 'view');
 
-    $cacheableMetadata->addCacheableDependency($entity);
+    $cacheableMetadata->addCacheableDependency($entity)
+      ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
 
     $entity = $this->entityRepository->getTranslationFromContext($entity, $this->getCurrentLanguageId());
     return (new ResourceResponse($entity, 200))
@@ -83,18 +94,22 @@ final class GlobalMenu extends GlobalMenuBase {
    *   The response.
    */
   public function post(Request $request) : ModifiedResourceResponse {
+    $isNew = FALSE;
+    $langcode = $this->getCurrentLanguageId();
+
     // Attempt to create a new entity if one does not exist yet.
     if (!$entity = $this->getRequestEntity($request)) {
-      $entity = GlobalMenuEntity::createById($request->attributes->get('entity'));
+      $isNew = TRUE;
+      $entity = GlobalMenuEntity::createById($request->attributes->get('entity'))
+        ->set('langcode', $langcode);
+
       $this->assertPermission($entity, 'create');
     }
     else {
-      $langcode = $this->getCurrentLanguageId();
-
-      /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $entity */
-      $entity = $entity->hasTranslation($langcode) ?
-        $entity->getTranslation($langcode) :
-        $entity->addTranslation($langcode);
+      if (!$entity->hasTranslation($langcode)) {
+        $entity = $entity->addTranslation($langcode);
+        $isNew = TRUE;
+      }
     }
     $this->assertPermission($entity, 'update');
 
@@ -105,10 +120,15 @@ final class GlobalMenu extends GlobalMenuBase {
       throw new BadRequestHttpException('Invalid JSON.');
     }
 
+    $requiredFields = [];
     foreach (['menu_tree', 'site_name'] as $required) {
       if (!isset($content->{$required})) {
-        throw new BadRequestHttpException(sprintf('Missing required: %s', $required));
+        $requiredFields[] = $required;
       }
+    }
+
+    if (count($requiredFields) > 0) {
+      throw new UnprocessableEntityHttpException(sprintf('Missing required: %s', implode(', ', $requiredFields)));
     }
 
     try {
@@ -117,7 +137,7 @@ final class GlobalMenu extends GlobalMenuBase {
       $this->validate($entity);
       $entity->save();
 
-      $responseCode = $entity->isNew() ? Response::HTTP_CREATED : Response::HTTP_OK;
+      $responseCode = $isNew ? Response::HTTP_CREATED : Response::HTTP_OK;
 
       return new ModifiedResourceResponse($entity, $responseCode);
     }
