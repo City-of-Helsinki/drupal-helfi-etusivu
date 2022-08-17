@@ -65,6 +65,9 @@ process:
   vid:
     plugin: default_value
     default_value: news_tags
+  name: name
+  description: description
+  field_atomid: field_atomid
 
 # Every migration must also have a destination plugin, which handles writing
 # the migrated data in the appropriate form for that particular kind of data.
