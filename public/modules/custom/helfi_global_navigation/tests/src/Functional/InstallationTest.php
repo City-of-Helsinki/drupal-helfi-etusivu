@@ -76,6 +76,7 @@ class InstallationTest extends BrowserTestBase {
     $account = reset($accounts);
     $account->passRaw = '123';
     $this->drupalLogin($account);
+    $this->assertTrue($account->hasRole('menu_api'));
   }
 
 }
