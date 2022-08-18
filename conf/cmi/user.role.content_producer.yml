@@ -10,6 +10,7 @@ dependencies:
     - media.type.image
     - media.type.remote_video
     - media.type.soundcloud
+    - node.type.announcement
     - node.type.landing_page
     - node.type.news_item
     - node.type.page
@@ -50,6 +51,7 @@ permissions:
   - 'administer paragraphs library'
   - 'cancel account'
   - 'change own username'
+  - 'create announcement content'
   - 'create file media'
   - 'create helfi_chart media'
   - 'create image media'
@@ -63,6 +65,7 @@ permissions:
   - 'create terms in keywords'
   - 'create url aliases'
   - 'delete media'
+  - 'delete own announcement content'
   - 'delete own file media'
   - 'delete own helfi_chart media'
   - 'delete own image media'
@@ -71,6 +74,7 @@ permissions:
   - 'delete own page content'
   - 'delete own remote_video media'
   - 'delete own soundcloud media'
+  - 'edit any announcement content'
   - 'edit any file media'
   - 'edit any helfi_chart media'
   - 'edit any image media'
@@ -79,6 +83,7 @@ permissions:
   - 'edit any page content'
   - 'edit any remote_video media'
   - 'edit any soundcloud media'
+  - 'edit own announcement content'
   - 'edit own file media'
   - 'edit own helfi_chart media'
   - 'edit own image media'
@@ -89,10 +94,12 @@ permissions:
   - 'edit own soundcloud media'
   - 'edit paragraph library item'
   - 'edit terms in keywords'
+  - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert news_item revisions'
   - 'revert page revisions'
   - 'schedule publishing of nodes'
+  - 'set announcement published on date'
   - 'set landing_page published on date'
   - 'set news_item published on date'
   - 'set page published on date'
@@ -102,6 +109,7 @@ permissions:
   - 'use text format minimal'
   - 'view all media revisions'
   - 'view all revisions'
+  - 'view announcement revisions'
   - 'view any unpublished content'
   - 'view editoria11y checker'
   - 'view landing_page revisions'
@@ -113,10 +121,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'create announcement content'
-  - 'delete own announcement content'
-  - 'edit any announcement content'
-  - 'edit own announcement content'
-  - 'revert announcement revisions'
-  - 'set announcement published on date'
-  - 'view announcement revisions'
