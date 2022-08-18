@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
 /**
  * Tests the Global menu rest resource.
  *
- * @group helfi_api_base
+ * @group helfi_global_navigation
  */
 class GlobalMenuResourceTest extends ApiKernelTestBase {
 

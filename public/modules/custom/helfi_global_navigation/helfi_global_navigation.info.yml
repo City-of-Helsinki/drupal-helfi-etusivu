@@ -7,4 +7,8 @@ dependencies:
   - entity
   - text
   - user
+  - rest
+  - basic_auth
+  - language
+  - content_translation
   - readonly_field_widget
