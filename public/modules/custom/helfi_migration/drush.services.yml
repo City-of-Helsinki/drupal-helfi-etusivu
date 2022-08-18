@@ -1,5 +1,0 @@
-services:
-  helfi_migration.commands:
-    class: \Drupal\helfi_migration\Commands\MigrationCommands
-    tags:
-      - { name: drush.command }

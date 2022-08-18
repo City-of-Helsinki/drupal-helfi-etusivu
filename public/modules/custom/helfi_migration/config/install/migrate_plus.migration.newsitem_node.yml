@@ -1,6 +1,6 @@
 # Migration configuration for newsitem content.
 id: newsitem_node
-label: News items
+label: Migrate news item from the source to nodes.
 migration_group: newsitem
 migration_tags:
   - helfi
@@ -10,6 +10,13 @@ source:
   data_parser_plugin: xml
   urls: https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/Category/fi/wcmrest%3A1c4e68f6-84c4-42b7-a126-dc98dd7db2d3
   item_selector: /atom:feed/atom:entry
+  fields:
+    - name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+  ids:
+    field_atomid:
+      type: string
 destination:
   plugin: entity:node
 process:
@@ -41,7 +48,7 @@ process:
 # Our news_item nodes have references to terms and users, so we want those to be
 # imported first. We make that dependency explicit here - by putting those
 # migrations under the 'required' key, we ensure that the tools will prevent
-# us from running the newsitem_node migration unless the newsitem_term and newsitem_user
+# us from running the newsitem_node migration unless these
 # migrations are complete (although we can override the dependency check by
 # passing --force to the drush migrate-import command). We can also add
 # 'optional' dependencies - these affect the order in which migrations are

@@ -1,12 +1,8 @@
-# A "migration" is, in technical terms, a plugin whose configuration describes
-# how to read source data, process it (generally by mapping source fields to
-# destination fields), and write it to Drupal.
-
 # The machine name for a migration, used to uniquely identify it.
 id: newsitem_term
 
 # A human-friendly description of the migration.
-label: Migrate news item categories from the source to taxonomy terms
+label: Migrate news item categories from the source to taxonomy terms.
 
 # The machine name of the group containing this migration (which contains shared
 # configuration to be merged with our own configuration here).
@@ -17,7 +13,7 @@ migration_tags:
   - helfi
 
 # Every migration must have a source plugin, which controls the delivery of our
-# source data. In this case, our source plugin has the name "beer_term", which
+# source data. In this case, our source plugin has the name "newsitem_term", which
 # Drupal resolves to the PHP class defined in
 # src/Plugin/migrate/source/NewsitemTerm.php.
 source:
