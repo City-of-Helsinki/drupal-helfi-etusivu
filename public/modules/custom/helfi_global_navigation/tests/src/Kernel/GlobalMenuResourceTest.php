@@ -52,6 +52,57 @@ class GlobalMenuResourceTest extends ApiKernelTestBase {
   }
 
   /**
+   * Gets the mocked JSON.
+   *
+   * @return array[]
+   *   The mock data.
+   */
+  private function getMockJson() : array {
+    return [
+      'fi' => [
+        'site_name' => 'Liikenne fi',
+        'menu_tree' => [
+          'name' => 'Kaupunkiympäristö',
+          'external' => FALSE,
+          'hasItems' => TRUE,
+          'weight' => 0,
+          'sub_tree' => [
+            [
+              'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
+              'name' => 'Pysäköinti fi',
+              'parentId' => '',
+              'url' => 'https://localhost',
+              'external' => FALSE,
+              'hasItems' => FALSE,
+              'weight' => 0,
+            ],
+          ],
+        ],
+      ],
+      'en' => [
+        'site_name' => 'Liikenne en',
+        'menu_tree' => [
+          'name' => 'Kaupunkiympäristö en',
+          'external' => FALSE,
+          'hasItems' => TRUE,
+          'weight' => 0,
+          'sub_tree' => [
+            [
+              'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
+              'name' => 'Pysäköinti en',
+              'parentId' => '',
+              'url' => 'https://localhost',
+              'external' => FALSE,
+              'hasItems' => FALSE,
+              'weight' => 0,
+            ],
+          ],
+        ],
+      ],
+    ];
+  }
+
+  /**
    * Creates a new global menu entity.
    *
    * @param string $id
@@ -64,7 +115,7 @@ class GlobalMenuResourceTest extends ApiKernelTestBase {
    * @return \Drupal\helfi_global_navigation\Entity\GlobalMenu
    *   The global menu entity.
    */
-  protected function createGlobalMenu(string $id, string $projectName, array $menu = []) : GlobalMenu {
+  private function createGlobalMenu(string $id, string $projectName, array $menu = []) : GlobalMenu {
     $entity = GlobalMenu::createById($id)
       ->set('langcode', 'en')
       ->setMenuTree($menu)
@@ -72,7 +123,6 @@ class GlobalMenuResourceTest extends ApiKernelTestBase {
     $entity->save();
     return $entity;
   }
-
 
   /**
    * Tests GET request without permission.
@@ -115,9 +165,8 @@ class GlobalMenuResourceTest extends ApiKernelTestBase {
     ]);
     $this->drupalSetCurrentUser($user);
 
-
     foreach (['en', 'fi'] as $langcode) {
-      $request = $this->getMockedRequest('/' . $langcode . '/api/v1/global-menu', parameters: ['language' => $langcode]);
+      $request = $this->getMockedRequest('/' . $langcode . '/api/v1/global-menu');
       $response = $this->processRequest($request);
       $collectionData = \GuzzleHttp\json_decode($response->getContent());
 
@@ -128,9 +177,7 @@ class GlobalMenuResourceTest extends ApiKernelTestBase {
         $this->assertEquals($id, $collectionData->{$id}->project[0]->value);
         $this->assertEquals($expectedLabel, $collectionData->{$id}->name[0]->value);
 
-        $request = $this->getMockedRequest('/' . $langcode . '/api/v1/global-menu/' . $id, parameters: [
-          'language' => $langcode,
-        ]);
+        $request = $this->getMockedRequest('/' . $langcode . '/api/v1/global-menu/' . $id);
         $response = $this->processRequest($request);
         $data = \GuzzleHttp\json_decode($response->getContent());
         $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
@@ -207,48 +254,7 @@ class GlobalMenuResourceTest extends ApiKernelTestBase {
     ]);
     $this->drupalSetCurrentUser($user);
 
-    $document = [
-      'fi' => [
-        'site_name' => 'Liikenne fi',
-        'menu_tree' => [
-          'name' => 'Kaupunkiympäristö',
-          'external' => FALSE,
-          'hasItems' => TRUE,
-          'weight' => 0,
-          'sub_tree' => [
-            [
-              'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
-              'name' => 'Pysäköinti fi',
-              'parentId' => '',
-              'url' => 'https://localhost',
-              'external' => FALSE,
-              'hasItems' => FALSE,
-              'weight' => 0,
-            ],
-          ],
-        ],
-      ],
-      'en' => [
-        'site_name' => 'Liikenne en',
-        'menu_tree' => [
-          'name' => 'Kaupunkiympäristö en',
-          'external' => FALSE,
-          'hasItems' => TRUE,
-          'weight' => 0,
-          'sub_tree' => [
-            [
-              'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
-              'name' => 'Pysäköinti en',
-              'parentId' => '',
-              'url' => 'https://localhost',
-              'external' => FALSE,
-              'hasItems' => FALSE,
-              'weight' => 0,
-            ],
-          ],
-        ],
-      ],
-    ];
+    $document = $this->getMockJson();
 
     foreach ($document as $langcode => $content) {
       $request = $this->getMockedRequest('/' . $langcode . '/api/v1/global-menu/liikenne', 'POST', document: $content);
