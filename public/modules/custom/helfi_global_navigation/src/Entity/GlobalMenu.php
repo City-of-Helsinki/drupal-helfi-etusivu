@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\helfi_global_navigation\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\Entity\EntityPublishedInterface;
+use Drupal\Core\Entity\EntityPublishedTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -44,7 +46,8 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *     "id" = "project",
  *     "label" = "name",
  *     "uuid" = "uuid",
- *     "langcode" = "langcode"
+ *     "langcode" = "langcode",
+ *     "published" = "status",
  *   },
  *   translatable = TRUE,
  *   admin_permission = "administer global_menu",
@@ -58,7 +61,9 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   field_ui_base_route = "entity.global_menu.collection"
  * )
  */
-final class GlobalMenu extends ContentEntityBase implements ContentEntityInterface {
+final class GlobalMenu extends ContentEntityBase implements ContentEntityInterface, EntityPublishedInterface {
+
+  use EntityPublishedTrait;
 
   /**
    * Creates a new entity for given id.
@@ -92,6 +97,7 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
     $fields = parent::baseFieldDefinitions($entity_type);
+    $fields += self::publishedBaseFieldDefinitions($entity_type);
 
     $fields[$entity_type->getKey('id')] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('ID'))
