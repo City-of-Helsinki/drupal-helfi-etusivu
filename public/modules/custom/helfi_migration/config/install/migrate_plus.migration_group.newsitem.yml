@@ -11,7 +11,7 @@ id: newsitem
 label: News Item Imports
 
 # More information about the group.
-description: news_item related imports.
+description: News items related imports.
 
 # Short description of the type of source, e.g. "Drupal 6" or "WordPress".
 source_type: Atom Feed
