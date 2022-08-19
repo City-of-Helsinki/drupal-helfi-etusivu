@@ -8,6 +8,7 @@
     "prefer-stable": true,
     "require": {
         "ext-libxml": "*",
+        "city-of-helsinki/helfi-etusivu-news-search": "^0.1.0",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.6.7",
         "drupal/consumer_image_styles": "^4.0",
@@ -133,6 +134,22 @@
                     "reference": "v5.29.1"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "city-of-helsinki/helfi-etusivu-news-search",
+                "version": "0.1.0",
+                "dist": {
+                    "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search/releases/download/0.1.0/helfi-etusivu-news-search.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search",
+                    "type": "git",
+                    "reference": "0.1.0"
+                }
+            }
         }
     ],
     "scripts": {
@@ -144,6 +161,11 @@
         "lint-php": "vendor/bin/phpcs --standard=Drupal",
         "copy-commit-message-script": "make copy-commit-message-script",
         "post-install-cmd": [
+            "rm -rf public/modules/custom/helfi_news_archive/assets && rsync -a vendor/city-of-helsinki/helfi-etusivu-news-search/*.js public/modules/custom/helfi_news_archive/assets/ || true",
+            "@copy-commit-message-script"
+        ],
+        "post-update-cmd": [
+            "rm -rf public/modules/custom/helfi_news_archive/assets && rsync -a vendor/city-of-helsinki/helfi-etusivu-news-search/*.js public/modules/custom/helfi_news_archive/assets/ || true",
             "@copy-commit-message-script"
         ]
     }

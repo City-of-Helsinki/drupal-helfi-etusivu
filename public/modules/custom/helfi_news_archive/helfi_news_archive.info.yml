@@ -1,0 +1,4 @@
+name: HELfi News Archive
+description: Module for rendering news archive application
+type: module
+core_version_requirement: '^8.9 || ^9'
