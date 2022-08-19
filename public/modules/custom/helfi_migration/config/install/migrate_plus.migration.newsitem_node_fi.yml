@@ -34,6 +34,10 @@ source:
       label: 'Summary'
       selector: atom:summary
     -
+      name: tags
+      label: 'News tags'
+      selector: wcm:profile/wcm:category
+    -
       name: field_atomid
       label: 'Unique external ID'
       selector: atom:id
@@ -47,12 +51,16 @@ source:
 destination:
   plugin: entity:node
 process:
-  # Hardcode the destination node type (bundle) as 'helfi_migration_newsitem  '.
-  title: title
-  field_lead_in: field_lead_in
+  # Hardcode the destination node type (bundle) as 'news_item'
   type:
     plugin: default_value
     default_value: news_item
+  title: title
+  field_lead_in: field_lead_in
+  field_news_item_tags:
+    plugin: helfi_category_migration_lookup
+    migration: newsitem_term
+    source: tags
   uid:
     plugin: default_value
     default_value: 1
