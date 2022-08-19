@@ -51,6 +51,7 @@ settings:
       event_list: event_list
       current: current
       popular_services: popular_services
+      phasing: phasing
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -114,6 +115,12 @@ settings:
         enabled: true
       list_of_links_item:
         weight: -16
+        enabled: false
+      phasing:
+        weight: 50
+        enabled: true
+      phasing_item:
+        weight: 30
         enabled: false
       popular_services:
         weight: 42

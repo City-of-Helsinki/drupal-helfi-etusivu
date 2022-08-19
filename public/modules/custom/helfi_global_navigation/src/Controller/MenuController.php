@@ -24,16 +24,9 @@ class MenuController extends ControllerBase {
    */
   public function list(): JsonResponse {
     $menus = array_map(function ($menu) {
-      $menuResponse = [
-        'id' => $menu->id(),
-        'name' => $menu->get('name')->value,
-      ];
-
       if ($tree = $menu->get('menu_tree')->value) {
-        $menuResponse['tree'] = json_decode($menu->get('menu_tree')->value);
+        return json_decode($tree);
       }
-
-      return $menuResponse;
     }, GlobalMenu::loadMultiple());
 
     return new JsonResponse($menus);

@@ -6,11 +6,8 @@ namespace Drupal\helfi_global_navigation;
 
 use Drupal\Core\Config\ConfigFactory;
 use Drupal\Core\Menu\MenuTreeParameters;
-use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\helfi_api_base\Environment\EnvironmentResolver;
 use Drupal\helfi_api_base\Environment\Project;
-use GuzzleHttp\ClientInterface;
-use GuzzlleHttp\json_encode;
+use Drupal\helfi_global_navigation\Service\GlobalNavigationService;
 
 /**
  * Synchronizes global menu.
@@ -38,53 +35,34 @@ class MenuUpdater {
    */
   public function __construct(
     protected ConfigFactory $config,
-    protected EnvironmentResolver $environmentResolver,
-    protected ClientInterface $httpClient,
-    protected LanguageManagerInterface $languageManager
-  ) {
-    $this->env = getenv('APP_ENV');
-  }
+    protected GlobalNavigationService $globalNavigationService
+  ) {}
 
   /**
    * Sends main menu tree to frontpage instance.
    */
   public function syncMenu(): void {
-    $currentProject = $this->getCurrentEnvironment();
-
-    // Bail if current environment isn't listed in resolver.
-    if (!$currentProject) {
+    if ($this->globalNavigationService->inFrontPage()) {
       return;
     }
 
-    $frontpage = $this->environmentResolver->getEnvironment(Project::ETUSIVU, $this->env);
+    $currentProject = $this->globalNavigationService->getCurrentProject();
+    $siteName = $this->config->get('system.site')->get('name');
 
-    // Return early if current instance is frontpage.
-    if ($currenProject[$this->env]->getDomain() === $environment->getDomain()) {
-      return;
-    }
+    $options = [
+      'json' => [
+        'name' => $siteName,
+        'menu_tree' => (object) [
+          'name' => $siteName,
+          'url' => $currentProject['url'],
+          'id' => $currentProject['id'],
+          'menu_tree' => $this->buildMenuTree(),
+        ],
+      ],
+    ];
 
-    $baseUrl = $frontpage->getUrl($this->languageManager->getCurrentLanguage()->getId());
-    $menuTree = $this->buildMenuTree();
-
-    $url = $baseUrl . '/global-menus/' . $currentProject['id'];
-    try {
-      $options = [
-        'body' => json_encode([
-          'name' => $this->config->get('system.site')->get('name'),
-          'menu_tree' => $menuTree,
-        ]),
-      ];
-
-      // Disable SSL verify in local environment.
-      if ($this->env === 'local') {
-        $options['verify'] = FALSE;
-      }
-
-      $this->httpClient->request('POST', $url, $options);
-    }
-    catch (\Exception $e) {
-
-    }
+    $endpoint = '/global-menus/' . $currentProject['id'];
+    $this->globalNavigationService->makeRequest(Project::ETUSIVU, 'POST', $endpoint, $options);
   }
 
   /**
@@ -113,6 +91,7 @@ class MenuUpdater {
       $subTree = $menuItem->subtree;
 
       $transformedItem = [
+        'id' => $menuLink->getPluginId(),
         'name' => $menuLink->getTitle(),
         'url' => $menuLink->getUrlObject()->setAbsolute(TRUE)->toString(),
       ];
@@ -121,31 +100,10 @@ class MenuUpdater {
         $transformedItem['sub_tree'] = $this->transformMenuItems($subTree);
       }
 
-      $transformedItems[] = $transformedItem;
+      $transformedItems[] = (object) $transformedItem;
     }
 
     return $transformedItems;
-  }
-
-  /**
-   * Determine current project.
-   *
-   * @return array|null
-   *   The resulting environment or null.
-   */
-  protected function getCurrentEnvironment(): array|NULL {
-    $projects = $this->environmentResolver->getProjects();
-    $currentHost = \Drupal::request()->getHost();
-    foreach ($projects as $key => $project) {
-      if ($currentHost === $project[$this->env]->getDomain()) {
-        return [
-          'id' => $key,
-          'project' => $project,
-        ];
-      }
-    }
-
-    return NULL;
   }
 
 }

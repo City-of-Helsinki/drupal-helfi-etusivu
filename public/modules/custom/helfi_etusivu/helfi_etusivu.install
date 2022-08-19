@@ -88,7 +88,7 @@ function helfi_etusivu_update_9003() : void {
     foreach ($aliases as $lang_code => $alias) {
       if (!$storage->loadByProperties([
         'path' => $path,
-        'langcode' => $lang_code
+        'langcode' => $lang_code,
       ])) {
         // Create alias based on current language.
         $storage->create([
