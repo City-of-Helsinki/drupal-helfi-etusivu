@@ -1,6 +1,6 @@
 # Migration configuration for newsitem content.
-id: newsitem_media_en
-label: Migrate English news item images from the source to media image.
+id: newsitem_image_en
+label: Migrate English news item images from the source to image file.
 migration_group: newsitem
 migration_tags:
   - helfi
@@ -32,8 +32,7 @@ source:
     field_atomid:
       type: string
 destination:
-  plugin: 'entity:media'
-  default_bundle: image
+  plugin: 'entity:file'
 process:
   # Hardcode the destination node type (bundle) as 'helfi_migration_newsitem  '.
   title: title
@@ -49,9 +48,7 @@ process:
   sticky:
     plugin: default_value
     default_value: 0
-migration_dependencies:
-  required:
-    - newsitem_image_en
+migration_dependencies: null
 dependencies:
   enforced:
     module:
