@@ -26,13 +26,13 @@ source:
   item_selector: /atom:entry
   fields:
     -
+      name: field_atomid
+      label: 'Media unique ID'
+      selector: atom:id
+    -
       name: alt
       label: 'Image alt text'
-      selector: atom:content/wcm:element/wcm:image/wcm:altText
-    -
-      name: uri
-      label: 'Image URI'
-      selector: atom:content/wcm:element/wcm:image/wcm:resourceUri
+      selector: (atom:content/wcm:element/wcm:image/wcm:altText)[1]
   ids:
     field_atomid:
       type: string
@@ -40,16 +40,13 @@ destination:
   plugin: 'entity:media'
   default_bundle: image
 process:
-  title: title
-  field_lead_in: field_lead_in
-  field_news_item_tags:
-    plugin: helfi_category_migration_lookup
-    migration: newsitem_term
-    source: tags
-  language:
-    plugin: default_value
-    default_value: fi
-  field_atomid: field_atomid
+  name: alt
+  field_media_image/target_id:
+    plugin: migration_lookup
+    migration: newsitem_image_fi
+    source: field_atomid
+  field_media_image/alt: alt
+  field_media_image/title: alt
 migration_dependencies:
   required:
     - newsitem_image_fi
