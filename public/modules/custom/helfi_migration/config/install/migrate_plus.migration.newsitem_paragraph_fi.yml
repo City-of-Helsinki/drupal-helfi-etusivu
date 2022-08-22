@@ -41,9 +41,9 @@ destination:
   default_bundle: text
 process:
   field_text: field_text
-#  language:
-#    plugin: default_value
-#    default_value: fi
+  language:
+    plugin: default_value
+    default_value: fi
 dependencies:
   enforced:
     module:
