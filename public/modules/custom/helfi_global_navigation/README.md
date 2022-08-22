@@ -1,9 +1,16 @@
 # HELfi global navigation
 
-## Note: This module is not completed and is not ready for production
+## Note: This module is not completed and is not ready for production (14.7.2022)
 
-Provides a module for transferring menu data across instances.
+## Description
 
-Menus are converted into JSON, which is sent to Etusivu (fronpage) instance of Hel.fi ecosystem.
+Etusivu-instance is the main repository for global menus. It serves global menus to other helfi-instances.
 
-JSON strucure is defined in schema.json file under assets.
+
+## Features
+
+- Create/update single aggregated main-navigation using main-navigations sent from other instances
+- Create other global navigations from Etusivu-instance menus
+- Respond to the requests sent by other instances
+  - Update/create main-navigation
+  - Fetch any global navigation

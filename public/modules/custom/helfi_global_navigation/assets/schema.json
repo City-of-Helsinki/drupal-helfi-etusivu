@@ -1,56 +1,40 @@
 {
-  "title": "Menu tree",
-  "description": "A JSON representation of a Drupal menu tree",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "string"
-      },
-      "name": {
-        "type": "string"
-      },
-      "url": {
-        "type": "string"
-      },
-      "weight": {
-        "type": "integer"
-      },
-      "menu_tree": { 
-        "type": "array",
-        "items": {"$ref": "#/$defs/tree"},
-        "minimum": 1
-      }
-    },
-    "required": ["id", "name", "url", "menu_tree"]
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "parentId": { "type": "string" },
+    "external": { "type": "boolean" },
+    "hasItems": { "type": "boolean" },
+    "description": { "type": "string" },
+    "weight": { "type": "integer" },
+    "url": { "type": "string" },
+    "sub_tree": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sub_tree" }
+    }
   },
+  "required": ["sub_tree", "name"],
   "$defs": {
-    "tree": {
+    "sub_tree": {
+      "additionalProperties": false,
       "type": "object",
-      "required": ["id", "name", "url"],
       "properties": {
-        "description": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        },
-        "menu_tree": { 
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "parentId": { "type": "string" },
+        "external": { "type": "boolean" },
+        "hasItems": { "type": "boolean" },
+        "description": { "type": "string" },
+        "url": { "type": "string" },
+        "sub_tree": {
           "type": "array",
-          "items": {"$ref": "#/$defs/tree"}
+          "items": { "$ref": "#/$defs/sub_tree" }
         },
-        "weight": {
-          "type": "integer",
-          "default": 0
-        }
-      }
+        "weight": { "type": "integer" }
+      },
+      "required": ["id", "name", "url"]
     }
   }
 }
