@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Contains installation hooks for helfi_global_navigation.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_install().
+ */
+function helfi_global_navigation_install() : void {
+  $apiKey = \Drupal::config('helfi_navigation.api')->get('key');
+
+  if (!$apiKey) {
+    return;
+  }
+  [$name, $pass] = explode(':', base64_decode($apiKey));
+  $userStorage = \Drupal::entityTypeManager()->getStorage('user');
+
+  if ($userStorage->loadByProperties(['name' => $name])) {
+    return;
+  }
+
+  $account = $userStorage->create([
+    'name' => $name,
+    'pass' => $pass,
+    'status' => 1,
+  ]);
+  $account->addRole('menu_api');
+  $account->save();
+}

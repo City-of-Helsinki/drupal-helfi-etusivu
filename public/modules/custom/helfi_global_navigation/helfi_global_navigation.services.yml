@@ -1,18 +1,9 @@
 services:
-  helfi_global_navigation.schema_storage:
-    class: \JsonSchema\SchemaStorage
   logger.channel.helfi_global_navigation:
     parent: logger.channel_base
     arguments: ['helfi_global_navigation']
-  helfi_global_navigation.external_menu_tree_factory:
-    class: \Drupal\helfi_global_navigation\ExternalMenuTreeFactory
-    arguments: ['@helfi_global_navigation.schema_storage', '@logger.channel.helfi_global_navigation']
-  helfi_global_navigation.global_navigation_service:
-    class: \Drupal\helfi_global_navigation\Service\GlobalNavigationService
-    arguments: ['@cache.default', '@http_client', '@helfi_api_base.environment_resolver', '@language_manager', '@logger.channel.helfi_global_navigation', '@request_stack']
-  helfi_global_navigation.external_menu_block_base:
-    class: \Drupal\helfi_global_navigation\Plugin\Block\ExternalMenuBlockBase
-    arguments: ['@helfi_global_navigation.external_menu_tree_factory', '@helfi_global_navigation.global_navigation_service']
-  helfi_global_navigation.menu_updater:
-    class: \Drupal\helfi_global_navigation\MenuUpdater
-    arguments: ['@config.factory', '@helfi_global_navigation.global_navigation_service']
+  helfi_navigation.menu_tree_normalizer:
+    class: \Drupal\helfi_global_navigation\Normalizer\MenuTreeNormalizer
+    arguments: ['@entity_type.manager', '@entity_type.repository', '@entity_field.manager']
+    tags:
+      - { name: normalizer, priority: 9 }

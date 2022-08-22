@@ -4,6 +4,7 @@ module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
   allowed_formats: 0
+  basic_auth: 0
   block: 0
   breakpoint: 0
   ckeditor: 0
@@ -57,6 +58,7 @@ module:
   helfi_events: 0
   helfi_frontpage: 0
   helfi_gdpr_compliance: 0
+  helfi_global_navigation: 0
   helfi_languages: 0
   helfi_media: 0
   helfi_migration: 0
@@ -68,8 +70,12 @@ module:
   image: 0
   image_style_quality: 0
   imagecache_external: 0
+  json_field: 0
   jsonapi: 0
   jsonapi_extras: 0
+  jsonapi_hypermedia: 0
+  jsonapi_menu_items: 0
+  jsonapi_resources: 0
   language: 0
   link: 0
   linkit: 0
@@ -107,6 +113,7 @@ module:
   purge_queuer_coretags: 0
   purge_tokens: 0
   radioactivity: 0
+  readonly_field_widget: 0
   redirect: 0
   redis: 0
   responsive_image: 0
