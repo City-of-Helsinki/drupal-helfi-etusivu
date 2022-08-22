@@ -18,11 +18,11 @@ function helfi_etusivu_install() : void {
     $storage = \Drupal::entityTypeManager()
       ->getStorage('path_alias');
 
-    if (!$storage->loadByProperties(['alias' => '/openapi/jsonapi/redoc'])) {
+    if (!$storage->loadByProperties(['alias' => '/openapi/redoc/jsonapi'])) {
       // Create easier to remember URL alias for ReDoc UI.
       $storage->create([
         'path' => '/admin/config/services/openapi/redoc/jsonapi',
-        'alias' => '/openapi/jsonapi/redoc',
+        'alias' => '/openapi/redoc/jsonapi',
       ])
         ->save();
     }
@@ -97,6 +97,28 @@ function helfi_etusivu_update_9003() : void {
           'alias' => $alias,
         ])->save();
       }
+    }
+  }
+}
+
+/**
+ * Update redoc path alias.
+ */
+function helfi_etusivu_update_9004() : void {
+  /** @var \Drupal\Core\Extension\ModuleHandler $moduleHandler */
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('path_alias')) {
+    $storage = \Drupal::entityTypeManager()
+      ->getStorage('path_alias');
+
+    if (!$storage->loadByProperties(['alias' => '/openapi/redoc/jsonapi'])) {
+      // Create easier to remember URL alias for ReDoc UI.
+      $storage->create([
+        'path' => '/admin/config/services/openapi/redoc/jsonapi',
+        'alias' => '/openapi/redoc/jsonapi',
+      ])
+        ->save();
     }
   }
 }
