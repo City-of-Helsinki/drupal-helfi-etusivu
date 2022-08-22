@@ -21,9 +21,9 @@ source:
   item_selector: /atom:entry
   fields:
     -
-      name: title
-      label: 'News title'
-      selector: atom:title
+      name: field_text
+      label: 'News content'
+      selector: atom:content/wcm:element/wcm:data[@type="text/html"]
     -
       name: field_atomid
       label: 'Unique external ID'
@@ -35,35 +35,7 @@ destination:
   plugin: 'entity_reference_revisions:paragraph'
   default_bundle: text
 process:
-  # Hardcode the destination node type (bundle) as 'helfi_migration_newsitem  '.
-  title: title
-  type:
-    plugin: default_value
-    default_value: news_item
-  uid:
-    plugin: default_value
-    default_value: 1
-  status:
-    plugin: default_value
-    default_value: 1
-  sticky:
-    plugin: default_value
-    default_value: 0
-# Our news_item nodes have references to terms and users, so we want those to be
-# imported first. We make that dependency explicit here - by putting those
-# migrations under the 'required' key, we ensure that the tools will prevent
-# us from running the newsitem_node migration unless these
-# migrations are complete (although we can override the dependency check by
-# passing --force to the drush migrate-import command). We can also add
-# 'optional' dependencies - these affect the order in which migrations are
-# displayed, and run by default, but does not force you run them in that
-# order.
-# The general rule of thumb is that any migrations referenced by migration
-# process plugins should be required here.
-migration_dependencies:
-  required:
-    - newsitem_term
-    - newsitem_node_fi
+  field_text: field_text
 dependencies:
   enforced:
     module:

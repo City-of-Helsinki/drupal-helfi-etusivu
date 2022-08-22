@@ -31,7 +31,7 @@ source:
   # is relative to the elements retrieved by item_xpath.
   fields:
     -
-      name: field_atomid
+      name: field_termatomid
       label: 'Unique external ID'
       selector: atom:id
     -
@@ -46,7 +46,7 @@ source:
   # identify each imported item. The 'type' makes sure the migration map table
   # uses the proper schema type for stored the IDs.
   ids:
-    field_atomid:
+    field_termatomid:
       type: string
 
 # Here's the meat of the migration - the processing pipeline. This describes how
@@ -63,7 +63,6 @@ process:
     default_value: news_tags
   name: name
   description: description
-  field_atomid: field_atomid
 
 # Every migration must also have a destination plugin, which handles writing
 # the migrated data in the appropriate form for that particular kind of data.
