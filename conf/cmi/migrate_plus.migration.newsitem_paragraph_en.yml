@@ -1,0 +1,65 @@
+uuid: 048d023a-759c-4ad9-b8e4-ab946ed685e4
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - helfi_migration
+_core:
+  default_config_hash: qRACs7v3x4iVyN1CzyElDRqa6WkTbgXYy4yTu4ECkUM
+id: newsitem_paragraph_en
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - helfi
+migration_group: newsitem
+label: 'Migrate English news items from the source to nodes.'
+source:
+  plugin: newsitem_node
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:14b31eda-4ec3-44a7-8d75-9a4ef778d9f8'
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c259048d-e03b-43d3-a127-efa3d315f807'
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:85aac550-f7a1-4624-b056-01b685e6738d'
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c8b6eef0-46b3-41db-9a21-10d3b4c48d66'
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:3fc3ffc2-884c-4917-8c3c-149cd289dfd1'
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:2012c4e0-f52a-4409-90fc-7e463cf56f55'
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:703b4291-b241-4483-abdd-fe7150e5700c'
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c45c1b73-5bd1-4d00-9d36-4de5f982fbf8'
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:a0701b05-9c2a-4162-9f07-62951c6ff445'
+  item_selector: '/atom:entry'
+  fields:
+    -
+      name: title
+      label: 'News title'
+      selector: 'atom:title'
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: 'atom:id'
+  ids:
+    field_atomid:
+      type: string
+process:
+  title: title
+  type:
+    plugin: default_value
+    default_value: news_item
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: text
+migration_dependencies:
+  required:
+    - newsitem_term
+    - newsitem_node_fi

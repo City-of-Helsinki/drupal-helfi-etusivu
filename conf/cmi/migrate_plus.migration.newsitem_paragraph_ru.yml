@@ -1,0 +1,56 @@
+uuid: dc54e222-253b-4cb8-9595-d4a828ad8bcb
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - helfi_migration
+_core:
+  default_config_hash: a_absXM0FrdjZIqSoCeZRN5tAGU89RFPZWJ8K2gG0lk
+id: newsitem_paragraph_ru
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - helfi
+migration_group: newsitem
+label: 'Migrate Russian news items from the source to nodes.'
+source:
+  plugin: newsitem_node
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/ru/'
+  item_selector: '/atom:entry'
+  fields:
+    -
+      name: title
+      label: 'News title'
+      selector: 'atom:title'
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: 'atom:id'
+  ids:
+    field_atomid:
+      type: string
+process:
+  title: title
+  type:
+    plugin: default_value
+    default_value: news_item
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: text
+migration_dependencies:
+  required:
+    - newsitem_term

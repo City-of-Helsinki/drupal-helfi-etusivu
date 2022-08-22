@@ -1,0 +1,77 @@
+uuid: 69a8f9a9-10db-4d11-a1ac-d979814c39b6
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - helfi_migration
+_core:
+  default_config_hash: 9w3gOo0s-fB6bjddxeQut_QbxNMkFMXfUDhD7AmKTcY
+id: newsitem_node_fi
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - helfi
+migration_group: newsitem
+label: 'Migrate Finnish news items from the source to nodes.'
+source:
+  plugin: newsitem_node
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:2ebc7100-9af0-46fa-81ce-ad7407fbe1db'
+  item_selector: '/atom:entry'
+  fields:
+    -
+      name: title
+      label: 'News title'
+      selector: 'atom:title'
+    -
+      name: field_lead_in
+      label: Summary
+      selector: 'atom:summary'
+    -
+      name: tags
+      label: 'News tags'
+      selector: 'wcm:profile/wcm:category'
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: 'atom:id'
+    -
+      name: updated
+      label: 'Last update'
+      selector: 'atom:updated'
+  ids:
+    field_atomid:
+      type: string
+process:
+  type:
+    plugin: default_value
+    default_value: news_item
+  title: title
+  field_lead_in: field_lead_in
+  field_news_item_tags:
+    plugin: helfi_category_migration_lookup
+    migration: newsitem_term
+    source: tags
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+  updated: updated
+  language:
+    plugin: default_value
+    default_value: fi
+  field_atomid: field_atomid
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    - newsitem_term
