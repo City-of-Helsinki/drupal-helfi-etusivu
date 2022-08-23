@@ -13,13 +13,13 @@ source:
   item_selector: /atom:entry
   fields:
     -
-      name: title
-      label: 'News title'
-      selector: atom:title
-    -
       name: field_atomid
-      label: 'Unique external ID'
+      label: 'Media unique ID'
       selector: atom:id
+    -
+      name: alt
+      label: 'Image alt text'
+      selector: (atom:content/wcm:element/wcm:image/wcm:altText)[1]
   ids:
     field_atomid:
       type: string
@@ -27,20 +27,13 @@ destination:
   plugin: 'entity:media'
   default_bundle: image
 process:
-  # Hardcode the destination node type (bundle) as 'helfi_migration_newsitem  '.
-  title: title
-  type:
-    plugin: default_value
-    default_value: news_item
-  uid:
-    plugin: default_value
-    default_value: 1
-  status:
-    plugin: default_value
-    default_value: 1
-  sticky:
-    plugin: default_value
-    default_value: 0
+  name: alt
+  field_media_image/target_id:
+    plugin: migration_lookup
+    migration: newsitem_image_fi
+    source: field_atomid
+  field_media_image/alt: alt
+  field_media_image/title: alt
 migration_dependencies:
   required:
     - newsitem_image_ru
