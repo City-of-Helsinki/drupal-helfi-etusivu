@@ -1,4 +1,4 @@
-uuid: 69a8f9a9-10db-4d11-a1ac-d979814c39b6
+uuid: 449c44b2-22cf-4b68-8c5d-950ac5323ba6
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     module:
       - helfi_migration
 _core:
-  default_config_hash: 9w3gOo0s-fB6bjddxeQut_QbxNMkFMXfUDhD7AmKTcY
+  default_config_hash: '-rTpjYKxEN6fjhJAxH7EIeRvZD8W8IVfENz1tig3J8g'
 id: newsitem_node_fi
 class: null
 field_plugin_method: null
@@ -24,6 +24,10 @@ source:
   item_selector: '/atom:entry'
   fields:
     -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: 'atom:id'
+    -
       name: title
       label: 'News title'
       selector: 'atom:title'
@@ -36,10 +40,6 @@ source:
       label: 'News tags'
       selector: 'wcm:profile/wcm:category'
     -
-      name: field_atomid
-      label: 'Unique external ID'
-      selector: 'atom:id'
-    -
       name: updated
       label: 'Last update'
       selector: 'atom:updated'
@@ -47,11 +47,12 @@ source:
     field_atomid:
       type: string
 process:
-  type:
-    plugin: default_value
-    default_value: news_item
   title: title
   field_lead_in: field_lead_in
+  field_content:
+    plugin: migration_lookup
+    migration: newsitem_paragraph_fi
+    source: field_atomid
   field_news_item_tags:
     plugin: helfi_category_migration_lookup
     migration: newsitem_term
@@ -69,9 +70,9 @@ process:
   language:
     plugin: default_value
     default_value: fi
-  field_atomid: field_atomid
 destination:
   plugin: 'entity:node'
+  default_bundle: news_item
 migration_dependencies:
   required:
     - newsitem_term

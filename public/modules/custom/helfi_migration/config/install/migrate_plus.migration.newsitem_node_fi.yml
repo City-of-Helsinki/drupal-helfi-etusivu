@@ -26,6 +26,10 @@ source:
   item_selector: /atom:entry
   fields:
     -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+    -
       name: title
       label: 'News title'
       selector: atom:title
@@ -38,10 +42,6 @@ source:
       label: 'News tags'
       selector: wcm:profile/wcm:category
     -
-      name: field_atomid
-      label: 'Unique external ID'
-      selector: atom:id
-    -
       name: updated
       label: 'Last update'
       selector: atom:updated
@@ -50,13 +50,15 @@ source:
       type: string
 destination:
   plugin: entity:node
+  default_bundle: news_item
 process:
   # Hardcode the destination node type (bundle) as 'news_item'
-  type:
-    plugin: default_value
-    default_value: news_item
   title: title
   field_lead_in: field_lead_in
+  field_content:
+    plugin: migration_lookup
+    migration: newsitem_paragraph_fi
+    source: field_atomid
   field_news_item_tags:
     plugin: helfi_category_migration_lookup
     migration: newsitem_term
@@ -74,7 +76,6 @@ process:
   language:
     plugin: default_value
     default_value: fi
-  field_atomid: field_atomid
 # Our news_item nodes have references to terms and users, so we want those to be
 # imported first. We make that dependency explicit here - by putting those
 # migrations under the 'required' key, we ensure that the tools will prevent
