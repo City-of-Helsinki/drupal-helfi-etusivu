@@ -68,7 +68,6 @@ process:
       source:
         - '@pseudo_source_url'
         - '@pseudo_destination_path'
-      file_exists: rename
       move: false
 migration_dependencies: null
 dependencies:
