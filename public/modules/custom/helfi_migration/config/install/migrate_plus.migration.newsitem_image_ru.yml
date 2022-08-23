@@ -13,33 +13,49 @@ source:
   item_selector: /atom:entry
   fields:
     -
-      name: title
-      label: 'News title'
-      selector: atom:title
-    -
       name: field_atomid
-      label: 'Unique external ID'
+      label: 'Image unique ID'
       selector: atom:id
+    -
+      name: file_name
+      label: 'Image file name'
+      selector: (atom:content/wcm:element/wcm:image/wcm:fileName)[1]
+    -
+      name: uri
+      label: 'Image URI'
+      selector: (atom:content/wcm:element/wcm:image/wcm:resourceUri)[1]
   ids:
     field_atomid:
       type: string
+  constants:
+    SOURCE_DOMAIN: 'https://hel.fi'
+    DRUPAL_FILE_DIRECTORY: 'public://images/'
 destination:
   plugin: 'entity:file'
 process:
-  # Hardcode the destination node type (bundle) as 'helfi_migration_newsitem  '.
-  title: title
-  type:
-    plugin: default_value
-    default_value: news_item
-  uid:
-    plugin: default_value
-    default_value: 1
-  status:
-    plugin: default_value
-    default_value: 1
-  sticky:
-    plugin: default_value
-    default_value: 0
+  pseudo_source_url:
+    -
+      plugin: concat
+      source:
+        - constants/SOURCE_DOMAIN
+        - uri
+  pseudo_destination_path:
+    -
+      plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - file_name
+  uri:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: uri
+    -
+      plugin: file_copy
+      source:
+        - '@pseudo_source_url'
+        - '@pseudo_destination_path'
+      move: false
 migration_dependencies: null
 dependencies:
   enforced:
