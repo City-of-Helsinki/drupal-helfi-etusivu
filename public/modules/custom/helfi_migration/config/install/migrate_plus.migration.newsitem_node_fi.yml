@@ -55,9 +55,20 @@ process:
   # Hardcode the destination node type (bundle) as 'news_item'
   title: title
   field_lead_in: field_lead_in
-  field_content:
+  pseudo_field_content:
     plugin: migration_lookup
     migration: newsitem_paragraph_fi
+    source: field_atomid
+  field_content:
+    plugin: sub_process
+    source:
+      - '@pseudo_field_content'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+  field_main_image:
+    plugin: migration_lookup
+    migration: newsitem_media_fi
     source: field_atomid
   field_news_item_tags:
     plugin: helfi_category_migration_lookup
@@ -89,6 +100,8 @@ process:
 # process plugins should be required here.
 migration_dependencies:
   required:
+    - newsitem_media_fi
+    - newsitem_paragraph_fi
     - newsitem_term
 dependencies:
   enforced:
