@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "9f5b57a6a1327f14a638096f91e839df",
-=======
     "content-hash": "516432722b5fab4812fd1abfdc58f8c4",
->>>>>>> UHF-5916: Update news archive app
     "packages": [
         {
             "name": "asm89/stack-cors",
