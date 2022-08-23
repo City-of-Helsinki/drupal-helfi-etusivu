@@ -53,14 +53,6 @@ source:
 # each destination field is to be populated based on the source data. For each
 # destination field, one or more process plugins may be invoked.
 process:
-  # Here is a new plugin - default_value. In its simplest usage here, it is used
-  # to hard-code a destination value, the vid (vocabulary ID) our taxonomy terms
-  # should be assigned to. It's important to note that while above the right
-  # side of the mappings was a source field name, here the right side of the
-  # 'default_value:' line is an actual value.
-  vid:
-    plugin: default_value
-    default_value: news_tags
   name: name
   description: description
 
@@ -72,6 +64,7 @@ process:
 # destination plugin is implemented in Drupal itself.
 destination:
   plugin: entity:taxonomy_term
+  default_bundle: news_tags
 
 # By default, configuration entities (like this migration) are not automatically
 # removed when the migration which installed them is uninstalled. To have your
