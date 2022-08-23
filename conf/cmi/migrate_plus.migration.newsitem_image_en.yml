@@ -1,4 +1,4 @@
-uuid: b3ef4507-8d50-4ed5-aad6-f141b60f14c4
+uuid: 018f7143-b369-45fe-bff4-c8e5ba82cc01
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     module:
       - helfi_migration
 _core:
-  default_config_hash: 5tBaegULLpgAn28gfGNjMGsiG6G19SuUbC44MSwGT_4
-id: newsitem_node_en
+  default_config_hash: FWQpl7dP7WCeMVsdYsv1pXfeeJ8mdRb2bIUXA_qxm1w
+id: newsitem_image_en
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags:
   - helfi
 migration_group: newsitem
-label: 'Migrate English news items from the source to nodes.'
+label: 'Migrate English news item images from the source to image file.'
 source:
   plugin: newsitem_node
   data_fetcher_plugin: http
@@ -57,8 +57,5 @@ process:
     plugin: default_value
     default_value: 0
 destination:
-  plugin: 'entity:node'
-migration_dependencies:
-  required:
-    - newsitem_term
-    - newsitem_node_fi
+  plugin: 'entity:file'
+migration_dependencies: null

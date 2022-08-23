@@ -1,0 +1,17 @@
+uuid: 56292dd2-7161-4d29-828b-0d5248bea4ea
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - helfi_migration
+_core:
+  default_config_hash: 2CE9khlM_WxHz_lXT2imRhiVxlx3EKJD5yLYb1AzVa4
+id: newsitem
+label: 'News Item Imports'
+description: 'News items related imports.'
+source_type: 'Atom Feed'
+module: null
+shared_configuration:
+  source:
+    key: default

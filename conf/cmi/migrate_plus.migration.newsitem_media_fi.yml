@@ -1,4 +1,4 @@
-uuid: ae8ddac3-ae92-4702-b9f6-f5325ed38590
+uuid: e6cb7156-c167-4f3f-a072-8af3b13bfdfe
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     module:
       - helfi_migration
 _core:
-  default_config_hash: af4LhIf3zbkpxE5DVobdor7M3WAYyJdc2kYLcAeZ9lg
+  default_config_hash: E-GAUR0cQGgtHk8vEnp0Qk2-ol1me7HK051xBKwKUWc
 id: newsitem_media_fi
 class: null
 field_plugin_method: null
@@ -24,55 +24,27 @@ source:
   item_selector: '/atom:entry'
   fields:
     -
-      name: title
-      label: 'News title'
-      selector: 'atom:title'
-    -
-      name: field_lead_in
-      label: Summary
-      selector: 'atom:summary'
-    -
-      name: tags
-      label: 'News tags'
-      selector: 'wcm:profile/wcm:category'
-    -
       name: field_atomid
-      label: 'Unique external ID'
+      label: 'Media unique ID'
       selector: 'atom:id'
     -
-      name: updated
-      label: 'Last update'
-      selector: 'atom:updated'
+      name: alt
+      label: 'Image alt text'
+      selector: '(atom:content/wcm:element/wcm:image/wcm:altText)[1]'
   ids:
     field_atomid:
       type: string
 process:
-  type:
-    plugin: default_value
-    default_value: news_item
-  title: title
-  field_lead_in: field_lead_in
-  field_news_item_tags:
-    plugin: helfi_category_migration_lookup
-    migration: newsitem_term
-    source: tags
-  uid:
-    plugin: default_value
-    default_value: 1
-  status:
-    plugin: default_value
-    default_value: 1
-  sticky:
-    plugin: default_value
-    default_value: 0
-  updated: updated
-  language:
-    plugin: default_value
-    default_value: fi
-  field_atomid: field_atomid
+  name: alt
+  field_media_image/target_id:
+    plugin: migration_lookup
+    migration: newsitem_image_fi
+    source: field_atomid
+  field_media_image/alt: alt
+  field_media_image/title: alt
 destination:
   plugin: 'entity:media'
   default_bundle: image
 migration_dependencies:
   required:
-    - newsitem_term
+    - newsitem_image_fi

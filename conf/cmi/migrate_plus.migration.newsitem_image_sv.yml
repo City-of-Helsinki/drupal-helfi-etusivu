@@ -1,4 +1,4 @@
-uuid: da6c22b8-6483-47b8-bf86-4639e02c88c5
+uuid: bc2ed249-493c-4a51-b846-9182a9181b6c
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     module:
       - helfi_migration
 _core:
-  default_config_hash: 5hubyfpyKzCWfh_Kv2HXEYy7BUB4KSxO-yTjkFd4pOs
-id: newsitem_node_sv
+  default_config_hash: b7O4AE-j5-neUo-GLTiF2wss06wuVq9NwXAZ6lHb3o4
+id: newsitem_image_sv
 class: null
 field_plugin_method: null
 cck_plugin_method: null
 migration_tags:
   - helfi
 migration_group: newsitem
-label: 'Migrate Swedish news items from the source to nodes.'
+label: 'Migrate Swedish news item images from the source to image file.'
 source:
   plugin: newsitem_node
   data_fetcher_plugin: http
@@ -58,8 +58,5 @@ process:
     plugin: default_value
     default_value: 0
 destination:
-  plugin: 'entity:node'
-migration_dependencies:
-  required:
-    - newsitem_term
-    - newsitem_node_fi
+  plugin: 'entity:file'
+migration_dependencies: null

@@ -1,4 +1,4 @@
-uuid: 048d023a-759c-4ad9-b8e4-ab946ed685e4
+uuid: 786f165d-2cb7-4507-8311-bc553d5572e0
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     module:
       - helfi_migration
 _core:
-  default_config_hash: qRACs7v3x4iVyN1CzyElDRqa6WkTbgXYy4yTu4ECkUM
+  default_config_hash: FoBu99KfY6ahRtZvJV8zaVq2Gj5C2xNq4W1ZsaKPxVg
 id: newsitem_paragraph_en
 class: null
 field_plugin_method: null
@@ -32,9 +32,9 @@ source:
   item_selector: '/atom:entry'
   fields:
     -
-      name: title
-      label: 'News title'
-      selector: 'atom:title'
+      name: field_text
+      label: 'News content'
+      selector: 'atom:content/wcm:element/wcm:data[@type="text/html"]'
     -
       name: field_atomid
       label: 'Unique external ID'
@@ -43,23 +43,8 @@ source:
     field_atomid:
       type: string
 process:
-  title: title
-  type:
-    plugin: default_value
-    default_value: news_item
-  uid:
-    plugin: default_value
-    default_value: 1
-  status:
-    plugin: default_value
-    default_value: 1
-  sticky:
-    plugin: default_value
-    default_value: 0
+  field_text: field_text
 destination:
   plugin: 'entity_reference_revisions:paragraph'
   default_bundle: text
-migration_dependencies:
-  required:
-    - newsitem_term
-    - newsitem_node_fi
+migration_dependencies: null
