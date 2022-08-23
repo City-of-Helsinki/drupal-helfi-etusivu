@@ -41,6 +41,7 @@ destination:
   default_bundle: text
 process:
   field_text: field_text
+migration_dependencies: null
 dependencies:
   enforced:
     module:

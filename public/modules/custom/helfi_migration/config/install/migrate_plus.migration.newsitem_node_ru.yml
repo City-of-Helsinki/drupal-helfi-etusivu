@@ -13,24 +13,56 @@ source:
   item_selector: /atom:entry
   fields:
     -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+    -
       name: title
       label: 'News title'
       selector: atom:title
     -
-      name: field_atomid
-      label: 'Unique external ID'
-      selector: atom:id
+      name: field_lead_in
+      label: 'Summary'
+      selector: atom:summary
+    -
+      name: tags
+      label: 'News tags'
+      plugin: str_replace
+      selector: wcm:profile/wcm:category
+      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/'
+      replace: 'wcmrest:'
+    -
+      name: updated
+      label: 'Last update'
+      selector: atom:updated
   ids:
     field_atomid:
       type: string
 destination:
   plugin: entity:node
+  default_bundle: news_item
 process:
-  # Hardcode the destination node type (bundle) as 'helfi_migration_newsitem  '.
   title: title
-  type:
-    plugin: default_value
-    default_value: news_item
+  field_lead_in: field_lead_in
+  pseudo_field_content:
+    plugin: migration_lookup
+    migration: newsitem_paragraph_fi
+    source: field_atomid
+  field_content:
+    plugin: sub_process
+    source:
+      - '@pseudo_field_content'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+  field_main_image:
+    plugin: migration_lookup
+    migration: newsitem_media_fi
+    source: field_atomid
+  field_news_item_tags:
+    plugin: migration_lookup
+    migration: newsitem_term
+    source: tags
   uid:
     plugin: default_value
     default_value: 1
@@ -40,19 +72,14 @@ process:
   sticky:
     plugin: default_value
     default_value: 0
-# Our news_item nodes have references to terms and users, so we want those to be
-# imported first. We make that dependency explicit here - by putting those
-# migrations under the 'required' key, we ensure that the tools will prevent
-# us from running the newsitem_node migration unless these
-# migrations are complete (although we can override the dependency check by
-# passing --force to the drush migrate-import command). We can also add
-# 'optional' dependencies - these affect the order in which migrations are
-# displayed, and run by default, but does not force you run them in that
-# order.
-# The general rule of thumb is that any migrations referenced by migration
-# process plugins should be required here.
+  updated: updated
+  langcode:
+    plugin: default_value
+    default_value: ru
 migration_dependencies:
   required:
+    - newsitem_media_ru
+    - newsitem_paragraph_ru
     - newsitem_term
 dependencies:
   enforced:
