@@ -10,7 +10,7 @@ source:
   data_parser_plugin: xml
   urls:
     - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:2ebc7100-9af0-46fa-81ce-ad7407fbe1db
-#    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:d5bab9fd-b035-4143-adce-6fc54e5bd164
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:d5bab9fd-b035-4143-adce-6fc54e5bd164
 #    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:fa3c65a1-7d15-4ee0-9704-b1c99b5af930
 #    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:ae2bbdbc-f29a-40ab-ace6-7b6caec5c06b
 #    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:ea4a1ece-4269-42cd-91f8-0c2f824439d7
