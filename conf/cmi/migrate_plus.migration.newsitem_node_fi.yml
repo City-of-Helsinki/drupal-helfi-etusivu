@@ -38,7 +38,10 @@ source:
     -
       name: tags
       label: 'News tags'
-      selector: 'wcm:profile/wcm:category'
+      plugin: str_replace
+      selector: wcm:profile/wcm:category
+      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/'
+      replace: 'wcmrest:'
     -
       name: updated
       label: 'Last update'
@@ -49,12 +52,23 @@ source:
 process:
   title: title
   field_lead_in: field_lead_in
-  field_content:
+  pseudo_field_content:
     plugin: migration_lookup
     migration: newsitem_paragraph_fi
     source: field_atomid
+  field_content:
+    plugin: sub_process
+    source:
+      - '@pseudo_field_content'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+  field_main_image:
+    plugin: migration_lookup
+    migration: newsitem_media_fi
+    source: field_atomid
   field_news_item_tags:
-    plugin: helfi_category_migration_lookup
+    plugin: migration_lookup
     migration: newsitem_term
     source: tags
   uid:

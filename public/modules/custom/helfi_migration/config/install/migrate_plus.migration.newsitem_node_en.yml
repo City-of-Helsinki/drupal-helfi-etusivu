@@ -63,7 +63,7 @@ process:
   field_lead_in: field_lead_in
   pseudo_field_content:
     plugin: migration_lookup
-    migration: newsitem_paragraph_fi
+    migration: newsitem_paragraph_en
     source: field_atomid
   field_content:
     plugin: sub_process
@@ -74,7 +74,7 @@ process:
       target_revision_id: '1'
   field_main_image:
     plugin: migration_lookup
-    migration: newsitem_media_fi
+    migration: newsitem_media_en
     source: field_atomid
   field_news_item_tags:
     plugin: migration_lookup
