@@ -25,6 +25,10 @@ source:
       label: 'Unique external ID'
       selector: atom:id
     -
+      name: basenode_atomid
+      label: 'Base node unique external ID'
+      selector: (atom:content/wcm:element/wcm:data/wcm:destination)[3]
+    -
       name: title
       label: 'News title'
       selector: atom:title
@@ -54,7 +58,7 @@ process:
   nid:
     plugin: migration_lookup
     migration: newsitem_node_fi
-    source: field_atomid
+    source: basenode_atomid
   title: title
   field_lead_in: field_lead_in
   pseudo_field_content:
