@@ -28,7 +28,10 @@ source:
     -
       name: basenode_atomid
       label: 'Base node unique external ID'
+      plugin: str_replace
       selector: (atom:content/wcm:element/wcm:data/wcm:destination)[3]
+      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Content/'
+      replace: 'wcmrest:'
     -
       name: title
       label: 'News title'
