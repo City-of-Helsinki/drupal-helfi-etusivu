@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://hel.fi/fi/sitemap.xml</loc>
+    <loc>https://www.hel.fi/fi/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://hel.fi/fi/asuminen/sitemap.xml</loc>
+    <loc>https://www.hel.fi/fi/asuminen/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://hel.fi/fi/yritykset-ja-tyo/sitemap.xml</loc>
+    <loc>https://www.hel.fi/fi/yritykset-ja-tyo/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
@@ -17,27 +17,27 @@
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://hel.fi/fi/avoimet-tyopaikat/sitemap.xml</loc>
+    <loc>https://www.hel.fi/fi/avoimet-tyopaikat/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://hel.fi/fi/paatoksenteko-ja-hallinto/sitemap.xml</loc>
+    <loc>https://www.hel.fi/fi/paatoksenteko-ja-hallinto/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://hel.fi/fi/sosiaali-ja-terveyspalvelut/sitemap.xml</loc>
+    <loc>https://www.hel.fi/fi/sosiaali-ja-terveyspalvelut/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://hel.fi/fi/kaupunkiymparisto-ja-liikenne/sitemap.xml</loc>
+    <loc>https://www.hel.fi/fi/kaupunkiymparisto-ja-liikenne/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://hel.fi/fi/kulttuuri-ja-vapaa-aika/sitemap.xml</loc>
+    <loc>https://www.hel.fi/fi/kulttuuri-ja-vapaa-aika/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://hel.fi/sitemap.xml</loc>
+    <loc>https://www.hel.fi/sitemap.xml</loc>
     <lastmod>2022-08-24</lastmod>
   </sitemap>
 </sitemapindex>
