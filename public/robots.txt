@@ -1,7 +1,5 @@
 # Robots.txt
 #
-# Drupal robots
-#
 # This file is to prevent the crawling and indexing of certain parts
 # of your site by web crawlers and spiders run by sites like Yahoo!
 # and Google. By telling these "robots" where not to go on your site,
@@ -15,6 +13,7 @@
 # http://www.robotstxt.org/robotstxt.html
 
 User-agent: *
+sitemap: https://hel.fi/fi/sitemap.xml
 # CSS, JS, Images
 Allow: */core/*.css$
 Allow: */core/*.css?
@@ -81,10 +80,7 @@ Disallow: */user/logout
 # Updated 2017-06-02, excluding "urile" paths
 # - Added Disallow: /wps/wcm/connect/*urile
 # 2017-09-20 added allow for WEX/IBMtest based on request
-User-agent: WEX/IBMtest
-Allow: /static/mirror-v2/
-#
-User-agent: *
+
 #
 # CGI-bins
 #
@@ -164,3 +160,6 @@ Disallow: /hki/HS/Helsingfors+Region/
 Disallow: /hki/HS/Helsingin+Seutu/
 Disallow: /hki/HS/The+Region+of+Helsinki/
 Disallow: /wps/portal/HelsinkiV2/
+
+User-agent: WEX/IBMtest
+Allow: /static/mirror-v2/
