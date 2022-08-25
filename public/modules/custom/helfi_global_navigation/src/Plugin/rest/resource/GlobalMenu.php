@@ -105,11 +105,12 @@ final class GlobalMenu extends GlobalMenuBase {
 
       $this->assertPermission($entity, 'create');
     }
+    if (!$entity->hasTranslation($langcode)) {
+      $entity = $entity->addTranslation($langcode);
+      $isNew = TRUE;
+    }
     else {
-      if (!$entity->hasTranslation($langcode)) {
-        $entity = $entity->addTranslation($langcode);
-        $isNew = TRUE;
-      }
+      $entity = $entity->getTranslation($langcode);
     }
     $this->assertPermission($entity, 'update');
 
