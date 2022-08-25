@@ -1,0 +1,164 @@
+# Robots.txt
+#
+# This file is to prevent the crawling and indexing of certain parts
+# of your site by web crawlers and spiders run by sites like Yahoo!
+# and Google. By telling these "robots" where not to go on your site,
+# you save bandwidth and server resources.
+#
+# This file will be ignored unless it is at the root of your host:
+# Used:    http://example.com/robots.txt
+# Ignored: http://example.com/site/robots.txt
+#
+# For more information about the robots.txt standard, see:
+# http://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+# CSS, JS, Images
+Allow: */core/*.css$
+Allow: */core/*.css?
+Allow: */core/*.js$
+Allow: */core/*.js?
+Allow: */core/*.gif
+Allow: */core/*.jpg
+Allow: */core/*.jpeg
+Allow: */core/*.png
+Allow: */core/*.svg
+Allow: */profiles/*.css$
+Allow: */profiles/*.css?
+Allow: */profiles/*.js$
+Allow: */profiles/*.js?
+Allow: */profiles/*.gif
+Allow: */profiles/*.jpg
+Allow: */profiles/*.jpeg
+Allow: */profiles/*.png
+Allow: */profiles/*.svg
+# Directories
+Disallow: */core/
+Disallow: */profiles/
+# Paths (clean URLs)
+Disallow: */admin/
+Disallow: */comment/reply/
+Disallow: */filter/tips
+Disallow: */node/add/
+Disallow: */search/
+Disallow: */user/register
+Disallow: */user/password
+Disallow: */user/login
+Disallow: */user/logout
+
+# Old robots
+#
+# http://www.hel.fi/robots.txt
+#
+# Created 2008-01-23,
+# Updated 2008-02-22,
+# - added dynamic content section
+# Updated 2008-04-11,
+# - static copy moved under /mirror
+# Updated 2008-10-03,
+# - added /tprtesti/
+# Updated 2009-03-12,
+# - added /helsi, /palvelukartta/maps/
+# - removed mirror
+# Updated 2009-04-03,
+# - removed /helsi, /tprtesti
+# Updated 2009-09-01,
+# - reintroduced /static/mirror/
+# Updated 2012-01-05,
+# - added /ArchiveTool/
+# Updated 2012-10-02,
+# - added 9 archive pages
+# Updated 2012-11-05,
+# - changed "dynamic" to properly exclude version 7 dynamic content
+# Updated 2013-03-15,
+# - added www.hel2.fi/robots.txt content
+# Updated 2014-05-06, AK
+# - Removed disallow new concept, added disallow helsinki-library
+# Updated 2017-05-15,
+# - Added wcmjspv2, mirror-seutu
+# Updated 2017-06-02, excluding "urile" paths
+# - Added Disallow: /wps/wcm/connect/*urile
+# 2017-09-20 added allow for WEX/IBMtest based on request
+
+#
+# CGI-bins
+#
+#Disallow: /cgi-bin
+#Disallow: /cgi-bin/
+#
+# Images
+#
+#Disallow: /images/
+#
+# Dynamic content
+#
+Disallow: /wps/portal/!ut/p/
+Disallow: /wps/wcmjspv2/
+Disallow: /wps/portal/home/
+Disallow: /wps/wcm/connect/*urile
+#
+# Seutu should be accessed at
+# http://www.helsinginseutu.fi/
+#
+Disallow: /wps/portal/HelsinginSeutu
+#
+# requested by PP
+#
+Disallow: /palvelukartta/maps/
+#
+# Static copy not to be indexed
+#
+Disallow: /static/mirror/
+Disallow: /static/mirror-v2/
+Disallow: /static/mirror-seutu/
+#
+# News archive not to be indexed
+# requested by PP
+#
+Disallow: /ArchiveTool/
+Disallow: /hki/Helsinki/fi/Uutiset/Uutisarkisto
+Disallow: /hki/sosv/fi/Ajankohtaista/Uutiset/Uutisarkisto
+Disallow: /hki/hkr/fi/Ajankohtaista/Uutisarkisto
+Disallow: /hki/ksv/fi/Uutiset/Uutisarkisto
+Disallow: /hki/kv/fi/Maa-+ja+kallioper_/Uutisarkisto
+Disallow: /hki/rakpa/fi/Ajankohtaista/Uutisarkisto
+#
+# Old pages to be excluded from search engine indexes
+#
+Disallow: /hki/helsinki/fi/
+Disallow: /hki/helsinki/sv/
+Disallow: /hki/helsinki/en/
+#
+# www.hel2.fi/robots.txt additions
+#
+#Disallow: /hel2/graafisetohjeet/
+#Disallow: /hel2/Haku/
+#Disallow: /hel2/onebsr
+#
+# Rakpa moved to new theme, exclude old ones
+Disallow: /hki/Rakpa/fi/
+
+# Old Arbis
+Disallow: /hki/Arbis/
+# Old Matkapalvelu
+Disallow: /hki/palmia/fi/Helsingin Matkapalvelu/
+Disallow: /hki/Palmia/fi/Helsingin Matkapalvelu/
+Disallow: /wps/portal/Palmia/Helsinginmatkapalvelu
+Disallow: /wps/portal/palmia/Helsinginmatkapalvelu
+Disallow: /hki/Palmia/sv/Helsingfors Resetjanst/
+Disallow: /hki/palmia/sv/Helsingfors Resetjanst/
+Disallow: /wps/portal/Palmia_sv/Helsingforsresetjanst
+Disallow: /wps/portal/palmia_sv/Helsingforsresetjanst
+Disallow: /hki/oiva/
+Disallow: /hki/Oiva/
+Disallow: /www/ptemplate/
+Disallow: /wps/portal/Oiva
+Disallow: /wps/portal/HelsinkiV2/!ut/p/
+Disallow: /wps/portal/Home/
+Disallow: /hki/HS/Helsingfors+Region/
+Disallow: /hki/HS/Helsingin+Seutu/
+Disallow: /hki/HS/The+Region+of+Helsinki/
+Disallow: /wps/portal/HelsinkiV2/
+
+User-agent: WEX/IBMtest
+Allow: /static/mirror-v2/
