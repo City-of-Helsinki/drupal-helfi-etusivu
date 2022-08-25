@@ -41,17 +41,26 @@ final class NewsitemNode extends Url {
     $options = [];
 
     $client = \Drupal::httpClient();
-
-    $response = $client->request($method, $url, $options);
-    $code = $response->getStatusCode();
-    if ($code == 200) {
-      $xmlString = $response->getBody()->getContents();
-      $xmlObject = new \SimpleXMLElement($xmlString);
-      $contentIds = $xmlObject->xpath('/atom:feed/atom:entry/atom:id');
-      foreach ($contentIds as $contentId) {
-        $urlList[] = self::ATOM_NEWS_SOURCE_URL . ((string) $contentId);
+    $page = 1;
+    while (TRUE) {
+      $pageUrl = $url . "?pageSize=100&page=" . $page;
+      dump ($pageUrl);
+      $response = $client->request($method, $pageUrl, $options);
+      $code = $response->getStatusCode();
+      if ($code == 200) {
+        $xmlString = $response->getBody()->getContents();
+        $xmlObject = new \SimpleXMLElement($xmlString);
+        $contentIds = $xmlObject->xpath('/atom:feed/atom:entry/atom:id');
+        foreach ($contentIds as $contentId) {
+          $urlList[] = self::ATOM_NEWS_SOURCE_URL . ((string)$contentId);
+        }
       }
+      if (count($contentIds) < 100) {
+        break;
+      }
+      $page++;
     }
+//    die();
   }
 
   private function getAtomNews(string $id) {
