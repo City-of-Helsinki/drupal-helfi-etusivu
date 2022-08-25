@@ -6,6 +6,7 @@ migration_tags:
   - helfi
 source:
   plugin: newsitem_node
+  skip_count: true
   data_fetcher_plugin: http
   data_parser_plugin: xml
   urls:
