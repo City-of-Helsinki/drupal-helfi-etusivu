@@ -44,7 +44,6 @@ final class NewsitemNode extends Url {
     $page = 1;
     while (TRUE) {
       $pageUrl = $url . "?pageSize=100&page=" . $page;
-      dump ($pageUrl);
       $response = $client->request($method, $pageUrl, $options);
       $code = $response->getStatusCode();
       if ($code == 200) {
@@ -60,7 +59,6 @@ final class NewsitemNode extends Url {
       }
       $page++;
     }
-//    die();
   }
 
   private function getAtomNews(string $id) {
