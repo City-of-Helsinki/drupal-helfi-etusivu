@@ -13,7 +13,6 @@
 # http://www.robotstxt.org/robotstxt.html
 
 User-agent: *
-sitemap: https://hel.fi/fi/sitemap.xml
 # CSS, JS, Images
 Allow: */core/*.css$
 Allow: */core/*.css?
