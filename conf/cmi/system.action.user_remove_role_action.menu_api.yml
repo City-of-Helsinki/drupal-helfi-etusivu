@@ -1,0 +1,14 @@
+uuid: 516b5d53-f5d4-4ed0-9563-c09d9e9c7af8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.menu_api
+  module:
+    - user
+id: user_remove_role_action.menu_api
+label: 'Remove the Menu API role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: menu_api

@@ -1,4 +1,0 @@
-global_menu.content_list:
-  title: HELfi - Global menu
-  route_name: entity.global_menu.collection
-  base_route: helfi_api_base.integrations
