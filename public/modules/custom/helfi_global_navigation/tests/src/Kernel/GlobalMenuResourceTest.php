@@ -267,6 +267,11 @@ class GlobalMenuResourceTest extends ApiKernelTestBase {
       // response.
       $response = $this->processRequest($request);
       $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+
+      // Make sure item was properly translated.
+      $content = \GuzzleHttp\json_decode($response->getContent());
+      $this->assertEquals('Liikenne ' . $langcode, $content->name[0]->value);
+      $this->assertEquals($langcode, $content->langcode[0]->value);
     }
   }
 
