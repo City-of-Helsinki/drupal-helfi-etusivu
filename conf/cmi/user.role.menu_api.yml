@@ -1,0 +1,13 @@
+uuid: 65f85382-6481-45b9-ac33-1f6b9275b60a
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_global_navigation
+id: menu_api
+label: 'Menu API'
+weight: 6
+is_admin: null
+permissions:
+  - 'create global_menu'
+  - 'update global_menu'
