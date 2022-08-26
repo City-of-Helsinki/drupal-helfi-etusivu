@@ -41,7 +41,10 @@ destination:
   plugin: 'entity_reference_revisions:paragraph'
   default_bundle: text
 process:
-  field_text: field_text
+  field_text/value: field_text
+  field_text/format:
+    plugin: default_value
+    default_value: full_html
 migration_dependencies: null
 dependencies:
   enforced:
