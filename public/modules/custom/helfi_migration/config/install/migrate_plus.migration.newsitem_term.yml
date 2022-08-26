@@ -37,7 +37,7 @@ source:
     -
       name: name
       label: 'Term name'
-      selector: wcm:name
+      selector: atom:title
     -
       name: description
       label: 'Term description'
