@@ -6,7 +6,9 @@ namespace Drupal\helfi_global_navigation\Entity\Routing;
 
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Routing\AdminHtmlRouteProvider;
+use Drupal\helfi_global_navigation\Entity\Form\GlobalMenuOverviewForm;
 use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
 
 /**
  * Provides routes for content entities.
@@ -19,16 +21,18 @@ final class GlobalMenuRouteProvider extends AdminHtmlRouteProvider {
   /**
    * {@inheritdoc}
    */
-  public function getRoutes(EntityTypeInterface $entity_type) {
+  public function getRoutes(EntityTypeInterface $entity_type) : RouteCollection {
+    /** @var \Symfony\Component\Routing\RouteCollection $collection */
     $collection = parent::getRoutes($entity_type);
 
-    $route = (new Route('/admin/content/integrations/global_menu/add'))
+    $route = (new Route('/admin/content/integrations/global_menu'))
       ->addDefaults([
-        '_entity_form' => 'global_menu.default',
-        '_title' => 'Add menu',
+        '_form' => GlobalMenuOverviewForm::class,
+        '_title' => 'Global menus',
       ])
-      ->setRequirement('_access', 'TRUE');
-    $collection->add('global_menu.add_form', $route);
+      ->setOption('_admin_route', TRUE)
+      ->setRequirement('_permission', $entity_type->getAdminPermission());
+    $collection->add('entity.global_menu.collection', $route);
 
     return $collection;
   }

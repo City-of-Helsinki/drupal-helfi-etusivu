@@ -2,11 +2,15 @@ uuid: 25b5c7aa-74b0-4c71-a8e6-c736db200688
 langcode: en
 status: true
 dependencies:
+  config:
+    - rest.resource.helfi_global_menu_collection
   module:
     - eu_cookie_compliance
     - helfi_api_base
+    - helfi_global_navigation
     - media
     - openapi
+    - rest
     - system
     - toolbar
 _core:
@@ -20,5 +24,7 @@ permissions:
   - 'access openapi api docs'
   - 'access toolbar'
   - 'display eu cookie compliance popup'
+  - 'restful get helfi_global_menu_collection'
+  - 'view global_menu'
   - 'view media'
   - 'view remote entities'

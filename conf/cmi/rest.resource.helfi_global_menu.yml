@@ -1,0 +1,21 @@
+uuid: 14c6de26-9ce8-4472-bf1c-3a1bc25349fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_api_base
+    - serialization
+    - helfi_global_navigation
+    - basic_auth
+id: helfi_global_menu
+plugin_id: helfi_global_menu
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+  formats:
+    - json
+  authentication:
+    - cookie
+    - basic_auth
