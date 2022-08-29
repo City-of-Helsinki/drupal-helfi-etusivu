@@ -44,7 +44,7 @@ process:
   field_text/value: field_text
   field_text/format:
     plugin: default_value
-    default_value: full_html
+    default_value: 'full_html'
 migration_dependencies: null
 dependencies:
   enforced:
