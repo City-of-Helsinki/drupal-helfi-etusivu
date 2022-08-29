@@ -1,0 +1,5 @@
+msgid ""
+msgstr ""
+
+msgid "All news"
+msgstr "Kaikki uutiset"

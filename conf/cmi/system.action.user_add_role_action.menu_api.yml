@@ -1,0 +1,14 @@
+uuid: 35799f7c-ee54-4036-9008-06efbe563026
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.menu_api
+  module:
+    - user
+id: user_add_role_action.menu_api
+label: 'Add the Menu API role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: menu_api

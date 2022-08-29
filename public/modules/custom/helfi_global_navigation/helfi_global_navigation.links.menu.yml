@@ -1,5 +1,5 @@
 entity.global_menu.collection:
-  title: HELfi - Global menus
-  description: View synchronized menus
+  title: Global menu
+  description: List of Global menu entities
   route_name: entity.global_menu.collection
   parent: helfi_api_base.integrations
