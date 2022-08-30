@@ -5,8 +5,6 @@ dependencies:
   enforced:
     module:
       - helfi_migration
-_core:
-  default_config_hash: VY62i1M-ycGCQQIV2igKAhDgrQ_oiCB52Ogwc02pIEI
 id: newsitem_term
 class: null
 field_plugin_method: null
@@ -29,7 +27,7 @@ source:
     -
       name: name
       label: 'Term name'
-      selector: 'wcm:name'
+      selector: 'atom:title'
     -
       name: description
       label: 'Term description'
@@ -38,11 +36,9 @@ source:
     field_termatomid:
       type: string
 process:
-  vid:
-    plugin: default_value
-    default_value: news_tags
   name: name
   description: description
 destination:
   plugin: 'entity:taxonomy_term'
+  default_bundle: news_tags
 migration_dependencies: null
