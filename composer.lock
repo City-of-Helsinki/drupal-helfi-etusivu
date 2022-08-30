@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f5b57a6a1327f14a638096f91e839df",
+    "content-hash": "44cf8ce8344e692cc37bcb3bcc3b39ba",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4985,6 +4985,40 @@
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-media-map/issues"
             },
             "time": "2021-11-18T05:55:15+00:00"
+        },
+        {
+            "name": "drupal/helfi_navigation",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation.git",
+                "reference": "761c8dd6ccaa7adc0e612463235966d3b3573765"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/761c8dd6ccaa7adc0e612463235966d3b3573765",
+                "reference": "761c8dd6ccaa7adc0e612463235966d3b3573765",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/helfi_api_base": "*",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "drupal/coder": "^8.3"
+            },
+            "default-branch": true,
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Helfi - Navigation",
+            "support": {
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/main",
+                "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/issues"
+            },
+            "time": "2022-08-29T05:51:11+00:00"
         },
         {
             "name": "drupal/helfi_platform_config",
@@ -18669,6 +18703,7 @@
         "drupal/elasticsearch_connector": 15,
         "drupal/external_entities": 15,
         "drupal/helfi_drupal_tools": 20,
+        "drupal/helfi_navigation": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5
     },
