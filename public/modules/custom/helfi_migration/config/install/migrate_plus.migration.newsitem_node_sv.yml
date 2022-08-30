@@ -41,13 +41,10 @@ source:
       name: field_lead_in
       label: 'Summary'
       selector: atom:summary
-#    -
-#      name: tags
-#      label: 'News tags'
-#      plugin: str_replace
-#      selector: wcm:profile/wcm:category
-#      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/'
-#      replace: 'wcmrest:'
+    -
+      name: created
+      label: 'Published'
+      selector: atom:published
     -
       name: updated
       label: 'Last update'
@@ -77,14 +74,6 @@ process:
     process:
       target_id: '0'
       target_revision_id: '1'
-  field_main_image:
-    plugin: migration_lookup
-    migration: newsitem_media_sv
-    source: field_atomid
-#  field_news_item_tags:
-#    plugin: migration_lookup
-#    migration: newsitem_term
-#    source: tags
   uid:
     plugin: default_value
     default_value: 1
@@ -94,13 +83,14 @@ process:
   sticky:
     plugin: default_value
     default_value: 0
+  created: created
   updated: updated
   langcode:
     plugin: default_value
     default_value: sv
 migration_dependencies:
   required:
-    - newsitem_media_sv
+    - newsitem_media_fi
     - newsitem_paragraph_sv
     - newsitem_term
     - newsitem_node_fi
