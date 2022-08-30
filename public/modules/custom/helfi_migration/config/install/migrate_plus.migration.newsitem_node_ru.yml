@@ -33,6 +33,10 @@ source:
       search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/'
       replace: 'wcmrest:'
     -
+      name: created
+      label: 'Published'
+      selector: atom:published
+    -
       name: updated
       label: 'Last update'
       selector: atom:updated
@@ -73,6 +77,7 @@ process:
   sticky:
     plugin: default_value
     default_value: 0
+  created: created
   updated: updated
   langcode:
     plugin: default_value
