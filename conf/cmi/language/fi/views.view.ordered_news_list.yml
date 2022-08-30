@@ -8,6 +8,7 @@ display:
           content:
             value: "<p>Järjestä etusivun pääuutis-lohkoon nostetut uutiset haluamaasi järjestykseen</p>\r\n"
             format: full_html
+      title: 'Järjestele etusivulle nostetut uutiset'
   ordered_news:
     display_title: 'Järjestelty uutislista'
     display_options:
