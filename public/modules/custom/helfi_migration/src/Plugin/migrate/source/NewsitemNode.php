@@ -61,23 +61,4 @@ final class NewsitemNode extends Url {
     }
   }
 
-  private function getAtomNews(string $id) {
-    $method = 'GET';
-    $options = [];
-
-    $client = \Drupal::httpClient();
-
-    $response = $client->request($method, self::ATOM_NEWS_SOURCE_URL . $id, $options);
-    $code = $response->getStatusCode();
-    if ($code == 200) {
-      $xmlString = $response->getBody()->getContents();
-      $xmlObject = new \SimpleXMLElement($xmlString);
-      $articles = $xmlObject->xpath('/atom:feed/atom:entry');
-      foreach ($articles as $article) {
-        $atomProps = $article->children('atom', TRUE);
-        $wcmProps = $article->children('wcm', TRUE);
-      }
-    }
-  }
-
 }
