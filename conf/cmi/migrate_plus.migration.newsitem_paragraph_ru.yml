@@ -5,8 +5,6 @@ dependencies:
   enforced:
     module:
       - helfi_migration
-_core:
-  default_config_hash: wpRyNBg1C_s6unMfCIZsNB07A95ynZX6oo0wr1Y-sMc
 id: newsitem_paragraph_ru
 class: null
 field_plugin_method: null
@@ -17,6 +15,7 @@ migration_group: newsitem
 label: 'Migrate Russian news items from the source to nodes.'
 source:
   plugin: newsitem_node
+  skip_count: true
   data_fetcher_plugin: http
   data_parser_plugin: xml
   urls:
@@ -35,7 +34,10 @@ source:
     field_atomid:
       type: string
 process:
-  field_text: field_text
+  field_text/value: field_text
+  field_text/format:
+    plugin: default_value
+    default_value: full_html
 destination:
   plugin: 'entity_reference_revisions:paragraph'
   default_bundle: text

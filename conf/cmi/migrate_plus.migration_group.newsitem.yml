@@ -5,8 +5,6 @@ dependencies:
   enforced:
     module:
       - helfi_migration
-_core:
-  default_config_hash: 2CE9khlM_WxHz_lXT2imRhiVxlx3EKJD5yLYb1AzVa4
 id: newsitem
 label: 'News Item Imports'
 description: 'News items related imports.'
