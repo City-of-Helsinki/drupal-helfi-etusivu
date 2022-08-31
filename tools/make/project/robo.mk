@@ -51,10 +51,6 @@ PHONY += post-install-tasks
 post-install-tasks:
 	$(call docker_run_ci,app,drush upwd helfi-admin Test_Automation)
 	$(call docker_run_ci,app,drush en helfi_example_content syslog -y)
-	$(call docker_run_ci,app,drush helfi:migrate-fixture tpr_unit --publish)
-	$(call docker_run_ci,app,drush helfi:migrate-fixture tpr_service --publish)
-	$(call docker_run_ci,app,drush helfi:migrate-fixture tpr_errand_service --publish)
-	$(call docker_run_ci,app,drush helfi:migrate-fixture tpr_service_channel --publish)
 	$(call docker_run_ci,app,drush pmu editoria11y -y)
 
 PHONY += save-dump
