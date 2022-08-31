@@ -9,12 +9,12 @@ $news-archive-background: #f2f2f2;
 .news-wrapper {
   @include component-side-padding;
   @include components-container-max-width;
-  @include component-margin-top;
   margin: auto;
   width: 100%;
 }
 
 .news-form-wrapper {
+  @include component-margin-top;
   background: $news-archive-background;
 }
 
