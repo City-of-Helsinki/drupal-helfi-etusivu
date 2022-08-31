@@ -55,7 +55,7 @@ source:
       search: /wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/
       replace: 'wcmrest:'
     -
-      name: created
+      name: published
       label: Published
       selector: 'atom:published'
     -
@@ -87,6 +87,7 @@ process:
     plugin: migration_lookup
     migration: newsitem_term
     source: tags
+    no_stub: true
   uid:
     plugin: default_value
     default_value: 1
@@ -96,8 +97,16 @@ process:
   sticky:
     plugin: default_value
     default_value: 0
-  created: created
-  updated: updated
+  changed:
+    plugin: helfi_format_date
+    from_format: 'Y-m-d\TH:i:s'
+    to_format: U
+    source: updated
+  published_on:
+    plugin: helfi_format_date
+    from_format: 'Y-m-d\TH:i:s'
+    to_format: U
+    source: published
   langcode:
     plugin: default_value
     default_value: fi
