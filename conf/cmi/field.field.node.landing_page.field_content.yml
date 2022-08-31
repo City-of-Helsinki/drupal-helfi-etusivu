@@ -16,8 +16,6 @@ dependencies:
     - paragraphs.paragraphs_type.liftup_with_image
     - paragraphs.paragraphs_type.list_of_links
     - paragraphs.paragraphs_type.remote_video
-    - paragraphs.paragraphs_type.target_group_links
-    - paragraphs.paragraphs_type.front_page_top_news
   module:
     - entity_reference_revisions
 _core:
@@ -44,13 +42,11 @@ settings:
       list_of_links: list_of_links
       liftup_with_image: liftup_with_image
       from_library: from_library
-      target_group_links: target_group_links
       front_page_top_news: front_page_top_news
       chart: chart
       remote_video: remote_video
       event_list: event_list
       current: current
-      popular_services: popular_services
       phasing: phasing
     negate: 0
     target_bundles_drag_drop:
