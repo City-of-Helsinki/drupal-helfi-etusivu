@@ -160,7 +160,7 @@ display:
           entity_field: langcode
           plugin_id: field
           label: 'Translation language'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -483,21 +483,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - 'user.node_grants:view'
-        - user.permissions
-      tags: {  }
-  attachment_1:
-    id: attachment_1
-    display_title: Liite
-    display_plugin: attachment
-    position: 2
-    display_options:
-      display_extenders: {  }
-    cache_metadata:
-      max-age: 0
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
