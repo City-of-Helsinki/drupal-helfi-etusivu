@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "44cf8ce8344e692cc37bcb3bcc3b39ba",
+    "content-hash": "476fe424cea677565891fabc1ff275e8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4992,12 +4992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation.git",
-                "reference": "761c8dd6ccaa7adc0e612463235966d3b3573765"
+                "reference": "e0c358c8a44c3bb40b1b34e0d7d80ed6f2e25bfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/761c8dd6ccaa7adc0e612463235966d3b3573765",
-                "reference": "761c8dd6ccaa7adc0e612463235966d3b3573765",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/e0c358c8a44c3bb40b1b34e0d7d80ed6f2e25bfc",
+                "reference": "e0c358c8a44c3bb40b1b34e0d7d80ed6f2e25bfc",
                 "shasum": ""
             },
             "require": {
@@ -5015,10 +5015,10 @@
             ],
             "description": "Helfi - Navigation",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/main",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/UHF-6473",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/issues"
             },
-            "time": "2022-08-29T05:51:11+00:00"
+            "time": "2022-08-31T12:23:48+00:00"
         },
         {
             "name": "drupal/helfi_platform_config",
@@ -18713,5 +18713,5 @@
         "ext-libxml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
