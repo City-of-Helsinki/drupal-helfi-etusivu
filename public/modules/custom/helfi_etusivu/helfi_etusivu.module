@@ -44,7 +44,7 @@ function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $
       $table['join']->extra[] = [
         'field' => 'langcode',
         'value' => $langcode,
-        'operator' => '='
+        'operator' => '=',
       ];
     }
   }

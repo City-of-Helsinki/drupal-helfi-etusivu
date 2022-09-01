@@ -7,6 +7,8 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Database\Database;
+
 /**
  * Implements hook_install().
  */
@@ -131,13 +133,13 @@ function helfi_etusivu_update_9005() : void {
   $moduleHandler = \Drupal::service('module_handler');
 
   if ($moduleHandler->moduleExists('draggableviews')) {
-    $spec = array(
+    $spec = [
       'type' => 'varchar',
       'description' => "language code",
       'length' => 5,
       'not null' => TRUE,
-    );
-    $schema = \Drupal\Core\Database\Database::getConnection()->schema();
+    ];
+    $schema = Database::getConnection()->schema();
     $schema->addField('draggableviews_structure', 'langcode', $spec);
   }
 }
