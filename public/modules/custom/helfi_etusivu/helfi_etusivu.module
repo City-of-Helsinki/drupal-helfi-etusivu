@@ -28,3 +28,20 @@ function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_sta
   $form['promote']['widget']['#title'] = t('Top news flow', [], ['context' => 'News item promoted field wrapper title']);
   $form['promote']['widget']['#title_display'] = 'above';
 }
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function helfi_etusivu_views_query_alter(\Drupal\views\ViewExecutable $view, \Drupal\views\Plugin\views\query\QueryPluginBase $query) {
+  if ($view->id() === 'ordered_news_list') {
+    $langcode = \Drupal::languageManager()->getCurrentLanguage(\Drupal\Core\Language\LanguageInterface::TYPE_CONTENT)->getId();
+    $table = $query->getTableInfo('draggableviews_structure');
+    $table['join']->extra = !$table['join']->extra ? [] : $table['join']->extra;
+
+    $table['join']->extra[] = [
+      'field' => 'langcode',
+      'value' => $langcode,
+      'operator' => '='
+    ];
+  }
+}
