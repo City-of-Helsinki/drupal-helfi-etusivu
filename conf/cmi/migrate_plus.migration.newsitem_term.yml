@@ -31,7 +31,7 @@ source:
     -
       name: description
       label: 'Term description'
-      selector: 'atom:title'
+      selector: 'atom:summary'
   ids:
     field_termatomid:
       type: string
