@@ -122,3 +122,22 @@ function helfi_etusivu_update_9004() : void {
     }
   }
 }
+
+/**
+ * Add column to draggable view db table.
+ */
+function helfi_etusivu_update_9005() : void {
+  /** @var \Drupal\Core\Extension\ModuleHandler $moduleHandler */
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('draggableviews')) {
+    $spec = array(
+      'type' => 'varchar',
+      'description' => "language code",
+      'length' => 5,
+      'not null' => TRUE,
+    );
+    $schema = \Drupal\Core\Database\Database::getConnection()->schema();
+    $schema->addField('draggableviews_structure', 'langcode', $spec);
+  }
+}
