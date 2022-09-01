@@ -54,6 +54,8 @@ function helfi_global_navigation_modules_installed($modules) {
     /** @var \Drupal\Core\Entity\EntityStorageInterface $block_storage */
     $block_storage = \Drupal::service('entity_type.manager')->getStorage('block');
     $block = $block_storage->load('external_fallback_menu');
-    $block->delete();
+    if (!empty($block)) {
+      $block->delete();
+    }
   }
 }
