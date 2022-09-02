@@ -1,25 +1,20 @@
-uuid: 414b894f-0b5b-40fc-936a-85aceba93f07
+uuid: eb19685a-ab06-4f78-b309-0652681da3e6
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - helfi_news_archive
-    - system
   theme:
     - hdbt_subtheme
 id: newsarchive
 theme: hdbt_subtheme
 region: content
-weight: 0
+weight: -12
 provider: null
-plugin: news_archive_block
+plugin: block__news_archive_application
 settings:
-  id: news_archive_block
+  id: block__news_archive_application
   label: 'News archive'
   label_display: '0'
   provider: helfi_news_archive
-visibility:
-  request_path:
-    id: request_path
-    negate: false
-    pages: "/uutiset\r\n/news\r\n/nyheter"
+visibility: {  }

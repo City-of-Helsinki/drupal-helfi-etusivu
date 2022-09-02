@@ -50,7 +50,7 @@ install-drupal-from-dump:
 PHONY += post-install-tasks
 post-install-tasks:
 	$(call docker_run_ci,app,drush upwd helfi-admin Test_Automation)
-	$(call docker_run_ci,app,drush en helfi_example_content syslog -y)
+	$(call docker_run_ci,app,drush en helfi_etusivu_test_content syslog -y)
 	$(call docker_run_ci,app,drush pmu editoria11y -y)
 
 PHONY += save-dump
@@ -79,4 +79,4 @@ setup-robo: $(SETUP_ROBO_TARGETS)
 
 PHONY += run-robo-tests
 run-robo-tests:
-	$(call docker_run_ci,robo,cd /app/helfi-test-automation-python && chmod +x run_all_tests.sh && PREFIX=$(SITE_PREFIX) BASE_URL=$(DRUPAL_HOSTNAME) ./run_all_tests.sh)
+	$(call docker_run_ci,robo,cd /app/helfi-test-automation-python && chmod +x run_all_etusivu_tests.sh && PREFIX=$(SITE_PREFIX) BASE_URL=$(DRUPAL_HOSTNAME) ./run_all_etusivu_tests.sh)
