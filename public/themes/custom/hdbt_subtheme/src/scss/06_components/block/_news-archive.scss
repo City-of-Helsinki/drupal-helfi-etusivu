@@ -63,7 +63,6 @@ $news-archive-background: #f2f2f2;
   padding-bottom: $spacing-double;
 
   @include breakpoint($breakpoint-m) {
-    align-self: flex-end;
     margin-bottom: $spacing;
     padding-bottom: 0;
   }
@@ -76,6 +75,11 @@ $news-archive-background: #f2f2f2;
 .news-form__submit-button {
   margin-top: $spacing-half;
   width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    // Match filter elements' top offset to align properly
+    margin-top: $spacing-and-half + $spacing-quarter;
+  }
 }
 
 .news-wrapper {
@@ -84,4 +88,18 @@ $news-archive-background: #f2f2f2;
 
 .news-listing--teasers {
   max-width: 100%;
+}
+
+// Need a specific selector to override hds styles
+.news-form__clear-all .news-form__clear-all-button {
+  color: $hdbt-color-black;
+
+  &:hover {
+    background: $hdbt-color-black;
+    color: $hdbt-color-white;
+  }
+}
+
+.news-listing__no-results {
+  margin-top: $spacing;
 }
