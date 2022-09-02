@@ -10,6 +10,7 @@
     </div>
     {# Render the main news block in before content. #}
     {{ drupal_entity('block', 'views_block__frontpage_news_main_news', check_access=false) }}
+    {{ drupal_entity('block', 'newsarchive', check_access=false) }}
   {% endblock page_before_content %}
 
   {# Create sidebar second block and render most read news in it. #}
