@@ -44,18 +44,3 @@ function helfi_global_navigation_preprocess_menu__external_menu(&$variables) : v
     }
   }
 }
-
-/**
- * Implements hook_modules_installed().
- */
-function helfi_global_navigation_modules_installed($modules) {
-  if (in_array('helfi_navigation', $modules)) {
-    // Delete obsolete block.
-    /** @var \Drupal\Core\Entity\EntityStorageInterface $block_storage */
-    $block_storage = \Drupal::service('entity_type.manager')->getStorage('block');
-    $block = $block_storage->load('external_fallback_menu');
-    if (!empty($block)) {
-      $block->delete();
-    }
-  }
-}
