@@ -15,20 +15,22 @@ msgstr "Uutiset valintojesi perusteella"
 
 msgctxt "News archive clear button aria label"
 msgid "Clear selection"
+msgstr "Tyhjennä kaikki valinnat"
 
 msgctxt "News archive remove item aria label"
 msgid "Remove item"
+msgstr "Poista valinta"
 
 msgctxt "News archive open combobox aria label"
 msgid "Open the combobox"
 
 msgctxt "News archive topics label"
 msgid "Topics"
-msgstr "Aihealueet"
+msgstr "Aiheet"
 
 msgctxt "News archive topics placeholder"
 msgid "All topics"
-msgstr "Kaikki aihealueet"
+msgstr "Kaikki aiheet"
 
 msgctxt "News archive neighbourhoods label"
 msgid "City disctricts"
@@ -52,4 +54,4 @@ msgstr "Tyhjennä valinnat"
 
 msgctxt "News archive no results"
 msgid "No results found"
-msgstr "Tuloksia ei löytynyt"
+msgstr "Ei tuloksia"
