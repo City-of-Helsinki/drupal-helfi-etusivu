@@ -38,10 +38,7 @@ source:
     -
       name: basenode_atomid
       label: 'Base node unique external ID'
-      plugin: str_replace
       selector: '(atom:content/wcm:element/wcm:data/wcm:destination)[3]'
-      search: /wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Content/
-      replace: 'wcmrest:'
     -
       name: title
       label: 'News title'
@@ -63,9 +60,14 @@ source:
       type: string
 process:
   nid:
-    plugin: migration_lookup
-    migration: newsitem_node_fi
-    source: basenode_atomid
+    -
+      plugin: str_replace
+      source: basenode_atomid
+      search: /wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Content/
+      replace: 'wcmrest:'
+    -
+      plugin: migration_lookup
+      migration: newsitem_node_fi
   title: title
   field_lead_in: field_lead_in
   pseudo_field_content:
@@ -89,15 +91,23 @@ process:
     plugin: default_value
     default_value: 0
   changed:
-    plugin: helfi_format_date
-    from_format: 'Y-m-d\TH:i:s'
-    to_format: U
-    source: updated
+    -
+      plugin: substr
+      length: 19
+      source: updated
+    -
+      plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: U
   published_on:
-    plugin: helfi_format_date
-    from_format: 'Y-m-d\TH:i:s'
-    to_format: U
-    source: published
+    -
+      plugin: substr
+      length: 19
+      source: published
+    -
+      plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: U
   langcode:
     plugin: default_value
     default_value: sv

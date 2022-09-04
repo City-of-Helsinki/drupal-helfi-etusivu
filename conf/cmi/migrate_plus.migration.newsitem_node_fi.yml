@@ -50,10 +50,7 @@ source:
     -
       name: tags
       label: 'News tags'
-      plugin: str_replace
       selector: 'wcm:profile/wcm:category'
-      search: /wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/
-      replace: 'wcmrest:'
     -
       name: published
       label: Published
@@ -84,10 +81,18 @@ process:
     migration: newsitem_media_fi
     source: field_atomid
   field_news_item_tags:
-    plugin: migration_lookup
-    migration: newsitem_term
-    source: tags
-    no_stub: true
+    -
+      plugin: skip_on_empty
+      source: tags
+      method: process
+      message: 'Row does not contain news_item_tags.'
+    -
+      plugin: str_replace
+      search: /wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/
+      replace: 'wcmrest:'
+    -
+      plugin: migration_lookup
+      migration: newsitem_term
   uid:
     plugin: default_value
     default_value: 1
