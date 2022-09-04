@@ -94,15 +94,19 @@ process:
     plugin: default_value
     default_value: 0
   changed:
-    plugin: helfi_format_date
-    from_format: 'Y-m-d\TH:i:s'
-    to_format: 'U'
-    source: updated
+    - plugin: substr
+      length: 19
+      source: updated
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
   published_on:
-    plugin: helfi_format_date
-    from_format: 'Y-m-d\TH:i:s'
-    to_format: 'U'
-    source: published
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
   langcode:
     plugin: default_value
     default_value: fi

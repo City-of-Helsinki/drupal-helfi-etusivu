@@ -28,10 +28,7 @@ source:
     -
       name: tags
       label: 'News tags'
-      plugin: str_replace
       selector: wcm:profile/wcm:category
-      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/'
-      replace: 'wcmrest:'
     -
       name: published
       label: 'Published'
@@ -51,7 +48,7 @@ process:
   field_lead_in: field_lead_in
   pseudo_field_content:
     plugin: migration_lookup
-    migration: newsitem_paragraph_fi
+    migration: newsitem_paragraph_ru
     source: field_atomid
   field_content:
     plugin: sub_process
@@ -62,13 +59,18 @@ process:
       target_revision_id: '1'
   field_main_image:
     plugin: migration_lookup
-    migration: newsitem_media_fi
+    migration: newsitem_media_ru
     source: field_atomid
   field_news_item_tags:
-    plugin: migration_lookup
-    migration: newsitem_term
-    source: tags
-    no_stub: true
+    - plugin: skip_on_empty
+      source: tags
+      method: process
+      message: 'Row does not contain news_item_tags.'
+    - plugin: str_replace
+      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/'
+      replace: 'wcmrest:'
+    - plugin: migration_lookup
+      migration: newsitem_term
   uid:
     plugin: default_value
     default_value: 1
@@ -79,15 +81,19 @@ process:
     plugin: default_value
     default_value: 0
   changed:
-    plugin: helfi_format_date
-    from_format: 'Y-m-d\TH:i:s'
-    to_format: 'U'
-    source: updated
+    - plugin: substr
+      length: 19
+      source: updated
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
   published_on:
-    plugin: helfi_format_date
-    from_format: 'Y-m-d\TH:i:s'
-    to_format: 'U'
-    source: published
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
   langcode:
     plugin: default_value
     default_value: ru
