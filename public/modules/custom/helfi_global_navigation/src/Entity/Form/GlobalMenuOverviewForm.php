@@ -4,12 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Entity\Form;
 
-use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Entity\EntityListBuilderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
