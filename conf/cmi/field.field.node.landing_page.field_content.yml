@@ -48,6 +48,8 @@ settings:
       event_list: event_list
       current: current
       phasing: phasing
+      popular_services: popular_services
+      target_group_links: target_group_links
     negate: 0
     target_bundles_drag_drop:
       accordion:
