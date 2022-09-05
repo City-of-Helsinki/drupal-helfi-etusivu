@@ -4,11 +4,11 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Entity\Form;
 
-use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Entity\EntityListBuilderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -19,9 +19,9 @@ final class GlobalMenuOverviewForm extends FormBase {
   /**
    * The entity storage.
    *
-   * @var \Drupal\Core\Entity\ContentEntityStorageInterface
+   * @var \Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage
    */
-  private ContentEntityStorageInterface $storage;
+  private GlobalMenuStorage $storage;
 
   /**
    * The entity list builder.
@@ -71,6 +71,7 @@ final class GlobalMenuOverviewForm extends FormBase {
         'operations' => $this->t('Operations'),
         'weight' => NULL,
       ],
+      '#tableselect' => FALSE,
       '#tabledrag' => [
         [
           'action' => 'order',
@@ -79,10 +80,7 @@ final class GlobalMenuOverviewForm extends FormBase {
       ],
     ];
 
-    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $entities */
-    $entities = $this->storage->loadMultiple();
-
-    foreach ($entities as $delta => $entity) {
+    foreach ($this->storage->loadMultipleSorted() as $delta => $entity) {
       $form['entities'][$delta] = [
         '#item' => $entity,
         '#attributes' => [
@@ -107,6 +105,7 @@ final class GlobalMenuOverviewForm extends FormBase {
     $form['entities']['#tabledrag'][] = [
       'action' => 'order',
       'group' => 'entity-weight',
+      'relationship' => 'sibling',
     ];
 
     $form['actions'] = ['#type' => 'actions', '#tree' => FALSE];
