@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\AccessAwareRouterInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
