@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu as GlobalMenuEntity;
