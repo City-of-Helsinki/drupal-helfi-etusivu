@@ -80,7 +80,7 @@ final class GlobalMenu extends GlobalMenuBase {
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
 
     $entity = $this->entityRepository->getTranslationFromContext($entity, $this->getCurrentLanguageId());
-    return (new ResourceResponse((object) $entity, 200))
+    return (new ResourceResponse($entity, 200))
       ->addCacheableDependency($cacheableMetadata);
   }
 
