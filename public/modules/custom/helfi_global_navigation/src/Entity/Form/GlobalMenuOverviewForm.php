@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
+use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -20,9 +21,9 @@ final class GlobalMenuOverviewForm extends FormBase {
   /**
    * The entity storage.
    *
-   * @var \Drupal\Core\Entity\ContentEntityStorageInterface
+   * @var \Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage
    */
-  private ContentEntityStorageInterface $storage;
+  private GlobalMenuStorage $storage;
 
   /**
    * The entity list builder.
@@ -81,13 +82,7 @@ final class GlobalMenuOverviewForm extends FormBase {
       ],
     ];
 
-    /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $entities */
-    $ids = $this->storage->getQuery()
-      ->sort('weight')
-      ->execute();
-    $entities = GlobalMenu::loadMultiple($ids);
-
-    foreach ($entities as $delta => $entity) {
+    foreach ($this->storage->loadMultipleSorted() as $delta => $entity) {
       $form['entities'][$delta] = [
         '#item' => $entity,
         '#attributes' => [
