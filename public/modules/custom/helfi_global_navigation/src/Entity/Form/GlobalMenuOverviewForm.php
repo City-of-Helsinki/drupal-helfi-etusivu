@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityListBuilderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -71,6 +72,7 @@ final class GlobalMenuOverviewForm extends FormBase {
         'operations' => $this->t('Operations'),
         'weight' => NULL,
       ],
+      '#tableselect' => FALSE,
       '#tabledrag' => [
         [
           'action' => 'order',
@@ -80,7 +82,10 @@ final class GlobalMenuOverviewForm extends FormBase {
     ];
 
     /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $entities */
-    $entities = $this->storage->loadMultiple();
+    $ids = $this->storage->getQuery()
+      ->sort('weight')
+      ->execute();
+    $entities = GlobalMenu::loadMultiple($ids);
 
     foreach ($entities as $delta => $entity) {
       $form['entities'][$delta] = [
@@ -107,6 +112,7 @@ final class GlobalMenuOverviewForm extends FormBase {
     $form['entities']['#tabledrag'][] = [
       'action' => 'order',
       'group' => 'entity-weight',
+      'relationship' => 'sibling',
     ];
 
     $form['actions'] = ['#type' => 'actions', '#tree' => FALSE];
