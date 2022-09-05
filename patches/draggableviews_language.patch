@@ -1,0 +1,28 @@
+diff --git a/draggableviews.module b/draggableviews.module
+index eaba8c8..80d1491 100644
+--- a/draggableviews.module
++++ b/draggableviews.module
+@@ -174,6 +174,7 @@ function draggableviews_views_submit(&$form, FormStateInterface $form_state) {
+ 
+   $connection = Database::getConnection();
+   $transaction = $connection->startTransaction();
++  $langcode = \Drupal::languageManager()->getCurrentLanguage(\Drupal\Core\Language\LanguageInterface::TYPE_CONTENT)->getId();
+   try {
+     foreach ($input['draggableviews'] as $item) {
+       // Remove old data.
+@@ -182,6 +183,7 @@ function draggableviews_views_submit(&$form, FormStateInterface $form_state) {
+         ->condition('view_display', $view_display)
+         ->condition('args', $view_args)
+         ->condition('entity_id', $item['id'])
++        ->condition('langcode', $langcode)
+         ->execute();
+ 
+       // Add new data.
+@@ -191,6 +193,7 @@ function draggableviews_views_submit(&$form, FormStateInterface $form_state) {
+         'args' => $view_args,
+         'entity_id' => $item['id'],
+         'weight' => $item['weight'],
++        'langcode' => $langcode,
+       ];
+       // Save parent if exists.
+       if (isset($item['parent'])) {
