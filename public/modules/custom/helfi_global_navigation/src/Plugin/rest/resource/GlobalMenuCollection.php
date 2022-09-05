@@ -62,7 +62,7 @@ final class GlobalMenuCollection extends GlobalMenuBase {
       return $this->entityRepository
         ->getTranslationFromContext($entity, $this->getCurrentLanguageId());
     }, $this->storage->loadMultipleSorted());
-    $response = new ResourceResponse($entities, 200);
+    $response = new ResourceResponse((object) $entities, 200);
     $response->addCacheableDependency($cacheableMetadata);
 
     return $response;
