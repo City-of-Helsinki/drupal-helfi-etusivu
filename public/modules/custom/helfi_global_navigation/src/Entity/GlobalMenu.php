@@ -25,6 +25,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *     "list_builder" = "Drupal\Core\Entity\EntityListBuilder",
  *     "access" = "Drupal\entity\EntityAccessControlHandler",
  *     "permission_provider" = "Drupal\entity\EntityPermissionProvider",
+ *     "storage" = "Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage",
  *     "form" = {
  *       "default" = "Drupal\Core\Entity\ContentEntityForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",

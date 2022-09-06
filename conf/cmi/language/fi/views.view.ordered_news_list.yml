@@ -1,0 +1,18 @@
+label: Uutislista
+description: 'Järjestä etusivulle nostetut uutiset '
+display:
+  default:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p>Järjestä etusivun pääuutis-lohkoon nostetut uutiset haluamaasi järjestykseen</p>\r\n"
+            format: full_html
+      title: 'Järjestele etusivulle nostetut uutiset'
+      empty:
+        area_text_custom:
+          content: 'Yhtään etusivun uutisvirtaan nostettua uutista ei löytynyt. Voit muokata olemassaolevaa uutista tai luoda uuden uutisen haluamallasi kielellä ja nosta oikean kieliversion uutisvirtaan käyttääksesi tätä ominaisuutta.'
+  ordered_news:
+    display_title: 'Järjestelty uutislista'
+    display_options:
+      display_description: 'Järjestä etusivulle nostetut uutiset'
