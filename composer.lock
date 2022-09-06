@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07847bc8d80a6b8e48d92c68477933a8",
+    "content-hash": "9559698dbb3d9906be5c1b0ed8596707",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -177,15 +177,15 @@
         },
         {
             "name": "city-of-helsinki/helfi-etusivu-news-search",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search",
-                "reference": "0.3.0"
+                "reference": "0.4.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search/releases/download/0.3.0/helfi-etusivu-news-search.zip"
+                "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search/releases/download/0.4.0/helfi-etusivu-news-search.zip"
             },
             "type": "library"
         },
