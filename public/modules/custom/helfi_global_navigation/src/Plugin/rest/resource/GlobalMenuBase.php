@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
-use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu as GlobalMenuEntity;
@@ -19,13 +18,6 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 abstract class GlobalMenuBase extends ResourceBase {
 
   use EntityResourceValidationTrait;
-
-  /**
-   * The entity repository.
-   *
-   * @var \Drupal\Core\Entity\EntityRepositoryInterface
-   */
-  protected EntityRepositoryInterface $entityRepository;
 
   /**
    * The language manager.
@@ -44,7 +36,6 @@ abstract class GlobalMenuBase extends ResourceBase {
       $plugin_id,
       $plugin_definition
     );
-    $instance->entityRepository = $container->get('entity.repository');
     $instance->languageManager = $container->get('language_manager');
 
     return $instance;

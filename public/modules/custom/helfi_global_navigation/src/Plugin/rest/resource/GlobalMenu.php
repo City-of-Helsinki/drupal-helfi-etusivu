@@ -12,6 +12,7 @@ use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -48,7 +49,8 @@ final class GlobalMenu extends GlobalMenuBase {
     if (!$entity = GlobalMenuEntity::load($id)) {
       return NULL;
     }
-    return $entity;
+    $langcode = $this->getCurrentLanguageId();
+    return $entity->hasTranslation($langcode) ? $entity->getTranslation($langcode) : NULL;
   }
 
   /**
@@ -76,10 +78,13 @@ final class GlobalMenu extends GlobalMenuBase {
     }
     $this->assertPermission($entity, 'view');
 
+    if (!$entity->isPublished()) {
+      throw new AccessDeniedHttpException();
+    }
+
     $cacheableMetadata->addCacheableDependency($entity)
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
 
-    $entity = $this->entityRepository->getTranslationFromContext($entity, $this->getCurrentLanguageId());
     return (new ResourceResponse($entity, 200))
       ->addCacheableDependency($cacheableMetadata);
   }
