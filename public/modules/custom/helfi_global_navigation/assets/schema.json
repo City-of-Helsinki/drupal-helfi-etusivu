@@ -5,11 +5,11 @@
     "id": { "type": "string" },
     "name": { "type": "string" },
     "parentId": { "type": "string" },
-    "external": { "type": "boolean" },
     "hasItems": { "type": "boolean" },
     "description": { "type": "string" },
     "weight": { "type": "integer" },
     "url": { "type": "string" },
+    "attributes": { "$ref":  "#/$defs/attributes" },
     "sub_tree": {
       "type": "array",
       "items": { "$ref": "#/$defs/sub_tree" }
@@ -17,6 +17,13 @@
   },
   "required": ["sub_tree", "name"],
   "$defs": {
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "external": { "type":  "boolean" },
+        "protocol": { "type": ["string", "null"] }
+      }
+    },
     "sub_tree": {
       "additionalProperties": false,
       "type": "object",
@@ -24,10 +31,10 @@
         "id": { "type": "string" },
         "name": { "type": "string" },
         "parentId": { "type": "string" },
-        "external": { "type": "boolean" },
         "hasItems": { "type": "boolean" },
         "description": { "type": "string" },
         "url": { "type": "string" },
+        "attributes": { "$ref":  "#/$defs/attributes" },
         "sub_tree": {
           "type": "array",
           "items": { "$ref": "#/$defs/sub_tree" }
