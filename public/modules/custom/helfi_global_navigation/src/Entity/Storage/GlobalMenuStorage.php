@@ -17,10 +17,20 @@ final class GlobalMenuStorage extends SqlContentEntityStorage {
    * @return \Drupal\helfi_global_navigation\Entity\GlobalMenu[]
    *   An array of global menu entities.
    */
-  public function loadMultipleSorted(string $field = 'weight', string $direction = 'ASC') : array {
-    $ids = $this->getQuery()
-      ->sort($field, $direction)
-      ->execute();
+  public function loadMultipleSorted(array $conditions = [], string $field = 'weight', string $direction = 'ASC') : array {
+    $query = $this->getQuery()
+      ->sort($field, $direction);
+
+    foreach ($conditions as $field => $condition) {
+      if (!isset($condition['operator'])) {
+        $condition['operator'] = '=';
+      }
+      ['value' => $value, 'operator' => $operator] = $condition;
+
+      $query->condition($field, $value, $operator);
+    }
+
+    $ids = $query->execute();
     return $ids ? $this->loadMultiple($ids) : [];
   }
 

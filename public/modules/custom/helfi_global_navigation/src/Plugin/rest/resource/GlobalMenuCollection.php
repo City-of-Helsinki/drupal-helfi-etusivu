@@ -59,9 +59,9 @@ final class GlobalMenuCollection extends GlobalMenuBase {
     $langcode = $this->getCurrentLanguageId();
 
     $entities = array_filter(
-      $this->storage->loadMultipleSorted(),
+      $this->storage->loadMultipleSorted(['status' => ['value' => 1]]),
       // Filter untranslated and unpublished entities.
-      fn (GlobalMenu $entity) : bool => $entity->hasTranslation($langcode) && $entity->isPublished()
+      fn (GlobalMenu $entity) : bool => $entity->hasTranslation($langcode)
     );
 
     $entities = array_map(function (GlobalMenu $entity) use ($cacheableMetadata, $langcode) : GlobalMenu {
