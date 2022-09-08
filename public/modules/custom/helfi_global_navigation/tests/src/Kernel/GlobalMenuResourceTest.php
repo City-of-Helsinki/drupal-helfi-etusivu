@@ -24,6 +24,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
     return [
       'fi' => [
         'site_name' => 'Liikenne fi',
+        'status' => TRUE,
         'menu_tree' => [
           'name' => 'Kaupunkiympäristö',
           'external' => FALSE,
@@ -155,7 +156,11 @@ class GlobalMenuResourceTest extends KernelTestBase {
    */
   public function testPostPermission() : void {
     $this->drupalSetUpCurrentUser();
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne', 'POST');
+    $request = $this->getMockedRequest(
+      '/api/v1/global-menu/liikenne',
+      'POST',
+      document: $this->getMockJson()['fi']
+    );
     $response = $this->processRequest($request);
     $data = \GuzzleHttp\json_decode($response->getContent());
     $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
@@ -163,7 +168,11 @@ class GlobalMenuResourceTest extends KernelTestBase {
 
     // Test update permission.
     $this->createGlobalMenu('liikenne', 'Liikenne', []);
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne', 'POST');
+    $request = $this->getMockedRequest(
+      '/api/v1/global-menu/liikenne',
+      'POST',
+      document: $this->getMockJson()['fi']
+    );
     $response = $this->processRequest($request);
     $data = \GuzzleHttp\json_decode($response->getContent());
     $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
@@ -235,6 +244,11 @@ class GlobalMenuResourceTest extends KernelTestBase {
       $content = \GuzzleHttp\json_decode($response->getContent());
       $this->assertEquals('Liikenne ' . $langcode, $content->name[0]->value);
       $this->assertEquals($langcode, $content->langcode[0]->value);
+
+      // Finnish translation is explicitly set to published while english
+      // should fall back to unpublished.
+      $expectedStatus = $langcode === 'fi';
+      $this->assertEquals($expectedStatus, $content->status[0]->value);
     }
   }
 

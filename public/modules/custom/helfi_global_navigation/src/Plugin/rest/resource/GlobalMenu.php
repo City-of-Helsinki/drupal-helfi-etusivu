@@ -97,23 +97,6 @@ final class GlobalMenu extends GlobalMenuBase {
     $isNew = FALSE;
     $langcode = $this->getCurrentLanguageId();
 
-    // Attempt to create a new entity if one does not exist yet.
-    if (!$entity = $this->getRequestEntity($request)) {
-      $isNew = TRUE;
-      $entity = GlobalMenuEntity::createById($request->attributes->get('entity'))
-        ->set('langcode', $langcode);
-
-      $this->assertPermission($entity, 'create');
-    }
-    if (!$entity->hasTranslation($langcode)) {
-      $entity = $entity->addTranslation($langcode);
-      $isNew = TRUE;
-    }
-    else {
-      $entity = $entity->getTranslation($langcode);
-    }
-    $this->assertPermission($entity, 'update');
-
     try {
       $content = \GuzzleHttp\json_decode($request->getContent());
     }
@@ -132,7 +115,28 @@ final class GlobalMenu extends GlobalMenuBase {
       throw new UnprocessableEntityHttpException(sprintf('Missing required: %s', implode(', ', $requiredFields)));
     }
 
+    $published = $content->status ?? FALSE;
+
+    // Attempt to create a new entity if one does not exist yet.
+    if (!$entity = $this->getRequestEntity($request)) {
+      $isNew = TRUE;
+      $entity = GlobalMenuEntity::createById($request->attributes->get('entity'))
+        ->set('langcode', $langcode);
+      $this->assertPermission($entity, 'create');
+    }
+    if (!$entity->hasTranslation($langcode)) {
+      $entity = $entity->addTranslation($langcode);
+      $isNew = TRUE;
+    }
+    else {
+      $entity = $entity->getTranslation($langcode);
+    }
+    $this->assertPermission($entity, 'update');
+
     try {
+      // Mark entities as unpublished by default.
+      $published ? $entity->setPublished() : $entity->setUnpublished();
+
       $entity->setMenuTree($content->menu_tree)
         ->setLabel($content->site_name);
       $this->validate($entity);
