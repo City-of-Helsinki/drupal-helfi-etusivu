@@ -49,8 +49,7 @@ final class GlobalMenu extends GlobalMenuBase {
     if (!$entity = GlobalMenuEntity::load($id)) {
       return NULL;
     }
-    $langcode = $this->getCurrentLanguageId();
-    return $entity->hasTranslation($langcode) ? $entity->getTranslation($langcode) : NULL;
+    return $entity;
   }
 
   /**
