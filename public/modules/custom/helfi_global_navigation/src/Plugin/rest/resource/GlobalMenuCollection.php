@@ -56,12 +56,20 @@ final class GlobalMenuCollection extends GlobalMenuBase {
     $cacheableMetadata = (new CacheableMetadata())
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
 
-    $entities = array_map(function (GlobalMenu $entity) use ($cacheableMetadata) : GlobalMenu {
+    $langcode = $this->getCurrentLanguageId();
+
+    $entities = array_filter(
+      $this->storage->loadMultipleSorted(),
+      // Filter untranslated and unpublished entities.
+      fn (GlobalMenu $entity) : bool => $entity->hasTranslation($langcode) && $entity->isPublished()
+    );
+
+    $entities = array_map(function (GlobalMenu $entity) use ($cacheableMetadata, $langcode) : GlobalMenu {
+      $entity = $entity->getTranslation($langcode);
       $cacheableMetadata->addCacheableDependency($entity);
 
-      return $this->entityRepository
-        ->getTranslationFromContext($entity, $this->getCurrentLanguageId());
-    }, $this->storage->loadMultipleSorted());
+      return $entity;
+    }, $entities);
     $response = new ResourceResponse($entities, 200);
     $response->addCacheableDependency($cacheableMetadata);
 

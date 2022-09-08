@@ -7,6 +7,7 @@
     "parentId": { "type": "string" },
     "hasItems": { "type": "boolean" },
     "description": { "type": "string" },
+    "external": { "type": "boolean" },
     "weight": { "type": "integer" },
     "url": { "type": "string" },
     "attributes": { "$ref":  "#/$defs/attributes" },
@@ -20,8 +21,8 @@
     "attributes": {
       "type": "object",
       "properties": {
-        "external": { "type":  "boolean" },
-        "protocol": { "type": ["string", "null"] }
+        "data-external": { "type":  "boolean" },
+        "data-protocol": { "type": ["string", "null"] }
       }
     },
     "sub_tree": {
@@ -32,6 +33,7 @@
         "name": { "type": "string" },
         "parentId": { "type": "string" },
         "hasItems": { "type": "boolean" },
+        "external": { "type": "boolean" },
         "description": { "type": "string" },
         "url": { "type": "string" },
         "attributes": { "$ref":  "#/$defs/attributes" },
