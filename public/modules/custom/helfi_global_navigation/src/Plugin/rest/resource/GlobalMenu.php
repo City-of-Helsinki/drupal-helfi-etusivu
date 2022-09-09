@@ -12,7 +12,6 @@ use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -46,7 +45,7 @@ final class GlobalMenu extends GlobalMenuBase {
       throw new BadRequestHttpException('Missing required "entity" parameter.');
     }
 
-    if (!$entity = GlobalMenuEntity::load($id)) {
+    if (!$entity = $this->storage->load($id)) {
       return NULL;
     }
     return $entity;
@@ -71,15 +70,13 @@ final class GlobalMenu extends GlobalMenuBase {
    */
   public function get(Request $request) : ResourceResponse {
     $cacheableMetadata = new CacheableMetadata();
+    $langcode = $this->getCurrentLanguageId();
+    $entity = $this->getRequestEntity($request);
 
-    if (!$entity = $this->getRequestEntity($request)) {
-      throw new NotFoundHttpException();
+    if ((!$entity = $entity->getTranslation($langcode)) || !$entity->isPublished()) {
+      throw new NotFoundHttpException('Entity not found.');
     }
     $this->assertPermission($entity, 'view');
-
-    if (!$entity->isPublished()) {
-      throw new AccessDeniedHttpException();
-    }
 
     $cacheableMetadata->addCacheableDependency($entity)
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
@@ -124,7 +121,7 @@ final class GlobalMenu extends GlobalMenuBase {
     // Attempt to create a new entity if one does not exist yet.
     if (!$entity = $this->getRequestEntity($request)) {
       $isNew = TRUE;
-      $entity = GlobalMenuEntity::createById($request->attributes->get('entity'))
+      $entity = $this->storage->createById($request->attributes->get('entity'))
         ->set('langcode', $langcode);
       $this->assertPermission($entity, 'create');
     }

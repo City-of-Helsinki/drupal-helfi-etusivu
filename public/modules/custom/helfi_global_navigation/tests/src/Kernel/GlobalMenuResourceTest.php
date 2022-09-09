@@ -80,7 +80,9 @@ class GlobalMenuResourceTest extends KernelTestBase {
    *   The global menu entity.
    */
   private function createGlobalMenu(string $id, string $projectName, array $menu = []) : GlobalMenu {
-    $entity = GlobalMenu::createById($id)
+    $entity = $this->entityTypeManager
+      ->getStorage('global_menu')
+      ->createById($id)
       ->set('langcode', 'en')
       ->setMenuTree($menu)
       ->setLabel($projectName);

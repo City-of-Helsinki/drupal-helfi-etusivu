@@ -7,6 +7,7 @@ namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu as GlobalMenuEntity;
+use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\Plugin\rest\resource\EntityResourceValidationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,6 +28,13 @@ abstract class GlobalMenuBase extends ResourceBase {
   protected LanguageManagerInterface $languageManager;
 
   /**
+   * The entity storage.
+   *
+   * @var \Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage
+   */
+  protected GlobalMenuStorage $storage;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : self {
@@ -37,6 +45,7 @@ abstract class GlobalMenuBase extends ResourceBase {
       $plugin_definition
     );
     $instance->languageManager = $container->get('language_manager');
+    $instance->storage = $container->get('entity_type.manager')->getStorage('global_menu');
 
     return $instance;
   }
