@@ -1,16 +1,16 @@
-uuid: ceb9086a-1091-4fbe-bd7d-5cc33e99420f
+uuid: 0925a077-8d53-43a9-91cb-a72b9049f731
 langcode: en
 status: true
 dependencies:
   module:
-    - link
     - paragraphs
-id: paragraph.field_target_group_item_link
-field_name: field_target_group_item_link
+    - text
+id: paragraph.field_target_group_links_desc
+field_name: field_target_group_links_desc
 entity_type: paragraph
-type: link
+type: text_long
 settings: {  }
-module: link
+module: text
 locked: false
 cardinality: 1
 translatable: true

@@ -1,0 +1,105 @@
+// Min-width for filter components in desktop. Helps preventing weird behavior with hds-dropdowns.
+$filter-component-min-width-xl: 328px;
+
+// Background color for the archive's form component.
+$news-archive-background: #f2f2f2;
+
+// Set these to enable 100% width background for the form element only.
+.news-form-container,
+.news-wrapper {
+  @include component-side-padding;
+  @include components-container-max-width;
+  margin: auto;
+  width: 100%;
+}
+
+.news-form-wrapper {
+  @include component-margin-top;
+  background: $news-archive-background;
+}
+
+.news-form-container {
+  padding-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    padding-top: $spacing-quadruple;
+  }
+}
+
+.news-form-wrapper h2 {
+  margin-bottom: $spacing-and-half;
+  margin-top: 0;
+
+  @include font('h4');
+}
+
+.news-form__clear-all {
+  padding-bottom: $spacing;
+}
+
+.news-form__filters-container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    padding-bottom: $spacing-double;
+
+    @include flex-gap($spacing);
+  }
+}
+
+.news-form__filter {
+  margin-bottom: $spacing;
+
+  @include breakpoint($breakpoint-xl) {
+    min-width: $filter-component-min-width-xl;
+  }
+}
+
+// Target inside hds-react's component, cant set a direct target class
+.news-form__filter ul {
+  background: $color-white;
+}
+
+.news-form__submit {
+  padding-bottom: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing;
+    padding-bottom: 0;
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    width: 100%;
+  }
+}
+
+.news-form__submit-button {
+  margin-top: $spacing-half;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    // Match filter elements' top offset to align properly
+    margin-top: $spacing-and-half + $spacing-quarter;
+  }
+}
+
+.news-wrapper {
+  padding-top: $spacing-triple;
+}
+
+.news-listing--teasers {
+  max-width: 100%;
+}
+
+// Need a specific selector to override hds styles
+.news-form__clear-all .news-form__clear-all-button {
+  color: $hdbt-color-black;
+
+  &:hover {
+    background: $hdbt-color-black;
+    color: $hdbt-color-white;
+  }
+}
+
+.news-listing__no-results {
+  margin-top: $spacing;
+}
