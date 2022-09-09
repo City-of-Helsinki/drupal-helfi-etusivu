@@ -1,15 +1,15 @@
-uuid: f9386ae7-7baf-44f0-80a0-87a3f2a04b8d
+uuid: fa1bcfa9-e29b-44b2-90d0-95d8055ef7ac
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-id: paragraph.field_target_group_item_subtitle
-field_name: field_target_group_item_subtitle
+id: paragraph.field_target_group_links_title
+field_name: field_target_group_links_title
 entity_type: paragraph
 type: string
 settings:
-  max_length: 128
+  max_length: 255
   case_sensitive: false
   is_ascii: false
 module: core

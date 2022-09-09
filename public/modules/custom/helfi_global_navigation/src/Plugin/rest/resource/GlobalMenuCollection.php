@@ -7,7 +7,9 @@ namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Routing\AccessAwareRouterInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
+use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
 use Drupal\rest\ResourceResponse;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -24,6 +26,27 @@ use Symfony\Component\HttpFoundation\Request;
 final class GlobalMenuCollection extends GlobalMenuBase {
 
   /**
+   * The entity storage.
+   *
+   * @var \Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage
+   */
+  protected GlobalMenuStorage $storage;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : self {
+    $instance = parent::create(
+      $container,
+      $configuration,
+      $plugin_id,
+      $plugin_definition
+    );
+    $instance->storage = $container->get('entity_type.manager')->getStorage('global_menu');
+    return $instance;
+  }
+
+  /**
    * Callback for GET requests.
    *
    * @return \Drupal\rest\ResourceResponse
@@ -38,7 +61,7 @@ final class GlobalMenuCollection extends GlobalMenuBase {
 
       return $this->entityRepository
         ->getTranslationFromContext($entity, $this->getCurrentLanguageId());
-    }, GlobalMenu::loadMultiple());
+    }, $this->storage->loadMultipleSorted());
     $response = new ResourceResponse($entities, 200);
     $response->addCacheableDependency($cacheableMetadata);
 

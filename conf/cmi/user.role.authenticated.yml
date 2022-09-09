@@ -5,6 +5,7 @@ dependencies:
   config:
     - rest.resource.helfi_global_menu_collection
   module:
+    - draggableviews
     - eu_cookie_compliance
     - helfi_api_base
     - helfi_global_navigation
@@ -21,6 +22,7 @@ weight: 1
 is_admin: false
 permissions:
   - 'access content'
+  - 'access draggableviews'
   - 'access openapi api docs'
   - 'access toolbar'
   - 'display eu cookie compliance popup'

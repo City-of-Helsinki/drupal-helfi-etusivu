@@ -10,7 +10,7 @@ use Drupal\Core\Block\BlockBase;
  * Block for rendering the news archive react app.
  *
  * @Block(
- *   id = "news_archive_block",
+ *   id = "block__news_archive_application",
  *   admin_label = @Translation("News archive"),
  *   category = @Translation("HELfi News Archive")
  * )
@@ -22,7 +22,7 @@ class NewsArchiveBlock extends BlockBase {
    */
   public function build() {
     $build = [
-      '#markup' => '<div id="helfi-etusivu-news-search"></div>',
+      '#markup' => '<div id="helfi-etusivu-news-search" class="block--news-archive"></div>',
       '#attached' => [
         'library' => [
           'helfi_news_archive/news-archive',
