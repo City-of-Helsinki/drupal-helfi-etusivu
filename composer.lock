@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "516432722b5fab4812fd1abfdc58f8c4",
+    "content-hash": "e9fb8b3678c516ccd12aa7fa568823a3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4824,16 +4824,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.2.9",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "42fce9a80d763508143c6bcb3d1a9e5eb0d8b9c4"
+                "reference": "15d8867f82665599199e33349b301937b2fcf7a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/42fce9a80d763508143c6bcb3d1a9e5eb0d8b9c4",
-                "reference": "42fce9a80d763508143c6bcb3d1a9e5eb0d8b9c4",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/15d8867f82665599199e33349b301937b2fcf7a0",
+                "reference": "15d8867f82665599199e33349b301937b2fcf7a0",
                 "shasum": ""
             },
             "require": {
@@ -4856,10 +4856,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.2.9",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.3.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2022-08-25T06:38:41+00:00"
+            "time": "2022-09-09T08:13:12+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -18678,5 +18678,5 @@
         "ext-libxml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
