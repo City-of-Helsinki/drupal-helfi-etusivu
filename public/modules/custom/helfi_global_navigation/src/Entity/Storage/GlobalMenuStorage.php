@@ -60,7 +60,7 @@ final class GlobalMenuStorage extends SqlContentEntityStorage {
     array $conditions = [],
     string $field = 'weight',
     string $direction = 'ASC',
-    bool $forceCurrentLanguage = FALSE,
+    bool $forceCurrentLanguage = TRUE,
   ) : array {
     $query = $this->getQuery()
       ->accessCheck();

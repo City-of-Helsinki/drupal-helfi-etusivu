@@ -44,7 +44,7 @@ final class GlobalMenuCollection extends GlobalMenuBase {
       return $entity;
     }, $this->storage->loadMultipleSorted([
       'status' => 1,
-    ], forceCurrentLanguage: TRUE));
+    ]));
     $response = new ResourceResponse($entities, 200);
     $response->addCacheableDependency($cacheableMetadata);
 

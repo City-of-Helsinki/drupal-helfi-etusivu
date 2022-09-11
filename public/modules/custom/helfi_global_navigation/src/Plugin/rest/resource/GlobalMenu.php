@@ -116,8 +116,6 @@ final class GlobalMenu extends GlobalMenuBase {
       throw new UnprocessableEntityHttpException(sprintf('Missing required: %s', implode(', ', $requiredFields)));
     }
 
-    $published = $content->status ?? FALSE;
-
     // Attempt to create a new entity if one does not exist yet.
     if (!$entity = $this->getRequestEntity($request)) {
       $isNew = TRUE;
@@ -135,9 +133,14 @@ final class GlobalMenu extends GlobalMenuBase {
     $this->assertPermission($entity, 'update');
 
     try {
-      // Mark entities as unpublished by default.
-      $published ? $entity->setPublished() : $entity->setUnpublished();
-
+      // Mark new entities as unpublished by default.
+      if ($isNew) {
+        $entity->setUnpublished();
+      }
+      // Allow entities to be published if explicitly told so.
+      if (isset($content->status) && (bool) $content->status === TRUE) {
+        $entity->setPublished();
+      }
       $entity->setMenuTree($content->menu_tree)
         ->setLabel($content->site_name);
       $this->validate($entity);
