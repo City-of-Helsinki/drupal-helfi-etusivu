@@ -236,9 +236,14 @@ class GlobalMenuResourceTest extends KernelTestBase {
       // Make sure creating a new entity and translation returns a 201 response
       // code.
       $this->assertEquals(HttpResponse::HTTP_CREATED, $response->getStatusCode());
+      $content = \GuzzleHttp\json_decode($response->getContent());
+      // Finnish translation is explicitly set to published while english
+      // should fall back to unpublished.
+      $expectedStatus = $langcode === 'fi';
+      $this->assertEquals($expectedStatus, $content->status[0]->value);
 
       // Re-send the same request to make sure updating an entity returns a 200
-      // response.
+      // code.
       $response = $this->processRequest($request);
       $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
 
@@ -247,11 +252,20 @@ class GlobalMenuResourceTest extends KernelTestBase {
       $this->assertEquals('Liikenne ' . $langcode, $content->name[0]->value);
       $this->assertEquals($langcode, $content->langcode[0]->value);
 
-      // Finnish translation is explicitly set to published while english
-      // should fall back to unpublished.
-      $expectedStatus = $langcode === 'fi';
+      // Make sure item keeps the published status.
       $this->assertEquals($expectedStatus, $content->status[0]->value);
     }
+
+    // Publish english translation and make sure entity won't get unpublished
+    // when we update it without value on 'status' field.
+    GlobalMenu::load('liikenne')
+      ->getTranslation('en')
+      ->setPublished()
+      ->save();
+    $request = $this->getMockedRequest('/en/api/v1/global-menu/liikenne', 'POST', document: $document['en']);
+    $response = $this->processRequest($request);
+    $content = \GuzzleHttp\json_decode($response->getContent());
+    $this->assertEquals(TRUE, $content->status[0]->value);
   }
 
 }

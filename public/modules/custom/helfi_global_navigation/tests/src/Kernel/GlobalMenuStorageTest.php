@@ -82,10 +82,10 @@ class GlobalMenuStorageTest extends KernelTestBase {
       ->setLabel('Sote ' . $langcode)
       ->save();
 
-    $entities = $this->getStorage()->loadMultipleSorted();
+    $entities = $this->getStorage()->loadMultipleSorted(forceCurrentLanguage: FALSE);
     $this->assertEntityLanguage($entities, 'en');
 
-    $entities = $this->getStorage()->loadMultipleSorted(forceCurrentLanguage: TRUE);
+    $entities = $this->getStorage()->loadMultipleSorted();
     $this->assertEntityLanguage($entities, $langcode);
   }
 
@@ -103,6 +103,21 @@ class GlobalMenuStorageTest extends KernelTestBase {
   }
 
   /**
+   * Asserts that entities are loaded in given order.
+   *
+   * @param \Drupal\helfi_global_navigation\Entity\GlobalMenu[] $entities
+   *   The entities.
+   * @param array $expectedOrder
+   *   The expected entity order.
+   */
+  private function assertEntityOrder(array $entities, array $expectedOrder) : void {
+    $i = 0;
+    foreach ($entities as $entity) {
+      $this->assertTrue($entity->id() === $expectedOrder[$i++]);
+    }
+  }
+
+  /**
    * Tests that items are sorted in correct order by default.
    */
   public function testLoadMultipleSorted() : void {
@@ -113,16 +128,18 @@ class GlobalMenuStorageTest extends KernelTestBase {
       ->setWeight(2);
     $sote->save();
 
-    $entities = $this->getStorage()->loadMultipleSorted();
-    $this->assertTrue(current($entities)->id() === 'liikenne');
-    $this->assertTrue(next($entities)->id() === 'sote');
-
+    $entities = $this->getStorage()->loadMultipleSorted(forceCurrentLanguage: FALSE);
+    $this->assertEntityOrder($entities, [
+      'liikenne',
+      'sote',
+    ]);
     // Sort liikenne below sote and make sure items are loaded in correct order.
     $liikenne->setWeight(3)->save();
-
-    $entities = $this->getStorage()->loadMultipleSorted();
-    $this->assertTrue(current($entities)->id() === 'sote');
-    $this->assertTrue(next($entities)->id() === 'liikenne');
+    $entities = $this->getStorage()->loadMultipleSorted(forceCurrentLanguage: FALSE);
+    $this->assertEntityOrder($entities, [
+      'sote',
+      'liikenne',
+    ]);
   }
 
 }
