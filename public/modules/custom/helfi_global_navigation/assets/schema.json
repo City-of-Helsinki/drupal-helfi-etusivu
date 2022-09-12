@@ -16,7 +16,7 @@
       "items": { "$ref": "#/$defs/sub_tree" }
     }
   },
-  "required": ["sub_tree", "name"],
+  "required": ["id", "sub_tree", "name"],
   "$defs": {
     "attributes": {
       "type": "object",
@@ -34,6 +34,7 @@
         "parentId": { "type": "string" },
         "hasItems": { "type": "boolean" },
         "external": { "type": "boolean" },
+        "expanded": { "type": "boolean" },
         "description": { "type": "string" },
         "url": { "type": "string" },
         "attributes": { "$ref":  "#/$defs/attributes" },
@@ -43,7 +44,7 @@
         },
         "weight": { "type": "integer" }
       },
-      "required": ["id", "name", "url"]
+      "required": ["id", "name", "url", "parentId"]
     }
   }
 }
