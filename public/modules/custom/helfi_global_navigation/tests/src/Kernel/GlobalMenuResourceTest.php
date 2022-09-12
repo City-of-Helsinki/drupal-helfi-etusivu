@@ -27,6 +27,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
         'status' => TRUE,
         'menu_tree' => [
           'name' => 'Kaupunkiympäristö',
+          'id' => 'base:liikenne',
           'external' => FALSE,
           'hasItems' => TRUE,
           'weight' => 0,
@@ -34,7 +35,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
             [
               'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
               'name' => 'Pysäköinti fi',
-              'parentId' => '',
+              'parentId' => 'base:liikenne',
               'url' => 'https://localhost',
               'external' => FALSE,
               'hasItems' => FALSE,
@@ -47,6 +48,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
         'site_name' => 'Liikenne en',
         'menu_tree' => [
           'name' => 'Kaupunkiympäristö en',
+          'id' => 'base:liikenne',
           'external' => FALSE,
           'hasItems' => TRUE,
           'weight' => 0,
@@ -54,7 +56,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
             [
               'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
               'name' => 'Pysäköinti en',
-              'parentId' => '',
+              'parentId' => 'base:liikenne',
               'url' => 'https://localhost',
               'external' => FALSE,
               'hasItems' => FALSE,
