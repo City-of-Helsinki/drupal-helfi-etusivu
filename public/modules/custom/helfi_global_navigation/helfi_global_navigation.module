@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Contains alterations for the Hel.fi global navigation.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function helfi_global_navigation_theme_suggestions_menu_alter(array &$suggestions, array $variables) : void {
+  if ($variables['theme_hook_original'] === 'menu__external_menu') {
+    $suggestions = [];
+
+    if (str_contains($variables['attributes']['block_id'], 'mobile_menu')) {
+      $suggestions[] = 'menu__external_menu__mobile_menu';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_global_navigation_preprocess_menu__external_menu(&$variables) : void {
+  // Create current parent link for mobile menu.
+  $variables['menu_link_current'] = [
+    'title' => t('Front page'),
+    'url' => Url::fromUri('base:/'),
+  ];
+
+  // Construct urls for the menu items to help navigation via mobile menu.
+  if (
+    is_array($variables['items']) &&
+    !empty($variables['items']) &&
+    !array_key_exists('next_url', $variables['items'])
+  ) {
+    foreach ($variables['items'] as &$menu_link) {
+      $menu_link['next_url'] = clone $menu_link['url'];
+      $menu_link['next_url']->setOption('fragment', 'menu');
+    }
+  }
+}
