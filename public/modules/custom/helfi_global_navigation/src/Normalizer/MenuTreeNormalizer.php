@@ -35,7 +35,7 @@ final class MenuTreeNormalizer extends ContentEntityNormalizer {
 
     if (isset($attributes['menu_tree'])) {
       $attributes['menu_tree'] = array_map(function (array $value) {
-        return \GuzzleHttp\json_decode($value['value'], TRUE);
+        return \GuzzleHttp\json_decode($value['value']);
       }, $attributes['menu_tree']);
     }
 

@@ -45,7 +45,7 @@ final class GlobalMenu extends GlobalMenuBase {
       throw new BadRequestHttpException('Missing required "entity" parameter.');
     }
 
-    if (!$entity = GlobalMenuEntity::load($id)) {
+    if (!$entity = $this->storage->load($id)) {
       return NULL;
     }
     return $entity;
@@ -70,16 +70,17 @@ final class GlobalMenu extends GlobalMenuBase {
    */
   public function get(Request $request) : ResourceResponse {
     $cacheableMetadata = new CacheableMetadata();
+    $langcode = $this->getCurrentLanguageId();
+    $entity = $this->getRequestEntity($request);
 
-    if (!$entity = $this->getRequestEntity($request)) {
-      throw new NotFoundHttpException();
+    if ((!$entity = $entity->getTranslation($langcode)) || !$entity->isPublished()) {
+      throw new NotFoundHttpException('Entity not found.');
     }
     $this->assertPermission($entity, 'view');
 
     $cacheableMetadata->addCacheableDependency($entity)
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
 
-    $entity = $this->entityRepository->getTranslationFromContext($entity, $this->getCurrentLanguageId());
     return (new ResourceResponse($entity, 200))
       ->addCacheableDependency($cacheableMetadata);
   }
@@ -96,23 +97,6 @@ final class GlobalMenu extends GlobalMenuBase {
   public function post(Request $request) : ModifiedResourceResponse {
     $isNew = FALSE;
     $langcode = $this->getCurrentLanguageId();
-
-    // Attempt to create a new entity if one does not exist yet.
-    if (!$entity = $this->getRequestEntity($request)) {
-      $isNew = TRUE;
-      $entity = GlobalMenuEntity::createById($request->attributes->get('entity'))
-        ->set('langcode', $langcode);
-
-      $this->assertPermission($entity, 'create');
-    }
-    if (!$entity->hasTranslation($langcode)) {
-      $entity = $entity->addTranslation($langcode);
-      $isNew = TRUE;
-    }
-    else {
-      $entity = $entity->getTranslation($langcode);
-    }
-    $this->assertPermission($entity, 'update');
 
     try {
       $content = \GuzzleHttp\json_decode($request->getContent());
@@ -132,7 +116,31 @@ final class GlobalMenu extends GlobalMenuBase {
       throw new UnprocessableEntityHttpException(sprintf('Missing required: %s', implode(', ', $requiredFields)));
     }
 
+    // Attempt to create a new entity if one does not exist yet.
+    if (!$entity = $this->getRequestEntity($request)) {
+      $isNew = TRUE;
+      $entity = $this->storage->createById($request->attributes->get('entity'))
+        ->set('langcode', $langcode);
+      $this->assertPermission($entity, 'create');
+    }
+    if (!$entity->hasTranslation($langcode)) {
+      $entity = $entity->addTranslation($langcode);
+      $isNew = TRUE;
+    }
+    else {
+      $entity = $entity->getTranslation($langcode);
+    }
+    $this->assertPermission($entity, 'update');
+
     try {
+      // Mark new entities as unpublished by default.
+      if ($isNew) {
+        $entity->setUnpublished();
+      }
+      // Allow entities to be published if explicitly told so.
+      if (isset($content->status) && (bool) $content->status === TRUE) {
+        $entity->setPublished();
+      }
       $entity->setMenuTree($content->menu_tree)
         ->setLabel($content->site_name);
       $this->validate($entity);
