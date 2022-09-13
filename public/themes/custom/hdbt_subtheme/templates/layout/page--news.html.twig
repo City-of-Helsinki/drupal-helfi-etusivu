@@ -11,12 +11,14 @@
     </div>
     {# Render the main news block in before content. #}
     {{ drupal_entity('block', 'views_block__frontpage_news_main_news', check_access=false) }}
+
+    <div id="helfi-etusivu-news-search" class="block--news-archive"></div>
   {% endblock page_before_content %}
 
   {% block page_content %}
-    <div id="helfi-etusivu-news-search" class="block--news-archive">
-      {{ page.content|without(page_title_block) }}
-    </div>
+    <noscript>
+     {{ page.content|without(page_title_block) }}
+    </noscript>
   {% endblock page_content %}
 
   {# Create sidebar second block and render most read news in it. #}
