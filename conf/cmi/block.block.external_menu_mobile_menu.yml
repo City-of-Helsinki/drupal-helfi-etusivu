@@ -1,0 +1,23 @@
+uuid: 812dfd67-6215-42d5-81e8-ab21b280bad8
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_navigation
+  theme:
+    - hdbt_subtheme
+id: external_menu_mobile_menu
+theme: hdbt_subtheme
+region: header_branding
+weight: -14
+provider: null
+plugin: external_menu_block_main_navigation
+settings:
+  id: external_menu_block_main_navigation
+  label: 'External - Mobile menu'
+  label_display: '0'
+  provider: helfi_navigation
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }
