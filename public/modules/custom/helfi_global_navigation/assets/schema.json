@@ -5,18 +5,31 @@
     "id": { "type": "string" },
     "name": { "type": "string" },
     "parentId": { "type": "string" },
-    "external": { "type": "boolean" },
     "hasItems": { "type": "boolean" },
     "description": { "type": "string" },
+    "external": { "type": "boolean" },
     "weight": { "type": "integer" },
     "url": { "type": "string" },
+    "attributes": { "$ref":  "#/$defs/attributes" },
+    "parents": { "$ref":  "#/$defs/parents" },
     "sub_tree": {
       "type": "array",
       "items": { "$ref": "#/$defs/sub_tree" }
     }
   },
-  "required": ["sub_tree", "name"],
+  "required": ["id", "sub_tree", "name"],
   "$defs": {
+    "parents": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "data-external": { "type":  "boolean" },
+        "data-protocol": { "type": ["string", "null"] }
+      }
+    },
     "sub_tree": {
       "additionalProperties": false,
       "type": "object",
@@ -24,17 +37,20 @@
         "id": { "type": "string" },
         "name": { "type": "string" },
         "parentId": { "type": "string" },
-        "external": { "type": "boolean" },
         "hasItems": { "type": "boolean" },
+        "external": { "type": "boolean" },
+        "expanded": { "type": "boolean" },
         "description": { "type": "string" },
         "url": { "type": "string" },
+        "parents": { "$ref":  "#/$defs/parents" },
+        "attributes": { "$ref":  "#/$defs/attributes" },
         "sub_tree": {
           "type": "array",
           "items": { "$ref": "#/$defs/sub_tree" }
         },
         "weight": { "type": "integer" }
       },
-      "required": ["id", "name", "url"]
+      "required": ["id", "name", "url", "parentId"]
     }
   }
 }
