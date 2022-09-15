@@ -75,7 +75,7 @@ final class GlobalMenuOverviewForm extends FormBase {
         'operations' => $this->t('Operations'),
         'weight' => NULL,
       ],
-      //'#tableselect' => FALSE,
+      '#tableselect' => FALSE,
       '#tabledrag' => [
         [
           'action' => 'order',
