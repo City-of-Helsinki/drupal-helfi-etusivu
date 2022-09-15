@@ -75,7 +75,7 @@ final class GlobalMenuOverviewForm extends FormBase {
         'operations' => $this->t('Operations'),
         'weight' => NULL,
       ],
-      '#tableselect' => FALSE,
+      //'#tableselect' => FALSE,
       '#tabledrag' => [
         [
           'action' => 'order',
@@ -85,8 +85,8 @@ final class GlobalMenuOverviewForm extends FormBase {
       ],
     ];
 
-    foreach ($this->storage->loadMultipleSorted(forceCurrentLanguage: TRUE) as $delta => $entity) {
-      $form['entities'][$delta] = [
+    foreach ($this->storage->loadMultipleSorted() as $entity) {
+      $form['entities'][] = [
         '#item' => $entity,
         '#attributes' => [
           'class' => ['draggable'],
