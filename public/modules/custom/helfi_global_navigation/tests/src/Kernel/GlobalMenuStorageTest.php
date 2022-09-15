@@ -128,14 +128,14 @@ class GlobalMenuStorageTest extends KernelTestBase {
       ->setWeight(2);
     $sote->save();
 
-    $entities = $this->getStorage()->loadMultipleSorted(forceCurrentLanguage: FALSE);
+    $entities = $this->getStorage()->loadMultipleSorted();
     $this->assertEntityOrder($entities, [
       'liikenne',
       'sote',
     ]);
     // Sort liikenne below sote and make sure items are loaded in correct order.
     $liikenne->setWeight(3)->save();
-    $entities = $this->getStorage()->loadMultipleSorted(forceCurrentLanguage: FALSE);
+    $entities = $this->getStorage()->loadMultipleSorted();
     $this->assertEntityOrder($entities, [
       'sote',
       'liikenne',
