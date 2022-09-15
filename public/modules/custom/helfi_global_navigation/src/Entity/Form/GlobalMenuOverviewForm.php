@@ -71,7 +71,7 @@ final class GlobalMenuOverviewForm extends FormBase {
       '#empty' => $this->t('No entities available.'),
       '#header' => [
         'entity' => $this->t('Name'),
-        'status' => $this->t('Status'),
+        'status' => $this->t('Published'),
         'operations' => $this->t('Operations'),
         'weight' => NULL,
       ],
@@ -85,8 +85,8 @@ final class GlobalMenuOverviewForm extends FormBase {
       ],
     ];
 
-    foreach ($this->storage->loadMultipleSorted() as $entity) {
-      $form['entities'][] = [
+    foreach ($this->storage->loadMultipleSorted() as $delta => $entity) {
+      $form['entities'][$delta] = [
         '#item' => $entity,
         '#attributes' => [
           'class' => ['draggable'],
