@@ -71,8 +71,8 @@ final class GlobalMenuStorage extends SqlContentEntityStorage {
         ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
         ->getId();
     }
-    foreach ($conditions as $field => $value) {
-      $query->condition($field, $value, '=');
+    foreach ($conditions as $key => $value) {
+      $query->condition($key, $value, '=');
     }
     $query->sort($field, $direction);
 
