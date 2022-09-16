@@ -1759,7 +1759,7 @@ display:
         fields: false
         sorts: false
       display_extenders: {  }
-      path: rss/news-fallback
+      path: news/react/rss
     cache_metadata:
       max-age: -1
       contexts:
