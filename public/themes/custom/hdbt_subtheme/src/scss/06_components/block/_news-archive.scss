@@ -125,7 +125,6 @@ $news-archive-background: #f2f2f2;
   --color-focus: var(--hdbt-color-black);
   --color-hover-focus: var(--hdbt-color-black);
   --focus-outline-color: var(--hdbt-color-black);
-  margin-bottom: $spacing-half;
 }
 
 .news-listing__no-results {
@@ -134,17 +133,20 @@ $news-archive-background: #f2f2f2;
 
 // Use a very specific selector here to override hds styles
 button.news-form__remove-selection-button:not(:disabled) {
-  @include tag('interactive--search');
+  @include tag('interactive--deletable');
   color: var(--hdbt-color-black);
+  --color-hover-focus: var(--hdbt-text-color);
 }
 
 // Neagate HDS-defined paddings for span-element inside button
 .news-form__remove-selection-button span {
   padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
   padding-top: 0;
 }
 
 // Negate HDS-defined margin for icon inside remove button
-.news-form__remove-selection-button div {
+.news-form__selections-wrapper button.news-form__remove-selection-button > div {
   margin-right: 0;
 }
