@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f333db5fa02e0d7290f8c8b25e8138f",
+    "content-hash": "4b11bef9b89fc1c82caf468fd4260a75",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5022,16 +5022,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.9.23",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "952f14198ad2e12796f8ba3b1f412cecd8594e6f"
+                "reference": "d3dd3a4edbcbd485c0224cc159f42522590419f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/952f14198ad2e12796f8ba3b1f412cecd8594e6f",
-                "reference": "952f14198ad2e12796f8ba3b1f412cecd8594e6f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/d3dd3a4edbcbd485c0224cc159f42522590419f7",
+                "reference": "d3dd3a4edbcbd485c0224cc159f42522590419f7",
                 "shasum": ""
             },
             "require": {
@@ -5073,7 +5073,7 @@
                 "drupal/metatag": "^1.16",
                 "drupal/oembed_providers": "^2.0",
                 "drupal/paragraphs": "^1.12",
-                "drupal/paragraphs_asymmetric_translation_widgets": "^1.0-beta4",
+                "drupal/paragraphs_asymmetric_translation_widgets": "^1.0",
                 "drupal/pathauto": "^1.8",
                 "drupal/publication_date": "^2.0@beta",
                 "drupal/redirect": "^1.6",
@@ -5123,7 +5123,7 @@
                         "[#UHF-2059] Enhancements for the Admin UI": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/fdccb32397cc6fa19b4d0077b21a2b18aa6be297/patches/helfi_customizations_for_paragraphs_widget_8.x-1.12.patch"
                     },
                     "drupal/paragraphs_asymmetric_translation_widgets": {
-                        "https://www.drupal.org/project/paragraphs_asymmetric_translation_widgets/issues/3171810#comment-13836806": "https://www.drupal.org/files/issues/2020-09-25/3171810-2.patch"
+                        "https://www.drupal.org/project/paragraphs_asymmetric_translation_widgets/issues/3310368": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/fcf0f392edd8531089c6c9d15e2a15026dae79fb/patches/paragraphs_asymmetric_translation_widgets-3310368-check-for-subform.patch"
                     },
                     "drupal/linkit": {
                         "[#UHF-1872] Linkit support for link field": "https://www.drupal.org/files/issues/2021-08-20/avoid-linkit-CI-issue.patch"
@@ -5144,10 +5144,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.9.23",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.10.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-09-19T07:57:07+00:00"
+            "time": "2022-09-19T13:49:37+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
