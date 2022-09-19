@@ -68,8 +68,7 @@
     "extra": {
         "patches": {
             "drupal/core": {
-                "[#2706241] AccessAwareRouter does not respect HTTP method": "https://www.drupal.org/files/issues/2022-02-01/2706241-67.patch",
-                "[#2752443] Incorrect order and duplicate theme hook suggestions": "https://www.drupal.org/files/issues/2022-07-06/2752443-77.patch"
+                "[#2706241] AccessAwareRouter does not respect HTTP method": "https://www.drupal.org/files/issues/2022-02-01/2706241-67.patch"
             },
             "drupal/draggableviews": {
                 "Save langcode as part of draggableviews data in order to sort by by weight and language": "patches/draggableviews_language.patch"
