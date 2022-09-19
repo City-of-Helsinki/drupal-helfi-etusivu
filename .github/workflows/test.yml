@@ -42,11 +42,13 @@ jobs:
           gh run download -n latest.sql
 
       - name: Install Drupal
-        run: mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql
+        run: |
+          mysql --user=drupal --password=drupal --database=drupal --host=db --port=3306 -A < latest.sql
+          drush cr && drush cim -y
 
       - name: Start services
         run: |
-          drush runserver $SIMPLETEST_BASE_URL &
+          drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
           chromedriver --port=4444 > /dev/null 2>&1 &
           # Uncomment the line below to run 'existing-site-javascript' tests.
           # chromium-browser --headless --disable-gpu --remote-debugging-port=9222 &
