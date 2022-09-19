@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\helfi_global_navigation\Kernel;
+namespace Drupal\Tests\helfi_global_navigation\Functional;
 
 use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
 use Drupal\language\Entity\ConfigurableLanguage;
