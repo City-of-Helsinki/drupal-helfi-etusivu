@@ -34,7 +34,7 @@ jobs:
         run: |
           vendor/bin/phpcs public/modules/custom/ --ignore="*.js,*.css" --extensions=php,module,install --standard=Drupal
           vendor/bin/phpcs public/themes/custom/ --ignore="*.js,*.css" --extensions=php,theme --standard=Drupal
-          
+
       - name: Download latest dump
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
 
       - name: Start services
         run: |
-          drush runserver $SIMPLETEST_BASE_URL > /dev/null 2>&1 &
+          drush runserver $SIMPLETEST_BASE_URL &
           chromedriver --port=4444 > /dev/null 2>&1 &
           # Uncomment the line below to run 'existing-site-javascript' tests.
           # chromium-browser --headless --disable-gpu --remote-debugging-port=9222 &
