@@ -177,15 +177,15 @@
         },
         {
             "name": "city-of-helsinki/helfi-etusivu-news-search",
-            "version": "0.3.0",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search",
-                "reference": "0.3.0"
+                "reference": "0.5.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search/releases/download/0.3.0/helfi-etusivu-news-search.zip"
+                "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search/releases/download/0.5.0/helfi-etusivu-news-search.zip"
             },
             "type": "library"
         },
