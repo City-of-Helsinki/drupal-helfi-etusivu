@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\helfi_global_navigation\Kernel;
+namespace Drupal\Tests\helfi_global_navigation\Functional;
 
 use Drupal\Core\Config\Schema\SchemaIncompleteException;
 use Drupal\Tests\BrowserTestBase;

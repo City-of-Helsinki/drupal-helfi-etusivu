@@ -67,21 +67,6 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
   use EntityPublishedTrait;
 
   /**
-   * Creates a new entity for given id.
-   *
-   * @param string $id
-   *   The project ID.
-   *
-   * @return static
-   *   The self.
-   */
-  public static function createById(string $id) : self {
-    return self::create([
-      'project' => $id,
-    ]);
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function preSave(EntityStorageInterface $storage) {
@@ -91,6 +76,13 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
     if (!$this->id()) {
       throw new \InvalidArgumentException('ID must be set before saving the entity.');
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() : array {
+    return parent::getCacheTags() + ['helfi_global_menu_collection'];
   }
 
   /**
