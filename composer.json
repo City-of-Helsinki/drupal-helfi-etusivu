@@ -8,7 +8,7 @@
     "prefer-stable": true,
     "require": {
         "ext-libxml": "*",
-        "city-of-helsinki/helfi-etusivu-news-search": "0.3.0",
+        "city-of-helsinki/helfi-etusivu-news-search": "0.5.0",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.6.7",
         "drupal/consumer_image_styles": "^4.0",
@@ -18,10 +18,11 @@
         "drupal/draggableviews": "^2.0",
         "drupal/elasticsearch_connector": "^7.0@alpha",
         "drupal/external_entities": "^2.0@alpha",
-        "drupal/hdbt": "^3.0",
+        "drupal/hdbt": "^4.0",
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_azure_fs": "^1.0",
         "drupal/helfi_drupal_tools": "dev-main",
+        "drupal/helfi_navigation": "dev-main",
         "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_proxy": "^2.0",
         "drupal/helfi_tunnistamo": "^2.0",
@@ -151,15 +152,15 @@
             "type": "package",
             "package": {
                 "name": "city-of-helsinki/helfi-etusivu-news-search",
-                "version": "0.3.0",
+                "version": "0.5.0",
                 "dist": {
-                    "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search/releases/download/0.3.0/helfi-etusivu-news-search.zip",
+                    "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search/releases/download/0.5.0/helfi-etusivu-news-search.zip",
                     "type": "zip"
                 },
                 "source": {
                     "url": "https://github.com/City-of-Helsinki/helfi-etusivu-news-search",
                     "type": "git",
-                    "reference": "0.3.0"
+                    "reference": "0.5.0"
                 }
             }
         }
