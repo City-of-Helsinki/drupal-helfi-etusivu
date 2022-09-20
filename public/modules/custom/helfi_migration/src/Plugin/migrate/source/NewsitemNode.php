@@ -6,7 +6,6 @@ namespace Drupal\helfi_migration\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate_plus\Plugin\migrate\source\Url;
-use Drupal\migrate\Row;
 
 /**
  * Source plugin for newsitem content.
@@ -18,6 +17,7 @@ use Drupal\migrate\Row;
 final class NewsitemNode extends Url {
 
   const ATOM_NEWS_SOURCE_URL = 'https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/Content/';
+  const PAGE_SIZE = 100;
 
   /**
    * {@inheritdoc}
@@ -36,25 +36,33 @@ final class NewsitemNode extends Url {
     $this->sourceUrls = $configuration['urls'];
   }
 
+  /**
+   * Method to populate the list of URLs to query.
+   *
+   * @param array $urlList
+   *   List of URLs to populate
+   * @param string $url
+   *   URL to query.
+   *
+   * @return void
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
   private function populateUrlList(array &$urlList, string $url) {
-    $method = 'GET';
-    $options = [];
-
     $client = \Drupal::httpClient();
     $page = 1;
     while (TRUE) {
-      $pageUrl = $url . "?pageSize=100&page=" . $page;
-      $response = $client->request($method, $pageUrl, $options);
+      $pageUrl = $url . "?pageSize=" . self::PAGE_SIZE . "&page=" . $page;
+      $response = $client->request('GET', $pageUrl, []);
       $code = $response->getStatusCode();
       if ($code == 200) {
         $xmlString = $response->getBody()->getContents();
         $xmlObject = new \SimpleXMLElement($xmlString);
         $contentIds = $xmlObject->xpath('/atom:feed/atom:entry/atom:id');
         foreach ($contentIds as $contentId) {
-          $urlList[] = self::ATOM_NEWS_SOURCE_URL . ((string)$contentId);
+          $urlList[] = self::ATOM_NEWS_SOURCE_URL . ((string) $contentId);
         }
       }
-      if (count($contentIds) < 100) {
+      if (count($contentIds) < self::PAGE_SIZE) {
         break;
       }
       $page++;
