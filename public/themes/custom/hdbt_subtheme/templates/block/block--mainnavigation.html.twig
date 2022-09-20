@@ -31,8 +31,11 @@
  * http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
  */
 #}
+{% set data_hdbt_selector = data_hdbt_selector|default('main-navigation') %}
+{% set nav_classes = nav_classes|default('desktop-menu') %}
+
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('data-hdbt-selector','main-navigation') }} class="desktop-menu">
+<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').setAttribute('data-hdbt-selector', data_hdbt_selector) }} class="{{ nav_classes }}">
   {# Menu. #}
   {% block content %}
     {{ content }}
