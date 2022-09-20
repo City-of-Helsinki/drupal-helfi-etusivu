@@ -12,10 +12,8 @@ migration_group: newsitem
 migration_tags:
   - helfi
 
-# Every migration must have a source plugin, which controls the delivery of our
-# source data. In this case, our source plugin has the name "newsitem_term", which
-# Drupal resolves to the PHP class defined in
-# src/Plugin/migrate/source/NewsitemTerm.php.
+# Our source plugin has the name "newsitem_term", which Drupal resolves
+# to the PHP class defined in src/Plugin/migrate/source/NewsitemTerm.php.
 source:
   plugin: url
   data_fetcher_plugin: http
@@ -26,9 +24,8 @@ source:
   # Under 'fields', we list the data items to be imported. The first level keys
   # are the source field names we want to populate (the names to be used as
   # sources in the process configuration below). For each field we're importing,
-  # we provide a label (optional - this is for display in migration tools) and
-  # an xpath for retrieving that value. It's important to note that this xpath
-  # is relative to the elements retrieved by item_xpath.
+  # we provide a label (optional) and an xpath for retrieving that value.
+  # It's important to note that this xpath is relative to the elements retrieved by item_xpath.
   fields:
     -
       name: field_termatomid
@@ -49,9 +46,8 @@ source:
     field_termatomid:
       type: string
 
-# Here's the meat of the migration - the processing pipeline. This describes how
-# each destination field is to be populated based on the source data. For each
-# destination field, one or more process plugins may be invoked.
+# This describes how each destination field is to be populated based on the source data.
+# For each destination field, one or more process plugins may be invoked.
 process:
   name: name
   description: description
@@ -60,8 +56,6 @@ process:
 # the migrated data in the appropriate form for that particular kind of data.
 # Most Drupal content is an "entity" of one type or another, and we need to
 # specify what entity type we are populating (in this case, taxonomy terms).
-# Unlike the source plugin (which is specific to our particular scenario), this
-# destination plugin is implemented in Drupal itself.
 destination:
   plugin: entity:taxonomy_term
   default_bundle: news_tags
