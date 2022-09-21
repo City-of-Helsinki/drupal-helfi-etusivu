@@ -1,0 +1,9 @@
+{# Embed HDBT page.html.twig with our customisations. #}
+{% embed "@hdbt/layout/page.html.twig"  %}
+
+ {# Use local header language links block. #}
+ {% block header_language_links %}
+  {{ drupal_entity('block', 'hdbt_subtheme_headerlanguagelinks') }}
+ {% endblock header_language_links %}
+
+{% endembed %}

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.header-language-links
+  module:
+    - menu_block_current_language
+  theme:
+    - hdbt_subtheme
+id: hdbt_subtheme_headerlanguagelinks
+theme: hdbt_subtheme
+region: header_branding
+weight: 0
+provider: null
+plugin: 'menu_block_current_language:header-language-links'
+settings:
+  id: 'menu_block_current_language:header-language-links'
+  label: 'Header - Language links'
+  label_display: '0'
+  provider: menu_block_current_language
+  level: 1
+  expand_all_items: true
+  depth: 1
+  translation_providers:
+    views: views
+    menu_link_content: menu_link_content
+    default: '0'
+visibility: {  }
