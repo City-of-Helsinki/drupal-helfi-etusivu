@@ -50,6 +50,7 @@ settings:
       phasing: phasing
       popular_services: popular_services
       target_group_links: target_group_links
+      map: map
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -114,6 +115,9 @@ settings:
       list_of_links_item:
         weight: -16
         enabled: false
+      map:
+        weight: -20
+        enabled: true
       phasing:
         weight: 50
         enabled: true
