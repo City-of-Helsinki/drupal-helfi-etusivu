@@ -40,18 +40,26 @@ final class NewsitemNode extends Url {
    * Method to populate the list of URLs to query.
    *
    * @param array $urlList
-   *   List of URLs to populate
+   *   List of URLs to populate.
    * @param string $url
    *   URL to query.
    *
-   * @return void
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
   private function populateUrlList(array &$urlList, string $url) {
     $client = \Drupal::httpClient();
     $page = 1;
     while (TRUE) {
-      $pageUrl = $url . "?pageSize=" . self::PAGE_SIZE . "&page=" . $page;
+      $urlParts = parse_url($url);
+      $queryParams = [
+        'pageSize' => self::PAGE_SIZE,
+        'page' => $page,
+      ];
+      $stringQueryParams = http_build_query($queryParams);
+      if (array_key_exists('query', $urlParts)) {
+        $stringQueryParams .= "&" . $urlParts['query'];
+      }
+      $pageUrl = $urlParts['scheme'] . "://" . $urlParts['host'] . $urlParts['path'] . "?" . $stringQueryParams;
       $response = $client->request('GET', $pageUrl, []);
       $code = $response->getStatusCode();
       if ($code == 200) {
