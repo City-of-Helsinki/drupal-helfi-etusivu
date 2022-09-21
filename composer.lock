@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "17fe1708cf48b329ef6dab8ae24fbde1",
+    "content-hash": "7b1849522b22c56a99fcf79f745ecd2b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4761,16 +4762,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "4.0.0-rc5",
+            "version": "dev-UHF-X-4.0.0-rc",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "36292d6f70d1c9ba04d6aca04a4a299960766c8e"
+                "reference": "4ea5bb33a358bf7cd3bfb1540bc2fb32456ba8ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/36292d6f70d1c9ba04d6aca04a4a299960766c8e",
-                "reference": "36292d6f70d1c9ba04d6aca04a4a299960766c8e",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/4ea5bb33a358bf7cd3bfb1540bc2fb32456ba8ae",
+                "reference": "4ea5bb33a358bf7cd3bfb1540bc2fb32456ba8ae",
                 "shasum": ""
             },
             "require": {
@@ -4785,10 +4786,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/4.0.0-rc5",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/UHF-X-4.0.0-rc",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2022-09-19T07:41:11+00:00"
+            "time": "2022-09-21T09:17:25+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -18846,6 +18847,7 @@
     "stability-flags": {
         "drupal/elasticsearch_connector": 15,
         "drupal/external_entities": 15,
+        "drupal/hdbt": 20,
         "drupal/helfi_drupal_tools": 20,
         "drupal/helfi_navigation": 20,
         "drupal/json_field": 5,

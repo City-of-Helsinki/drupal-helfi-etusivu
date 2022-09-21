@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for a menu block.
+ *
+ * Use the same block template for the front page external main menu as is
+ * used in sub-instance main menu block.
+ */
+#}
+{% embed "@hdbt_subtheme/block/block--mainnavigation.html.twig" with {
+  data_hdbt_selector: 'external-mega-menu',
+  nav_classes: 'mega-menu'
+} %}
+  {# Do not show the site name container in front page instance. #}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+{% endembed %}
