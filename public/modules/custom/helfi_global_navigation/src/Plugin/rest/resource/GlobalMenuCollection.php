@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
  *   }
  * )
  */
-final class GlobalMenuCollection extends GlobalMenuBase {
+final class GlobalMenuCollection extends GlobalMenuResourceBase {
 
   /**
    * Callback for GET requests.
