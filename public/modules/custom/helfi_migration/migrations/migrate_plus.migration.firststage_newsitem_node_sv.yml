@@ -1,6 +1,6 @@
 # Migration configuration for newsitem content.
-id: newsitem_node_en
-label: Migrate English news items from the source to nodes.
+id: firststage_newsitem_node_sv
+label: Migrate Swedish news items from the source to nodes.
 migration_group: newsitem
 migration_tags:
   - helfi
@@ -10,14 +10,7 @@ source:
   data_fetcher_plugin: http
   data_parser_plugin: xml
   urls:
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:14b31eda-4ec3-44a7-8d75-9a4ef778d9f8
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c259048d-e03b-43d3-a127-efa3d315f807
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:85aac550-f7a1-4624-b056-01b685e6738d
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c8b6eef0-46b3-41db-9a21-10d3b4c48d66
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:3fc3ffc2-884c-4917-8c3c-149cd289dfd1
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:2012c4e0-f52a-4409-90fc-7e463cf56f55
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c45c1b73-5bd1-4d00-9d36-4de5f982fbf8
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:a0701b05-9c2a-4162-9f07-62951c6ff445
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/kaupunkiymparisto/?startdate=2020-01-01&enddate=2021-12-31
   item_selector: /atom:entry
   fields:
     -
@@ -63,7 +56,7 @@ process:
   field_lead_in: field_lead_in
   pseudo_field_content:
     plugin: migration_lookup
-    migration: newsitem_paragraph_en
+    migration: newsitem_paragraph_sv
     source: field_atomid
   field_content:
     plugin: sub_process
@@ -72,10 +65,6 @@ process:
     process:
       target_id: '0'
       target_revision_id: '1'
-  field_main_image:
-    plugin: migration_lookup
-    migration: newsitem_media_en
-    source: field_atomid
   uid:
     plugin: default_value
     default_value: 1
@@ -108,13 +97,13 @@ process:
       to_format: 'U'
   langcode:
     plugin: default_value
-    default_value: en
+    default_value: sv
 migration_dependencies:
   required:
-    - newsitem_media_fi
-    - newsitem_paragraph_en
+    - firststage_newsitem_media_fi
+    - firststage_newsitem_paragraph_sv
     - newsitem_term
-    - newsitem_node_fi
+    - firststage_newsitem_node_fi
 dependencies:
   enforced:
     module:
