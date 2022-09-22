@@ -1,0 +1,38 @@
+# Migration configuration for newsitem content.
+id: firststage_newsitem_paragraph_en
+label: Migrate English news items from the source to nodes.
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: newsitem_node
+  skip_count: true
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/kaupunkiymparisto/?startdate=2020-01-01&enddate=2021-12-31
+  item_selector: /atom:entry
+  fields:
+    -
+      name: field_text
+      label: 'News content'
+      selector: atom:content/wcm:element/wcm:data[@type="text/html"]
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+  ids:
+    field_atomid:
+      type: string
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: text
+process:
+  field_text/value: field_text
+  field_text/format:
+    plugin: default_value
+    default_value: 'full_html'
+dependencies:
+  enforced:
+    module:
+      - helfi_migration
