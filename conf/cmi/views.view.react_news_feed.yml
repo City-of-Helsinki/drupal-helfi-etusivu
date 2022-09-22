@@ -790,7 +790,7 @@ display:
         type: none
         options: {  }
       cache:
-        type: none
+        type: search_api_tag
         options: {  }
       empty: {  }
       sorts: {  }
@@ -928,6 +928,50 @@ display:
             label: ''
             description: ''
             identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_news_groups:
+          id: field_news_groups
+          table: search_api_index_news
+          field: field_news_groups
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api_string
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_news_groups_op
+            label: 'News groups '
+            description: null
+            use_operator: false
+            operator: field_news_groups_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_news_groups
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: null
+            max_placeholder: null
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: 'News groups '
+            description: null
+            identifier: field_news_groups
             optional: true
             widget: select
             multiple: false
@@ -1744,6 +1788,11 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
+      style:
+        type: rss
+        options:
+          grouping: {  }
+          description: ''
       row:
         type: rss_fields
         options:
