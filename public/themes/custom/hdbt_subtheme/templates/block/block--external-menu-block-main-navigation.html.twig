@@ -7,4 +7,9 @@
  * used in sub-instance main menu block.
  */
 #}
-{% embed "@hdbt/block/block--mainnavigation.html.twig" %}{% endembed %}
+{% embed "@hdbt/block/block--mainnavigation.html.twig" %}
+  {# Do not show the site name container in front page instance. #}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+{% endembed %}

@@ -7,4 +7,8 @@
  * used of sub-instance external fallback mobile menu.
  */
 #}
-{% embed "@hdbt/block/block--external-menu-block-fallback.html.twig" %}{% endembed %}
+{% embed "@hdbt/block/block--external-menu-block-fallback.html.twig" %}
+  {% block header_top_navigation %}
+    {{ drupal_entity('block', 'hdbt_subtheme_headertopnavigation')}}
+  {% endblock header_top_navigation %}
+{% endembed %}
