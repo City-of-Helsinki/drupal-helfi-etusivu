@@ -1,0 +1,20 @@
+uuid: eb19685a-ab06-4f78-b309-0652681da3e6
+langcode: en
+status: false
+dependencies:
+  module:
+    - helfi_news_archive
+  theme:
+    - hdbt_subtheme
+id: newsarchive
+theme: hdbt_subtheme
+region: content
+weight: -12
+provider: null
+plugin: block__news_archive_application
+settings:
+  id: block__news_archive_application
+  label: 'News archive'
+  label_display: '0'
+  provider: helfi_news_archive
+visibility: {  }

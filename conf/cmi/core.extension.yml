@@ -60,6 +60,8 @@ module:
   helfi_languages: 0
   helfi_media: 0
   helfi_migration: 0
+  helfi_media_map: 0
+  helfi_media_map_config: 0
   helfi_navigation: 0
   helfi_news_archive: 0
   helfi_news_item: 0
