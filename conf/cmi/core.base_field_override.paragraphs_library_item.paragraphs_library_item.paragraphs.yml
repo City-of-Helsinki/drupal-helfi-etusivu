@@ -44,6 +44,7 @@ settings:
       list_of_links: list_of_links
       sidebar_text: sidebar_text
       text: text
+      map: map
     negate: '0'
     target_bundles_drag_drop:
       accordion:
@@ -97,4 +98,7 @@ settings:
       text:
         enabled: '1'
         weight: '39'
+      map:
+        enabled: '1'
+        weight: '32'
 field_type: entity_reference_revisions
