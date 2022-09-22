@@ -27,6 +27,7 @@ abstract class KernelTestBase extends ApiKernelTestBase {
     'language',
     'json_field',
     'content_translation',
+    'helfi_navigation',
     'helfi_global_navigation',
   ];
 

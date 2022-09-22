@@ -29,7 +29,7 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  *   }
  * )
  */
-final class GlobalMenu extends GlobalMenuBase {
+final class GlobalMenu extends GlobalMenuResourceBase {
 
   /**
    * Gets the entity for given request.
