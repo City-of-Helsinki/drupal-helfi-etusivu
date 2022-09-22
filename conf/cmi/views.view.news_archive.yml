@@ -135,9 +135,8 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
-        options:
-          perm: 'access content'
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
@@ -393,6 +392,8 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
+      link_display: feed_1
+      link_url: ''
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -405,7 +406,6 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.permissions
       tags:
         - 'config:field.storage.node.field_lead_in'
   feed_1:
@@ -792,6 +792,11 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 0
       filters:
         status:
           id: status
@@ -1015,6 +1020,11 @@ display:
         operator: AND
         groups:
           1: AND
+      style:
+        type: rss
+        options:
+          grouping: {  }
+          description: feed
       row:
         type: rss_fields
         options:
@@ -1027,6 +1037,8 @@ display:
             guid_field: view_node
             guid_field_is_permalink: true
       defaults:
+        access: true
+        css_class: false
         relationships: false
         fields: false
         filters: false
@@ -1043,6 +1055,7 @@ display:
           entity_field: uid
           plugin_id: standard
           required: false
+      css_class: ''
       display_extenders: {  }
       path: news/rss
     cache_metadata:
@@ -1053,7 +1066,6 @@ display:
         - url
         - user
         - 'user.node_grants:view'
-        - user.permissions
       tags:
         - 'config:field.storage.node.field_lead_in'
   page_1:
@@ -1147,6 +1159,5 @@ display:
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
-        - user.permissions
       tags:
         - 'config:field.storage.node.field_lead_in'
