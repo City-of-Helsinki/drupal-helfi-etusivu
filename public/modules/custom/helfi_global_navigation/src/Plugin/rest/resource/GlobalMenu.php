@@ -12,6 +12,7 @@ use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -73,15 +74,21 @@ final class GlobalMenu extends GlobalMenuResourceBase {
     $langcode = $this->getCurrentLanguageId();
     $entity = $this->getRequestEntity($request);
 
-    if ((!$entity = $entity->getTranslation($langcode)) || !$entity->isPublished()) {
+    if (!$entity || (!$translation = $entity->getTranslation($langcode))) {
       throw new NotFoundHttpException('Entity not found.');
     }
-    $this->assertPermission($entity, 'view');
 
-    $cacheableMetadata->addCacheableDependency($entity)
+    // @todo We should check if current user has permission to view unpublished
+    // entities.
+    if (!$translation->isPublished()) {
+      throw new AccessDeniedHttpException();
+    }
+    $this->assertPermission($translation, 'view');
+
+    $cacheableMetadata->addCacheableDependency($translation)
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
 
-    return (new ResourceResponse($entity, 200))
+    return (new ResourceResponse($translation, 200))
       ->addCacheableDependency($cacheableMetadata);
   }
 
