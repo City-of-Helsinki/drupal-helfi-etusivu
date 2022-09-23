@@ -94,8 +94,8 @@ final class MenuLinkCollection extends MenuResourceBase {
     // Drupal doesn't know how to normalize them. Creating a generic
     // normalizer for stdClass might have some unintended consequences, so
     // we "normalize" them by converting them to json and back to array.
-    $json = \GuzzleHttp\json_encode($items);
-    return \GuzzleHttp\json_decode($json, TRUE);
+    $json = \json_encode($items, \JSON_THROW_ON_ERROR);
+    return \json_decode($json, TRUE, flags: \JSON_THROW_ON_ERROR);
   }
 
 }
