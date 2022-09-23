@@ -56,6 +56,20 @@ class MenuLinkCollectionResourceTest extends MenuTreeBuilderTestBase {
   }
 
   /**
+   * Tests GET request with non-existent menu.
+   */
+  public function test404Response() : void {
+    Role::load(RoleInterface::ANONYMOUS_ID)
+      ->grantPermission('restful get helfi_menu_link_collection')
+      ->save();
+    $this->drupalSetCurrentUser(User::load(0));
+
+    $request = $this->getMockedRequest(ApiManager::MENU_ENDPOINT . '/non-existent');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+  }
+
+  /**
    * Tests GET request.
    */
   public function testCollection() : void {
@@ -64,11 +78,12 @@ class MenuLinkCollectionResourceTest extends MenuTreeBuilderTestBase {
       ->save();
     $this->drupalSetCurrentUser(User::load(0));
 
+    // Assert that API returns an empty response when menu has
+    // no items.
     foreach (['en', 'fi'] as $language) {
       $request = $this->getMockedRequest('/' . $language . ApiManager::MENU_ENDPOINT . '/main');
       $response = $this->processRequest($request);
       $data = \GuzzleHttp\json_decode($response->getContent());
-      // Make sure no data is set until we have menus.
       $this->assertEmpty($data);
     }
 

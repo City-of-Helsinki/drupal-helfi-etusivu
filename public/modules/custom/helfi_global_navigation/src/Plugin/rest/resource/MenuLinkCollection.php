@@ -8,6 +8,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Routing\AccessAwareRouterInterface;
 use Drupal\helfi_navigation\Menu\MenuTreeBuilder;
 use Drupal\rest\ResourceResponse;
+use Drupal\system\Entity\Menu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -55,7 +56,7 @@ final class MenuLinkCollection extends MenuResourceBase {
    *   The response.
    */
   public function get(Request $request): ResourceResponse {
-    if (!$menuName = $request->attributes->get('menu_name')) {
+    if (!($menuName = $request->attributes->get('menu_name')) || !Menu::load($menuName)) {
       throw new NotFoundHttpException();
     }
     $langcode = $this->getCurrentLanguageId();
