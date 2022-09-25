@@ -31,7 +31,7 @@ process:
   name: alt
   field_media_image/target_id:
     plugin: migration_lookup
-    migration: newsitem_image_fi
+    migration: firststage_newsitem_image_fi
     source: field_atomid
   field_media_image/alt: alt
   field_media_image/title: alt

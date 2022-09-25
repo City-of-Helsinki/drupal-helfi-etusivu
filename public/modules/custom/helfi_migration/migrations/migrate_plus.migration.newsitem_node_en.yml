@@ -72,10 +72,6 @@ process:
     process:
       target_id: '0'
       target_revision_id: '1'
-  field_main_image:
-    plugin: migration_lookup
-    migration: newsitem_media_en
-    source: field_atomid
   uid:
     plugin: default_value
     default_value: 1

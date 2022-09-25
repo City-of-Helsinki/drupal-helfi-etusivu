@@ -51,12 +51,12 @@ process:
       search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Content/'
       replace: 'wcmrest:'
     - plugin: migration_lookup
-      migration: newsitem_node_fi
+      migration: firststage_newsitem_node_fi
   title: title
   field_lead_in: field_lead_in
   pseudo_field_content:
     plugin: migration_lookup
-    migration: newsitem_paragraph_sv
+    migration: firststage_newsitem_paragraph_sv
     source: field_atomid
   field_content:
     plugin: sub_process
