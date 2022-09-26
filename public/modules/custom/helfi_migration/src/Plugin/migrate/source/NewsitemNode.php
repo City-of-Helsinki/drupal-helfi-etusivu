@@ -26,9 +26,16 @@ final class NewsitemNode extends Url {
     if (!is_array($configuration['urls'])) {
       $configuration['urls'] = [$configuration['urls']];
     }
+    $urlListFile = \Drupal::service('file_system')->getTempDirectory() . '/' . $migration->id() . ".json";
     $urlList = [];
-    foreach ($configuration['urls'] as $url) {
-      $this->populateUrlList($urlList, $url);
+    if (file_exists($urlListFile)) {
+      $urlList = json_decode(file_get_contents($urlListFile));
+    }
+    else {
+      foreach ($configuration['urls'] as $url) {
+        $this->populateUrlList($urlList, $url);
+      }
+      file_put_contents($urlListFile, json_encode($urlList));
     }
     $configuration['urls'] = $urlList;
     parent::__construct($configuration, $plugin_id, $plugin_definition, $migration);

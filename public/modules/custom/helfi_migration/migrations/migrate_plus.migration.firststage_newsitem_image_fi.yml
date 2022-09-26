@@ -1,6 +1,6 @@
 # Migration configuration for newsitem content.
-id: newsitem_image_ru
-label: Migrate Russian news item images from the source to image file.
+id: firststage_newsitem_image_fi
+label: Migrate Finnish news item images from the source to image file.
 migration_group: newsitem
 migration_tags:
   - helfi
@@ -10,7 +10,7 @@ source:
   data_fetcher_plugin: http
   data_parser_plugin: xml
   urls:
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/ru/
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/kaupunkiymparisto/?startdate=2020-01-01&enddate=2021-12-31
   item_selector: /atom:entry
   fields:
     -
