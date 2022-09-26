@@ -18,6 +18,7 @@ dependencies:
     - metatag
     - paragraphs
     - path
+    - publication_date
     - scheduler
 _core:
   default_config_hash: DOmyO7EbPLR4QT_AFZyGKWuDjwDK_6cxtWsqZ0RI3qQ
@@ -117,6 +118,7 @@ content:
     region: content
     settings:
       sidebar: false
+      use_details: true
     third_party_settings: {  }
   field_sidebar_content:
     type: paragraphs
@@ -178,6 +180,11 @@ content:
     third_party_settings: {  }
   scheduler_settings:
     weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
