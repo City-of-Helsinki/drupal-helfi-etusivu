@@ -46,8 +46,11 @@ destination:
   translations: true
 process:
   nid:
+    - plugin: null_coalesce
+      source:
+        - basenode_atomid
+      default_value: ""
     - plugin: str_replace
-      source: basenode_atomid
       search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Content/'
       replace: 'wcmrest:'
     - plugin: migration_lookup
