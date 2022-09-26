@@ -17,7 +17,6 @@ source:
     - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:2493c00f-40d3-477c-ba88-84a917320d8a
     - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:c00f271d-08f7-4c13-a4b7-76c0a1ed4c43
     - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:46f4fac4-c830-4bda-b9c5-dffc282e584e
-    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:264f6b89-cd30-408a-83cb-0dd4777056d6
     - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:0b2acb41-36e1-48c6-8557-50d9efcd7a90
     - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:232a2330-1c45-4e9a-8ad9-aaf77843fc9b
   item_selector: /atom:entry
