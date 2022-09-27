@@ -29,7 +29,7 @@ Update or create a main menu:
 - `site_name` (required)
 - `menu_tree`: (required)
   - `url`: The menu link URL (required)
-  - `id`: Menu link ID (required)
+  - `id`: The menu link ID (required)
   - `name`: The menu link name (required)
   - `external`: Whether the link is external or internal. `false` = internal, `true` = external  (optional)
   - `attributes`: HTML attributes (optional)
@@ -38,7 +38,7 @@ Update or create a main menu:
     - `data-external`: Same as `external` field above (optional)
   - `weight`: The weight. Sorted from low to high (optional)
   - `sub_tree`: A recursive menu tree. Contains same elements as above and these additional fields:
-    - `parentId`: Immediate parent ID (required)
+    - `parentId`: The immediate parent ID (required)
     - `parents`: A list of "parent" IDs (optional)
 
 The `menu_tree` field will be validated against [public/modules/custom/helfi_global_navigation/assets/schema.json](/public/modules/custom/helfi_global_navigation/assets/schema.json) JSON-schema.
