@@ -790,7 +790,7 @@ display:
         type: none
         options: {  }
       cache:
-        type: none
+        type: search_api_tag
         options: {  }
       empty: {  }
       sorts: {  }
@@ -1730,6 +1730,11 @@ display:
           use_highlighting: false
           multi_type: separator
           multi_separator: ', '
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 0
       sorts:
         changed:
           id: changed
@@ -1744,6 +1749,11 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
+      style:
+        type: rss
+        options:
+          grouping: {  }
+          description: ''
       row:
         type: rss_fields
         options:
