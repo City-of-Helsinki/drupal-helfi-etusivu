@@ -84,7 +84,7 @@ Example payload:
 
 - Basic auth
 
-## Shared navigations
+## Shared menus
 
 Fetch all menu-links for given menu:
 
