@@ -4,10 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\helfi_global_navigation\Entity\GlobalMenu as GlobalMenuEntity;
-use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\Plugin\rest\resource\EntityResourceValidationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -16,7 +15,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 /**
  * A base class for global menu resources.
  */
-abstract class GlobalMenuBase extends ResourceBase {
+abstract class MenuResourceBase extends ResourceBase {
 
   use EntityResourceValidationTrait;
 
@@ -26,13 +25,6 @@ abstract class GlobalMenuBase extends ResourceBase {
    * @var \Drupal\Core\Language\LanguageManagerInterface
    */
   protected LanguageManagerInterface $languageManager;
-
-  /**
-   * The entity storage.
-   *
-   * @var \Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage
-   */
-  protected GlobalMenuStorage $storage;
 
   /**
    * {@inheritdoc}
@@ -45,7 +37,6 @@ abstract class GlobalMenuBase extends ResourceBase {
       $plugin_definition
     );
     $instance->languageManager = $container->get('language_manager');
-    $instance->storage = $container->get('entity_type.manager')->getStorage('global_menu');
 
     return $instance;
   }
@@ -53,7 +44,7 @@ abstract class GlobalMenuBase extends ResourceBase {
   /**
    * Asserts entity permissions.
    *
-   * @param \Drupal\helfi_global_navigation\Entity\GlobalMenu $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity to check.
    * @param string $operation
    *   The entity operation.
@@ -61,7 +52,7 @@ abstract class GlobalMenuBase extends ResourceBase {
    * @return $this
    *   The self.
    */
-  protected function assertPermission(GlobalMenuEntity $entity, string $operation) : static {
+  protected function assertPermission(EntityInterface $entity, string $operation) : static {
     $access = $entity->access($operation, return_as_object: TRUE);
 
     if (!$access->isAllowed()) {

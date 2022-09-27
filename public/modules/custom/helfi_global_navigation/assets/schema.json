@@ -21,13 +21,16 @@
   "$defs": {
     "parents": {
       "type": "array",
+      "additionalProperties": false,
       "items": { "type": "string" }
     },
     "attributes": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "data-external": { "type":  "boolean" },
-        "data-protocol": { "type": ["string", "null"] }
+        "data-protocol": { "type": ["string", "null"] },
+        "lang": { "type":  "string" }
       }
     },
     "sub_tree": {
