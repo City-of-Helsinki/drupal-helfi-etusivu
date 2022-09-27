@@ -43,7 +43,7 @@ Update or create a main menu:
 
 The `menu_tree` field will be validated against [public/modules/custom/helfi_global_navigation/assets/schema.json](/public/modules/custom/helfi_global_navigation/assets/schema.json) JSON-schema.
 
-See [City-of-Helsinki/drupal-module-helfi-navigation](https://github.com/City-of-Helsinki/drupal-module-helfi-navigation) for example implementation.
+See [City-of-Helsinki/drupal-module-helfi-navigation](https://github.com/City-of-Helsinki/drupal-module-helfi-navigation) for an example implementation using this API.
 
 Example payload:
 
