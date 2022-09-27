@@ -22,7 +22,7 @@
         "drupal/hdbt_admin": "^1.0",
         "drupal/helfi_azure_fs": "^1.0",
         "drupal/helfi_drupal_tools": "dev-main",
-        "drupal/helfi_navigation": "dev-main",
+        "drupal/helfi_navigation": "^1.0",
         "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_proxy": "^2.0",
         "drupal/helfi_tunnistamo": "^2.0",
@@ -69,7 +69,6 @@
         "patches": {
             "drupal/core": {
                 "[#2706241] AccessAwareRouter does not respect HTTP method": "https://www.drupal.org/files/issues/2022-02-01/2706241-67.patch",
-                "[#2752443] Incorrect order and duplicate theme hook suggestions": "https://www.drupal.org/files/issues/2022-07-06/2752443-77.patch",
                 "[#3272985] Rss feed cached response content-type header fix": "https://www.drupal.org/files/issues/2022-04-07/drupal-3272985-views-rss-feed-response-content-type--MR2063-at-f49f4274--20220407.patch"
             },
             "drupal/draggableviews": {
