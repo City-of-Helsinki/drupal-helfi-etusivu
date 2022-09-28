@@ -36,7 +36,8 @@
         "drupal/search_api": "^1.23",
         "drush/drush": "^10.4",
         "josdejong/jsoneditor": "^5.29",
-        "justinrainbow/json-schema": "^5.2"
+        "justinrainbow/json-schema": "^5.2",
+        "twig/twig": "2.15.2"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
