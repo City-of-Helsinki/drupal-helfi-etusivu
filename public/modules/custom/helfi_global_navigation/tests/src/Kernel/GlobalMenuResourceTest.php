@@ -156,6 +156,56 @@ class GlobalMenuResourceTest extends KernelTestBase {
   }
 
   /**
+   * Tests GET request with unpublished entities.
+   */
+  public function testUnpublishedEntity() : void {
+    $user = $this->createUser(permissions:  [
+      'restful get helfi_global_menu_collection',
+      'view global_menu',
+    ]);
+    $this->drupalSetCurrentUser($user);
+
+    $entity = $this->createGlobalMenu('liikenne', 'Liikenne en', []);
+    $entity
+      ->setPublished()
+      ->addTranslation('fi')
+      ->setLabel('Liikenne fi')
+      ->setUnpublished()
+      ->save();
+
+    // English version is published and should be visible.
+    $request = $this->getMockedRequest('/en/api/v1/global-menu/liikenne');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+
+    // Finnish translation is unpublished and should return 403 response.
+    $request = $this->getMockedRequest('/fi/api/v1/global-menu/liikenne');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+
+    // Publish finnish translation and make sure it's visible.
+    $entity->getTranslation('fi')->setPublished()->save();
+    $request = $this->getMockedRequest('/fi/api/v1/global-menu/liikenne');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+  }
+
+  /**
+   * Tests GET request with non-existent global menu.
+   */
+  public function testGet404Response() : void {
+    $user = $this->createUser(permissions:  [
+      'restful get helfi_global_menu_collection',
+      'view global_menu',
+    ]);
+    $this->drupalSetCurrentUser($user);
+
+    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+  }
+
+  /**
    * Tests POST request permissions.
    */
   public function testPostPermission() : void {
