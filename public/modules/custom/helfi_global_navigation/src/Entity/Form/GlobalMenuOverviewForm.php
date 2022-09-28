@@ -35,9 +35,12 @@ final class GlobalMenuOverviewForm extends FormBase {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager service.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(
-    EntityTypeManagerInterface $entityTypeManager
+    EntityTypeManagerInterface $entityTypeManager,
   ) {
     $this->storage = $entityTypeManager->getStorage('global_menu');
     $this->listBuilder = $entityTypeManager->getListBuilder('global_menu');
@@ -46,9 +49,9 @@ final class GlobalMenuOverviewForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container) : self {
     return new self(
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
     );
   }
 
@@ -68,6 +71,7 @@ final class GlobalMenuOverviewForm extends FormBase {
       '#empty' => $this->t('No entities available.'),
       '#header' => [
         'entity' => $this->t('Name'),
+        'status' => $this->t('Published'),
         'operations' => $this->t('Operations'),
         'weight' => NULL,
       ],
@@ -76,6 +80,7 @@ final class GlobalMenuOverviewForm extends FormBase {
         [
           'action' => 'order',
           'group' => 'entity-weight',
+          'relationship' => 'sibling',
         ],
       ],
     ];
@@ -91,6 +96,10 @@ final class GlobalMenuOverviewForm extends FormBase {
           '#title' => $entity->label() ?: $entity->id(),
           '#url' => $entity->toUrl('edit-form'),
         ],
+        'status' => [
+          '#type' => 'checkbox',
+          '#default_value' => $entity->isPublished(),
+        ],
         'operations' => [
           '#type' => 'operations',
           '#links' => $this->listBuilder->getOperations($entity),
@@ -102,11 +111,6 @@ final class GlobalMenuOverviewForm extends FormBase {
         ],
       ];
     }
-    $form['entities']['#tabledrag'][] = [
-      'action' => 'order',
-      'group' => 'entity-weight',
-      'relationship' => 'sibling',
-    ];
 
     $form['actions'] = ['#type' => 'actions', '#tree' => FALSE];
     $form['actions']['submit'] = [
@@ -128,7 +132,9 @@ final class GlobalMenuOverviewForm extends FormBase {
       /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu $entity */
       $entity = $form['entities'][$id]['#item'];
 
-      ['weight' => $weight] = $values;
+      ['weight' => $weight, 'status' => $status] = $values;
+      $status ? $entity->setPublished() : $entity->setUnpublished();
+
       $entity->setWeight((int) $weight)
         ->save();
     }

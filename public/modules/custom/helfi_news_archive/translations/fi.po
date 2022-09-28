@@ -52,3 +52,7 @@ msgstr "Tyhjennä valinnat"
 msgctxt "News archive no results"
 msgid "No results found"
 msgstr "Ei tuloksia"
+
+msgctxt "News archive open dropdown aria label"
+msgid "Open the combobox"
+msgstr "Avaa alasvetovalikko"

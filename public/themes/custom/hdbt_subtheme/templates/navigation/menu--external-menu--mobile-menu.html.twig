@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override to display an external mobile menu.
+ *
+ * Use the same menu template for the front page external mobile menu as is
+ * used of sub-instance external fallback mobile menu.
+ */
+#}
+{% embed "@hdbt/navigation/menu--external-menu--fallback.html.twig" with {
+  menu_link_current_or_parent: menu_link_current
+} %}{% endembed %}

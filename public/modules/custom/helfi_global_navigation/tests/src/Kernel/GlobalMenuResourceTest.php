@@ -24,8 +24,10 @@ class GlobalMenuResourceTest extends KernelTestBase {
     return [
       'fi' => [
         'site_name' => 'Liikenne fi',
+        'status' => TRUE,
         'menu_tree' => [
           'name' => 'Kaupunkiympäristö',
+          'id' => 'base:liikenne',
           'external' => FALSE,
           'hasItems' => TRUE,
           'weight' => 0,
@@ -33,7 +35,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
             [
               'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
               'name' => 'Pysäköinti fi',
-              'parentId' => '',
+              'parentId' => 'base:liikenne',
               'url' => 'https://localhost',
               'external' => FALSE,
               'hasItems' => FALSE,
@@ -46,6 +48,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
         'site_name' => 'Liikenne en',
         'menu_tree' => [
           'name' => 'Kaupunkiympäristö en',
+          'id' => 'base:liikenne',
           'external' => FALSE,
           'hasItems' => TRUE,
           'weight' => 0,
@@ -53,7 +56,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
             [
               'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
               'name' => 'Pysäköinti en',
-              'parentId' => '',
+              'parentId' => 'base:liikenne',
               'url' => 'https://localhost',
               'external' => FALSE,
               'hasItems' => FALSE,
@@ -79,7 +82,9 @@ class GlobalMenuResourceTest extends KernelTestBase {
    *   The global menu entity.
    */
   private function createGlobalMenu(string $id, string $projectName, array $menu = []) : GlobalMenu {
-    $entity = GlobalMenu::createById($id)
+    $entity = $this->entityTypeManager
+      ->getStorage('global_menu')
+      ->createById($id)
       ->set('langcode', 'en')
       ->setMenuTree($menu)
       ->setLabel($projectName);
@@ -151,11 +156,65 @@ class GlobalMenuResourceTest extends KernelTestBase {
   }
 
   /**
+   * Tests GET request with unpublished entities.
+   */
+  public function testUnpublishedEntity() : void {
+    $user = $this->createUser(permissions:  [
+      'restful get helfi_global_menu_collection',
+      'view global_menu',
+    ]);
+    $this->drupalSetCurrentUser($user);
+
+    $entity = $this->createGlobalMenu('liikenne', 'Liikenne en', []);
+    $entity
+      ->setPublished()
+      ->addTranslation('fi')
+      ->setLabel('Liikenne fi')
+      ->setUnpublished()
+      ->save();
+
+    // English version is published and should be visible.
+    $request = $this->getMockedRequest('/en/api/v1/global-menu/liikenne');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+
+    // Finnish translation is unpublished and should return 403 response.
+    $request = $this->getMockedRequest('/fi/api/v1/global-menu/liikenne');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+
+    // Publish finnish translation and make sure it's visible.
+    $entity->getTranslation('fi')->setPublished()->save();
+    $request = $this->getMockedRequest('/fi/api/v1/global-menu/liikenne');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+  }
+
+  /**
+   * Tests GET request with non-existent global menu.
+   */
+  public function testGet404Response() : void {
+    $user = $this->createUser(permissions:  [
+      'restful get helfi_global_menu_collection',
+      'view global_menu',
+    ]);
+    $this->drupalSetCurrentUser($user);
+
+    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne');
+    $response = $this->processRequest($request);
+    $this->assertEquals(HttpResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+  }
+
+  /**
    * Tests POST request permissions.
    */
   public function testPostPermission() : void {
     $this->drupalSetUpCurrentUser();
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne', 'POST');
+    $request = $this->getMockedRequest(
+      '/api/v1/global-menu/liikenne',
+      'POST',
+      document: $this->getMockJson()['fi']
+    );
     $response = $this->processRequest($request);
     $data = \GuzzleHttp\json_decode($response->getContent());
     $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
@@ -163,7 +222,11 @@ class GlobalMenuResourceTest extends KernelTestBase {
 
     // Test update permission.
     $this->createGlobalMenu('liikenne', 'Liikenne', []);
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne', 'POST');
+    $request = $this->getMockedRequest(
+      '/api/v1/global-menu/liikenne',
+      'POST',
+      document: $this->getMockJson()['fi']
+    );
     $response = $this->processRequest($request);
     $data = \GuzzleHttp\json_decode($response->getContent());
     $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
@@ -225,9 +288,14 @@ class GlobalMenuResourceTest extends KernelTestBase {
       // Make sure creating a new entity and translation returns a 201 response
       // code.
       $this->assertEquals(HttpResponse::HTTP_CREATED, $response->getStatusCode());
+      $content = \GuzzleHttp\json_decode($response->getContent());
+      // Finnish translation is explicitly set to published while english
+      // should fall back to unpublished.
+      $expectedStatus = $langcode === 'fi';
+      $this->assertEquals($expectedStatus, $content->status[0]->value);
 
       // Re-send the same request to make sure updating an entity returns a 200
-      // response.
+      // code.
       $response = $this->processRequest($request);
       $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
 
@@ -235,7 +303,21 @@ class GlobalMenuResourceTest extends KernelTestBase {
       $content = \GuzzleHttp\json_decode($response->getContent());
       $this->assertEquals('Liikenne ' . $langcode, $content->name[0]->value);
       $this->assertEquals($langcode, $content->langcode[0]->value);
+
+      // Make sure item keeps the published status.
+      $this->assertEquals($expectedStatus, $content->status[0]->value);
     }
+
+    // Publish english translation and make sure entity won't get unpublished
+    // when we update it without value on 'status' field.
+    GlobalMenu::load('liikenne')
+      ->getTranslation('en')
+      ->setPublished()
+      ->save();
+    $request = $this->getMockedRequest('/en/api/v1/global-menu/liikenne', 'POST', document: $document['en']);
+    $response = $this->processRequest($request);
+    $content = \GuzzleHttp\json_decode($response->getContent());
+    $this->assertEquals(TRUE, $content->status[0]->value);
   }
 
 }
