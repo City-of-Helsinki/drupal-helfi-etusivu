@@ -7,9 +7,7 @@ namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Routing\AccessAwareRouterInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
-use Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage;
 use Drupal\rest\ResourceResponse;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -23,28 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
  *   }
  * )
  */
-final class GlobalMenuCollection extends GlobalMenuBase {
-
-  /**
-   * The entity storage.
-   *
-   * @var \Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage
-   */
-  protected GlobalMenuStorage $storage;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : self {
-    $instance = parent::create(
-      $container,
-      $configuration,
-      $plugin_id,
-      $plugin_definition
-    );
-    $instance->storage = $container->get('entity_type.manager')->getStorage('global_menu');
-    return $instance;
-  }
+final class GlobalMenuCollection extends GlobalMenuResourceBase {
 
   /**
    * Callback for GET requests.
@@ -53,15 +30,21 @@ final class GlobalMenuCollection extends GlobalMenuBase {
    *   The response.
    */
   public function get(Request $request): ResourceResponse {
+    $langcode = $this->getCurrentLanguageId();
     $cacheableMetadata = (new CacheableMetadata())
-      ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
+      ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT))
+      ->addCacheTags([
+        'helfi_global_menu_collection',
+      ]);
 
-    $entities = array_map(function (GlobalMenu $entity) use ($cacheableMetadata) : GlobalMenu {
+    $entities = array_map(function (GlobalMenu $entity) use ($cacheableMetadata, $langcode) : GlobalMenu {
+      $entity = $entity->getTranslation($langcode);
       $cacheableMetadata->addCacheableDependency($entity);
 
-      return $this->entityRepository
-        ->getTranslationFromContext($entity, $this->getCurrentLanguageId());
-    }, $this->storage->loadMultipleSorted());
+      return $entity;
+    }, $this->storage->loadMultipleSorted([
+      'status' => 1,
+    ]));
     $response = new ResourceResponse($entities, 200);
     $response->addCacheableDependency($cacheableMetadata);
 

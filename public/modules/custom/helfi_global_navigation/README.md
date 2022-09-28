@@ -1,16 +1,10 @@
-# HELfi global navigation
-
-## Note: This module is not completed and is not ready for production (14.7.2022)
-
-## Description
+# Global navigation
 
 Etusivu-instance is the main repository for global menus. It serves global menus to other helfi-instances.
 
-
 ## Features
 
-- Create/update single aggregated main-navigation using main-navigations sent from other instances
-- Create other global navigations from Etusivu-instance menus
-- Respond to the requests sent by other instances
-  - Update/create main-navigation
-  - Fetch any global navigation
+- Create/update single aggregated main-navigation using main-navigations sent from other instances and serve them via API
+- API to serve other navigations from Etusivu-instance menus
+
+See [documentation/menu.md](/documentation/menu.md) for more information.

@@ -4,13 +4,15 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\helfi_global_navigation\Kernel;
 
-use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\helfi_api_base\Kernel\ApiKernelTestBase;
+use Drupal\Tests\helfi_api_base\Traits\LanguageManagerTrait;
 
 /**
  * A base class for global menu tests.
  */
 abstract class KernelTestBase extends ApiKernelTestBase {
+
+  use LanguageManagerTrait;
 
   /**
    * {@inheritdoc}
@@ -21,9 +23,11 @@ abstract class KernelTestBase extends ApiKernelTestBase {
     'migrate',
     'entity',
     'rest',
+    'helfi_language_negotiator_test',
     'language',
     'json_field',
     'content_translation',
+    'helfi_navigation',
     'helfi_global_navigation',
   ];
 
@@ -35,11 +39,10 @@ abstract class KernelTestBase extends ApiKernelTestBase {
 
     $this->installEntitySchema('global_menu');
     $this->installConfig('helfi_global_navigation');
-    $this->installConfig(['language', 'content_translation']);
 
-    foreach (['fi', 'sv'] as $langcode) {
-      ConfigurableLanguage::createFromLangcode($langcode)->save();
-    }
+    $this->installConfig(['content_translation']);
+    $this->setupLanguages();
+
     $this->config('language.negotiation')
       ->set('url.prefixes', ['en' => 'en', 'fi' => 'fi', 'sv' => 'sv'])
       ->save();

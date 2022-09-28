@@ -12,6 +12,7 @@ use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -29,7 +30,7 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  *   }
  * )
  */
-final class GlobalMenu extends GlobalMenuBase {
+final class GlobalMenu extends GlobalMenuResourceBase {
 
   /**
    * Gets the entity for given request.
@@ -45,7 +46,7 @@ final class GlobalMenu extends GlobalMenuBase {
       throw new BadRequestHttpException('Missing required "entity" parameter.');
     }
 
-    if (!$entity = GlobalMenuEntity::load($id)) {
+    if (!$entity = $this->storage->load($id)) {
       return NULL;
     }
     return $entity;
@@ -70,17 +71,24 @@ final class GlobalMenu extends GlobalMenuBase {
    */
   public function get(Request $request) : ResourceResponse {
     $cacheableMetadata = new CacheableMetadata();
+    $langcode = $this->getCurrentLanguageId();
+    $entity = $this->getRequestEntity($request);
 
-    if (!$entity = $this->getRequestEntity($request)) {
-      throw new NotFoundHttpException();
+    if (!$entity || (!$translation = $entity->getTranslation($langcode))) {
+      throw new NotFoundHttpException('Entity not found.');
     }
-    $this->assertPermission($entity, 'view');
 
-    $cacheableMetadata->addCacheableDependency($entity)
+    // @todo We should check if current user has permission to view unpublished
+    // entities.
+    if (!$translation->isPublished()) {
+      throw new AccessDeniedHttpException();
+    }
+    $this->assertPermission($translation, 'view');
+
+    $cacheableMetadata->addCacheableDependency($translation)
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
 
-    $entity = $this->entityRepository->getTranslationFromContext($entity, $this->getCurrentLanguageId());
-    return (new ResourceResponse($entity, 200))
+    return (new ResourceResponse($translation, 200))
       ->addCacheableDependency($cacheableMetadata);
   }
 
@@ -96,23 +104,6 @@ final class GlobalMenu extends GlobalMenuBase {
   public function post(Request $request) : ModifiedResourceResponse {
     $isNew = FALSE;
     $langcode = $this->getCurrentLanguageId();
-
-    // Attempt to create a new entity if one does not exist yet.
-    if (!$entity = $this->getRequestEntity($request)) {
-      $isNew = TRUE;
-      $entity = GlobalMenuEntity::createById($request->attributes->get('entity'))
-        ->set('langcode', $langcode);
-
-      $this->assertPermission($entity, 'create');
-    }
-    if (!$entity->hasTranslation($langcode)) {
-      $entity = $entity->addTranslation($langcode);
-      $isNew = TRUE;
-    }
-    else {
-      $entity = $entity->getTranslation($langcode);
-    }
-    $this->assertPermission($entity, 'update');
 
     try {
       $content = \GuzzleHttp\json_decode($request->getContent());
@@ -132,7 +123,31 @@ final class GlobalMenu extends GlobalMenuBase {
       throw new UnprocessableEntityHttpException(sprintf('Missing required: %s', implode(', ', $requiredFields)));
     }
 
+    // Attempt to create a new entity if one does not exist yet.
+    if (!$entity = $this->getRequestEntity($request)) {
+      $isNew = TRUE;
+      $entity = $this->storage->createById($request->attributes->get('entity'))
+        ->set('langcode', $langcode);
+      $this->assertPermission($entity, 'create');
+    }
+    if (!$entity->hasTranslation($langcode)) {
+      $entity = $entity->addTranslation($langcode);
+      $isNew = TRUE;
+    }
+    else {
+      $entity = $entity->getTranslation($langcode);
+    }
+    $this->assertPermission($entity, 'update');
+
     try {
+      // Mark new entities as unpublished by default.
+      if ($isNew) {
+        $entity->setUnpublished();
+      }
+      // Allow entities to be published if explicitly told so.
+      if (isset($content->status) && (bool) $content->status === TRUE) {
+        $entity->setPublished();
+      }
       $entity->setMenuTree($content->menu_tree)
         ->setLabel($content->site_name);
       $this->validate($entity);
