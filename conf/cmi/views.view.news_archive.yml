@@ -779,7 +779,7 @@ display:
           click_sort_column: value
           type: timestamp
           settings:
-            date_format: custom
+            date_format: html_datetime
             custom_date_format: r
             timezone: ''
           group_column: value
@@ -874,7 +874,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: taxonomy_index_tid
-          operator: or
+          operator: and
           value: {  }
           group: 1
           exposed: true
@@ -897,19 +897,23 @@ display:
               content_producer: '0'
               editor: '0'
               admin: '0'
+              menu_api: '0'
             reduce: false
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: 'News groups (field_news_groups)'
+            description: null
+            identifier: field_news_groups_target_id
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
           reduce_duplicates: false
           vid: news_group
           type: select
@@ -924,7 +928,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: taxonomy_index_tid
-          operator: or
+          operator: and
           value: {  }
           group: 1
           exposed: true
@@ -947,19 +951,23 @@ display:
               content_producer: '0'
               editor: '0'
               admin: '0'
+              menu_api: '0'
             reduce: false
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: 'News tags (field_news_item_tags)'
+            description: null
+            identifier: field_news_item_tags_target_id
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
           reduce_duplicates: false
           vid: news_tags
           type: select
@@ -974,7 +982,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: taxonomy_index_tid
-          operator: or
+          operator: and
           value: {  }
           group: 1
           exposed: true
@@ -997,6 +1005,7 @@ display:
               content_producer: '0'
               editor: '0'
               admin: '0'
+              menu_api: '0'
             reduce: false
           is_grouped: false
           group_info:
