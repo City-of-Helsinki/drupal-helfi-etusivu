@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class GlobalMenuEntityStatus extends DebugDataItemPluginBase implements ContainerFactoryPluginInterface {
+
   /**
    * {@inheritdoc}
    */
@@ -37,7 +38,7 @@ class GlobalMenuEntityStatus extends DebugDataItemPluginBase implements Containe
     foreach ($menus as $menu) {
       $menu_name = $menu->get('project')->value;
 
-      foreach(['fi', 'en', 'sv'] as $langcode) {
+      foreach (['fi', 'en', 'sv'] as $langcode) {
         try {
           $translation = $menu->getTranslation($langcode);
           $data[$menu_name]["{$langcode}_status"] = $translation->get('status')->value ? 1 : 0;
