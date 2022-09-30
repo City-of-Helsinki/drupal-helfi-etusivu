@@ -59,9 +59,9 @@ module:
   helfi_global_navigation: 0
   helfi_languages: 0
   helfi_media: 0
-  helfi_migration: 0
   helfi_media_map: 0
   helfi_media_map_config: 0
+  helfi_migration: 0
   helfi_navigation: 0
   helfi_news_archive: 0
   helfi_news_item: 0
@@ -95,7 +95,6 @@ module:
   metatag_twitter_cards: 0
   migrate: 0
   migrate_plus: 0
-  migrate_tools: 0
   mysql: 0
   node: 0
   oembed_providers: 0
