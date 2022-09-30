@@ -84,10 +84,6 @@ Example payload:
 }
 ```
 
-### Authentication
-
-- Basic auth
-
 ## Shared menus
 
 Fetch all menu-links for given menu:
@@ -100,7 +96,3 @@ Available menus (`{menu_name}`):
 - `footer-top-navigation-2`
 - `header-top-navigation`
 - `header-language-links`
-
-### Authentication
-
-- Basic auth
