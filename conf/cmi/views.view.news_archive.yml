@@ -779,8 +779,8 @@ display:
           click_sort_column: value
           type: timestamp
           settings:
-            date_format: html_datetime
-            custom_date_format: r
+            date_format: custom
+            custom_date_format: 'D, d/m/Y H:i:s O'
             timezone: ''
           group_column: value
           group_columns: {  }
