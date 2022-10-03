@@ -1,0 +1,44 @@
+# Migration configuration for newsitem content.
+id: firststage_newsitem_media_fi
+label: Migrate Finnish news item images from the source to media image.
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: newsitem_node
+  skip_count: true
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/kaupunkiymparisto/?startdate=2020-01-01&enddate=2021-12-31
+  item_selector: /atom:entry
+  fields:
+    -
+      name: field_atomid
+      label: 'Media unique ID'
+      selector: atom:id
+    -
+      name: alt
+      label: 'Image alt text'
+      selector: (atom:content/wcm:element/wcm:image/wcm:altText)[1]
+  ids:
+    field_atomid:
+      type: string
+destination:
+  plugin: 'entity:media'
+  default_bundle: image
+process:
+  name: alt
+  field_media_image/target_id:
+    plugin: migration_lookup
+    migration: firststage_newsitem_image_fi
+    source: field_atomid
+  field_media_image/alt: alt
+  field_media_image/title: alt
+migration_dependencies:
+  required:
+    - firststage_newsitem_image_fi
+dependencies:
+  enforced:
+    module:
+      - helfi_migration

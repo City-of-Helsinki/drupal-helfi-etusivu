@@ -1,0 +1,63 @@
+# Migration configuration for newsitem content.
+id: firststage_newsitem_image_fi
+label: Migrate Finnish news item images from the source to image file.
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: newsitem_node
+  skip_count: true
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/kaupunkiymparisto/?startdate=2020-01-01&enddate=2021-12-31
+  item_selector: /atom:entry
+  fields:
+    -
+      name: field_atomid
+      label: 'Image unique ID'
+      selector: atom:id
+    -
+      name: file_name
+      label: 'Image file name'
+      selector: (atom:content/wcm:element/wcm:image/wcm:fileName)[1]
+    -
+      name: uri
+      label: 'Image URI'
+      selector: (atom:content/wcm:element/wcm:image/wcm:resourceUri)[1]
+  ids:
+    field_atomid:
+      type: string
+  constants:
+    SOURCE_DOMAIN: 'https://hel.fi'
+    DRUPAL_FILE_DIRECTORY: 'public://images/'
+destination:
+  plugin: 'entity:file'
+process:
+  pseudo_source_url:
+    -
+      plugin: concat
+      source:
+        - constants/SOURCE_DOMAIN
+        - uri
+  pseudo_destination_path:
+    -
+      plugin: concat
+      source:
+        - constants/DRUPAL_FILE_DIRECTORY
+        - file_name
+  uri:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: uri
+    -
+      plugin: file_copy
+      source:
+        - '@pseudo_source_url'
+        - '@pseudo_destination_path'
+      move: false
+dependencies:
+  enforced:
+    module:
+      - helfi_migration
