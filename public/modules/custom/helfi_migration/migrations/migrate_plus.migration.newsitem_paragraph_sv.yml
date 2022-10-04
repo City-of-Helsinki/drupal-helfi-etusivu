@@ -1,0 +1,47 @@
+# Migration configuration for newsitem content.
+id: newsitem_paragraph_sv
+label: Migrate Swedish news items from the source to nodes.
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: newsitem_node
+  skip_count: true
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/kaupunkiymparisto/?startdate=2022-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:443bd58c-dcb8-4a4a-a126-f184e37448c4?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:19c87fd9-2cfa-469b-b408-313322efd76c?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:1e6773e1-80e1-4aa3-89d8-f3e40a81ae7a?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:f46b2455-fad9-472f-89cf-503f9400e00d?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:2493c00f-40d3-477c-ba88-84a917320d8a?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:c00f271d-08f7-4c13-a4b7-76c0a1ed4c43?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:46f4fac4-c830-4bda-b9c5-dffc282e584e?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:0b2acb41-36e1-48c6-8557-50d9efcd7a90?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/wcmrest:232a2330-1c45-4e9a-8ad9-aaf77843fc9b?startdate=2021-01-01
+  item_selector: /atom:entry
+  fields:
+    -
+      name: field_text
+      label: 'News content'
+      selector: atom:content/wcm:element/wcm:data[@type="text/html"]
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+  ids:
+    field_atomid:
+      type: string
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: text
+process:
+  field_text/value: field_text
+  field_text/format:
+    plugin: default_value
+    default_value: 'full_html'
+dependencies:
+  enforced:
+    module:
+      - helfi_migration

@@ -1,0 +1,121 @@
+# Migration configuration for newsitem content.
+id: newsitem_node_en
+label: Migrate English news items from the source to nodes.
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: newsitem_node
+  skip_count: true
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/kaupunkiymparisto/?startdate=2022-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:14b31eda-4ec3-44a7-8d75-9a4ef778d9f8?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c259048d-e03b-43d3-a127-efa3d315f807?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:85aac550-f7a1-4624-b056-01b685e6738d?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c8b6eef0-46b3-41db-9a21-10d3b4c48d66?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:3fc3ffc2-884c-4917-8c3c-149cd289dfd1?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:2012c4e0-f52a-4409-90fc-7e463cf56f55?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:c45c1b73-5bd1-4d00-9d36-4de5f982fbf8?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/en/wcmrest:a0701b05-9c2a-4162-9f07-62951c6ff445?startdate=2021-01-01
+  item_selector: /atom:entry
+  fields:
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+    -
+      name: basenode_atomid
+      label: 'Base node unique external ID'
+      selector: (atom:content/wcm:element/wcm:data/wcm:destination)[3]
+    -
+      name: title
+      label: 'News title'
+      selector: atom:title
+    -
+      name: field_lead_in
+      label: 'Summary'
+      selector: atom:summary
+    -
+      name: published
+      label: 'Published'
+      selector: atom:published
+    -
+      name: updated
+      label: 'Last update'
+      selector: atom:updated
+  ids:
+    field_atomid:
+      type: string
+destination:
+  plugin: entity:node
+  default_bundle: news_item
+  translations: true
+process:
+  nid:
+    - plugin: null_coalesce
+      source:
+        - basenode_atomid
+      default_value: ""
+    - plugin: str_replace
+      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Content/'
+      replace: 'wcmrest:'
+    - plugin: migration_lookup
+      migration: newsitem_node_fi
+  title: title
+  field_lead_in: field_lead_in
+  pseudo_field_content:
+    plugin: migration_lookup
+    migration: newsitem_paragraph_en
+    source: field_atomid
+  field_content:
+    plugin: sub_process
+    source:
+      - '@pseudo_field_content'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+  changed:
+    - plugin: substr
+      length: 19
+      source: updated
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  published_at:
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  published_on:
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  langcode:
+    plugin: default_value
+    default_value: en
+migration_dependencies:
+  required:
+    - newsitem_media_fi
+    - newsitem_paragraph_en
+    - newsitem_term
+    - newsitem_node_fi
+dependencies:
+  enforced:
+    module:
+      - helfi_migration
