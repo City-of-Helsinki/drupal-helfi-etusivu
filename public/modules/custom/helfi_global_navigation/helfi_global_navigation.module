@@ -16,11 +16,9 @@ function helfi_global_navigation_theme() : array {
   return [
     'debug_item' => [
       'variables' => [
-        'id' => NULL,
-        'label' => NULL,
         'data' => [],
       ],
-      'template' => 'debug-item--globalmenu',
+      'template' => 'debug-item--helfi_globalmenu',
     ],
   ];
 }
