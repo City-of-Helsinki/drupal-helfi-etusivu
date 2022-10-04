@@ -1654,8 +1654,8 @@ display:
           click_sort_column: value
           type: timestamp
           settings:
-            date_format: html_datetime
-            custom_date_format: ''
+            date_format: custom
+            custom_date_format: r
             timezone: UTC
           group_column: value
           group_columns: {  }

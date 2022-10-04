@@ -779,7 +779,7 @@ display:
           click_sort_column: value
           type: timestamp
           settings:
-            date_format: html_datetime
+            date_format: custom
             custom_date_format: r
             timezone: ''
           group_column: value

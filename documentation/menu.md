@@ -1,6 +1,10 @@
 # Menu API
 
-Available languages (`{langcode}`):
+## Base url
+
+Base URL for all API endpoints is `https://www.hel.fi/{langcode}`. See [Available languages](#available-languages) section for `{langcode}` substitutions.
+
+## Available languages
 
 - fi
 - en
@@ -14,15 +18,15 @@ Allows you to update/retrieve all or instance specific main-navigations.
 
 Get main menu links for individual instance:
 
-- `GET /{langcode}/api/v1/global-menu/{id}`
+- `GET https://www.hel.fi/{langcode}/api/v1/global-menu/{id}`. 
 
 Get all available main menus:
-- `GET /{langcode}/api/v1/global-menu`
+- `GET https://www.hel.fi/{langcode}/api/v1/global-menu`
 
 ### Update/create
 
 Update or create a main menu:
-- `POST /{langcode}/api/v1/global-menu/{id}`
+- `POST https://www.hel.fi/{langcode}/api/v1/global-menu/{id}`
 
 #### Fields
 
@@ -80,15 +84,11 @@ Example payload:
 }
 ```
 
-### Authentication
-
-- Basic auth
-
 ## Shared menus
 
 Fetch all menu-links for given menu:
 
-- `GET /{langcode}/api/v1/menu/{menu_name}`.
+- `GET https://www.hel.fi/{langcode}/api/v1/menu/{menu_name}`.
 
 Available menus (`{menu_name}`):
 - `footer-bottom-navigation`
@@ -96,7 +96,3 @@ Available menus (`{menu_name}`):
 - `footer-top-navigation-2`
 - `header-top-navigation`
 - `header-language-links`
-
-### Authentication
-
-- Basic auth
