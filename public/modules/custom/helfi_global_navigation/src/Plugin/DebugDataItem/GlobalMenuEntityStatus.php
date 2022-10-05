@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Plugin implementation of the debug_data_item.
  *
  * @DebugDataItem(
- *   id = "globalmenu",
+ *   id = "helfi_globalmenu",
  *   label = @Translation("Global menu entity status"),
  *   description = @Translation("Global menu entity status")
  * )
@@ -42,7 +42,7 @@ class GlobalMenuEntityStatus extends DebugDataItemPluginBase implements Containe
         try {
           $translation = $menu->getTranslation($langcode);
           $data[$menu_name]["{$langcode}_status"] = $translation->get('status')->value ? 1 : 0;
-          $data[$menu_name]["{$langcode}_getId()}_updated"] = $translation->content_translation_changed->value ? date('d.m.Y H:i', (int) $translation->content_translation_changed->value) : 0;
+          $data[$menu_name]["{$langcode}_updated"] = $translation->content_translation_changed->value ? date('d.m.Y H:i', (int) $translation->content_translation_changed->value) : 0;
         }
         catch (\Exception $e) {
           $data[$menu_name]["{$langcode}_status"] = 0;
