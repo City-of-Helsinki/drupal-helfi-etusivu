@@ -67,4 +67,4 @@ enable_save_preferences_button: true
 domain_all_sites: true
 settings_tab_enabled: false
 containing_element: body
-cookie_policy_version: 1.1.0
+cookie_policy_version: 1.0.0
