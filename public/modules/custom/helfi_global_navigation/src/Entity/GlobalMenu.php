@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Entity;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\EntityPublishedTrait;
@@ -82,7 +83,7 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
    * {@inheritdoc}
    */
   public function getCacheTags() : array {
-    return parent::getCacheTags() + ['helfi_global_menu_collection'];
+    return Cache::mergeTags(parent::getCacheTags(), ['helfi_global_menu_collection']);
   }
 
   /**
