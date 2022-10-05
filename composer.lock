@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f473e4f47b3d3f3f06c0e877999f7d45",
+    "content-hash": "9f7945ac15a15862acd3401b49f52caf",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4901,16 +4901,16 @@
         },
         {
             "name": "drupal/helfi_navigation",
-            "version": "1.0.3",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation.git",
-                "reference": "e1a20c739dca890cf1f3b73d01b13cbe0f8fc342"
+                "reference": "2ac5296591218fa8f59a527a5ead93e321096ee7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/e1a20c739dca890cf1f3b73d01b13cbe0f8fc342",
-                "reference": "e1a20c739dca890cf1f3b73d01b13cbe0f8fc342",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/2ac5296591218fa8f59a527a5ead93e321096ee7",
+                "reference": "2ac5296591218fa8f59a527a5ead93e321096ee7",
                 "shasum": ""
             },
             "require": {
@@ -4927,10 +4927,10 @@
             ],
             "description": "Helfi - Navigation",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/1.0.3",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/1.0.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/issues"
             },
-            "time": "2022-10-05T05:58:30+00:00"
+            "time": "2022-09-27T06:46:18+00:00"
         },
         {
             "name": "drupal/helfi_platform_config",
