@@ -1,0 +1,115 @@
+# Migration configuration for newsitem content.
+id: firststage_newsitem_node_fi
+label: Migrate Finnish news items from the source to nodes.
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: newsitem_node
+  skip_count: true
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/kaupunkiymparisto/?startdate=2020-01-01&enddate=2021-12-31
+  item_selector: /atom:entry
+  fields:
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+    -
+      name: title
+      label: 'News title'
+      selector: atom:title
+    -
+      name: field_lead_in
+      label: 'Summary'
+      selector: atom:summary
+    -
+      name: tags
+      label: 'News tags'
+      selector: wcm:profile/wcm:category
+    -
+      name: published
+      label: 'Published'
+      selector: atom:published
+    -
+      name: updated
+      label: 'Last update'
+      selector: atom:updated
+  ids:
+    field_atomid:
+      type: string
+destination:
+  plugin: entity:node
+  default_bundle: news_item
+process:
+  title: title
+  field_lead_in: field_lead_in
+  pseudo_field_content:
+    plugin: migration_lookup
+    migration: firststage_newsitem_paragraph_fi
+    source: field_atomid
+  field_content:
+    plugin: sub_process
+    source:
+      - '@pseudo_field_content'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+  field_main_image:
+    plugin: migration_lookup
+    migration: firststage_newsitem_media_fi
+    source: field_atomid
+  field_news_item_tags:
+    - plugin: skip_on_empty
+      source: tags
+      method: process
+      message: 'Row does not contain news_item_tags.'
+    - plugin: str_replace
+      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/'
+      replace: 'wcmrest:'
+    - plugin: migration_lookup
+      migration: newsitem_term
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+  changed:
+    - plugin: substr
+      length: 19
+      source: updated
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  published_at:
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  published_on:
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  langcode:
+    plugin: default_value
+    default_value: fi
+migration_dependencies:
+  required:
+    - firststage_newsitem_media_fi
+    - firststage_newsitem_paragraph_fi
+    - newsitem_term
+dependencies:
+  enforced:
+    module:
+      - helfi_migration

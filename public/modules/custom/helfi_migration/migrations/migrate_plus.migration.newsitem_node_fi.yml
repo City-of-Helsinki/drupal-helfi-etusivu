@@ -1,0 +1,128 @@
+# Migration configuration for newsitem content.
+id: newsitem_node_fi
+label: Migrate Finnish news items from the source to nodes.
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: newsitem_node
+  skip_count: true
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/kaupunkiymparisto/?startdate=2022-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:2ebc7100-9af0-46fa-81ce-ad7407fbe1db?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:d5bab9fd-b035-4143-adce-6fc54e5bd164?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:fa3c65a1-7d15-4ee0-9704-b1c99b5af930?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:ae2bbdbc-f29a-40ab-ace6-7b6caec5c06b?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:ea4a1ece-4269-42cd-91f8-0c2f824439d7?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:6bd461a2-78ae-40f9-babe-b70a0ead2458?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:04a480a2-f794-4d04-a06c-9f8537ed15e6?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:39fcecb2-5ad0-40ca-9c17-f3d2311ce3f4?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:324583ea-fcbe-457f-a0c8-18fa2dd0baee?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:4d017f02-8ac5-45fd-9088-3a03618a57a0?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:7ac4cacf-7527-41eb-b0bb-12cf56efb26b?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:af7bc345-c7e0-479e-9ffc-e7563b325440?startdate=2021-01-01
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/fi/wcmrest:511e8d19-539c-48ca-b805-42dc9d28c824?startdate=2021-01-01
+  item_selector: /atom:entry
+  fields:
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+    -
+      name: title
+      label: 'News title'
+      selector: atom:title
+    -
+      name: field_lead_in
+      label: 'Summary'
+      selector: atom:summary
+    -
+      name: tags
+      label: 'News tags'
+      selector: wcm:profile/wcm:category
+    -
+      name: published
+      label: 'Published'
+      selector: atom:published
+    -
+      name: updated
+      label: 'Last update'
+      selector: atom:updated
+  ids:
+    field_atomid:
+      type: string
+destination:
+  plugin: entity:node
+  default_bundle: news_item
+process:
+  title: title
+  field_lead_in: field_lead_in
+  pseudo_field_content:
+    plugin: migration_lookup
+    migration: newsitem_paragraph_fi
+    source: field_atomid
+  field_content:
+    plugin: sub_process
+    source:
+      - '@pseudo_field_content'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+  field_main_image:
+    plugin: migration_lookup
+    migration: newsitem_media_fi
+    source: field_atomid
+  field_news_item_tags:
+    - plugin: skip_on_empty
+      source: tags
+      method: process
+      message: 'Row does not contain news_item_tags.'
+    - plugin: str_replace
+      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Category/'
+      replace: 'wcmrest:'
+    - plugin: migration_lookup
+      migration: newsitem_term
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+  changed:
+    - plugin: substr
+      length: 19
+      source: updated
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  published_at:
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  published_on:
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  langcode:
+    plugin: default_value
+    default_value: fi
+migration_dependencies:
+  required:
+    - newsitem_media_fi
+    - newsitem_paragraph_fi
+    - newsitem_term
+dependencies:
+  enforced:
+    module:
+      - helfi_migration

@@ -10,6 +10,20 @@ declare(strict_types = 1);
 use Drupal\Core\Url;
 
 /**
+ * Implements hook_theme().
+ */
+function helfi_global_navigation_theme() : array {
+  return [
+    'debug_item' => [
+      'variables' => [
+        'data' => [],
+      ],
+      'template' => 'debug-item--helfi_globalmenu',
+    ],
+  ];
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function helfi_global_navigation_theme_suggestions_menu_alter(array &$suggestions, array $variables) : void {
