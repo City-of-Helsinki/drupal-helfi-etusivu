@@ -1,0 +1,19 @@
+# The machine name of the group, by which it is referenced in individual
+# migrations.
+id: newsitem
+
+# A human-friendly label for the group.
+label: News Item Imports
+
+# More information about the group.
+description: News items related imports.
+
+# Short description of the type of source.
+source_type: Atom Feed
+
+# As with the migration configuration, we add an enforced dependency so
+# the migration_group configuration will be removed on module uninstall.
+dependencies:
+  enforced:
+    module:
+      - helfi_migration

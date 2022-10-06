@@ -1,0 +1,113 @@
+# Migration configuration for newsitem content.
+id: firststage_newsitem_node_sv
+label: Migrate Swedish news items from the source to nodes.
+migration_group: newsitem
+migration_tags:
+  - helfi
+source:
+  plugin: newsitem_node
+  skip_count: true
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - https://helfirest-hki-kanslia-aok-drupal-nodered.agw.arodevtest.hel.fi/helfirest/sv/kaupunkiymparisto/?startdate=2020-01-01&enddate=2021-12-31
+  item_selector: /atom:entry
+  fields:
+    -
+      name: field_atomid
+      label: 'Unique external ID'
+      selector: atom:id
+    -
+      name: basenode_atomid
+      label: 'Base node unique external ID'
+      selector: (atom:content/wcm:element/wcm:data/wcm:destination)[3]
+    -
+      name: title
+      label: 'News title'
+      selector: atom:title
+    -
+      name: field_lead_in
+      label: 'Summary'
+      selector: atom:summary
+    -
+      name: published
+      label: 'Published'
+      selector: atom:published
+    -
+      name: updated
+      label: 'Last update'
+      selector: atom:updated
+  ids:
+    field_atomid:
+      type: string
+destination:
+  plugin: entity:node
+  default_bundle: news_item
+  translations: true
+process:
+  nid:
+    - plugin: null_coalesce
+      source:
+        - basenode_atomid
+      default_value: ""
+    - plugin: str_replace
+      search: '/wps/mycontenthandler/!ut/p/digest!KbuNybqTlILDFDU41o6euw/wcmrest/Content/'
+      replace: 'wcmrest:'
+    - plugin: migration_lookup
+      migration: firststage_newsitem_node_fi
+  title: title
+  field_lead_in: field_lead_in
+  pseudo_field_content:
+    plugin: migration_lookup
+    migration: firststage_newsitem_paragraph_sv
+    source: field_atomid
+  field_content:
+    plugin: sub_process
+    source:
+      - '@pseudo_field_content'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+  uid:
+    plugin: default_value
+    default_value: 1
+  status:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+  changed:
+    - plugin: substr
+      length: 19
+      source: updated
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  published_at:
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  published_on:
+    - plugin: substr
+      length: 19
+      source: published
+    - plugin: format_date
+      from_format: 'Y-m-d\TH:i:s'
+      to_format: 'U'
+  langcode:
+    plugin: default_value
+    default_value: sv
+migration_dependencies:
+  required:
+    - firststage_newsitem_media_fi
+    - firststage_newsitem_paragraph_sv
+    - newsitem_term
+    - firststage_newsitem_node_fi
+dependencies:
+  enforced:
+    module:
+      - helfi_migration

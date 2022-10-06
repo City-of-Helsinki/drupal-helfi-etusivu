@@ -1,0 +1,9 @@
+name: HELfi Migration
+description: Module for migrating content from other systems
+type: module
+core_version_requirement: '^8.9 || ^9'
+dependencies:
+  - drupal:migrate
+  - migrate_plus:migrate_plus
+  - drupal:menu_ui
+  - drupal:path
