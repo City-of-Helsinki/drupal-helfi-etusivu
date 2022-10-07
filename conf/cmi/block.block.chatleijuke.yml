@@ -1,0 +1,27 @@
+uuid: bd18085a-98c6-4f6d-b2de-f62653b8ab60
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_platform_config
+    - system
+  theme:
+    - hdbt_subtheme
+id: chatleijuke
+theme: hdbt_subtheme
+region: attachments
+weight: 0
+provider: null
+plugin: chat_leijuke
+settings:
+  id: chat_leijuke
+  label: 'Chat Leijuke neuvonta'
+  label_display: visible
+  provider: helfi_platform_config
+  chat_title: 'Ask about the city!'
+  chat_selection: genesys_neuvonta
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'
