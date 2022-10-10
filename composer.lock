@@ -5137,16 +5137,16 @@
         },
         {
             "name": "drupal/helfi_tunnistamo",
-            "version": "2.0.7",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo.git",
-                "reference": "24bda98448bad6ce0d93e96db14698523299b980"
+                "reference": "c81fcf4d430c6ba63dc92a4d2598be777867c247"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/24bda98448bad6ce0d93e96db14698523299b980",
-                "reference": "24bda98448bad6ce0d93e96db14698523299b980",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/c81fcf4d430c6ba63dc92a4d2598be777867c247",
+                "reference": "c81fcf4d430c6ba63dc92a4d2598be777867c247",
                 "shasum": ""
             },
             "require": {
@@ -5162,10 +5162,10 @@
             ],
             "description": "Tunnistamo integration",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/2.0.7",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/2.1.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/issues"
             },
-            "time": "2022-04-26T07:11:10+00:00"
+            "time": "2022-10-10T12:19:37+00:00"
         },
         {
             "name": "drupal/image_style_quality",
@@ -10414,13 +10414,13 @@
             "version": "7.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tuutti/des-connector.git",
-                "reference": "cf8b047734ecb2aed3d8fe9a7629af30e303896c"
+                "url": "https://github.com/nodespark/des-connector.git",
+                "reference": "4b1dcd340055a137b4c84f21fa9614a3c2f3e64d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tuutti/des-connector/zipball/cf8b047734ecb2aed3d8fe9a7629af30e303896c",
-                "reference": "cf8b047734ecb2aed3d8fe9a7629af30e303896c",
+                "url": "https://api.github.com/repos/nodespark/des-connector/zipball/4b1dcd340055a137b4c84f21fa9614a3c2f3e64d",
+                "reference": "4b1dcd340055a137b4c84f21fa9614a3c2f3e64d",
                 "shasum": ""
             },
             "require": {
@@ -10436,11 +10436,7 @@
                     "nodespark\\DESConnector\\": "src/DESConnector/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "nodespark\\DESConnector\\Test\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-2.1"
             ],
@@ -10461,9 +10457,10 @@
             "description": "An abstraction library for Elasticsearch Connector module for Drupal.",
             "homepage": "https://github.com/nodespark/des-connector",
             "support": {
+                "issues": "https://github.com/nodespark/des-connector/issues",
                 "source": "https://github.com/nodespark/des-connector"
             },
-            "time": "2021-05-12T13:05:02+00:00"
+            "time": "2022-07-13T13:24:24+00:00"
         },
         {
             "name": "nyholm/dsn",
