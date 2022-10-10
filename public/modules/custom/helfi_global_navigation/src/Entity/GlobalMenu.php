@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Entity;
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\EntityPublishedTrait;
@@ -77,13 +76,6 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
     if (!$this->id()) {
       throw new \InvalidArgumentException('ID must be set before saving the entity.');
     }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCacheTags() : array {
-    return Cache::mergeTags(parent::getCacheTags(), ['helfi_global_menu_collection']);
   }
 
   /**

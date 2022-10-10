@@ -32,10 +32,7 @@ final class GlobalMenuCollection extends GlobalMenuResourceBase {
   public function get(Request $request): ResourceResponse {
     $langcode = $this->getCurrentLanguageId();
     $cacheableMetadata = (new CacheableMetadata())
-      ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT))
-      ->addCacheTags([
-        'helfi_global_menu_collection',
-      ]);
+      ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
 
     $entities = array_map(function (GlobalMenu $entity) use ($cacheableMetadata, $langcode) : GlobalMenu {
       $entity = $entity->getTranslation($langcode);
