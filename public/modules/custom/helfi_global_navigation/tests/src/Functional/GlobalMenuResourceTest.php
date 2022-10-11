@@ -301,7 +301,7 @@ class GlobalMenuResourceTest extends RestBaseTest {
       return $this->request(
         'POST',
         Url::fromUserInput('/api/v1/global-menu/liikenne', [
-          'language' => \Drupal::languageManager()->getLanguage($langcode),
+          'language' => $this->getLanguage($langcode),
         ]),
         $options
       );
