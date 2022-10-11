@@ -1,3 +1,0 @@
-services:
-  Drupal\helfi_news_archive\Plugin\Block:
-    arguments: ['@config.factory']
