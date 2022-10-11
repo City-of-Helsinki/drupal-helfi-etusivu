@@ -109,6 +109,6 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
 function hdbt_subtheme_preprocess_page__news(array &$variables) {
   $config = \Drupal::config('elastic_proxy.settings');
   if ($config->get('elastic_proxy_url')) {
-    $variables['elastic_proxy_url'] = $config->get('elastic_proxy_url');
+    $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
   }
 }

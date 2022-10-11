@@ -12,7 +12,7 @@
     {# Render the main news block in before content. #}
     {{ drupal_entity('block', 'views_block__frontpage_news_main_news', check_access=false) }}
 
-    <div id="helfi-etusivu-news-search" class="block--news-archive" data-elastic-proxy-url="{{ elastic_proxy_url }}"></div>
+    <div id="helfi-etusivu-news-search" class="block--news-archive"></div>
   {% endblock page_before_content %}
 
   {% block page_content %}
