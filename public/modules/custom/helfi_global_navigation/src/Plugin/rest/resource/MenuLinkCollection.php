@@ -56,16 +56,13 @@ final class MenuLinkCollection extends MenuResourceBase {
    *   The response.
    */
   public function get(Request $request): ResourceResponse {
-    if (!($menuName = $request->attributes->get('menu_name')) || !Menu::load($menuName)) {
+    if (!($menuName = $request->attributes->get('menu_name')) || !$menu = Menu::load($menuName)) {
       throw new NotFoundHttpException();
     }
     $langcode = $this->getCurrentLanguageId();
     $cacheableMetadata = (new CacheableMetadata())
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT))
-      ->addCacheTags([
-        'helfi_menu_link_collection',
-        'config:system.menu.' . $menuName,
-      ]);
+      ->addCacheableDependency($menu);
 
     try {
       $tree = $this->treeBuilder
