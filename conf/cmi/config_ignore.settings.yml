@@ -4,4 +4,3 @@ ignored_config_entities:
   - 'eu_cookie_compliance.cookie_category*'
   - hdbt_admin_tools.site_settings
   - 'system.site:page.front'
-  - 'system.site:page.front'
