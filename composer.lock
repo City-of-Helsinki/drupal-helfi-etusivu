@@ -4901,16 +4901,16 @@
         },
         {
             "name": "drupal/helfi_navigation",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation.git",
-                "reference": "be43a31588bed03e3a99b50bbeb2dbe69885ba36"
+                "reference": "fb792197ab09f73955cd384a50455711151def42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/be43a31588bed03e3a99b50bbeb2dbe69885ba36",
-                "reference": "be43a31588bed03e3a99b50bbeb2dbe69885ba36",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/fb792197ab09f73955cd384a50455711151def42",
+                "reference": "fb792197ab09f73955cd384a50455711151def42",
                 "shasum": ""
             },
             "require": {
@@ -4927,10 +4927,10 @@
             ],
             "description": "Helfi - Navigation",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/1.0.4",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/1.0.5",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/issues"
             },
-            "time": "2022-10-05T11:58:01+00:00"
+            "time": "2022-10-11T06:52:09+00:00"
         },
         {
             "name": "drupal/helfi_platform_config",
