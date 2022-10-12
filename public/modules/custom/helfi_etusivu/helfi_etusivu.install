@@ -161,7 +161,7 @@ function helfi_etusivu_update_9006() : void {
 
   while (!empty($items)) {
     $nodes = Node::loadMultiple(array_unique(array_map($fn, $items)));
-    foreach($nodes as $node) {
+    foreach ($nodes as $node) {
       foreach(['fi', 'en', 'sv'] as $langcode) {
         if ($node->hasTranslation($langcode)) {
           $translation = $node->getTranslation($langcode);
