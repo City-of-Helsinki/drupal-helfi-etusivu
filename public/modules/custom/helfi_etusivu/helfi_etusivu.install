@@ -148,8 +148,6 @@ function helfi_etusivu_update_9005() : void {
 /**
  * Migrated news item were automatically saved as promoted. Revert that.
  */
-
-
 function helfi_etusivu_update_9006() : void {
   $query = \Drupal::database()->select('node_field_data')
     ->condition('type', 'news_item')
