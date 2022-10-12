@@ -143,3 +143,22 @@ function helfi_etusivu_update_9005() : void {
     $schema->addField('draggableviews_structure', 'langcode', $spec);
   }
 }
+
+/**
+ * Migrated news item were automatically saved as promoted. Revert that.
+ */
+function helfi_etusivu_update_9006() : void {
+  $nodes = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->loadByProperties(['type' => 'news_item', 'promote' => TRUE]);
+
+  foreach($nodes as $node) {
+    foreach(['fi', 'en', 'sv'] as $langcode) {
+      if ($node->hasTranslation($langcode)) {
+        $translation = $node->getTranslation($langcode);
+        $translation->set('promote', FALSE)->save();
+      }
+    }
+  }
+}
+
