@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - helfi_api_base
     - linkit
     - media
     - token_filter
@@ -94,3 +95,9 @@ filters:
     weight: -47
     settings:
       replace_empty: '1'
+  helfi_link_converter:
+    id: helfi_link_converter
+    provider: helfi_api_base
+    status: true
+    weight: -10
+    settings: {  }

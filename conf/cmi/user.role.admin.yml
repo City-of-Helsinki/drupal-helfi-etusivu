@@ -19,6 +19,7 @@ dependencies:
   module:
     - block
     - config_translation
+    - content_lock
     - content_translation
     - editoria11y
     - eu_cookie_compliance
@@ -36,6 +37,7 @@ dependencies:
     - pathauto
     - publication_date
     - redirect
+    - rest
     - role_delegation
     - scheduler
     - simple_sitemap
@@ -77,11 +79,13 @@ permissions:
   - 'assign content_producer role'
   - 'assign editor role'
   - 'assign read_only role'
+  - 'break content lock'
   - 'cancel account'
   - 'change own username'
   - 'create announcement content'
   - 'create content translations'
   - 'create file media'
+  - 'create hel_map media'
   - 'create helfi_chart media'
   - 'create image media'
   - 'create landing_page content'
@@ -99,6 +103,7 @@ permissions:
   - 'delete announcement revisions'
   - 'delete any announcement content'
   - 'delete any file media'
+  - 'delete any hel_map media'
   - 'delete any helfi_chart media'
   - 'delete any image media'
   - 'delete any landing_page content'
@@ -113,6 +118,7 @@ permissions:
   - 'delete news_item revisions'
   - 'delete own announcement content'
   - 'delete own file media'
+  - 'delete own hel_map media'
   - 'delete own helfi_chart media'
   - 'delete own image media'
   - 'delete own landing_page content'
@@ -126,6 +132,7 @@ permissions:
   - 'delete terms in news_tags'
   - 'edit any announcement content'
   - 'edit any file media'
+  - 'edit any hel_map media'
   - 'edit any helfi_chart media'
   - 'edit any image media'
   - 'edit any landing_page content'
@@ -135,6 +142,7 @@ permissions:
   - 'edit any soundcloud media'
   - 'edit own announcement content'
   - 'edit own file media'
+  - 'edit own hel_map media'
   - 'edit own helfi_chart media'
   - 'edit own image media'
   - 'edit own landing_page content'
@@ -146,6 +154,7 @@ permissions:
   - 'edit remote entities'
   - 'edit terms in keywords'
   - 'edit terms in news_tags'
+  - 'restful get helfi_debug_data'
   - 'revert all revisions'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
