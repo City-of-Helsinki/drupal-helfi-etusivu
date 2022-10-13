@@ -12,9 +12,6 @@ third_party_settings:
   allowed_formats:
     allowed_formats:
       - full_html
-    full_html: full_html
-    minimal: '0'
-    plain_text: '0'
 _core:
   default_config_hash: Ak0Y4l5s7Fnu8PhuLnLrwulfMx0UssV85aUPpR2UySA
 id: paragraph.text.field_text
