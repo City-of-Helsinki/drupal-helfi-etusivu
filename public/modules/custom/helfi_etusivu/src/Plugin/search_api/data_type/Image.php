@@ -27,7 +27,14 @@ class Image extends StringDataType {
 
     if ($file = $value->get('field_media_image')->entity) {
       $imageStyle = ImageStyle::load('3_2_l');
-      return $imageStyle->buildUrl($file->getFileUri());
+      $imagePath = $file->getFileUri();
+      $imageUri = $imageStyle->buildUri($imagePath);
+
+      if (!file_exists($imageUri)) {
+        $imageStyle->createDerivative($imagePath, $imageUri);
+      }
+
+      return $imageStyle->buildUrl($imagePath);
     }
   }
 
