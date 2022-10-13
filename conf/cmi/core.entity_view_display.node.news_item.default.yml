@@ -64,7 +64,7 @@ content:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 10
     region: content
@@ -92,7 +92,7 @@ content:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 11
     region: content
@@ -100,7 +100,7 @@ content:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 12
     region: content
