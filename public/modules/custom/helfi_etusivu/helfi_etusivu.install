@@ -149,6 +149,11 @@ function helfi_etusivu_update_9005() : void {
  * Migrated news item were automatically saved as promoted. Revert that.
  */
 function helfi_etusivu_update_9006() : void {
+  $environmentResolver = \Drupal::service('helfi_api_base.environment_resolver');
+  if ($environmentResolver->getActiveEnvironment()->getEnvironmentName() == 'local') {
+    return;
+  }
+
   $query = \Drupal::database()->select('node_field_data')
     ->condition('type', 'news_item')
     ->condition('promote', 1)
