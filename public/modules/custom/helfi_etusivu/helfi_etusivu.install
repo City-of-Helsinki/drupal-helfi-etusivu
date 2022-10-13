@@ -149,6 +149,13 @@ function helfi_etusivu_update_9005() : void {
  * Migrated news item were automatically saved as promoted. Revert that.
  */
 function helfi_etusivu_update_9006() : void {
+  // Don't do anything.
+}
+
+/**
+ * Revert wrong value created on migration.
+ */
+function helfi_etusivu_migare_news_item_promoted(): void {
   $environmentResolver = \Drupal::service('helfi_api_base.environment_resolver');
   if ($environmentResolver->getActiveEnvironment()->getEnvironmentName() == 'local') {
     return;
