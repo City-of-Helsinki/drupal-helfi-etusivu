@@ -6,6 +6,7 @@ dependencies:
     - filter.format.full_html
     - filter.format.minimal
     - media.type.file
+    - media.type.hel_map
     - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
@@ -62,6 +63,7 @@ permissions:
   - 'create announcement content'
   - 'create content translations'
   - 'create file media'
+  - 'create hel_map media'
   - 'create helfi_chart media'
   - 'create image media'
   - 'create landing_page content'
@@ -77,6 +79,7 @@ permissions:
   - 'delete announcement revisions'
   - 'delete any announcement content'
   - 'delete any file media'
+  - 'delete any hel_map media'
   - 'delete any helfi_chart media'
   - 'delete any image media'
   - 'delete any landing_page content'
@@ -91,6 +94,7 @@ permissions:
   - 'delete news_item revisions'
   - 'delete own announcement content'
   - 'delete own file media'
+  - 'delete own hel_map media'
   - 'delete own helfi_chart media'
   - 'delete own image media'
   - 'delete own landing_page content'
@@ -103,6 +107,7 @@ permissions:
   - 'delete terms in keywords'
   - 'edit any announcement content'
   - 'edit any file media'
+  - 'edit any hel_map media'
   - 'edit any helfi_chart media'
   - 'edit any image media'
   - 'edit any landing_page content'
@@ -112,6 +117,7 @@ permissions:
   - 'edit any soundcloud media'
   - 'edit own announcement content'
   - 'edit own file media'
+  - 'edit own hel_map media'
   - 'edit own helfi_chart media'
   - 'edit own image media'
   - 'edit own landing_page content'
