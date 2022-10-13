@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Database\Database;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_install().
@@ -141,5 +142,34 @@ function helfi_etusivu_update_9005() : void {
     ];
     $schema = Database::getConnection()->schema();
     $schema->addField('draggableviews_structure', 'langcode', $spec);
+  }
+}
+
+/**
+ * Migrated news item were automatically saved as promoted. Revert that.
+ */
+function helfi_etusivu_update_9006() : void {
+  $environmentResolver = \Drupal::service('helfi_api_base.environment_resolver');
+  if ($environmentResolver->getActiveEnvironment()->getEnvironmentName() == 'local') {
+    return;
+  }
+
+  $query = \Drupal::database()->select('node_field_data')
+    ->condition('type', 'news_item')
+    ->condition('promote', 1)
+    ->fields('node_field_data', ['nid', 'type', 'promote'])
+    ->range(0, 200);
+
+  $fn = fn($item) => $item->nid;
+  while ($items = $query->execute()->fetchAll()) {
+    $nodes = Node::loadMultiple(array_unique(array_map($fn, $items)));
+    foreach ($nodes as $node) {
+      foreach (['fi', 'en', 'sv'] as $langcode) {
+        if ($node->hasTranslation($langcode)) {
+          $translation = $node->getTranslation($langcode);
+          $translation->set('promote', FALSE)->save();
+        }
+      }
+    }
   }
 }

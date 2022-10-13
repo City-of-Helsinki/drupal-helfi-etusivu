@@ -2,9 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\helfi_global_navigation\Kernel;
+namespace Drupal\Tests\helfi_global_navigation\Functional;
 
+use Drupal\Core\Url;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 /**
@@ -12,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
  *
  * @group helfi_global_navigation
  */
-class GlobalMenuResourceTest extends KernelTestBase {
+class GlobalMenuResourceTest extends RestBaseTest {
 
   /**
    * Gets the mocked JSON.
@@ -82,8 +84,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
    *   The global menu entity.
    */
   private function createGlobalMenu(string $id, string $projectName, array $menu = []) : GlobalMenu {
-    $entity = $this->entityTypeManager
-      ->getStorage('global_menu')
+    $entity = $this->storage
       ->createById($id)
       ->set('langcode', 'en')
       ->setMenuTree($menu)
@@ -96,21 +97,20 @@ class GlobalMenuResourceTest extends KernelTestBase {
    * Tests GET request without permission.
    */
   public function testGetPermissions() : void {
-    $this->drupalSetUpCurrentUser();
+    $this->drupalLogin($this->setUpCurrentUser());
     $this->createGlobalMenu('liikenne', 'Liikenne', []);
 
     // Test individual entity.
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne');
-    $response = $this->processRequest($request);
-    $data = \GuzzleHttp\json_decode($response->getContent());
-
-    $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+    $this->drupalGet('/api/v1/global-menu/liikenne');
+    $response = $this->getSession()->getPage()->getContent();
+    $data = json_decode($response);
+    $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_FORBIDDEN);
     $this->assertEquals('You are not authorized to view this global_menu entity', $data->message);
 
-    $request = $this->getMockedRequest('/api/v1/global-menu');
-    $response = $this->processRequest($request);
-    $data = \GuzzleHttp\json_decode($response->getContent());
-    $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+    $this->drupalGet('/api/v1/global-menu');
+    $response = $this->getSession()->getPage()->getContent();
+    $data = json_decode($response);
+    $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_FORBIDDEN);
     $this->assertEquals("The 'restful get helfi_global_menu_collection' permission is required.", $data->message);
   }
 
@@ -127,28 +127,49 @@ class GlobalMenuResourceTest extends KernelTestBase {
       ->setLabel('Terveys fi')
       ->save();
 
+    // Visit pages as anonymous user to make sure everything is cached per
+    // permissions.
+    foreach (['en', 'fi'] as $langcode) {
+      $this->drupalGet('/api/v1/global-menu', ['language' => $this->getLanguage($langcode)]);
+      $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_UNAUTHORIZED);
+
+      foreach (['liikenne', 'terveys'] as $id) {
+        $this->drupalGet('/api/v1/global-menu/' . $id, ['language' => $this->getLanguage($langcode)]);
+      }
+      $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_UNAUTHORIZED);
+    }
+
     $user = $this->createUser(permissions:  [
       'restful get helfi_global_menu_collection',
       'view global_menu',
     ]);
-    $this->drupalSetCurrentUser($user);
+    $this->drupalLogin($user);
 
     foreach (['en', 'fi'] as $langcode) {
-      $request = $this->getMockedRequest('/' . $langcode . '/api/v1/global-menu');
-      $response = $this->processRequest($request);
-      $collectionData = \GuzzleHttp\json_decode($response->getContent());
+      $this->drupalGet('/api/v1/global-menu', ['language' => $this->getLanguage($langcode)]);
+      $response = $this->getSession()->getPage()->getContent();
+      $collectionData = json_decode($response);
+      $this->assertCacheTags([
+        'config:rest.resource.helfi_global_menu_collection',
+        'global_menu:liikenne',
+        'global_menu:terveys',
+      ]);
 
-      $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+      $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_OK);
 
       foreach (['liikenne', 'terveys'] as $id) {
         $expectedLabel = ucfirst($id) . ' ' . $langcode;
         $this->assertEquals($id, $collectionData->{$id}->project[0]->value);
         $this->assertEquals($expectedLabel, $collectionData->{$id}->name[0]->value);
 
-        $request = $this->getMockedRequest('/' . $langcode . '/api/v1/global-menu/' . $id);
-        $response = $this->processRequest($request);
-        $data = \GuzzleHttp\json_decode($response->getContent());
-        $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+        $this->drupalGet('/api/v1/global-menu/' . $id, ['language' => $this->getLanguage($langcode)]);
+        $this->assertCacheTags([
+          'config:rest.resource.helfi_global_menu',
+          'global_menu:' . $id,
+        ]);
+        $response = $this->getSession()->getPage()->getContent();
+        $data = json_decode($response);
+        $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_OK);
         $this->assertEquals($id, $data->project[0]->value);
         $this->assertEquals($expectedLabel, $data->name[0]->value);
       }
@@ -163,7 +184,7 @@ class GlobalMenuResourceTest extends KernelTestBase {
       'restful get helfi_global_menu_collection',
       'view global_menu',
     ]);
-    $this->drupalSetCurrentUser($user);
+    $this->drupalLogin($user);
 
     $entity = $this->createGlobalMenu('liikenne', 'Liikenne en', []);
     $entity
@@ -174,20 +195,17 @@ class GlobalMenuResourceTest extends KernelTestBase {
       ->save();
 
     // English version is published and should be visible.
-    $request = $this->getMockedRequest('/en/api/v1/global-menu/liikenne');
-    $response = $this->processRequest($request);
-    $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+    $this->drupalGet('/api/v1/global-menu/liikenne', ['language' => $this->getLanguage('en')]);
+    $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_OK);
 
     // Finnish translation is unpublished and should return 403 response.
-    $request = $this->getMockedRequest('/fi/api/v1/global-menu/liikenne');
-    $response = $this->processRequest($request);
-    $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+    $this->drupalGet('/api/v1/global-menu/liikenne', ['language' => $this->getLanguage('fi')]);
+    $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_FORBIDDEN);
 
     // Publish finnish translation and make sure it's visible.
     $entity->getTranslation('fi')->setPublished()->save();
-    $request = $this->getMockedRequest('/fi/api/v1/global-menu/liikenne');
-    $response = $this->processRequest($request);
-    $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
+    $this->drupalGet('/api/v1/global-menu/liikenne', ['language' => $this->getLanguage('fi')]);
+    $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_OK);
   }
 
   /**
@@ -198,37 +216,37 @@ class GlobalMenuResourceTest extends KernelTestBase {
       'restful get helfi_global_menu_collection',
       'view global_menu',
     ]);
-    $this->drupalSetCurrentUser($user);
+    $this->drupalLogin($user);
 
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne');
-    $response = $this->processRequest($request);
-    $this->assertEquals(HttpResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+    $this->drupalGet('/api/v1/global-menu/liikenne');
+    $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_NOT_FOUND);
   }
 
   /**
    * Tests POST request permissions.
    */
   public function testPostPermission() : void {
-    $this->drupalSetUpCurrentUser();
-    $request = $this->getMockedRequest(
-      '/api/v1/global-menu/liikenne',
+    $this->account = $this->setUpCurrentUser();
+    $options = $this->getAuthenticationRequestOptions('POST');
+    $options['json'] = $this->getMockJson()['fi'];
+
+    $response = $this->request(
       'POST',
-      document: $this->getMockJson()['fi']
+      Url::fromUserInput('/api/v1/global-menu/liikenne'),
+      $options
     );
-    $response = $this->processRequest($request);
-    $data = \GuzzleHttp\json_decode($response->getContent());
+    $data = json_decode((string) $response->getBody());
     $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
     $this->assertEquals('You are not authorized to create this global_menu entity', $data->message);
 
     // Test update permission.
     $this->createGlobalMenu('liikenne', 'Liikenne', []);
-    $request = $this->getMockedRequest(
-      '/api/v1/global-menu/liikenne',
+    $response = $this->request(
       'POST',
-      document: $this->getMockJson()['fi']
+      Url::fromUserInput('/api/v1/global-menu/liikenne'),
+      $options
     );
-    $response = $this->processRequest($request);
-    $data = \GuzzleHttp\json_decode($response->getContent());
+    $data = json_decode((string) $response->getBody());
     $this->assertEquals(HttpResponse::HTTP_FORBIDDEN, $response->getStatusCode());
     $this->assertEquals('You are not authorized to update this global_menu entity', $data->message);
   }
@@ -237,34 +255,33 @@ class GlobalMenuResourceTest extends KernelTestBase {
    * Tests POST validation.
    */
   public function testPostValidation() : void {
-    $user = $this->createUser(permissions:  [
+    $this->account = $this->createUser(permissions:  [
       'create global_menu',
       'update global_menu',
     ]);
-    $this->drupalSetCurrentUser($user);
-    // Test invalid json.
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne', 'POST');
-    $response = $this->processRequest($request);
-    $this->assertEquals(HttpResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
-    $data = \GuzzleHttp\json_decode($response->getContent());
-    $this->assertEquals('Invalid JSON.', $data->message);
-
+    $options = $this->getAuthenticationRequestOptions('POST');
     // Test required fields.
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne', 'POST', document: [
-      [],
-    ]);
-    $response = $this->processRequest($request);
+    $options['json'] = [];
+    $response = $this->request(
+      'POST',
+      Url::fromUserInput('/api/v1/global-menu/liikenne'),
+      $options
+    );
     $this->assertEquals(HttpResponse::HTTP_UNPROCESSABLE_ENTITY, $response->getStatusCode());
-    $data = \GuzzleHttp\json_decode($response->getContent());
+    $data = \json_decode((string) $response->getBody());
     $this->assertEquals('Missing required: menu_tree, site_name', $data->message);
 
     // Test entity validation failure.
-    $request = $this->getMockedRequest('/api/v1/global-menu/liikenne', 'POST', document: [
+    $options['json'] = [
       'site_name' => 'liikenne',
       'menu_tree' => [],
-    ]);
-    $response = $this->processRequest($request);
-    $data = \GuzzleHttp\json_decode($response->getContent());
+    ];
+    $response = $this->request(
+      'POST',
+      Url::fromUserInput('/api/v1/global-menu/liikenne'),
+      $options
+    );
+    $data = \json_decode((string) $response->getBody());
     $this->assertEquals(HttpResponse::HTTP_UNPROCESSABLE_ENTITY, $response->getStatusCode());
     $this->assertStringStartsWith("Unprocessable Entity: validation failed.\nmenu_tree:", $data->message);
   }
@@ -273,39 +290,45 @@ class GlobalMenuResourceTest extends KernelTestBase {
    * Tests POST routes.
    */
   public function testPostRoute() : void {
-    $user = $this->createUser(permissions:  [
+    $this->account = $this->createUser(permissions:  [
       'create global_menu',
       'update global_menu',
       'view global_menu',
     ]);
-    $this->drupalSetCurrentUser($user);
-
-    $document = $this->getMockJson();
-
-    foreach ($document as $langcode => $content) {
-      $request = $this->getMockedRequest('/' . $langcode . '/api/v1/global-menu/liikenne', 'POST', document: $content);
-      $response = $this->processRequest($request);
+    $request = function (string $langcode, array $content) : ResponseInterface {
+      $options = $this->getAuthenticationRequestOptions('POST');
+      $options['json'] = $content;
+      return $this->request(
+        'POST',
+        Url::fromUserInput('/api/v1/global-menu/liikenne', [
+          'language' => $this->getLanguage($langcode),
+        ]),
+        $options
+      );
+    };
+    foreach ($this->getMockJson() as $langcode => $content) {
+      $response = $request($langcode, $content);
       // Make sure creating a new entity and translation returns a 201 response
       // code.
       $this->assertEquals(HttpResponse::HTTP_CREATED, $response->getStatusCode());
-      $content = \GuzzleHttp\json_decode($response->getContent());
+      $data = \json_decode((string) $response->getBody());
       // Finnish translation is explicitly set to published while english
       // should fall back to unpublished.
       $expectedStatus = $langcode === 'fi';
-      $this->assertEquals($expectedStatus, $content->status[0]->value);
+      $this->assertEquals($expectedStatus, $data->status[0]->value);
 
       // Re-send the same request to make sure updating an entity returns a 200
       // code.
-      $response = $this->processRequest($request);
+      $response = $request($langcode, $content);
       $this->assertEquals(HttpResponse::HTTP_OK, $response->getStatusCode());
 
       // Make sure item was properly translated.
-      $content = \GuzzleHttp\json_decode($response->getContent());
-      $this->assertEquals('Liikenne ' . $langcode, $content->name[0]->value);
-      $this->assertEquals($langcode, $content->langcode[0]->value);
+      $data = \json_decode((string) $response->getBody());
+      $this->assertEquals('Liikenne ' . $langcode, $data->name[0]->value);
+      $this->assertEquals($langcode, $data->langcode[0]->value);
 
       // Make sure item keeps the published status.
-      $this->assertEquals($expectedStatus, $content->status[0]->value);
+      $this->assertEquals($expectedStatus, $data->status[0]->value);
     }
 
     // Publish english translation and make sure entity won't get unpublished
@@ -314,10 +337,9 @@ class GlobalMenuResourceTest extends KernelTestBase {
       ->getTranslation('en')
       ->setPublished()
       ->save();
-    $request = $this->getMockedRequest('/en/api/v1/global-menu/liikenne', 'POST', document: $document['en']);
-    $response = $this->processRequest($request);
-    $content = \GuzzleHttp\json_decode($response->getContent());
-    $this->assertEquals(TRUE, $content->status[0]->value);
+    $response = $request('en', $this->getMockJson()['en']);
+    $data = \json_decode((string) $response->getBody());
+    $this->assertEquals(TRUE, $data->status[0]->value);
   }
 
 }

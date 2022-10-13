@@ -16,3 +16,6 @@ if (getenv('ELASTICSEARCH_URL')) {
     $config['elasticsearch_connector.cluster.news']['options']['password'] = getenv('ELASTIC_PASSWORD');
   }
 }
+
+// Elastic proxy URL.
+$config['elastic_proxy.settings']['elastic_proxy_url'] = getenv('ELASTIC_PROXY_URL');

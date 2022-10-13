@@ -105,12 +105,7 @@ final class GlobalMenu extends GlobalMenuResourceBase {
     $isNew = FALSE;
     $langcode = $this->getCurrentLanguageId();
 
-    try {
-      $content = \GuzzleHttp\json_decode($request->getContent());
-    }
-    catch (\InvalidArgumentException) {
-      throw new BadRequestHttpException('Invalid JSON.');
-    }
+    $content = \json_decode($request->getContent(), flags: JSON_THROW_ON_ERROR);
 
     $requiredFields = [];
     foreach (['menu_tree', 'site_name'] as $required) {
