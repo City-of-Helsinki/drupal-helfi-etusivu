@@ -34,7 +34,8 @@ class Image extends StringDataType {
         $imageStyle->createDerivative($imagePath, $imageUri);
       }
 
-      return $imageStyle->buildUrl($imagePath);
+      // @todo remove helfi_proxy_absolute_url wrapping once https://helsinkisolutionoffice.atlassian.net/browse/UHF-7126 is done
+      return helfi_proxy_absolute_url($imageStyle->buildUrl($imagePath));
     }
   }
 
