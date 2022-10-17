@@ -32,6 +32,7 @@
         "drupal/migrate_plus": "^6.0",
         "drupal/openapi_jsonapi": "^3.0",
         "drupal/openapi_ui_redoc": "^1.0@RC",
+        "drupal/openid_connect": "2.0.0-alpha12",
         "drupal/radioactivity": "^4.0",
         "drupal/redis": "^1.5",
         "drupal/search_api": "^1.23",
