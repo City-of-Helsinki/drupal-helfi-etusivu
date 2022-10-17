@@ -16,6 +16,8 @@ dependencies:
     - node.type.news_item
     - node.type.page
     - taxonomy.vocabulary.keywords
+    - taxonomy.vocabulary.news_group
+    - taxonomy.vocabulary.news_neighbourhoods
     - taxonomy.vocabulary.news_tags
   module:
     - content_translation
@@ -146,7 +148,9 @@ permissions:
   - 'translate keywords taxonomy_term'
   - 'translate landing_page node'
   - 'translate menu_link_content'
+  - 'translate news_group taxonomy_term'
   - 'translate news_item node'
+  - 'translate news_neighbourhoods taxonomy_term'
   - 'translate news_tags taxonomy_term'
   - 'translate page node'
   - 'translate remote_video media'
@@ -170,8 +174,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'create hel_map media'
-  - 'delete any hel_map media'
-  - 'delete own hel_map media'
-  - 'edit any hel_map media'
-  - 'edit own hel_map media'

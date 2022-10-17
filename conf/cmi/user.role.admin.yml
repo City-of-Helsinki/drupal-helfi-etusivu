@@ -6,6 +6,7 @@ dependencies:
     - filter.format.full_html
     - filter.format.minimal
     - media.type.file
+    - media.type.hel_map
     - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
@@ -14,7 +15,10 @@ dependencies:
     - node.type.landing_page
     - node.type.news_item
     - node.type.page
+    - rest.resource.helfi_debug_data
     - taxonomy.vocabulary.keywords
+    - taxonomy.vocabulary.news_group
+    - taxonomy.vocabulary.news_neighbourhoods
     - taxonomy.vocabulary.news_tags
   module:
     - block
@@ -97,6 +101,8 @@ permissions:
   - 'create remote_video media'
   - 'create soundcloud media'
   - 'create terms in keywords'
+  - 'create terms in news_group'
+  - 'create terms in news_neighbourhoods'
   - 'create terms in news_tags'
   - 'create url aliases'
   - 'delete all revisions'
@@ -129,6 +135,8 @@ permissions:
   - 'delete page revisions'
   - 'delete remote entities'
   - 'delete terms in keywords'
+  - 'delete terms in news_group'
+  - 'delete terms in news_neighbourhoods'
   - 'delete terms in news_tags'
   - 'edit any announcement content'
   - 'edit any file media'
@@ -153,6 +161,8 @@ permissions:
   - 'edit paragraph library item'
   - 'edit remote entities'
   - 'edit terms in keywords'
+  - 'edit terms in news_group'
+  - 'edit terms in news_neighbourhoods'
   - 'edit terms in news_tags'
   - 'restful get helfi_debug_data'
   - 'revert all revisions'
@@ -175,7 +185,9 @@ permissions:
   - 'translate keywords taxonomy_term'
   - 'translate landing_page node'
   - 'translate menu_link_content'
+  - 'translate news_group taxonomy_term'
   - 'translate news_item node'
+  - 'translate news_neighbourhoods taxonomy_term'
   - 'translate news_tags taxonomy_term'
   - 'translate page node'
   - 'translate remote_video media'
@@ -202,8 +214,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'create hel_map media'
-  - 'delete any hel_map media'
-  - 'delete own hel_map media'
-  - 'edit any hel_map media'
-  - 'edit own hel_map media'
