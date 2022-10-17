@@ -34,7 +34,7 @@ class Image extends StringDataType {
         $imageStyle->createDerivative($imagePath, $imageUri);
       }
 
-      return $imageStyle->buildUrl($imagePath);
+      return helfi_proxy_absolute_url($imageStyle->buildUrl($imagePath));
     }
   }
 
