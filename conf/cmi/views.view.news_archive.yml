@@ -141,23 +141,7 @@ display:
         type: tag
         options: {  }
       empty: {  }
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          order: DESC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
-          granularity: second
+      sorts: {  }
       arguments: {  }
       filters:
         status:
@@ -864,6 +848,23 @@ display:
         options:
           offset: 0
           items_per_page: 100
+      sorts:
+        published_at:
+          id: published_at
+          table: node_field_data
+          field: published_at
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: published_at
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: minute
       filters:
         status:
           id: status
@@ -1117,6 +1118,7 @@ display:
         css_class: false
         relationships: false
         fields: false
+        sorts: false
         filters: false
         filter_groups: false
       relationships:
@@ -1150,6 +1152,23 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      sorts:
+        published_at:
+          id: published_at
+          table: node_field_data
+          field: published_at
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: published_at
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: minute
       filters:
         status:
           id: status
@@ -1224,6 +1243,7 @@ display:
         groups:
           1: AND
       defaults:
+        sorts: false
         filters: false
         filter_groups: false
       display_extenders: {  }
