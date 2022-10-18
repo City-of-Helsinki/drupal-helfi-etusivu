@@ -21,22 +21,26 @@ class Image extends StringDataType {
    * {@inheritDoc}
    */
   public function getValue($value) {
-    if (!$value->hasField('field_media_image')) {
+    if (!$value->hasField('field_media_image') || !$file = $value->get('field_media_image')->entity) {
       return '';
     }
 
-    if ($file = $value->get('field_media_image')->entity) {
-      $imageStyle = ImageStyle::load('3_2_l');
-      $imagePath = $file->getFileUri();
-      $imageUri = $imageStyle->buildUri($imagePath);
+    $imageStyle = ImageStyle::load('3_2_l');
+    $imagePath = $file->getFileUri();
+    $imageUri = $imageStyle->buildUri($imagePath);
 
-      if (!file_exists($imageUri)) {
-        $imageStyle->createDerivative($imagePath, $imageUri);
-      }
-
-      // @todo remove helfi_proxy_absolute_url wrapping once https://helsinkisolutionoffice.atlassian.net/browse/UHF-7126 is done
-      return helfi_proxy_absolute_url($imageStyle->buildUrl($imagePath));
+    if (!file_exists($imageUri)) {
+      $imageStyle->createDerivative($imagePath, $imageUri);
     }
+
+    $url = $imageStyle->buildUri($imagePath);
+
+    // @todo remove helfi_proxy_absolute_url wrapping once
+    // https://helsinkisolutionoffice.atlassian.net/browse/UHF-7126 is done
+    if (str_starts_with($url, 'http')) {
+      return $url;
+    }
+    return helfi_proxy_absolute_url($url);
   }
 
 }
