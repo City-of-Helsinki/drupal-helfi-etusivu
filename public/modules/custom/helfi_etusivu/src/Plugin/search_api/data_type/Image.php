@@ -33,7 +33,7 @@ class Image extends StringDataType {
       $imageStyle->createDerivative($imagePath, $imageUri);
     }
 
-    $url = $imageStyle->buildUri($imagePath);
+    $url = $imageStyle->buildUrl($imagePath);
 
     // @todo remove helfi_proxy_absolute_url wrapping once
     // https://helsinkisolutionoffice.atlassian.net/browse/UHF-7126 is done
