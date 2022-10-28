@@ -26,4 +26,6 @@ imagecache_external_allowed_mimetypes:
   - image/webp;charset=utf-8
   - image/webp
   - image/webp;charset=utf-8
+  - image/webp
+  - image/webp;charset=utf-8
 imagecache_external_cron_flush_frequency: 0
