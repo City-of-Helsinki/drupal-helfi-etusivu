@@ -81,7 +81,7 @@ abstract class GlobalMenuResourceBase extends MenuResourceBase {
    *
    * @param int $maxDepth
    *   The max depth.
-   * @param \stdClass $menuTree
+   * @param object $menuTree
    *   The menu tree to parse.
    * @param int $currentDepth
    *   The current depth.
@@ -89,7 +89,7 @@ abstract class GlobalMenuResourceBase extends MenuResourceBase {
    * @return object
    *   The parsed menu tree.
    */
-  protected function parseMaxDepth(int $maxDepth, \stdClass $menuTree, int $currentDepth = 0) : \stdClass {
+  protected function parseMaxDepth(int $maxDepth, object $menuTree, int $currentDepth = 0) : object {
     $currentDepth = $currentDepth + 1;
 
     foreach ($menuTree->sub_tree as $delta => $tree) {
