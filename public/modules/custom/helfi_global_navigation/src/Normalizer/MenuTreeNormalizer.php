@@ -34,9 +34,10 @@ final class MenuTreeNormalizer extends ContentEntityNormalizer {
     $attributes = parent::normalize($entity, $format, $context);
 
     if (isset($attributes['menu_tree'])) {
-      $attributes['menu_tree'] = array_map(function (array $value) {
-        return \GuzzleHttp\json_decode($value['value']);
-      }, $attributes['menu_tree']);
+      $attributes['menu_tree'] = array_map(
+        fn (array $value) => \json_decode($value['value'], flags: JSON_THROW_ON_ERROR),
+        $attributes['menu_tree']
+      );
     }
 
     return $attributes;
