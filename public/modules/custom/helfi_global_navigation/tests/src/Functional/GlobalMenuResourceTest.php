@@ -136,8 +136,6 @@ class GlobalMenuResourceTest extends RestBaseTest {
     if ($menu) {
       $entity->setMenuTree(json_encode($menu));
     }
-    $errors = $entity->validate();
-    $this->assertCount(0, $errors);
     $entity->save();
     return $entity;
   }
@@ -172,8 +170,6 @@ class GlobalMenuResourceTest extends RestBaseTest {
     $translation = $entity->addTranslation('fi')
       ->setMenuTree(json_encode($mock['fi']['menu_tree']))
       ->setLabel('Liikenne fi');
-    $errors = $translation->validate();
-    $this->assertCount(0, $errors);
     $translation->save();
 
     // Visit pages as anonymous user to make sure everything is cached per
