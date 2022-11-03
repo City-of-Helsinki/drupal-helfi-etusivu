@@ -67,12 +67,11 @@ abstract class GlobalMenuResourceBase extends MenuResourceBase {
   protected function processEntityFilters(GlobalMenuEntity $entity, Request $request) : GlobalMenuEntity {
     $menuTree = $entity->getMenuTree();
 
-    if ($maxDepth = $request->query->get('max-depth')) {
+    if ($menuTree && $maxDepth = $request->query->get('max-depth')) {
       $this->parseMaxDepth((int) $maxDepth, $menuTree);
+      // Override the default menu tree after filters.
+      $entity->setMenuTree($menuTree);
     }
-    // Override the default menu tree after filters.
-    $entity->setMenuTree($menuTree);
-
     return $entity;
   }
 
@@ -92,10 +91,13 @@ abstract class GlobalMenuResourceBase extends MenuResourceBase {
   protected function parseMaxDepth(int $maxDepth, object $menuTree, int $currentDepth = 0) : object {
     $currentDepth = $currentDepth + 1;
 
+    if (!isset($menuTree->sub_tree)) {
+      $menuTree->sub_tree = [];
+    }
     foreach ($menuTree->sub_tree as $delta => $tree) {
       $menuTree->sub_tree[$delta] = $this->parseMaxDepth($maxDepth, $tree, $currentDepth);
 
-      if ($currentDepth >= $maxDepth) {
+      if ($currentDepth >= $maxDepth && isset($menuTree)) {
         unset($menuTree->sub_tree[$delta]);
       }
     }
