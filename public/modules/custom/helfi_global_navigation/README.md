@@ -1,6 +1,6 @@
 # Global navigation
 
-Etusivu-instance is the main repository for global menus. It serves global menus to other helfi-instances.
+Etusivu-instance is the main repository for lobal menus. It serves global menus to other helfi-instances.
 
 ## Features
 

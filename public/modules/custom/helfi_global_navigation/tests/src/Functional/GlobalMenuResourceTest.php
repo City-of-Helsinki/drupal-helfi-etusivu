@@ -36,12 +36,34 @@ class GlobalMenuResourceTest extends RestBaseTest {
           'sub_tree' => [
             [
               'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
-              'name' => 'Pysäköinti fi',
+              'name' => 'Depth 2 fi',
               'parentId' => 'base:liikenne',
-              'url' => 'https://localhost',
+              'url' => 'https://localhost/fi/2',
               'external' => FALSE,
-              'hasItems' => FALSE,
+              'hasItems' => TRUE,
               'weight' => 0,
+              'sub_tree' => [
+                [
+                  'id' => 'menu_link_content:de6409aa-c620-4327-90f4-127176f209b2',
+                  'name' => 'Depth 3 fi',
+                  'parentId' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
+                  'url' => 'https://localhost/fi/3',
+                  'external' => FALSE,
+                  'hasItems' => TRUE,
+                  'weight' => 0,
+                  'sub_tree' => [
+                    [
+                      'id' => 'menu_link_content:8a28fc72-b10e-49f1-860f-e0967ef2fe0a',
+                      'name' => 'Depth 4 fi',
+                      'parentId' => 'menu_link_content:de6409aa-c620-4327-90f4-127176f209b2',
+                      'url' => 'https://localhost/fi/4',
+                      'external' => FALSE,
+                      'hasItems' => FALSE,
+                      'weight' => 0,
+                    ],
+                  ],
+                ],
+              ],
             ],
           ],
         ],
@@ -57,12 +79,34 @@ class GlobalMenuResourceTest extends RestBaseTest {
           'sub_tree' => [
             [
               'id' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
-              'name' => 'Pysäköinti en',
+              'name' => 'Depth 2 en',
               'parentId' => 'base:liikenne',
-              'url' => 'https://localhost',
+              'url' => 'https://localhost/en/2',
               'external' => FALSE,
-              'hasItems' => FALSE,
+              'hasItems' => TRUE,
               'weight' => 0,
+              'sub_tree' => [
+                [
+                  'id' => 'menu_link_content:de6409aa-c620-4327-90f4-127176f209b2',
+                  'name' => 'Depth 3 en',
+                  'parentId' => 'menu_link_content:7c9ddcc2-4d07-4785-8940-046b4cb85fb4',
+                  'url' => 'https://localhost/en/3',
+                  'external' => FALSE,
+                  'hasItems' => TRUE,
+                  'weight' => 0,
+                  'sub_tree' => [
+                    [
+                      'id' => 'menu_link_content:8a28fc72-b10e-49f1-860f-e0967ef2fe0a',
+                      'name' => 'Depth 4 en',
+                      'parentId' => 'menu_link_content:de6409aa-c620-4327-90f4-127176f209b2',
+                      'url' => 'https://localhost/en/4',
+                      'external' => FALSE,
+                      'hasItems' => FALSE,
+                      'weight' => 0,
+                    ],
+                  ],
+                ],
+              ],
             ],
           ],
         ],
@@ -87,8 +131,11 @@ class GlobalMenuResourceTest extends RestBaseTest {
     $entity = $this->storage
       ->createById($id)
       ->set('langcode', 'en')
-      ->setMenuTree($menu)
       ->setLabel($projectName);
+
+    if ($menu) {
+      $entity->setMenuTree(json_encode($menu));
+    }
     $entity->save();
     return $entity;
   }
@@ -98,7 +145,7 @@ class GlobalMenuResourceTest extends RestBaseTest {
    */
   public function testGetPermissions() : void {
     $this->drupalLogin($this->setUpCurrentUser());
-    $this->createGlobalMenu('liikenne', 'Liikenne', []);
+    $this->createGlobalMenu('liikenne', 'Liikenne');
 
     // Test individual entity.
     $this->drupalGet('/api/v1/global-menu/liikenne');
@@ -118,14 +165,12 @@ class GlobalMenuResourceTest extends RestBaseTest {
    * Tests GET method.
    */
   public function testGetRoutes() : void {
-    $this->createGlobalMenu('liikenne', 'Liikenne en', [])
-      ->addTranslation('fi')
-      ->setLabel('Liikenne fi')
-      ->save();
-    $this->createGlobalMenu('terveys', 'Terveys en', [])
-      ->addTranslation('fi')
-      ->setLabel('Terveys fi')
-      ->save();
+    $mock = $this->getMockJson();
+    $entity = $this->createGlobalMenu('liikenne', 'Liikenne en', $mock['en']['menu_tree']);
+    $translation = $entity->addTranslation('fi')
+      ->setMenuTree(json_encode($mock['fi']['menu_tree']))
+      ->setLabel('Liikenne fi');
+    $translation->save();
 
     // Visit pages as anonymous user to make sure everything is cached per
     // permissions.
@@ -133,9 +178,7 @@ class GlobalMenuResourceTest extends RestBaseTest {
       $this->drupalGet('/api/v1/global-menu', ['language' => $this->getLanguage($langcode)]);
       $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_UNAUTHORIZED);
 
-      foreach (['liikenne', 'terveys'] as $id) {
-        $this->drupalGet('/api/v1/global-menu/' . $id, ['language' => $this->getLanguage($langcode)]);
-      }
+      $this->drupalGet('/api/v1/global-menu/liikenne', ['language' => $this->getLanguage($langcode)]);
       $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_UNAUTHORIZED);
     }
 
@@ -152,28 +195,76 @@ class GlobalMenuResourceTest extends RestBaseTest {
       $this->assertCacheTags([
         'config:rest.resource.helfi_global_menu_collection',
         'global_menu:liikenne',
-        'global_menu:terveys',
       ]);
-
+      $this->assertCacheContext('url.query_args');
       $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_OK);
 
-      foreach (['liikenne', 'terveys'] as $id) {
-        $expectedLabel = ucfirst($id) . ' ' . $langcode;
-        $this->assertEquals($id, $collectionData->{$id}->project[0]->value);
-        $this->assertEquals($expectedLabel, $collectionData->{$id}->name[0]->value);
+      $this->assertEquals('liikenne', $collectionData->liikenne->project[0]->value);
+      $this->assertEquals('Liikenne ' . $langcode, $collectionData->liikenne->name[0]->value);
 
-        $this->drupalGet('/api/v1/global-menu/' . $id, ['language' => $this->getLanguage($langcode)]);
-        $this->assertCacheTags([
-          'config:rest.resource.helfi_global_menu',
-          'global_menu:' . $id,
+      $this->drupalGet('/api/v1/global-menu/liikenne', ['language' => $this->getLanguage($langcode)]);
+      $this->assertCacheTags([
+        'config:rest.resource.helfi_global_menu',
+        'global_menu:liikenne',
+      ]);
+      $this->assertCacheContext('url.query_args');
+
+      $response = $this->getSession()->getPage()->getContent();
+      $data = json_decode($response);
+      $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_OK);
+      $this->assertEquals('liikenne', $data->project[0]->value);
+      $this->assertEquals('Liikenne ' . $langcode, $data->name[0]->value);
+    }
+
+    // Test depth filter.
+    foreach (['en', 'fi'] as $langcode) {
+      for ($i = 1; $i <= 3; $i++) {
+        $this->drupalGet('/api/v1/global-menu', [
+          'language' => $this->getLanguage($langcode),
+          'query' => ['max-depth' => $i],
         ]);
         $response = $this->getSession()->getPage()->getContent();
         $data = json_decode($response);
-        $this->assertSession()->statusCodeEquals(HttpResponse::HTTP_OK);
-        $this->assertEquals($id, $data->project[0]->value);
-        $this->assertEquals($expectedLabel, $data->name[0]->value);
+
+        // Except all levels shown when max depth is set to 0, otherwise
+        // show up until defined depth.
+        $this->assertMaxDepth($i, $data->liikenne->menu_tree[0]);
       }
     }
+  }
+
+  /**
+   * Parses max depth for given menu tree.
+   *
+   * @param object $data
+   *   The data to parse.
+   * @param int $currentDepth
+   *   The current depth.
+   *
+   * @return int
+   *   The current depth.
+   */
+  private function calculateMaxDepth(object $data, int $currentDepth = 0) : int {
+    $currentDepth = $currentDepth + 1;
+
+    foreach ($data->sub_tree as $tree) {
+      $currentDepth = $this->calculateMaxDepth($tree, $currentDepth);
+    }
+    return $currentDepth;
+  }
+
+  /**
+   * Asserts menu tree's maximum depth.
+   *
+   * @param int $expectedDepth
+   *   The expected maximum depth.
+   * @param object $data
+   *   The menu tree to parse.
+   */
+  private function assertMaxDepth(int $expectedDepth, object $data) : void {
+    $depth = $this->calculateMaxDepth($data);
+
+    $this->assertEquals($expectedDepth, $depth);
   }
 
   /**

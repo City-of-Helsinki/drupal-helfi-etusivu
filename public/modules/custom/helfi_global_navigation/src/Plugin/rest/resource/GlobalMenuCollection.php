@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Routing\AccessAwareRouterInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,17 +29,14 @@ final class GlobalMenuCollection extends GlobalMenuResourceBase {
    */
   public function get(Request $request): ResourceResponse {
     $langcode = $this->getCurrentLanguageId();
-    $cacheableMetadata = (new CacheableMetadata())
-      ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
+    $cacheableMetadata = $this->getCacheableMetaData($request);
 
-    $entities = array_map(function (GlobalMenu $entity) use ($cacheableMetadata, $langcode) : GlobalMenu {
+    $entities = array_map(function (GlobalMenu $entity) use ($cacheableMetadata, $langcode, $request) : GlobalMenu {
       $entity = $entity->getTranslation($langcode);
       $cacheableMetadata->addCacheableDependency($entity);
 
-      return $entity;
-    }, $this->storage->loadMultipleSorted([
-      'status' => 1,
-    ]));
+      return $this->processEntityFilters($entity, $request);
+    }, $this->storage->loadMultipleSorted(['status' => 1]));
     $response = new ResourceResponse($entities, 200);
     $response->addCacheableDependency($cacheableMetadata);
 
