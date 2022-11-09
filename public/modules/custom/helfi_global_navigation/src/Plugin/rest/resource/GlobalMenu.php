@@ -4,9 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
-use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityStorageException;
-use Drupal\Core\Routing\AccessAwareRouterInterface;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu as GlobalMenuEntity;
 use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
@@ -70,7 +68,6 @@ final class GlobalMenu extends GlobalMenuResourceBase {
    *   The response.
    */
   public function get(Request $request) : ResourceResponse {
-    $cacheableMetadata = new CacheableMetadata();
     $langcode = $this->getCurrentLanguageId();
     $entity = $this->getRequestEntity($request);
 
@@ -84,9 +81,10 @@ final class GlobalMenu extends GlobalMenuResourceBase {
       throw new AccessDeniedHttpException();
     }
     $this->assertPermission($translation, 'view');
+    $translation = $this->processEntityFilters($translation, $request);
 
-    $cacheableMetadata->addCacheableDependency($translation)
-      ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT));
+    $cacheableMetadata = $this->getCacheableMetaData($request);
+    $cacheableMetadata->addCacheableDependency($translation);
 
     return (new ResourceResponse($translation, 200))
       ->addCacheableDependency($cacheableMetadata);
