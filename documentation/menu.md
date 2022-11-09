@@ -18,7 +18,7 @@ Allows you to update/retrieve all or instance specific main-navigations.
 
 Get main menu links for individual instance:
 
-- `GET https://www.hel.fi/{langcode}/api/v1/global-menu/{id}`. 
+- `GET https://www.hel.fi/{langcode}/api/v1/global-menu/{id}`.
 
 Get all available main menus:
 - `GET https://www.hel.fi/{langcode}/api/v1/global-menu`
@@ -27,6 +27,10 @@ Get all available main menus:
 
 Update or create a main menu:
 - `POST https://www.hel.fi/{langcode}/api/v1/global-menu/{id}`
+
+#### Filters
+
+- `max-depth`: Filters maximum shown depth of `sub_tree` field. For example `GET https://www.hel.fi/{langcode}/api/v1/global-menu?max-depth=5` will show `sub_tree` up to 5 levels.
 
 #### Fields
 

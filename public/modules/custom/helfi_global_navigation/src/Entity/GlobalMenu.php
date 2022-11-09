@@ -160,7 +160,7 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
    */
   public function setMenuTree(mixed $tree) : self {
     if (is_object($tree)) {
-      $tree = \GuzzleHttp\json_encode($tree);
+      $tree = \json_encode($tree, flags: JSON_THROW_ON_ERROR);
     }
     $this->set('menu_tree', $tree);
     return $this;
@@ -186,14 +186,14 @@ final class GlobalMenu extends ContentEntityBase implements ContentEntityInterfa
    * @param bool $associative
    *   Return as associative array instead of object.
    *
-   * @return object|array
+   * @return object|null
    *   Menu tree.
    */
-  public function getMenuTree(bool $associative = FALSE): object|array {
+  public function getMenuTree(bool $associative = FALSE): ? object {
     if ($menu_tree = $this->get('menu_tree')->value) {
-      return json_decode($menu_tree, $associative);
+      return \json_decode($menu_tree, $associative, flags: JSON_THROW_ON_ERROR);
     }
-    return [];
+    return NULL;
   }
 
 }

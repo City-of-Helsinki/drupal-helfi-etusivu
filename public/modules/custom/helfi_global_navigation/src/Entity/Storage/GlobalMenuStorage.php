@@ -58,8 +58,6 @@ final class GlobalMenuStorage extends SqlContentEntityStorage {
    */
   public function loadMultipleSorted(
     array $conditions = [],
-    string $field = 'weight',
-    string $direction = 'ASC',
     bool $forceCurrentLanguage = TRUE,
   ) : array {
     $query = $this->getQuery()
@@ -74,7 +72,9 @@ final class GlobalMenuStorage extends SqlContentEntityStorage {
     foreach ($conditions as $key => $value) {
       $query->condition($key, $value, '=');
     }
-    $query->sort($field, $direction);
+    // Sort by weight and then by project name.
+    $query->sort('weight')
+      ->sort('name');
 
     $ids = $query->execute();
 
