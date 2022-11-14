@@ -55,6 +55,8 @@ const ResultCard = ({
     );
   };
 
+  const showMainImage = field_main_image && field_main_image.length;
+
   return (
     <li className='news-listing__item'>
       <div className='news-listing__content news-listing__content--with-image' role='article'>
@@ -65,7 +67,7 @@ const ResultCard = ({
         </h3>
         {getPublished()}
       </div>
-      {field_main_image && field_main_image.length && <div className='news-listing__img'>{getImage()}</div>}
+      {showMainImage && <div className='news-listing__img'>{getImage()}</div>}
     </li>
   );
 };
