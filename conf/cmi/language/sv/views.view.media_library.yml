@@ -45,8 +45,6 @@ display:
             group_items:
               1:
                 title: Publicerad
-              2:
-                title: 'Ej publicerad'
         name:
           expose:
             label: Namn
