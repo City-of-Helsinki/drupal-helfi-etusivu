@@ -112,3 +112,26 @@ function helfi_etusivu_tokens(
 
   return $replacements;
 }
+
+/**
+ * Implements hook_cron().
+ */
+function helfi_etusivu_cron() {
+  // Get promoted news_item nodes that are more than one month old.
+  $result = \Drupal::entityQuery('node')
+    ->condition('type', 'news_item')
+    ->condition('promote', 1)
+    ->condition('created', strtotime('-1 month'), '<')
+    ->range(0, 50)
+    ->execute();
+
+  $promoted_nodes = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->loadMultiple($result);
+
+  // Remove promotion.
+  foreach ($promoted_nodes as $node) {
+    $node->promote = 0;
+    $node->save();
+  }
+}
