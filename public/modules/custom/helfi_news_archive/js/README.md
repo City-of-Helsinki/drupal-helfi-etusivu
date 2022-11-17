@@ -35,8 +35,8 @@ The page will reload when you make changes.\
 
 ### Deployment 
 
-`npm run create-release`
-Runs `npm build` and zips relevant files. Use this to add a binary to releases.
+`npm run build`
+Builds the app and copies bundle to `assets/main.js`
 
 ### Testing 
 
