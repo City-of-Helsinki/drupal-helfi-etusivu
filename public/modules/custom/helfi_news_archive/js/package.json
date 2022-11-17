@@ -12,16 +12,15 @@
     "hds-react": "2.6.0",
     "object-hash": "3.0.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-redux": "8.0.2"
+    "react-dom": "17.0.2"
   },
   "scripts": {
+    "analyze": "craco build",
     "start": "BROWSER=none react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-app-rewired build && cp ./build/static/js/main*.js ../assets/main.js",
     "test": "TZ=UTC react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "prepare": "husky install",
-    "create-release": "REACT_APP_ELASTIC_URL= rm helfi-etusivu-news-search.zip && npm run build && cd ./build/static/js && zip -r ../../../helfi-etusivu-news-search.zip ./*.js"
+    "prepare": "cd ../../../../../ && husky install public/modules/custom/helfi_news_archive/js/.husky"
   },
   "browserslist": {
     "production": [
@@ -53,10 +52,12 @@
     "path-browserify": "^1.0.1",
     "prettier": "^2.7.1",
     "process": "^0.11.10",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "react-app-rewired": "^2.2.1",
     "react-scripts": "^5.0.1",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "webpack-bundle-analyzer": "^4.7.0"
   },
   "husky": {
     "hooks": {
