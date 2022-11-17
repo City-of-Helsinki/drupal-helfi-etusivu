@@ -61,4 +61,4 @@ jobs:
         run: |
           composer test-php public/modules/custom
           # Uncomment the line below to run drupal-test-trait tests under tests/src/* folder.
-          # composer test-php tests/
+          composer test-php tests/
