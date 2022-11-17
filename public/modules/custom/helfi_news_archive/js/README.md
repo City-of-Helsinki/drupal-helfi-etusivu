@@ -38,6 +38,9 @@ The page will reload when you make changes.\
 `npm run build`
 Builds the app and copies bundle to `assets/main.js`
 
+`npm run analyze`
+Bundle size too big? Run this to see what is bloating it.
+
 ### Testing 
 
 `npm t`
