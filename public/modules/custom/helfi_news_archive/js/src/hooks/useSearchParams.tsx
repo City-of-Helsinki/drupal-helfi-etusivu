@@ -44,7 +44,6 @@ const useSearchParams = () => {
 
   const updateUrl = (urlSearchParams: MutableRefObject<URLSearchParams>) => {
     let allParamsString = '';
-    const baseUrl = window.location.origin;
     const entries = urlSearchParams.current.entries();
     let result = entries.next();
 
@@ -73,7 +72,9 @@ const useSearchParams = () => {
       allParamsString = '?' + allParamsString;
     }
 
-    window.history.pushState({}, '', `${baseUrl}${allParamsString}`);
+    const newUrl = new URL(window.location.pathname, window.location.origin);
+    newUrl.search = allParamsString;
+    window.history.pushState({}, '', newUrl.toString());
   };
 
   const updateParams = (options: UpdateOptions) => {
