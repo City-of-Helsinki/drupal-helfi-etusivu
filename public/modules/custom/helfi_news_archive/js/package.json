@@ -15,7 +15,7 @@
     "react-dom": "17.0.2"
   },
   "scripts": {
-    "analyze": "craco build",
+    "analyze": "node ./analyze.js",
     "start": "BROWSER=none react-app-rewired start",
     "build": "react-app-rewired build && cp ./build/static/js/main*.js ../assets/main.js",
     "test": "TZ=UTC react-app-rewired test",
