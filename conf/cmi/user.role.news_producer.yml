@@ -21,11 +21,12 @@ dependencies:
     - node
     - paragraphs
     - paragraphs_library
+    - path
     - publication_date
     - scheduler
     - system
 id: news_producer
-label: News producer
+label: 'News producer'
 weight: 7
 is_admin: null
 permissions:
@@ -45,6 +46,7 @@ permissions:
   - 'create paragraph library item'
   - 'create remote_video media'
   - 'create soundcloud media'
+  - 'create url aliases'
   - 'delete any news_item content'
   - 'delete media'
   - 'delete news_item revisions'
