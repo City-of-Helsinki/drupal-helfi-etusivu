@@ -82,6 +82,7 @@ permissions:
   - 'assign admin role'
   - 'assign content_producer role'
   - 'assign editor role'
+  - 'assign news_producers role'
   - 'assign read_only role'
   - 'break content lock'
   - 'cancel account'

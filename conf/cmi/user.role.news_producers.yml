@@ -1,0 +1,81 @@
+uuid: 7ec657c8-9419-43a9-bfd9-604035102827
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+    - filter.format.minimal
+    - media.type.file
+    - media.type.hel_map
+    - media.type.helfi_chart
+    - media.type.image
+    - media.type.remote_video
+    - media.type.soundcloud
+    - node.type.news_item
+  module:
+    - content_translation
+    - editoria11y
+    - file
+    - filter
+    - media
+    - node
+    - paragraphs
+    - paragraphs_library
+    - publication_date
+    - scheduler
+    - system
+id: news_producers
+label: News producers
+weight: 7
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'access files overview'
+  - 'access media overview'
+  - 'access user profiles'
+  - 'administer nodes'
+  - 'cancel account'
+  - 'change own username'
+  - 'create file media'
+  - 'create hel_map media'
+  - 'create helfi_chart media'
+  - 'create image media'
+  - 'create media'
+  - 'create news_item content'
+  - 'create paragraph library item'
+  - 'create remote_video media'
+  - 'create soundcloud media'
+  - 'delete any news_item content'
+  - 'delete media'
+  - 'delete news_item revisions'
+  - 'delete own file media'
+  - 'delete own hel_map media'
+  - 'delete own helfi_chart media'
+  - 'delete own image media'
+  - 'delete own news_item content'
+  - 'delete own remote_video media'
+  - 'delete own soundcloud media'
+  - 'edit any news_item content'
+  - 'edit own file media'
+  - 'edit own hel_map media'
+  - 'edit own helfi_chart media'
+  - 'edit own image media'
+  - 'edit own news_item content'
+  - 'edit own remote_video media'
+  - 'edit own soundcloud media'
+  - 'edit paragraph library item'
+  - 'revert news_item revisions'
+  - 'schedule publishing of nodes'
+  - 'set news_item published on date'
+  - 'translate editable entities'
+  - 'translate news_item node'
+  - 'update media'
+  - 'use text format full_html'
+  - 'use text format minimal'
+  - 'view all media revisions'
+  - 'view editoria11y checker'
+  - 'view news_item revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'
+  - 'view unpublished paragraphs'
