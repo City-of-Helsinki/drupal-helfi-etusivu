@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - user.role.news_producers
+    - user.role.news_producer
   module:
     - user
-id: user_remove_role_action.news_producers
-label: 'Remove the News producers role from the selected user(s)'
+id: user_remove_role_action.news_producer
+label: 'Remove the News producer role from the selected user(s)'
 type: user
 plugin: user_remove_role_action
 configuration:
-  rid: news_producers
+  rid: news_producer
