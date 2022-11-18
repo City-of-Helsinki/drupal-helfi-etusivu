@@ -1,0 +1,14 @@
+uuid: f39c79b2-459b-410f-93c5-c51311a1a19e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.news_producers
+  module:
+    - user
+id: user_remove_role_action.news_producers
+label: 'Remove the News producers role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: news_producers
