@@ -24,8 +24,8 @@ dependencies:
     - publication_date
     - scheduler
     - system
-id: news_producers
-label: News producers
+id: news_producer
+label: News producer
 weight: 7
 is_admin: null
 permissions:

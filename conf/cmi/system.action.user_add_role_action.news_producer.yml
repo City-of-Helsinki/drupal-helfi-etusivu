@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - user.role.news_producers
+    - user.role.news_producer
   module:
     - user
-id: user_add_role_action.news_producers
-label: 'Add the News producers role to the selected user(s)'
+id: user_add_role_action.news_producer
+label: 'Add the News producer role to the selected user(s)'
 type: user
 plugin: user_add_role_action
 configuration:
-  rid: news_producers
+  rid: news_producer
