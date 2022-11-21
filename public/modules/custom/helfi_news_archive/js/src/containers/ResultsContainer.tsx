@@ -8,6 +8,7 @@ import ResultsHeading from '../components/results/ResultsHeading';
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
 import useLanguageQuery from '../hooks/useLanguageQuery';
+import useSearchParams from '../hooks/useSearchParams';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import Result from '../types/Result';
 
@@ -18,6 +19,7 @@ type ResultsData = {
 const ResultsContainer = () => {
   const dimensions = useWindowDimensions();
   const languageFilter = useLanguageQuery();
+  const [params] = useSearchParams();
   const resultsWrapper = useRef<HTMLDivElement | null>(null);
   const onPageChange = () => {
     if (!resultsWrapper.current) {
@@ -38,6 +40,11 @@ const ResultsContainer = () => {
         <ReactiveList
           className='news-container'
           componentId={SearchComponents.RESULTS}
+          // Seems like a bug in ReactiveSearch.
+          // Setting defaultPage prop does nothing.
+          // currentPage props used in source but missing in props type declarations.
+          // @ts-ignore
+          currentPage={params.page}
           dataField={IndexFields.PUBLISHED_AT}
           onPageChange={onPageChange}
           pages={pages}
