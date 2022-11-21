@@ -32,7 +32,7 @@ const paramsToState = (params: MutableRefObject<URLSearchParams>) => {
 
   const intialPage = params.current.get('page');
   if (intialPage) {
-    initialParams.page = Number(intialPage) - 1;
+    initialParams.page = Number(intialPage);
   }
 
   return initialParams;
