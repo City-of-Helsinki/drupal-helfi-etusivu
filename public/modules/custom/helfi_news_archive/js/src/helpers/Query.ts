@@ -1,5 +1,3 @@
-import hash from 'object-hash';
-
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
 import { BooleanQuery, TermsQuery } from '../types/BooleanQuery';
@@ -49,7 +47,7 @@ const getQuery = (searchState: SearchState, languageFilter: any) => {
   };
 
   if (query.bool?.must?.length) {
-    result.value = hash(query.bool.must);
+    result.value = JSON.stringify(query.bool.must);
   }
 
   return result;
