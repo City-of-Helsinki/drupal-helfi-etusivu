@@ -1,5 +1,5 @@
 import { IconAngleLeft, IconAngleRight } from 'hds-react';
-import React, { Fragment } from 'react';
+import { Fragment, MouseEvent } from 'react';
 
 import SearchComponents from '../../enum/SearchComponents';
 import useSearchParams from '../../hooks/useSearchParams';
@@ -15,7 +15,7 @@ type PaginationProps = {
 export const Pagination = ({ pages, totalPages, currentPage, setPage, setSize }: PaginationProps) => {
   const [, updateParams] = useSearchParams();
 
-  const updatePage = (e: React.MouseEvent<HTMLElement>, index: number) => {
+  const updatePage = (e: MouseEvent<HTMLElement>, index: number) => {
     e.preventDefault();
     setPage(index);
     updateParams({

@@ -26,7 +26,7 @@ const ResultsContainer = () => {
       return;
     }
 
-    if (Math.abs(resultsWrapper.current.getBoundingClientRect().y) < window.pageYOffset) {
+    if (Math.abs(resultsWrapper.current.getBoundingClientRect().y) < window.scrollY) {
       resultsWrapper.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
