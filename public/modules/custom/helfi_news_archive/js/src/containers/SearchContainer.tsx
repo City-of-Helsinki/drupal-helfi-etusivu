@@ -1,18 +1,23 @@
 import { StateProvider } from '@appbaseio/reactivesearch';
+import { Fragment } from 'react';
 
+import { getInitialValues } from '../helpers/Params';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 
-// @todo: Remove comments once https://helsinkisolutionoffice.atlassian.net/browse/HDS-1210 is done
 const SearchContainer = () => {
+  const initialParams = getInitialValues();
+
   return (
     <div>
       <StateProvider
         render={({ searchState, setSearchState }) => (
-          <FormContainer searchState={searchState} setSearchState={setSearchState} />
+          <Fragment>
+            <FormContainer initialParams={initialParams} searchState={searchState} setSearchState={setSearchState} />
+            <ResultsContainer initialParams={initialParams} searchState={searchState} />
+          </Fragment>
         )}
       />
-      <ResultsContainer />
     </div>
   );
 };

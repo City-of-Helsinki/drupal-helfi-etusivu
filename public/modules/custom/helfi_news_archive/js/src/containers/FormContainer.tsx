@@ -5,10 +5,8 @@ import Dropdown from '../components/form//Dropdown';
 import SubmitButton from '../components/form/SubmitButton';
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
-import stateToParams from '../helpers/Params';
 import getQuery from '../helpers/Query';
 import useLanguageQuery from '../hooks/useLanguageQuery';
-import useSearchParams from '../hooks/useSearchParams';
 import InitialState from '../types/InitialState';
 import type OptionType from '../types/OptionType';
 import type SearchState from '../types/SearchState';
@@ -23,11 +21,12 @@ type InitializationMap = {
 type InitialParam = Omit<InitialState, 'page'>;
 
 type FormContainerProps = {
+  initialParams: Omit<InitialState, 'page'>;
   searchState: SearchState;
   setSearchState: Function;
 };
 
-export const FormContainer = ({ searchState, setSearchState }: FormContainerProps) => {
+export const FormContainer = ({ initialParams, searchState, setSearchState }: FormContainerProps) => {
   const [initialized, setIinitialized] = useState<InitializationMap>({
     groups: false,
     neighbourhoods: false,
@@ -38,7 +37,6 @@ export const FormContainer = ({ searchState, setSearchState }: FormContainerProp
   const topicRef = useRef<any>(null);
   const neighbourhoodRef = useRef<any>(null);
   const groupRef = useRef<any>(null);
-  const [initialParams, updateParams] = useSearchParams();
 
   const initialize = (key: string) => {
     setIinitialized((prev: InitializationMap) => ({ ...prev, [key]: true }));
@@ -74,7 +72,6 @@ export const FormContainer = ({ searchState, setSearchState }: FormContainerProp
 
     ref?.current.setQuery({ value: newValue[selectionType].value });
     submitButton?.current.setQuery(getQuery(newValue, languageFilter));
-    updateParams(stateToParams(searchState));
   };
 
   return (

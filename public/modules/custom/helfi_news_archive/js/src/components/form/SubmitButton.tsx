@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react';
 
 import IndexFields from '../../enum/IndexFields';
 import SearchComponents from '../../enum/SearchComponents';
-import stateToParams from '../../helpers/Params';
+import { setParams } from '../../helpers/Params';
 import getQuery from '../../helpers/Query';
 import { useLanguageQuery } from '../../hooks/useLanguageQuery';
-import useSearchParams from '../../hooks/useSearchParams';
 import OptionType from '../../types/OptionType';
 
 type SearchStateItem = {
@@ -31,11 +30,10 @@ export const ComponentMap = {
 export const SubmitButton = ({ initialized, searchState, setQuery }: Props) => {
   const [mounted, setMounted] = useState<boolean>(false);
   const languageFilter = useLanguageQuery();
-  const [, updateParams] = useSearchParams();
 
   const onClick = () => {
     setQuery(getQuery(searchState, languageFilter));
-    updateParams(stateToParams(searchState));
+    setParams(searchState);
   };
 
   useEffect(() => {

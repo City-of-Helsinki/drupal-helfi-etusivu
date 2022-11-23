@@ -53,10 +53,11 @@ export const Dropdown = ({
       const values: OptionType[] = [];
 
       initialValue.forEach((value: string) => {
-        const option = options.find((option) => option.value.toLocaleLowerCase() === value);
-
-        if (option) {
-          values.push(option);
+        // Use for loop for performance
+        for (const option of options) {
+          if (option.value.toLowerCase() === value) {
+            values.push(option);
+          }
         }
       });
 

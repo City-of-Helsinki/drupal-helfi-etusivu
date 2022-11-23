@@ -2,7 +2,7 @@ import { Button, IconCross } from 'hds-react';
 import { ReactElement, memo } from 'react';
 
 import SearchComponents from '../enum/SearchComponents';
-import useSearchParams from '../hooks/useSearchParams';
+import { clearParams } from '../helpers/Params';
 import type OptionType from '../types/OptionType';
 
 type SelectionsContainerProps = {
@@ -12,11 +12,9 @@ type SelectionsContainerProps = {
 };
 
 const SelectionsContainer = ({ clearSelection, searchState, setSearchState }: SelectionsContainerProps) => {
-  const [, updateParams] = useSearchParams();
-
   const clearSelections = () => {
     setSearchState({});
-    updateParams({});
+    clearParams();
   };
 
   const filters: ReactElement<HTMLLIElement>[] = [];
