@@ -79,7 +79,7 @@ class NewsSearchParams extends URLSearchParams {
       result = entries.next();
     }
 
-    const initialPage = Number(this.get('page')) - 1;
+    const initialPage = Number(this.get('page'));
     if (initialPage) {
       initialParams.page = Number(initialPage);
     }
