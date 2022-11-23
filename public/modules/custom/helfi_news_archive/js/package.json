@@ -63,7 +63,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,css}": [
-      "eslint --rule 'no-console: error'",
+      "eslint --rule 'no-console: [error, { allow: [warn, error] }]'",
       "prettier --write"
     ]
   },
