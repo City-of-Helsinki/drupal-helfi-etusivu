@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5cba5f24cc2be556f11623c26cff6fc",
+    "content-hash": "d515b0dae44abec22ea3a6affc736f94",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4936,16 +4936,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.13.16",
+            "version": "2.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "cb91004f566c82a666340f19e42b11e3f0cf83df"
+                "reference": "139740f15aea3b783584320e7ecc19bc2c44ec7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/cb91004f566c82a666340f19e42b11e3f0cf83df",
-                "reference": "cb91004f566c82a666340f19e42b11e3f0cf83df",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/139740f15aea3b783584320e7ecc19bc2c44ec7f",
+                "reference": "139740f15aea3b783584320e7ecc19bc2c44ec7f",
                 "shasum": ""
             },
             "require": {
@@ -4982,7 +4982,7 @@
                 "drupal/matomo_reports": "^1.1",
                 "drupal/media_entity_file_replace": "^1.0",
                 "drupal/media_entity_soundcloud": "^3.0.0",
-                "drupal/menu_block_current_language": "^1.5",
+                "drupal/menu_block_current_language": "^2.0",
                 "drupal/menu_link_attributes": "^1.2",
                 "drupal/metatag": "^1.16",
                 "drupal/oembed_providers": "^2.0",
@@ -5051,10 +5051,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.13.16",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.15.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-11-16T14:09:33+00:00"
+            "time": "2022-11-24T09:44:44+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -5862,26 +5862,27 @@
         },
         {
             "name": "drupal/menu_block_current_language",
-            "version": "1.6.0",
+            "version": "2.0.0-alpha1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/menu_block_current_language.git",
-                "reference": "8.x-1.6"
+                "reference": "2.0.0-alpha1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/menu_block_current_language-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "02489647e17bff7c3a1b3eb4e47c5ddea50f0840"
+                "url": "https://ftp.drupal.org/files/projects/menu_block_current_language-2.0.0-alpha1.zip",
+                "reference": "2.0.0-alpha1",
+                "shasum": "24b3830a72635879fec6bd30d721462102cb151b"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^9.3 || ^10",
+                "php": ">=8.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1621416669",
+                    "version": "2.0.0-alpha1",
+                    "datestamp": "1667717930",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -5890,7 +5891,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
@@ -5907,7 +5908,7 @@
                 }
             ],
             "description": "Filters out all the menu links that does not have translation for the current language.",
-            "homepage": "https://www.drupal.org/project/menu_block_current_language",
+            "homepage": "http://drupal.org/project/menu_block_current_language",
             "support": {
                 "source": "https://git.drupalcode.org/project/menu_block_current_language"
             }
@@ -7382,10 +7383,6 @@
                     "name": "Christian Fritsch",
                     "homepage": "https://www.drupal.org/user/2103716",
                     "email": "christian.fritsch@burda.com"
-                },
-                {
-                    "name": "thunderbot",
-                    "homepage": "https://www.drupal.org/user/3511180"
                 }
             ],
             "description": "Integration with the select2 JavaScript library.",
@@ -11393,7 +11390,7 @@
                 "issues": "https://github.com/ruflin/Elastica/issues",
                 "source": "https://github.com/ruflin/Elastica/tree/master"
             },
-            "time": "2022-10-11T06:53:58+00:00"
+            "time": "2022-11-23T07:39:29+00:00"
         },
         {
             "name": "stack/builder",
@@ -18767,7 +18764,8 @@
         "drupal/external_entities": 15,
         "drupal/helfi_drupal_tools": 20,
         "drupal/json_field": 5,
-        "drupal/openapi_ui_redoc": 5
+        "drupal/openapi_ui_redoc": 5,
+        "ruflin/elastica": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
