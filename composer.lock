@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d515b0dae44abec22ea3a6affc736f94",
+    "content-hash": "a5cba5f24cc2be556f11623c26cff6fc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4936,16 +4936,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.15.0",
+            "version": "2.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "139740f15aea3b783584320e7ecc19bc2c44ec7f"
+                "reference": "1131b9523b9ac12fccab5bc98c9d1b63c863bec9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/139740f15aea3b783584320e7ecc19bc2c44ec7f",
-                "reference": "139740f15aea3b783584320e7ecc19bc2c44ec7f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/1131b9523b9ac12fccab5bc98c9d1b63c863bec9",
+                "reference": "1131b9523b9ac12fccab5bc98c9d1b63c863bec9",
                 "shasum": ""
             },
             "require": {
@@ -5051,10 +5051,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.15.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.15.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-11-24T09:44:44+00:00"
+            "time": "2022-11-24T13:02:17+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -18763,8 +18763,7 @@
         "drupal/external_entities": 15,
         "drupal/helfi_drupal_tools": 20,
         "drupal/json_field": 5,
-        "drupal/openapi_ui_redoc": 5,
-        "ruflin/elastica": 20
+        "drupal/openapi_ui_redoc": 5
     },
     "prefer-stable": true,
     "prefer-lowest": false,
