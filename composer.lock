@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b892055e33932ec7e47bc6d0ce92aa8",
+    "content-hash": "d515b0dae44abec22ea3a6affc736f94",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -11328,12 +11328,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ruflin/Elastica.git",
-                "reference": "35cd0dc60e8eeadf7ef0203c084e0c316fda33c7"
+                "reference": "5fc25a4966b48ae9a631e345b167c867250a43c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/35cd0dc60e8eeadf7ef0203c084e0c316fda33c7",
-                "reference": "35cd0dc60e8eeadf7ef0203c084e0c316fda33c7",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/5fc25a4966b48ae9a631e345b167c867250a43c7",
+                "reference": "5fc25a4966b48ae9a631e345b167c867250a43c7",
                 "shasum": ""
             },
             "require": {
@@ -18764,7 +18764,8 @@
         "drupal/external_entities": 15,
         "drupal/helfi_drupal_tools": 20,
         "drupal/json_field": 5,
-        "drupal/openapi_ui_redoc": 5
+        "drupal/openapi_ui_redoc": 5,
+        "ruflin/elastica": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
