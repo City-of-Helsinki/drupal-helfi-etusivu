@@ -1,5 +1,6 @@
-import { render } from '@testing-library/react';
+import { StateProvider } from '@appbaseio/reactivesearch';
 
+import { renderWithStore as render } from '../../test/test-utils';
 import Dropdown from './Dropdown';
 
 const mockAggregations = {
@@ -10,13 +11,21 @@ const mockAggregations = {
 
 test('Renders correctly', () => {
   render(
-    <Dropdown
-      aggregations={mockAggregations}
-      label='Topic filter'
-      indexKey='indexKey'
-      setQuery={() => null}
-      setValue={() => null}
-      value={['Interesting topic']}
+    <StateProvider
+      render={(props) => (
+        <Dropdown
+          aggregations={mockAggregations}
+          componentId='mockId'
+          initialize={() => null}
+          initialValue={['Interesting topic']}
+          label='Topic filter'
+          indexKey='indexKey'
+          setQuery={() => null}
+          setValue={() => null}
+          value={['Interesting topic']}
+          {...props}
+        />
+      )}
     />
   );
 });
