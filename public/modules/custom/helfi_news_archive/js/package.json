@@ -47,13 +47,13 @@
     "husky": ">=4",
     "intersection-observer": "^0.12.2",
     "lint-staged": ">=10",
-    "msw": "^0.44.2",
+    "msw": "0.49.1",
     "prettier": "^2.7.1",
     "process": "^0.11.10",
     "progress-bar-webpack-plugin": "^2.1.0",
     "react-scripts": "5.0.1",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.9.3",
+    "typescript": "4.9.3",
     "webpack-bundle-analyzer": "^4.7.0"
   },
   "husky": {
