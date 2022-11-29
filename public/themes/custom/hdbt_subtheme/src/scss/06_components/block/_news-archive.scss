@@ -1,3 +1,6 @@
+// Min-height for filter components - prevents weird issues with z-indexed components
+$filter-component-min-height: 84px;
+
 // Min-width for filter components in desktop. Helps preventing weird behavior with hds-dropdowns.
 $filter-component-min-width-xl: 328px;
 
@@ -43,11 +46,22 @@ $news-archive-background: #f2f2f2;
 }
 
 .news-form__filter {
+  flex: 1;
   margin-bottom: $spacing;
+  min-height: $filter-component-min-height;
+  position: relative;
 
   @include breakpoint($breakpoint-xl) {
     min-width: $filter-component-min-width-xl;
   }
+}
+
+.news-form__filter-container {
+  position: absolute;
+  width: 100%;
+
+  // CSS variable set by react application
+  z-index: var(--menu-z-index)
 }
 
 // Target inside hds-react's component, cant set a direct target class
@@ -64,7 +78,7 @@ $news-archive-background: #f2f2f2;
   }
 
   @include breakpoint($breakpoint-xl) {
-    width: 100%;
+    flex: 1;
   }
 }
 
