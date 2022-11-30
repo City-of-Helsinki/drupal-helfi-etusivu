@@ -1,0 +1,7 @@
+{
+  "name": "city-of-helsinki/helfi-etusivu-news-search",
+  "type": "drupal-library",
+  "description": "Frontend for the Hel.fi news archive",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev"
+}
