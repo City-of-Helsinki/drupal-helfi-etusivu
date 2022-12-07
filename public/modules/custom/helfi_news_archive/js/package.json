@@ -1,0 +1,81 @@
+{
+  "name": "helfi-etusivu-news-search",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@appbaseio/reactivesearch": "3.43.1",
+    "@emotion/styled": "11.10.5",
+    "date-fns": "2.29.1",
+    "eslint-config-react-app": "7.0.1",
+    "hds-design-tokens": "2.6.0",
+    "hds-react": "2.6.0",
+    "path": "npm:path-browserify@^1.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "scripts": {
+    "analyze": "node ./analyze.js",
+    "start": "BROWSER=none react-scripts start",
+    "build": "rm -rf ../assets/* && react-scripts build && cp ./build/static/js/main*.js ../assets/main.js && cp ./build/static/js/*.js.map ../assets/",
+    "test": "TZ=UTC react-scripts test",
+    "eject": "react-scripts eject",
+    "prepare": "cd ../../../../../ && husky install public/modules/custom/helfi_news_archive/js/.husky"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-router-dom": "^5.1.5",
+    "buffer": "^6.0.3",
+    "husky": ">=4",
+    "intersection-observer": "^0.12.2",
+    "lint-staged": ">=10",
+    "msw": "0.49.1",
+    "prettier": "^2.7.1",
+    "process": "^0.11.10",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "react-scripts": "5.0.1",
+    "react-test-renderer": "^17.0.2",
+    "typescript": "4.9.3",
+    "webpack-bundle-analyzer": "^4.7.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,css}": [
+      "eslint --rule 'no-console: [error, { allow: [warn, error] }]'",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "<rootDir>/src/index.tsx",
+      "<rootDir>/src/enum/*",
+      "<rootDir>/src/types/*"
+    ]
+  }
+}
