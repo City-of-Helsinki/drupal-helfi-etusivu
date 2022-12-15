@@ -847,7 +847,7 @@ display:
         type: some
         options:
           offset: 0
-          items_per_page: 100
+          items_per_page: 20
       sorts:
         published_at:
           id: published_at
