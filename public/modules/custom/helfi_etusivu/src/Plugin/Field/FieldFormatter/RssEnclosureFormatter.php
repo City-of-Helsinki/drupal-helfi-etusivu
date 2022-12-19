@@ -5,7 +5,6 @@ namespace Drupal\helfi_etusivu\Plugin\Field\FieldFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 
@@ -48,7 +47,7 @@ class RssEnclosureFormatter extends FormatterBase implements ContainerFactoryPlu
         }
 
         $elements[$delta] = [
-          '#markup' => $image_style->buildUrl($image_path)
+          '#markup' => $image_style->buildUrl($image_path),
         ];
       }
     }
