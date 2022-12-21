@@ -131,3 +131,45 @@ function hdbt_subtheme_preprocess_page__news(array &$variables) {
     $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
   }
 }
+
+/**
+ * Implements hook_preprocess_views_view_row_rss().
+ */
+function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) {
+  // Get all necessary data to create the enclosure tag with proper attributes.
+  foreach ($variables['item_elements'] as $key => $element) {
+    if ($element['key'] == 'enclosure') {
+      $enclosure_attributes = $variables['item_elements'][$key]['attributes'];
+    }
+    if ($element['key'] == 'guid') {
+      $guid = (string) $variables['item_elements'][$key]['value'];
+      $node = \Drupal::service('entity.repository')->loadEntityByUuid('node', $guid);
+    }
+  }
+
+  if (!$node) {
+    return;
+  }
+
+  // Add attributes to enclosure tag.
+  if (
+    $node->hasField('field_main_image') &&
+    !$node->get('field_main_image')->isEmpty()
+  ) {
+    $image = $node->field_main_image->entity->field_media_image->first();
+    $file = $node->field_main_image->entity->field_media_image->entity;
+
+    $values = [
+      'url' => $enclosure_attributes['url'],
+      'type' => $file ? $file->getMimeType() : '',
+      'size' => $file ? $file->getSize() : '',
+      'alt' => $image ? $image->alt : ' ',
+    ];
+
+    foreach ($values as $name => $value) {
+      if ($enclosure_attributes) {
+        $enclosure_attributes->offsetSet($name, $value);
+      }
+    }
+  }
+}
