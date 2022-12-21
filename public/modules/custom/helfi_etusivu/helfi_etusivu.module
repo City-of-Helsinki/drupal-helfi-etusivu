@@ -134,4 +134,5 @@ function helfi_etusivu_cron() {
     $node->promote = 0;
     $node->save();
   }
+
 }
