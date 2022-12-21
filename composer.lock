@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60ed6b1a9b733a8c3360672d03cf4909",
+    "content-hash": "f9939a9ac298bb0940f9aa084ca1e52c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4793,16 +4793,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "f25f99abb17896c15531b4834f0908ba560437bd"
+                "reference": "bbf138db7bac7701097881a36832288ae809bf7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/f25f99abb17896c15531b4834f0908ba560437bd",
-                "reference": "f25f99abb17896c15531b4834f0908ba560437bd",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/bbf138db7bac7701097881a36832288ae809bf7f",
+                "reference": "bbf138db7bac7701097881a36832288ae809bf7f",
                 "shasum": ""
             },
             "require": {
@@ -4825,10 +4825,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.3.6",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.3.7",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2022-11-28T07:46:25+00:00"
+            "time": "2022-12-21T10:10:38+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -4990,16 +4990,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.16.1",
+            "version": "2.16.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "c7ce9133a8c9ec9c02d6764f9a4ae2ec5d3557ae"
+                "reference": "32c89257897002810223079f2e3dd4363da6d692"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/c7ce9133a8c9ec9c02d6764f9a4ae2ec5d3557ae",
-                "reference": "c7ce9133a8c9ec9c02d6764f9a4ae2ec5d3557ae",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/32c89257897002810223079f2e3dd4363da6d692",
+                "reference": "32c89257897002810223079f2e3dd4363da6d692",
                 "shasum": ""
             },
             "require": {
@@ -5098,6 +5098,9 @@
                     },
                     "drupal/field_group": {
                         "[#UHF-3268] Support for field group translations": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/736077493b73d83b63081820790dc68e226a6460/patches/field_group_fix-translations_label_description-3111107-31-rerolled.patch"
+                    },
+                    "drupal/publication_date": {
+                        "[#UHF-7721] Fixed node preview when publication date is not set. (https://www.drupal.org/project/publication_date/issues/3074373)": "https://www.drupal.org/files/issues/2022-12-20/publication_date_is_required_for_completing_the_form-3074373-11.patch"
                     }
                 }
             },
@@ -5106,10 +5109,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.16.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.16.3",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-12-16T11:47:12+00:00"
+            "time": "2022-12-21T10:49:51+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
