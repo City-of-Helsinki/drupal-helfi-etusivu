@@ -36,7 +36,7 @@
         "drupal/redis": "^1.5",
         "drupal/search_api": "^1.23",
         "drupal/stage_file_proxy": "^1.2",
-        "drush/drush": "^10.4",
+        "drush/drush": "^10.4 || ^11"
         "josdejong/jsoneditor": "^5.29",
         "justinrainbow/json-schema": "^5.2"
     },
