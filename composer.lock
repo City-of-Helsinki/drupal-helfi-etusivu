@@ -4990,16 +4990,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "2.16.3",
+            "version": "2.16.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "32c89257897002810223079f2e3dd4363da6d692"
+                "reference": "33db1cee1bff92be0b41fb9f35bc2f37c8a77e47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/32c89257897002810223079f2e3dd4363da6d692",
-                "reference": "32c89257897002810223079f2e3dd4363da6d692",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/33db1cee1bff92be0b41fb9f35bc2f37c8a77e47",
+                "reference": "33db1cee1bff92be0b41fb9f35bc2f37c8a77e47",
                 "shasum": ""
             },
             "require": {
@@ -5109,10 +5109,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.16.3",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/2.16.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2022-12-21T10:49:51+00:00"
+            "time": "2022-12-27T11:07:09+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -8264,17 +8264,17 @@
         },
         {
             "name": "drupal/views_bulk_operations",
-            "version": "4.2.1",
+            "version": "4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_bulk_operations.git",
-                "reference": "4.2.1"
+                "reference": "4.2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.2.1.zip",
-                "reference": "4.2.1",
-                "shasum": "3bce967e24c0ce19fc7e0de031594729e22c38ef"
+                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.2.2.zip",
+                "reference": "4.2.2",
+                "shasum": "43a30244c9a9c2738c1cd023ff4ad5dfb9409155"
             },
             "require": {
                 "drupal/core": "^9.4 || ^10",
@@ -8289,8 +8289,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.2.1",
-                    "datestamp": "1666185226",
+                    "version": "4.2.2",
+                    "datestamp": "1671871349",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
