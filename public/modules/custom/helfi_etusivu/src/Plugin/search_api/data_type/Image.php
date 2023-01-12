@@ -33,14 +33,7 @@ class Image extends StringDataType {
       $imageStyle->createDerivative($imagePath, $imageUri);
     }
 
-    $url = $imageStyle->buildUrl($imagePath);
-
-    // @todo remove helfi_proxy_absolute_url wrapping once
-    // https://helsinkisolutionoffice.atlassian.net/browse/UHF-7126 is done
-    if (str_contains($url, 'blob.core.windows')) {
-      return $url;
-    }
-    return helfi_proxy_absolute_url($url);
+    return $imageStyle->buildUrl($imagePath);
   }
 
 }
