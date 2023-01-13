@@ -95,17 +95,7 @@ function helfi_etusivu_tokens(
         if (!file_exists($image_uri)) {
           $image_style->createDerivative($image_path, $image_uri);
         }
-
-        $url = $image_style->buildUrl($image_path);
-
-        // @todo remove helfi_proxy_absolute_url wrapping once
-        // https://helsinkisolutionoffice.atlassian.net/browse/UHF-7126 is done
-        if (str_contains($url, 'blob.core.windows')) {
-          $replacements[$original] = $url;
-        }
-        else {
-          $replacements[$original] = helfi_proxy_absolute_url($url);
-        }
+        $replacements[$original] = $image_style->buildUri($image_path);
       }
     }
   }
