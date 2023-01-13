@@ -94,7 +94,14 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
-  $path = '/themes/custom/hdbt_subtheme/src/images/';
+
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+  $service = \Drupal::service('file_url_generator');
+  $theme = \Drupal::service('theme_handler')->getTheme('hdbt_subtheme');
+
+  // Add theme path to as variable.
+  $path = $service->generate("{$theme->getPath()}/src/images/")
+    ->toString(TRUE)->getGeneratedUrl();
 
   if ($paragraph_type == 'current') {
     $illustration = match($paragraph->get('field_seasons')->value) {
