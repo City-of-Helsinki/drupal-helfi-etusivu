@@ -140,6 +140,7 @@ module:
   toolbar: 0
   translatable_menu_link_uri: 0
   twig_tweak: 0
+  ultimate_cron: 0
   update: 0
   update_helper: 0
   user: 0

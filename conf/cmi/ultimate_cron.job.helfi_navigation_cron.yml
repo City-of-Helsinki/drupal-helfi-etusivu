@@ -1,0 +1,17 @@
+uuid: 3ae6b36a-ae36-4860-8bfd-de2f709b8157
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_navigation
+title: 'Default cron handler'
+id: helfi_navigation_cron
+weight: 0
+module: helfi_navigation
+callback: helfi_navigation_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database
