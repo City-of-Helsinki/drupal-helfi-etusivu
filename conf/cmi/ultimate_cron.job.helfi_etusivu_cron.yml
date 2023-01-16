@@ -1,0 +1,17 @@
+uuid: af89e682-3cb5-44df-81d5-a12d07cdfb55
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_etusivu
+title: 'Default cron handler'
+id: helfi_etusivu_cron
+weight: 0
+module: helfi_etusivu
+callback: helfi_etusivu_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database
