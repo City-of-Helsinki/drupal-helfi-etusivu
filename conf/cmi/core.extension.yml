@@ -46,6 +46,7 @@ module:
   hdbt_admin_tools: 0
   hdbt_component_library: 0
   hdbt_content: 0
+  health_check: 0
   helfi_announcements: 0
   helfi_api_base: 0
   helfi_azure_fs: 0
@@ -140,6 +141,7 @@ module:
   toolbar: 0
   translatable_menu_link_uri: 0
   twig_tweak: 0
+  ultimate_cron: 0
   update: 0
   update_helper: 0
   user: 0

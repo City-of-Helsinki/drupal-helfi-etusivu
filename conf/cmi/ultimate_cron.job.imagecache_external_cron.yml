@@ -1,0 +1,17 @@
+uuid: c07fa05a-f405-40d6-ad73-51b1dfcac711
+langcode: en
+status: true
+dependencies:
+  module:
+    - imagecache_external
+title: 'Default cron handler'
+id: imagecache_external_cron
+weight: 0
+module: imagecache_external
+callback: imagecache_external_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database
