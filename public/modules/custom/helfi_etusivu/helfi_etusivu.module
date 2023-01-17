@@ -95,7 +95,7 @@ function helfi_etusivu_tokens(
         if (!file_exists($image_uri)) {
           $image_style->createDerivative($image_path, $image_uri);
         }
-        $replacements[$original] = $image_style->buildUri($image_path);
+        $replacements[$original] = $image_style->buildUrl($image_path);
       }
     }
   }
