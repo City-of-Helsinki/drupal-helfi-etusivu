@@ -1,0 +1,29 @@
+uuid: 8c640158-8f8e-49a6-b12b-2dc45be8a628
+langcode: en
+status: true
+dependencies:
+  module:
+    - radioactivity
+title: 'Default cron handler'
+id: radioactivity_cron
+weight: 0
+module: radioactivity
+callback: radioactivity_cron
+scheduler:
+  id: simple
+  configuration:
+    rules:
+      - '0+@ */3 * * *'
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000
