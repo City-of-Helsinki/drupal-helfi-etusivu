@@ -145,6 +145,7 @@ function hdbt_subtheme_preprocess_page__news(array &$variables) {
 function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) {
   // Get all necessary data to create the enclosure tag with proper attributes.
   $enclosure_attributes = NULL;
+  $node = NULL;
 
   foreach ($variables['item_elements'] as $key => $element) {
     if ($element['key'] == 'enclosure') {
@@ -176,9 +177,7 @@ function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) {
     ];
 
     foreach ($values as $name => $value) {
-      if ($enclosure_attributes) {
-        $enclosure_attributes->offsetSet($name, $value);
-      }
+      $enclosure_attributes->offsetSet($name, $value);
     }
   }
 }
