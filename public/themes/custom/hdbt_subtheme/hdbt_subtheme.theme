@@ -144,6 +144,8 @@ function hdbt_subtheme_preprocess_page__news(array &$variables) {
  */
 function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) {
   // Get all necessary data to create the enclosure tag with proper attributes.
+  $enclosure_attributes = null;
+
   foreach ($variables['item_elements'] as $key => $element) {
     if ($element['key'] == 'enclosure') {
       $enclosure_attributes = $variables['item_elements'][$key]['attributes'];
