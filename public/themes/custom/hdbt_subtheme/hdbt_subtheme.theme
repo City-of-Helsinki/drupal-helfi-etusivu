@@ -154,7 +154,7 @@ function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) {
     }
   }
 
-  if (!$node) {
+  if (!$node || !$enclosure_attributes) {
     return;
   }
 
