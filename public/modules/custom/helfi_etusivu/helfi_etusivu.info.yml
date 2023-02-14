@@ -6,5 +6,6 @@ core_version_requirement: ^9 || ^10
 dependencies:
   - rest
   - draggableviews
+  - simple_sitemap
 'interface translation project': helfi_etusivu
 'interface translation server pattern': modules/custom/helfi_etusivu/translations/%language.po
