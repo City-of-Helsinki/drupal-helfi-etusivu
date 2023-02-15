@@ -16,12 +16,6 @@ class SitemapPathProcessor implements InboundPathProcessorInterface, OutboundPat
    * {@inheritdoc}
    */
   public function processInbound($path, Request $request) {
-    /*
-    $args = explode('/', $path);
-    if (count($args) === 3 && $args[2] === 'sitemap.xml') {
-      $path = '/sitemaps/' . $args[1] . '/sitemap.xml';
-    }
-    */
     return $path;
   }
 
@@ -29,12 +23,6 @@ class SitemapPathProcessor implements InboundPathProcessorInterface, OutboundPat
    * {@inheritdoc}
    */
   public function processOutbound($path, &$options = [], ?Request $request = NULL, ?BubbleableMetadata $bubbleable_metadata = NULL) {
-    /*
-    $args = explode('/', $path);
-    if (count($args) === 4 && $args[3] === 'sitemap.xml') {
-      $path = '/' . $args[2] . '/sitemap.xml';
-    }
-    */
     return $path;
   }
 
