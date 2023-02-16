@@ -180,3 +180,32 @@ function helfi_etusivu_migare_news_item_promoted(): void {
     }
   }
 }
+
+/**
+ * Remove drupal/jsonapi_hypermedia and drupal/jsonapi_menu_items dependencies.
+ */
+function helfi_etusivu_update_9007() : void {
+  $modules = [
+    'jsonapi_hypermedia',
+    'jsonapi_menu_items'
+  ];
+  $config = Drupal::configFactory()->getEditable('core.extension');
+  $moduleList = $config->get('module');
+  $isChanged = false;
+
+  foreach ($modules as $module) {
+    \Drupal::database()->delete('key_value')
+      ->condition('name', $module)
+      ->execute();
+
+    if(array_key_exists($module, $moduleList)) {
+      $isChanged = true;
+      unset($moduleList[$module]);
+    }
+  }
+
+  if ($isChanged) {
+    $config->set('module', $moduleList)
+      ->save();
+  }
+}
