@@ -187,19 +187,19 @@ function helfi_etusivu_migare_news_item_promoted(): void {
 function helfi_etusivu_update_9007() : void {
   $modules = [
     'jsonapi_hypermedia',
-    'jsonapi_menu_items'
+    'jsonapi_menu_items',
   ];
   $config = Drupal::configFactory()->getEditable('core.extension');
   $moduleList = $config->get('module');
-  $isChanged = false;
+  $isChanged = FALSE;
 
   foreach ($modules as $module) {
     \Drupal::database()->delete('key_value')
       ->condition('name', $module)
       ->execute();
 
-    if(array_key_exists($module, $moduleList)) {
-      $isChanged = true;
+    if (array_key_exists($module, $moduleList)) {
+      $isChanged = TRUE;
       unset($moduleList[$module]);
     }
   }
