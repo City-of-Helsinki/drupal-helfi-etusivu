@@ -4703,16 +4703,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "4.4.10",
+            "version": "4.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "85a7ff2690e6702ea35e48498d11d670e5c24305"
+                "reference": "9e7cc8a89e8792a1d3be6f6ce1e61983d097265b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/85a7ff2690e6702ea35e48498d11d670e5c24305",
-                "reference": "85a7ff2690e6702ea35e48498d11d670e5c24305",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/9e7cc8a89e8792a1d3be6f6ce1e61983d097265b",
+                "reference": "9e7cc8a89e8792a1d3be6f6ce1e61983d097265b",
                 "shasum": ""
             },
             "require": {
