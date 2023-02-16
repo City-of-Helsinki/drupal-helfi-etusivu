@@ -1,0 +1,9 @@
+helfi_etusivu.sitemap_route:
+  path: '/sitemap.xml'
+  defaults:
+    _controller: '\Drupal\simple_sitemap\Controller\SimpleSitemapController::getSitemap'
+    _title: 'Sitemap route controller'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: 'FALSE'
