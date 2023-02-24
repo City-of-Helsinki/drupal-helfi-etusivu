@@ -10,7 +10,6 @@ dependencies:
     - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
-    - media.type.soundcloud
     - node.type.news_item
   module:
     - content_translation
@@ -45,7 +44,6 @@ permissions:
   - 'create news_item content'
   - 'create paragraph library item'
   - 'create remote_video media'
-  - 'create soundcloud media'
   - 'create url aliases'
   - 'delete any news_item content'
   - 'delete media'
@@ -56,7 +54,6 @@ permissions:
   - 'delete own image media'
   - 'delete own news_item content'
   - 'delete own remote_video media'
-  - 'delete own soundcloud media'
   - 'edit any news_item content'
   - 'edit own file media'
   - 'edit own hel_map media'
@@ -64,7 +61,6 @@ permissions:
   - 'edit own image media'
   - 'edit own news_item content'
   - 'edit own remote_video media'
-  - 'edit own soundcloud media'
   - 'edit paragraph library item'
   - 'revert news_item revisions'
   - 'schedule publishing of nodes'
