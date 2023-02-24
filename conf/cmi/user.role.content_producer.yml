@@ -10,7 +10,6 @@ dependencies:
     - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
-    - media.type.soundcloud
     - node.type.announcement
     - node.type.landing_page
     - node.type.news_item
@@ -62,7 +61,6 @@ permissions:
   - 'create page content'
   - 'create paragraph library item'
   - 'create remote_video media'
-  - 'create soundcloud media'
   - 'create terms in keywords'
   - 'create url aliases'
   - 'delete media'
@@ -75,7 +73,6 @@ permissions:
   - 'delete own news_item content'
   - 'delete own page content'
   - 'delete own remote_video media'
-  - 'delete own soundcloud media'
   - 'edit any announcement content'
   - 'edit any file media'
   - 'edit any hel_map media'
@@ -85,7 +82,6 @@ permissions:
   - 'edit any news_item content'
   - 'edit any page content'
   - 'edit any remote_video media'
-  - 'edit any soundcloud media'
   - 'edit own announcement content'
   - 'edit own file media'
   - 'edit own hel_map media'
@@ -95,7 +91,6 @@ permissions:
   - 'edit own news_item content'
   - 'edit own page content'
   - 'edit own remote_video media'
-  - 'edit own soundcloud media'
   - 'edit paragraph library item'
   - 'edit terms in keywords'
   - 'revert announcement revisions'
