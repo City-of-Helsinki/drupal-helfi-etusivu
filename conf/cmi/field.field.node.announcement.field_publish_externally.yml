@@ -1,0 +1,23 @@
+uuid: 82a48d96-00d4-4460-8a6f-6e8b42c32042
+langcode: fi
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_publish_externally
+    - node.type.announcement
+id: node.announcement.field_publish_externally
+field_name: field_publish_externally
+entity_type: node
+bundle: announcement
+label: 'Publish externally'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Käytössä
+  off_label: 'Pois päältä'
+field_type: boolean
