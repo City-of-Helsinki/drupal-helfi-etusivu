@@ -9,7 +9,7 @@ id: node.announcement.field_publish_externally
 field_name: field_publish_externally
 entity_type: node
 bundle: announcement
-label: 'Publish externally'
+label: 'Julkaise ulkoisella sivustolla'
 description: ''
 required: false
 translatable: false
