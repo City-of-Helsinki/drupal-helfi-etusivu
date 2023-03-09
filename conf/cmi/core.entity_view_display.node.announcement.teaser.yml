@@ -13,8 +13,6 @@ dependencies:
   module:
     - text
     - user
-_core:
-  default_config_hash: 1Gnt9nwWV8_9Ez-QIrSSnboslJ8ysGJJfO1C4709D7A
 id: node.announcement.teaser
 targetEntityType: node
 bundle: announcement
@@ -37,7 +35,9 @@ hidden:
   field_announcement_all_pages: true
   field_announcement_content_pages: true
   field_announcement_link: true
+  field_announcement_service_pages: true
   field_announcement_type: true
+  field_announcement_unit_pages: true
   langcode: true
   published_at: true
   search_api_excerpt: true
