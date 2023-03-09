@@ -14,8 +14,6 @@ dependencies:
     - options
     - text
     - user
-_core:
-  default_config_hash: Tv1OKP-RfuNReu330xrBPpVCw1qH-TU1DG4UhvIu_Dg
 id: node.announcement.default
 targetEntityType: node
 bundle: announcement
@@ -55,6 +53,8 @@ content:
 hidden:
   field_announcement_all_pages: true
   field_announcement_content_pages: true
+  field_announcement_service_pages: true
+  field_announcement_unit_pages: true
   langcode: true
   published_at: true
   search_api_excerpt: true

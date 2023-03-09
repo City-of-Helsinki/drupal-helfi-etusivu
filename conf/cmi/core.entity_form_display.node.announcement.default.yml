@@ -10,10 +10,9 @@ dependencies:
     - field.field.node.announcement.field_announcement_type
     - node.type.announcement
   module:
-    - hdbt_admin_editorial
+    - hdbt_admin_tools
     - link
     - path
-    - publication_date
     - scheduler
     - select2
     - text
@@ -65,12 +64,32 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  field_announcement_service_pages:
+    type: select2_entity_reference
+    weight: 14
+    region: content
+    settings:
+      width: 100%
+      autocomplete: true
+      match_operator: CONTAINS
+      match_limit: 20
+    third_party_settings: {  }
   field_announcement_type:
     type: select2
     weight: 10
     region: content
     settings:
       width: 100%
+    third_party_settings: {  }
+  field_announcement_unit_pages:
+    type: select2_entity_reference
+    weight: 13
+    region: content
+    settings:
+      width: 100%
+      autocomplete: true
+      match_operator: CONTAINS
+      match_limit: 20
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -99,6 +118,11 @@ content:
     third_party_settings: {  }
   scheduler_settings:
     weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
