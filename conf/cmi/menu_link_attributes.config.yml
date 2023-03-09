@@ -1,6 +1,8 @@
 _core:
   default_config_hash: kO5fDGTDu1JqYpxKrtzjdzwObU2Ko_3CxABNjqBbYos
 attributes:
+  icon:
+    label: ''
   class:
     label: ''
     description: ''
@@ -11,5 +13,3 @@ attributes:
       _blank: 'New window (_blank)'
       _self: 'Same window (_self)'
     default_value: ''
-  icon:
-    label: ''

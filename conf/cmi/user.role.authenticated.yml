@@ -12,6 +12,7 @@ dependencies:
     - helfi_global_navigation
     - media
     - openapi
+    - paragraphs
     - rest
     - system
     - toolbar
@@ -32,3 +33,4 @@ permissions:
   - 'view global_menu'
   - 'view media'
   - 'view remote entities'
+  - 'view unpublished paragraphs'
