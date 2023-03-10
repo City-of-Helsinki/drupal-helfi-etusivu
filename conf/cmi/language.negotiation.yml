@@ -14,6 +14,7 @@ url:
     uk: uk
     ar: ar
     et: et
+    fa: fa
   domains:
     en: ''
     fi: ''
@@ -24,4 +25,5 @@ url:
     uk: ''
     ar: ''
     et: ''
+    fa: ''
 selected_langcode: fi

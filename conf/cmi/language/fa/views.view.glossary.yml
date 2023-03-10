@@ -1,0 +1,28 @@
+display:
+  default:
+    display_title: پیش‌فرض
+    display_options:
+      fields:
+        title:
+          label: عنوان
+        name:
+          label: نویسنده
+        changed:
+          label: 'آخرین به‌روزرسانی'
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
+      exposed_form:
+        options:
+          submit_button: تایید
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+  attachment_1:
+    display_title: پیوست
+  page_1:
+    display_title: صفحه
