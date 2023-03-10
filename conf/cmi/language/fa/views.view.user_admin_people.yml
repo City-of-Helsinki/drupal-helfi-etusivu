@@ -1,0 +1,71 @@
+label: افراد
+description: 'یافتن و اداره افراد در تعامل با سایت شما.'
+display:
+  default:
+    display_title: پیش‌فرض
+    display_options:
+      title: افراد
+      fields:
+        user_bulk_form:
+          label: 'به‌روزرسانی جمعی'
+        name:
+          label: 'نام کاربری'
+        status:
+          label: وضعیت
+          settings:
+            format_custom_false: 'مسدود شده'
+            format_custom_true: فعال
+        roles_target_id:
+          label: نقش‌ها
+        created:
+          label: 'عضو به مدت'
+        access:
+          label: 'آخرین دسترسی'
+          settings:
+            past_format: '@interval پیش'
+        operations:
+          label: عملیات
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
+      exposed_form:
+        options:
+          submit_button: فیلتر
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+      empty:
+        area_text_custom:
+          content: 'هیچ فردی در دسترس نیست.'
+      filters:
+        combine:
+          expose:
+            label: 'نام یا نشانی پست الکتونیکی شامل'
+        status:
+          group_info:
+            label: وضعیت
+            group_items:
+              1:
+                title: فعال
+              2:
+                title: 'مسدود شده'
+        roles_target_id:
+          expose:
+            label: نقش
+        permission:
+          expose:
+            label: مجوز
+      use_more_text: بیشتر
+  page_1:
+    display_title: صفحه
+    display_options:
+      menu:
+        title: فهرست
+        description: 'یافتن و اداره افراد در تعامل با سایت شما.'
+      tab_options:
+        title: افراد
+        description: 'مدیریت حساب‌های کاربری، نقش‌ها و مجوزها.'

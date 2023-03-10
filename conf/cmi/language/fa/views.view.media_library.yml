@@ -1,0 +1,83 @@
+display:
+  default:
+    display_title: پیش‌فرض
+    display_options:
+      title: رسانه
+      fields:
+        media_bulk_form:
+          action_title: عملکرد
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
+      exposed_form:
+        options:
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+      filters:
+        status:
+          group_info:
+            label: 'منتشر شده'
+            group_items:
+              1:
+                title: 'منتشر شده'
+        name:
+          expose:
+            label: نام
+        langcode:
+          expose:
+            label: زبان
+  page:
+    display_title: صفحه
+    display_options:
+      fields:
+        media_bulk_form:
+          action_title: عملکرد
+        edit_media:
+          text: ویرایش
+        delete_media:
+          text: حذف
+  widget:
+    display_title: ساختار
+    display_options:
+      arguments:
+        bundle:
+          exception:
+            title: همه
+      filters:
+        name:
+          expose:
+            label: نام
+      header:
+        display_link_grid:
+          label: شبکه
+        display_link_table:
+          label: جدول
+  widget_table:
+    display_options:
+      fields:
+        thumbnail__target_id:
+          label: 'تصویر بندانگشتی'
+        name:
+          label: نام
+        uid:
+          label: نویسنده
+        changed:
+          label: به‌روز
+      arguments:
+        bundle:
+          exception:
+            title: همه
+      filters:
+        name:
+          expose:
+            label: نام
+      header:
+        display_link_grid:
+          label: شبکه
+        display_link_table:
+          label: جدول

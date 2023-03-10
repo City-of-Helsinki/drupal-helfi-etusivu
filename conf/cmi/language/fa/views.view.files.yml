@@ -1,0 +1,73 @@
+label: فایل‌ها‌
+display:
+  default:
+    display_title: پیش‌فرض
+    display_options:
+      title: فایل‌ها‌
+      fields:
+        filename:
+          label: نام
+        filemime:
+          label: 'نوع فایل'
+        filesize:
+          label: اندازه
+        status:
+          label: وضعیت
+          settings:
+            format_custom_false: موقت
+            format_custom_true: دائمی
+        created:
+          label: 'تاریخ بارگذاری'
+        changed:
+          label: 'تاریخ تغییر'
+        count:
+          label: 'استفاده شده در'
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
+      exposed_form:
+        options:
+          submit_button: فیلتر
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+      empty:
+        area_text_custom:
+          content: 'هیچ فایلی در دسترس نیست.'
+      filters:
+        filename:
+          expose:
+            label: 'نام فایل'
+        filemime:
+          expose:
+            label: 'نوع فایل'
+        status:
+          expose:
+            label: وضعیت
+  page_1:
+    display_options:
+      menu:
+        title: فایل‌ها‌
+  page_2:
+    display_options:
+      fields:
+        entity_label:
+          label: عنصر
+        type:
+          label: 'نوع عنصر'
+        count:
+          label: 'تعداد استفاده'
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
+      arguments:
+        fid:
+          exception:
+            title: همه
