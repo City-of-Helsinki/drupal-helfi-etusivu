@@ -13,6 +13,7 @@ url:
     ru: ru
     uk: uk
     ar: ar
+    et: et
   domains:
     en: ''
     fi: ''
@@ -22,4 +23,5 @@ url:
     ru: ''
     uk: ''
     ar: ''
+    et: ''
 selected_langcode: fi
