@@ -6,6 +6,9 @@ dependencies:
     - entity_reference_revisions
     - node
     - paragraphs
+  enforced:
+    module:
+      - helfi_base_content
 _core:
   default_config_hash: Ly3LrapAcajp0vmGO2YPqnyMPsrMHZbjfdNooH-BneY
 id: node.field_lower_content
