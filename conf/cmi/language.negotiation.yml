@@ -10,10 +10,12 @@ url:
     en: en
     de: de
     fr: fr
+    ru: ru
   domains:
     en: ''
     fi: ''
     sv: ''
     de: ''
     fr: ''
+    ru: ''
 selected_langcode: fi
