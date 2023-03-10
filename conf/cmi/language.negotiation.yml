@@ -11,6 +11,7 @@ url:
     de: de
     fr: fr
     ru: ru
+    uk: uk
   domains:
     en: ''
     fi: ''
@@ -18,4 +19,5 @@ url:
     de: ''
     fr: ''
     ru: ''
+    uk: ''
 selected_langcode: fi
