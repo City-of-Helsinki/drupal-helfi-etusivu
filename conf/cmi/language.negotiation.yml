@@ -8,8 +8,10 @@ url:
     fi: fi
     sv: sv
     en: en
+    de: de
   domains:
     en: ''
     fi: ''
     sv: ''
+    de: ''
 selected_langcode: fi
