@@ -15,7 +15,6 @@ dependencies:
     - paragraphs.paragraphs_type.contact_card
   module:
     - entity_reference_revisions
-    - helfi_content
     - image
     - telephone
 _core:
