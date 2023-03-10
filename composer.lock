@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e37def52fdda6dc145486fcabd522af",
+    "content-hash": "b3fd816ea293f1ed428cc7040a8a5909",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4707,16 +4707,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "3.0.5",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "7c5c6f14bce3cf54184fb738dbf88e7a6557e5bc"
+                "reference": "1ec0114087d66dd3fb24b41f13e2afb0d30541be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/7c5c6f14bce3cf54184fb738dbf88e7a6557e5bc",
-                "reference": "7c5c6f14bce3cf54184fb738dbf88e7a6557e5bc",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/1ec0114087d66dd3fb24b41f13e2afb0d30541be",
+                "reference": "1ec0114087d66dd3fb24b41f13e2afb0d30541be",
                 "shasum": ""
             },
             "require": {
@@ -4821,10 +4821,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.0.5",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.x",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2023-03-08T13:20:47+00:00"
+            "time": "2023-03-10T09:26:31+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -19621,6 +19621,7 @@
         "drupal/elasticsearch_connector": 15,
         "drupal/external_entities": 15,
         "drupal/helfi_drupal_tools": 20,
+        "drupal/helfi_platform_config": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5,
         "drupal/ultimate_cron": 15,
