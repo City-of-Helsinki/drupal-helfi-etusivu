@@ -9,9 +9,11 @@ url:
     sv: sv
     en: en
     de: de
+    fr: fr
   domains:
     en: ''
     fi: ''
     sv: ''
     de: ''
+    fr: ''
 selected_langcode: fi
