@@ -16,6 +16,7 @@ url:
     et: et
     fa: fa
     es: es
+    so: so
   domains:
     en: ''
     fi: ''
@@ -28,4 +29,5 @@ url:
     et: ''
     fa: ''
     es: ''
+    so: ''
 selected_langcode: fi
