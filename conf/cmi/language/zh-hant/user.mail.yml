@@ -1,0 +1,23 @@
+cancel_confirm:
+  subject: '使用者 [user:display-name] 在 [site:name] 網站上的取消帳號請求'
+password_reset:
+  subject: '取代使用者 [user:display-name] 在 [site:name] 網站上的登入訊息'
+register_admin_created:
+  subject: '[site:name] 的站台管理者已經為您建立一組帳號'
+  body: "[user:display-name]：\r\n\r\n管理者在 [site:name] 上已經為您建立一組帳號，你可以點擊下列連結，或是複製到瀏覽器上進行登入。\r\n\r\n[user:one-time-login-url]\r\n\r\n這個連結只能使用一次，並且會引導您前往設定您的密碼。\r\n在設定密碼後，您在未來將可以使用下列資訊從 [site:login-url] 登入：\r\n帳號：[user:name]\r\n密碼：你設定的密碼\r\n\r\n--  [site:name] 團隊"
+register_no_approval_required:
+  subject: '[user:display-name] 在 [site:name] 上的帳號詳情'
+  body: "[user:display-name]：\r\n\r\n感謝您註冊 [site:name]，你可以點擊下列連結，或是複製到瀏覽器上進行登入。\r\n\r\n[user:one-time-login-url]\r\n\r\n這個連結只能使用一次，並且會引導您前往設定您的密碼。\r\n在設定密碼後，您在未來將可以使用下列資訊從 [site:login-url] 登入：\r\n帳號：[user:name]\r\n密碼：你設定的密碼\r\n\r\n--  [site:name] 團隊"
+register_pending_approval:
+  subject: '[user:display-name] 在 [site:name] 上的帳號詳情 (等待管理者審核中)'
+  body: "[user:display-name]：\r\n\r\n感謝您註冊 [site:name]，帳號正在審核中，一旦申請通過後，您將會收到另一封信件，請再依照信件說明，進行登入並設定密碼即可開始使用。\r\n\r\n--  [site:name] 團隊"
+register_pending_approval_admin:
+  subject: '[user:display-name] 在 [site:name] 上的帳號詳情 (等待管理者審核中)'
+  body: "[使用者:display-name] 申請了帳號。\r\n\r\n[使用者:edit-url]"
+status_activated:
+  subject: '[user:display-name] 在 [site:name] 上的帳號詳情 (審核通過)'
+status_blocked:
+  subject: '[user:display-name] 在 [site:name] 上的帳號詳情 (已封鎖)'
+status_canceled:
+  subject: '[user:display-name] 在 [site:name] 上的帳號詳情 (已撤消)'
+  body: "[user:display-name]：\r\n\r\n您在 [site:name] 的帳號已經被取消\r\n\r\n--  [site:name] 團隊"

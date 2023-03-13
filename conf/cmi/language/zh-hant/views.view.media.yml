@@ -1,0 +1,71 @@
+label: 媒體
+display:
+  default:
+    display_title: 預設
+    display_options:
+      title: 媒體
+      fields:
+        media_bulk_form:
+          action_title: 動作
+        thumbnail__target_id:
+          label: 縮圖
+          separator: ', '
+        name:
+          separator: ', '
+        bundle:
+          label: 類型
+          separator: ', '
+        uid:
+          label: 作者
+          separator: ', '
+        status:
+          label: 狀態
+          settings:
+            format_custom_false: 尚未發佈
+            format_custom_true: 已發表
+          separator: ', '
+        changed:
+          label: 已更新
+          separator: ', '
+        operations:
+          label: 操作
+      pager:
+        options:
+          tags:
+            next: '下一頁 ›'
+            previous: '‹ 上一頁'
+            first: '« 最前'
+            last: '最後 »'
+          expose:
+            items_per_page_label: 每頁的項目數
+            items_per_page_options_all_label: '- 全部 -'
+            offset_label: 位移
+      exposed_form:
+        options:
+          submit_button: 篩選
+          reset_button_label: 重設
+          exposed_sorts_label: 排序依據
+          sort_asc_label: 遞增
+          sort_desc_label: 遞減
+      filters:
+        bundle:
+          expose:
+            label: 類型
+        status:
+          expose:
+            label: 'True'
+          group_info:
+            label: 發佈狀態
+            group_items:
+              1:
+                title: 已發表
+              2:
+                title: 尚未發佈
+        langcode:
+          expose:
+            label: 語言
+  media_page_list:
+    display_title: 媒體
+    display_options:
+      menu:
+        title: 媒體
