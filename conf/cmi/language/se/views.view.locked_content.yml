@@ -1,0 +1,25 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      fields:
+        title:
+          label: Bajilčala
+        type:
+          label: Šládja
+      filters:
+        status:
+          group_info:
+            group_items:
+              1:
+                title: Almmuhuvvon
+        type:
+          expose:
+            label: Šládja
+        title:
+          expose:
+            label: Bajilčala
+  page_1:
+    display_title: Siidu
