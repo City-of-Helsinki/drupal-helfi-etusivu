@@ -1,0 +1,42 @@
+label: Sisdoallu
+display:
+  default:
+    display_options:
+      title: Sisdoallu
+      fields:
+        title:
+          label: Bajilčala
+        type:
+          label: Šládja
+        name:
+          label: Čálli
+        status:
+          settings:
+            format_custom_true: Almmuhuvvon
+        changed:
+          label: Ođastuvvon
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      filters:
+        title:
+          expose:
+            label: Bajilčala
+        type:
+          expose:
+            label: Šládja
+        status:
+          group_info:
+            group_items:
+              1:
+                title: Almmuhuvvon
+        langcode:
+          expose:
+            label: Giella
+  page_1:
+    display_title: Siidu
+    display_options:
+      menu:
+        title: Sisdoallu
+      tab_options:
+        title: Sisdoallu

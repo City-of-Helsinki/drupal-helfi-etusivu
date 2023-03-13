@@ -1,0 +1,28 @@
+display:
+  default:
+    display_options:
+      fields:
+        bundle:
+          label: Šládja
+        uid:
+          label: Čálli
+        status:
+          settings:
+            format_custom_true: Almmuhuvvon
+        changed:
+          label: Ođastuvvon
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      filters:
+        bundle:
+          expose:
+            label: Šládja
+        status:
+          group_info:
+            group_items:
+              1:
+                title: Almmuhuvvon
+        langcode:
+          expose:
+            label: Giella
