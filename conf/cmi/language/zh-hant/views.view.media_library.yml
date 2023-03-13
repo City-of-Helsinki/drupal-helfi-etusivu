@@ -1,0 +1,94 @@
+display:
+  default:
+    display_title: 預設
+    display_options:
+      title: 媒體
+      fields:
+        media_bulk_form:
+          action_title: 動作
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page_label: 每頁的項目數
+            items_per_page_options_all_label: '- 全部 -'
+            offset_label: 位移
+      exposed_form:
+        options:
+          reset_button_label: 重設
+          exposed_sorts_label: 排序依據
+          sort_asc_label: 遞增
+          sort_desc_label: 遞減
+      sorts:
+        created:
+          expose:
+            label: 由新到舊
+      filters:
+        status:
+          expose:
+            label: 張貼狀態
+          group_info:
+            label: 已發表
+            group_items:
+              1:
+                title: 已發表
+        name:
+          expose:
+            label: 名稱
+        langcode:
+          expose:
+            label: 語言
+  page:
+    display_title: 頁面
+    display_options:
+      fields:
+        media_bulk_form:
+          action_title: 動作
+        name:
+          separator: ', '
+        edit_media:
+          text: 編輯
+        delete_media:
+          text: 刪除
+  widget:
+    display_title: Widget
+    display_options:
+      arguments:
+        bundle:
+          exception:
+            title: 所有
+      filters:
+        name:
+          expose:
+            label: 名稱
+      header:
+        display_link_grid:
+          label: 格子
+        display_link_table:
+          label: 表格
+  widget_table:
+    display_options:
+      fields:
+        thumbnail__target_id:
+          label: 縮圖
+        name:
+          label: 名稱
+        uid:
+          label: 作者
+        changed:
+          label: 已更新
+      arguments:
+        bundle:
+          exception:
+            title: 所有
+      filters:
+        name:
+          expose:
+            label: 名稱
+      header:
+        display_link_grid:
+          label: 格子
+        display_link_table:
+          label: 表格
