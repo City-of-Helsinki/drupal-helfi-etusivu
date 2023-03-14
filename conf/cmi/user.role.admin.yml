@@ -159,6 +159,7 @@ permissions:
   - 'edit terms in news_group'
   - 'edit terms in news_neighbourhoods'
   - 'edit terms in news_tags'
+  - 'mark as hidden in editoria11y'
   - 'restful get helfi_debug_data'
   - 'revert all revisions'
   - 'revert announcement revisions'
