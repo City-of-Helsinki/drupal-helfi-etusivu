@@ -13,7 +13,6 @@ dependencies:
   module:
     - entity_reference_revisions
     - options
-    - text
 _core:
   default_config_hash: HWdmIhepMk1UHQ1iK7mD_eMSQVDvXDUJJoB04cne0kg
 id: paragraph.accordion.default
@@ -67,4 +66,7 @@ content:
     weight: 1
     region: content
 hidden:
+  field_accordion_description: true
+  field_accordion_title: true
+  field_accordion_title_level: true
   search_api_excerpt: true

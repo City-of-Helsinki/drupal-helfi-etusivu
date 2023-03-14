@@ -62,6 +62,7 @@ permissions:
   - 'edit own news_item content'
   - 'edit own remote_video media'
   - 'edit paragraph library item'
+  - 'mark as hidden in editoria11y'
   - 'revert news_item revisions'
   - 'schedule publishing of nodes'
   - 'set news_item published on date'
