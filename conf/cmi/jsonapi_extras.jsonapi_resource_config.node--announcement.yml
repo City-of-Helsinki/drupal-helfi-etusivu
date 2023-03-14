@@ -195,12 +195,6 @@ resourceFields:
     publicName: body
     enhancer:
       id: ''
-  field_publish_externally:
-    disabled: false
-    fieldName: field_publish_externally
-    publicName: field_publish_externally
-    enhancer:
-      id: ''
   field_announcement_all_pages:
     disabled: true
     fieldName: field_announcement_all_pages
@@ -223,5 +217,11 @@ resourceFields:
     disabled: false
     fieldName: field_announcement_type
     publicName: field_announcement_type
+    enhancer:
+      id: ''
+  field_publish_externally:
+    disabled: false
+    fieldName: field_publish_externally
+    publicName: field_publish_externally
     enhancer:
       id: ''
