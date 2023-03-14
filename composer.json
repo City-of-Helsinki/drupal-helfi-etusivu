@@ -28,7 +28,6 @@
         "drupal/json_field": "^1.0@RC",
         "drupal/jsonapi_extras": "^3.20",
         "drupal/jsonapi_menu_items": "^1.2",
-        "drupal/linkit": "6.0.0-beta3",
         "drupal/migrate_plus": "^6.0",
         "drupal/openapi_jsonapi": "^3.0",
         "drupal/openapi_ui_redoc": "^1.0@RC",
