@@ -1,5 +1,5 @@
 uuid: 82a48d96-00d4-4460-8a6f-6e8b42c32042
-langcode: fi
+langcode: en
 status: true
 dependencies:
   config:
@@ -9,7 +9,7 @@ id: node.announcement.field_publish_externally
 field_name: field_publish_externally
 entity_type: node
 bundle: announcement
-label: 'Julkaise ulkoisella sivustolla'
+label: 'Publish on external site'
 description: ''
 required: false
 translatable: false
@@ -18,6 +18,6 @@ default_value:
     value: 0
 default_value_callback: ''
 settings:
-  on_label: Käytössä
-  off_label: 'Pois päältä'
+  on_label: On
+  off_label: Off
 field_type: boolean
