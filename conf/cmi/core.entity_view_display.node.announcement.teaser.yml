@@ -40,8 +40,8 @@ hidden:
   field_announcement_link: true
   field_announcement_service_pages: true
   field_announcement_type: true
-  field_publish_externally: true
   field_announcement_unit_pages: true
+  field_publish_externally: true
   langcode: true
   published_at: true
   search_api_excerpt: true

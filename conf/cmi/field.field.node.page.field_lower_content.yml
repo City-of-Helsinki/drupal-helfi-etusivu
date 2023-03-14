@@ -48,7 +48,6 @@ settings:
       content_liftup: content_liftup
       banner: banner
       event_list: event_list
-      news_list: news_list
       from_library: from_library
       chart: chart
       phasing: phasing
@@ -90,9 +89,6 @@ settings:
         weight: 0
         enabled: true
       map:
-        weight: 0
-        enabled: true
-      news_list:
         weight: 0
         enabled: true
       phasing:
