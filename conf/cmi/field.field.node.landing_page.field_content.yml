@@ -50,7 +50,6 @@ settings:
       chart: chart
       remote_video: remote_video
       map: map
-      news_list: news_list
       event_list: event_list
       phasing: phasing
       popular_services: popular_services
@@ -97,9 +96,6 @@ settings:
         weight: 0
         enabled: true
       map:
-        weight: 0
-        enabled: true
-      news_list:
         weight: 0
         enabled: true
       phasing:
