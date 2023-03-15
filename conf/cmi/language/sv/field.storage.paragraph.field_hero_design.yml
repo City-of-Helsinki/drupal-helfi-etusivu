@@ -8,3 +8,5 @@ settings:
       label: 'Bild justerad till vänster'
     -
       label: 'Bild justerad ner'
+    -
+      label: Diagonal

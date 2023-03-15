@@ -1,7 +1,10 @@
 uuid: 36318f40-0400-47ff-9dae-dc5ddcb825d2
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  enforced:
+    config:
+      - paragraphs.paragraphs_type.list_of_links
 _core:
   default_config_hash: JJbV-c48oaLAnXbQQmvKk3j5QaOWCX84DFicAqITi68
 id: list_of_links_item
