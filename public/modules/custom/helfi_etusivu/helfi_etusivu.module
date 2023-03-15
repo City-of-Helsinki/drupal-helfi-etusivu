@@ -92,12 +92,6 @@ function helfi_etusivu_tokens(
         }
 
         $image_path = $image_entity->entity->getFileUri();
-        $image_uri = $image_style->buildUri($image_path);
-
-        // Create derivative if necessary.
-        if (!file_exists($image_uri)) {
-          $image_style->createDerivative($image_path, $image_uri);
-        }
         $replacements[$original] = $image_style->buildUrl($image_path);
       }
     }

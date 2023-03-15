@@ -39,12 +39,6 @@ class RssEnclosureFormatter extends FormatterBase implements ContainerFactoryPlu
         }
 
         $image_path = $image_entity->entity->getFileUri();
-        $image_uri = $image_style->buildUri($image_path);
-
-        // Create derivative if necessary.
-        if (!file_exists($image_uri)) {
-          $image_style->createDerivative($image_path, $image_uri);
-        }
 
         $elements[$delta] = [
           '#markup' => $image_style->buildUrl($image_path),

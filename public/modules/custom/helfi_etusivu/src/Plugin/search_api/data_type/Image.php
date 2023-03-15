@@ -27,11 +27,6 @@ class Image extends StringDataType {
 
     $imageStyle = ImageStyle::load('3_2_l');
     $imagePath = $file->getFileUri();
-    $imageUri = $imageStyle->buildUri($imagePath);
-
-    if (!file_exists($imageUri)) {
-      $imageStyle->createDerivative($imagePath, $imageUri);
-    }
 
     return $imageStyle->buildUrl($imagePath);
   }
