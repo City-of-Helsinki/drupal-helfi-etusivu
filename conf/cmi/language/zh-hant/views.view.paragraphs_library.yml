@@ -1,0 +1,50 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          submit_button: 篩選
+          reset_button_label: 重設
+          exposed_sorts_label: 排序依據
+          sort_asc_label: 遞增
+          sort_desc_label: 遞減
+      pager:
+        options:
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page_label: 每頁的項目數
+            items_per_page_options_all_label: '- 全部 -'
+            offset_label: 位移
+      fields:
+        label:
+          label: 標籤
+          separator: ', '
+        type:
+          label: 類型
+          separator: ', '
+        paragraphs__target_id:
+          separator: ', '
+        langcode:
+          label: 語言
+          separator: ', '
+        id:
+          label: ID
+          separator: ', '
+        changed:
+          label: 已變更
+          separator: ', '
+        operations:
+          label: 操作
+      filters:
+        label:
+          expose:
+            label: 標籤
+          group_info:
+            label: 標籤
+        type:
+          expose:
+            label: 類型
+  page_1:
+    display_title: 頁面

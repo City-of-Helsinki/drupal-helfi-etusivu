@@ -1,0 +1,15 @@
+display:
+  default:
+    display_options:
+      fields:
+        title:
+          label: Bajilčala
+        name:
+          label: Čálli
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+  attachment_1:
+    display_title: Mielddus
+  page_1:
+    display_title: Siidu

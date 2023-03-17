@@ -8,8 +8,30 @@ url:
     fi: fi
     sv: sv
     en: en
+    de: de
+    fr: fr
+    ru: ru
+    uk: uk
+    ar: ar
+    et: et
+    fa: fa
+    es: es
+    so: so
+    se: se
+    zh-hant: zh-hant
   domains:
     en: ''
     fi: ''
     sv: ''
+    de: ''
+    fr: ''
+    ru: ''
+    uk: ''
+    ar: ''
+    et: ''
+    fa: ''
+    es: ''
+    so: ''
+    se: ''
+    zh-hant: ''
 selected_langcode: fi

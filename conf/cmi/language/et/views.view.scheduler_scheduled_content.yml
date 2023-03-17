@@ -1,0 +1,79 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Filtreeri
+          reset_button_label: Tühista
+          exposed_sorts_label: 'Sorteerimise alus'
+          sort_asc_label: Kasvav
+          sort_desc_label: Kahanev
+      pager:
+        options:
+          tags:
+            previous: '‹ eelmine'
+            next: 'järgmine ›'
+            first: '« esimene'
+            last: 'viimane »'
+      fields:
+        node_bulk_form:
+          action_title: Tegevus
+        title:
+          label: Pealkiri
+          separator: ', '
+        type:
+          separator: ', '
+        name:
+          label: Autor
+          separator: ', '
+        status:
+          label: Olek
+          settings:
+            format_custom_true: Avaldatud
+            format_custom_false: Avaldamata
+          separator: ', '
+        publish_on:
+          label: 'Avaldamise aeg'
+          separator: ', '
+        unpublish_on:
+          label: 'Mitteavaldatuks märkimise aeg'
+          separator: ', '
+        operations:
+          label: Toimingud
+      filters:
+        title:
+          expose:
+            label: Pealkiri
+        type:
+          expose:
+            label: 'Sisu tüüp'
+        status:
+          expose:
+            label: Olek
+          group_info:
+            label: 'Avaldamise staatus'
+            group_items:
+              1:
+                title: Avaldatud
+              2:
+                title: Avaldamata
+        langcode:
+          expose:
+            label: Keel
+    display_title: Peamine
+  overview:
+    display_options:
+      menu:
+        title: Ajatatud
+      tab_options:
+        title: Sisu
+  user_page:
+    display_options:
+      menu:
+        title: Ajatatud
+      tab_options:
+        title: Sisu
+      arguments:
+        uid:
+          exception:
+            title: Kõik
