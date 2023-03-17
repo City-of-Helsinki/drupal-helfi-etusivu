@@ -1,0 +1,9 @@
+social_media:
+  facebook_share:
+    text: Facebook
+  pinterest:
+    text: Pinterest
+  email:
+    text: Email
+  print:
+    text: Печать

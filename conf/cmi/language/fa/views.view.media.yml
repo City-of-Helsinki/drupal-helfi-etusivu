@@ -1,0 +1,59 @@
+label: رسانه
+display:
+  default:
+    display_title: پیش‌فرض
+    display_options:
+      title: رسانه
+      fields:
+        media_bulk_form:
+          action_title: عملکرد
+        thumbnail__target_id:
+          label: 'تصویر بندانگشتی'
+        bundle:
+          label: نوع
+        uid:
+          label: نویسنده
+        status:
+          label: وضعیت
+          settings:
+            format_custom_false: 'منتشر نشده'
+            format_custom_true: 'منتشر شده'
+        changed:
+          label: به‌روز
+        operations:
+          label: عملیات
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
+      exposed_form:
+        options:
+          submit_button: فیلتر
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+      filters:
+        bundle:
+          expose:
+            label: نوع
+        status:
+          expose:
+            label: صحیح
+          group_info:
+            label: 'وضعیت انتشار'
+            group_items:
+              1:
+                title: 'منتشر شده'
+              2:
+                title: 'منتشر نشده'
+        langcode:
+          expose:
+            label: زبان
+  media_page_list:
+    display_title: رسانه
+    display_options:
+      menu:
+        title: رسانه

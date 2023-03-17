@@ -1,0 +1,51 @@
+display:
+  default:
+    display_title: Peamine
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Filtreeri
+          reset_button_label: Tühista
+          exposed_sorts_label: 'Sorteerimise alus'
+          sort_asc_label: Kasvav
+          sort_desc_label: Kahanev
+      pager:
+        options:
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page_label: 'Kirjeid lehel'
+            items_per_page_options_all_label: '- Kõik -'
+            offset_label: Nihe
+      fields:
+        label:
+          label: Nimetus
+          separator: ', '
+        type:
+          label: Liik
+          separator: ', '
+        paragraphs__target_id:
+          separator: ', '
+        langcode:
+          label: Keel
+          separator: ', '
+        id:
+          label: ID
+          separator: ', '
+        changed:
+          label: Muudetud
+          separator: ', '
+        operations:
+          label: Toimingud
+      filters:
+        label:
+          expose:
+            label: Nimetus
+          group_info:
+            label: Nimetus
+        type:
+          expose:
+            label: Liik
+  page_1:
+    display_title: Lehekülg

@@ -1,0 +1,12 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      arguments:
+        tid:
+          exception:
+            title: Buot
+  page_1:
+    display_title: Siidu
