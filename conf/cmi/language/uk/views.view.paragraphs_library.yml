@@ -1,0 +1,54 @@
+display:
+  default:
+    display_title: Головне
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Фільтр
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
+      pager:
+        options:
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page_label: 'Елементів на сторінку'
+            items_per_page_options_all_label: '- Усе -'
+            offset_label: Зміщення
+      fields:
+        label:
+          label: Мітка
+          separator: ', '
+        type:
+          label: Тип
+          separator: ', '
+        paragraphs__target_id:
+          label: Абзаци
+          separator: ', '
+        langcode:
+          label: Мова
+          separator: ', '
+        id:
+          label: ID
+          separator: ', '
+        count:
+          label: Використано
+        changed:
+          label: Змінено
+          separator: ', '
+        operations:
+          label: Операції
+      filters:
+        label:
+          expose:
+            label: Мітка
+          group_info:
+            label: Мітка
+        type:
+          expose:
+            label: Тип
+  page_1:
+    display_title: Сторінка

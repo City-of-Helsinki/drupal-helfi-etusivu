@@ -1,0 +1,83 @@
+label: 'Contenu(s) planifié(s)'
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Filtrer
+          reset_button_label: Réinitialiser
+          exposed_sorts_label: 'Trier par'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        options:
+          tags:
+            previous: "‹\_précédent"
+            next: "suivant\_›"
+            first: "«\_premier"
+            last: "dernier\_»"
+      fields:
+        node_bulk_form:
+          action_title: Action
+        title:
+          label: Titre
+          separator: ', '
+        type:
+          label: 'Type de contenu'
+          separator: ', '
+        name:
+          label: Auteur
+          separator: ', '
+        status:
+          label: État
+          settings:
+            format_custom_true: Publié
+            format_custom_false: 'Non publié'
+          separator: ', '
+        publish_on:
+          label: 'Publier le'
+          separator: ', '
+        unpublish_on:
+          label: 'Dépublier le'
+          separator: ', '
+        operations:
+          label: Actions
+      filters:
+        title:
+          expose:
+            label: Titre
+        type:
+          expose:
+            label: 'Type de contenu'
+        status:
+          expose:
+            label: État
+          group_info:
+            label: 'Statut de publication'
+            group_items:
+              1:
+                title: Publié
+              2:
+                title: 'Non publié'
+        langcode:
+          expose:
+            label: Langue
+      title: 'Contenu(s) planifié(s)'
+    display_title: Maître
+  overview:
+    display_options:
+      menu:
+        title: Planifié
+      tab_options:
+        title: Contenu
+    display_title: 'Vue d''ensemble des contenus'
+  user_page:
+    display_options:
+      menu:
+        title: Planifié
+      tab_options:
+        title: Contenu
+      arguments:
+        uid:
+          exception:
+            title: Tout

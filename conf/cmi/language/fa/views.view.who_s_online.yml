@@ -1,0 +1,21 @@
+display:
+  default:
+    display_title: پیش‌فرض
+    display_options:
+      title: 'کاربران آنلاین'
+      exposed_form:
+        options:
+          submit_button: تایید
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+      filters:
+        access:
+          expose:
+            label: 'آخرین دسترسی'
+            description: 'یک کاربر برای مدت تعیین شده پس از آخرین مشاهده‌ی یک صفحه، آنلاین محسوب می‌شود.'
+  who_s_online_block:
+    display_title: 'کاربران آنلاین'
+    display_options:
+      block_description: 'کاربران آنلاین'

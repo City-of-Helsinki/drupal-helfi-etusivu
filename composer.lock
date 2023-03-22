@@ -2601,16 +2601,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.5.4",
+            "version": "9.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "d48ad3173a39d6792e617f884fefe86c4bf41630"
+                "reference": "eae5e76a8b403cbd42b3465f567313b52d78b0dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/d48ad3173a39d6792e617f884fefe86c4bf41630",
-                "reference": "d48ad3173a39d6792e617f884fefe86c4bf41630",
+                "url": "https://api.github.com/repos/drupal/core/zipball/eae5e76a8b403cbd42b3465f567313b52d78b0dc",
+                "reference": "eae5e76a8b403cbd42b3465f567313b52d78b0dc",
                 "shasum": ""
             },
             "require": {
@@ -2762,9 +2762,9 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.5.4"
+                "source": "https://github.com/drupal/core/tree/9.5.5"
             },
-            "time": "2023-03-01T14:08:11+00:00"
+            "time": "2023-03-15T14:30:25+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
@@ -4456,16 +4456,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "5.0.2",
+            "version": "5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "3e90d1f23849ade878c87ed7d908d6f06ad3f75f"
+                "reference": "426d4a1629ae1ffb71c8821827a56c7a8ac5cd21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/3e90d1f23849ade878c87ed7d908d6f06ad3f75f",
-                "reference": "3e90d1f23849ade878c87ed7d908d6f06ad3f75f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/426d4a1629ae1ffb71c8821827a56c7a8ac5cd21",
+                "reference": "426d4a1629ae1ffb71c8821827a56c7a8ac5cd21",
                 "shasum": ""
             },
             "require": {
@@ -4483,10 +4483,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.0.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.0.5",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2023-03-03T11:24:16+00:00"
+            "time": "2023-03-17T09:31:02+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4707,16 +4707,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "3.0.7",
+            "version": "3.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "fe35aa91169ccaf8a8e2879028df6b65d875163f"
+                "reference": "a42c18ad40c85d82dc52180727cae02cc5214923"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/fe35aa91169ccaf8a8e2879028df6b65d875163f",
-                "reference": "fe35aa91169ccaf8a8e2879028df6b65d875163f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/a42c18ad40c85d82dc52180727cae02cc5214923",
+                "reference": "a42c18ad40c85d82dc52180727cae02cc5214923",
                 "shasum": ""
             },
             "require": {
@@ -4821,23 +4821,23 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.0.7",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.0.11",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2023-03-15T09:17:11+00:00"
+            "time": "2023-03-17T09:55:17+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
-            "version": "3.0.3",
+            "version": "3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy.git",
-                "reference": "625d1baf0df705d96bd8b59fb9e6a6166dbcee77"
+                "reference": "f5125c5569c04781730d1420f0d1886ba1096c1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-proxy/zipball/625d1baf0df705d96bd8b59fb9e6a6166dbcee77",
-                "reference": "625d1baf0df705d96bd8b59fb9e6a6166dbcee77",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-proxy/zipball/f5125c5569c04781730d1420f0d1886ba1096c1f",
+                "reference": "f5125c5569c04781730d1420f0d1886ba1096c1f",
                 "shasum": ""
             },
             "require": {
@@ -4863,10 +4863,10 @@
             ],
             "description": "Provides various fixes so we can serve multiple Drupal instances in one domain.",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/tree/3.0.3",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/tree/3.0.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/issues"
             },
-            "time": "2023-02-28T07:10:49+00:00"
+            "time": "2023-03-14T06:27:48+00:00"
         },
         {
             "name": "drupal/helfi_tpr",
