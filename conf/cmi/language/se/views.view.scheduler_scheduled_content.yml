@@ -1,0 +1,48 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      pager:
+        options:
+          tags:
+            previous: '‹ ovddit'
+            next: 'boahtte ›'
+            first: '« vuosttaš'
+            last: 'maŋemuš »'
+      fields:
+        title:
+          label: Bajilčala
+        name:
+          label: Čálli
+        status:
+          settings:
+            format_custom_true: Almmuhuvvon
+      filters:
+        title:
+          expose:
+            label: Bajilčala
+        type:
+          expose:
+            label: Šládja
+        status:
+          group_info:
+            group_items:
+              1:
+                title: Almmuhuvvon
+        langcode:
+          expose:
+            label: Giella
+  overview:
+    display_options:
+      tab_options:
+        title: Sisdoallu
+  user_page:
+    display_options:
+      tab_options:
+        title: Sisdoallu
+      arguments:
+        uid:
+          exception:
+            title: Buot

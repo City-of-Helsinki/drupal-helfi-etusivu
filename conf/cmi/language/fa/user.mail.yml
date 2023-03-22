@@ -1,0 +1,2 @@
+register_admin_created:
+  subject: 'یکی از مدیران یک حساب کاربری در [site:name] برای شما ایجاد نموده است.'

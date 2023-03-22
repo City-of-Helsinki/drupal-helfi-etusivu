@@ -1,0 +1,9 @@
+content:
+  field_content:
+    settings:
+      title: Seitenabschnitt
+      title_plural: Seitenabschnitte
+  field_hero:
+    settings:
+      title: Seitenabschnitt
+      title_plural: Seitenabschnitte
