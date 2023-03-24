@@ -18,7 +18,6 @@ url:
     es: es
     so: so
     se: se
-    zh-hant: zh-hant
   domains:
     en: ''
     fi: ''
@@ -33,5 +32,4 @@ url:
     es: ''
     so: ''
     se: ''
-    zh-hant: ''
 selected_langcode: fi
