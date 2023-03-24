@@ -1,0 +1,9 @@
+content:
+  field_columns_left_column:
+    settings:
+      title: 段落
+      title_plural: 段落
+  field_columns_right_column:
+    settings:
+      title: 段落
+      title_plural: 段落
