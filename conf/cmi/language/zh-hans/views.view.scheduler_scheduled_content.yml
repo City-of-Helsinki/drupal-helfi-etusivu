@@ -1,0 +1,80 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          submit_button: 过滤
+          reset_button_label: 重置
+          exposed_sorts_label: 排序依据
+          sort_asc_label: 升序
+          sort_desc_label: 降序
+      pager:
+        options:
+          tags:
+            previous: '‹ 上一页'
+            next: '下一页 ›'
+            first: '« 第一页'
+            last: '末页 »'
+      fields:
+        node_bulk_form:
+          action_title: 动作
+        title:
+          label: 标题
+          separator: ', '
+        type:
+          label: 内容类型
+          separator: ', '
+        name:
+          label: 作者
+          separator: ', '
+        status:
+          label: 状态
+          settings:
+            format_custom_true: 已发布
+            format_custom_false: 未发布
+          separator: ', '
+        publish_on:
+          label: 发布于
+          separator: ', '
+        unpublish_on:
+          label: 取消发布于
+          separator: ', '
+        operations:
+          label: 操作
+      filters:
+        title:
+          expose:
+            label: 标题
+        type:
+          expose:
+            label: 内容类型
+        status:
+          expose:
+            label: 状态
+          group_info:
+            label: 发布状态
+            group_items:
+              1:
+                title: 已发布
+              2:
+                title: 未发布
+        langcode:
+          expose:
+            label: 语言
+    display_title: 主
+  overview:
+    display_options:
+      menu:
+        title: 预定
+      tab_options:
+        title: 内容
+  user_page:
+    display_options:
+      menu:
+        title: 预定
+      tab_options:
+        title: 内容
+      arguments:
+        uid:
+          exception:
+            title: 全部
