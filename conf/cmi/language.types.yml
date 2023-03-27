@@ -28,12 +28,13 @@ negotiation:
   language_interface:
     enabled:
       language-user-admin: -20
+      language-user: -19
       language-url: -18
       language-selected: -15
     method_weights:
       language-user-admin: -20
+      language-user: -19
       language-url: -18
       language-session: -17
-      language-user: -19
       language-browser: -16
       language-selected: -15
