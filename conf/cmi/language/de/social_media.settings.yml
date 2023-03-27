@@ -1,0 +1,18 @@
+social_media:
+  facebook_share:
+    text: Facebook
+    api_event: href
+  linkedin:
+    api_event: href
+  twitter:
+    api_event: href
+  pinterest:
+    api_event: href
+    text: Pinterest
+  whatsapp:
+    api_event: href
+  email:
+    api_event: href
+    text: E-Mail
+  print:
+    text: Drucken

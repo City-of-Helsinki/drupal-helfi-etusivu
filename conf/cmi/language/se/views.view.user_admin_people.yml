@@ -1,0 +1,13 @@
+display:
+  default:
+    display_options:
+      fields:
+        name:
+          label: Geavahannamma
+        created:
+          label: 'Miellahttu leamaš'
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+  page_1:
+    display_title: Siidu

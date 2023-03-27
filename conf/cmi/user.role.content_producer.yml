@@ -22,6 +22,7 @@ dependencies:
     - filter
     - helfi_api_base
     - media
+    - menu_link_content
     - node
     - paragraphs
     - paragraphs_library
@@ -93,6 +94,7 @@ permissions:
   - 'edit own remote_video media'
   - 'edit paragraph library item'
   - 'edit terms in keywords'
+  - 'mark as hidden in editoria11y'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert news_item revisions'
@@ -103,6 +105,11 @@ permissions:
   - 'set news_item published on date'
   - 'set page published on date'
   - 'translate editable entities'
+  - 'translate file media'
+  - 'translate image media'
+  - 'translate landing_page node'
+  - 'translate menu_link_content'
+  - 'translate page node'
   - 'update media'
   - 'use text format full_html'
   - 'use text format minimal'

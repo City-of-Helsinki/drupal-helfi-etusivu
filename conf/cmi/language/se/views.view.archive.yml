@@ -1,0 +1,9 @@
+label: Vuorká
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+  page_1:
+    display_title: Siidu
