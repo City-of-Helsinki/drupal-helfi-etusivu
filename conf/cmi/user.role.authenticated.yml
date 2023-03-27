@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - rest.resource.helfi_global_menu_collection
+    - rest.resource.helfi_global_mobile_menu
     - rest.resource.helfi_menu_link_collection
   module:
     - draggableviews
@@ -29,6 +30,7 @@ permissions:
   - 'access toolbar'
   - 'display eu cookie compliance popup'
   - 'restful get helfi_global_menu_collection'
+  - 'restful get helfi_global_mobile_menu'
   - 'restful get helfi_menu_link_collection'
   - 'view global_menu'
   - 'view media'
