@@ -5,12 +5,33 @@ session:
 url:
   source: path_prefix
   prefixes:
-    en: en
     fi: fi
     sv: sv
-    '': null
+    en: en
+    de: de
+    fr: fr
+    ru: ru
+    uk: uk
+    ar: ar
+    et: et
+    fa: fa
+    es: es
+    so: so
+    se: se
+    zh-hans: zh-hans
   domains:
     en: ''
     fi: ''
     sv: ''
+    de: ''
+    fr: ''
+    ru: ''
+    uk: ''
+    ar: ''
+    et: ''
+    fa: ''
+    es: ''
+    so: ''
+    se: ''
+    zh-hans: ''
 selected_langcode: fi

@@ -1,0 +1,19 @@
+label: 'جدیدترین محتوا'
+display:
+  default:
+    display_title: پیش‌فرض
+    display_options:
+      title: 'جدیدترین محتوا'
+      exposed_form:
+        options:
+          submit_button: تایید
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+      empty:
+        area_text_custom:
+          content: 'هیچ محتوایی در دسترس نیست.'
+      use_more_text: بیشتر
+  block_1:
+    display_title: بلوک

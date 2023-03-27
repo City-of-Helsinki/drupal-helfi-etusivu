@@ -1,0 +1,54 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      filters:
+        status:
+          group_info:
+            label: Almmuhuvvon
+            group_items:
+              1:
+                title: Almmuhuvvon
+        name:
+          expose:
+            label: Namma
+        langcode:
+          expose:
+            label: Giella
+  page:
+    display_title: Siidu
+    display_options:
+      fields:
+        edit_media:
+          text: Rievdat
+        delete_media:
+          text: Sihko
+  widget:
+    display_options:
+      arguments:
+        bundle:
+          exception:
+            title: Buot
+      filters:
+        name:
+          expose:
+            label: Namma
+  widget_table:
+    display_options:
+      fields:
+        name:
+          label: Namma
+        uid:
+          label: Čálli
+        changed:
+          label: Ođastuvvon
+      arguments:
+        bundle:
+          exception:
+            title: Buot
+      filters:
+        name:
+          expose:
+            label: Namma

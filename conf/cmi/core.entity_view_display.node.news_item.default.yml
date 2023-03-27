@@ -17,7 +17,7 @@ dependencies:
     - node.type.news_item
   module:
     - entity_reference_revisions
-    - helfi_content
+    - hdbt_admin_tools
     - link
     - radioactivity
     - user

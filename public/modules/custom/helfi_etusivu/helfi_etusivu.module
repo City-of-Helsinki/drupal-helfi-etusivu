@@ -5,9 +5,12 @@
  * Contains necessary alterations for the Helfi etusivu instance.
  */
 
+declare(strict_types = 1);
+
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
@@ -89,12 +92,6 @@ function helfi_etusivu_tokens(
         }
 
         $image_path = $image_entity->entity->getFileUri();
-        $image_uri = $image_style->buildUri($image_path);
-
-        // Create derivative if necessary.
-        if (!file_exists($image_uri)) {
-          $image_style->createDerivative($image_path, $image_uri);
-        }
         $replacements[$original] = $image_style->buildUrl($image_path);
       }
     }
@@ -125,4 +122,26 @@ function helfi_etusivu_cron() {
     $node->save();
   }
 
+}
+
+/**
+ * Implements hook_helfi_paragraph_types().
+ */
+function helfi_etusivu_helfi_paragraph_types() : array {
+  $types = [
+    'field_content' => [
+      'front_page_latest_news',
+      'front_page_top_news',
+      'current',
+      'event_list',
+    ],
+  ];
+
+  $enabled = [];
+  foreach ($types as $field => $paragraphTypes) {
+    foreach ($paragraphTypes as $paragraphType) {
+      $enabled[] = new ParagraphTypeCollection('node', 'landing_page', $field, $paragraphType);
+    }
+  }
+  return $enabled;
 }

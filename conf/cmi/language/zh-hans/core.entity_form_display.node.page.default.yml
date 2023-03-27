@@ -1,0 +1,17 @@
+content:
+  field_content:
+    settings:
+      title: 段落
+      title_plural: 段落
+  field_hero:
+    settings:
+      title: 段落
+      title_plural: 段落
+  field_lower_content:
+    settings:
+      title: 段落
+      title_plural: 段落
+  field_sidebar_content:
+    settings:
+      title: 段落
+      title_plural: 段落
