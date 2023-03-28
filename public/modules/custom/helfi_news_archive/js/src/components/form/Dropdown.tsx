@@ -82,6 +82,7 @@ export const Dropdown = ({
           clearButtonAriaLabel={clearButtonAriaLabel}
           disabled={loading}
           label={label}
+          // @ts-ignore
           options={options}
           onChange={(value: OptionType[]) => {
             setQuery({
