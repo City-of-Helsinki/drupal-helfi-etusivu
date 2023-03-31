@@ -2,6 +2,8 @@ uuid: 775d6473-8def-409c-89ff-1d17a6a144d6
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: GoIlOzRzGavETL3qUS5oEFib8u9802Ej77EIqmRgBZI
 name: 'News neighbourhoods'
 vid: news_neighbourhoods
 description: ''

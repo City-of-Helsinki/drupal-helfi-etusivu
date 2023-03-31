@@ -8,7 +8,7 @@ dependencies:
   module:
     - link
 _core:
-  default_config_hash: u8MoH8d3ekU_Ef0N3cXkuzwnIE8q6UzcqDGqBBCo0T4
+  default_config_hash: moPZOePemTapnr7SBVt0K8jVy7FXmxo3qm225-tDg9k
 id: node.news_item.field_news_item_links_link
 field_name: field_news_item_links_link
 entity_type: node
