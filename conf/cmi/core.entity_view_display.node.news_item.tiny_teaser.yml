@@ -15,13 +15,11 @@ dependencies:
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
-    - image.style.tiny_square_image
     - node.type.news_item
   module:
-    - media
     - user
 _core:
-  default_config_hash: uJrFUZPe5CwN-jFa33atvcx-774x9bhizz19_1OxApc
+  default_config_hash: Ez-JyL7pRQEEtom9Xrm1FMYHa-VVchMpQa7mgZ42HHE
 id: node.news_item.tiny_teaser
 targetEntityType: node
 bundle: news_item
