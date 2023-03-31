@@ -5,6 +5,8 @@ dependencies:
   module:
     - language
     - node
+_core:
+  default_config_hash: xW60kmP7cRqJQk51CW3Jw0TEU6szCrbY7qJt7zex_eI
 id: news_item_en
 label: 'News item | EN'
 type: 'canonical_entities:node'
