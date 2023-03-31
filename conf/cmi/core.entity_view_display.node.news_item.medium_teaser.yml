@@ -8,13 +8,18 @@ dependencies:
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
     - field.field.node.news_item.field_main_image_caption
+    - field.field.node.news_item.field_news_groups
     - field.field.node.news_item.field_news_item_links_link
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_neighbourhoods
+    - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:
     - user
+_core:
+  default_config_hash: 11O10dO-PpPSlc1lARKUBbjgUwOqK7qRsdE_0zJQnyA
 id: node.news_item.medium_teaser
 targetEntityType: node
 bundle: news_item

@@ -4459,16 +4459,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "5.0.10",
+            "version": "5.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "70768274ca8f8d8665f17d9550e081aff157246e"
+                "reference": "7703d302fda7cd6b8d3faedff863db4f7f4f0235"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/70768274ca8f8d8665f17d9550e081aff157246e",
-                "reference": "70768274ca8f8d8665f17d9550e081aff157246e",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/7703d302fda7cd6b8d3faedff863db4f7f4f0235",
+                "reference": "7703d302fda7cd6b8d3faedff863db4f7f4f0235",
                 "shasum": ""
             },
             "require": {
@@ -4486,10 +4486,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.0.10",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.0.12",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2023-03-29T09:32:55+00:00"
+            "time": "2023-03-31T06:59:15+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4709,16 +4709,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "3.0.15",
+            "version": "3.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "bf44e820b4e7c5c2929755829192f7fed6087d6d"
+                "reference": "804f90fbc00049387db54c72031f8262ef0c2b5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/bf44e820b4e7c5c2929755829192f7fed6087d6d",
-                "reference": "bf44e820b4e7c5c2929755829192f7fed6087d6d",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/804f90fbc00049387db54c72031f8262ef0c2b5d",
+                "reference": "804f90fbc00049387db54c72031f8262ef0c2b5d",
                 "shasum": ""
             },
             "require": {
@@ -4787,7 +4787,7 @@
                     "drupal/core": {
                         "[#UHF-181] Hide untranslated menu links": "https://www.drupal.org/files/issues/2021-03-05/3091246-allow-menu-tree-manipulators-alter-12-1.patch",
                         "[#UHF-920] Token for base URL (https://www.drupal.org/project/drupal/issues/1088112). @todo This can be removed in D10": "https://www.drupal.org/files/issues/2020-10-06/1088112-63.patch",
-                        "[#UHF-3812] Ajax exposed filters not working for multiple instances of the same Views block placed on one page (https://www.drupal.org/project/drupal/issues/3163299)": "https://www.drupal.org/files/issues/2023-01-13/3163299-82-9.5.x.patch",
+                        "[#UHF-3812] Ajax exposed filters not working for multiple instances of the same Views block placed on one page (https://www.drupal.org/project/drupal/issues/3163299)": "https://git.drupalcode.org/project/drupal/-/merge_requests/3687/diffs.diff?diff_id=433455",
                         "[#UHF-3087] Non-published menu links as parent (https://www.drupal.org/project/drupal/issues/2807629). @todo This can be removed in D10": "https://www.drupal.org/files/issues/2022-12-16/2807629-75.patch",
                         "[#UHF-4325] Strip whitespaces from twig debug comments": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/f7c0e380e2deb9a1b46bdf779fb27a945b466575/patches/drupal_core_strip_debug_mode_whitespaces_9.3.x.patch",
                         "[#UHF-7008] Core localization file download URL is wrong (https://www.drupal.org/project/drupal/issues/3022876)": "https://git.drupalcode.org/project/drupal/-/commit/40a96136b2dfe4322338508dffa636f6cb407900.patch",
@@ -4799,9 +4799,6 @@
                     },
                     "drupal/eu_cookie_compliance": {
                         "[#UHF-885] Helfi-specific customizations to EU Cookie Compliance": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/923b35f699820b544397a35b7696570e101cd02c/patches/eu_cookie_compliance_block_8.x-1.24.patch"
-                    },
-                    "drupal/field_group": {
-                        "[#UHF-3268] Support for field group translations (https://www.drupal.org/node/3111107)": "https://www.drupal.org/files/issues/2022-09-27/3111107-39.patch"
                     },
                     "drupal/linkit": {
                         "[#UHF-1872] Linkit support for link field (https://www.drupal.org/i/2712951)": "https://www.drupal.org/files/issues/2023-03-07/2712951_329.6.x.diff"
@@ -4823,10 +4820,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.0.15",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.0.16",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2023-03-27T09:39:14+00:00"
+            "time": "2023-03-30T12:34:44+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
