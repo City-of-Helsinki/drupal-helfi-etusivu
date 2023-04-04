@@ -40,6 +40,10 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      front_page_latest_news: front_page_latest_news
+      front_page_top_news: front_page_top_news
+      current: current
+      event_list: event_list
       columns: columns
       list_of_links: list_of_links
       content_cards: content_cards
@@ -50,14 +54,9 @@ settings:
       chart: chart
       remote_video: remote_video
       map: map
-      event_list: event_list
       phasing: phasing
       popular_services: popular_services
       target_group_links: target_group_links
-      front_page_latest_news: front_page_latest_news
-      front_page_top_news: front_page_top_news
-      current: current
-      news_list: news_list
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -97,9 +96,6 @@ settings:
         weight: 0
         enabled: true
       map:
-        weight: 0
-        enabled: true
-      news_list:
         weight: 0
         enabled: true
       phasing:

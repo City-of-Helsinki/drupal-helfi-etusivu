@@ -53,7 +53,6 @@ settings:
       chart: chart
       remote_video: remote_video
       map: map
-      news_list: news_list
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -90,9 +89,6 @@ settings:
         weight: 0
         enabled: true
       map:
-        weight: 0
-        enabled: true
-      news_list:
         weight: 0
         enabled: true
       phasing:
