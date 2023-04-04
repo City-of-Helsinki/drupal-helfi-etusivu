@@ -1,7 +1,10 @@
 <div{{ attributes.addClass('block--news-of-interest') }}>
+{% set alternative_language = current_langcode not in primary_languages %}
   {{ title_prefix }}
   {% if label %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+    <h2{{ title_attributes }} {{ alternative_language ? create_attribute(({ 'lang': 'en', 'dir': 'ltr' })) }}>
+      {{ label }}
+    </h2>
   {% endif %}
   {{ title_suffix }}
   {% block content %}
