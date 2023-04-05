@@ -82,7 +82,7 @@ third_party_settings:
         effect: none
         speed: fast
 _core:
-  default_config_hash: UZnoucUEt8y89UnQiu7EMK_wrERztS9ZWataufzf4ao
+  default_config_hash: RHDFf9pvwgV2FvoelXlH7dXXBoWkziCZI1FWuQS94k8
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item

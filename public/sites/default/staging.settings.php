@@ -6,5 +6,16 @@ $config['helfi_proxy.settings']['prefixes'] = [
   'en' => 'staging-frontpage',
   'fi' => 'staging-etusivu',
   'sv' => 'staging-huvudsida',
+  'ar' => 'staging-etusivu',
+  'de' => 'staging-etusivu',
+  'es' => 'staging-etusivu',
+  'et' => 'staging-etusivu',
+  'fa' => 'staging-etusivu',
+  'fr' => 'staging-etusivu',
+  'ru' => 'staging-etusivu',
+  'se' => 'staging-etusivu',
+  'so' => 'staging-etusivu',
+  'uk' => 'staging-etusivu',
+  'zh-hans' => 'staging-etusivu',
 ];
 
