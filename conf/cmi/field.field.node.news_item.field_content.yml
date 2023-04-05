@@ -12,7 +12,7 @@ dependencies:
   module:
     - entity_reference_revisions
 _core:
-  default_config_hash: 2T1gR9bqoe9VEUeyx8IGFNgT4JPHOgzjWNMbaEEdVf4
+  default_config_hash: IngfOhrKiEet-oQmwX1eM35bf74Y_YNZwZWRJtt4Qg0
 id: node.news_item.field_content
 field_name: field_content
 entity_type: node
@@ -28,105 +28,21 @@ settings:
   handler_settings:
     target_bundles:
       text: text
+      banner: banner
       image: image
       remote_video: remote_video
-      banner: banner
     negate: 0
     target_bundles_drag_drop:
-      accordion:
-        weight: -24
-        enabled: false
-      accordion_item:
-        weight: -37
-        enabled: false
       banner:
-        weight: -36
+        weight: 0
         enabled: true
-      chart:
-        weight: 36
-        enabled: false
-      columns:
-        weight: -26
-        enabled: false
-      contact_card:
-        weight: 38
-        enabled: false
-      contact_card_listing:
-        weight: 39
-        enabled: false
-      content_cards:
-        weight: -35
-        enabled: false
-      content_liftup:
-        weight: -33
-        enabled: false
-      current:
-        weight: 42
-        enabled: false
-      event_list:
-        weight: 43
-        enabled: false
-      from_library:
-        weight: -32
-        enabled: false
-      front_page_latest_news:
-        weight: 45
-        enabled: false
-      front_page_top_news:
-        weight: 46
-        enabled: false
-      gallery:
-        weight: -39
-        enabled: false
-      gallery_slide:
-        weight: -31
-        enabled: false
-      hero:
-        weight: -30
-        enabled: false
       image:
-        weight: -40
+        weight: 0
         enabled: true
-      liftup_with_image:
-        weight: -29
-        enabled: false
-      list_of_links:
-        weight: -28
-        enabled: false
-      list_of_links_item:
-        weight: -27
-        enabled: false
-      map:
-        weight: -25
-        enabled: false
-      phasing:
-        weight: 55
-        enabled: false
-      phasing_item:
-        weight: 56
-        enabled: false
-      popular_service_item:
-        weight: 58
-        enabled: false
-      popular_services:
-        weight: 57
-        enabled: false
       remote_video:
-        weight: -38
+        weight: 0
         enabled: true
-      sidebar_text:
-        weight: -34
-        enabled: false
-      social_media_link:
-        weight: 61
-        enabled: false
-      target_group_link_item:
-        weight: 63
-        enabled: false
-      target_group_links:
-        weight: 62
-        enabled: false
       text:
-        weight: -41
+        weight: 0
         enabled: true
 field_type: entity_reference_revisions
