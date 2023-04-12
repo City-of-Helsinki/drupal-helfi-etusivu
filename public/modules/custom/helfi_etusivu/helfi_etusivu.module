@@ -41,7 +41,7 @@ function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_sta
 /**
  * Implements hook_views_query_alter().
  */
-function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $query) : void {
   if (in_array($view->id(), ['ordered_news_list', 'frontpage_news'])) {
     $table = $query->getTableInfo('draggableviews_structure');
     if (isset($table['join']->extra)) {
@@ -65,7 +65,7 @@ function helfi_etusivu_tokens(
   array $data,
   array $options,
   BubbleableMetadata $bubbleable_metadata
-) {
+) : array {
   $replacements = [];
 
   foreach ($tokens as $name => $original) {
@@ -103,7 +103,7 @@ function helfi_etusivu_tokens(
 /**
  * Implements hook_cron().
  */
-function helfi_etusivu_cron() {
+function helfi_etusivu_cron() : void {
   // Get promoted news_item nodes that are more than one month old.
   $result = \Drupal::entityQuery('node')
     ->condition('type', 'news_item')

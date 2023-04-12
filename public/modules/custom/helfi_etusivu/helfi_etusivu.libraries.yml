@@ -1,0 +1,7 @@
+health:
+  version: 1.x
+  js:
+    js/health.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
