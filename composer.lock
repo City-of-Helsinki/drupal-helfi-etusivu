@@ -4459,16 +4459,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "5.0.14",
+            "version": "5.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "97e0857a9af240276c0e70aef667056af0fbb5b9"
+                "reference": "65d144fe8ae6d655549ea1fb5616e9b78fe60422"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/97e0857a9af240276c0e70aef667056af0fbb5b9",
-                "reference": "97e0857a9af240276c0e70aef667056af0fbb5b9",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/65d144fe8ae6d655549ea1fb5616e9b78fe60422",
+                "reference": "65d144fe8ae6d655549ea1fb5616e9b78fe60422",
                 "shasum": ""
             },
             "require": {
@@ -4486,10 +4486,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.0.14",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.0.15",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2023-04-12T09:41:09+00:00"
+            "time": "2023-04-13T13:46:48+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4709,16 +4709,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "3.0.25",
+            "version": "3.0.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "e31c27c1351d958b1cd58f2f34b87d6d2307c1f7"
+                "reference": "c54b645677ad14e20ec9e3e4b4960648b7d3077f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/e31c27c1351d958b1cd58f2f34b87d6d2307c1f7",
-                "reference": "e31c27c1351d958b1cd58f2f34b87d6d2307c1f7",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/c54b645677ad14e20ec9e3e4b4960648b7d3077f",
+                "reference": "c54b645677ad14e20ec9e3e4b4960648b7d3077f",
                 "shasum": ""
             },
             "require": {
@@ -4818,10 +4818,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.0.25",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.0.27",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2023-04-12T05:55:30+00:00"
+            "time": "2023-04-17T08:46:28+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -6152,27 +6152,33 @@
         },
         {
             "name": "drupal/paragraphs_asymmetric_translation_widgets",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/paragraphs_asymmetric_translation_widgets.git",
-                "reference": "8.x-1.1"
+                "reference": "8.x-1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs_asymmetric_translation_widgets-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "aa6721d65116a0c4b69fbc28287c20fe189668aa"
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_asymmetric_translation_widgets-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "019b4a318ba9354e3839036638d249e07322eea5"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
-                "drupal/paragraphs": "~1.3"
+                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/paragraphs": "~1.15"
+            },
+            "require-dev": {
+                "drupal/entity_browser": "2.x-dev",
+                "drupal/entity_usage": "2.x-dev",
+                "drupal/paragraphs": "*",
+                "drupal/search_api": "~1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1669304631",
+                    "version": "8.x-1.2",
+                    "datestamp": "1681378872",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6199,6 +6205,10 @@
                 {
                     "name": "penyaskito",
                     "homepage": "https://www.drupal.org/user/959536"
+                },
+                {
+                    "name": "Rajab Natshah",
+                    "homepage": "https://www.drupal.org/user/1414312"
                 },
                 {
                     "name": "weseze",
@@ -7767,6 +7777,14 @@
                 {
                     "name": "entendu",
                     "homepage": "https://www.drupal.org/user/173461"
+                },
+                {
+                    "name": "fathima.asmat",
+                    "homepage": "https://www.drupal.org/user/3622664"
+                },
+                {
+                    "name": "tobiasb",
+                    "homepage": "https://www.drupal.org/user/183956"
                 }
             ],
             "description": "Select which roles should be able to see unpublished nodes.",
