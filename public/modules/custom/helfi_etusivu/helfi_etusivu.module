@@ -26,7 +26,7 @@ use Drupal\views\ViewExecutable;
  * are altered by Gin theme and HDBT Admin theme.
  * See: hdbt_admin/hdbt_admin.theme / hdbt_admin_apply_form_theme().
  */
-function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
   if (!str_contains($form_id, 'news_item') || !isset($form['promote'])) {
     return;
   }
@@ -144,4 +144,12 @@ function helfi_etusivu_helfi_paragraph_types() : array {
     }
   }
   return $enabled;
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function helfi_etusivu_theme_registry_alter(&$theme_registry) : void {
+  // Override the Composer debug item template to remove custom version checks.
+  $theme_registry['debug_item__composer']['path'] = \Drupal::service('extension.list.module')->getPath('helfi_etusivu') . '/templates';
 }

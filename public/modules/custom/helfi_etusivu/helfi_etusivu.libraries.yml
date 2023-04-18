@@ -1,7 +1,7 @@
-health:
+debug-status:
   version: 1.x
   js:
-    js/health.js: {}
+    js/debug-status.js: {}
   dependencies:
     - core/drupal
     - core/drupalSettings
