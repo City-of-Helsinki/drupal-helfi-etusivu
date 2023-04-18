@@ -18,18 +18,19 @@
  */
 #}
 <table style="width:auto;">
+  <caption>Composer</caption>
   <thead>
   <tr>
-    <th>Package</th>
-    <th>Version</th>
-    <th>Timestamp</th>
-    <th>Releases</th>
+    <th scope="col">Package</th>
+    <th scope="col">Version</th>
+    <th scope="col">Timestamp</th>
+    <th scope="col">Releases</th>
   </tr>
   </thead>
   <tbody>
   {% for package in data.packages %}
     <tr>
-      <th>
+      <th scope="row">
         {{ package.name }}
       </th>
       <td>
