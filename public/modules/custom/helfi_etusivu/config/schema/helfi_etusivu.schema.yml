@@ -1,0 +1,14 @@
+helfi_etusivu.debug_api_accounts:
+  type: config_object
+  mapping:
+    instances:
+      type: sequence
+      sequence:
+        type: mapping
+        mapping:
+          name:
+            type: string
+          environment:
+            type: string
+          token:
+            type: string

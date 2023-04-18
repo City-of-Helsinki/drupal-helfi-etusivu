@@ -14,10 +14,13 @@ helfi_etusivu.dashboard.health:
   requirements:
     _permission: 'administer site configuration'
 
-helfi_etusivu.dashboard.health.json:
-  path: 'admin/dashboard/health/json'
+helfi_etusivu.dashboard.api:
+  path: 'admin/dashboard/api-proxy'
   defaults:
-    _title: 'Dashboard: Health'
-    _controller: '\Drupal\helfi_etusivu\Controller\DashboardController::healthJson'
+    _controller: '\Drupal\helfi_etusivu\Controller\DashboardController::apiProxy'
+  options:
+    _admin_route: TRUE
+    no_cache: TRUE
   requirements:
     _permission: 'administer site configuration'
+    _format: json

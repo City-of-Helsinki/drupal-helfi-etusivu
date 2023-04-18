@@ -1,0 +1,14 @@
+uuid: 96406f79-234a-4502-ae31-0cdd418d85fc
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.debug_api
+  module:
+    - user
+id: user_remove_role_action.debug_api
+label: 'Remove the Debug API role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: debug_api

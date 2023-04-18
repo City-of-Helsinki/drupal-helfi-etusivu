@@ -18,19 +18,19 @@
     const project = element.dataset.project;
     const environment = element.dataset.environment;
 
-    const apiUrl = `${drupalSettings.path.baseUrl}${drupalSettings.path.pathPrefix}admin/dashboard/health/json?project=${project}&environment=${environment}`;
+    const apiUrl = `${drupalSettings.path.baseUrl}${drupalSettings.path.pathPrefix}admin/dashboard/api-proxy?project=${project}&environment=${environment}`;
 
     fetch(apiUrl, requestOptions)
       .then(response => response.text())
       .then(result => {
           const resultObj = JSON.parse(result);
+          const childObject = element.querySelector('.details-wrapper');
 
           if (resultObj.status) {
-            element.innerText = Drupal.t('Environment is up');
-            element.style = 'color: green';
+            childObject.innerHTML = resultObj.content;
           } else {
-            element.innerText = Drupal.t('Environment is not responding');
-            element.style = 'color: red';
+            childObject.innerText = Drupal.t('Environment is not responding');
+            childObject.style = 'color: red';
           }
         }
       )
