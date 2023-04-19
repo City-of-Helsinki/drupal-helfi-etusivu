@@ -31,7 +31,7 @@ fi
 # something else is down.
 if [[ -z "$(get_deploy_id)" ]]; then
   echo "Could not fetch deploy ID. Something is probably wrong. Exiting early."
-  exit 1;
+  exit 1
 fi
 
 # This script is run every time a container is spawned and certain environments might
@@ -39,18 +39,18 @@ fi
 # tasks only once per deploy.
 if [ "$(get_deploy_id)" != "$OPENSHIFT_BUILD_NAME" ]; then
   drush state:set deploy_id $OPENSHIFT_BUILD_NAME
+  # Put site in maintenance mode
+  drush state:set system.maintenance_mode 1 --input-format=integer
   # Run helfi specific pre-deploy tasks. Allow this to fail in case
   # the environment is not using the 'helfi_api_base' module.
   # @see https://github.com/City-of-Helsinki/drupal-module-helfi-api-base
   drush helfi:pre-deploy || true
-  # Put site in maintenance mode
-  drush state:set system.maintenance_mode 1 --input-format=integer
   # Run maintenance tasks (config import, database updates etc)
   drush deploy
-  # Disable maintenance mode
-  drush state:set system.maintenance_mode 0 --input-format=integer
   # Run helfi specific post deploy tasks. Allow this to fail in case
   # the environment is not using the 'helfi_api_base' module.
   # @see https://github.com/City-of-Helsinki/drupal-module-helfi-api-base
   drush helfi:post-deploy || true
+  # Disable maintenance mode
+  drush state:set system.maintenance_mode 0 --input-format=integer
 fi
