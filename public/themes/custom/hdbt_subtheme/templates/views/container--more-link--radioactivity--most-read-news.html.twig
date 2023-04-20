@@ -1,8 +1,15 @@
 {% set link_attributes = {
   'class': [
     'link__read-more-news',
-  ],
+  ]
 } %}
+{% if alternative_language %}
+  {% set link_attributes = link_attributes|merge({
+      'dir': 'ltr',
+      'lang': 'en'
+    })
+  %}
+{% endif %}
 {% set link_title %}
   <span class="hds-button__label">{{ element['#title'] }}</span>
   {% include "@hdbt/misc/icon.twig" with {icon: 'arrow-right' } %}

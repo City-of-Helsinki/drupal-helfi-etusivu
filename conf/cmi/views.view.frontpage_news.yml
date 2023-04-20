@@ -839,7 +839,7 @@ display:
     display_plugin: block
     position: 2
     display_options:
-      title: 'Of interest'
+      title: 'You might be interested in'
       fields:
         published_at:
           id: published_at
