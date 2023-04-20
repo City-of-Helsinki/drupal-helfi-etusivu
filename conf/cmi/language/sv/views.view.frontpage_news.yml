@@ -4,7 +4,7 @@ display:
       title: Toppnyheter
   of_interest:
     display_options:
-      title: 'Detta kan intressera dig'
+      title: 'Du kanske är intresserad av'
   latest_news:
     display_options:
       title: 'Senaste nyheter'
