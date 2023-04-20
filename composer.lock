@@ -2604,16 +2604,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.5.7",
+            "version": "9.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "bf51aa8ed6ab733fcaf60d0860aefd3918140fe3"
+                "reference": "a9a1e4e1fe23fb8c83fd6aeafb740c1462a218fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/bf51aa8ed6ab733fcaf60d0860aefd3918140fe3",
-                "reference": "bf51aa8ed6ab733fcaf60d0860aefd3918140fe3",
+                "url": "https://api.github.com/repos/drupal/core/zipball/a9a1e4e1fe23fb8c83fd6aeafb740c1462a218fc",
+                "reference": "a9a1e4e1fe23fb8c83fd6aeafb740c1462a218fc",
                 "shasum": ""
             },
             "require": {
@@ -2765,9 +2765,9 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.5.7"
+                "source": "https://github.com/drupal/core/tree/9.5.8"
             },
-            "time": "2023-03-24T16:54:38+00:00"
+            "time": "2023-04-19T16:14:39+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
@@ -4459,16 +4459,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "5.0.20",
+            "version": "5.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "a44d2c229bd5dd8fc301004f0e126671afc2df1f"
+                "reference": "ccc8c1cb500df43c95e1f6b2c7fac42c8f954eea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/a44d2c229bd5dd8fc301004f0e126671afc2df1f",
-                "reference": "a44d2c229bd5dd8fc301004f0e126671afc2df1f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/ccc8c1cb500df43c95e1f6b2c7fac42c8f954eea",
+                "reference": "ccc8c1cb500df43c95e1f6b2c7fac42c8f954eea",
                 "shasum": ""
             },
             "require": {
@@ -4486,10 +4486,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.0.20",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.0.21",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2023-04-18T09:55:29+00:00"
+            "time": "2023-04-19T11:08:29+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4577,16 +4577,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.4.1",
+            "version": "2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "df05cbc8960696d1cdbe88b26bf7539b513317a6"
+                "reference": "7cbeef9a7a7d158c103c9fdc88ebf05dc8e82700"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/df05cbc8960696d1cdbe88b26bf7539b513317a6",
-                "reference": "df05cbc8960696d1cdbe88b26bf7539b513317a6",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/7cbeef9a7a7d158c103c9fdc88ebf05dc8e82700",
+                "reference": "7cbeef9a7a7d158c103c9fdc88ebf05dc8e82700",
                 "shasum": ""
             },
             "require": {
@@ -4610,10 +4610,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.4.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.4.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2023-04-18T15:50:16+00:00"
+            "time": "2023-04-20T08:24:46+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -10797,16 +10797,16 @@
         },
         {
             "name": "pear/pear-core-minimal",
-            "version": "v1.10.11",
+            "version": "v1.10.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/pear-core-minimal.git",
-                "reference": "68d0d32ada737153b7e93b8d3c710ebe70ac867d"
+                "reference": "aed862e95fd286c53cc546734868dc38ff4b5b1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/pear-core-minimal/zipball/68d0d32ada737153b7e93b8d3c710ebe70ac867d",
-                "reference": "68d0d32ada737153b7e93b8d3c710ebe70ac867d",
+                "url": "https://api.github.com/repos/pear/pear-core-minimal/zipball/aed862e95fd286c53cc546734868dc38ff4b5b1d",
+                "reference": "aed862e95fd286c53cc546734868dc38ff4b5b1d",
                 "shasum": ""
             },
             "require": {
@@ -10841,7 +10841,7 @@
                 "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=PEAR",
                 "source": "https://github.com/pear/pear-core-minimal"
             },
-            "time": "2021-08-10T22:31:03+00:00"
+            "time": "2023-04-19T19:15:47+00:00"
         },
         {
             "name": "pear/pear_exception",
