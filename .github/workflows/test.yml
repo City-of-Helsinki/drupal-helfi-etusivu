@@ -30,6 +30,9 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Debug
+        run: echo $GITHUB_REPOSITORY
+        
       - name: Build project
         run: composer install
 
