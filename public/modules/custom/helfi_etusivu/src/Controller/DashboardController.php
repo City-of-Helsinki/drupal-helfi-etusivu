@@ -10,12 +10,15 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\helfi_api_base\Environment\EnvironmentEnum;
+use Drupal\helfi_api_base\Vault\VaultManager;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Returns responses for Dashboard routes.
@@ -36,6 +39,7 @@ final class DashboardController extends ControllerBase {
     private EnvironmentResolverInterface $environmentResolver,
     private ClientInterface $client,
     private RendererInterface $renderer,
+    private VaultManager $vaultManager,
   ) {
   }
 
@@ -47,6 +51,7 @@ final class DashboardController extends ControllerBase {
       $container->get('helfi_api_base.environment_resolver'),
       $container->get('http_client'),
       $container->get('renderer'),
+      $container->get('helfi_api_base.vault_manager'),
     );
   }
 
@@ -94,7 +99,7 @@ final class DashboardController extends ControllerBase {
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
    *
-   * @return \Symfony\Component\HttpFoundation\Response
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   The response.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
@@ -112,16 +117,9 @@ final class DashboardController extends ControllerBase {
       ->getId();
 
     try {
-      $instances = $this
-        ->config('helfi_etusivu.debug_api_accounts')
-        ->get('instances') ?? [];
+      $authorization = $this->vaultManager->get($project . '_' . $environment);
 
-      $account = array_filter(
-        $instances,
-        fn (array $instance) => $instance['name'] === $project && $instance['environment'] === $environment
-      );
-
-      if (!$account = reset($account)) {
+      if (!$authorization) {
         throw new BadRequestHttpException('No credentials found for given project.');
       }
       $projectEnv = $this->environmentResolver->getProject($query['project'])
@@ -131,7 +129,7 @@ final class DashboardController extends ControllerBase {
         $projectEnv->getInternalAddress($language) . '/api/v1/debug',
         [
           'headers' => [
-            'Authorization' => 'Basic ' . $account['token'],
+            'Authorization' => 'Basic ' . $authorization->data(),
           ],
         ],
       );
@@ -156,7 +154,11 @@ final class DashboardController extends ControllerBase {
       return new JsonResponse(['status' => 'ok', 'content' => $content]);
     }
     catch (\InvalidArgumentException | RequestException $e) {
-      throw new BadRequestHttpException($e->getMessage(), $e);
+      throw match ($e->getResponse()->getStatusCode()) {
+        403 => new AccessDeniedHttpException('Debug API returned a 403 (Access denied) error.', $e),
+        404 => new NotFoundHttpException('Debug API returned a 404 error (Not found) error.', $e),
+        default => new BadRequestHttpException(sprintf('Debug API endpoint returned an unknown error: %s', $e->getMessage()), $e),
+      };
     }
   }
 
