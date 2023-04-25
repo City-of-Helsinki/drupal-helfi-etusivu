@@ -38,10 +38,10 @@ final class DashboardController extends ControllerBase {
    *   The vault manager.
    */
   public function __construct(
-    private EnvironmentResolverInterface $environmentResolver,
-    private ClientInterface $client,
-    private RendererInterface $renderer,
-    private VaultManager $vaultManager,
+    private readonly EnvironmentResolverInterface $environmentResolver,
+    private readonly ClientInterface $client,
+    private readonly RendererInterface $renderer,
+    private readonly VaultManager $vaultManager,
   ) {
   }
 
