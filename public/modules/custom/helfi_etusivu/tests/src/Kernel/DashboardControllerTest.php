@@ -47,7 +47,7 @@ class DashboardControllerTest extends ApiKernelTestBase {
   public function testPermissions() : void {
     $routes = [
       Url::fromRoute('helfi_etusivu.dashboard.index'),
-      Url::fromRoute('helfi_etusivu.dashboard.health'),
+      Url::fromRoute('helfi_etusivu.dashboard.status'),
       Url::fromRoute('helfi_etusivu.dashboard.api', options: [
         'query' => ['project' => Project::ETUSIVU, 'environment' => 'local'],
       ]),
