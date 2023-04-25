@@ -34,6 +34,8 @@ final class DashboardController extends ControllerBase {
    *   The HTTP client service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
+   * @param \Drupal\helfi_api_base\Vault\VaultManager $vaultManager
+   *   The vault manager.
    */
   public function __construct(
     private EnvironmentResolverInterface $environmentResolver,
