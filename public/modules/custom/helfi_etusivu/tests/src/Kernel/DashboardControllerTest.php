@@ -21,6 +21,7 @@ class DashboardControllerTest extends ApiKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'helfi_api_base',
     'helfi_etusivu',
   ];
 
@@ -57,12 +58,12 @@ class DashboardControllerTest extends ApiKernelTestBase {
     $account = $this->drupalCreateUser(['administer site configuration']);
     $this->drupalSetCurrentUser($account);
 
-    $this->config('helfi_etusivu.debug_api_accounts')
-      ->set('instances', [
+    $this->config('helfi_api_base.api_accounts')
+      ->set('vault', [
         [
-          'name' => Project::ETUSIVU,
-          'environment' => 'local',
-          'token' => base64_encode($account->getAccountName() . ':' . $account->pass_raw),
+          'id' => Project::ETUSIVU . '_local',
+          'plugin' => 'authorization_token',
+          'data' => base64_encode($account->getAccountName() . ':' . $account->pass_raw),
         ],
       ])
       ->save();
