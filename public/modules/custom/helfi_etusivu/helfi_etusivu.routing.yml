@@ -6,11 +6,11 @@ helfi_etusivu.dashboard.index:
   requirements:
     _permission: 'administer site configuration'
 
-helfi_etusivu.dashboard.health:
-  path: 'admin/dashboard/health'
+helfi_etusivu.dashboard.status:
+  path: 'admin/dashboard/status'
   defaults:
-    _title: 'Dashboard: Health'
-    _controller: '\Drupal\helfi_etusivu\Controller\DashboardController::health'
+    _title: 'Dashboard: Project status'
+    _controller: '\Drupal\helfi_etusivu\Controller\DashboardController::status'
   requirements:
     _permission: 'administer site configuration'
 

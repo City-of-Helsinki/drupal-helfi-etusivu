@@ -26,6 +26,17 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class DashboardController extends ControllerBase {
 
   /**
+   * The environments.
+   *
+   * @var \Drupal\helfi_api_base\Environment\EnvironmentEnum[]
+   */
+  private array $environments = [
+    EnvironmentEnum::Test,
+    EnvironmentEnum::Stage,
+    EnvironmentEnum::Prod,
+  ];
+
+  /**
    * Constructs a new instance.
    *
    * @param \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $environmentResolver
@@ -70,6 +81,9 @@ final class DashboardController extends ControllerBase {
         '#header' => [$this->t('Project')],
       ],
     ];
+
+    foreach ($this->environments as $environment) {
+    }
 
     foreach ($this->environmentResolver->getProjects() as $name => $project) {
       $build['links'][$name]['name'] = [
@@ -170,14 +184,7 @@ final class DashboardController extends ControllerBase {
    * @return array
    *   The render array.
    */
-  public function health() : array {
-    // We only care about health of test/stage/prod.
-    $environments = [
-      EnvironmentEnum::Test,
-      EnvironmentEnum::Stage,
-      EnvironmentEnum::Prod,
-    ];
-
+  public function status() : array {
     $build = [
       '#attached' => [
         'library' => ['helfi_etusivu/debug-status'],
@@ -191,7 +198,7 @@ final class DashboardController extends ControllerBase {
         '#open' => TRUE,
       ];
 
-      foreach ($environments as $env) {
+      foreach ($this->environments as $env) {
         if (!$project->hasEnvironment($env->value)) {
           continue;
         }
