@@ -75,19 +75,66 @@ final class DashboardController extends ControllerBase {
    *   The response.
    */
   public function index() : array {
-    $build = [
-      'links' => [
-        '#type' => 'table',
-        '#header' => [$this->t('Project')],
+    $serviceLinks = [
+      'jira' => [
+        'title' => $this->t('JIRA'),
+        'url' => 'https://helsinkisolutionoffice.atlassian.net/jira/software/c/projects/UHF/boards/218',
+      ],
+      'documentation' => [
+        'title' => $this->t('Documentation'),
+        'url' => 'https://helsinkisolutionoffice.atlassian.net/wiki/spaces/HEL/pages/7710015550/Instanssit+ja+repositoryt',
       ],
     ];
 
-    foreach ($this->environments as $environment) {
+    $build = [
+      'links' => [
+        '#type' => 'table',
+        '#header' => [$this->t('Service links')],
+      ],
+    ];
+    foreach ($serviceLinks as $id => $link) {
+      $build['links'][$id] = [
+        [
+          '#markup' => $link['title'],
+        ],
+        [
+          '#type' => 'link',
+          '#title' => $link['url'],
+          '#url' => Url::fromUri($link['url']),
+        ],
+      ];
     }
 
     foreach ($this->environmentResolver->getProjects() as $name => $project) {
-      $build['links'][$name]['name'] = [
-        '#markup' => $name,
+      $build[$name] = [
+        '#type' => 'details',
+        '#open' => FALSE,
+        '#title' => $project->label(),
+      ];
+
+      $build[$name]['links'] = [
+        '#type' => 'table',
+        '#header' => [$this->t('Links')],
+        'repository' => [
+          [
+            '#markup' => $this->t('Repository'),
+          ],
+          [
+            '#type' => 'link',
+            '#title' => $project->getMetadata()->getRepositoryUrl(),
+            '#url' => Url::fromUri($project->getMetadata()->getRepositoryUrl()),
+          ],
+        ],
+        'azure_devops' => [
+          [
+            '#markup' => $this->t('Azure DevOps'),
+          ],
+          [
+            '#type' => 'link',
+            '#title' => $project->getMetadata()->getAzureDevopsLink(),
+            '#url' => Url::fromUri($project->getMetadata()->getAzureDevopsLink()),
+          ],
+        ],
       ];
 
       foreach (EnvironmentEnum::cases() as $case) {
@@ -96,11 +143,24 @@ final class DashboardController extends ControllerBase {
         }
         $environment = $project->getEnvironment($case->value);
 
-        $build['links'][$name][$case->value] = [
+        $build[$name]['links'][$case->value][] = [
+          '#markup' => $this->t('Link to %env environment', ['%env' => $case->label()]),
+        ];
+
+        $build[$name]['links'][$case->value][] = [
           '#type' => 'link',
-          '#title' => $this->t('Link to %env environment', ['%env' => $case->value]),
+          '#title' => $environment->getUrl('en'),
           '#url' => Url::fromUri($environment->getUrl('en')),
         ];
+
+        if ($metadata = $environment->getMetadata()) {
+          $build[$name]['links'][$case->value][] = [
+            '#type' => 'link',
+            '#title' => $this->t('OpenShift console (%env)', ['%env' => $case->label()]),
+            '#url' => Url::fromUri($metadata->getOpenshiftConsoleLink()),
+          ];
+        }
+
       }
     }
 
