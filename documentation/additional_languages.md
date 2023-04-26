@@ -57,4 +57,4 @@ For example in case of AR and DE languages:
 
 ### Adding languages to menus
 
-- After everything else has been done and released, the added languages can be set to correct menu in every instance.
+- After everything else has been done and released, the added languages can be set to correct menu in every environment.
