@@ -153,3 +153,10 @@ function helfi_etusivu_theme_registry_alter(&$theme_registry) : void {
   // Override the Composer debug item template to remove custom version checks.
   $theme_registry['debug_item__composer']['path'] = \Drupal::service('extension.list.module')->getPath('helfi_etusivu') . '/templates';
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_etusivu_preprocess_toolbar(&$variables): void {
+  $variables['#attached']['library'][] = 'helfi_etusivu/menu-styles';
+}
