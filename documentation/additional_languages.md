@@ -4,10 +4,21 @@
 
 This instance has limited support for additional languages (including RTL languages).
 Adding new languages differs from the normal workflow and takes a few extra steps (requirements of the infrastructure)
+More information can be found from confluence "Muut kielet -dokumentti".
 
 ### Initially added languages
 
-- ar, de, es, et, fa, fr, ru, uk, se, so, zh-hans
+- ar - arabic,
+- de - german,
+- es - spanish,
+- et - estonian,
+- fa - farsi,
+- fr - french,
+- ru - russian,
+- uk - ukrainian,
+- se - northern sami,
+- so - somali,
+- zh-hans - simplified chinese
 
 ## How to add new languages
 
@@ -52,7 +63,6 @@ For example in case of AR and DE languages:
 `Production`
 - `/ar`
 - `/de`
-
 
 
 ### Adding languages to menus
