@@ -117,21 +117,15 @@ final class DashboardController extends ControllerBase {
         '#header' => [$this->t('Links')],
         'repository' => [
           [
-            '#markup' => $this->t('Repository'),
-          ],
-          [
             '#type' => 'link',
-            '#title' => $project->getMetadata()->getRepositoryUrl(),
+            '#title' => $this->t('Link to Git repository'),
             '#url' => Url::fromUri($project->getMetadata()->getRepositoryUrl()),
           ],
         ],
         'azure_devops' => [
           [
-            '#markup' => $this->t('Azure DevOps'),
-          ],
-          [
             '#type' => 'link',
-            '#title' => $project->getMetadata()->getAzureDevopsLink(),
+            '#title' => $this->t('Link to Azure DevOps'),
             '#url' => Url::fromUri($project->getMetadata()->getAzureDevopsLink()),
           ],
         ],
@@ -144,19 +138,19 @@ final class DashboardController extends ControllerBase {
         $environment = $project->getEnvironment($case->value);
 
         $build[$name]['links'][$case->value][] = [
-          '#markup' => $this->t('Link to %env environment', ['%env' => $case->label()]),
+          '#markup' => $case->label(),
         ];
 
         $build[$name]['links'][$case->value][] = [
           '#type' => 'link',
-          '#title' => $environment->getUrl('en'),
+          '#title' => $this->t('Link to %env environment', ['%env' => $case->label()]),
           '#url' => Url::fromUri($environment->getUrl('en')),
         ];
 
         if ($metadata = $environment->getMetadata()) {
           $build[$name]['links'][$case->value][] = [
             '#type' => 'link',
-            '#title' => $this->t('OpenShift console (%env)', ['%env' => $case->label()]),
+            '#title' => $this->t('Link to %env OpenShift console', ['%env' => $case->label()]),
             '#url' => Url::fromUri($metadata->getOpenshiftConsoleLink()),
           ];
         }
