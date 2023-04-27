@@ -3,11 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_lead_in
     - field.storage.node.field_short_title
     - search_api.index.news
   module:
     - search_api
     - user
+    - views_rss
 id: react_news_feed
 label: 'React news feed'
 module: views
@@ -22,6 +24,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
+      title: Uutiset
       fields:
         title:
           id: title
@@ -812,9 +815,9 @@ display:
           title: ''
           default_argument_type: query_parameter
           default_argument_options:
-            query_param: topics
+            query_param: topic
             fallback: all
-            multiple: and
+            multiple: or
           default_argument_skip_url: false
           summary_options: {  }
           summary:
@@ -847,7 +850,7 @@ display:
           default_argument_options:
             query_param: neighbourhoods
             fallback: all
-            multiple: and
+            multiple: or
           default_argument_skip_url: false
           summary_options: {  }
           summary:
@@ -880,7 +883,7 @@ display:
           default_argument_options:
             query_param: groups
             fallback: all
-            multiple: and
+            multiple: or
           default_argument_skip_url: false
           summary_options: {  }
           summary:
@@ -975,6 +978,7 @@ display:
       tags:
         - 'config:field.storage.node.field_short_title'
         - 'config:search_api.index.news'
+        - 'search_api_list:news'
   feed_1:
     id: feed_1
     display_title: Feed
@@ -986,76 +990,6 @@ display:
           id: title
           table: search_api_index_news
           field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_field
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: false
-          fallback_handler: search_api
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-        field_short_title:
-          id: field_short_title
-          table: search_api_index_news
-          field: field_short_title
           relationship: none
           group_type: group
           admin_label: ''
@@ -1602,81 +1536,6 @@ display:
             display_methods:
               user:
                 display_method: label
-        changed:
-          id: changed
-          table: search_api_index_news
-          field: changed
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: search_api_field
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: timestamp
-          settings:
-            date_format: custom
-            custom_date_format: r
-            timezone: UTC
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api_date
-          fallback_options:
-            date_format: fallback
-            custom_date_format: ''
-            timezone: ''
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
         uri:
           id: uri
           table: search_api_index_news
@@ -1803,16 +1662,86 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
+        field_lead_in:
+          id: field_lead_in
+          table: search_api_datasource_news_entity_node
+          field: field_lead_in
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: search_api_field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: basic_string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
       pager:
         type: some
         options:
           offset: 0
           items_per_page: 100
       sorts:
-        changed:
-          id: changed
+        published_at:
+          id: published_at
           table: search_api_index_news
-          field: changed
+          field: published_at
           relationship: none
           group_type: group
           admin_label: ''
@@ -1826,23 +1755,31 @@ display:
         type: rss
         options:
           grouping: {  }
-          description: ''
+          description: Feed
       row:
-        type: rss_fields
+        type: views_rss_fields
         options:
-          title_field: title
-          link_field: uri
-          description_field: field_short_title
-          creator_field: uid
-          date_field: published_at
-          guid_field_options:
-            guid_field: uuid
-            guid_field_is_permalink: false
+          item:
+            core:
+              views_rss_core:
+                title: title
+                link: uri
+                description: field_lead_in
+                author: uid
+                category: ''
+                comments: ''
+                enclosure: alt
+                guid: uuid
+                pubDate: published_at
+            content:
+              views_rss_core:
+                encoded: ''
       defaults:
         fields: false
         sorts: false
       display_extenders: {  }
-      path: news/react/rss
+      path: news/subscribe/rss
+      sitename_title: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -1851,5 +1788,6 @@ display:
         - url
         - 'user.node_grants:view'
       tags:
-        - 'config:field.storage.node.field_short_title'
+        - 'config:field.storage.node.field_lead_in'
         - 'config:search_api.index.news'
+        - 'search_api_list:news'
