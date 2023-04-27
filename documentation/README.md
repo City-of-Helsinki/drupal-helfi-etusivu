@@ -2,4 +2,8 @@
 
 ## Menu API
 
-- [documentation](/documentation/menu.md)
+- [Documentation](/documentation/menu.md)
+
+## Additional languages
+
+- [Documentation](/documentation/additional_languages.md)
