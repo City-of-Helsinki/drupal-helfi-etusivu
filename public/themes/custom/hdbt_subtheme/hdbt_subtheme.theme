@@ -137,6 +137,25 @@ function hdbt_subtheme_preprocess_page__news(array &$variables) {
   if ($config->get('elastic_proxy_url')) {
     $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
   }
+
+  $feed_base_url = \Drupal\Core\Url::fromRoute('view.react_news_feed.feed_1')->toString();
+
+  if ($feed_base_url) {
+    $feed_link = [
+      '#type' => 'html_tag',
+      '#tag' => 'link',
+      '#attributes' => [
+        'rel' => 'alternative',
+        'type' => 'application/rss+xml',
+        'href' => $feed_base_url,
+        'id' => 'news-feed-url',
+      ],
+    ];
+
+    $variables['#attached']['html_head'][] = [$feed_link, 'feed_link'];
+    $variables['#attached']['drupalSettings']['helfi_news_archive']['feed_base_url'] = $feed_base_url;
+  }
+
 }
 
 /**
