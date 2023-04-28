@@ -64,6 +64,9 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
    */
   protected array $fallbackBlocks = [
     'menu_block_current_language:header-top-navigation',
+    'menu_block_current_language:footer-top-navigation',
+    'menu_block_current_language:footer-top-navigation-2',
+    'menu_block_current_language:footer-bottom-navigation',
   ];
 
   /**
@@ -73,9 +76,9 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
    */
   protected array $fallbackMenus = [
     'header-top-navigation',
-    'footer-bottom-navigation',
     'footer-top-navigation',
     'footer-top-navigation-2',
+    'footer-bottom-navigation',
   ];
 
   /**
