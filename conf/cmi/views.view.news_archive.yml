@@ -1013,7 +1013,7 @@ display:
           exposed: true
           expose:
             operator_id: field_news_groups_target_id_op
-            label: 'Target groups'
+            label: 'News groups (field_news_groups)'
             description: ''
             use_operator: false
             operator: field_news_groups_target_id_op
@@ -1031,6 +1031,8 @@ display:
               editor: '0'
               admin: '0'
               menu_api: '0'
+              news_producer: '0'
+              debug_api: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1073,7 +1075,7 @@ display:
             operator: field_news_item_tags_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: tags
+            identifier: topic
             required: false
             remember: false
             multiple: true
@@ -1085,6 +1087,8 @@ display:
               editor: '0'
               admin: '0'
               menu_api: '0'
+              news_producer: '0'
+              debug_api: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1139,6 +1143,8 @@ display:
               editor: '0'
               admin: '0'
               menu_api: '0'
+              news_producer: '0'
+              debug_api: '0'
             reduce: false
           is_grouped: false
           group_info:
