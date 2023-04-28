@@ -42,7 +42,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
   /**
    * Fallback language to default to.
    */
-  protected const FALLBACK_LANGUAGE = 'en';
+  public const FALLBACK_LANGUAGE = 'en';
 
   /**
    * Fallback regions to add language and direction attributes to.
@@ -89,7 +89,6 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
     'sv',
   ];
 
-
   /**
    * Constructs Ahjo Proxy service.
    *
@@ -122,12 +121,13 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
 
   /**
    * Check if current or specific language is considered not fully supported.
+   *
    * Does not account for language being actually in use.
    *
    * @param string|null $langcode
    *   Langcode to check. Defaults to current language.
    *
-   * @return boolean
+   * @return bool
    *   If language is considered alternative and not fully supported.
    */
   public function isAltLanguage(string $langcode = NULL): bool {
@@ -140,12 +140,13 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
 
   /**
    * Checks if region has fallback language content.
+   *
    * Currently only determined by region name.
    *
    * @param string $region_name
    *   Region name to check.
    *
-   * @return boolean
+   * @return bool
    *   Returns TRUE if we assume that region has fallback content.
    */
   public function shouldAttributesBeAddedToRegion(string $region_name): bool {
@@ -159,12 +160,13 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
 
   /**
    * Checks if block can have fallback language content.
+   *
    * Current language parameters are added if content is translated.
    *
    * @param string $plugin_id
    *   Block plugin ID to check.
    *
-   * @return boolean
+   * @return bool
    *   Returns TRUE if block can have fallback content.
    */
   public function shouldAttributesBeAddedToBlock(string $plugin_id): bool {
@@ -182,7 +184,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
    * @param array $variables
    *   Block preprocess variables.
    *
-   * @return boolean
+   * @return bool
    *   Returns TRUE if block has menus with fallback content.
    */
   public function checkIfBlockHasFallbackContent(array $variables): bool {
@@ -203,18 +205,15 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
     return $this->shouldMenuTreeBeReplaced($variables['content']['#menu_name'], $variables['content']['#items']);
   }
 
-
-
   /**
    * Checks if menu tree should be replaced by this service.
    *
    * @param string $menu_name
    *   Menu tree to check.
-   *
    * @param array $items
    *   Current menu items to check.
    *
-   * @return boolean
+   * @return bool
    *   Returns TRUE if menu should be handled by this module.
    */
   public function shouldMenuTreeBeReplaced(string $menu_name, array $items): bool {
@@ -268,6 +267,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
 
       $metadata = $link->getMetadata();
       $entity = $this->entityTypeManager->getStorage('menu_link_content')->load($metadata['entity_id']);
+      /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $entity */
       if ($entity->get('langcode')->value !== self::FALLBACK_LANGUAGE) {
         unset($tree[$key]);
       }
@@ -313,4 +313,5 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
       'dir' => $this->languageManager->getCurrentLanguage()->getDirection(),
     ];
   }
+
 }

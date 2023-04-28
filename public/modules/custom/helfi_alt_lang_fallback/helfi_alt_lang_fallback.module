@@ -8,20 +8,6 @@
 declare(strict_types = 1);
 
 /**
- * Implements hook_block_alter().
- */
-function helfi_alt_lang_fallback_block_alter(&$definitions) {
-  foreach ($definitions as $id => $definition) {
-    //dump($id);
-    // Check on your plugin Id here.
-    if ($id === 'external_menu_block_main_navigation') {
-      // Set your new class here.
-      //dump($definitions);
-    }
-  }
-}
-
-/**
  * Implements hook_preprocess_HOOK().
  */
 function helfi_alt_lang_fallback_preprocess_region(&$variables): void {
@@ -37,7 +23,7 @@ function helfi_alt_lang_fallback_preprocess_region(&$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function helfi_alt_lang_fallback_preprocess_block(&$variables): void {
-   /** @var \Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks $lang_fallbacks */
+  /** @var \Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks $lang_fallbacks */
   $lang_fallbacks = \Drupal::service('helfi_alt_lang_fallback');
 
   if (empty($variables['plugin_id'])) {
