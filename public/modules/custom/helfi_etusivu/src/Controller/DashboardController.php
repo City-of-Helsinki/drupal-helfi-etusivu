@@ -26,17 +26,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class DashboardController extends ControllerBase {
 
   /**
-   * The environments.
-   *
-   * @var \Drupal\helfi_api_base\Environment\EnvironmentEnum[]
-   */
-  private array $environments = [
-    EnvironmentEnum::Test,
-    EnvironmentEnum::Stage,
-    EnvironmentEnum::Prod,
-  ];
-
-  /**
    * Constructs a new instance.
    *
    * @param \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $environmentResolver
@@ -207,11 +196,6 @@ final class DashboardController extends ControllerBase {
 
       $content = '';
       foreach ($items as $id => $item) {
-        // Global menu status plugin is Frontpage specific, so we can safely
-        // ignore it.
-        if ($id === 'helfi_globalmenu') {
-          continue;
-        }
         $build = [
           '#theme' => 'debug_item',
           '#id' => $id,
@@ -252,8 +236,8 @@ final class DashboardController extends ControllerBase {
         '#open' => TRUE,
       ];
 
-      foreach ($this->environments as $env) {
-        if (!$project->hasEnvironment($env->value)) {
+      foreach (EnvironmentEnum::cases() as $env) {
+        if ($env === EnvironmentEnum::Local || !$project->hasEnvironment($env->value)) {
           continue;
         }
         $build[$name][$env->value] = [
