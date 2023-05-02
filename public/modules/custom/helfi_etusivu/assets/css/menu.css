@@ -1,0 +1,4 @@
+.toolbar .toolbar-bar .toolbar-menu-administration .toolbar-icon.toolbar-icon-helfi-etusivu-dashboard::before {
+  -webkit-mask-image: url(../icons/dashboard.svg);
+  mask-image: url(../icons/dashboard.svg);
+}
