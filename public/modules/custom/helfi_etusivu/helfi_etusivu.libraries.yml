@@ -1,0 +1,12 @@
+debug-status:
+  version: 1.x
+  js:
+    assets/js/debug-status.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
+menu-styles:
+  css:
+    theme:
+      assets/css/menu.css: {}
