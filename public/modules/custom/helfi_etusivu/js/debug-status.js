@@ -21,7 +21,6 @@
     const apiUrl = `${drupalSettings.path.baseUrl}${drupalSettings.path.pathPrefix}admin/dashboard/api-proxy?project=${project}&environment=${environment}`;
 
     fetch(apiUrl, requestOptions)
-      // .then(response => response.text())
       .then(async response => {
           const resultObj = JSON.parse(await response.text());
           const childObject = element.querySelector('.details-wrapper');
