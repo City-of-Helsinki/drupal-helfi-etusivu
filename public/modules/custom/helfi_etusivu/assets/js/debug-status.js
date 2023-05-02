@@ -1,32 +1,38 @@
 (function (drupalSettings) {
   'use strict';
 
-  function getDebugStatus(element) {
-    const project = element.dataset.project;
-    const environment = element.dataset.environment;
+  Drupal.behaviors.debugStatus = {
 
-    const apiUrl = `${drupalSettings.path.baseUrl}${drupalSettings.path.pathPrefix}admin/dashboard/api-proxy?project=${project}&environment=${environment}`;
+    getDebugStatus: function (element) {
+      const project = element.dataset.project;
+      const environment = element.dataset.environment;
 
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: new Headers(),
-      redirect: 'follow'
-    })
-      .then(async response => {
-          const resultObj = JSON.parse(await response.text());
-          const childObject = element.querySelector('.details-wrapper');
+      const apiUrl = `${drupalSettings.path.baseUrl}${drupalSettings.path.pathPrefix}admin/dashboard/api-proxy?project=${project}&environment=${environment}`;
 
-          if (resultObj.status) {
-            childObject.innerHTML = resultObj.content;
+      fetch(apiUrl, {
+        method: 'GET',
+        headers: new Headers(),
+        redirect: 'follow'
+      })
+        .then(async response => {
+            const resultObj = JSON.parse(await response.text());
+            const childObject = element.querySelector('.details-wrapper');
+
+            if (resultObj.status) {
+              childObject.innerHTML = resultObj.content;
+            }
+
+            if (resultObj.message && response.status > 200) {
+              childObject.innerText = resultObj.message;
+              childObject.style = 'color: red';
+            }
           }
+        );
+    },
 
-          if (resultObj.message && response.status > 200) {
-            childObject.innerText = resultObj.message;
-            childObject.style = 'color: red';
-          }
-        }
-      );
-}
-document.querySelectorAll('[data-environment]').forEach(getDebugStatus);
+    attach: function (context, settings) {
+      context.querySelectorAll('[data-environment]').forEach(this.getDebugStatus);
+    }
+  };
 
 })(drupalSettings);
