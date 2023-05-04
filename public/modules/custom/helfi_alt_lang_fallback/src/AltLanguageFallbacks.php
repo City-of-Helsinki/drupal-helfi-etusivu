@@ -10,6 +10,7 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\helfi_api_base\Language\DefaultLanguageResolver;
 
 /**
  * Handler for alternate language fallback service.
@@ -40,9 +41,11 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
   protected MenuLinkTreeInterface $menuTree;
 
   /**
-   * Fallback language to default to.
+   * Default language resolver.
+   *
+   * @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver
    */
-  public const FALLBACK_LANGUAGE = 'en';
+  protected DefaultLanguageResolver $defaultLanguageResolver;
 
   /**
    * Fallback regions to add language and direction attributes to.
@@ -82,17 +85,6 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
   ];
 
   /**
-   * List of fully supported languages. All others are handled by this service.
-   *
-   * @var array
-   */
-  protected array $standardLanguages = [
-    'fi',
-    'en',
-    'sv',
-  ];
-
-  /**
    * Constructs Ahjo Proxy service.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
@@ -101,14 +93,17 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
    *   Entity type manager.
    * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menu_tree
    *   Menu tree builder.
+   * @param \Drupal\helfi_api_base\Language\DefaultLanguageResolver @default_language_resolver
+   *   Default language resolver.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, MenuLinkTreeInterface $menu_tree) {
+  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, MenuLinkTreeInterface $menu_tree, DefaultLanguageResolver $default_language_resolver) {
     $this->languageManager = $language_manager;
     $this->entityTypeManager = $entity_type_manager;
     $this->menuTree = $menu_tree;
+    $this->defaultLanguageResolver = $default_language_resolver;
   }
 
   /**
@@ -119,6 +114,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
       $container->get('language_manager'),
       $container->get('entity_type.manager'),
       $container->get('menu.link_tree'),
+      $container->get('helfi_api_base.default_language_resolver'),
     );
   }
 
@@ -134,11 +130,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
    *   If language is considered alternative and not fully supported.
    */
   public function isAltLanguage(string $langcode = NULL): bool {
-    if (!$langcode) {
-      $langcode = $this->languageManager->getCurrentLanguage()->getId();
-    }
-
-    return !in_array($langcode, $this->standardLanguages);
+    return $this->defaultLanguageResolver->isAltLanguage($langcode);
   }
 
   /**
@@ -271,7 +263,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
       $metadata = $link->getMetadata();
       $entity = $this->entityTypeManager->getStorage('menu_link_content')->load($metadata['entity_id']);
       /** @var \Drupal\menu_link_content\Entity\MenuLinkContent $entity */
-      if ($entity->get('langcode')->value !== self::FALLBACK_LANGUAGE) {
+      if ($entity->get('langcode')->value !== $this->defaultLanguageResolver->getFallbackLanguage()) {
         unset($tree[$key]);
       }
     }
@@ -298,10 +290,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
    *   Array with attributes.
    */
   public function getLangAttributes(): array {
-    return [
-      'lang' => self::FALLBACK_LANGUAGE,
-      'dir' => 'ltr',
-    ];
+    return $this->defaultLanguageResolver->getFallbackLangAttributes();
   }
 
   /**
@@ -311,10 +300,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
    *   Array with attributes.
    */
   public function getCurrentLangAttributes(): array {
-    return [
-      'lang' => $this->languageManager->getCurrentLanguage()->getId(),
-      'dir' => $this->languageManager->getCurrentLanguage()->getDirection(),
-    ];
+    return $this->defaultLanguageResolver->getCurrentLangAttributes();
   }
 
 }
