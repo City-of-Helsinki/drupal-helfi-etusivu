@@ -10,6 +10,8 @@ Base URL for all API endpoints is `https://www.hel.fi/{langcode}`. See [Availabl
 - en
 - sv
 
+Additional languages aren't supported in menu api.
+
 ## Global navigation
 
 Allows you to update/retrieve all or instance specific main-navigations.
