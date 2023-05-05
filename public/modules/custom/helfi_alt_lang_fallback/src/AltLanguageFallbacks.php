@@ -93,7 +93,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
    *   Entity type manager.
    * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menu_tree
    *   Menu tree builder.
-   * @param \Drupal\helfi_api_base\Language\DefaultLanguageResolver @default_language_resolver
+   * @param \Drupal\helfi_api_base\Language\DefaultLanguageResolver $default_language_resolver
    *   Default language resolver.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
