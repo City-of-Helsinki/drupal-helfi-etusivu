@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: front_page_top_news
-label: 'Top news'
+label: 'Top news (supported in other languages)'
 icon_uuid: null
 icon_default: null
 description: 'Use only on front page.'
