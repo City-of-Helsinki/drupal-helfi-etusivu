@@ -8,6 +8,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class to override core's LocalTaskBlock.
+ *
+ * Based on other languages and UHF-8395
+ * Workaround for drupal core issue 3054641.
+ * Translate the local tasks menu's link titles on preferred admin language.
  */
 class EtusivuLocalTasksBlock extends LocalTasksBlock {
 
@@ -23,7 +27,6 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
-    $instance->defaultLanguageResolver = $container->get('helfi_api_base.default_language_resolver');
     $instance->languageManager = $container->get('language_manager');
     return $instance;
   }
@@ -40,7 +43,7 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
 
     $adminLanguage = \Drupal::currentUser()->getPreferredAdminLangcode();
 
-    $translations = [
+    $routes = [
       'entity.node.canonical' => 'View',
       'entity.node.edit_form' => 'Edit',
       'entity.node.delete_form' => 'Delete',
@@ -50,10 +53,10 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
       'content_translation.local_tasks:entity.node.content_translation_overview' => 'Translate',
     ];
 
-    foreach (array_keys($build['#primary']) as $key) {
-      if ($build['#primary'][$key] && $translations[$key]) {
+    foreach (array_keys($build['#primary']) as $route) {
+      if ($build['#primary'][$route] && $routes[$route]) {
         // phpcs:ignore
-        $build['#primary'][$key]['#link']['title'] = $this->t($translations[$key], [], ['langcode' => $adminLanguage]);
+        $build['#primary'][$route]['#link']['title'] = $this->t($routes[$route], [], ['langcode' => $adminLanguage]);
       }
     }
 
