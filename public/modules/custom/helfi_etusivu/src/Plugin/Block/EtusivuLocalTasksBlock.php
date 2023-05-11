@@ -54,7 +54,7 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
     ];
 
     foreach (array_keys($build['#primary']) as $route) {
-      if ($build['#primary'][$route] && $routes[$route]) {
+      if (isset($build['#primary'][$route]) && isset($routes[$route])) {
         // phpcs:ignore
         $build['#primary'][$route]['#link']['title'] = $this->t($routes[$route], [], ['langcode' => $adminLanguage]);
       }
