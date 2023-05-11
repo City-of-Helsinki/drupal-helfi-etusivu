@@ -37,7 +37,7 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
   public function build() {
     $build = parent::build();
 
-    if (!is_array($build['#primary'])) {
+    if (!isset($build['#primary']) || !is_array($build['#primary'])) {
       return $build;
     }
 
