@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * @file
+ * Contains preprocess hooks for alternative language fallbacks.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_alt_lang_fallback_preprocess_region(&$variables): void {
+  /** @var \Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks $lang_fallbacks */
+  $lang_fallbacks = \Drupal::service('helfi_alt_lang_fallback');
+  if ($lang_fallbacks->shouldAttributesBeAddedToRegion($variables['region'])) {
+    $attributes = $lang_fallbacks->getLangAttributes();
+    $variables['attributes'] = array_replace($variables['attributes'], $attributes);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_alt_lang_fallback_preprocess_block(&$variables): void {
+  /** @var \Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks $lang_fallbacks */
+  $lang_fallbacks = \Drupal::service('helfi_alt_lang_fallback');
+
+  if (empty($variables['plugin_id'])) {
+    return;
+  }
+
+  // Check if block is in the list to be altered.
+  if (!$lang_fallbacks->shouldAttributesBeAddedToBlock($variables['plugin_id'])) {
+    return;
+  }
+  // Check if block has fallback content. Otherwise add current lang attributes.
+  if ($lang_fallbacks->checkIfBlockHasFallbackContent($variables)) {
+    $attributes = $lang_fallbacks->getLangAttributes();
+  }
+  else {
+    $attributes = $lang_fallbacks->getCurrentLangAttributes();
+  }
+
+  // Add either fallback or current language attributes.
+  $variables['attributes'] = array_replace($variables['attributes'], $attributes);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_alt_lang_fallback_preprocess_menu(&$variables): void {
+  if (empty($variables['menu_name']) || empty($variables['items'])) {
+    return;
+  }
+
+  /** @var \Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks $lang_fallbacks */
+  $lang_fallbacks = \Drupal::service('helfi_alt_lang_fallback');
+  if (!$lang_fallbacks->shouldMenuTreeBeReplaced($variables['menu_name'], $variables['items'])) {
+    return;
+  }
+
+  $variables['items'] = $lang_fallbacks->replaceMenuTree($variables['menu_name']);
+}
