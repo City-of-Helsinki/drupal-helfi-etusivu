@@ -15,7 +15,7 @@ use Drupal\helfi_api_base\Language\DefaultLanguageResolver;
 /**
  * Handler for alternate language fallback service.
  *
- * @package Drupal\paatokset_ahjo_proxy
+ * @package Drupal\helfi_alt_lang_fallback
  */
 class AltLanguageFallbacks implements ContainerInjectionInterface {
 
@@ -85,7 +85,7 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
   ];
 
   /**
-   * Constructs Ahjo Proxy service.
+   * Constructs AltLanguageFallbacks service.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   Language manager.
