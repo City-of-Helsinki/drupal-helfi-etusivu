@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Class to override core's LocalTaskBlock.
  *
  * Based on other languages and UHF-8395
- * Workaround for drupal core issue 3054641.
+ * Temporary workaround for drupal core issue 3054641.
  * Translate the local tasks menu's link titles on preferred admin language.
  */
 class EtusivuLocalTasksBlock extends LocalTasksBlock {
