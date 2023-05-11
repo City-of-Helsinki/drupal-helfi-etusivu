@@ -10,7 +10,7 @@ third_party_settings:
 _core:
   default_config_hash: rlTppk1e9-X4A1utAhQ2iP-NbeR3H15DOMrpb--XdVY
 id: list_of_links
-label: 'List of links'
+label: 'List of links (supported in other languages)'
 icon_uuid: null
 icon_default: null
 description: 'List of internal or external links. Different designs available.'
