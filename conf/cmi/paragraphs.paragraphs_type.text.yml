@@ -10,7 +10,7 @@ third_party_settings:
 _core:
   default_config_hash: quCqNy8X3E6ITit4b7BJnq9E6Ai6Tx3xYpBz1pByy0E
 id: text
-label: Text
+label: 'Text (supported in other languages)'
 icon_uuid: null
 icon_default: null
 description: ''
