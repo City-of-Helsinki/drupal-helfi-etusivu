@@ -160,3 +160,14 @@ function helfi_etusivu_theme_registry_alter(&$theme_registry) : void {
 function helfi_etusivu_preprocess_toolbar(&$variables): void {
   $variables['#attached']['library'][] = 'helfi_etusivu/menu-styles';
 }
+
+/**
+ * Implements hook_block_alter().
+ */
+function helfi_etusivu_block_alter(&$definitions) {
+  foreach ($definitions as $id => $definition) {
+    if ($id === 'local_tasks_block') {
+      $definitions[$id]['class'] = 'Drupal\helfi_etusivu\Plugin\Block\EtusivuLocalTasksBlock';
+    }
+  }
+}
