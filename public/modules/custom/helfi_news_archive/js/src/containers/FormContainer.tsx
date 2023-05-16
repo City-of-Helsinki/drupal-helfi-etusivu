@@ -74,6 +74,33 @@ export const FormContainer = ({ initialParams, searchState, setSearchState }: Fo
     submitButton?.current.setQuery(getQuery(newValue, languageFilter));
   };
 
+  const termFilter = {
+    term: { entity_type: 'taxonomy_term' },
+  };
+
+  const getDefaultQuery = (key: string, vid: string) => ({
+    aggs: {
+      [key]: {
+        multi_terms: {
+          terms: [
+            {
+              field: 'tid',
+            },
+            {
+              field: 'name',
+            },
+          ],
+          size: 100000,
+        },
+      },
+    },
+    query: {
+      bool: {
+        filter: [{ term: { vid: vid } }, termFilter, ...languageFilter.bool.filter],
+      },
+    },
+  });
+
   return (
     <div className='news-form-wrapper'>
       <div className='news-form-container'>
@@ -81,18 +108,7 @@ export const FormContainer = ({ initialParams, searchState, setSearchState }: Fo
         <div className='news-form__filters-container'>
           <ReactiveComponent
             componentId={SearchComponents.TOPIC}
-            defaultQuery={() => ({
-              aggs: {
-                [IndexFields.FIELD_NEWS_ITEM_TAGS]: {
-                  terms: {
-                    field: `${IndexFields.FIELD_NEWS_ITEM_TAGS}.keyword`,
-                    order: { _key: 'asc' },
-                    size: 100000,
-                  },
-                },
-              },
-              query: languageFilter,
-            })}
+            defaultQuery={() => getDefaultQuery(IndexFields.FIELD_NEWS_ITEM_TAGS, 'news_tags')}
             ref={topicRef}
             render={({ aggregations, setQuery }) => (
               <Dropdown
@@ -111,18 +127,7 @@ export const FormContainer = ({ initialParams, searchState, setSearchState }: Fo
           />
           <ReactiveComponent
             componentId={SearchComponents.NEIGHBOURHOODS}
-            defaultQuery={() => ({
-              aggs: {
-                [IndexFields.FIELD_NEWS_NEIGHBOURHOODS]: {
-                  terms: {
-                    field: `${IndexFields.FIELD_NEWS_NEIGHBOURHOODS}.keyword`,
-                    order: { _key: 'asc' },
-                    size: 100000,
-                  },
-                },
-              },
-              query: languageFilter,
-            })}
+            defaultQuery={() => getDefaultQuery(IndexFields.FIELD_NEWS_NEIGHBOURHOODS, 'news_neighbourhoods')}
             ref={neighbourhoodRef}
             render={({ aggregations, setQuery }) => (
               <Dropdown
@@ -145,18 +150,7 @@ export const FormContainer = ({ initialParams, searchState, setSearchState }: Fo
           />
           <ReactiveComponent
             componentId={SearchComponents.NEWS_GROUPS}
-            defaultQuery={() => ({
-              aggs: {
-                [IndexFields.FIELD_NEWS_GROUPS]: {
-                  terms: {
-                    field: `${IndexFields.FIELD_NEWS_GROUPS}.keyword`,
-                    order: { _key: 'asc' },
-                    size: 100000,
-                  },
-                },
-              },
-              query: languageFilter,
-            })}
+            defaultQuery={() => getDefaultQuery(IndexFields.FIELD_NEWS_GROUPS, 'news_group')}
             ref={groupRef}
             render={({ aggregations, setQuery }) => (
               <Dropdown
