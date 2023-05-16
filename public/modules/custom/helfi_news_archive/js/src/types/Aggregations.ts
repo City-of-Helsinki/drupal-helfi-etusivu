@@ -1,5 +1,5 @@
 export type AggregationItem = {
-  key: string;
+  key: string | Array<string | number>;
   doc_count: number;
 };
 
