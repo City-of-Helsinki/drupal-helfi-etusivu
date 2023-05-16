@@ -3,7 +3,7 @@
 namespace Drupal\helfi_etusivu\Plugin\search_api\data_type;
 
 use Drupal\image\Entity\ImageStyle;
-use Drupal\search_api\Plugin\search_api\data_type\StringDataType;
+use Drupal\search_api\DataType\DataTypePluginBase;
 
 /**
  * Get file url from media entity.
@@ -12,10 +12,11 @@ use Drupal\search_api\Plugin\search_api\data_type\StringDataType;
  *   id = "etusivu_image",
  *   label = @Translation("Image"),
  *   description = @Translation("Image"),
- *   default = "true"
+ *   default = "true",
+ *   fallback_type = "string"
  * )
  */
-class Image extends StringDataType {
+class Image extends DataTypePluginBase {
 
   /**
    * {@inheritDoc}
