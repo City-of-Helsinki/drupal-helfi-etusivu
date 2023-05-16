@@ -25,6 +25,7 @@ dependencies:
     - content_lock
     - content_translation
     - editoria11y
+    - entity_usage
     - eu_cookie_compliance
     - file
     - filter
@@ -59,6 +60,7 @@ permissions:
   - 'access administration pages'
   - 'access content'
   - 'access content overview'
+  - 'access entity usage statistics'
   - 'access files overview'
   - 'access media overview'
   - 'access remote entities overview'
