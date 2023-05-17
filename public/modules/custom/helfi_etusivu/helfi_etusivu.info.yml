@@ -7,5 +7,6 @@ dependencies:
   - drupal:rest
   - draggableviews:draggableviews
   - helfi_api_base:helfi_api_base
+  - helfi_tunnistamo:helfi_tunnistamo
 'interface translation project': helfi_etusivu
 'interface translation server pattern': modules/custom/helfi_etusivu/translations/%language.po
