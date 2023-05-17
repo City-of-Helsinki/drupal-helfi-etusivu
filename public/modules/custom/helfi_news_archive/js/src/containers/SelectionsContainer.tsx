@@ -18,26 +18,29 @@ const SelectionsContainer = ({ clearSelection, searchState, setSearchState }: Se
   };
 
   const filters: ReactElement<HTMLLIElement>[] = [];
-  [SearchComponents.NEWS_GROUPS, SearchComponents.NEIGHBOURHOODS, SearchComponents.TOPIC].forEach((key) => {
+
+  const selections = [SearchComponents.NEWS_GROUPS, SearchComponents.NEIGHBOURHOODS, SearchComponents.TOPIC];
+
+  selections.forEach((key) => {
     if (searchState[key]?.value?.length) {
-      searchState[key].value.forEach((value: OptionType) =>
+      searchState[key].value.forEach((selection: OptionType) =>
         filters.push(
           <li
             className='content-tags__tags__tag content-tags__tags--interactive'
-            key={`${key}-${value.value}`}
-            onClick={() => clearSelection(value, key)}
+            key={`${key}-${selection.value}`}
+            onClick={() => clearSelection(selection.value, key)}
           >
             <Button
               aria-label={Drupal.t(
                 'Remove @item from search results',
-                { '@item': value.value },
+                { '@item': selection.value },
                 { context: 'Search: remove item aria label' }
               )}
               className='news-form__remove-selection-button'
               iconRight={<IconCross />}
               variant='supplementary'
             >
-              {value.value}
+              {selection.label}
             </Button>
           </li>
         )

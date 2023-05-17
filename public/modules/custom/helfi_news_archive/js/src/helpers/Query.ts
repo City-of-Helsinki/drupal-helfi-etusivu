@@ -11,9 +11,9 @@ type SearchState = {
 };
 
 const ComponentMap = {
-  [SearchComponents.TOPIC]: `${IndexFields.FIELD_NEWS_ITEM_TAGS}.keyword`,
-  [SearchComponents.NEIGHBOURHOODS]: `${IndexFields.FIELD_NEWS_NEIGHBOURHOODS}.keyword`,
-  [SearchComponents.NEWS_GROUPS]: `${IndexFields.FIELD_NEWS_GROUPS}.keyword`,
+  [SearchComponents.TOPIC]: `${IndexFields.NEWS_TAGS}`,
+  [SearchComponents.NEIGHBOURHOODS]: `${IndexFields.NEIGHBOURHOORDS}`,
+  [SearchComponents.NEWS_GROUPS]: `${IndexFields.NEWS_GROUPS}`,
 };
 
 const getQuery = (searchState: SearchState, languageFilter: any) => {
