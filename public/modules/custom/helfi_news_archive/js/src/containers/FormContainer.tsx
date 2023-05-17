@@ -115,7 +115,7 @@ export const FormContainer = ({ initialParams, searchState, setSearchState }: Fo
                 aggregations={aggregations}
                 componentId={SearchComponents.TOPIC}
                 initialize={initialize}
-                indexKey={`${IndexFields.FIELD_NEWS_ITEM_TAGS}`}
+                indexKey={IndexFields.FIELD_NEWS_ITEM_TAGS}
                 initialValue={initialParams[SearchComponents.TOPIC as keyof InitialParam] ?? []}
                 label={Drupal.t('Topics', {}, { context: 'News archive topics label' })}
                 placeholder={Drupal.t('All topics', {}, { context: 'News archive topics placeholder' })}
@@ -133,7 +133,7 @@ export const FormContainer = ({ initialParams, searchState, setSearchState }: Fo
               <Dropdown
                 aggregations={aggregations}
                 componentId={SearchComponents.NEIGHBOURHOODS}
-                indexKey={`${IndexFields.FIELD_NEWS_NEIGHBOURHOODS}`}
+                indexKey={IndexFields.FIELD_NEWS_NEIGHBOURHOODS}
                 initialize={initialize}
                 initialValue={initialParams[SearchComponents.NEIGHBOURHOODS as keyof InitialParam] ?? []}
                 label={Drupal.t('City disctricts', {}, { context: 'News archive neighbourhoods label' })}
@@ -156,7 +156,7 @@ export const FormContainer = ({ initialParams, searchState, setSearchState }: Fo
               <Dropdown
                 aggregations={aggregations}
                 componentId={SearchComponents.NEWS_GROUPS}
-                indexKey={`${IndexFields.FIELD_NEWS_GROUPS}`}
+                indexKey={IndexFields.FIELD_NEWS_GROUPS}
                 initialize={initialize}
                 initialValue={initialParams[SearchComponents.NEWS_GROUPS as keyof InitialParam] ?? []}
                 label={Drupal.t('Target groups', {}, { context: 'News archive groups label' })}
