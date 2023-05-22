@@ -17,7 +17,7 @@ dependencies:
     module:
       - hdbt_admin_tools
 _core:
-  default_config_hash: 4k3Vv4YhxAg7eoc4j06MIAQ-EsUX6P3BnCOtc0oAn9k
+  default_config_hash: Vtp2PgsgVx3XvL6wqcXbKUn8j0EMUkSmwv55K092n0M
 id: paragraph.banner.default
 targetEntityType: paragraph
 bundle: banner

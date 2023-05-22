@@ -1,0 +1,26 @@
+helfi_etusivu.dashboard.index:
+  path: 'admin/dashboard'
+  defaults:
+    _title: 'Dashboard: List of projects'
+    _controller: '\Drupal\helfi_etusivu\Controller\DashboardController::index'
+  requirements:
+    _permission: 'administer site configuration'
+
+helfi_etusivu.dashboard.status:
+  path: 'admin/dashboard/status'
+  defaults:
+    _title: 'Dashboard: Project status'
+    _controller: '\Drupal\helfi_etusivu\Controller\DashboardController::status'
+  requirements:
+    _permission: 'administer site configuration'
+
+helfi_etusivu.dashboard.api:
+  path: 'admin/dashboard/api-proxy'
+  defaults:
+    _controller: '\Drupal\helfi_etusivu\Controller\DashboardController::apiProxy'
+  options:
+    _admin_route: TRUE
+    no_cache: TRUE
+  requirements:
+    _permission: 'administer site configuration'
+    _format: json
