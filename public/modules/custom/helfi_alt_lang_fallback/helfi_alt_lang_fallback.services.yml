@@ -1,0 +1,4 @@
+services:
+  helfi_alt_lang_fallback:
+    class: Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks
+    arguments: ['@language_manager', '@entity_type.manager', '@menu.link_tree', '@helfi_api_base.default_language_resolver']

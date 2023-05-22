@@ -1,0 +1,9 @@
+helfi_etusivu.dashboard.index:
+  title: Index
+  route_name: helfi_etusivu.dashboard.index
+  base_route: helfi_etusivu.dashboard.index
+
+helfi_etusivu.dashboard.status:
+  title: Project status
+  route_name: helfi_etusivu.dashboard.status
+  base_route: helfi_etusivu.dashboard.index

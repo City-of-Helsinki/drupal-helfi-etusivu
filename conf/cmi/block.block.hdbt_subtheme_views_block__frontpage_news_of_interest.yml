@@ -12,7 +12,7 @@ dependencies:
 id: hdbt_subtheme_views_block__frontpage_news_of_interest
 theme: hdbt_subtheme
 region: after_content
-weight: 0
+weight: -12
 provider: null
 plugin: 'views_block:frontpage_news-of_interest'
 settings:
