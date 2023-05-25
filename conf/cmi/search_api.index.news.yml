@@ -44,7 +44,7 @@ field_settings:
       module:
         - node
   entity_type:
-    label: 'Entiteetin tyyppi'
+    label: 'Entity type'
     property_path: search_api_entity_type
     type: string
   field_main_image_caption:
@@ -105,11 +105,11 @@ field_settings:
       config:
         - field.storage.node.field_short_title
   main_image_url:
-    label: Pääkuva
+    label: 'Main Image'
     property_path: main_image_url
     type: string
   name:
-    label: Nimi
+    label: Name
     datasource_id: 'entity:taxonomy_term'
     property_path: name
     type: string
@@ -147,7 +147,7 @@ field_settings:
       module:
         - taxonomy
   published_at:
-    label: Julkaisuaika
+    label: 'Published at'
     datasource_id: 'entity:node'
     property_path: published_at
     type: date
@@ -155,7 +155,7 @@ field_settings:
       module:
         - publication_date
   tid:
-    label: 'Termin ID'
+    label: 'Term ID'
     datasource_id: 'entity:taxonomy_term'
     property_path: tid
     type: integer
@@ -191,7 +191,7 @@ field_settings:
       module:
         - node
   vid:
-    label: Luokittelu
+    label: Vid
     datasource_id: 'entity:taxonomy_term'
     property_path: vid
     type: string
