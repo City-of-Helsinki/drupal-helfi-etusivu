@@ -1,5 +1,5 @@
 const RssFeedLink = () => {
-  const feedBaseUrl = drupalSettings?.helfi_news_archive?.feed_base_url ?? '/news/subscribe/rss';
+  const feedBaseUrl = drupalSettings?.helfi_news_archive?.feed_base_url ?? '/news/rss';
 
   const getFeedUrl = () => {
     const feedUrlWithParams = window.location.search ? feedBaseUrl + window.location.search : feedBaseUrl;

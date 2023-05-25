@@ -140,7 +140,7 @@ function hdbt_subtheme_preprocess_page__news(array &$variables) {
     $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
   }
 
-  $feed_base_url = Url::fromRoute('view.react_news_feed.feed_1')->toString();
+  $feed_base_url = Url::fromRoute('view.news_archive.feed_1')->toString();
 
   if ($feed_base_url) {
     $feed_link = [
