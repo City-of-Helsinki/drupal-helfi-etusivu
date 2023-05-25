@@ -13,8 +13,9 @@ dependencies:
   module:
     - hdbt_admin_tools
     - paragraphs
+    - text
 _core:
-  default_config_hash: mfEXjVgi84hylYQ4Fm1Aw3_Y7yxFVnV9Ls2F1qAIziM
+  default_config_hash: K8HsAl3NXcMTSRfcQq_JTJfYA74VrVpE94gTYWIUUpI
 id: paragraph.accordion.default
 targetEntityType: paragraph
 bundle: accordion
