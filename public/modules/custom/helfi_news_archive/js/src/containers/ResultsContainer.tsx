@@ -29,6 +29,18 @@ const ResultsContainer = ({ initialParams, searchState }: ResultsContainerProps)
   const resultsWrapper = useRef<HTMLDivElement | null>(null);
   const pages = dimensions.isMobile ? 3 : 5;
 
+  const nodeFilter = {
+    bool: {
+      filter: [
+        {
+          term: {
+            entity_type: 'node',
+          },
+        },
+      ],
+    },
+  };
+
   return (
     <div ref={resultsWrapper} className='news-wrapper main-content'>
       <div className='layout-content'>
@@ -58,6 +70,7 @@ const ResultsContainer = ({ initialParams, searchState }: ResultsContainerProps)
           defaultQuery={() => ({
             query: {
               ...languageFilter,
+              ...nodeFilter,
             },
           })}
           render={({ data }: ResultsData) => (

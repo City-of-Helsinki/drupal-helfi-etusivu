@@ -56,3 +56,7 @@ msgstr "Ei tuloksia"
 msgctxt "News archive open dropdown aria label"
 msgid "Open the combobox"
 msgstr "Avaa alasvetovalikko"
+
+msgctxt "RSS feed subscribe link"
+msgid "Subscribe RSS"
+msgstr "Tilaa RSS-syöte"
