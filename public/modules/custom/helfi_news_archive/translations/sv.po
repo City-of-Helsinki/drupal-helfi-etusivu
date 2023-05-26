@@ -56,3 +56,7 @@ msgstr "Inga resultat"
 msgctxt "News archive open dropdown aria label"
 msgid "Open the combobox"
 msgstr "öppna rullgardinsmenyn"
+
+msgctxt "RSS feed subscribe link"
+msgid "Subscribe RSS"
+msgstr "Prenumera RSS"
