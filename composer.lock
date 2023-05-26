@@ -4163,20 +4163,20 @@
         },
         {
             "name": "drupal/flysystem",
-            "version": "2.1.0-rc2",
+            "version": "2.1.0-rc4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/flysystem.git",
-                "reference": "2.1.0-rc2"
+                "reference": "2.1.0-rc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/flysystem-2.1.0-rc2.zip",
-                "reference": "2.1.0-rc2",
-                "shasum": "ec31b0d71898076f22fe5e00d4106948fc93c16d"
+                "url": "https://ftp.drupal.org/files/projects/flysystem-2.1.0-rc4.zip",
+                "reference": "2.1.0-rc4",
+                "shasum": "bb1c7bcfee8a303188df7ce7baac6b7ca5a2cc73"
             },
             "require": {
-                "drupal/core": "^9.3 || ^10.0",
+                "drupal/core": "^9.5 || ^10.0",
                 "league/flysystem": "^1.0.3",
                 "league/flysystem-replicate-adapter": "~1.0",
                 "php": ">=8.1",
@@ -4188,8 +4188,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.1.0-rc2",
-                    "datestamp": "1684841705",
+                    "version": "2.1.0-rc4",
+                    "datestamp": "1685062002",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4463,16 +4463,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "5.1.7",
+            "version": "5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "a6fd079f67f3597e2ec8c4cf2b511362c52c3fb4"
+                "reference": "935fdc5795f589be2ebb78b61009037d1aac2cb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/a6fd079f67f3597e2ec8c4cf2b511362c52c3fb4",
-                "reference": "a6fd079f67f3597e2ec8c4cf2b511362c52c3fb4",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/935fdc5795f589be2ebb78b61009037d1aac2cb5",
+                "reference": "935fdc5795f589be2ebb78b61009037d1aac2cb5",
                 "shasum": ""
             },
             "require": {
@@ -4490,10 +4490,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.1.7",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.2.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2023-05-25T09:29:44+00:00"
+            "time": "2023-05-26T06:11:04+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4658,12 +4658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-tools.git",
-                "reference": "d48544c8208ae328c23f2448c9010611e0f08014"
+                "reference": "84877a51a195e42e8a46addae37dcc451297762c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/d48544c8208ae328c23f2448c9010611e0f08014",
-                "reference": "d48544c8208ae328c23f2448c9010611e0f08014",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/84877a51a195e42e8a46addae37dcc451297762c",
+                "reference": "84877a51a195e42e8a46addae37dcc451297762c",
                 "shasum": ""
             },
             "default-branch": true,
@@ -4676,7 +4676,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/main",
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
-            "time": "2023-05-25T08:12:48+00:00"
+            "time": "2023-05-25T13:39:12+00:00"
         },
         {
             "name": "drupal/helfi_navigation",
