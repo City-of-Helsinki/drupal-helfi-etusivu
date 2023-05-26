@@ -7,6 +7,8 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Render\BubbleableMetadata;
@@ -170,4 +172,52 @@ function helfi_etusivu_block_alter(&$definitions) {
       $definitions[$id]['class'] = 'Drupal\helfi_etusivu\Plugin\Block\EtusivuLocalTasksBlock';
     }
   }
+}
+
+/**
+ * Invalidate external caches.
+ *
+ * This is used to automatically flush caches on all external sites when
+ * 'announcement' node marked as 'publish externally' is created/modified
+ * or deleted.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity to flush cache tags for.
+ */
+function helfi_etusivu_invalidate_external_caches(EntityInterface $entity) : void {
+  if (!$entity instanceof ContentEntityInterface) {
+    return;
+  }
+  // Only flush caches when we're saving announcement node with
+  // 'field_publish_externally' option checked.
+  $isAnnouncementNode = $entity->getEntityTypeId() === 'node' && $entity->bundle() === 'announcement';
+  $publishExternally = $entity->hasField('field_publish_externally') && (bool) $entity->get('field_publish_externally')->value === TRUE;
+
+  if (!$isAnnouncementNode || !$publishExternally) {
+    return;
+  }
+  /** @var \Drupal\helfi_api_base\Cache\CacheTagInvalidator $service */
+  $service = \Drupal::service('helfi_api_base.cache_tag_invalidator');
+  $service->invalidateTags(['helfi_external_entity_announcement']);
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function helfi_etusivu_entity_update(EntityInterface $entity) : void {
+  helfi_etusivu_invalidate_external_caches($entity);
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function helfi_etusivu_entity_delete(EntityInterface $entity) : void {
+  helfi_etusivu_invalidate_external_caches($entity);
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function helfi_etusivu_entity_insert(EntityInterface $entity) : void {
+  helfi_etusivu_invalidate_external_caches($entity);
 }
