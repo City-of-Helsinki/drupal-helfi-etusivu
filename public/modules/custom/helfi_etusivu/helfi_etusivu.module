@@ -166,7 +166,7 @@ function helfi_etusivu_preprocess_toolbar(&$variables): void {
 /**
  * Implements hook_block_alter().
  */
-function helfi_etusivu_block_alter(&$definitions) {
+function helfi_etusivu_block_alter(&$definitions) : void {
   foreach ($definitions as $id => $definition) {
     if ($id === 'local_tasks_block') {
       $definitions[$id]['class'] = 'Drupal\helfi_etusivu\Plugin\Block\EtusivuLocalTasksBlock';
@@ -178,8 +178,13 @@ function helfi_etusivu_block_alter(&$definitions) {
  * Invalidate external caches.
  *
  * This is used to automatically flush caches on all external sites when
- * 'announcement' node marked as 'publish externally' is created/modified
+ * an 'announcement' node marked as 'publish externally' is created/modified
  * or deleted.
+ *
+ * @todo Decouple this from node save. Establishing connection to Azure PubSub
+ * service seems to take pretty long time
+ *
+ * @see https://helsinkisolutionoffice.atlassian.net/browse/UHF-8533
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
  *   The entity to flush cache tags for.
