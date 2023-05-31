@@ -5,7 +5,7 @@ import Result from '../../types/Result';
 const ResultCard = ({
   alt,
   field_main_image_caption,
-  field_main_image,
+  main_image_url,
   field_photographer,
   title,
   published_at,
@@ -42,20 +42,20 @@ const ResultCard = ({
   };
 
   const getImage = () => {
-    if (!field_main_image || !field_main_image.length) {
+    if (!main_image_url || !main_image_url.length) {
       return null;
     }
 
     return (
       <img
-        src={field_main_image[0]}
+        src={main_image_url[0]}
         alt={getAlt()}
         data-photographer={field_photographer && field_photographer.length ? field_photographer[0] : null}
       />
     );
   };
 
-  const showMainImage = field_main_image && field_main_image.length;
+  const mainImage = getImage();
 
   return (
     <li className='news-listing__item'>
@@ -67,7 +67,7 @@ const ResultCard = ({
         </h3>
         {getPublished()}
       </div>
-      {showMainImage && <div className='news-listing__img'>{getImage()}</div>}
+      {mainImage && <div className='news-listing__img'>{mainImage}</div>}
     </li>
   );
 };

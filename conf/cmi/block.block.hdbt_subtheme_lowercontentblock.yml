@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - hdbt_admin_tools
+    - helfi_platform_config
   theme:
     - hdbt_subtheme
 _core:
@@ -11,7 +11,7 @@ _core:
 id: hdbt_subtheme_lowercontentblock
 theme: hdbt_subtheme
 region: after_content
-weight: -10
+weight: -14
 provider: null
 plugin: lower_content_block
 settings:

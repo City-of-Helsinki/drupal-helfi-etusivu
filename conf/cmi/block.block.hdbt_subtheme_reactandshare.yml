@@ -1,9 +1,10 @@
 uuid: c6c05b70-2940-4dc2-bdbc-417d777274db
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - helfi_platform_config
+    - language
     - node
   theme:
     - hdbt_subtheme
@@ -12,7 +13,7 @@ _core:
 id: hdbt_subtheme_reactandshare
 theme: hdbt_subtheme
 region: after_content
-weight: -8
+weight: -11
 provider: null
 plugin: react_and_share
 settings:
@@ -28,4 +29,14 @@ visibility:
       node: '@node.node_route_context:node'
     bundles:
       announcement: announcement
-      news_item: news_item
+      landing_page: landing_page
+      page: page
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fi: fi
+      sv: sv
+      en: en
