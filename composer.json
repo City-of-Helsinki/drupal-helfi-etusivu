@@ -52,7 +52,7 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpunit/phpunit": "~9.4.0",
+        "phpunit/phpunit": "^9.6",
         "weitzman/drupal-test-traits": "^2.0"
     },
     "conflict": {
