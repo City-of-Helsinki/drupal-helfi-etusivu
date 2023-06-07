@@ -110,6 +110,7 @@ function helfi_etusivu_cron() : void {
     ->condition('promote', 1)
     ->condition('created', strtotime('-1 month'), '<')
     ->range(0, 50)
+    ->accessCheck(FALSE)
     ->execute();
 
   $promoted_nodes = \Drupal::entityTypeManager()
