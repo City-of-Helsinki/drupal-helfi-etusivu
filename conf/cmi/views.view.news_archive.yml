@@ -1164,6 +1164,59 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        field_news_item_tags_target_id_2:
+          id: field_news_item_tags_target_id_2
+          table: node__field_news_item_tags
+          field: field_news_item_tags_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_news_item_tags_target_id_2_op
+            label: 'News tags fallback (field_news_item_tags)'
+            description: ''
+            use_operator: false
+            operator: field_news_item_tags_target_id_2_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: tags
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              read_only: '0'
+              content_producer: '0'
+              editor: '0'
+              admin: '0'
+              menu_api: '0'
+              news_producer: '0'
+              debug_api: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: news_tags
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       filter_groups:
         operator: AND
         groups:
