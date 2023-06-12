@@ -34,7 +34,7 @@
         "drupal/raven": "^4.0",
         "drupal/redis": "^1.5",
         "drupal/search_api": "^1.23",
-        "drupal/stage_file_proxy": "^1.2",
+        "drupal/stage_file_proxy": "^2.0",
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/views_rss": "^2.0@RC",
         "drush/drush": "^11",
