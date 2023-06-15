@@ -3929,16 +3929,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "5.4.0",
+            "version": "5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "365dd7c30745b9498a1adf4360ab346f8c1f9011"
+                "reference": "48fcb57bbf2ec1d228af3ac56726b5a34d51357a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/365dd7c30745b9498a1adf4360ab346f8c1f9011",
-                "reference": "365dd7c30745b9498a1adf4360ab346f8c1f9011",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/48fcb57bbf2ec1d228af3ac56726b5a34d51357a",
+                "reference": "48fcb57bbf2ec1d228af3ac56726b5a34d51357a",
                 "shasum": ""
             },
             "require": {
@@ -3956,10 +3956,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.4.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.4.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2023-06-08T12:47:19+00:00"
+            "time": "2023-06-14T13:47:10+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4048,16 +4048,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.4.13",
+            "version": "2.4.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "a241d09008b27242533e76d47ee7ea5fa864730a"
+                "reference": "af41c0842e5a990c258069d10f143eea8e25c604"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/a241d09008b27242533e76d47ee7ea5fa864730a",
-                "reference": "a241d09008b27242533e76d47ee7ea5fa864730a",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/af41c0842e5a990c258069d10f143eea8e25c604",
+                "reference": "af41c0842e5a990c258069d10f143eea8e25c604",
                 "shasum": ""
             },
             "require": {
@@ -4083,10 +4083,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.4.13",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.4.14",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2023-06-06T02:07:42+00:00"
+            "time": "2023-06-15T05:52:34+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -8150,16 +8150,16 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v6.5.0",
+            "version": "v6.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "e94e7353302b0c11ec3cfff7180cd0b1743975d2"
+                "reference": "71278f20b0a623389beefe87a641d03948a38870"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/e94e7353302b0c11ec3cfff7180cd0b1743975d2",
-                "reference": "e94e7353302b0c11ec3cfff7180cd0b1743975d2",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/71278f20b0a623389beefe87a641d03948a38870",
+                "reference": "71278f20b0a623389beefe87a641d03948a38870",
                 "shasum": ""
             },
             "require": {
@@ -8207,9 +8207,9 @@
             ],
             "support": {
                 "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.5.0"
+                "source": "https://github.com/firebase/php-jwt/tree/v6.7.0"
             },
-            "time": "2023-05-12T15:47:07+00:00"
+            "time": "2023-06-14T15:29:26+00:00"
         },
         {
             "name": "galbar/jsonpath",
