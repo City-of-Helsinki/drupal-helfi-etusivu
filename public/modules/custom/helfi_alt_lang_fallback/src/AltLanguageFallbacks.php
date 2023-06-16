@@ -5,12 +5,12 @@ declare(strict_types = 1);
 namespace Drupal\helfi_alt_lang_fallback;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Url;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\helfi_api_base\Language\DefaultLanguageResolver;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Handler for alternate language fallback service.
