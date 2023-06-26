@@ -1,9 +1,9 @@
 {
-    "name": "city-of-helsinki/drupal-helfi-platform",
-    "description": "Drupal 9 started project",
+    "name": "city-of-helsinki/drupal-helfi-etusivu",
+    "description": "Drupal instance for helfi-etusivu",
     "type": "project",
     "license": "MIT",
-    "homepage": "https://github.com/City-of-Helsinki/drupal-helfi-platform",
+    "homepage": "https://github.com/City-of-Helsinki/drupal-helfi-etusivu",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
@@ -34,7 +34,7 @@
         "drupal/raven": "^4.0",
         "drupal/redis": "^1.5",
         "drupal/search_api": "^1.23",
-        "drupal/stage_file_proxy": "^1.2",
+        "drupal/stage_file_proxy": "^2.0",
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/views_rss": "^2.0@RC",
         "drush/drush": "^11",
