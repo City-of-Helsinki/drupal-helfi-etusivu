@@ -28,6 +28,9 @@ settings:
     -
       value: diagonal
       label: Diagonal
+    -
+      value: with-search
+      label: 'With search'
   allowed_values_function: ''
 module: options
 locked: false
