@@ -31,7 +31,7 @@ settings:
     -
       value: with-search
       label: 'With search'
-  allowed_values_function: ''
+  allowed_values_function: helfi_paragraphs_hero_design_allowed_values
 module: options
 locked: false
 cardinality: 1
