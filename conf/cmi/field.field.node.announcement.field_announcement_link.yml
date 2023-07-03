@@ -8,7 +8,7 @@ dependencies:
   module:
     - link
 _core:
-  default_config_hash: hTX5IXOUaUFXJy_k5Zx9H-dT7vSN4RiB7rTR5nkoK_k
+  default_config_hash: YUs0Svz_ND7z2Uscv_gCYGphNkHbvxzPJtlbAEh2zWc
 id: node.announcement.field_announcement_link
 field_name: field_announcement_link
 entity_type: node
