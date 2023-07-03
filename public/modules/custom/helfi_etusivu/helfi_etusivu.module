@@ -185,3 +185,11 @@ function helfi_etusivu_block_alter(&$definitions) {
     }
   }
 }
+
+/**
+ * Implements hook_helfi_hero_design_alter().
+ */
+function helfi_etusivu_helfi_hero_design_alter(array &$designs): void {
+  $designs['with-search'] = t('With search');
+  $designs['test'] = t('test');
+}
