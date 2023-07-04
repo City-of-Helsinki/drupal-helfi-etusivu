@@ -14,11 +14,10 @@ dependencies:
     - node.type.page
   module:
     - entity_reference_revisions
-    - helfi_platform_config
     - metatag
     - user
 _core:
-  default_config_hash: piTzY36HSFy5WyKCdZ6BvAOj3JzxAy5Jt6J1KyU4h64
+  default_config_hash: sNOG6x1EvyaK2gQbe76faZgElkaHmamOzji8jvk_Ce4
 id: node.page.default
 targetEntityType: node
 bundle: page
