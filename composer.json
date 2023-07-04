@@ -65,7 +65,8 @@
             "phpstan/extension-installer": true,
             "composer/installers": true,
             "cweagans/composer-patches": true,
-            "drupal/core-composer-scaffold": true
+            "drupal/core-composer-scaffold": true,
+            "php-http/discovery": false
         }
     },
     "extra": {
