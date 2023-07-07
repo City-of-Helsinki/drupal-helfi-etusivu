@@ -2136,16 +2136,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.5.9",
+            "version": "9.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "c3b194f9056a297f6d72e54056c818843cab9aba"
+                "reference": "c84bab7403943fbc4ed90ffcdde4460a94642b06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/c3b194f9056a297f6d72e54056c818843cab9aba",
-                "reference": "c3b194f9056a297f6d72e54056c818843cab9aba",
+                "url": "https://api.github.com/repos/drupal/core/zipball/c84bab7403943fbc4ed90ffcdde4460a94642b06",
+                "reference": "c84bab7403943fbc4ed90ffcdde4460a94642b06",
                 "shasum": ""
             },
             "require": {
@@ -2297,9 +2297,9 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.5.9"
+                "source": "https://github.com/drupal/core/tree/9.5.10"
             },
-            "time": "2023-05-03T13:26:12+00:00"
+            "time": "2023-07-05T09:26:59+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
@@ -3527,21 +3527,21 @@
         },
         {
             "name": "drupal/file_mdm",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/file_mdm.git",
-                "reference": "8.x-2.5"
+                "reference": "8.x-2.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/file_mdm-8.x-2.5.zip",
-                "reference": "8.x-2.5",
-                "shasum": "391d9902733704274594873aa9b1f6b6ba3bd319"
+                "url": "https://ftp.drupal.org/files/projects/file_mdm-8.x-2.6.zip",
+                "reference": "8.x-2.6",
+                "shasum": "56c7c06107ce6e249b6d644136e6807573efb0e3"
             },
             "require": {
                 "drupal/core": "^9.3 | ^10",
-                "lsolesen/pel": "^0.9.12",
+                "fileeye/pel": "^0.9.20",
                 "phenx/php-font-lib": "^0.5.4"
             },
             "require-dev": {
@@ -3551,8 +3551,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.5",
-                    "datestamp": "1663668519",
+                    "version": "8.x-2.6",
+                    "datestamp": "1688489716",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3872,26 +3872,26 @@
         },
         {
             "name": "drupal/gin_toolbar",
-            "version": "1.0.0-rc1",
+            "version": "1.0.0-rc3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gin_toolbar.git",
-                "reference": "8.x-1.0-rc1"
+                "reference": "8.x-1.0-rc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gin_toolbar-8.x-1.0-rc1.zip",
-                "reference": "8.x-1.0-rc1",
-                "shasum": "90516f6aa22f4f60f1853bdceb757940f411ec7e"
+                "url": "https://ftp.drupal.org/files/projects/gin_toolbar-8.x-1.0-rc3.zip",
+                "reference": "8.x-1.0-rc3",
+                "shasum": "f9ae6c1c086f008a2911eb2ced4740ac5c307faf"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10"
+                "drupal/core": "^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-rc1",
-                    "datestamp": "1669666957",
+                    "version": "8.x-1.0-rc3",
+                    "datestamp": "1688477564",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -3931,16 +3931,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "5.4.8",
+            "version": "5.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "23f279fa95516444766b092a9ffbc910230395fe"
+                "reference": "40f3ae07d0ab6a0005794c3d102413936ba4edb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/23f279fa95516444766b092a9ffbc910230395fe",
-                "reference": "23f279fa95516444766b092a9ffbc910230395fe",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/40f3ae07d0ab6a0005794c3d102413936ba4edb2",
+                "reference": "40f3ae07d0ab6a0005794c3d102413936ba4edb2",
                 "shasum": ""
             },
             "require": {
@@ -3958,23 +3958,23 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.4.8",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.4.10",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2023-06-30T06:23:42+00:00"
+            "time": "2023-07-06T08:02:19+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
-            "version": "2.0.9",
+            "version": "2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt-admin.git",
-                "reference": "391983675279b504ef09ea9bb98a28245bd42ed4"
+                "reference": "893dd9b0ac92d2719f9cd80d2165d26120e0ba3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/391983675279b504ef09ea9bb98a28245bd42ed4",
-                "reference": "391983675279b504ef09ea9bb98a28245bd42ed4",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/893dd9b0ac92d2719f9cd80d2165d26120e0ba3c",
+                "reference": "893dd9b0ac92d2719f9cd80d2165d26120e0ba3c",
                 "shasum": ""
             },
             "require": {
@@ -3993,10 +3993,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/2.0.9",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/2.0.10",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/issues"
             },
-            "time": "2023-06-08T06:52:48+00:00"
+            "time": "2023-07-07T06:13:12+00:00"
         },
         {
             "name": "drupal/health_check",
@@ -4191,16 +4191,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "3.1.8",
+            "version": "3.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "9851169899630c1b9f62a065a7829e6dbca7cc6c"
+                "reference": "fb72d6da9b8d9e5b385ef7d7b20c8454de03bbfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/9851169899630c1b9f62a065a7829e6dbca7cc6c",
-                "reference": "9851169899630c1b9f62a065a7829e6dbca7cc6c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/fb72d6da9b8d9e5b385ef7d7b20c8454de03bbfd",
+                "reference": "fb72d6da9b8d9e5b385ef7d7b20c8454de03bbfd",
                 "shasum": ""
             },
             "require": {
@@ -4303,10 +4303,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.1.8",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.1.11",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2023-07-04T06:10:59+00:00"
+            "time": "2023-07-07T06:12:56+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -8314,6 +8314,67 @@
             "time": "2023-02-11T19:58:58+00:00"
         },
         {
+            "name": "fileeye/pel",
+            "version": "0.9.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FileEye/pel.git",
+                "reference": "1675cbd44e89ff8f01b9576cf32ec1b4a4a67ede"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FileEye/pel/zipball/1675cbd44e89ff8f01b9576cf32ec1b4a4a67ede",
+                "reference": "1675cbd44e89ff8f01b9576cf32ec1b4a4a67ede",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "ext-exif": "*",
+                "ext-gd": "*",
+                "php-coveralls/php-coveralls": ">2.4",
+                "phpstan/phpstan": "^1.4",
+                "squizlabs/php_codesniffer": ">3.5",
+                "symfony/phpunit-bridge": "^4 || ^5 || ^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "lsolesen\\pel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Olesen",
+                    "email": "lars@intraface.dk",
+                    "homepage": "http://intraface.dk",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Martin Geisler",
+                    "email": "martin@geisler.net",
+                    "homepage": "http://geisler.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Exif Library. A library for reading and writing Exif headers in JPEG and TIFF images using PHP.",
+            "homepage": "https://github.com/FileEye/pel",
+            "keywords": [
+                "exif",
+                "image"
+            ],
+            "support": {
+                "issues": "https://github.com/FileEye/pel/issues",
+                "source": "https://github.com/FileEye/pel/tree/0.9.20"
+            },
+            "time": "2023-06-20T07:10:35+00:00"
+        },
+        {
             "name": "firebase/php-jwt",
             "version": "v6.8.0",
             "source": {
@@ -9878,67 +9939,6 @@
                 "source": "https://github.com/laminas/laminas-diactoros"
             },
             "time": "2023-04-26T21:27:14+00:00"
-        },
-        {
-            "name": "lsolesen/pel",
-            "version": "0.9.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pel/pel.git",
-                "reference": "b95fe29cdacf9d36330da277f10910a13648c84c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pel/pel/zipball/b95fe29cdacf9d36330da277f10910a13648c84c",
-                "reference": "b95fe29cdacf9d36330da277f10910a13648c84c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "ext-exif": "*",
-                "ext-gd": "*",
-                "php-coveralls/php-coveralls": ">2.4",
-                "squizlabs/php_codesniffer": ">3.5",
-                "symfony/phpunit-bridge": "^4 || ^5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "lsolesen\\pel\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Lars Olesen",
-                    "email": "lars@intraface.dk",
-                    "homepage": "http://intraface.dk",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Martin Geisler",
-                    "email": "martin@geisler.net",
-                    "homepage": "http://geisler.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP Exif Library. A library for reading and writing Exif headers in JPEG and TIFF images using PHP.",
-            "homepage": "http://pel.github.com/pel/",
-            "keywords": [
-                "exif",
-                "image"
-            ],
-            "support": {
-                "issues": "https://github.com/pel/pel/issues",
-                "source": "https://github.com/pel/pel/tree/0.9.12"
-            },
-            "abandoned": true,
-            "time": "2022-02-18T13:20:54+00:00"
         },
         {
             "name": "makinacorpus/php-lucene",
