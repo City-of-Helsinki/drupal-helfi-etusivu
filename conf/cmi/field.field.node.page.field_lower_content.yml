@@ -24,7 +24,7 @@ dependencies:
   module:
     - entity_reference_revisions
 _core:
-  default_config_hash: YD6Rdw1iEhjKEPsmTgUaoyfl5iIRhW7JsotBCZkhRv4
+  default_config_hash: AejXN443GE3b159k_6fsqDyZ_BHs68SU9wBMY24Ueog
 id: node.page.field_lower_content
 field_name: field_lower_content
 entity_type: node
@@ -39,6 +39,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      front_page_latest_news: front_page_latest_news
       text: text
       columns: columns
       image: image
@@ -54,7 +55,6 @@ settings:
       phasing: phasing
       remote_video: remote_video
       map: map
-      front_page_latest_news: front_page_latest_news
     negate: 0
     target_bundles_drag_drop:
       accordion:
