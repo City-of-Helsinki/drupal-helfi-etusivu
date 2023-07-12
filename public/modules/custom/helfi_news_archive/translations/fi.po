@@ -49,6 +49,10 @@ msgctxt "News archive clear selections"
 msgid "Clear selections"
 msgstr "Tyhjennä valinnat"
 
+msgctxt "News archive clear selection label"
+msgid "Clear @label selection"
+msgstr "Tyhjennä @label valinnat"
+
 msgctxt "News archive no results"
 msgid "No results found"
 msgstr "Ei tuloksia"

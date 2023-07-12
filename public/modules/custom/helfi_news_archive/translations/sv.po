@@ -17,6 +17,10 @@ msgctxt "News archive clear button aria label"
 msgid "Clear selection"
 msgstr "Rensa alla"
 
+msgctxt "News archive clear selection label"
+msgid "Clear @label selection"
+msgstr "Rensa alla @label"
+
 msgctxt "News archive remove item aria label"
 msgid "Remove item"
 msgstr "Töm valda"

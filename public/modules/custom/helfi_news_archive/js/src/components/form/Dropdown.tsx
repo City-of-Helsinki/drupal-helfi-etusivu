@@ -35,7 +35,11 @@ export const Dropdown = ({
   placeholder,
   searchState,
   setQuery,
-  clearButtonAriaLabel = Drupal.t('Clear selection', {}, { context: 'News archive clear button aria label' }),
+  clearButtonAriaLabel = Drupal.t(
+    'Clear @label selection',
+    { '@label': label },
+    { context: 'News archive clear selection label' }
+  ),
   selectedItemRemoveButtonAriaLabel = Drupal.t('Remove item', {}, { context: 'News archive remove item aria label' }),
   toggleButtonAriaLabel = Drupal.t('Open the combobox', {}, { context: 'News archive open dropdown aria label' }),
 }: DropdownProps) => {
