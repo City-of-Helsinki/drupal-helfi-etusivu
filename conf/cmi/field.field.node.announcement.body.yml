@@ -13,7 +13,7 @@ third_party_settings:
     allowed_formats:
       - minimal
 _core:
-  default_config_hash: PW9xsckq2A_loDf0qrLdQrWVa4P3Xbw9nVveHjC8Mt4
+  default_config_hash: HSTIidPRZ7nvH0u914u-3ghCj6hqbgiKqfU-3SHZaUw
 id: node.announcement.body
 field_name: body
 entity_type: node

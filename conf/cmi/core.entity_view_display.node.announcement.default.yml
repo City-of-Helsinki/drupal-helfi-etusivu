@@ -16,7 +16,7 @@ dependencies:
     - text
     - user
 _core:
-  default_config_hash: Tv1OKP-RfuNReu330xrBPpVCw1qH-TU1DG4UhvIu_Dg
+  default_config_hash: IHF-sP4Gq6tdTyWDxQDDEdLbHz3-QzklMNE1QA2mQU0
 id: node.announcement.default
 targetEntityType: node
 bundle: announcement
@@ -48,16 +48,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_publish_externally:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 4
-    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -68,6 +58,7 @@ hidden:
   field_announcement_content_pages: true
   field_announcement_service_pages: true
   field_announcement_unit_pages: true
+  field_publish_externally: true
   langcode: true
   published_at: true
   search_api_excerpt: true
