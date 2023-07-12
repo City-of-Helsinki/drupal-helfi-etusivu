@@ -54,7 +54,7 @@ const SelectionsContainer = ({ clearSelection, searchState, setSearchState }: Se
         {filters}
         <li className='news-form__clear-all'>
           <Button
-            aria-hidden={filters.length ? 'true' : 'false'}
+            aria-hidden={filters.length ? 'false' : 'true'}
             className='news-form__clear-all-button'
             iconLeft={<IconCross className='news-form__clear-all-icon' />}
             onClick={clearSelections}
