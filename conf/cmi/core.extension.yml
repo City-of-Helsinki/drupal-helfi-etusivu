@@ -56,6 +56,7 @@ module:
   helfi_media_chart: 0
   helfi_media_map: 0
   helfi_media_remote_video: 0
+  helfi_news_archive: 0
   helfi_node_announcement: 0
   helfi_node_landing_page: 0
   helfi_node_news_item: 0

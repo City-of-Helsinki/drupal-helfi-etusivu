@@ -3,9 +3,9 @@ langcode: en
 status: false
 dependencies:
   module:
-    - helfi_react_search
+    - helfi_news_archive
   theme:
-    - hdbt
+    - hdbt_subtheme
 id: newsarchive
 theme: hdbt_subtheme
 region: content
@@ -16,5 +16,5 @@ settings:
   id: block__news_archive_application
   label: 'News archive'
   label_display: '0'
-  provider: helfi_react_search
+  provider: helfi_news_archive
 visibility: {  }
