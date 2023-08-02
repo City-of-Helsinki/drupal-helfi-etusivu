@@ -2,10 +2,8 @@ uuid: eb19685a-ab06-4f78-b309-0652681da3e6
 langcode: en
 status: false
 dependencies:
-  module:
-    - helfi_news_archive
   theme:
-    - hdbt_subtheme
+    - hdbt
 id: newsarchive
 theme: hdbt_subtheme
 region: content
