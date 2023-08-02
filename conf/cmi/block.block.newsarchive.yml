@@ -2,6 +2,8 @@ uuid: eb19685a-ab06-4f78-b309-0652681da3e6
 langcode: en
 status: false
 dependencies:
+  module:
+    - helfi_react_search
   theme:
     - hdbt
 id: newsarchive
@@ -14,5 +16,5 @@ settings:
   id: block__news_archive_application
   label: 'News archive'
   label_display: '0'
-  provider: helfi_news_archive
+  provider: helfi_react_search
 visibility: {  }
