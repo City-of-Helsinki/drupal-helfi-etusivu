@@ -3629,17 +3629,17 @@
         },
         {
             "name": "drupal/flysystem",
-            "version": "2.1.0-rc5",
+            "version": "2.1.0-rc6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/flysystem.git",
-                "reference": "2.1.0-rc5"
+                "reference": "2.1.0-rc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/flysystem-2.1.0-rc5.zip",
-                "reference": "2.1.0-rc5",
-                "shasum": "4589e8b18f4de487d04a17a91e173ed78272ec4f"
+                "url": "https://ftp.drupal.org/files/projects/flysystem-2.1.0-rc6.zip",
+                "reference": "2.1.0-rc6",
+                "shasum": "9b75e51e349b71af85f3cefbfc3d5a906f9a6536"
             },
             "require": {
                 "drupal/core": "^9.5 || ^10.0",
@@ -3654,8 +3654,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.1.0-rc5",
-                    "datestamp": "1690746561",
+                    "version": "2.1.0-rc6",
+                    "datestamp": "1691587388",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4050,16 +4050,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.4.17",
+            "version": "2.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "4c3d285d0399b949db2ec6443fdd04937ee22532"
+                "reference": "ae834a75fff07abb6a52ce6eafe2617dcdbb23e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/4c3d285d0399b949db2ec6443fdd04937ee22532",
-                "reference": "4c3d285d0399b949db2ec6443fdd04937ee22532",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/ae834a75fff07abb6a52ce6eafe2617dcdbb23e5",
+                "reference": "ae834a75fff07abb6a52ce6eafe2617dcdbb23e5",
                 "shasum": ""
             },
             "require": {
@@ -4085,10 +4085,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.4.17",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.4.18",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2023-08-04T05:28:12+00:00"
+            "time": "2023-08-14T08:36:44+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -4191,16 +4191,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "3.3.1",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "856ba5ec598cd55684f8e7e2b43a5dd17fcd9924"
+                "reference": "a44de2707583ec84fce7ddbef86906d00749d239"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/856ba5ec598cd55684f8e7e2b43a5dd17fcd9924",
-                "reference": "856ba5ec598cd55684f8e7e2b43a5dd17fcd9924",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/a44de2707583ec84fce7ddbef86906d00749d239",
+                "reference": "a44de2707583ec84fce7ddbef86906d00749d239",
                 "shasum": ""
             },
             "require": {
@@ -4303,23 +4303,23 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.3.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.3.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2023-08-09T07:34:38+00:00"
+            "time": "2023-08-10T06:02:41+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
-            "version": "3.0.4",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy.git",
-                "reference": "f5125c5569c04781730d1420f0d1886ba1096c1f"
+                "reference": "257e937e6e1d77e8da5ec1ef20f133109b9b1ed4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-proxy/zipball/f5125c5569c04781730d1420f0d1886ba1096c1f",
-                "reference": "f5125c5569c04781730d1420f0d1886ba1096c1f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-proxy/zipball/257e937e6e1d77e8da5ec1ef20f133109b9b1ed4",
+                "reference": "257e937e6e1d77e8da5ec1ef20f133109b9b1ed4",
                 "shasum": ""
             },
             "require": {
@@ -4336,6 +4336,8 @@
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "drupal/coder": "^8.3",
+                "drupal/helfi_tunnistamo": "*",
+                "drupal/redirect": "^1.0",
                 "drupal/simple_sitemap": "^4.1",
                 "phpspec/prophecy-phpunit": "^2"
             },
@@ -4345,10 +4347,10 @@
             ],
             "description": "Provides various fixes so we can serve multiple Drupal instances in one domain.",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/tree/3.0.4",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/tree/3.0.5",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/issues"
             },
-            "time": "2023-03-14T06:27:48+00:00"
+            "time": "2023-08-11T05:35:26+00:00"
         },
         {
             "name": "drupal/helfi_tpr",
@@ -16752,16 +16754,16 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.7.2",
+            "version": "1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "b2fe4d22a5426f38e014855322200b97b5362c0d"
+                "reference": "3219c6ee25c9ea71e3d9bbaf39c67c9ebd499419"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/b2fe4d22a5426f38e014855322200b97b5362c0d",
-                "reference": "b2fe4d22a5426f38e014855322200b97b5362c0d",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/3219c6ee25c9ea71e3d9bbaf39c67c9ebd499419",
+                "reference": "3219c6ee25c9ea71e3d9bbaf39c67c9ebd499419",
                 "shasum": ""
             },
             "require": {
@@ -16804,9 +16806,9 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.7.2"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.7.3"
             },
-            "time": "2023-05-30T18:13:47+00:00"
+            "time": "2023-08-12T11:01:26+00:00"
         },
         {
             "name": "phpspec/prophecy",
