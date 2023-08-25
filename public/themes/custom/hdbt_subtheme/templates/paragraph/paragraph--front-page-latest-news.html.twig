@@ -3,6 +3,7 @@
     {
       component_classes: [ 'component--latest-news' ],
       component_title: 'Latest news'|t({}, {'context': 'Front page latest news paragraph title'}),
+      use_component_title_lang_fallback: alternative_language ?? false,
       component_content_class: 'latest-news',
     }
   %}
