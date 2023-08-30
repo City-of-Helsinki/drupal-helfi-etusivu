@@ -3931,16 +3931,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "5.5.9",
+            "version": "5.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "9067b6e6beb08ad0320cd5fcf348dab1c8a4c77a"
+                "reference": "7e26c936b71330c788143f97cc4e2a75f53e621f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/9067b6e6beb08ad0320cd5fcf348dab1c8a4c77a",
-                "reference": "9067b6e6beb08ad0320cd5fcf348dab1c8a4c77a",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/7e26c936b71330c788143f97cc4e2a75f53e621f",
+                "reference": "7e26c936b71330c788143f97cc4e2a75f53e621f",
                 "shasum": ""
             },
             "require": {
@@ -3958,10 +3958,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.5.9",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/5.5.10",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2023-08-28T13:26:21+00:00"
+            "time": "2023-08-30T07:02:24+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4191,16 +4191,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "3.3.6",
+            "version": "3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "a9f447f9a9e681a73ec609423c82b4e004d2e0aa"
+                "reference": "d9636698e39f86d0aa56c2771e029d0abfd1b0dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/a9f447f9a9e681a73ec609423c82b4e004d2e0aa",
-                "reference": "a9f447f9a9e681a73ec609423c82b4e004d2e0aa",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/d9636698e39f86d0aa56c2771e029d0abfd1b0dc",
+                "reference": "d9636698e39f86d0aa56c2771e029d0abfd1b0dc",
                 "shasum": ""
             },
             "require": {
@@ -4295,6 +4295,9 @@
                     },
                     "drupal/translatable_menu_link_uri": {
                         "[#UHF-8616] D10 compatibility patch for translatable menu link uri": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/c03c575cdd293b7933248cfb4d0fb7b47be5422b/patches/translatable_menu_link_uri_d10.patch"
+                    },
+                    "drupal/simple_sitemap": {
+                        "[#UHF-8514] Fix frontpage URLs in sitemap. (https://www.drupal.org/project/simple_sitemap/issues/3264573)": "https://www.drupal.org/files/issues/2022-02-15/3264573-2.patch"
                     }
                 }
             },
@@ -4303,10 +4306,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.3.6",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/3.3.7",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2023-08-29T07:11:13+00:00"
+            "time": "2023-08-29T11:40:56+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -8275,16 +8278,16 @@
         },
         {
             "name": "fileeye/mimemap",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FileEye/MimeMap.git",
-                "reference": "58fbd11312a8f69e0824a640b86b33a9d096fe7f"
+                "reference": "befb9f1ee77dbf6b74a2c578874e128c9a5c1a2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FileEye/MimeMap/zipball/58fbd11312a8f69e0824a640b86b33a9d096fe7f",
-                "reference": "58fbd11312a8f69e0824a640b86b33a9d096fe7f",
+                "url": "https://api.github.com/repos/FileEye/MimeMap/zipball/befb9f1ee77dbf6b74a2c578874e128c9a5c1a2d",
+                "reference": "befb9f1ee77dbf6b74a2c578874e128c9a5c1a2d",
                 "shasum": ""
             },
             "require": {
@@ -8293,7 +8296,7 @@
             "require-dev": {
                 "composer-runtime-api": "^2.0.0",
                 "phpstan/phpstan": "^1.2",
-                "phpunit/phpunit": "^9",
+                "phpunit/phpunit": "^9 | ^10",
                 "sebastian/comparator": ">=4",
                 "sebastian/diff": ">=4",
                 "squizlabs/php_codesniffer": ">=3.6",
@@ -8301,7 +8304,7 @@
                 "symfony/filesystem": ">=5.4",
                 "symfony/var-dumper": ">=5.4",
                 "symfony/yaml": ">=5.4",
-                "vimeo/psalm": "^4.23"
+                "vimeo/psalm": "^4.23 | ^5"
             },
             "bin": [
                 "bin/fileeye-mimemap"
@@ -8331,9 +8334,9 @@
             ],
             "support": {
                 "issues": "https://github.com/FileEye/MimeMap/issues",
-                "source": "https://github.com/FileEye/MimeMap/tree/2.0.1"
+                "source": "https://github.com/FileEye/MimeMap/tree/2.0.2"
             },
-            "time": "2023-02-11T19:58:58+00:00"
+            "time": "2023-08-29T16:20:26+00:00"
         },
         {
             "name": "fileeye/pel",
