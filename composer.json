@@ -1,9 +1,9 @@
 {
-    "name": "city-of-helsinki/drupal-helfi-platform",
-    "description": "Drupal 9 started project",
+    "name": "city-of-helsinki/drupal-helfi-etusivu",
+    "description": "Drupal instance for helfi-etusivu",
     "type": "project",
     "license": "MIT",
-    "homepage": "https://github.com/City-of-Helsinki/drupal-helfi-platform",
+    "homepage": "https://github.com/City-of-Helsinki/drupal-helfi-etusivu",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
@@ -13,7 +13,6 @@
         "drupal/consumer_image_styles": "^4.0",
         "drupal/core": "^9.4",
         "drupal/core-composer-scaffold": "^9.4",
-        "drupal/devel": "^4.1",
         "drupal/draggableviews": "^2.0",
         "drupal/elasticsearch_connector": "^7.0@alpha",
         "drupal/external_entities": "^2.0@alpha",
@@ -35,7 +34,7 @@
         "drupal/raven": "^4.0",
         "drupal/redis": "^1.5",
         "drupal/search_api": "^1.23",
-        "drupal/stage_file_proxy": "^1.2",
+        "drupal/stage_file_proxy": "^2.0",
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/views_rss": "^2.0@RC",
         "drush/drush": "^11",
@@ -52,7 +51,7 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpunit/phpunit": "~9.4.0",
+        "phpunit/phpunit": "^9.6",
         "weitzman/drupal-test-traits": "^2.0"
     },
     "conflict": {
@@ -66,7 +65,8 @@
             "phpstan/extension-installer": true,
             "composer/installers": true,
             "cweagans/composer-patches": true,
-            "drupal/core-composer-scaffold": true
+            "drupal/core-composer-scaffold": true,
+            "php-http/discovery": false
         }
     },
     "extra": {

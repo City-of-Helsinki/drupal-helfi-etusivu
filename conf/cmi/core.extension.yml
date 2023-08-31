@@ -56,7 +56,6 @@ module:
   helfi_media_chart: 0
   helfi_media_map: 0
   helfi_media_remote_video: 0
-  helfi_news_archive: 0
   helfi_node_announcement: 0
   helfi_node_landing_page: 0
   helfi_node_news_item: 0
@@ -89,6 +88,8 @@ module:
   image_style_quality: 0
   imagecache_external: 0
   imagemagick: 0
+  jquery_ui: 0
+  jquery_ui_draggable: 0
   json_field: 0
   json_field_widget: 0
   jsonapi: 0

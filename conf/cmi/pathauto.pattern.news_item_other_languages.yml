@@ -1,0 +1,43 @@
+uuid: 49345a03-e90c-4cc3-9416-c42d55b08908
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: news_item_other_languages
+label: 'News item | other languages'
+type: 'canonical_entities:node'
+pattern: 'news/[node:short-title]'
+selection_criteria:
+  846ebfb3-db99-49ae-995f-bd9c76421de7:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 846ebfb3-db99-49ae-995f-bd9c76421de7
+    context_mapping:
+      node: node
+    bundles:
+      news_item: news_item
+  e9eeca0d-99dd-4382-b774-038884ec062f:
+    id: language
+    negate: false
+    uuid: e9eeca0d-99dd-4382-b774-038884ec062f
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      de: de
+      fr: fr
+      ru: ru
+      uk: uk
+      ar: ar
+      et: et
+      fa: fa
+      es: es
+      so: so
+      se: se
+      zh-hans: zh-hans
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Language

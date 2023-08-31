@@ -1,8 +1,0 @@
-{
-    "name": "city-of-helsinki/helfi_news_archive",
-    "description": "Module for the hel.fi news archive react application",
-    "type": "drupal-module",
-    "license": "GPL-2.0-or-later",
-    "minimum-stability": "dev",
-    "require": {}
-}
