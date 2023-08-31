@@ -130,19 +130,32 @@ function helfi_etusivu_cron() : void {
  * Implements hook_helfi_paragraph_types().
  */
 function helfi_etusivu_helfi_paragraph_types() : array {
-  $types = [
-    'field_content' => [
-      'front_page_latest_news',
-      'front_page_top_news',
-      'current',
-      'event_list',
+  $entities = [
+    'node' => [
+      'landing_page' => [
+        'field_content' => [
+          'front_page_latest_news',
+          'front_page_top_news',
+          'current',
+          'event_list',
+        ],
+      ],
+      'page' => [
+        'field_lower_content' => [
+          'front_page_latest_news',
+        ],
+      ],
     ],
   ];
 
   $enabled = [];
-  foreach ($types as $field => $paragraphTypes) {
-    foreach ($paragraphTypes as $paragraphType) {
-      $enabled[] = new ParagraphTypeCollection('node', 'landing_page', $field, $paragraphType);
+  foreach ($entities as $entityTypeId => $bundles) {
+    foreach ($bundles as $bundle => $fields) {
+      foreach ($fields as $field => $paragraphTypes) {
+        foreach ($paragraphTypes as $paragraphType) {
+          $enabled[] = new ParagraphTypeCollection($entityTypeId, $bundle, $field, $paragraphType);
+        }
+      }
     }
   }
   return $enabled;
@@ -225,4 +238,11 @@ function helfi_etusivu_entity_delete(EntityInterface $entity) : void {
  */
 function helfi_etusivu_entity_insert(EntityInterface $entity) : void {
   helfi_etusivu_invalidate_external_caches($entity);
+}
+
+/**
+ * Implements hook_helfi_hero_design_alter().
+ */
+function helfi_etusivu_helfi_hero_design_alter(array &$designs): void {
+  $designs['with-search'] = t('With search');
 }
