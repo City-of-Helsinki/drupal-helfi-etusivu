@@ -29,6 +29,7 @@ module:
   entity: 0
   entity_reference_revisions: 0
   entity_usage: 0
+  external_entities: 0
   externalauth: 0
   field: 0
   field_group: 0
@@ -66,6 +67,7 @@ module:
   helfi_paragraphs_columns: 0
   helfi_paragraphs_contact_card_listing: 0
   helfi_paragraphs_content_cards: 0
+  helfi_paragraphs_hearings: 0
   helfi_paragraphs_hero: 0
   helfi_paragraphs_image: 0
   helfi_paragraphs_liftup_with_image: 0
