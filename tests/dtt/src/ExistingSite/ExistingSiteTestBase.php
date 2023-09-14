@@ -17,7 +17,7 @@ abstract class ExistingSiteTestBase extends ExistingSiteBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp() : void {
     parent::setUp();
 
     $this->setupDefaultConfiguration();
@@ -26,7 +26,7 @@ abstract class ExistingSiteTestBase extends ExistingSiteBase {
   /**
    * {@inheritdoc}
    */
-  public function tearDown() {
+  public function tearDown() : void {
     parent::tearDown();
     $this->tearDownDefaultConfiguration();
   }
