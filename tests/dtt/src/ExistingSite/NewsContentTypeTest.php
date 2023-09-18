@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\dtt\ExistingSite;
 
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Tests\helfi_api_base\Functional\ExistingSiteTestBase;
 
 /**
  * Tests news endpoint.
@@ -54,7 +55,11 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
    * Asserts that news json list has the expected item.
    */
   public function assertJsonApiList() : void {
-    $this->drupalGetWithLanguage('/jsonapi/node/news');
+    // Sort items by changed date to make sure our newly added item is visible.
+    $this->drupalGetWithLanguage('/jsonapi/node/news', options: ['query' => [
+      'sort[changed][path]' => 'changed',
+      'sort[changed][direction]' => 'DESC',
+    ]]);
     $this->assertSession()->statusCodeEquals(200);
     $json = json_decode($this->getSession()->getPage()->getContent(), TRUE);
 
