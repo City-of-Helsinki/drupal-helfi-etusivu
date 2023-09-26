@@ -28,7 +28,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 18
+    weight: 17
     region: content
     settings:
       rows: 9
@@ -51,7 +51,7 @@ content:
     third_party_settings: {  }
   field_announcement_content_pages:
     type: select2_entity_reference
-    weight: 14
+    weight: 15
     region: content
     settings:
       width: 100%
@@ -61,7 +61,7 @@ content:
     third_party_settings: {  }
   field_announcement_link:
     type: link_default
-    weight: 19
+    weight: 18
     region: content
     settings:
       placeholder_url: ''
@@ -79,7 +79,7 @@ content:
     third_party_settings: {  }
   field_announcement_title:
     type: string_textfield
-    weight: 17
+    weight: 16
     region: content
     settings:
       size: 60
@@ -101,6 +101,13 @@ content:
       autocomplete: true
       match_operator: CONTAINS
       match_limit: 20
+    third_party_settings: {  }
+  field_publish_externally:
+    type: boolean_checkbox
+    weight: 14
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -174,7 +181,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_publish_externally: true
   hide_sidebar_navigation: true
   promote: true
   sticky: true
