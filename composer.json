@@ -23,7 +23,7 @@
         "drupal/helfi_navigation": "^2.0",
         "drupal/helfi_platform_config": "^3.0",
         "drupal/helfi_proxy": "^3.0",
-        "drupal/helfi_tunnistamo": "^2.0",
+        "drupal/helfi_tunnistamo": "^3.0",
         "drupal/json_field": "^1.0@RC",
         "drupal/jsonapi_extras": "^3.20",
         "drupal/jsonapi_menu_items": "^1.2",
