@@ -1,5 +1,5 @@
 uuid: 37963888-6a89-4a8d-9569-1fec46bb7a05
-langcode: fi
+langcode: en
 status: true
 dependencies:
   module:
@@ -19,7 +19,7 @@ settings:
   label: 'IBM Chat App Neuvonta SV'
   label_display: '0'
   provider: helfi_platform_config
-  hostname: ''
+  hostname: 'https://coh-chat-app-prod.ow6i4n9pdzm.eu-de.codeengine.appdomain.cloud'
   engagementId: helsinki-info-chat-sv
   tenantId: www-hel-fi-prod
   assistantId: ace
