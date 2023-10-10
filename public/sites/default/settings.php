@@ -250,8 +250,8 @@ $artemis_brokers = getenv('ARTEMIS_BROKERS');
 if ($artemis_brokers && $artemis_destination) {
   $settings['stomp']['default'] = [
     'clientId' => getenv('ARTEMIS_CLIENT_ID') ?: 'artemis',
-    'login' => getenv('ARTEMIS_LOGIN'),
-    'passcode' => getenv('ARTEMIS_PASSCODE'),
+    'login' => getenv('ARTEMIS_LOGIN') ?: NULL,
+    'passcode' => getenv('ARTEMIS_PASSCODE') ?: NULL,
     'destination' => sprintf('/queue/%s', $artemis_destination),
     'brokers' => $artemis_brokers,
     'timeout' => ['read' => 15000],
