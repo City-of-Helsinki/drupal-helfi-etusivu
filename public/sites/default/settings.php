@@ -245,7 +245,9 @@ $artemis_destination = drupal_get_env([
   'PROJECT_NAME',
 ]);
 
-if ($artemis_brokers = getenv('ARTEMIS_BROKERS') && $artemis_destination) {
+$artemis_brokers = getenv('ARTEMIS_BROKERS');
+
+if ($artemis_brokers && $artemis_destination) {
   $settings['stomp']['default'] = [
     'clientId' => getenv('ARTEMIS_CLIENT_ID') ?: 'artemis',
     'login' => getenv('ARTEMIS_LOGIN'),
