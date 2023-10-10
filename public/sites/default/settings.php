@@ -254,9 +254,9 @@ if ($artemis_brokers && $artemis_destination) {
     'passcode' => getenv('ARTEMIS_PASSCODE') ?: NULL,
     'destination' => sprintf('/queue/%s', $artemis_destination),
     'brokers' => $artemis_brokers,
-    'timeout' => ['read' => 15000],
+    'timeout' => ['read' => 12000],
     'heartbeat' => [
-      'send' => 12000,
+      'send' => 15000,
       'receive' => 0,
       'observers' => [
         [
