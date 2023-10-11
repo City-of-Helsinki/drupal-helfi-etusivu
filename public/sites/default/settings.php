@@ -256,7 +256,7 @@ if ($artemis_brokers && $artemis_destination) {
     'brokers' => $artemis_brokers,
     'timeout' => ['read' => 12000],
     'heartbeat' => [
-      'send' => 15000,
+      'send' => 20000,
       'receive' => 0,
       'observers' => [
         [
