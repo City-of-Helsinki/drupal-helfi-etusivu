@@ -185,7 +185,7 @@ final class DashboardController extends ControllerBase {
         ->getEnvironment($query['environment']);
       $response = $this->client->request(
         'GET',
-        $projectEnv->getInternalAddress($language) . '/api/v1/debug',
+        $projectEnv->getUrl($language) . '/api/v1/debug',
         [
           'headers' => [
             'Authorization' => 'Basic ' . $authorization->data(),
