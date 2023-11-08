@@ -14,7 +14,7 @@ dependencies:
     - media_library
     - text
 _core:
-  default_config_hash: DuVlqWDqCioL_uKoV5oTbHouDQZWChekxk7VhucegKM
+  default_config_hash: AMDZDzWNP90sUgt9bSZf2RbL7KmSxkXMKIiueo1JSWg
 id: paragraph.remote_video.default
 targetEntityType: paragraph
 bundle: remote_video
