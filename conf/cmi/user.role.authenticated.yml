@@ -9,6 +9,7 @@ dependencies:
   module:
     - draggableviews
     - eu_cookie_compliance
+    - file
     - helfi_api_base
     - helfi_global_navigation
     - media
@@ -28,6 +29,7 @@ permissions:
   - 'access draggableviews'
   - 'access openapi api docs'
   - 'access toolbar'
+  - 'delete own files'
   - 'display eu cookie compliance popup'
   - 'restful get helfi_global_menu_collection'
   - 'restful get helfi_global_mobile_menu'

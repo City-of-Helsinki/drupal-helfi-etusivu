@@ -14,7 +14,7 @@ settings:
   profile: decay
   granularity: 86400
   halflife: 604800
-  cutoff: !!float 1
+  cutoff: 1.0
 module: radioactivity
 locked: false
 cardinality: 1
