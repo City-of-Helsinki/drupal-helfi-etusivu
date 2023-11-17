@@ -20,7 +20,7 @@ final class MenuTreeNormalizer extends ContentEntityNormalizer {
   /**
    * {@inheritdoc}
    */
-  public function supportsNormalization($data, $format = NULL) : bool {
+  public function supportsNormalization($data, $format = NULL, $context = []) : bool {
     if ($data instanceof GlobalMenu && $this->checkFormat($format)) {
       return TRUE;
     }
