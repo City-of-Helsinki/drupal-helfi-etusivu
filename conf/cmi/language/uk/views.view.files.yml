@@ -9,7 +9,7 @@ display:
         fid:
           label: Fid
         filename:
-          label: 'Назва (ім''я)'
+          label: "Назва (ім'я)"
           separator: ', '
         filemime:
           label: 'Тип MIME'

@@ -9,7 +9,7 @@ display:
         user_bulk_form:
           label: 'Масове оновлення'
         name:
-          label: 'Ім''я користувача'
+          label: "Ім'я користувача"
         status:
           label: Стан
           settings:
@@ -55,7 +55,7 @@ display:
       filters:
         combine:
           expose:
-            label: 'Ім''я чи електронна адреса містять'
+            label: "Ім'я чи електронна адреса містять"
         status:
           group_info:
             label: Стан

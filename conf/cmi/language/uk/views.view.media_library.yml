@@ -48,7 +48,7 @@ display:
                 title: Опубліковано
         name:
           expose:
-            label: 'Назва (ім''я)'
+            label: "Назва (ім'я)"
         bundle:
           expose:
             label: 'Тип носія'
@@ -85,7 +85,7 @@ display:
       filters:
         name:
           expose:
-            label: 'Назва (ім''я)'
+            label: "Назва (ім'я)"
       header:
         display_link_grid:
           label: Сітка
@@ -98,7 +98,7 @@ display:
         thumbnail__target_id:
           label: Мініатюра
         name:
-          label: 'Назва (ім''я)'
+          label: "Назва (ім'я)"
         uid:
           label: Автор
         changed:
@@ -110,7 +110,7 @@ display:
       filters:
         name:
           expose:
-            label: 'Назва (ім''я)'
+            label: "Назва (ім'я)"
       header:
         display_link_grid:
           label: Сітка
