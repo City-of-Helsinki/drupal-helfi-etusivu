@@ -17,7 +17,7 @@ dependencies:
     - node.type.news_item
   module:
     - entity_reference_revisions
-    - hdbt_admin_tools
+    - helfi_platform_config
     - link
     - radioactivity
     - user
@@ -108,9 +108,9 @@ content:
     type: radioactivity_reference_emitter
     label: above
     settings:
-      energy: !!float 10
+      energy: 10.0
       display: false
-      decimals: !!float 0
+      decimals: 0.0
     third_party_settings: {  }
     weight: 9
     region: content
@@ -134,6 +134,15 @@ content:
       date_format: publication_date_format
       custom_date_format: ''
       timezone: ''
+      tooltip:
+        date_format: ''
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
     third_party_settings: {  }
     weight: 3
     region: content
