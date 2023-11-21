@@ -70,7 +70,7 @@ display:
         title: Planifié
       tab_options:
         title: Contenu
-    display_title: 'Vue d''ensemble des contenus'
+    display_title: "Vue d'ensemble des contenus"
   user_page:
     display_options:
       menu:

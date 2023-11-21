@@ -25,5 +25,5 @@ settings:
       field: _none
       direction: ASC
     auto_create: false
-  default_energy: !!float 0
+  default_energy: 0.0
 field_type: radioactivity_reference
