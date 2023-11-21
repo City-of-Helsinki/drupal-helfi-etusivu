@@ -1,10 +1,11 @@
 _core:
   default_config_hash: UVH1aJ4b44UM-VdPVN7hNNuuVqfReJxwfVeDQH1Hvsk
+mode: simple
 ignored_config_entities:
-  - easy_breadcrumb.settings
-  - 'system.site:page.front'
-  - 'hdbt_admin_tools.site_settings:site_settings'
-  - 'hdbt_admin_tools.site_settings:footer_settings'
+  - block.block.ibmchatapp_neuvonta_en
   - block.block.ibmchatapp_neuvonta_fi
   - block.block.ibmchatapp_neuvonta_sv
-  - block.block.ibmchatapp_neuvonta_en
+  - easy_breadcrumb.settings
+  - 'hdbt_admin_tools.site_settings:footer_settings'
+  - 'hdbt_admin_tools.site_settings:site_settings'
+  - 'system.site:page.front'
