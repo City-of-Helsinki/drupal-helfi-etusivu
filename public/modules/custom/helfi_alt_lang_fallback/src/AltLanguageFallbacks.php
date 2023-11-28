@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @package Drupal\helfi_alt_lang_fallback
  */
-class AltLanguageFallbacks implements ContainerInjectionInterface {
+final class AltLanguageFallbacks implements ContainerInjectionInterface {
 
   /**
    * The language manager.
@@ -109,8 +109,8 @@ class AltLanguageFallbacks implements ContainerInjectionInterface {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
+  public static function create(ContainerInterface $container) : self {
+    return new self(
       $container->get('language_manager'),
       $container->get('entity_type.manager'),
       $container->get('menu.link_tree'),

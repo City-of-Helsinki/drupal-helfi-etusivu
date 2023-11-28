@@ -55,9 +55,9 @@ abstract class RestBaseTest extends BrowserTestBase {
   /**
    * The storage.
    *
-   * @var \Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage|null
+   * @var \Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage
    */
-  protected ?GlobalMenuStorage $storage;
+  protected GlobalMenuStorage $storage;
 
   /**
    * {@inheritdoc}
@@ -66,6 +66,7 @@ abstract class RestBaseTest extends BrowserTestBase {
     parent::setUp();
 
     $this->storage = $this->container->get('entity_type.manager')->getStorage('global_menu');
+
     foreach (['fi', 'sv'] as $langcode) {
       ConfigurableLanguage::createFromLangcode($langcode)->save();
     }
