@@ -13,6 +13,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a storage class for global navigation entities.
+ *
+ * @method create(array $values = []) : GlobalMenu
+ * @method load($id) : GlobalMenu
+ * @method loadMultiple(array $ids = NULL) : array<GlobalMenu>
  */
 final class GlobalMenuStorage extends SqlContentEntityStorage {
 
@@ -80,6 +84,7 @@ final class GlobalMenuStorage extends SqlContentEntityStorage {
 
     if ($ids) {
       if ($forceCurrentLanguage) {
+        /** @var \Drupal\helfi_global_navigation\Entity\GlobalMenu[] */
         return $this->entityRepository->getActiveMultiple($this->entityTypeId, $ids);
       }
       return $this->loadMultiple($ids);

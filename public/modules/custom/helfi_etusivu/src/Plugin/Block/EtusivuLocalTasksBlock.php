@@ -4,6 +4,7 @@ namespace Drupal\helfi_etusivu\Plugin\Block;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\Plugin\Block\LocalTasksBlock;
+use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -23,11 +24,19 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
   protected LanguageManagerInterface $languageManager;
 
   /**
+   * The current user.
+   *
+   * @var \Drupal\Core\Session\AccountProxyInterface
+   */
+  protected AccountProxyInterface $currentUser;
+
+  /**
    * {@inheritDoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->languageManager = $container->get('language_manager');
+    $instance->currentUser = $container->get('current_user');
     return $instance;
   }
 
@@ -41,7 +50,7 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
       return $build;
     }
 
-    $adminLanguage = \Drupal::currentUser()->getPreferredAdminLangcode();
+    $adminLanguage = $this->currentUser->getPreferredAdminLangcode();
 
     $routes = [
       'entity.node.canonical' => 'View',
