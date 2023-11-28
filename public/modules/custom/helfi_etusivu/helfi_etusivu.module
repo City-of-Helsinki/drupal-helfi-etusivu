@@ -125,7 +125,7 @@ function helfi_etusivu_cron() : void {
 
   // Remove promotion.
   foreach ($promoted_nodes as $node) {
-    $node->setPromoted(TRUE);
+    $node->setPromoted(FALSE);
     $node->save();
   }
 
