@@ -162,3 +162,7 @@ Disallow: /wps/portal/HelsinkiV2/
 
 User-agent: WEX/IBMtest
 Allow: /static/mirror-v2/
+
+# News search query parameters, topic and page allowed
+Disallowed: /*?*groups
+Disallowed: /*?*neighbourhoods
