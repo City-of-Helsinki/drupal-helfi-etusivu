@@ -45,6 +45,15 @@ Disallow: */user/register
 Disallow: */user/password
 Disallow: */user/login
 Disallow: */user/logout
+# Etusivu news-search page query parameters, topic and page allowed
+Disallow: /*?*groups
+Disallow: /*?*neighbourhoods
+# Rekry job-search page query parameters, task_areas and page are allowed.
+Disallow: /*?*employment=*
+Disallow: /*?*keyword=*
+Disallow: /*?*language=*
+Disallow: /*?*continuous=*
+Disallow: /*?*internship=*
 
 # Old robots
 #
@@ -162,7 +171,3 @@ Disallow: /wps/portal/HelsinkiV2/
 
 User-agent: WEX/IBMtest
 Allow: /static/mirror-v2/
-
-# News search query parameters, topic and page allowed
-Disallowed: /*?*groups
-Disallowed: /*?*neighbourhoods
