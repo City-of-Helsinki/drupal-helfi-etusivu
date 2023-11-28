@@ -16,6 +16,7 @@ use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\Plugin\views\query\Sql;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -45,6 +46,8 @@ function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_sta
  */
 function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $query) : void {
   if (in_array($view->id(), ['ordered_news_list', 'frontpage_news'])) {
+    assert($query instanceof Sql);
+
     $table = $query->getTableInfo('draggableviews_structure');
     if (isset($table['join']->extra)) {
       $langcode = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
@@ -86,7 +89,8 @@ function helfi_etusivu_tokens(
         $image_style = ImageStyle::load('og_image');
 
         // If main image has an image set, use it as the shareable image.
-        $image_entity = $node->field_main_image->entity->field_media_image;
+        // @phpstan-ignore-next-line
+        $image_entity = $node->get('field_main_image')->entity->field_media_image;
 
         // Skip current entity if it's empty.
         if ($image_entity->isEmpty()) {
@@ -121,7 +125,7 @@ function helfi_etusivu_cron() : void {
 
   // Remove promotion.
   foreach ($promoted_nodes as $node) {
-    $node->promote = 0;
+    $node->setPromoted(TRUE);
     $node->save();
   }
 

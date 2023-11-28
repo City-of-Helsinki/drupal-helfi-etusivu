@@ -28,7 +28,10 @@ class GlobalMenuStorageTest extends KernelTestBase {
    *   The entity storage class.
    */
   private function getStorage() : GlobalMenuStorage {
-    return $this->entityTypeManager->getStorage('global_menu');
+    $storage = $this->entityTypeManager->getStorage('global_menu');
+    assert($storage instanceof GlobalMenuStorage);
+
+    return $storage;
   }
 
   /**
@@ -92,7 +95,7 @@ class GlobalMenuStorageTest extends KernelTestBase {
   /**
    * Data provider for testCurrentLanguageCondition().
    *
-   * @return \string[][]
+   * @return array
    *   The data.
    */
   public function currentLanguageConditionData() : array {

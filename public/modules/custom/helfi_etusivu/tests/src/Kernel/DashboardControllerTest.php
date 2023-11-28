@@ -63,6 +63,7 @@ class DashboardControllerTest extends ApiKernelTestBase {
         [
           'id' => Project::ETUSIVU . '_local',
           'plugin' => 'authorization_token',
+          // @phpstan-ignore-next-line
           'data' => base64_encode($account->getAccountName() . ':' . $account->pass_raw),
         ],
       ])
