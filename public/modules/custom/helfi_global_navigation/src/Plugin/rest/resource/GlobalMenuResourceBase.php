@@ -26,7 +26,7 @@ abstract class GlobalMenuResourceBase extends MenuResourceBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : self {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : static {
     $instance = parent::create(
       $container,
       $configuration,
@@ -97,7 +97,7 @@ abstract class GlobalMenuResourceBase extends MenuResourceBase {
     foreach ($menuTree->sub_tree as $delta => $tree) {
       $menuTree->sub_tree[$delta] = $this->parseMaxDepth($maxDepth, $tree, $currentDepth);
 
-      if ($currentDepth >= $maxDepth && isset($menuTree)) {
+      if ($currentDepth >= $maxDepth && $menuTree) {
         unset($menuTree->sub_tree[$delta]);
       }
     }
