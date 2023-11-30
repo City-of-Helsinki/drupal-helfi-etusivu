@@ -22,7 +22,7 @@ dependencies:
     - radioactivity
     - user
 _core:
-  default_config_hash: _31gTd8Z7ZT8KGS8tHPve5Vb_OAnn7JbybIcOXUGiyA
+  default_config_hash: fHNnwg186A981K7d578If1MCkuYBmQqaxabpDSAZwIc
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item

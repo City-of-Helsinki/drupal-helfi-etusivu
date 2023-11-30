@@ -10,8 +10,15 @@ dependencies:
     - responsive_image.styles.image__3_2_content_area
   module:
     - responsive_image
+  enforced:
+    config:
+      - core.entity_view_mode.media.image_content_area
+      - field.field.media.image.field_media_image
+      - field.field.media.image.field_photographer
+      - media.type.image
+      - responsive_image.styles.image__3_2_content_area
 _core:
-  default_config_hash: MZpbEb0do-aokpqsEv3TyeHe_lFfC5LLoWE0a53dN3Y
+  default_config_hash: 78FIlGMh7zQ72qsggX09fvdXZq7qsywgGoO0ij9jNcY
 id: media.image.image_content_area
 targetEntityType: media
 bundle: image
