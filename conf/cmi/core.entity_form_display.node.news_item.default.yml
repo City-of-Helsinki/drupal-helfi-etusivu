@@ -23,7 +23,6 @@ dependencies:
     - paragraphs
     - path
     - publication_date
-    - radioactivity
     - scheduler
     - select2
 third_party_settings:
@@ -69,18 +68,11 @@ third_party_settings:
       format_type: details
       format_settings:
         classes: ''
-        show_empty_fields: true
+        show_empty_fields: false
         id: ''
         open: false
         description: ''
-        required_fields: false
-        element: div
-        show_label: '0'
-        label_element: h3
-        label_element_classes: ''
-        attributes: ''
-        effect: none
-        speed: fast
+        required_fields: true
 _core:
   default_config_hash: RHDFf9pvwgV2FvoelXlH7dXXBoWkziCZI1FWuQS94k8
 id: node.news_item.default
@@ -136,16 +128,6 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_news_groups:
-    type: select2_entity_reference
-    weight: 26
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
   field_news_item_links_link:
     type: linkit
     weight: 20
@@ -153,7 +135,7 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
-      linkit_profile: tpr_content
+      linkit_profile: helfi
       linkit_auto_link_text: true
     third_party_settings: {  }
   field_news_item_links_title:
@@ -173,22 +155,6 @@ content:
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-    third_party_settings: {  }
-  field_news_neighbourhoods:
-    type: select2_entity_reference
-    weight: 27
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_radioactivity:
-    type: radioactivity_reference
-    weight: 28
-    region: content
-    settings: {  }
     third_party_settings: {  }
   field_short_title:
     type: string_textfield
@@ -237,9 +203,9 @@ content:
     third_party_settings: {  }
   simple_sitemap:
     weight: 10
-    region: content
     settings: {  }
     third_party_settings: {  }
+    region: content
   status:
     type: boolean_checkbox
     weight: 14
@@ -289,4 +255,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_news_groups: true
+  field_news_neighbourhoods: true
+  field_radioactivity: true
   hide_sidebar_navigation: true
