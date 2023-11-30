@@ -46,8 +46,6 @@ display:
             group_items:
               1:
                 title: 'منتشر شده'
-              2:
-                title: 'منتشر نشده'
         langcode:
           expose:
             label: زبان
