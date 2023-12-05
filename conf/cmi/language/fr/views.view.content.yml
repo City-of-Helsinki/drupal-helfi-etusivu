@@ -54,8 +54,6 @@ display:
             group_items:
               1:
                 title: Publié
-              2:
-                title: 'Non publié'
         langcode:
           expose:
             label: Langue
