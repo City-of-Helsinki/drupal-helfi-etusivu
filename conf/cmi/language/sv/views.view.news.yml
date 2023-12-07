@@ -20,3 +20,5 @@ display:
             title: Alla
   latest_news:
     display_title: 'Senaste nyheterna'
+    display_options:
+      title: 'Senaste nyheterna'

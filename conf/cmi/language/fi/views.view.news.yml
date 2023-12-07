@@ -21,3 +21,5 @@ display:
             title: Kaikki
   latest_news:
     display_title: 'Uusimmat uutiset'
+    display_options:
+      title: 'Uusimmat uutiset'
