@@ -6,6 +6,7 @@ ignored_config_entities:
   - block.block.ibmchatapp_neuvonta_fi
   - block.block.ibmchatapp_neuvonta_sv
   - easy_breadcrumb.settings
+  - 'easy_breadcrumb.settings:home_segment_title'
   - 'hdbt_admin_tools.site_settings:footer_settings'
   - 'hdbt_admin_tools.site_settings:site_settings'
   - 'system.site:page.front'

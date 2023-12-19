@@ -21,7 +21,7 @@ dependencies:
     module:
       - helfi_base_content
 _core:
-  default_config_hash: l2_rEPVNbUKnMXqnX9O0LUsP6KCnX2EmDDPXfXKoPQ8
+  default_config_hash: _Nbhr4JLQXcrcmDFzHXgntvTpv2ZLX_zza-h7gjrYws
 id: paragraphs_library_item.paragraphs_library_item.paragraphs
 field_name: paragraphs
 entity_type: paragraphs_library_item
