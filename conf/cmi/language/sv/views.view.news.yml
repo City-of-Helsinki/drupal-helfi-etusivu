@@ -2,21 +2,26 @@ display:
   default:
     display_title: Förvald
     display_options:
-      exposed_form:
-        options:
-          reset_button_label: Återställ
-          exposed_sorts_label: 'Sortera efter'
-          sort_asc_label: Stigande
-          sort_desc_label: Fallande
+      title: 'Senaste nyheterna'
       fields:
         published_at: {  }
         field_main_image: {  }
         view_node:
           text: visa
-      title: 'Senaste nyheterna'
+      exposed_form:
+        options:
+          submit_button: Verkställ
+          reset_button_label: Återställ
+          exposed_sorts_label: 'Sortera efter'
+          sort_asc_label: Stigande
+          sort_desc_label: Fallande
       arguments:
         nid:
           exception:
             title: Alla
   latest_news:
     display_title: 'Senaste nyheterna'
+    display_options:
+      title: 'Senaste nyheterna'
+      use_more_text: 'Se alla nyheter'
+      link_url: /nyheter
