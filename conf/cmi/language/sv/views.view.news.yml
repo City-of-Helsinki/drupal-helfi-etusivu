@@ -4,8 +4,6 @@ display:
     display_options:
       title: 'Senaste nyheterna'
       fields:
-        published_at: {  }
-        field_main_image: {  }
         view_node:
           text: visa
       exposed_form:
