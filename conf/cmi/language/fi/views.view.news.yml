@@ -4,8 +4,6 @@ display:
     display_options:
       title: 'Uusimmat uutiset'
       fields:
-        published_at: {  }
-        field_main_image: {  }
         view_node:
           text: näkymä
       exposed_form:
