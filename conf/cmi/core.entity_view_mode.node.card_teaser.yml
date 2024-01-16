@@ -8,5 +8,6 @@ _core:
   default_config_hash: 6uymm4YPtiH6BS78cFHJaqx8rOGs3Dql7p5KHhSZUoc
 id: node.card_teaser
 label: 'Card Teaser'
+description: ''
 targetEntityType: node
 cache: true
