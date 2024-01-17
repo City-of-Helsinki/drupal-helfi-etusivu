@@ -148,7 +148,11 @@ function helfi_etusivu_helfi_paragraph_types() : array {
         ],
       ],
       'page' => [
+        'field_content' => [
+          'content_liftup' => 12,
+        ],
         'field_lower_content' => [
+          'content_liftup' => 12,
           'front_page_latest_news' => 15,
         ],
       ],
