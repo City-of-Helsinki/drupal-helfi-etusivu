@@ -135,19 +135,25 @@ function helfi_etusivu_cron() : void {
  * Implements hook_helfi_paragraph_types().
  */
 function helfi_etusivu_helfi_paragraph_types() : array {
+  // @todo UHF-9511 Remove the content liftup paragraph type.
   $entities = [
     'node' => [
       'landing_page' => [
         'field_content' => [
-          'front_page_latest_news',
-          'front_page_top_news',
-          'current',
-          'event_list',
+          'content_liftup' => 11,
+          'current' => 15,
+          'front_page_top_news' => 16,
+          'front_page_latest_news' => 17,
+          'event_list' => 18,
         ],
       ],
       'page' => [
+        'field_content' => [
+          'content_liftup' => 12,
+        ],
         'field_lower_content' => [
-          'front_page_latest_news',
+          'content_liftup' => 12,
+          'front_page_latest_news' => 15,
         ],
       ],
     ],
@@ -157,8 +163,8 @@ function helfi_etusivu_helfi_paragraph_types() : array {
   foreach ($entities as $entityTypeId => $bundles) {
     foreach ($bundles as $bundle => $fields) {
       foreach ($fields as $field => $paragraphTypes) {
-        foreach ($paragraphTypes as $paragraphType) {
-          $enabled[] = new ParagraphTypeCollection($entityTypeId, $bundle, $field, $paragraphType);
+        foreach ($paragraphTypes as $paragraphType => $weight) {
+          $enabled[] = new ParagraphTypeCollection($entityTypeId, $bundle, $field, $paragraphType, $weight);
         }
       }
     }
