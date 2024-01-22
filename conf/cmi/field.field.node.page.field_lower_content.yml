@@ -11,7 +11,6 @@ dependencies:
     - paragraphs.paragraphs_type.columns
     - paragraphs.paragraphs_type.contact_card_listing
     - paragraphs.paragraphs_type.content_cards
-    - paragraphs.paragraphs_type.content_liftup
     - paragraphs.paragraphs_type.event_list
     - paragraphs.paragraphs_type.from_library
     - paragraphs.paragraphs_type.front_page_latest_news
@@ -47,7 +46,6 @@ settings:
       list_of_links: list_of_links
       contact_card_listing: contact_card_listing
       content_cards: content_cards
-      content_liftup: content_liftup
       banner: banner
       event_list: event_list
       from_library: from_library
@@ -74,9 +72,6 @@ settings:
         enabled: true
       content_cards:
         weight: 1
-        enabled: true
-      content_liftup:
-        weight: 12
         enabled: true
       event_list:
         weight: 13
