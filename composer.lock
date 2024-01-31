@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac7cd68bc07b20612f2e9823ba0e67f1",
+    "content-hash": "23c9b9a38cb048889acff621e6c9060b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3309,17 +3309,17 @@
         },
         {
             "name": "drupal/external_entities",
-            "version": "2.0.0-alpha7",
+            "version": "2.0.0-alpha6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/external_entities.git",
-                "reference": "8.x-2.0-alpha7"
+                "reference": "8.x-2.0-alpha6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/external_entities-8.x-2.0-alpha7.zip",
-                "reference": "8.x-2.0-alpha7",
-                "shasum": "db6b820b0fe60da513d3def6721e14393fc6a2a5"
+                "url": "https://ftp.drupal.org/files/projects/external_entities-8.x-2.0-alpha6.zip",
+                "reference": "8.x-2.0-alpha6",
+                "shasum": "3c11cc7ac7a4130131a188f6c6fba33937ca5244"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9 || ^10",
@@ -3331,8 +3331,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-alpha7",
-                    "datestamp": "1706524114",
+                    "version": "8.x-2.0-alpha6",
+                    "datestamp": "1684406076",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -4219,16 +4219,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.3.5",
+            "version": "4.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "9efcc488352654c2c7e1f22924eb3e07346f8f8a"
+                "reference": "9c6632b8f485f9bd6f4f0200360df78935ea08d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/9efcc488352654c2c7e1f22924eb3e07346f8f8a",
-                "reference": "9efcc488352654c2c7e1f22924eb3e07346f8f8a",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/9c6632b8f485f9bd6f4f0200360df78935ea08d2",
+                "reference": "9c6632b8f485f9bd6f4f0200360df78935ea08d2",
                 "shasum": ""
             },
             "require": {
@@ -4249,7 +4249,7 @@
                 "drupal/entity_browser": "^2.5",
                 "drupal/entity_usage": "^2.0@beta",
                 "drupal/eu_cookie_compliance": "^1.24",
-                "drupal/external_entities": "^2.0@alpha",
+                "drupal/external_entities": "2.0.0-alpha6",
                 "drupal/field_group": "^3.1",
                 "drupal/focal_point": "^2.0",
                 "drupal/gin_toolbar": "^1.0@rc",
@@ -4342,10 +4342,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.3.5",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.3.6",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2024-01-29T12:50:53+00:00"
+            "time": "2024-01-30T07:58:25+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
