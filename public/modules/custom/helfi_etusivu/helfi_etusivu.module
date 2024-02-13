@@ -5,7 +5,7 @@
  * Contains necessary alterations for the Helfi etusivu instance.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;

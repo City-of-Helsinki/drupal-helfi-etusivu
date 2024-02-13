@@ -5,7 +5,7 @@
  * Contains etusivu installation hooks.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Core\Database\Database;
 use Drupal\node\Entity\Node;
