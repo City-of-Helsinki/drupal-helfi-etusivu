@@ -31,7 +31,7 @@
         "drupal/openapi_jsonapi": "^3.0",
         "drupal/openapi_ui_redoc": "^1.0@RC",
         "drupal/radioactivity": "^4.0",
-        "drupal/raven": "^4.0",
+        "drupal/raven": "^5.0",
         "drupal/redis": "^1.5",
         "drupal/search_api": "^1.23",
         "drupal/stage_file_proxy": "^2.0",
