@@ -76,7 +76,7 @@ class GlobalMenuOverviewFormTest extends BrowserTestBase {
       $this->assertSession()->checkboxChecked("entities[$id][status]") :
       $this->assertSession()->checkboxNotChecked("entities[$id][status]");
 
-    $this->assertSession()->fieldValueEquals("entities[$id][weight]", $expectedWeight);
+    $this->assertSession()->fieldValueEquals("entities[$id][weight]", (string) $expectedWeight);
   }
 
   /**
