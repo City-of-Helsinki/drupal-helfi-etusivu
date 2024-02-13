@@ -42,3 +42,4 @@ show_report_dialog: false
 error_embed_url: ''
 tunnel: false
 modules: false
+http_compression: true
