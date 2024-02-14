@@ -22,6 +22,20 @@ $config['elastic_proxy.settings']['elastic_proxy_url'] = getenv('ELASTIC_PROXY_U
 
 // Sentry DSN for React.
 $config['react_search.settings']['sentry_dsn_react'] = getenv('SENTRY_DSN_REACT');
+$config['openid_connect.client.tunnistamo']['settings']['ad_roles'] = [
+  [
+    'ad_role' => 'Drupal_Helfi_kaupunkitaso_paakayttajat',
+    'roles' => ['admin'],
+  ],
+  [
+    'ad_role' => 'Drupal_Helfi_Etusivu_sisallontuottajat_laaja',
+    'roles' => ['editor'],
+  ],
+  [
+    'ad_role' => 'Drupal_Helfi_Etusivu_uutistuottajat',
+    'roles' => ['news_producer'],
+  ],
+];
 
 $additionalEnvVars = [
   'AZURE_BLOB_STORAGE_SAS_TOKEN|BLOBSTORAGE_SAS_TOKEN',
