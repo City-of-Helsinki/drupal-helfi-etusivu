@@ -15,7 +15,6 @@
         "drupal/core-composer-scaffold": "^10.0",
         "drupal/draggableviews": "^2.0",
         "drupal/elasticsearch_connector": "^7.0@alpha",
-        "drupal/external_entities": "^2.0@alpha",
         "drupal/hdbt": "^6.0",
         "drupal/hdbt_admin": "^3.0",
         "drupal/helfi_azure_fs": "^2.0",
