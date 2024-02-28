@@ -10,7 +10,7 @@ third_party_settings:
 _core:
   default_config_hash: d9QHZSNb78KFueRqSVFC7_maG4KBNgjsPmLJIb2TN10
 id: accordion
-label: Accordion
+label: 'Accordion (supported in other languages)'
 icon_uuid: null
 icon_default: null
 description: 'Accordion paragraph is used to store information that is perhaps not so relevant to all website users in a compact element that collapses the additional information behind a title.'
