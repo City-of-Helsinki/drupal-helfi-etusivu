@@ -4122,12 +4122,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-tools.git",
-                "reference": "75458dd3ea587b7f033a8bf6102d627d1a2abb50"
+                "reference": "08fe754581afe4ba8d1d7324b193108f476dd548"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/75458dd3ea587b7f033a8bf6102d627d1a2abb50",
-                "reference": "75458dd3ea587b7f033a8bf6102d627d1a2abb50",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/08fe754581afe4ba8d1d7324b193108f476dd548",
+                "reference": "08fe754581afe4ba8d1d7324b193108f476dd548",
                 "shasum": ""
             },
             "require": {
@@ -4199,7 +4199,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/main",
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
-            "time": "2024-03-14T08:10:18+00:00"
+            "time": "2024-03-20T07:54:25+00:00"
         },
         {
             "name": "drupal/helfi_navigation",
