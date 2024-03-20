@@ -129,6 +129,16 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_news_groups:
+    type: select2_entity_reference
+    weight: 26
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
   field_news_item_links_link:
     type: linkit
     weight: 20
@@ -156,6 +166,22 @@ content:
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
+    third_party_settings: {  }
+  field_news_neighbourhoods:
+    type: select2_entity_reference
+    weight: 27
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_radioactivity:
+    type: radioactivity_reference
+    weight: 28
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_short_title:
     type: string_textfield
@@ -252,32 +278,6 @@ content:
     third_party_settings: {  }
   url_redirects:
     weight: 13
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_news_groups:
-    type: select2_entity_reference
-    weight: 26
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_news_neighbourhoods:
-    type: select2_entity_reference
-    weight: 27
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_radioactivity:
-    type: radioactivity_reference
-    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }
