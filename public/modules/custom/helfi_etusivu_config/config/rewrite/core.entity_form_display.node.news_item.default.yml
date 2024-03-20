@@ -1,0 +1,56 @@
+config_rewrite:
+  replace: ['hidden', 'dependencies']
+dependencies:
+  config:
+    - field.field.node.news_item.field_content
+    - field.field.node.news_item.field_lead_in
+    - field.field.node.news_item.field_main_image
+    - field.field.node.news_item.field_main_image_caption
+    - field.field.node.news_item.field_news_groups
+    - field.field.node.news_item.field_news_item_links_link
+    - field.field.node.news_item.field_news_item_links_title
+    - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_neighbourhoods
+    - field.field.node.news_item.field_radioactivity
+    - field.field.node.news_item.field_short_title
+    - node.type.news_item
+  module:
+    - field_group
+    - hdbt_admin_tools
+    - linkit
+    - media_library
+    - paragraphs
+    - path
+    - publication_date
+    - scheduler
+    - select2
+    - radioactivity
+content:
+  field_news_groups:
+    type: select2_entity_reference
+    weight: 26
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_news_neighbourhoods:
+    type: select2_entity_reference
+    weight: 27
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_radioactivity:
+    type: radioactivity_reference
+    weight: 28
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  hide_sidebar_navigation: true
