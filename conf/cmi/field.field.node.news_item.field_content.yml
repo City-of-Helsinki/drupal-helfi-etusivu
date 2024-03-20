@@ -32,9 +32,9 @@ settings:
   handler_settings:
     target_bundles:
       text: text
-      banner: banner
       image: image
       remote_video: remote_video
+      banner: banner
     negate: 0
     target_bundles_drag_drop:
       banner:
