@@ -1,5 +1,9 @@
 config_rewrite:
-  replace: ['dependencies']
+  replace: [
+    'dependencies',
+    'display.latest_news.display_options.filters.langcode.value',
+    'display.default.display_options.filters.langcode.value'
+  ]
 dependencies:
   config:
     - core.entity_view_mode.node.medium_teaser
