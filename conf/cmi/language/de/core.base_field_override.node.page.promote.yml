@@ -1,4 +1,4 @@
-label: 'Auf der Startseite anzeigen'
+label: 'Promoted to front page'
 settings:
-  on_label: An
-  off_label: Aus
+  on_label: 'On'
+  off_label: 'Off'

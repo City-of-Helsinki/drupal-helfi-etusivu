@@ -5,7 +5,7 @@ dependencies:
   module:
     - node
 _core:
-  default_config_hash: nfD5YCnsOB1VlfTq8e5AAzDeyGcGfwdoi0U6uHWYVM8
+  default_config_hash: PX127ZuQH6zZ4_pg9upzurISJPzKRaIN2mLjg9n4JMk
 id: node.medium_teaser
 label: 'Medium Teaser'
 description: ''

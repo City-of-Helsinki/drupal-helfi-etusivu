@@ -12,6 +12,10 @@ display:
       fields:
         view_node:
           text: visa
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
       title: 'Senaste nyheterna'
       arguments:
         nid:

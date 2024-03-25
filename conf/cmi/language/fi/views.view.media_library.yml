@@ -4,7 +4,6 @@ display:
   default:
     display_title: Oletus
     display_options:
-      title: Media
       fields:
         media_bulk_form:
           action_title: Toiminto
@@ -26,7 +25,7 @@ display:
           sort_desc_label: Laskevasti
       empty:
         area_text_custom:
-          content: 'Ei mediatiedostoja saatavilla.'
+          content: 'Mediatiedostoja ei ole saatavilla.'
       sorts:
         created:
           expose:
@@ -57,14 +56,13 @@ display:
         langcode:
           expose:
             label: Kieli
+      title: Media
   page:
     display_title: Sivu
     display_options:
       fields:
         media_bulk_form:
           action_title: Toiminto
-        name:
-          separator: ', '
         edit_media:
           alter:
             text: 'Muokkaa {{ name }}'
@@ -75,6 +73,8 @@ display:
             text: 'Poista {{ name }}'
             alt: 'Poista {{ name }}'
           text: Poista
+        name:
+          separator: ', '
   widget:
     display_title: Widgetti
     display_options:
