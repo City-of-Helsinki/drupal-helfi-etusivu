@@ -1,4 +1,4 @@
-label: 推荐到首页
+label: 'Promoted to front page'
 settings:
-  on_label: 开启
-  off_label: 关闭
+  on_label: 'On'
+  off_label: 'Off'

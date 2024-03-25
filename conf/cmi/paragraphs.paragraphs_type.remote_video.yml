@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: WTAPpeTZCHB5rS01AM02G5tEkQ7LMFLOfPD-MW0Hir4
+  default_config_hash: 7ACTSU3dw6y63zALTmg5uHqXetngx1XyycIXNYypUnk
 id: remote_video
 label: 'Remote video (supported in other languages)'
 icon_uuid: null

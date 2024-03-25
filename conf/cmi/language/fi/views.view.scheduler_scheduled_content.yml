@@ -8,19 +8,25 @@ display:
           action_title: Toiminto
         title:
           label: Otsikko
+          separator: ', '
         type:
           label: Sisältötyyppi
+          separator: ', '
         name:
           label: Kirjoittaja
+          separator: ', '
         status:
           label: Tila
           settings:
             format_custom_true: Julkaistu
             format_custom_false: Julkaisematon
+          separator: ', '
         publish_on:
           label: Julkaisuaika
+          separator: ', '
         unpublish_on:
           label: 'Ajastettu piilottaminen'
+          separator: ', '
         operations:
           label: Toimenpiteet
       filters:
@@ -47,6 +53,20 @@ display:
       empty:
         area_text_custom:
           content: 'Ei vielä ajastettua sisältöä.'
+      exposed_form:
+        options:
+          submit_button: Suodata
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
+          sort_asc_label: Nousevasti
+          sort_desc_label: Laskevasti
+      pager:
+        options:
+          tags:
+            previous: '‹ previous'
+            next: 'next ›'
+            first: '« first'
+            last: 'last »'
     display_title: Oletus
   overview:
     display_options:

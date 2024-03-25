@@ -12,6 +12,10 @@ display:
       fields:
         view_node:
           text: näkymä
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
       title: 'Uusimmat uutiset'
       arguments:
         nid:
