@@ -60,14 +60,6 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
-  field_news_groups:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 10
-    region: content
   field_news_item_links_link:
     type: link
     label: hidden
@@ -87,32 +79,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 6
-    region: content
-  field_news_item_tags:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 11
-    region: content
-  field_news_neighbourhoods:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 12
-    region: content
-  field_radioactivity:
-    type: radioactivity_reference_emitter
-    label: above
-    settings:
-      energy: 10.0
-      display: false
-      decimals: 0.0
-    third_party_settings: {  }
-    weight: 9
     region: content
   field_short_title:
     type: string
@@ -145,6 +111,40 @@ content:
         refresh: 60
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_news_groups:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_news_item_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_news_neighbourhoods:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_radioactivity:
+    type: radioactivity_reference_emitter
+    label: above
+    settings:
+      energy: 10.0
+      display: false
+      decimals: 0.0
+    third_party_settings: {  }
+    weight: 9
     region: content
 hidden:
   langcode: true

@@ -14,5 +14,6 @@ display:
       fields:
         created:
           label: Almmuhuvvon
+    display_title: Default
   page_1:
     display_title: Siidu

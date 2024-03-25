@@ -1,4 +1,4 @@
-label: 'Ülendatud esilehele'
+label: 'Promoted to front page'
 settings:
-  on_label: Sees
-  off_label: Väljas
+  on_label: 'On'
+  off_label: 'Off'
