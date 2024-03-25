@@ -63,6 +63,9 @@ display:
           expose:
             label: Langue
       title: 'Contenu(s) planifié(s)'
+      empty:
+        area_text_custom:
+          content: 'No scheduled content.'
     display_title: Maître
   overview:
     display_options:
@@ -70,6 +73,7 @@ display:
         title: Planifié
       tab_options:
         title: Contenu
+        description: 'Find and manage scheduled content'
     display_title: "Vue d'ensemble des contenus"
   user_page:
     display_options:
@@ -77,7 +81,9 @@ display:
         title: Planifié
       tab_options:
         title: Contenu
+        description: 'Find and manage scheduled content'
       arguments:
         uid:
           exception:
             title: Tout
+    display_title: 'User profile tab'

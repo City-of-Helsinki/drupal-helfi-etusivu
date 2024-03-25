@@ -38,6 +38,8 @@ display:
           separator: ', '
         operations:
           label: Toimingud
+        count:
+          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       filters:
         label:
           expose:

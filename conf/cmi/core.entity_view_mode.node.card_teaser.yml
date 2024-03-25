@@ -5,7 +5,7 @@ dependencies:
   module:
     - node
 _core:
-  default_config_hash: 6uymm4YPtiH6BS78cFHJaqx8rOGs3Dql7p5KHhSZUoc
+  default_config_hash: '-U5MNPbXRvno6hvXQ15wy1tLDaUlOLkoBoq_QP14lGQ'
 id: node.card_teaser
 label: 'Card Teaser'
 description: ''

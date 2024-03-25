@@ -1,0 +1,10 @@
+display:
+  default:
+    display_options:
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      arguments:
+        nid:
+          exception:
+            title: Buot

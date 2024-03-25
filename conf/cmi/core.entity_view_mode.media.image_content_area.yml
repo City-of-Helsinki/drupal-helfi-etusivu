@@ -5,7 +5,7 @@ dependencies:
   module:
     - media
 _core:
-  default_config_hash: u4xPVzzez1KP66PPTRiynkPmjXyIwJw6Nqjz01tLAjQ
+  default_config_hash: 7PwRJU-3KKx0V_WK0wDlYGE-5quPSgGYl7tVn4guO54
 id: media.image_content_area
 label: 'Image (content area)'
 description: ''
