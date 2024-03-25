@@ -426,11 +426,6 @@ display:
         operator: AND
         groups:
           - AND
-          - AND
-          - AND
-          - AND
-          - AND
-          - AND
       style:
         type: default
         options:
@@ -559,11 +554,6 @@ display:
       filter_groups:
         operator: AND
         groups:
-          - AND
-          - AND
-          - AND
-          - AND
-          - AND
           - AND
       style:
         type: default
