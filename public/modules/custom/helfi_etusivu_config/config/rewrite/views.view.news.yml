@@ -1,8 +1,10 @@
 config_rewrite:
   replace: [
     'dependencies',
+    'display.default.display_options.filters.langcode.value',
+    'display.default.display_options.filter_groups.groups',
     'display.latest_news.display_options.filters.langcode.value',
-    'display.default.display_options.filters.langcode.value'
+    'display.latest_news.display_options.filter_groups.groups'
   ]
 dependencies:
   config:
@@ -87,7 +89,7 @@ display:
       filter_groups:
         operator: AND
         groups:
-          1: AND
+          - AND
       row:
         options:
           view_mode: medium_teaser
@@ -182,7 +184,7 @@ display:
       filter_groups:
         operator: AND
         groups:
-          1: AND
+          - AND
       style:
         type: default
         options:
