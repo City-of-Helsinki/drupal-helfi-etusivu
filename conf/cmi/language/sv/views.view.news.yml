@@ -2,17 +2,21 @@ display:
   default:
     display_title: Förvald
     display_options:
-      title: 'Senaste nyheterna'
-      fields:
-        view_node:
-          text: visa
       exposed_form:
         options:
-          submit_button: Verkställ
           reset_button_label: Återställ
           exposed_sorts_label: 'Sortera efter'
           sort_asc_label: Stigande
           sort_desc_label: Fallande
+          submit_button: Verkställ
+      fields:
+        view_node:
+          text: visa
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
+      title: 'Senaste nyheterna'
       arguments:
         nid:
           exception:

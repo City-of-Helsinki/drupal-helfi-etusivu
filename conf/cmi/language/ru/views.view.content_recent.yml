@@ -17,5 +17,7 @@ display:
         area_text_custom:
           content: 'Нет доступных материалов.'
       use_more_text: Ещё
+      title: 'Recent content'
   block_1:
     display_title: Блок
+label: 'Recent content'

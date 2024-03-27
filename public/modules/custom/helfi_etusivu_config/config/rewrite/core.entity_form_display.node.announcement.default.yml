@@ -1,0 +1,15 @@
+config_rewrite:
+  replace: ['hidden']
+content:
+  field_publish_externally:
+    type: boolean_checkbox
+    weight: 14
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  hide_sidebar_navigation: true
+  promote: true
+  sticky: true
+  url_redirects: true

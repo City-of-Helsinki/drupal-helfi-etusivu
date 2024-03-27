@@ -34,6 +34,7 @@ display:
         langcode:
           expose:
             label: Giella
+    display_title: Default
   overview:
     display_options:
       tab_options:
