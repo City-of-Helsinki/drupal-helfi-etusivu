@@ -1,0 +1,22 @@
+display:
+  default:
+    display_title: Базово
+    display_options:
+      fields:
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
+        view_node:
+          text: view
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
+      arguments:
+        nid:
+          exception:
+            title: Все

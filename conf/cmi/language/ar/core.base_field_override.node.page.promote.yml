@@ -1,4 +1,4 @@
-label: 'مرقّى إلى الصفحة الرئيسية'
+label: 'Promoted to front page'
 settings:
-  on_label: في
-  off_label: إيقاف
+  on_label: 'On'
+  off_label: 'Off'

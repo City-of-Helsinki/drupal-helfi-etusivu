@@ -24,6 +24,11 @@ display:
           label: 更改的日期
         count:
           label: 用于
+          alter:
+            path: 'admin/content/files/usage/{{ fid }}'
+          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
+        fid:
+          label: Fid
       pager:
         options:
           tags:

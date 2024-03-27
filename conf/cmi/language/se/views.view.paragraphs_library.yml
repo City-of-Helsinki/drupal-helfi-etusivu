@@ -13,5 +13,6 @@ display:
         type:
           expose:
             label: Šládja
+    display_title: Default
   page_1:
     display_title: Siidu

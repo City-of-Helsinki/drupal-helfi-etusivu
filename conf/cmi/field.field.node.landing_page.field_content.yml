@@ -40,21 +40,21 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      front_page_latest_news: front_page_latest_news
-      front_page_top_news: front_page_top_news
       current: current
+      front_page_top_news: front_page_top_news
+      front_page_latest_news: front_page_latest_news
       event_list: event_list
-      columns: columns
       list_of_links: list_of_links
       content_cards: content_cards
       banner: banner
       liftup_with_image: liftup_with_image
-      from_library: from_library
-      chart: chart
-      remote_video: remote_video
-      map: map
-      phasing: phasing
       popular_services: popular_services
+      from_library: from_library
+      columns: columns
+      phasing: phasing
+      map: map
+      remote_video: remote_video
+      chart: chart
       target_group_links: target_group_links
       hearings: hearings
     negate: 0

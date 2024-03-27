@@ -1,4 +1,4 @@
-label: 'ارتقا یافته به صفحه اصلی'
+label: 'Promoted to front page'
 settings:
-  on_label: روشن
-  off_label: خاموش
+  on_label: 'On'
+  off_label: 'Off'
