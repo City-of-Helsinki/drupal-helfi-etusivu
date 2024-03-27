@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: aQOKcHc592CMLI00czfxyT8hbKX97hvBvCOevGBDKq4
+  default_config_hash: xqAoab3RpoZ36mhZClLPbQFg4fppDaQIS-spV_33m44
 id: icareus_suite
 label: 'Icareus Suite'
 provider_url: 'https://www.helsinkikanava.fi'
