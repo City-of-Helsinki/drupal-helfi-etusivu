@@ -3,6 +3,8 @@ on:
   repository_dispatch:
     types: [config_change]
 name: Update config
+permissions:
+  actions: write
 env:
   GH_TOKEN: ${{ github.token }}
 jobs:
