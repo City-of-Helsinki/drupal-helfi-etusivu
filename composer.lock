@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ea1dc90c93a6f65e615c959ee10b668",
+    "content-hash": "afc622a93dca6756ad5b9dd80f72a882",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4118,16 +4118,16 @@
         },
         {
             "name": "drupal/helfi_drupal_tools",
-            "version": "dev-main",
+            "version": "dev-UHF-9913",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-tools.git",
-                "reference": "08fe754581afe4ba8d1d7324b193108f476dd548"
+                "reference": "bbe3b44c22ab187d5cacdd6008b54c46993f1890"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/08fe754581afe4ba8d1d7324b193108f476dd548",
-                "reference": "08fe754581afe4ba8d1d7324b193108f476dd548",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/bbe3b44c22ab187d5cacdd6008b54c46993f1890",
+                "reference": "bbe3b44c22ab187d5cacdd6008b54c46993f1890",
                 "shasum": ""
             },
             "require": {
@@ -4147,7 +4147,6 @@
                 "phpstan/phpstan-deprecation-rules": "^1.1",
                 "phpunit/phpunit": "^9.6"
             },
-            "default-branch": true,
             "type": "drupal-drush",
             "extra": {
                 "installer-paths": {
@@ -4196,10 +4195,10 @@
             ],
             "description": "Helfi - Drupal tools",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/main",
+                "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/UHF-9913",
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
-            "time": "2024-03-20T07:54:25+00:00"
+            "time": "2024-04-04T09:26:57+00:00"
         },
         {
             "name": "drupal/helfi_navigation",
