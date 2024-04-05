@@ -82,6 +82,7 @@ jobs:
           commit-message: Update configuration
           title: Automatic update
           labels: auto-update
+          token: ${{ secrets.WEBHOOK_TOKEN }}
           body: |
             - Updated active configuration.
             - Updated platform
