@@ -1,0 +1,16 @@
+name: 'HELfi Node news article'
+type: module
+core_version_requirement: '^10'
+dependencies:
+  - field_group:field_group
+  - drupal:menu_ui
+  - drupal:taxonomy
+  - radioactivity:radioactivity
+  - helfi_platform_config:helfi_node_news_item
+  - helfi_platform_config:helfi_paragraphs_hero
+  - helfi_platform_config:helfi_image_styles
+  - helfi_platform_config:helfi_media
+  - publication_date:publication_date
+  - social_media:social_media
+'interface translation project': helfi_node_news_article
+'interface translation server pattern': modules/custom/helfi_node_news_article/translations/%language.po

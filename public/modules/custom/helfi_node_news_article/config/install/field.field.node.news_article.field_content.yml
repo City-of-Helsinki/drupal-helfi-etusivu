@@ -1,0 +1,27 @@
+uuid: a0c8281c-f83c-4e8b-b3a4-9d7276a67d64
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+  enforced:
+    config:
+      - field.storage.node.field_content
+      - node.type.news_article
+id: node.news_article.field_content
+field_name: field_content
+entity_type: node
+bundle: news_article
+label: 'Content region'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: {  }
+    negate: 0
+    target_bundles_drag_drop: {  }
+field_type: entity_reference_revisions
