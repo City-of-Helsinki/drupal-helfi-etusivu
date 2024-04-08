@@ -1,11 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\dtt\ExistingSite;
 
 use Drupal\Core\Session\AccountInterface;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
 use Drupal\Tests\helfi_api_base\Functional\ExistingSiteTestBase;
+use Drupal\Tests\TestFileCreationTrait;
 
 /**
  * Tests news endpoint.
@@ -13,6 +16,8 @@ use Drupal\Tests\helfi_api_base\Functional\ExistingSiteTestBase;
  * @group dtt
  */
 class NewsContentTypeTest extends ExistingSiteTestBase {
+
+  use TestFileCreationTrait;
 
   /**
    * The administrator account.
@@ -100,6 +105,37 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
     $node->set('field_short_title', 'Short title');
     $shortTitle = $token->replace('[node:short-title]', ['node' => $node]);
     $this->assertEquals('Short title', $shortTitle);
+  }
+
+  /**
+   * Metatag og:image should work with news_article.
+   */
+  public function testNewsArticleOgImage() : void {
+    $uri = $this->getTestFiles('image')[0]->uri;
+
+    $file = File::create([
+      'uri' => $uri,
+    ]);
+    $file->save();
+    $this->markEntityForCleanup($file);
+
+    $media = Media::create([
+      'bundle' => 'image',
+      'name' => 'Custom name',
+      'field_media_image' => $file->id(),
+    ]);
+    $media->save();
+    $this->markEntityForCleanup($file);
+
+    $node = $this->createNode([
+      'type' => 'news_article',
+      'status' => 1,
+      'langcode' => 'fi',
+      'field_main_image' => $media->id(),
+    ]);
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementAttributeContains('css', 'meta[property="og:image"]', 'content', $file->getFilename());
   }
 
 }
