@@ -19,7 +19,7 @@ use Drupal\views\ViewExecutable;
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  *
- * Alter promoted to front page label value and position in news item forms.
+ * Alter promoted to front page label value and position in news content forms.
  *
  * This module alter hook is too early to fully handle the
  * "promote" field alterations, as the entity add/edit form sidebar variables
@@ -27,7 +27,11 @@ use Drupal\views\ViewExecutable;
  * See: hdbt_admin/hdbt_admin.theme / hdbt_admin_apply_form_theme().
  */
 function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
-  if (!str_contains($form_id, 'news_item') || !isset($form['promote'])) {
+  if (
+    !isset($form['promote']) ||
+    !str_contains($form_id, 'news_item') &&
+    !str_contains($form_id, 'news_article')
+  ) {
     return;
   }
 
@@ -64,7 +68,7 @@ function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $
 function helfi_etusivu_cron() : void {
   // Get promoted news_item nodes that are more than one month old.
   $result = \Drupal::entityQuery('node')
-    ->condition('type', 'news_item')
+    ->condition('type', ['news_item', 'news_article'], 'IN')
     ->condition('promote', 1)
     ->condition('created', strtotime('-1 month'), '<')
     ->range(0, 50)
