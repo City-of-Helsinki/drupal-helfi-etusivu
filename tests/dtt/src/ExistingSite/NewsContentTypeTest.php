@@ -83,4 +83,23 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
     $this->assertJsonApiList();
   }
 
+  /**
+   * Token [node:short-title] should work with news_article.
+   */
+  public function testNewsArticleLeadInToken() : void {
+    /** @var \Drupal\Core\Utility\Token $token */
+    $token = $this->container->get('token');
+
+    $node = $this->createNode([
+      'title' => 'Title',
+      'type' => 'news_article',
+    ]);
+    $shortTitle = $token->replace('[node:short-title]', ['node' => $node]);
+    $this->assertEquals('Title', $shortTitle);
+
+    $node->set('field_short_title', 'Short title');
+    $shortTitle = $token->replace('[node:short-title]', ['node' => $node]);
+    $this->assertEquals('Short title', $shortTitle);
+  }
+
 }
