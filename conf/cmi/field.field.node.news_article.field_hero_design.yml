@@ -1,0 +1,25 @@
+uuid: 65cd0754-3100-47c1-b13e-f13743a59bfb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hero_design
+    - node.type.news_article
+  module:
+    - options
+_core:
+  default_config_hash: JgqQGWRthyZ3n-M6UjVcMt7SE-2svUw7wrxyNwdJaKU
+id: node.news_article.field_hero_design
+field_name: field_hero_design
+entity_type: node
+bundle: news_article
+label: Layout
+description: 'Set the hero layout from the menu. The layout affects what information is required below.'
+required: true
+translatable: false
+default_value:
+  -
+    value: without-image-left
+default_value_callback: ''
+settings: {  }
+field_type: list_string
