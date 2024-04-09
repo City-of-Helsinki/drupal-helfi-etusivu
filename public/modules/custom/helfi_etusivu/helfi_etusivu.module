@@ -219,16 +219,17 @@ function helfi_etusivu_helfi_hero_design_alter(array &$designs): void {
   $designs['with-search'] = t('With search');
 }
 
-
 /**
  * Implements hook_preprocess_HOOK().
  */
 function helfi_etusivu_preprocess_page(&$variables): void {
   $route = \Drupal::routeMatch()->getRouteName();
-  if (
-    $route !== 'view.ordered_news_list.ordered_news' &&
-    $route !== 'view.ordered_news_articles_list.ordered_news_articles'
-  ) {
+  $ordered_news_list = [
+    'view.ordered_news_list.ordered_news',
+    'view.ordered_news_articles_list.ordered_news_articles',
+  ];
+
+  if (!in_array($route, $ordered_news_list)) {
     return;
   }
 
