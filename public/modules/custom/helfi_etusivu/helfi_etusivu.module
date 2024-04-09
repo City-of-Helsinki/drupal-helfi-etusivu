@@ -40,13 +40,24 @@ function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_sta
   $form['promote']['widget']['value']['#title'] = t('Publish the news item in the top news flow', [], ['context' => 'News item promoted field title']);
   $form['promote']['widget']['#title'] = t('Top news flow', [], ['context' => 'News item promoted field wrapper title']);
   $form['promote']['widget']['#title_display'] = 'above';
+
+  // Alter the translations for the news articles.
+  if (str_contains($form_id, 'news_article')) {
+    $form['promote']['widget']['value']['#title'] = t('Publish the news article in the top news articles flow', [], ['context' => 'News article promoted field title']);
+    $form['promote']['widget']['#title'] = t('Top news article flow', [], ['context' => 'News article promoted field wrapper title']);
+  }
 }
 
 /**
  * Implements hook_views_query_alter().
  */
 function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $query) : void {
-  if (in_array($view->id(), ['ordered_news_list', 'frontpage_news'])) {
+  $draggable_views = [
+    'frontpage_news',
+    'ordered_news_articles',
+    'ordered_news_list',
+  ];
+  if (in_array($view->id(), $draggable_views)) {
     assert($query instanceof Sql);
 
     $table = $query->getTableInfo('draggableviews_structure');
@@ -206,4 +217,21 @@ function helfi_etusivu_entity_insert(EntityInterface $entity) : void {
  */
 function helfi_etusivu_helfi_hero_design_alter(array &$designs): void {
   $designs['with-search'] = t('With search');
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_etusivu_preprocess_page(&$variables): void {
+  $route = \Drupal::routeMatch()->getRouteName();
+  if (
+    $route !== 'view.ordered_news_list.ordered_news' &&
+    $route !== 'view.ordered_news_articles_list.ordered_news_articles'
+  ) {
+    return;
+  }
+
+  // Attach styles for the ordered news list and ordered news articles views.
+  $variables['#attached']['library'][] = 'helfi_etusivu/views-styles';
 }
