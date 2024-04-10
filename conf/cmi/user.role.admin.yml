@@ -79,7 +79,6 @@ permissions:
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'
-  - 'assign admin role'
   - 'assign content_producer role'
   - 'assign editor role'
   - 'assign news_producer role'
