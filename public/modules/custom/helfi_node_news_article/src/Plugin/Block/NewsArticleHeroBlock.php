@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_node_news_article\Plugin\Block;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\helfi_platform_config\EntityVersionMatcher;
 use Drupal\helfi_platform_config\Plugin\Block\ContentBlockBase;
-use Drupal\paragraphs\ParagraphInterface;
 
 /**
  * Provides a 'NewsArticleHeroBlock' block.
@@ -26,7 +24,7 @@ class NewsArticleHeroBlock extends ContentBlockBase {
     $build = [];
 
     /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    ['entity' => $entity, 'entity_version' => $entity_version] = $this->getCurrentEntityVersion();
+    ['entity' => $entity] = $this->getCurrentEntityVersion();
 
     // No need to continue if current entity doesn't have hero field.
     if (
