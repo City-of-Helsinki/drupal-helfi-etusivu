@@ -51,3 +51,19 @@ function helfi_node_news_article_sidebar_visibility_alter(array &$variables, Con
     $variables['has_sidebar_second'] = TRUE;
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function helfi_node_news_article_theme() : array {
+  return [
+    'news_article_hero_block' => [
+      'variables' => [
+        'design' => NULL,
+        'title' => NULL,
+        'description' => NULL,
+        'image' => NULL,
+      ],
+    ],
+  ];
+}
