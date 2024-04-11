@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
  *
  * @group helfi_global_navigation
  */
-class GlobalMenuResourceTest extends RestBaseTest {
+class GlobalMenuResourceTest extends RestTestBase {
 
   /**
    * Gets the mocked JSON.
