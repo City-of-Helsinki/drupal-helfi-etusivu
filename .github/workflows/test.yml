@@ -29,7 +29,7 @@ jobs:
 
       - name: Set browsertest output folder
         run: |
-          echo "BROWSERTEST_OUTPUT_DIRECTORY=$HOME/drupal/public/sites/simpletest" >> $GITHUB_ENV
+          echo "BROWSERTEST_OUTPUT_DIRECTORY=$GITHUB_WORKSPACE/public/sites/simpletest" >> $GITHUB_ENV
 
       - name: Make sure configuration was exported in correct language (en or und)
         run: |
