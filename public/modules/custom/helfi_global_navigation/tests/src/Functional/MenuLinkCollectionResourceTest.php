@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
  *
  * @group helfi_global_navigation
  */
-class MenuLinkCollectionResourceTest extends RestBaseTest {
+class MenuLinkCollectionResourceTest extends RestTestBase {
 
   use MenuLinkTrait;
   use ApiTestTrait;
