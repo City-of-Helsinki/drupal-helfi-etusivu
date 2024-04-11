@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Template for the news article hero block.
+ *
+ * Variables:
+ * - design: Hero design key-value as a string.
+ * - title: Node title.
+ * - description: Lead in contents.
+ * - image: Main image render array.
+ *
+ * @see \Drupal\helfi_node_news_article\Plugin\Block\NewsArticleHeroBlock
+ */
+#}
+
+{% set lead_in %}
+  <p>{{ description }}</p>
+{% endset %}
+
+{% embed '@hdbt/component/hero.twig' with {
+  design: design,
+  title: title,
+  description: lead_in,
+  image: image,
+} %}
+{% endembed %}
