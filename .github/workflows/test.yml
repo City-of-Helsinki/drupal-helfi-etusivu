@@ -84,6 +84,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: results-${{ matrix.php-versions }}
+          name: results
           path: ${{ env.BROWSERTEST_OUTPUT_DIRECTORY }}
           retention-days: 1
