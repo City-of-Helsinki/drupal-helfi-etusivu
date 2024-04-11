@@ -111,6 +111,16 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
    * Metatag og:image should work with news_article.
    */
   public function testNewsArticleOgImage() : void {
+    $node = $this->createNode([
+      'type' => 'news_article',
+      'status' => 1,
+      'langcode' => 'fi',
+    ]);
+
+    // Default image is used.
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementAttributeExists('css', 'meta[property="og:image"]', 'content');
+
     $uri = $this->getTestFiles('image')[0]->uri;
 
     $file = File::create([
@@ -127,13 +137,10 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
     $media->save();
     $this->markEntityForCleanup($file);
 
-    $node = $this->createNode([
-      'type' => 'news_article',
-      'status' => 1,
-      'langcode' => 'fi',
-      'field_main_image' => $media->id(),
-    ]);
+    $node->set('field_main_image', $media->id());
+    $node->save();
 
+    // Media image is used.
     $this->drupalGet($node->toUrl());
     $this->assertSession()->elementAttributeContains('css', 'meta[property="og:image"]', 'content', $file->getFilename());
   }
