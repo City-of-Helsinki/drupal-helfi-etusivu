@@ -33,7 +33,7 @@ third_party_settings:
       children:
         - field_news_item_links_title
         - field_news_item_links_link
-      label: Linkit
+      label: Links
       region: content
       parent_name: group_news_item_links_wrapper
       weight: 19
@@ -48,7 +48,7 @@ third_party_settings:
     group_news_item_links_wrapper:
       children:
         - group_news_item_links
-      label: Linkit
+      label: Links
       region: content
       parent_name: ''
       weight: 20
@@ -63,7 +63,7 @@ third_party_settings:
       children:
         - field_main_image
         - field_main_image_caption
-      label: Pääkuva
+      label: 'Main image'
       region: content
       parent_name: ''
       weight: 18
@@ -93,8 +93,8 @@ content:
     weight: 19
     region: content
     settings:
-      title: Lohko
-      title_plural: Lohkot
+      title: Paragraph
+      title_plural: Paragraphs
       edit_mode: open
       closed_mode: summary
       autocollapse: none
