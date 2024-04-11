@@ -1,0 +1,21 @@
+uuid: bfd6330f-17bf-45cb-90b5-735c5796701f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_main_image_caption
+    - node.type.news_article
+_core:
+  default_config_hash: RNb9PjpiiNjmN1mbD9HKmwI7iXlCTRCLNSw5J63JfoQ
+id: node.news_article.field_main_image_caption
+field_name: field_main_image_caption
+entity_type: node
+bundle: news_article
+label: Caption
+description: 'You can provide a caption for the image here.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

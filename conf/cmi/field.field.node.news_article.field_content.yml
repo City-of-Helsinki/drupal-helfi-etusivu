@@ -1,0 +1,52 @@
+uuid: a0c8281c-f83c-4e8b-b3a4-9d7276a67d64
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content
+    - node.type.news_article
+    - paragraphs.paragraphs_type.banner
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.remote_video
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+  enforced:
+    config:
+      - field.storage.node.field_content
+      - node.type.news_article
+_core:
+  default_config_hash: iZMt9UJPLtSDVERDtFSe4-KGWG9CUrM6WbcOYL52E34
+id: node.news_article.field_content
+field_name: field_content
+entity_type: node
+bundle: news_article
+label: 'Content region'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text: text
+      image: image
+      remote_video: remote_video
+      banner: banner
+    negate: 0
+    target_bundles_drag_drop:
+      banner:
+        weight: 3
+        enabled: true
+      image:
+        weight: 1
+        enabled: true
+      remote_video:
+        weight: 2
+        enabled: true
+      text:
+        weight: 0
+        enabled: true
+field_type: entity_reference_revisions

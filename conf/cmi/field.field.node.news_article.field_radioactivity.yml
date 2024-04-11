@@ -1,0 +1,31 @@
+uuid: 8007b275-fa85-4705-8d58-7382d29afa9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_radioactivity
+    - node.type.news_article
+  module:
+    - radioactivity
+_core:
+  default_config_hash: YLr4V-zODNmOTS4UufRSzvjuG0GUqxYEntR53YfL2wQ
+id: node.news_article.field_radioactivity
+field_name: field_radioactivity
+entity_type: node
+bundle: news_article
+label: Radioactivity
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:radioactivity'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+  default_energy: 0.0
+field_type: radioactivity_reference

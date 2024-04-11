@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Contains hooks for 'helfi_node_news_article' module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
+
+/**
+ * Implements hook_helfi_paragraph_types().
+ */
+function helfi_node_news_article_helfi_paragraph_types() : array {
+  $types = [
+    'field_content' => [
+      'text' => 0,
+      'image' => 1,
+      'remote_video' => 2,
+      'banner' => 3,
+    ],
+  ];
+
+  $enabled = [];
+  foreach ($types as $field => $paragraphTypes) {
+    foreach ($paragraphTypes as $paragraphType => $weight) {
+      $enabled[] = new ParagraphTypeCollection('node', 'news_article', $field, $paragraphType, $weight);
+    }
+  }
+  return $enabled;
+}
+
+/**
+ * Implements hook_sidebar_visibility_allowed_entities().
+ *
+ * @see \hdbt_admin_tools_handle_sidebar_visibility
+ */
+function helfi_node_news_article_sidebar_visibility_allowed_entities_alter(array &$allowed_entities) : void {
+  $allowed_entities['news_article'] = 'node';
+}
+
+/**
+ * Implements hook_sidebar_visibility_alter().
+ *
+ * @see \hdbt_admin_tools_handle_sidebar_visibility
+ */
+function helfi_node_news_article_sidebar_visibility_alter(array &$variables, ContentEntityInterface $entity) : void {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'news_article') {
+    $variables['has_sidebar_second'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function helfi_node_news_article_theme() : array {
+  return [
+    'news_article_hero_block' => [
+      'variables' => [
+        'design' => NULL,
+        'title' => NULL,
+        'description' => NULL,
+        'image' => NULL,
+      ],
+    ],
+  ];
+}

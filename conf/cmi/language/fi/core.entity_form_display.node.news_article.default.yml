@@ -1,0 +1,13 @@
+third_party_settings:
+  field_group:
+    group_news_item_links:
+      label: Linkit
+    group_news_item_links_wrapper:
+      label: Linkit
+    group_main_image:
+      label: Pääkuva
+content:
+  field_content:
+    settings:
+      title: Lohko
+      title_plural: Lohkot
