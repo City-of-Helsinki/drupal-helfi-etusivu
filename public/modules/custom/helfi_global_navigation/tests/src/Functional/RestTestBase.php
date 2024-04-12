@@ -17,7 +17,7 @@ use Drupal\user\UserInterface;
 /**
  * A base test for REST resources.
  */
-abstract class RestBaseTest extends BrowserTestBase {
+abstract class RestTestBase extends BrowserTestBase {
 
   use UserCreationTrait;
   use JsonApiRequestTestTrait;
