@@ -11,3 +11,14 @@ msgstr "Pääuutisvirta"
 
 msgid "Organize top news feed"
 msgstr "Järjestä pääuutisvirtaa"
+
+msgctxt "News article promoted field title"
+msgid "Publish the news article in the top news articles flow"
+msgstr "Näytä artikkeli pääartikkelivirrassa"
+
+msgctxt "News article promoted field wrapper title"
+msgid "Top news article flow"
+msgstr "Pääartikkelivirta"
+
+msgid "Organize top news article feed"
+msgstr "Järjestä pääartikkelivirtaa"
