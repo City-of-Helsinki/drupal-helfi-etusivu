@@ -10,3 +10,8 @@ menu-styles:
   css:
     theme:
       assets/css/menu.css: {}
+
+views-styles:
+  css:
+    theme:
+      assets/css/views.css: {}
