@@ -12,7 +12,7 @@ field_name: field_short_title
 entity_type: node
 bundle: news_article
 label: 'Short title'
-description: 'Short title is used in news listings, liftups and social media shares. When a short title is entered, it overrides normal title field everywhere except in the news article itself.'
+description: 'Short title is used in news article listings, liftups and social media shares. When a short title is entered, it overrides normal title field everywhere except in the news article itself.'
 required: false
 translatable: true
 default_value: {  }

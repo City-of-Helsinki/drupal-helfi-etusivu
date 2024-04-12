@@ -43,13 +43,24 @@ function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_sta
   $form['promote']['widget']['value']['#title'] = t('Publish the news item in the top news flow', [], ['context' => 'News item promoted field title']);
   $form['promote']['widget']['#title'] = t('Top news flow', [], ['context' => 'News item promoted field wrapper title']);
   $form['promote']['widget']['#title_display'] = 'above';
+
+  // Alter the translations for the news articles.
+  if (str_contains($form_id, 'news_article')) {
+    $form['promote']['widget']['value']['#title'] = t('Publish the news article in the top news articles flow', [], ['context' => 'News article promoted field title']);
+    $form['promote']['widget']['#title'] = t('Top news article flow', [], ['context' => 'News article promoted field wrapper title']);
+  }
 }
 
 /**
  * Implements hook_views_query_alter().
  */
 function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $query) : void {
-  if (in_array($view->id(), ['ordered_news_list', 'frontpage_news'])) {
+  $draggable_views = [
+    'frontpage_news',
+    'ordered_news_articles',
+    'ordered_news_list',
+  ];
+  if (in_array($view->id(), $draggable_views)) {
     assert($query instanceof Sql);
 
     $table = $query->getTableInfo('draggableviews_structure');
