@@ -27,7 +27,7 @@ exec "/crons/update-translations.sh" &
 exec "/crons/content-scheduler.sh" &
 exec "/crons/pubsub.sh" &
 exec "/crons/linked-events.sh" &
-exec "/crons/revision.queue.sh" &
+exec "/crons/revision-queue.sh" &
 
 while true
 do
