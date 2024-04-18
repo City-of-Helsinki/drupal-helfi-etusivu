@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b1a3832e445187838b6d20d795db22a",
+    "content-hash": "22cf5fe4cd8d55dca154405d3b14a6e4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4155,16 +4155,16 @@
         },
         {
             "name": "drupal/helfi_navigation",
-            "version": "dev-UHF-9978",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation.git",
-                "reference": "7a69c36a3d25da9516e9543b47c1b8da53c33668"
+                "reference": "dfe38c974e0f02588a05a156733e4ca5862948c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/7a69c36a3d25da9516e9543b47c1b8da53c33668",
-                "reference": "7a69c36a3d25da9516e9543b47c1b8da53c33668",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/dfe38c974e0f02588a05a156733e4ca5862948c6",
+                "reference": "dfe38c974e0f02588a05a156733e4ca5862948c6",
                 "shasum": ""
             },
             "require": {
@@ -4182,10 +4182,10 @@
             ],
             "description": "Helfi - Navigation",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/UHF-9978",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/2.2.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/issues"
             },
-            "time": "2024-04-18T07:16:20+00:00"
+            "time": "2024-04-18T12:43:06+00:00"
         },
         {
             "name": "drupal/helfi_platform_config",
@@ -19850,7 +19850,6 @@
     "stability-flags": {
         "drupal/elasticsearch_connector": 15,
         "drupal/helfi_drupal_tools": 20,
-        "drupal/helfi_navigation": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5,
         "drupal/ultimate_cron": 15,
