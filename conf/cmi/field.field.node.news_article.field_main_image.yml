@@ -14,7 +14,7 @@ entity_type: node
 bundle: news_article
 label: 'Main image'
 description: 'Main image is also used as liftup image in listings and social media shares.'
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
