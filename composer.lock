@@ -4166,26 +4166,26 @@
         },
         {
             "name": "drupal/helfi_navigation",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation.git",
-                "reference": "69ab951f8dc3bbd2c2916f67f3d9b597ab0b5bef"
+                "reference": "dfe38c974e0f02588a05a156733e4ca5862948c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/69ab951f8dc3bbd2c2916f67f3d9b597ab0b5bef",
-                "reference": "69ab951f8dc3bbd2c2916f67f3d9b597ab0b5bef",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-navigation/zipball/dfe38c974e0f02588a05a156733e4ca5862948c6",
+                "reference": "dfe38c974e0f02588a05a156733e4ca5862948c6",
                 "shasum": ""
             },
             "require": {
                 "drupal/helfi_api_base": "*",
+                "drupal/menu_block_current_language": "^2.0",
                 "php": "^8.1"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "drupal/coder": "^8.3",
-                "drupal/menu_block_current_language": "^2.0"
+                "drupal/coder": "^8.3"
             },
             "type": "drupal-module",
             "license": [
@@ -4193,10 +4193,10 @@
             ],
             "description": "Helfi - Navigation",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/2.2.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/2.2.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/issues"
             },
-            "time": "2024-03-20T15:55:31+00:00"
+            "time": "2024-04-18T12:43:06+00:00"
         },
         {
             "name": "drupal/helfi_platform_config",
