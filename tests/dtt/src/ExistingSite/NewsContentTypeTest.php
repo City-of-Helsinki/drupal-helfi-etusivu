@@ -89,9 +89,9 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
   }
 
   /**
-   * Metatag og:image should work with news_article.
+   * Metatag og:image should work with news content.
    */
-  public function testNewsArticleOgImage() : void {
+  public function testNewsOgImage() : void {
     $uri = $this->getTestFiles('image')[0]->uri;
 
     $file = File::create([
@@ -109,7 +109,7 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
     $this->markEntityForCleanup($file);
 
     $node = $this->createNode([
-      'type' => 'news_article',
+      'type' => 'news_item',
       'status' => 1,
       'langcode' => 'fi',
       'field_main_image' => $media->id(),
