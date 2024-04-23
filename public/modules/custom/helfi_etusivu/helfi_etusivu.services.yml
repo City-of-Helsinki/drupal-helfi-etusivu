@@ -1,5 +1,5 @@
 services:
-  helfi_etusivu.og_image.node:
+  Drupal\helfi_etusivu\Token\NewsNodeImageBuilder:
     class: Drupal\helfi_etusivu\Token\NewsNodeImageBuilder
     tags:
       - { name: helfi_platform_config.og_image_builder }
