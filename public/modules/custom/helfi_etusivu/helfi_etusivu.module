@@ -11,10 +11,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
-use Drupal\image\Entity\ImageStyle;
-use Drupal\media\MediaInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\Plugin\views\query\Sql;
 use Drupal\views\ViewExecutable;
@@ -59,51 +56,6 @@ function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $
       ];
     }
   }
-}
-
-/**
- * Implements hook_tokens().
- */
-function helfi_etusivu_tokens(
-  $type,
-  $tokens,
-  array $data,
-  array $options,
-  BubbleableMetadata $bubbleable_metadata
-) : array {
-  $replacements = [];
-
-  foreach ($tokens as $name => $original) {
-
-    // Custom token for shareable-image.
-    if ($name === 'shareable-image' && !empty($data['node'])) {
-      /** @var \Drupal\node\Entity\Node $node */
-      $node = $data['node'];
-
-      if (
-        $node->hasField('field_main_image') &&
-        isset($node->field_main_image->entity) &&
-        $node->field_main_image->entity instanceof MediaInterface &&
-        $node->field_main_image->entity->hasField('field_media_image')
-      ) {
-        $image_style = ImageStyle::load('og_image');
-
-        // If main image has an image set, use it as the shareable image.
-        // @phpstan-ignore-next-line
-        $image_entity = $node->get('field_main_image')->entity->field_media_image;
-
-        // Skip current entity if it's empty.
-        if ($image_entity->isEmpty()) {
-          break;
-        }
-
-        $image_path = $image_entity->entity->getFileUri();
-        $replacements[$original] = $image_style->buildUrl($image_path);
-      }
-    }
-  }
-
-  return $replacements;
 }
 
 /**
@@ -250,4 +202,22 @@ function helfi_etusivu_entity_insert(EntityInterface $entity) : void {
  */
 function helfi_etusivu_helfi_hero_design_alter(array &$designs): void {
   $designs['with-search'] = t('With search');
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_etusivu_preprocess_page(&$variables): void {
+  $route = \Drupal::routeMatch()->getRouteName();
+  $ordered_news_list = [
+    'view.ordered_news_list.ordered_news',
+    'view.ordered_news_articles_list.ordered_news_articles',
+  ];
+
+  if (!in_array($route, $ordered_news_list)) {
+    return;
+  }
+
+  // Attach styles for the ordered news list and ordered news articles views.
+  $variables['#attached']['library'][] = 'helfi_etusivu/views-styles';
 }
