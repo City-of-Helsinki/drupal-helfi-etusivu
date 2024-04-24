@@ -23,13 +23,12 @@ jobs:
           MYSQL_ROOT_PASSWORD: drupal
         ports:
           - 3306:3306
-
     steps:
       - uses: actions/checkout@v4
 
       - name: Set browsertest output folder
         run: |
-          echo "BROWSERTEST_OUTPUT_DIRECTORY=$HOME/drupal/public/sites/simpletest" >> $GITHUB_ENV
+          echo "BROWSERTEST_OUTPUT_DIRECTORY=$GITHUB_WORKSPACE/public/sites/simpletest" >> $GITHUB_ENV
 
       - name: Make sure configuration was exported in correct language (en or und)
         run: |
@@ -84,6 +83,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: results-${{ matrix.php-versions }}
+          name: results
           path: ${{ env.BROWSERTEST_OUTPUT_DIRECTORY }}
           retention-days: 1
