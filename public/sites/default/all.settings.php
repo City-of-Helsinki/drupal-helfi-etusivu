@@ -68,3 +68,7 @@ $additionalEnvVars = [
 foreach ($additionalEnvVars as $var) {
   $preflight_checks['environmentVariables'][] = $var;
 }
+
+if ($navigation_api_account = getenv('DRUPAL_NAVIGATION_API_ACCOUNT')) {
+  $config['helfi_api_base.api_accounts']['accounts'][] = json_decode($navigation_api_account, TRUE);
+}
