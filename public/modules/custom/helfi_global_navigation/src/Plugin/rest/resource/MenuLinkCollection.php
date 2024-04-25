@@ -44,7 +44,7 @@ final class MenuLinkCollection extends MenuResourceBase {
       $plugin_id,
       $plugin_definition
     );
-    $instance->treeBuilder = $container->get('helfi_navigation.menu_tree_builder');
+    $instance->treeBuilder = $container->get(MenuTreeBuilder::class);
 
     return $instance;
   }
