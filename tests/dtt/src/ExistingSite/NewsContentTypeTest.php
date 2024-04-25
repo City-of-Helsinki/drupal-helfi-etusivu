@@ -89,6 +89,37 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
   }
 
   /**
+   * Metatag og:image should work with news content.
+   */
+  public function testNewsOgImage() : void {
+    $uri = $this->getTestFiles('image')[0]->uri;
+
+    $file = File::create([
+      'uri' => $uri,
+    ]);
+    $file->save();
+    $this->markEntityForCleanup($file);
+
+    $media = Media::create([
+      'bundle' => 'image',
+      'name' => 'Custom name',
+      'field_media_image' => $file->id(),
+    ]);
+    $media->save();
+    $this->markEntityForCleanup($file);
+
+    $node = $this->createNode([
+      'type' => 'news_item',
+      'status' => 1,
+      'langcode' => 'fi',
+      'field_main_image' => $media->id(),
+    ]);
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementAttributeContains('css', 'meta[property="og:image"]', 'content', $file->getFilename());
+  }
+
+  /**
    * Token [node:short-title] should work with news_article.
    */
   public function testNewsArticleLeadInToken() : void {
