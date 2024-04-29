@@ -24,6 +24,7 @@ dependencies:
     - publication_date
     - scheduler
     - system
+    - view_unpublished
 id: news_producer
 label: 'News producer'
 weight: 7
@@ -73,6 +74,7 @@ permissions:
   - 'use text format full_html'
   - 'use text format minimal'
   - 'view all media revisions'
+  - 'view any unpublished news_item content'
   - 'view editoria11y checker'
   - 'view news_item revisions'
   - 'view own unpublished content'
