@@ -7,8 +7,13 @@
 
 declare(strict_types=1);
 
+use Drupal\block\Entity\Block;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_helfi_paragraph_types().
@@ -66,4 +71,25 @@ function helfi_node_news_article_theme() : array {
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_block_access().
+ */
+function helfi_node_news_article_block_access(Block $block, $operation, AccountInterface $account) : AccessResultInterface {
+  if ($operation === 'view' && $block->getPluginId() === 'page_title_block') {
+    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+    $entity = Drupal::service('helfi_platform_config.entity_version_matcher')
+      ->getType()['entity'];
+
+    // Hide page title block if the node is of type news_article.
+    if (
+      $entity instanceof NodeInterface &&
+      $entity->getType() === 'news_article'
+    ) {
+      return AccessResult::forbidden();
+    }
+  }
+
+  return AccessResult::neutral();
 }
