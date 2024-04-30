@@ -14,11 +14,12 @@ dependencies:
     - search_api.server.news
   module:
     - node
-    - publication_date
     - media
     - taxonomy
+    - publication_date
     - search_api
     - helfi_etusivu
+    - helfi_react_search
 id: news
 name: news
 description: ''
@@ -126,6 +127,16 @@ field_settings:
         - field.storage.node.field_news_neighbourhoods
       module:
         - taxonomy
+  neighbourhoods_uuid:
+    label: 'News neighbourhoods » Taxonomy term » UUID'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_neighbourhoods:entity:uuid'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_news_neighbourhoods
+      module:
+        - taxonomy
   news_groups:
     label: 'News groups » Luokittelutermi » Termin ID'
     datasource_id: 'entity:node'
@@ -136,11 +147,31 @@ field_settings:
         - field.storage.node.field_news_groups
       module:
         - taxonomy
+  news_groups_uuid:
+    label: 'News groups » Taxonomy term » UUID'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_groups:entity:uuid'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_news_groups
+      module:
+        - taxonomy
   news_tags:
     label: 'News tags » Luokittelutermi » Termin ID'
     datasource_id: 'entity:node'
     property_path: 'field_news_item_tags:entity:tid'
     type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_news_item_tags
+      module:
+        - taxonomy
+  news_tags_uuid:
+    label: 'News tags » Taxonomy term » UUID'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_item_tags:entity:uuid'
+    type: string
     dependencies:
       config:
         - field.storage.node.field_news_item_tags
@@ -190,6 +221,10 @@ field_settings:
     dependencies:
       module:
         - node
+  uuid_langcode:
+    label: 'UUID Langcode'
+    property_path: uuid_langcode
+    type: string
   vid:
     label: Vid
     datasource_id: 'entity:taxonomy_term'
@@ -218,12 +253,18 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  custom_value: {  }
+  district_image_absolute_url: {  }
   entity_status: {  }
   entity_type: {  }
   language_with_fallback: {  }
   main_image_url: {  }
+  project_execution_schedule: {  }
+  project_image_absolute_url: {  }
+  project_plan_schedule: {  }
   rendered_item: {  }
   reverse_entity_references: {  }
+  uuid_langcode: {  }
 tracker_settings:
   default:
     indexing_order: lifo
