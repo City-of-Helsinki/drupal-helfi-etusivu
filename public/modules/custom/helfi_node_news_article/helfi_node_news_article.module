@@ -78,9 +78,11 @@ function helfi_node_news_article_theme() : array {
  */
 function helfi_node_news_article_block_access(Block $block, $operation, AccountInterface $account) : AccessResultInterface {
   if ($operation === 'view' && $block->getPluginId() === 'page_title_block') {
+    /** @var \Drupal\helfi_platform_config\EntityVersionMatcher $versionMatcher */
+    $versionMatcher = Drupal::service('helfi_platform_config.entity_version_matcher');
+
     /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity = Drupal::service('helfi_platform_config.entity_version_matcher')
-      ->getType()['entity'];
+    $entity = $versionMatcher->getType()['entity'];
 
     // Hide page title block if the node is of type news_article.
     if (
