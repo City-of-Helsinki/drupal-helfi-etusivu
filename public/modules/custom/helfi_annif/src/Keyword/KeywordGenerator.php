@@ -174,7 +174,7 @@ final class KeywordGenerator {
       );
     }
     catch (GuzzleException $e) {
-      throw new KeywordGeneratorException($e->getMessage());
+      throw new KeywordGeneratorException($e->getMessage(), previous: $e);
     }
   }
 

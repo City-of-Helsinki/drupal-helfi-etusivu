@@ -19,8 +19,8 @@ dependencies:
     - entity_reference_revisions
     - helfi_platform_config
     - link
-    - user
     - radioactivity
+    - user
 _core:
   default_config_hash: fHNnwg186A981K7d578If1MCkuYBmQqaxabpDSAZwIc
 id: node.news_item.default

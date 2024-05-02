@@ -1,9 +1,0 @@
-example.content:
-  path: '/admin/content/helfi-integrations/text-preview/{entity_type}/{id}'
-  defaults:
-    _controller: '\Drupal\helfi_annif\Controller\PreviewText::content'
-    _title: 'HELfi: text preview'
-  requirements:
-    _permission: 'access text converter preview'
-  options:
-    _admin_route: TRUE
