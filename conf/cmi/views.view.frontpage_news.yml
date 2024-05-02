@@ -469,7 +469,7 @@ display:
         - 'config:field.storage.node.field_main_image'
   latest_news_cards:
     id: latest_news_cards
-    display_title: 'Latest news'
+    display_title: 'Latest news cards'
     display_plugin: block
     position: 3
     display_options:
@@ -642,7 +642,7 @@ display:
         - 'config:field.storage.node.field_main_image'
   latest_news_minimal:
     id: latest_news_minimal
-    display_title: 'Latest news'
+    display_title: 'Latest news minimal'
     display_plugin: block
     position: 3
     display_options:

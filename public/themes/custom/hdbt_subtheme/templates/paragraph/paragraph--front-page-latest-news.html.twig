@@ -1,7 +1,7 @@
 {% set design = content.field_fp_latest_news_design[0]['#markup'] %}
 
 {% if design == 'cards' %}
-  {% set design_class = 'component--latest-news--cards' %}
+  {% set design_class = 'component--latest-news--cards component--full-width' %}
 {% else %}
   {% set design_class = 'component--latest-news--minimal' %}
 {% endif %}

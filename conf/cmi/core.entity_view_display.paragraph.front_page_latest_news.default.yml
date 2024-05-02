@@ -13,8 +13,8 @@ bundle: front_page_latest_news
 mode: default
 content:
   field_fp_latest_news_design:
-    type: list_default
-    label: above
+    type: list_key
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 0
