@@ -20,7 +20,7 @@ class RecommendationsBlock extends BlockBase {
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function build() : array {
     // @todo UHF-9962.
     return [
       '#markup' => $this->t('Hello, World!'),

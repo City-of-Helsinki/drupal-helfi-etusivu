@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\helfi_annif\TextConverter;
 
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
@@ -40,7 +42,7 @@ final class RenderTextConverter implements TextConverterInterface {
    */
   public function applies(EntityInterface $entity): bool {
     // This converter matches entities that have
-    // text_converter display enables.
+    // text_converter display enabled.
     $viewModes = $this
       ->displayRepository
       ->getViewModeOptionsByBundle($entity->getEntityTypeId(), $entity->bundle());

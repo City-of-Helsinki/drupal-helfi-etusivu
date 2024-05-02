@@ -1,0 +1,8 @@
+services:
+  Drupal\helfi_annif\Commands\PreviewCommands:
+    class: Drupal\helfi_annif\Commands\PreviewCommands
+    arguments:
+      - '@entity_type.manager'
+      - '@Drupal\helfi_annif\TextConverter\TextConverterManager'
+    tags:
+      - { name: drush.command }
