@@ -1,5 +1,5 @@
 config_rewrite:
-  replace: ['dependencies','hidden']
+  replace: ['dependencies']
 dependencies:
   config:
     - field.field.node.news_item.field_content
@@ -18,8 +18,8 @@ dependencies:
     - entity_reference_revisions
     - helfi_platform_config
     - link
-    - user
     - radioactivity
+    - user
 content:
   field_news_groups:
     type: entity_reference_label
@@ -44,6 +44,15 @@ content:
       link: false
     third_party_settings: {  }
     weight: 12
+    region: content
+  field_news_item_updating_news:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 13
     region: content
   field_radioactivity:
     type: radioactivity_reference_emitter
