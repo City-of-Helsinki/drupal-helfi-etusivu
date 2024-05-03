@@ -11,3 +11,7 @@ msgstr "Toppnyheterna"
 
 msgid "Organize top news feed"
 msgstr "Ordna toppnyheterna"
+
+msgctxt "Updating news"
+msgid "Latest updates"
+msgstr "Senaste uppdateringar"

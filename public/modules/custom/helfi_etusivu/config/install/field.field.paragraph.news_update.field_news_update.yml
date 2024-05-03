@@ -1,0 +1,30 @@
+uuid: b50d682f-ff11-481c-af5b-51192a655696
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_news_update
+    - paragraphs.paragraphs_type.banner
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.news_update
+    - paragraphs.paragraphs_type.remote_video
+    - paragraphs.paragraphs_type.text
+  module:
+    - entity_reference_revisions
+id: paragraph.news_update.field_news_update
+field_name: field_news_update
+entity_type: paragraph
+bundle: news_update
+label: 'News update'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: {  }
+    negate: 0
+    target_bundles_drag_drop: {  }
+field_type: entity_reference_revisions

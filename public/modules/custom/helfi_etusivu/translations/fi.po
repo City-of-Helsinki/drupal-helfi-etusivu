@@ -11,3 +11,7 @@ msgstr "Pääuutisvirta"
 
 msgid "Organize top news feed"
 msgstr "Järjestä pääuutisvirtaa"
+
+msgctxt "Updating news"
+msgid "Latest updates"
+msgstr "Uusimmat päivitykset"
