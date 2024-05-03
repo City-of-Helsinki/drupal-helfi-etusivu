@@ -1,6 +1,5 @@
 content:
   field_news_update:
-    type: paragraph
     settings:
       title: Lohko
       title_plural: Lohkot
