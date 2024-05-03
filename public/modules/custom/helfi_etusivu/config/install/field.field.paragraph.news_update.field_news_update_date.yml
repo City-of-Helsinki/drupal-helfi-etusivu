@@ -1,0 +1,21 @@
+uuid: 23a03e5f-7f4d-45f0-ad8d-76320b4cb880
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_news_update_date
+    - paragraphs.paragraphs_type.news_update
+  module:
+    - datetime
+id: paragraph.news_update.field_news_update_date
+field_name: field_news_update_date
+entity_type: paragraph
+bundle: news_update
+label: Date
+description: 'The date will appear in the table of contents and below the title of the news update.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

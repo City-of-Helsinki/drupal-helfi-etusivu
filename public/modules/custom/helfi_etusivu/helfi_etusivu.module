@@ -103,6 +103,16 @@ function helfi_etusivu_helfi_paragraph_types() : array {
         ],
       ],
     ],
+    'paragraph' => [
+      'news_update' => [
+        'field_news_update' => [
+          'text' => 0,
+          'image' => 1,
+          'remote_video' => 2,
+          'banner' => 3,
+        ],
+      ],
+    ],
   ];
 
   $enabled = [];
