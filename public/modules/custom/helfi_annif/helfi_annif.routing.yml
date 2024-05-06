@@ -6,4 +6,4 @@ example.content:
   requirements:
     _permission: 'access text converter preview'
   options:
-    _admin_route: TRUE
+    _admin_route: FALSE
