@@ -50,4 +50,4 @@ final class MyTextConverter implements TextConverterInterface {
 
 ```
 
-Debug page at `/admin/content/helfi-integrations/{entity_type}/{id}` can be used to test the output of the text converter service.
+Text converter output can be viewed with `drush helfi:preview-text` command.
