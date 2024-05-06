@@ -5,18 +5,12 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_annif\Unit\Keyword;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Language\LanguageInterface;
-use Drupal\helfi_annif\Keyword\Keyword;
 use Drupal\helfi_annif\Keyword\KeywordGenerator;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
-use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Psr7\Response;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Prophecy\Prophecy\ObjectProphecy;
 
 /**
  * Tests keyword generator.

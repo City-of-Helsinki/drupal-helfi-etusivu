@@ -33,7 +33,7 @@ class DocumentTest extends UnitTestCase {
   /**
    * Tests invalid XPath.
    */
-  public function testInvalidXPath() : void {
+  public function testInvalidXpath() : void {
     $sut = new Document(Markup::create(
       "<article><div class='visually-hidden'></div><h1>Hello, world!</h1></article>"
     ));
