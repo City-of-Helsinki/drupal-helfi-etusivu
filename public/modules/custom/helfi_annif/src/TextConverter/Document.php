@@ -43,11 +43,11 @@ final class Document {
 
     // Find all elements that match the xpath query.
     foreach ($query->query($xpath) as $node) {
-      if ($node instanceof \DOMNode) {
+      if ($node instanceof \DOMElement) {
         $node->parentNode->removeChild($node);
       }
       else {
-        throw new \LogicException("XPath query must target nodes");
+        throw new \InvalidArgumentException("XPath query must target nodes");
       }
     }
 
@@ -82,7 +82,7 @@ final class Document {
 
       // Attach the provided HTML inside the body. Rely on the HTML5 parser to
       // close the body tag.
-      return $html5->loadHTML('<head><meta charset="UTF-8"></head><body>' . $this->markup);
+      $this->document = $html5->loadHTML('<head><meta charset="UTF-8"></head><body>' . $this->markup);
     }
 
     return $this->document;
