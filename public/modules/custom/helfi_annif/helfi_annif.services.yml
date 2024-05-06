@@ -7,8 +7,6 @@ services:
 
   Drupal\helfi_annif\Keyword\KeywordGenerator: ~
 
-  Drupal\helfi_annif\EventSubscriber\ElasticsearchEventListener: ~
-
   Drupal\helfi_annif\TextConverter\TextConverterManager:
     tags:
       - { name: service_collector, call: add, tag: helfi_annif.text_converter }
@@ -16,5 +14,3 @@ services:
   Drupal\helfi_annif\TextConverter\RenderTextConverter:
     tags:
       - { name: helfi_annif.text_converter, priority: -1 }
-    arguments:
-      [ '@entity_type.manager', '@entity_display.repository', '@renderer', '@module_handler' ]
