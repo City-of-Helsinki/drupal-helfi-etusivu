@@ -25,9 +25,9 @@ class DocumentTest extends UnitTestCase {
       "<article><div class='visually-hidden'>$needle</div><h1>Hello, world!</h1></article>"
     ));
 
-    $this->assertStringContainsString($needle, $sut);
+    $this->assertStringContainsString($needle, (string) $sut);
     $sut->stripNodes("//*[contains(@class, 'visually-hidden')]");
-    $this->assertStringNotContainsString($needle, $sut);
+    $this->assertStringNotContainsString($needle, (string) $sut);
   }
 
   /**

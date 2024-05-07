@@ -2,6 +2,6 @@ name: 'Helfi AI recommendations'
 type: module
 core_version_requirement: ^10
 dependencies:
+  - drupal:taxonomy
   - helfi_api_base:helfi_api_base
-  - search_api:search_api
   - elasticsearch_connector:elasticsearch_connector
