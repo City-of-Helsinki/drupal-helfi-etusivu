@@ -28,7 +28,7 @@ field_settings:
     label: Lead
     datasource_id: 'entity:node'
     property_path: field_lead_in
-    type: noindex
+    type: string
     dependencies:
       config:
         - field.storage.node.field_lead_in
@@ -36,7 +36,7 @@ field_settings:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
-    type: noindex
+    type: string
     dependencies:
       module:
         - node

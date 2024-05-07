@@ -33,13 +33,6 @@ class ElasticsearchEventListener implements EventSubscriberInterface {
         ]);
         break;
 
-      case 'noindex':
-        $event->setMappingConfig([
-          'type' => 'keyword',
-          'index' => FALSE,
-        ]);
-        break;
-
       default:
         break;
     }

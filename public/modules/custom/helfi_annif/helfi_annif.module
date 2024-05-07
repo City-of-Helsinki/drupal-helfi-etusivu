@@ -14,7 +14,6 @@ use Drupal\helfi_annif\TextConverter\Document;
  * Implements hook_elasticsearch_connector_supported_data_types_alter().
  */
 function helfi_annif_elasticsearch_connector_supported_data_types_alter(array &$data_types) {
-  $data_types[] = 'noindex';
   $data_types[] = 'ai_keyword';
 }
 
@@ -22,7 +21,6 @@ function helfi_annif_elasticsearch_connector_supported_data_types_alter(array &$
  * Implements hook_text_conversion_alter().
  */
 function helfi_annif_text_conversion_alter(Document &$document, EntityInterface $entity) : void {
-  // @todo Move to platform config?
   // Strip nodes that are not displayed.
   $document
     ->stripNodes("//*[contains(@class, 'is-hidden')]")
