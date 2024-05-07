@@ -5,7 +5,12 @@ display:
   of_interest:
     display_options:
       title: 'Du kanske är intresserad av'
-  latest_news:
+  latest_news_cards:
+    display_options:
+      title: 'Senaste nyheter'
+      use_more_text: 'Se alla nyheter'
+      link_url: /nyheter
+  latest_news_minimal:
     display_options:
       title: 'Senaste nyheter'
       use_more_text: 'Se alla nyheter'

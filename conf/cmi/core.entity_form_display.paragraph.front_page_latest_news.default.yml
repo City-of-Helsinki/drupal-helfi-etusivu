@@ -1,0 +1,21 @@
+uuid: 317c7791-3700-462f-b113-2e190aaa735f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.front_page_latest_news.field_fp_latest_news_design
+    - paragraphs.paragraphs_type.front_page_latest_news
+id: paragraph.front_page_latest_news.default
+targetEntityType: paragraph
+bundle: front_page_latest_news
+mode: default
+content:
+  field_fp_latest_news_design:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
