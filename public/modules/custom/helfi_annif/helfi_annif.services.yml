@@ -3,9 +3,11 @@ services:
     autowire: true
     autoconfigure: true
 
+  Drupal\helfi_annif\KeywordManager: ~
+
   Drupal\helfi_annif\RecommendationManager: ~
 
-  Drupal\helfi_annif\Keyword\KeywordGenerator: ~
+  Drupal\helfi_annif\Client\KeywordClient: ~
 
   Drupal\helfi_annif\TextConverter\TextConverterManager:
     tags:

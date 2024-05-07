@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_annif\Keyword;
+namespace Drupal\helfi_annif\Client;
 
 /**
  * DTO for suggested keyword.

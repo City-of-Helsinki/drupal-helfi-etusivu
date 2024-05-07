@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_annif\Unit\Keyword;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\helfi_annif\Keyword\KeywordGenerator;
+use Drupal\helfi_annif\Client\KeywordClient;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
 use Drupal\Tests\UnitTestCase;
@@ -30,7 +30,7 @@ class KeywordGeneratorTest extends UnitTestCase {
       $this->prophesize(TextConverterInterface::class)->reveal(),
     );
 
-    $batch = array_fill(0, KeywordGenerator::MAX_BATCH_SIZE + 1, $this->prophesize(EntityInterface::class)->reveal());
+    $batch = array_fill(0, KeywordClient::MAX_BATCH_SIZE + 1, $this->prophesize(EntityInterface::class)->reveal());
 
     $this->expectException(\InvalidArgumentException::class);
 
@@ -40,11 +40,11 @@ class KeywordGeneratorTest extends UnitTestCase {
   /**
    * Gets service under test.
    */
-  private function getSut(ClientInterface $client, TextConverterInterface $converter) : KeywordGenerator {
+  private function getSut(ClientInterface $client, TextConverterInterface $converter) : KeywordClient {
     $textConverter = new TextConverterManager();
     $textConverter->add($converter);
 
-    return new KeywordGenerator($client, $textConverter);
+    return new KeywordClient($client, $textConverter);
   }
 
 }

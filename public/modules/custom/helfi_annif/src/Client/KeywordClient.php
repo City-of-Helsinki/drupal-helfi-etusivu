@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_annif\Keyword;
+namespace Drupal\helfi_annif\Client;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
@@ -13,7 +13,7 @@ use GuzzleHttp\Utils;
 /**
  * The keyword generator.
  */
-final class KeywordGenerator {
+final class KeywordClient {
 
   /**
    * Maximum batch size.
@@ -59,10 +59,10 @@ final class KeywordGenerator {
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity.
    *
-   * @return \Drupal\helfi_annif\Keyword\Keyword[]|null
+   * @return \Drupal\helfi_annif\Client\Keyword[]|null
    *   Keywords or NULL if unsupported entity.
    *
-   * @throws KeywordGeneratorException
+   * @throws KeywordClientException
    *   If keyword generator returns an error.
    */
   public function suggest(EntityInterface $entity) : ?array {
@@ -93,7 +93,7 @@ final class KeywordGenerator {
       return $this->mapResults(Utils::jsonDecode($response->getBody()->getContents()));
     }
     catch (GuzzleException $e) {
-      throw new KeywordGeneratorException($e->getMessage());
+      throw new KeywordClientException($e->getMessage(), previous: $e);
     }
   }
 
@@ -103,11 +103,11 @@ final class KeywordGenerator {
    * @param \Drupal\Core\Entity\EntityInterface[] $entities
    *   Batch of entities. Batch entities cannot mix languages.
    *
-   * @return array
+   * @return array<\Drupal\helfi_annif\Client\Keyword[]>
    *   Batch suggestion results keyed by input array keys. The
    *   results array might not contain all input entities.
    *
-   * @throws KeywordGeneratorException
+   * @throws KeywordClientException
    *   If keyword generator returns an error.
    */
   public function suggestBatch(array $entities) : array {
@@ -116,19 +116,15 @@ final class KeywordGenerator {
     }
 
     $language = NULL;
-    $project = NULL;
     $documents = [];
 
     foreach ($entities as $key => $entity) {
-      if ($language !== $entity->language()->getId() && $language) {
-        throw new \InvalidArgumentException("Batch requests cannot mix languages");
+      if (!$language) {
+        $language = $entity->language()->getId();
       }
 
-      $language = $entity->language()->getId();
-
-      $project = $this->getProject($language);
-      if (!$project) {
-        continue;
+      if ($language !== $entity->language()->getId()) {
+        throw new \InvalidArgumentException("Batch requests cannot mix languages");
       }
 
       // It is important to skip empty content because the AI happily
@@ -139,10 +135,12 @@ final class KeywordGenerator {
       }
 
       $documents[] = [
-        'document_id' => $key,
+        'document_id' => (string) $key,
         'text' => $text,
       ];
     }
+
+    $project = $this->getProject($language);
 
     if (!$documents || !$project || !$language) {
       return [];
@@ -174,7 +172,7 @@ final class KeywordGenerator {
       );
     }
     catch (GuzzleException $e) {
-      throw new KeywordGeneratorException($e->getMessage(), previous: $e);
+      throw new KeywordClientException($e->getMessage(), previous: $e);
     }
   }
 
