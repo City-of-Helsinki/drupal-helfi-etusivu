@@ -93,7 +93,7 @@ final class KeywordGenerator {
       return $this->mapResults(Utils::jsonDecode($response->getBody()->getContents()));
     }
     catch (GuzzleException $e) {
-      throw new KeywordGeneratorException($e->getMessage());
+      throw new KeywordGeneratorException($e->getMessage(), previous: $e);
     }
   }
 
@@ -174,7 +174,7 @@ final class KeywordGenerator {
       );
     }
     catch (GuzzleException $e) {
-      throw new KeywordGeneratorException($e->getMessage());
+      throw new KeywordGeneratorException($e->getMessage(), previous: $e);
     }
   }
 
