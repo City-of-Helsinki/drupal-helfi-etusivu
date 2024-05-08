@@ -1,3 +1,11 @@
+debug-status:
+  version: 1.x
+  js:
+    assets/js/debug-status.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
 views-styles:
   css:
     theme:
