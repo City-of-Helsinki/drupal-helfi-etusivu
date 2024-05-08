@@ -1,0 +1,23 @@
+uuid: 7501cbde-462d-4c4e-850b-6813e0a4b5d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fp_latest_news_design
+    - paragraphs.paragraphs_type.front_page_latest_news
+  module:
+    - options
+id: paragraph.front_page_latest_news.field_fp_latest_news_design
+field_name: field_fp_latest_news_design
+entity_type: paragraph
+bundle: front_page_latest_news
+label: Design
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: minimal
+default_value_callback: ''
+settings: {  }
+field_type: list_string
