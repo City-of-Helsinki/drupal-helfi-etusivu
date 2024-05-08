@@ -51,9 +51,12 @@ Disallow: /*?*neighbourhoods
 # Rekry job-search page query parameters, task_areas and page are allowed.
 Disallow: /*?*employment=*
 Disallow: /*?*keyword=*
-Disallow: /*?*language=*
 Disallow: /*?*continuous=*
 Disallow: /*?*internship=*
+# Language query parameter is used in css & js files.
+Disallow: /fi/avoimet-tyopaikat/*?*language=*
+Disallow: /sv/lediga-jobb/*?*language=*
+Disallow: /en/open-jobs/*?*language=*
 
 # Old robots
 #

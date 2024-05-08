@@ -1,14 +1,26 @@
+{% set design = content.field_fp_latest_news_design[0]['#markup'] %}
+
+{% if design == 'cards' %}
+  {% set design_class = 'component--latest-news--cards component--full-width' %}
+{% else %}
+  {% set design_class = 'component--latest-news--minimal' %}
+{% endif %}
+
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--latest-news' ],
+      component_classes: [ 'component--latest-news', design_class ],
       component_title: 'Latest news'|t({}, {'context': 'Front page latest news paragraph title'}),
       use_component_title_lang_fallback: alternative_language ?? false,
       component_content_class: 'latest-news',
     }
   %}
     {% block component_content %}
-      {{ drupal_view('frontpage_news', 'latest_news') }}
+      {% if design == 'cards' %}
+        {{ drupal_view('frontpage_news', 'latest_news_cards') }}
+      {% else %}
+        {{ drupal_view('frontpage_news', 'latest_news_minimal') }}
+      {% endif %}
     {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}

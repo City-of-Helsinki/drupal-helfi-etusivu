@@ -48,8 +48,7 @@ $additionalEnvVars = [
   'DRUPAL_VARNISH_HOST',
   'DRUPAL_VARNISH_PORT',
   'PROJECT_NAME',
-  'DRUPAL_API_ACCOUNTS',
-  'DRUPAL_VAULT_ACCOUNTS',
+  'DRUPAL_PUBSUB_VAULT',
   'REDIS_HOST',
   'REDIS_PORT',
   'REDIS_PASSWORD',
@@ -59,6 +58,7 @@ $additionalEnvVars = [
   'SENTRY_DSN',
   'SENTRY_ENVIRONMENT',
   // Project specific variables.
+  'DRUPAL_NAVIGATION_API_ACCOUNT',
   'ELASTIC_PROXY_URL',
   'ELASTICSEARCH_URL',
   'ELASTIC_USER',
@@ -67,4 +67,8 @@ $additionalEnvVars = [
 ];
 foreach ($additionalEnvVars as $var) {
   $preflight_checks['environmentVariables'][] = $var;
+}
+
+if ($navigation_api_account = getenv('DRUPAL_NAVIGATION_API_ACCOUNT')) {
+  $config['helfi_api_base.api_accounts']['accounts'][] = json_decode($navigation_api_account, TRUE);
 }
