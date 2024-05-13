@@ -17,7 +17,7 @@ mode: default
 content:
   field_news_update:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
@@ -26,16 +26,16 @@ content:
     region: content
   field_news_update_date:
     type: datetime_default
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: publication_date_format
     third_party_settings: {  }
     weight: 1
     region: content
   field_news_update_title:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
