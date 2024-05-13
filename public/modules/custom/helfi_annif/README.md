@@ -2,7 +2,9 @@
 
 ## Finto AI api
 
-Keywords are indexed to elasticsearch index `recommendations` with `KeywordProcessor` plugin. See the API documentation at: [https://ai.finto.fi/v1/ui/](https://ai.finto.fi/v1/ui/).
+Keywords are generated for entities that have `field_annif_keywords` with `hook_entity_presave`. The field should be a reference to `annif_keywords` vocabulary.
+
+See the API documentation at: [https://ai.finto.fi/v1/ui/](https://ai.finto.fi/v1/ui/).
 
 ## Text converter
 
