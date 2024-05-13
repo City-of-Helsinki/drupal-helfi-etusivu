@@ -147,13 +147,12 @@ final class KeywordClient {
     }
 
     try {
-      $query = http_build_query([
+      $query = $this->getDefaultOptions() + [
         'language' => $language,
-        'limit' => 20,
-        'threshold' => 0,
-      ]);
+      ];
 
-      $response = $this->client->request('POST', "https://ai.finto.fi/v1/projects/$project/suggest-batch?$query", [
+      $response = $this->client->request('POST', "https://ai.finto.fi/v1/projects/$project/suggest-batch", [
+        'query' => $query ,
         'headers' => [
           'Accept' => 'application/json',
         ],
