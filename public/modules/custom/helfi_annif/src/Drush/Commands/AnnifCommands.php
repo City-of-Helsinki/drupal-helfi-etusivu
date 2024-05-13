@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_annif\Commands;
+namespace Drupal\helfi_annif\Drush\Commands;
 
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
@@ -17,12 +17,15 @@ use Drush\Attributes\Argument;
 use Drush\Attributes\Command;
 use Drush\Attributes\Option;
 use Drush\Attributes\Usage;
+use Drush\Commands\AutowireTrait;
 use Drush\Commands\DrushCommands;
 
 /**
  * A Drush command file.
  */
 final class AnnifCommands extends DrushCommands {
+
+  use AutowireTrait;
 
   /**
    * Constructs a new instance.
