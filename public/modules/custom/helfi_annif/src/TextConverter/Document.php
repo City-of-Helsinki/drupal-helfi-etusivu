@@ -64,10 +64,10 @@ final class Document {
    */
   public function __toString() {
     if ($this->document) {
-      return $this->document->saveHTML();
+      return $this->document->saveHTML() ?? '';
     }
 
-    return $this->markup;
+    return (string) $this->markup;
   }
 
   /**

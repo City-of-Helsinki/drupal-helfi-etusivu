@@ -9,8 +9,8 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
-use Drupal\helfi_annif\Client\KeywordClient;
 use Drupal\helfi_annif\BatchHelper;
+use Drupal\helfi_annif\Client\KeywordClient;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
 use Drush\Attributes\Argument;
@@ -18,7 +18,6 @@ use Drush\Attributes\Command;
 use Drush\Attributes\Option;
 use Drush\Attributes\Usage;
 use Drush\Commands\DrushCommands;
-use Symfony\Component\Console\Helper\ProgressBar;
 
 /**
  * A Drush command file.
@@ -90,7 +89,7 @@ final class AnnifCommands extends DrushCommands {
       ->execute()
       ->fetchCol();
 
-    BatchHelper::begin($entityType, $bundle, $options['batch-size'], $options['overwrite'], $entityIds);
+    BatchHelper::begin($entityType, $options['batch-size'], $options['overwrite'], $entityIds);
 
     drush_backend_batch_process();
 
@@ -122,13 +121,12 @@ final class AnnifCommands extends DrushCommands {
         ->getStorage($entityType)
         ->load($id);
 
-      if (!empty($options['language'])) {
-        if (
-          $entity instanceof TranslatableInterface &&
-          $entity->hasTranslation($options['language'])
-        ) {
-          $entity = $entity->getTranslation($options['language']);
-        }
+      if (
+        !empty($options['language']) &&
+        $entity instanceof TranslatableInterface &&
+        $entity->hasTranslation($options['language'])
+      ) {
+        $entity = $entity->getTranslation($options['language']);
       }
 
       if ($entity && $content = $this->textConverter->convert($entity)) {

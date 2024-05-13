@@ -140,6 +140,28 @@ final class KeywordManager {
    * @throws \Drupal\helfi_annif\Client\KeywordClientException
    */
   public function processEntities(array $entities, bool $overwriteExisting = FALSE) : void {
+    foreach ($this->prepareBatches($entities, $overwriteExisting) as $batch) {
+      $result = $this->keywordGenerator->suggestBatch($batch);
+
+      // KeywordGenerator::suggestBatch preserves ids.
+      foreach ($result as $id => $keywords) {
+        $this->saveKeywords($batch[$id], $keywords);
+      }
+    }
+  }
+
+  /**
+   * Gets entities in batches.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface[] $entities
+   *   The entities.
+   * @param bool $overwriteExisting
+   *   Overwrites existing keywords when set to TRUE.
+   *
+   * @return \Generator
+   *   Batch of entities.
+   */
+  private function prepareBatches(array $entities, bool $overwriteExisting) : \Generator {
     // Keyword generator does not support mixing languages in one request,
     // so we divide translations into buckets that are handled separately.
     // Each bucket size must be <= KeywordGenerator::MAX_BATCH_SIZE.
@@ -168,12 +190,7 @@ final class KeywordManager {
 
     foreach ($buckets as $bucket) {
       foreach (array_chunk($bucket, KeywordClient::MAX_BATCH_SIZE) as $batch) {
-        $result = $this->keywordGenerator->suggestBatch($batch);
-
-        // KeywordGenerator::suggestBatch preserves ids.
-        foreach ($result as $id => $keywords) {
-          $this->saveKeywords($batch[$id], $keywords);
-        }
+        yield $batch;
       }
     }
   }

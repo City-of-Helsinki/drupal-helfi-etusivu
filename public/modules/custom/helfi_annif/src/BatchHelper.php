@@ -4,24 +4,19 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-
 /**
  * Helper methods for processing keywords.
  */
 final class BatchHelper {
-
-  use StringTranslationTrait;
 
   /**
    * Constructs a new instance.
    */
   private function __construct(
     private readonly string $entityType,
-    private readonly string $bundle,
     private readonly ?int $batchSize,
     private readonly bool $overwrite,
-    private array $entityIds,
+    private readonly array $entityIds,
   ) {
   }
 
@@ -30,21 +25,15 @@ final class BatchHelper {
    */
   public static function begin(
     string $entityType,
-    string $bundle,
     ?int $batchSize,
     bool $overwrite,
     array $entityIds,
   ) : void {
-    $helper = new BatchHelper($entityType, $bundle, $batchSize, $overwrite, $entityIds);
+    $helper = new BatchHelper($entityType, $batchSize, $overwrite, $entityIds);
 
     $batch_definition = [
       'operations' => [
-        [
-          [self::class, 'process'],
-          [
-            $helper,
-          ],
-        ],
+        [[self::class, 'process'], [$helper]],
       ],
       'progress_message' => t('Completed @percentage% of the operation (@current of @total).'),
     ];
@@ -84,7 +73,7 @@ final class BatchHelper {
       $context['finished'] = $to >= count($helper->entityIds);
     }
     catch (\Exception $e) {
-      $context['message'] = $helper->t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
+      $context['message'] = t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
       $context['finished'] = 1;
     }
   }
