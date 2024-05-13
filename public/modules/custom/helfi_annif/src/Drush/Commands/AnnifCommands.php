@@ -6,10 +6,11 @@ namespace Drupal\helfi_annif\Drush\Commands;
 
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
-use Drupal\helfi_annif\BatchHelper;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\helfi_annif\Client\KeywordClient;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
@@ -26,6 +27,7 @@ use Drush\Commands\DrushCommands;
 final class AnnifCommands extends DrushCommands {
 
   use AutowireTrait;
+  use StringTranslationTrait;
 
   /**
    * Constructs a new instance.
@@ -92,11 +94,60 @@ final class AnnifCommands extends DrushCommands {
       ->execute()
       ->fetchCol();
 
-    BatchHelper::begin($entityType, $options['batch-size'], $options['overwrite'], $entityIds);
+    $batch = (new BatchBuilder())
+      ->addOperation([self::class, 'processBatch'], [
+        $entityType,
+        $options['batch-size'],
+        $options['overwrite'],
+        $entityIds,
+      ]);
+
+    batch_set($batch->toArray());
 
     drush_backend_batch_process();
 
     return DrushCommands::EXIT_SUCCESS;
+  }
+
+  /**
+   * Processes a batch operation.
+   */
+  public static function processBatch(
+    string $entityType,
+    ?int $batchSize,
+    bool $overwrite,
+    array $entityIds,
+    &$context,
+  ) : void {
+    // Check if the sandbox should be initialized.
+    if (!isset($context['sandbox']['from'])) {
+      $context['sandbox']['from'] = 0;
+    }
+
+    $from = $context['sandbox']['from'];
+    $to = min($from + $batchSize, count($entityIds));
+    $slice = array_slice($entityIds, $from, $to - $from);
+
+    try {
+      $entities = \Drupal::entityTypeManager()
+        ->getStorage($entityType)
+        ->loadMultiple($slice);
+
+      $keywordManager = \Drupal::service(KeywordManager::class);
+      $keywordManager->processEntities($entities, $overwrite);
+
+      $context['sandbox']['from'] = $to;
+      $context['message'] = t("@total entities remaining", [
+        '@total' => count($entityIds) - $to,
+      ]);
+
+      // Everything has been processed?
+      $context['finished'] = $to >= count($entityIds);
+    }
+    catch (\Exception $e) {
+      $context['message'] = t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
+      $context['finished'] = 1;
+    }
   }
 
   /**
