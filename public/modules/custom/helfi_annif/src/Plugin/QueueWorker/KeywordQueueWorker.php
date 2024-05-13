@@ -61,7 +61,7 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
       'entity_id' => $id,
       'entity_type' => $type,
       'language' => $language,
-      'overwrite' => $overwrite
+      'overwrite' => $overwrite,
     ] = $data;
 
     $entity = $this
