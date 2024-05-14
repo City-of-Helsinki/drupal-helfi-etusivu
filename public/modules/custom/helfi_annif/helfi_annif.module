@@ -13,9 +13,18 @@ use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\Document;
 
 /**
- * Implements hook_entity_presave().
+ * Implements hook_entity_insert().
  */
-function helfi_annif_entity_presave(EntityInterface $entity) {
+function helfi_annif_entity_insert(EntityInterface $entity) : void {
+  /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
+  $keywordManager = \Drupal::service(KeywordManager::class);
+  $keywordManager->queueEntity($entity, TRUE);
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function helfi_annif_entity_update(EntityInterface $entity) : void {
   /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
   $keywordManager = \Drupal::service(KeywordManager::class);
   $keywordManager->queueEntity($entity, TRUE);
