@@ -18,10 +18,7 @@ use Drupal\helfi_annif\TextConverter\Document;
 function helfi_annif_entity_presave(EntityInterface $entity) {
   /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
   $keywordManager = \Drupal::service(KeywordManager::class);
-
-  if (!$keywordManager->isEntityProcessed($entity)) {
-    $keywordManager->queueEntity($entity, TRUE);
-  }
+  $keywordManager->queueEntity($entity, TRUE);
 }
 
 /**

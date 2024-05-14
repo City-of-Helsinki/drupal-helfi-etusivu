@@ -72,7 +72,7 @@ final class KeywordManager {
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity.
    */
-  public function isEntityProcessed(EntityInterface $entity) : bool {
+  private function isEntityProcessed(EntityInterface $entity) : bool {
     return isset($this->processedItems[$this->getEntityKey($entity)]);
   }
 
@@ -85,13 +85,14 @@ final class KeywordManager {
    *   Overwrites existing keywords when set to TRUE.
    */
   public function queueEntity(EntityInterface $entity, bool $overwriteExisting = FALSE) : void {
-    // Skip if entity does not support keywords.
-    if (!$this->supportsKeywords($entity)) {
-      return;
-    }
-
-    // Skip if entity already has keywords.
-    if (!$overwriteExisting && $this->hasKeywords($entity)) {
+    if (
+      // Skip if entity was processed in this request.
+      $this->isEntityProcessed($entity) ||
+      // Skip if entity does not support keywords.
+      !$this->supportsKeywords($entity) ||
+      // Skip if entity already has keywords.
+      (!$overwriteExisting && $this->hasKeywords($entity))
+    ) {
       return;
     }
 
