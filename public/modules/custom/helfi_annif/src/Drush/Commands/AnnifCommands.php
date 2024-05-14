@@ -8,6 +8,7 @@ use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -28,6 +29,7 @@ final class AnnifCommands extends DrushCommands {
 
   use AutowireTrait;
   use StringTranslationTrait;
+  use DependencySerializationTrait;
 
   /**
    * Constructs a new instance.
@@ -95,7 +97,7 @@ final class AnnifCommands extends DrushCommands {
       ->fetchCol();
 
     $batch = (new BatchBuilder())
-      ->addOperation([self::class, 'processBatch'], [
+      ->addOperation([$this, 'processBatch'], [
         $entityType,
         $options['batch-size'],
         $options['overwrite'],
@@ -112,7 +114,7 @@ final class AnnifCommands extends DrushCommands {
   /**
    * Processes a batch operation.
    */
-  public static function processBatch(
+  public function processBatch(
     string $entityType,
     ?int $batchSize,
     bool $overwrite,
@@ -129,15 +131,14 @@ final class AnnifCommands extends DrushCommands {
     $slice = array_slice($entityIds, $from, $to - $from);
 
     try {
-      $entities = \Drupal::entityTypeManager()
+      $entities = $this->entityTypeManager
         ->getStorage($entityType)
         ->loadMultiple($slice);
 
-      $keywordManager = \Drupal::service(KeywordManager::class);
-      $keywordManager->processEntities($entities, $overwrite);
+      $this->keywordManager->processEntities($entities, $overwrite);
 
       $context['sandbox']['from'] = $to;
-      $context['message'] = t("@total entities remaining", [
+      $context['message'] = $this->t("@total entities remaining", [
         '@total' => count($entityIds) - $to,
       ]);
 
@@ -145,7 +146,7 @@ final class AnnifCommands extends DrushCommands {
       $context['finished'] = $to >= count($entityIds);
     }
     catch (\Exception $e) {
-      $context['message'] = t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
+      $context['message'] = $this->t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
       $context['finished'] = 1;
     }
   }
