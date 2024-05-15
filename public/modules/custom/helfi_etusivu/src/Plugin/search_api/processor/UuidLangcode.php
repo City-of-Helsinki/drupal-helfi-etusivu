@@ -27,7 +27,7 @@ final class UuidLangcode extends ProcessorPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getPropertyDefinitions(DataSourceInterface $datasource = NULL) {
+  public function getPropertyDefinitions(DataSourceInterface $datasource = NULL) : array {
     $properties = [];
 
     if (!$datasource) {
@@ -45,18 +45,30 @@ final class UuidLangcode extends ProcessorPluginBase {
   }
 
   /**
+   * Gets the UUID langcode for given entity.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity.
+   *
+   * @return string
+   *   The uuid+langcode.
+   */
+  public static function getUuidLangcode(ContentEntityInterface $entity) : string {
+    return sprintf('%s:%s', $entity->uuid(), $entity->language()->getId());
+  }
+
+  /**
    * {@inheritdoc}
    */
-  public function addFieldValues(Iteminterface $item) {
-    if (!$entity = $item->getOriginalObject()->getValue()) {
-      return;
-    }
+  public function addFieldValues(Iteminterface $item) : void {
+    $entity = $item->getOriginalObject()?->getValue();
+
     if (!$entity instanceof ContentEntityInterface) {
       return;
     }
     $fields = $this->getFieldsHelper()->filterForPropertyPath($item->getFields(), NULL, 'uuid_langcode');
     foreach ($fields as $field) {
-      $field->addValue(sprintf('%s:%s', $entity->uuid(), $entity->language()->getId()));
+      $field->addValue(self::getUuidLangcode($entity));
     }
   }
 
