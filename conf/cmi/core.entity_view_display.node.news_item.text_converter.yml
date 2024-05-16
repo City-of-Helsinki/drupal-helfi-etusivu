@@ -1,9 +1,9 @@
-uuid: 10407fc0-8e1c-4793-a8aa-8532f392b70b
+uuid: 48105040-80f2-4420-9b3c-56ba665333b0
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.medium_teaser
+    - core.entity_view_mode.node.text_converter
     - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
@@ -18,19 +18,29 @@ dependencies:
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:
+    - entity_reference_revisions
+    - helfi_platform_config
     - user
 _core:
-  default_config_hash: iOyy_v6RDb2ia9ioF-Q-IJqILz-pPRMc9MgQTbvggIM
-id: node.news_item.medium_teaser
+  default_config_hash: fHNnwg186A981K7d578If1MCkuYBmQqaxabpDSAZwIc
+id: node.news_item.text_converter
 targetEntityType: node
 bundle: news_item
-mode: medium_teaser
+mode: text_converter
 content:
-  field_news_item_links_title:
-    type: string
+  field_content:
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
-      link_to_entity: false
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_lead_in:
+    type: text_span
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
@@ -40,43 +50,20 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
     weight: 0
-    region: content
-  published_at:
-    type: timestamp
-    label: hidden
-    settings:
-      date_format: publication_date_format
-      custom_date_format: ''
-      timezone: ''
-      tooltip:
-        date_format: ''
-        custom_date_format: ''
-      time_diff:
-        enabled: false
-        future_format: '@interval hence'
-        past_format: '@interval ago'
-        granularity: 2
-        refresh: 60
-    third_party_settings: {  }
-    weight: 3
     region: content
 hidden:
   field_annif_keywords: true
-  field_content: true
-  field_lead_in: true
   field_main_image: true
   field_main_image_caption: true
   field_news_groups: true
   field_news_item_links_link: true
+  field_news_item_links_title: true
   field_news_item_tags: true
   field_news_neighbourhoods: true
   field_radioactivity: true
   langcode: true
+  links: true
+  published_at: true
   search_api_excerpt: true
   toc_enabled: true

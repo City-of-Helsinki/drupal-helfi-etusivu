@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -19,8 +20,8 @@ dependencies:
     - entity_reference_revisions
     - helfi_platform_config
     - link
-    - user
     - radioactivity
+    - user
 _core:
   default_config_hash: fHNnwg186A981K7d578If1MCkuYBmQqaxabpDSAZwIc
 id: node.news_item.default
@@ -147,6 +148,7 @@ content:
     weight: 3
     region: content
 hidden:
+  field_annif_keywords: true
   langcode: true
   search_api_excerpt: true
   toc_enabled: true
