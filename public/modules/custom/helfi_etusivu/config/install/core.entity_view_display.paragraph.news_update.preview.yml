@@ -1,8 +1,9 @@
-uuid: a0d41678-10a0-4519-be98-d17f3051a687
+uuid: e6f7408a-1e53-4af0-97eb-5122f611d019
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.news_update.field_news_update
     - field.field.paragraph.news_update.field_news_update_date
     - field.field.paragraph.news_update.field_news_update_title
@@ -10,10 +11,10 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
-id: paragraph.news_update.default
+id: paragraph.news_update.preview
 targetEntityType: paragraph
 bundle: news_update
-mode: default
+mode: preview
 content:
   field_news_update:
     type: entity_reference_revisions_entity_view
@@ -25,11 +26,11 @@ content:
     weight: 2
     region: content
   field_news_update_date:
-    type: datetime_default
+    type: datetime_custom
     label: hidden
     settings:
       timezone_override: ''
-      format_type: publication_date_format
+      date_format: U
     third_party_settings: {  }
     weight: 1
     region: content
