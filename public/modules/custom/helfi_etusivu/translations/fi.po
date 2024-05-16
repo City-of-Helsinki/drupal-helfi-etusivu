@@ -15,3 +15,7 @@ msgstr "Järjestä pääuutisvirtaa"
 msgctxt "Updating news"
 msgid "Latest updates"
 msgstr "Uusimmat päivitykset"
+
+msgctxt "Updating news"
+msgid "News update published"
+msgstr "Uutispäivityksen julkaisuaika"
