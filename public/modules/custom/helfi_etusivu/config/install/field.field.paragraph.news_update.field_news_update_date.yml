@@ -15,7 +15,10 @@ label: Date
 description: 'The date will appear in the table of contents and below the title of the news update.'
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    default_date_type: now
+    default_date: now
 default_value_callback: ''
 settings: {  }
 field_type: datetime
