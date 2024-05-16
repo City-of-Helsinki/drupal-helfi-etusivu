@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -23,9 +24,10 @@ dependencies:
     - paragraphs
     - path
     - publication_date
+    - radioactivity
+    - readonly_field_widget
     - scheduler
     - select2
-    - radioactivity
 third_party_settings:
   field_group:
     group_news_item_links:
@@ -86,6 +88,16 @@ content:
     weight: 4
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_annif_keywords:
+    type: readonly_field_widget
+    weight: 29
+    region: content
+    settings:
+      label: above
+      formatter_type: null
+      formatter_settings: {  }
+      show_description: false
     third_party_settings: {  }
   field_content:
     type: paragraphs
