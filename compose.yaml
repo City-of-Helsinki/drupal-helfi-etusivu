@@ -87,6 +87,27 @@ services:
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-varnish.tls=true"
       - "traefik.http.services.${COMPOSE_PROJECT_NAME}-varnish.loadbalancer.server.port=6081"
       - "traefik.docker.network=stonehenge-network"
+  elastic-proxy:
+    container_name: "${COMPOSE_PROJECT_NAME}-elastic-proxy"
+    image: nginx:alpine
+    environment:
+      ELASTICSEARCH_AUTHORIZATION: '${ELASTICSEARCH_AUTHORIZATION:-""}'
+    volumes:
+      - ./docker/local/elastic-proxy/templates:/etc/nginx/templates
+    networks:
+      - stonehenge-network
+      - internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.entrypoints=https"
+      - "traefik.http.routers.nginx.rule=Host(`elastic-proxy-${DRUPAL_HOSTNAME}`)"
+      - "traefik.http.services.nginx.loadbalancer.server.port=8080"
+      - "traefik.http.routers.nginx.tls=true"
+      - "traefik.docker.network=stonehenge-network"
+    depends_on:
+      - elastic
+    profiles:
+      - search
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.4.0
     container_name: "${COMPOSE_PROJECT_NAME}-elastic"

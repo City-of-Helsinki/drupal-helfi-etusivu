@@ -1,0 +1,24 @@
+server {
+    listen 8080 default_server;
+    server_name _;
+    client_max_body_size 50m;
+
+    location / {
+      return 500;
+    }
+
+    location ~* /(ping|_msearch|_search)$ {
+        proxy_pass http://elastic:9200;
+        proxy_redirect off;
+        proxy_set_header  Authorization ${ELASTICSEARCH_AUTHORIZATION};
+        proxy_pass_header Authorization;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_pass_header Access-Control-Allow-Origin;
+        proxy_pass_header Access-Control-Allow-Methods;
+        proxy_hide_header Access-Control-Allow-Headers;
+        add_header Access-Control-Allow-Headers 'X-Requested-With, Content-Type';
+        add_header Access-Control-Allow-Credentials true;
+    }
+}
