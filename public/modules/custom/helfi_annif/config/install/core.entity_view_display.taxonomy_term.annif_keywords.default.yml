@@ -1,0 +1,32 @@
+uuid: 5f55af06-9890-4707-8f62-2839397ef7d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.annif_keywords.field_uri
+    - taxonomy.vocabulary.annif_keywords
+  module:
+    - text
+id: taxonomy_term.annif_keywords.default
+targetEntityType: taxonomy_term
+bundle: annif_keywords
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_uri:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

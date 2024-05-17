@@ -32,7 +32,7 @@ final class GlobalMenuStorage extends SqlContentEntityStorage {
    */
   public static function createInstance(
     ContainerInterface $container,
-    EntityTypeInterface $entity_type
+    EntityTypeInterface $entity_type,
   ) : self {
     $instance = parent::createInstance($container, $entity_type);
     $instance->entityRepository = $container->get('entity.repository');

@@ -1,0 +1,27 @@
+uuid: 08004ac8-7323-4704-b032-14f6fc9751c8
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_fp_latest_news_design
+field_name: field_fp_latest_news_design
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: minimal
+      label: Minimal
+    -
+      value: cards
+      label: Cards
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
