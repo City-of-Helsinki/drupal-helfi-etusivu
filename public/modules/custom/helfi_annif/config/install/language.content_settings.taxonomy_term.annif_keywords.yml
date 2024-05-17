@@ -1,0 +1,11 @@
+uuid: c4269392-3a55-4077-9973-dbebe2266ff5
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.annif_keywords
+id: taxonomy_term.annif_keywords
+target_entity_type_id: taxonomy_term
+target_bundle: annif_keywords
+default_langcode: site_default
+language_alterable: false
