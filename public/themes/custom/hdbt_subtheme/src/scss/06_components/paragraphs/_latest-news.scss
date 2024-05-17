@@ -1,22 +1,11 @@
-.component--latest-news .hds-button {
-  .hel-icon {
-    @include hover-link-arrow-transition;
-    transform: scaleX(var(--lang-direction, 1));
+.component--latest-news--cards {
+  background-color:  $color-black-5;
+}
 
-    &:last-of-type:not(:first-of-type) {
-      margin: 0;
-      margin-inline-end: 8px;
-    }
-  }
+.component--latest-news .latest-news__link-wrapper {
+  margin-top: $spacing-double;
 
-  &:focus,
-  &:hover {
-    .hel-icon {
-      transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
-
-      @media (prefers-reduced-motion) {
-        transform: none;
-      }
-    }
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-quadruple;
   }
 }
