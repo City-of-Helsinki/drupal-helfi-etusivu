@@ -1,9 +1,9 @@
-uuid: a676c2be-6f5e-417f-afba-7c4b80954a38
+uuid: 48105040-80f2-4420-9b3c-56ba665333b0
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.tiny_teaser
+    - core.entity_view_mode.node.text_converter
     - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
@@ -13,22 +13,36 @@ dependencies:
     - field.field.node.news_item.field_news_item_links_link
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
-    - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:
+    - entity_reference_revisions
+    - helfi_platform_config
     - user
 _core:
-  default_config_hash: GZ4RFPkRq0OjD31t8jG9R5KZvzi7xhjM1-7kONczzrA
-id: node.news_item.tiny_teaser
+  default_config_hash: fHNnwg186A981K7d578If1MCkuYBmQqaxabpDSAZwIc
+id: node.news_item.text_converter
 targetEntityType: node
 bundle: news_item
-mode: tiny_teaser
+mode: text_converter
 content:
-  field_main_image:
+  field_content:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_lead_in:
+    type: text_span
+    label: hidden
     settings: {  }
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_short_title:
     type: string
@@ -36,45 +50,20 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
     weight: 0
-    region: content
-  published_at:
-    type: timestamp
-    label: hidden
-    settings:
-      date_format: publication_date_format
-      custom_date_format: ''
-      timezone: ''
-      tooltip:
-        date_format: ''
-        custom_date_format: ''
-      time_diff:
-        enabled: false
-        future_format: '@interval hence'
-        past_format: '@interval ago'
-        granularity: 2
-        refresh: 60
-    third_party_settings: {  }
-    weight: 2
     region: content
 hidden:
   field_annif_keywords: true
-  field_content: true
-  field_lead_in: true
   field_main_image: true
   field_main_image_caption: true
   field_news_groups: true
   field_news_item_links_link: true
   field_news_item_links_title: true
   field_news_item_tags: true
-  field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
   langcode: true
+  links: true
+  published_at: true
   search_api_excerpt: true
   toc_enabled: true
