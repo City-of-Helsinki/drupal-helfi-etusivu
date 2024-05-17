@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.news_item.field_news_item_links_link
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
@@ -21,7 +22,7 @@ dependencies:
     - media
     - user
 _core:
-  default_config_hash: rw0HQtg75-HvNXykEGQqCuDsOe_-6GcUpKGnrZVOnSs
+  default_config_hash: Mr1QBPHLSABqi-fUL-8TBc8xRHxfVs5cf0QbTjXomDc
 id: node.news_item.card_teaser
 targetEntityType: node
 bundle: news_item
@@ -83,6 +84,7 @@ hidden:
   field_news_groups: true
   field_news_item_links_link: true
   field_news_item_tags: true
+  field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
   langcode: true
