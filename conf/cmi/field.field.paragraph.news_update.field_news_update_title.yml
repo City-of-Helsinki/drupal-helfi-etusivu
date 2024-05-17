@@ -1,0 +1,21 @@
+uuid: bf3f766e-4a12-450f-8ffc-d162e9f7511a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_news_update_title
+    - paragraphs.paragraphs_type.news_update
+_core:
+  default_config_hash: JuvEWSSqz85sOqrdphxrT8zpS15NvTaKqykZBoH3dYU
+id: paragraph.news_update.field_news_update_title
+field_name: field_news_update_title
+entity_type: paragraph
+bundle: news_update
+label: Title
+description: 'Write the title of the news update. Remember to update the title of the page if necessary to reflect the updated content.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
