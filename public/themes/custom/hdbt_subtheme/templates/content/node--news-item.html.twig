@@ -1,0 +1,7 @@
+{% extends '@hdbt/module/helfi-news-item/node--news-item.html.twig' %}
+
+{% block after_content %}
+  {% if content.field_news_item_updating_news|render|striptags|trim is not empty %}
+    {{ content.field_news_item_updating_news }}
+  {% endif %}
+{% endblock after_content %}
