@@ -89,11 +89,10 @@ services:
       - "traefik.docker.network=stonehenge-network"
   elastic-proxy:
     container_name: "${COMPOSE_PROJECT_NAME}-elastic-proxy"
-    image: nginx:alpine
-    environment:
-      ELASTICSEARCH_AUTHORIZATION: '${ELASTICSEARCH_AUTHORIZATION:-""}'
+    image: openresty/openresty:alpine
     volumes:
-      - ./docker/local/elastic-proxy/templates:/etc/nginx/templates
+      - ./docker/elastic-proxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/elastic-proxy/elastic.conf:/etc/nginx/conf.d/default.conf
     networks:
       - stonehenge-network
       - internal
