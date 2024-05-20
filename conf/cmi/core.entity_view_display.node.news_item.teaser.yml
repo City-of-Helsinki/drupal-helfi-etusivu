@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.news_item.field_news_item_links_link
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
@@ -20,7 +21,7 @@ dependencies:
   module:
     - user
 _core:
-  default_config_hash: y7-XNi5JaI60YIxmANoDIqzZ09lyzAiFwhYNEyO4nDc
+  default_config_hash: gOi3OpZskrzmvZPMzBgPX5pDCAgJhTEQKkR3Ka66jfY
 id: node.news_item.teaser
 targetEntityType: node
 bundle: news_item
@@ -83,6 +84,7 @@ hidden:
   field_news_groups: true
   field_news_item_links_link: true
   field_news_item_tags: true
+  field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
   langcode: true

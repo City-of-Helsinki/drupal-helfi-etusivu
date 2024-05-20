@@ -1,0 +1,10 @@
+uuid: 85ec51ba-cfc6-491f-8528-3fa0ee65165f
+langcode: en
+status: true
+dependencies: {  }
+id: news_update
+label: 'News update'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }
