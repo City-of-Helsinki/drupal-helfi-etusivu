@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -11,6 +12,7 @@ dependencies:
     - field.field.node.news_item.field_news_item_links_link
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
@@ -23,9 +25,10 @@ dependencies:
     - paragraphs
     - path
     - publication_date
+    - radioactivity
+    - readonly_field_widget
     - scheduler
     - select2
-    - radioactivity
 third_party_settings:
   field_group:
     group_news_item_links:
@@ -74,8 +77,23 @@ third_party_settings:
         open: false
         description: ''
         required_fields: true
+    group_updating_news:
+      children:
+        - field_news_item_updating_news
+      label: 'Updating news'
+      region: content
+      parent_name: ''
+      weight: 17
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        open: false
+        description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
+        required_fields: false
 _core:
-  default_config_hash: RHDFf9pvwgV2FvoelXlH7dXXBoWkziCZI1FWuQS94k8
+  default_config_hash: dW1Kmx2dOCHZosI85sWLQGupPRXvS8NL-lmM_O44boc
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item
@@ -129,16 +147,6 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_news_groups:
-    type: select2_entity_reference
-    weight: 26
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
   field_news_item_links_link:
     type: linkit
     weight: 20
@@ -166,22 +174,6 @@ content:
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-    third_party_settings: {  }
-  field_news_neighbourhoods:
-    type: select2_entity_reference
-    weight: 27
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_radioactivity:
-    type: radioactivity_reference
-    weight: 28
-    region: content
-    settings: {  }
     third_party_settings: {  }
   field_short_title:
     type: string_textfield
@@ -278,6 +270,62 @@ content:
     third_party_settings: {  }
   url_redirects:
     weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_annif_keywords:
+    type: readonly_field_widget
+    weight: 29
+    region: content
+    settings:
+      label: above
+      formatter_type: null
+      formatter_settings: {  }
+      show_description: false
+    third_party_settings: {  }
+  field_news_item_updating_news:
+    type: paragraphs
+    weight: 17
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: '0'
+        convert: '0'
+        duplicate: '0'
+    third_party_settings: {  }
+  field_news_groups:
+    type: select2_entity_reference
+    weight: 26
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_news_neighbourhoods:
+    type: select2_entity_reference
+    weight: 27
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_radioactivity:
+    type: radioactivity_reference
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }

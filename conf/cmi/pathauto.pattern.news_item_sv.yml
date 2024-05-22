@@ -6,7 +6,7 @@ dependencies:
     - language
     - node
 _core:
-  default_config_hash: QDCPId-pk3XS7f7Q4kuirllXxNbQUx8CTCBve3_gRF8
+  default_config_hash: U5XVcfoh8F-P-2B0nYSt7za11ObvCAcLnUf6XMut60M
 id: news_item_sv
 label: 'News item | SV'
 type: 'canonical_entities:node'
