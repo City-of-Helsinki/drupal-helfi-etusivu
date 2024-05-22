@@ -1,13 +1,24 @@
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--top-news' ],
-      component_title: 'Top news'|t({}, {'context': 'Front page top news paragraph title'}),
+      component_classes: [ 'component--main-news' ],
+      component_title: 'Top stories'|t({}, {'context': 'Front page top news paragraph title'}),
       component_content_class: 'top-news',
     }
   %}
     {% block component_content %}
       {{ drupal_view('frontpage_news', 'main_news') }}
+    {% endblock component_content %}
+  {% endembed %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--main-articles' ],
+      component_title: 'Learn more'|t({}, {'context': 'Front page learn more paragraph title'}),
+      component_content_class: 'main-articles',
+    }
+  %}
+    {% block component_content %}
+      {{ drupal_view('frontpage_news', 'main_articles') }}
     {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}
