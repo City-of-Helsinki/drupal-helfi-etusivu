@@ -18,7 +18,7 @@ dependencies:
       - media.type.image
       - responsive_image.styles.image__3_2_content_area
 _core:
-  default_config_hash: 78FIlGMh7zQ72qsggX09fvdXZq7qsywgGoO0ij9jNcY
+  default_config_hash: pD_LAKb-y1qN4CS-AbMCPzW2gcbxSslHiDc04TbU14o
 id: media.image.image_content_area
 targetEntityType: media
 bundle: image

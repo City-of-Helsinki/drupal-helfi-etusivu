@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_short_title
     - node.type.news_item
 _core:
-  default_config_hash: 7I-6W-K7rhcqHG5gY-CC9L8PGhjV36-OZ1cFN8ESvP0
+  default_config_hash: DOfZR_H_LG7xLNmcKJNIxteJki8TQuPS3vSD0bKPBDs
 id: node.news_item.field_short_title
 field_name: field_short_title
 entity_type: node
