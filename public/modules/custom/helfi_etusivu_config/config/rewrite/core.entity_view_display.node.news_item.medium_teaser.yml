@@ -3,6 +3,7 @@ config_rewrite:
 dependencies:
   config:
     - core.entity_view_mode.node.medium_teaser
+    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -19,4 +20,5 @@ dependencies:
   module:
     - user
 hidden:
+  field_annif_keywords: true
   field_news_item_updating_news: true
