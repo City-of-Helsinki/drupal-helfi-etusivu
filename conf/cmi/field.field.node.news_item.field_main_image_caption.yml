@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_main_image_caption
     - node.type.news_item
 _core:
-  default_config_hash: Xz6KY-cw4Wiaz38o8Jff70NIbo1BOsxIUzdC9hmW-Gk
+  default_config_hash: hOPC3VhSbOO_cHKyq6ArtM4YBym27K1elvOwhGtbtG4
 id: node.news_item.field_main_image_caption
 field_name: field_main_image_caption
 entity_type: node

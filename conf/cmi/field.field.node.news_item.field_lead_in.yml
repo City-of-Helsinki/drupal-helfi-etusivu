@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_lead_in
     - node.type.news_item
 _core:
-  default_config_hash: V7SgD8zmPfbuDpnbYgntzCnx42zdYb4RzBODH6COOdg
+  default_config_hash: l1U2YQmD2XJHXndukzFaTUhZRXCtka2mNKC-g9cYdaM
 id: node.news_item.field_lead_in
 field_name: field_lead_in
 entity_type: node

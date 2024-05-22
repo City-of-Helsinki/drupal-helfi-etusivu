@@ -10,7 +10,7 @@ third_party_settings:
   content_translation:
     enabled: true
 _core:
-  default_config_hash: Yctt7t3FKgIwmcKLny0joMheQt3W1bStqE6S28861lM
+  default_config_hash: eGQvbY5e4LnIRo99-glKeOFE4H_VOtj2cLGuEQax0cs
 id: taxonomy_term.news_group
 target_entity_type_id: taxonomy_term
 target_bundle: news_group

@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: WZlqmVE7IG7NlPwHTf-2r9OKJxNlmb7H-WuoBvyheCE
+  default_config_hash: 40K1QujHxH2ydz8Wf_MHOcDC5cUg7HGaLwQ_v5j9lkk
 name: 'News group'
 vid: news_group
 description: ''

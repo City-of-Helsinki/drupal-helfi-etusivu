@@ -10,7 +10,7 @@ third_party_settings:
   content_translation:
     enabled: true
 _core:
-  default_config_hash: WrPAeH_lxR0xKKazcSCteW_3nCVD8CBysarwveQcwr8
+  default_config_hash: 9LCoZDUMQMzXekuP0h-dG-lGmaXHkKskl7sK3xzOk1g
 id: taxonomy_term.news_neighbourhoods
 target_entity_type_id: taxonomy_term
 target_bundle: news_neighbourhoods
