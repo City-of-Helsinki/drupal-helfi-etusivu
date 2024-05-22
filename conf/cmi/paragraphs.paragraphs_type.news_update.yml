@@ -1,0 +1,12 @@
+uuid: 85ec51ba-cfc6-491f-8528-3fa0ee65165f
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: p0PyOpRZeZXz95QAVZLj0GnUPD8P3dRYAxtxIJSQqb0
+id: news_update
+label: 'News update'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

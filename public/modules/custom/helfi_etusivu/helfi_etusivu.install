@@ -216,3 +216,13 @@ function helfi_etusivu_update_9007() : void {
 function helfi_etusivu_update_9008(): void {
   helfi_platform_config_update_paragraph_target_types();
 }
+
+/**
+ * UHF-9739: Add 'news update' paragraph to news item.
+ */
+function helfi_etusivu_update_9009(): void {
+  \Drupal::service('helfi_platform_config.config_update_helper')
+    ->update('helfi_node_news_item');
+  \Drupal::service('helfi_platform_config.config_update_helper')
+    ->update('helfi_etusivu');
+}

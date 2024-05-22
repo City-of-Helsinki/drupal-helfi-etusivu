@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -12,6 +13,7 @@ dependencies:
     - field.field.node.news_item.field_news_item_links_link
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
@@ -19,7 +21,7 @@ dependencies:
   module:
     - user
 _core:
-  default_config_hash: y7-XNi5JaI60YIxmANoDIqzZ09lyzAiFwhYNEyO4nDc
+  default_config_hash: gOi3OpZskrzmvZPMzBgPX5pDCAgJhTEQKkR3Ka66jfY
 id: node.news_item.teaser
 targetEntityType: node
 bundle: news_item
@@ -75,12 +77,14 @@ content:
     weight: 4
     region: content
 hidden:
+  field_annif_keywords: true
   field_content: true
   field_lead_in: true
   field_main_image_caption: true
   field_news_groups: true
   field_news_item_links_link: true
   field_news_item_tags: true
+  field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
   langcode: true
