@@ -7,7 +7,7 @@ dependencies:
     - media.type.image
     - node.type.news_item
 _core:
-  default_config_hash: 6xowqE2LNyFNwmFblhVVR1aBuJAN6axLscBKNqjU-LQ
+  default_config_hash: '-iB0-9mofrwy1YFmVZoDOmE-g-FJNBXsC7okIFtUTYY'
 id: node.news_item.field_main_image
 field_name: field_main_image
 entity_type: node

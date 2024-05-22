@@ -11,7 +11,7 @@ dependencies:
     - datetime
     - entity_reference_revisions
 _core:
-  default_config_hash: 4u5e96aoW-RpNubuc3W4Hy-4UbKXdL-iIQU9bINu8X0
+  default_config_hash: Wc-YNCOQgJej-IZrlhukH6N4xiyaBe3bpG454vz8e3c
 id: paragraph.news_update.default
 targetEntityType: paragraph
 bundle: news_update
