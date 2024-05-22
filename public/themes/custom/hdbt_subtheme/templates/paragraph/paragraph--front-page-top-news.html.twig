@@ -1,7 +1,7 @@
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--top-news' ],
+      component_classes: [ 'component--top-news--news' ],
       component_title: 'Top stories'|t({}, {'context': 'Front page top news paragraph title'}),
       component_content_class: 'top-news',
     }
@@ -12,7 +12,7 @@
   {% endembed %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--main-articles' ],
+      component_classes: [ 'component--top-news--articles' ],
       component_title: 'Learn more'|t({}, {'context': 'Front page learn more paragraph title'}),
       component_content_class: 'main-articles',
     }

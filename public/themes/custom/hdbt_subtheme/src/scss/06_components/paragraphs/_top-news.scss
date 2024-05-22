@@ -1,9 +1,10 @@
-.component--top-news .component__container {
-  padding: $spacing-double;
-  background-color: $color-fog-light;
-}
+.component--top-news--news {
+  .component__container {
+    padding: $spacing-double;
+    padding-bottom: $spacing;
+    background-color: $color-fog-light;
+  }
 
-.component--top-news {
   li.news-listing__item {
     width: 100%;
   }
@@ -37,39 +38,41 @@
   }
 }
 
-.articles-listing {
-  display: grid;
-  grid-gap: 0;
-  list-style: none;
-  padding-left: 0;
-
-  a {
-    text-decoration: underline;
-  }
-
-  @include breakpoint($breakpoint-m) {
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: $spacing-and-half;
-  }
-
-  li {
-    width: 100%;
+.component--top-news--articles {
+  ul {
+    display: grid;
+    grid-gap: 0;
     list-style: none;
-  }
-  
-  li + li {
-    margin: 0;
-  }
+    padding-left: 0;
 
-  .news-listing__card-teaser {
-    margin: 0;
-  }
+    a {
+      text-decoration: underline;
+    }
 
-  .news-listing__content {
-    border: none;
+    @include breakpoint($breakpoint-m) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: $spacing-and-half;
+    }
 
-    span {
-      display: none;
+    li {
+      width: 100%;
+      list-style: none;
+    }
+
+    li + li {
+      margin: 0;
+    }
+
+    .news-listing__card-teaser {
+      margin: 0;
+    }
+
+    .news-listing__content {
+      border: none;
+
+      span {
+        display: none;
+      }
     }
   }
 }
