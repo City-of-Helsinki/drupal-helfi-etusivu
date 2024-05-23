@@ -1,28 +1,28 @@
 .component--top-news--news {
   .component__container {
-    padding: $spacing-double;
-    padding-bottom: $spacing;
+    padding: $spacing-double $spacing-double $spacing $spacing-double;
     background-color: $color-fog-light;
   }
 
-  li.news-listing__item {
-    width: 100%;
-  }
-  
-  .component__content.top-news {
+  .component__title + .component__content {
     margin-top: 0;
+
     @include breakpoint($breakpoint-m) {
       margin-top: $spacing-double;
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  .news-listing--card-teasers {
+  .news-listing--medium-teasers {
     display: grid;
 
     @include breakpoint($breakpoint-m) {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  .news-listing__item {
+    width: 100%;
   }
 
   .news-listing__medium-teaser {
@@ -39,7 +39,7 @@
 }
 
 .component--top-news--articles {
-  ul {
+  .articles-listing {
     display: grid;
     grid-gap: 0;
     list-style: none;
@@ -57,9 +57,6 @@
     li {
       width: 100%;
       list-style: none;
-    }
-
-    li + li {
       margin: 0;
     }
 
