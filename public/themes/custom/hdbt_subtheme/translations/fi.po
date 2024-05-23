@@ -16,4 +16,3 @@ msgstr "Uusimmat uutiset"
 msgctxt "Front page learn more paragraph title"
 msgid "Learn more"
 msgstr "Syvenny ja inspiroidu"
-
