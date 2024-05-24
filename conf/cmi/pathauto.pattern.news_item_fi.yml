@@ -6,7 +6,7 @@ dependencies:
     - language
     - node
 _core:
-  default_config_hash: mcUjrUGmPq2N7EwSsfMYjwuIjicobCIfaKM8ia6ZQFU
+  default_config_hash: v0l4rRdtXTENfJ0VOD-KMLOR-jPvsys0NxeReJ41QcQ
 id: news_item_fi
 label: 'News item | FI'
 type: 'canonical_entities:node'

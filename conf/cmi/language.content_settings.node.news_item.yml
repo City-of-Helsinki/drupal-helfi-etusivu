@@ -12,7 +12,7 @@ third_party_settings:
     bundle_settings:
       untranslatable_fields_hide: '0'
 _core:
-  default_config_hash: 65DESzNfMMl7MDzvptkfWeCimrWHxiosAb0GOiqYwNE
+  default_config_hash: WWbDJdt0ml-ShkHj-phAfCJft5KjIJQfs5jyOcn2SJ0
 id: node.news_item
 target_entity_type_id: node
 target_bundle: news_item

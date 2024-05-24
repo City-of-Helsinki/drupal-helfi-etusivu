@@ -5,7 +5,7 @@ dependencies:
   config:
     - node.type.news_item
 _core:
-  default_config_hash: TS9NjPg6-uY8Idgx7rFczAn-HeVNvQiQH0CvuHVQhH4
+  default_config_hash: xG4K-cro8zxFgSG9z6wY_RUmq-UodGTG1M7mKJFUAtE
 id: node.news_item.promote
 field_name: promote
 entity_type: node

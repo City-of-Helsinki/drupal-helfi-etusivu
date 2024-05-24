@@ -16,7 +16,7 @@ dependencies:
       - field.storage.node.field_content
       - node.type.news_item
 _core:
-  default_config_hash: ccAEOoK1MFeLfWgQXVHdmHRfWbX25IoVjBF7cPtzD9k
+  default_config_hash: mBMSNplW4X8iIZyjsY-1e-Y7LPtK2gEQFBeKpZms2nY
 id: node.news_item.field_content
 field_name: field_content
 entity_type: node
