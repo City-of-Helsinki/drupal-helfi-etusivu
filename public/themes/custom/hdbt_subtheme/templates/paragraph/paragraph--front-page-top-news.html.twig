@@ -1,26 +1,29 @@
+{% set listing_type = content.field_listing_type[0]['#markup'] %}
+
+{% if listing_type == 'articles' %}
+  {% set component_classes = [ 'component--top-news--articles' ] %}
+  {% set component_title = 'Learn more'|t({}, {'context': 'Front page learn more paragraph title'}) %}
+  {% set component_content_class = 'main-articles' %}
+  {# Card Teaser expected #}
+  {% set view = 'main_articles' %}
+{% else %}
+  {% set component_classes = [ 'component--top-news--news' ] %}
+  {% set component_title = 'Top stories'|t({}, {'context': 'Front page top news paragraph title'}) %}
+  {% set component_content_class = 'top-news' %}
+  {# Medium Teaser expected #}
+  {% set view = 'main_news' %}
+{% endif %}
+
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
-      component_classes: [ 'component--top-news--news' ],
-      component_title: 'Top stories'|t({}, {'context': 'Front page top news paragraph title'}),
-      component_content_class: 'top-news',
+      component_classes: component_classes,
+      component_title: component_title,
+      component_content_class: component_content_class
     }
-  %}
-    {% block component_content %}
-    {# Medium Teaser expected #}
-      {{ drupal_view('frontpage_news', 'main_news') }}
-    {% endblock component_content %}
-  {% endembed %}
-  {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [ 'component--top-news--articles' ],
-      component_title: 'Learn more'|t({}, {'context': 'Front page learn more paragraph title'}),
-      component_content_class: 'main-articles',
-    }
-  %}
-    {% block component_content %}
-    {# Card Teaser expected #}
-      {{ drupal_view('frontpage_news', 'main_articles') }}
-    {% endblock component_content %}
+    %}
+      {% block component_content %}
+        {{ drupal_view('frontpage_news', view) }}
+      {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}
