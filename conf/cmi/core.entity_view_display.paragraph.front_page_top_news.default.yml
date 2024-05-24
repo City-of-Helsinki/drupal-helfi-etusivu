@@ -1,0 +1,23 @@
+uuid: 904b353d-e303-43af-86f2-97a925e62403
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.front_page_top_news.field_listing_type
+    - paragraphs.paragraphs_type.front_page_top_news
+  module:
+    - options
+id: paragraph.front_page_top_news.default
+targetEntityType: paragraph
+bundle: front_page_top_news
+mode: default
+content:
+  field_listing_type:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true
