@@ -12,7 +12,7 @@ dependencies:
     - node
     - user
 _core:
-  default_config_hash: 2Cf3ricWLAkEejcTGzrxxbtThOWtaXrPMb2yy4iMkFM
+  default_config_hash: r9whsTqCTHna5boZKMawptN8mdip6Os2sC97oDou8OY
 id: news
 label: 'Platform news'
 module: views

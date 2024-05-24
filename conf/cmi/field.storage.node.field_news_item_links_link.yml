@@ -6,7 +6,7 @@ dependencies:
     - link
     - node
 _core:
-  default_config_hash: IKGakXurTUXi0aOe5T1ZKFnR2NTKGGFPMziie1cc8JI
+  default_config_hash: kpGna_xLwENCvV9ewcJRu7vMt5zY_JunMGWa4uU4okg
 id: node.field_news_item_links_link
 field_name: field_news_item_links_link
 entity_type: node

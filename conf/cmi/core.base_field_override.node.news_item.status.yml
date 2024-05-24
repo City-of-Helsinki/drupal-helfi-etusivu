@@ -5,7 +5,7 @@ dependencies:
   config:
     - node.type.news_item
 _core:
-  default_config_hash: tW6uICs7J075Iv83bMyKi93RrQGrvD6kuJR-WgiBCvY
+  default_config_hash: wF4UXb867-uF_2avGVephV1FiouV_b4n4wsDVCA4AB0
 id: node.news_item.status
 field_name: status
 entity_type: node

@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_news_item_links_title
     - node.type.news_item
 _core:
-  default_config_hash: H-At_MNGNudKdyaL8EVgeoOoXX31EZjWHzr8JYJQ7N0
+  default_config_hash: M-Y3lbanC97L2uLBWoqcOFCl9XK2w5zuh6FZxOe187c
 id: node.news_item.field_news_item_links_title
 field_name: field_news_item_links_title
 entity_type: node
