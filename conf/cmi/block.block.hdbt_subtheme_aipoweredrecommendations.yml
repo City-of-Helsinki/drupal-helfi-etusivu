@@ -1,6 +1,6 @@
 uuid: 6ab1786a-6f04-44a4-afe2-b7c9829fd000
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - helfi_annif
