@@ -69,8 +69,8 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
     // @todo #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
     $response = [
       '#theme' => 'recommendations_block',
-          '#title' => $this->t('You might be interested in'),
-          '#cache' => ['tags' => ["{$node->getEntityTypeId()}:{$node->id()}"]],
+      '#title' => $this->t('You might be interested in'),
+      '#cache' => ['tags' => ["{$node->getEntityTypeId()}:{$node->id()}"]],
     ];
 
     $recommendations = $this->recommendationManager->getRecommendations($node);
