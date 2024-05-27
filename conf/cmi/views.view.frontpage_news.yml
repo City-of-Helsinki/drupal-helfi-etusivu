@@ -524,6 +524,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
+            news_article: news_article
             news_item: news_item
           group: 1
           exposed: false
@@ -697,6 +698,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
+            news_article: news_article
             news_item: news_item
           group: 1
           exposed: false
