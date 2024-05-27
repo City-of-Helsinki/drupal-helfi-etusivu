@@ -8,7 +8,6 @@ use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\Core\Plugin\Context\ContextRepositoryInterface;
@@ -67,13 +66,11 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
       return [];
     }
 
-    // @TODO: #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
+    // @todo #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
     $response = [
       '#theme' => 'recommendations_block',
-        '#title' => $this->t('You might be interested in'),
-        '#cache' => [
-        'tags' => ["{$node->getEntityTypeId()}:{$node->id()}"],
-      ]
+          '#title' => $this->t('You might be interested in'),
+          '#cache' => ['tags' => ["{$node->getEntityTypeId()}:{$node->id()}"]],
     ];
 
     $recommendations = $this->recommendationManager->getRecommendations($node);

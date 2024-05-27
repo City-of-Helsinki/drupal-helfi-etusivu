@@ -12,8 +12,6 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\Document;
 
-
-
 /**
  * Implements hook_theme().
  */
