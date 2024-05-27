@@ -17,7 +17,8 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_annif\RecommendationManager;
 use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -30,9 +31,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
     'node' => new ContextDefinition('entity:node', new TranslatableMarkup('Node'), FALSE)
   ]
 )]
-class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginInterface, LoggerAwareInterface, ContextAwarePluginInterface {
-
-  use LoggerAwareTrait;
+class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginInterface, ContextAwarePluginInterface {
 
   public function __construct(
     array $configuration,
@@ -40,7 +39,8 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
     $plugin_definition,
     private readonly ContextRepositoryInterface $contextRepository,
     private readonly RecommendationManager $recommendationManager,
-    private readonly AccountInterface $currentUser
+    private readonly AccountInterface $currentUser,
+    private readonly LoggerInterface $logger,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -52,7 +52,8 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
     return new static($configuration, $plugin_id, $plugin_definition,
       $container->get('context.repository'),
       $container->get('helfi_annif.recommendation_manager'),
-      $container->get('current_user')
+      $container->get('current_user'),
+      $container->get('logger.channel.helfi_annif'),
     );
   }
 
