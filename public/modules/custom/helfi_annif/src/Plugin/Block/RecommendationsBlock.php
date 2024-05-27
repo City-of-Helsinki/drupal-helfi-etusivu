@@ -16,9 +16,7 @@ use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_annif\RecommendationManager;
-use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -28,7 +26,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
   id: "helfi_recommendations",
   admin_label: new TranslatableMarkup("AI powered recommendations"),
   context_definitions: [
-    'node' => new ContextDefinition('entity:node', new TranslatableMarkup('Node'), FALSE)
+    'node' => new ContextDefinition('entity:node', new TranslatableMarkup('Node'), FALSE),
   ]
 )]
 class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginInterface, ContextAwarePluginInterface {
@@ -68,15 +66,22 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
       $this->logger->error($exception->getMessage());
       return [];
     }
-    // @TODO: #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
 
-    $response = $this->getResponseArray($node);
+    // @TODO: #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
+    $response = [
+      '#theme' => 'recommendations_block',
+        '#title' => $this->t('You might be interested in'),
+        '#cache' => [
+        'tags' => ["{$node->getEntityTypeId()}:{$node->id()}"],
+      ]
+    ];
+
     $recommendations = $this->recommendationManager->getRecommendations($node);
     if (!$recommendations) {
       return $this->handleNoRecommendations($response);
     }
 
-    $response['#recommendations'] = $recommendations;
+    $response['#rows'] = $recommendations;
     return $response;
   }
 
@@ -103,22 +108,6 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
 
     $response['#no_results_message'] = $this->t('Calculating recommendations');
     return $response;
-  }
-
-  /**
-   * Get initial render array.
-   *
-   * @return array
-   *   Render array.
-   */
-  private function getResponseArray(EntityInterface $node): array {
-    return [
-      '#theme' => 'recommendations_block',
-      '#title' => $this->t('You might be interested in'),
-      '#cache' => [
-        'tags' => ["{$node->getEntityTypeId()}:{$node->id()}"],
-      ]
-    ];
   }
 
 }
