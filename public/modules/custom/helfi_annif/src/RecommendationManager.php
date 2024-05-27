@@ -61,16 +61,23 @@ class RecommendationManager implements LoggerAwareInterface {
       limit 4;
     ";
 
-    $results = $this->connection->query($query, [':nid' => $node->id()])->fetchAll();
+    $response = [];
+    try {
+      $results = $this->connection->query($query, [':nid' => $node->id()])->fetchAll();
+    }
+    catch(\Exception $e) {
+      $this->logger->error($e->getMessage());
+      return $response;
+    }
 
     if (!$results || !is_array($results)) {
-      return [];
+      return $response;
     }
 
     $nids = array_column($results, 'nid');
 
     try {
-      $entities = $this->entityManager
+      $response = $this->entityManager
         ->getStorage($node->getEntityTypeId())
         ->loadMultiple($nids);
     }
@@ -79,7 +86,7 @@ class RecommendationManager implements LoggerAwareInterface {
       return [];
     }
 
-    return $entities;
+    return $response;
   }
 
 }
