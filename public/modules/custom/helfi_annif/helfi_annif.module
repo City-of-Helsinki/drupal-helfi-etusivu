@@ -12,6 +12,22 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\Document;
 
+
+
+/**
+ * Implements hook_theme().
+ */
+function helfi_annif_theme() : array {
+  return [
+    'recommendations_block' => [
+      'variables' => [
+        'rows' => NULL,
+      ],
+      'template' => 'recommendations-block',
+    ],
+  ];
+}
+
 /**
  * Implements hook_entity_insert().
  */
