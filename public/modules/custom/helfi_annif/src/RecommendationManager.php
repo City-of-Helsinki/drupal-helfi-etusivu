@@ -1,4 +1,4 @@
-<?php /** @noinspection SqlDialectInspection */
+<?php
 
 declare(strict_types=1);
 
@@ -20,9 +20,9 @@ class RecommendationManager implements LoggerAwareInterface {
   /**
    * The constructor.
    *
-   * @param EntityTypeManagerInterface $entityManager
+   * @param Drupal\Core\Entity\EntityTypeManagerInterface $entityManager
    *   The entity type manager.
-   * @param Connection $connection
+   * @param Drupal\Core\Database\Connection $connection
    *   The connection.
    */
   public function __construct(
@@ -35,14 +35,14 @@ class RecommendationManager implements LoggerAwareInterface {
    * Get recommendations for a node.
    *
    * @param Drupal\Core\Entity\EntityInterface $node
-   *   The node
+   *   The node.
    *
    * @return array
-   *   Array of recommendations
+   *   Array of recommendations.
    */
   public function getRecommendations(EntityInterface $node): array {
 
-    // @todo: #UHF-9964 exclude unwanted keywords and entities and refactor.
+    // @todo #UHF-9964 exclude unwanted keywords and entities and refactor.
     $query = "
       select
          n.nid,
