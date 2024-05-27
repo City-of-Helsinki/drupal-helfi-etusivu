@@ -45,7 +45,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : static {
     return new static($configuration, $plugin_id, $plugin_definition,
-      $container->get('helfi_annif.recommendation_manager'),
+      $container->get(RecommendationManager::class),
       $container->get('current_user'),
       $container->get('logger.channel.helfi_annif'),
     );

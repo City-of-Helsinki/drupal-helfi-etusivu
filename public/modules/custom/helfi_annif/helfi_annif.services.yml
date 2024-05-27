@@ -9,9 +9,7 @@ services:
 
   Drupal\helfi_annif\KeywordManager: ~
 
-  helfi_annif.recommendation_manager:
-    class: Drupal\helfi_annif\RecommendationManager
-    autowire: true
+  Drupal\helfi_annif\RecommendationManager: ~
 
   Drupal\helfi_annif\Client\KeywordClient: ~
 
