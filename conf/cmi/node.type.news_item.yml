@@ -23,7 +23,7 @@ third_party_settings:
     unpublish_required: false
     unpublish_revision: false
 _core:
-  default_config_hash: 2YD__g0VxVJJPULGAh90Yq6rcrT0Nok8Cv70irtRCmE
+  default_config_hash: cuG0V4bO6HUkRRqgqDE7_WXpGCWgHMCK3a4qCnj9CdU
 name: 'News item'
 type: news_item
 description: 'Content type for news items.'

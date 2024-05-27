@@ -6,6 +6,10 @@ third_party_settings:
       label: Linkit
     group_main_image:
       label: Pääkuva
+    group_updating_news:
+      label: 'Päivittyvä uutinen'
+      format_settings:
+        description: 'Jätä sisältöalue tyhjäksi päivittyvän uutisen yläpuolelta, jos luot päivittyvän uutisen.<br />Lisää uusin uutispäivitys viimeiseksi. Verkkosivulla uutispäivitykset näytetään lukijalle uusimmasta vanhimpaan.'
 content:
   field_content:
     settings:

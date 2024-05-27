@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: GoIlOzRzGavETL3qUS5oEFib8u9802Ej77EIqmRgBZI
+  default_config_hash: eBjYGo8oCvlm6QME9-tR8cPp8YaFzZXafEyAZ1Zumsg
 name: 'News neighbourhoods'
 vid: news_neighbourhoods
 description: ''

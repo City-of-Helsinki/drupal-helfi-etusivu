@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: vwgTruq_bxZ5J1FxeUioSBiPtqh6Zx2fFBVYErHZnKI
+  default_config_hash: 30hewHSiD_kriuShRDORK88boHDf4MoFpNodtPTTr5A
 name: 'News tags'
 vid: news_tags
 description: ''

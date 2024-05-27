@@ -1,0 +1,26 @@
+config_rewrite:
+  replace: ['dependencies']
+dependencies:
+  config:
+    - core.entity_view_mode.node.card_teaser
+    - field.field.node.news_item.field_annif_keywords
+    - field.field.node.news_item.field_content
+    - field.field.node.news_item.field_lead_in
+    - field.field.node.news_item.field_main_image
+    - field.field.node.news_item.field_main_image_caption
+    - field.field.node.news_item.field_news_groups
+    - field.field.node.news_item.field_news_item_links_link
+    - field.field.node.news_item.field_news_item_links_title
+    - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_item_updating_news
+    - field.field.node.news_item.field_news_neighbourhoods
+    - field.field.node.news_item.field_radioactivity
+    - field.field.node.news_item.field_short_title
+    - image.style.3_2_m
+    - node.type.news_item
+  module:
+    - media
+    - user
+hidden:
+  field_annif_keywords: true
+  field_news_item_updating_news: true
