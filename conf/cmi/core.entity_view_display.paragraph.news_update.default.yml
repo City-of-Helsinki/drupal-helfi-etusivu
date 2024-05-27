@@ -1,0 +1,47 @@
+uuid: a0d41678-10a0-4519-be98-d17f3051a687
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.news_update.field_news_update
+    - field.field.paragraph.news_update.field_news_update_date
+    - field.field.paragraph.news_update.field_news_update_title
+    - paragraphs.paragraphs_type.news_update
+  module:
+    - datetime
+    - entity_reference_revisions
+_core:
+  default_config_hash: Wc-YNCOQgJej-IZrlhukH6N4xiyaBe3bpG454vz8e3c
+id: paragraph.news_update.default
+targetEntityType: paragraph
+bundle: news_update
+mode: default
+content:
+  field_news_update:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_news_update_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: publication_date_format
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_news_update_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

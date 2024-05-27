@@ -22,3 +22,11 @@ msgstr "Pääartikkelivirta"
 
 msgid "Organize top news article feed"
 msgstr "Järjestä pääartikkelivirtaa"
+
+msgctxt "Updating news"
+msgid "Latest updates"
+msgstr "Uusimmat päivitykset"
+
+msgctxt "Updating news"
+msgid "News update published"
+msgstr "Uutispäivityksen julkaisuaika"
