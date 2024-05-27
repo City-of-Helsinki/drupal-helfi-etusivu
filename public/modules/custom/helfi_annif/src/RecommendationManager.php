@@ -20,9 +20,9 @@ class RecommendationManager implements LoggerAwareInterface {
   /**
    * The constructor.
    *
-   * @param Drupal\Core\Entity\EntityTypeManagerInterface $entityManager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityManager
    *   The entity type manager.
-   * @param Drupal\Core\Database\Connection $connection
+   * @param \Drupal\Core\Database\Connection $connection
    *   The connection.
    */
   public function __construct(
@@ -34,7 +34,7 @@ class RecommendationManager implements LoggerAwareInterface {
   /**
    * Get recommendations for a node.
    *
-   * @param Drupal\Core\Entity\EntityInterface $node
+   * @param \Drupal\Core\Entity\EntityInterface $node
    *   The node.
    *
    * @return array
