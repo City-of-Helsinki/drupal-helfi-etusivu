@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Drupal\helfi_annif\Plugin\Block;
 
 use Drupal\Component\Plugin\Exception\ContextException;
-use Drupal\Core\Annotation\ContextDefinition;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\Core\Plugin\Context\ContextRepositoryInterface;
-use Drupal\Core\Plugin\Context\EntityContextDefinition;
-use Drupal\Core\Plugin\ContextAwarePluginAssignmentTrait;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
-use Drupal\Core\Plugin\ContextAwarePluginTrait;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_annif\RecommendationManager;
 use Psr\Log\LoggerAwareInterface;
@@ -27,7 +27,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
   id: "helfi_recommendations",
   admin_label: new TranslatableMarkup("AI powered recommendations"),
   context_definitions: [
-    'node' => new \Drupal\Core\Plugin\Context\ContextDefinition('entity:node', new TranslatableMarkup('Node'), FALSE)
+    'node' => new ContextDefinition('entity:node', new TranslatableMarkup('Node'), FALSE)
   ]
 )]
 class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginInterface, LoggerAwareInterface, ContextAwarePluginInterface {
@@ -39,7 +39,8 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
     $plugin_id,
     $plugin_definition,
     private readonly ContextRepositoryInterface $contextRepository,
-    private readonly RecommendationManager $recommendationManager
+    private readonly RecommendationManager $recommendationManager,
+    private readonly AccountInterface $currentUser
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -50,7 +51,8 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : static {
     return new static($configuration, $plugin_id, $plugin_definition,
       $container->get('context.repository'),
-      $container->get('helfi_annif.recommendation_manager')
+      $container->get('helfi_annif.recommendation_manager'),
+      $container->get('current_user')
     );
   }
 
@@ -58,22 +60,63 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
    * {@inheritdoc}
    */
   public function build() : array {
-    $x = 1;
     try {
       $node = $this->getContextValue('node');
-      $results = $this->recommendationManager->getRecommendations($node);
     }
     catch (ContextException $exception) {
-      $x = 1;
-      // $this->logger->error($exception->getMessage());
+      $this->logger->error($exception->getMessage());
+      return [];
+    }
+    // @TODO: #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
+
+    $response = $this->getResponseArray($node);
+    $recommendations = $this->recommendationManager->getRecommendations($node);
+    if (!$recommendations) {
+      return $this->handleNoRecommendations($response);
+    }
+
+    $response['#recommendations'] = $recommendations;
+    return $response;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts(): array {
+    return Cache::mergeContexts(parent::getCacheContexts(), ['languages:language_content']);
+  }
+
+  /**
+   * Return response when recommendations are not yet calculated.
+   *
+   * @param array $response
+   *   Render array.
+   *
+   * @return array
+   *   Render array.
+   */
+  private function handleNoRecommendations(array $response): array {
+    if ($this->currentUser->isAnonymous()) {
       return [];
     }
 
+    $response['#no_results_message'] = $this->t('Calculating recommendations');
+    return $response;
+  }
 
-
-    // @todo UHF-9962.
+  /**
+   * Get initial render array.
+   *
+   * @return array
+   *   Render array.
+   */
+  private function getResponseArray(EntityInterface $node): array {
     return [
-      '#markup' => $this->t('Hello, World!'),
+      '#theme' => 'recommendations_block',
+      '#title' => $this->t('You might be interested in'),
+      '#cache' => [
+        'tags' => "{$node->getEntityTypeId()}:{$node->id()}",
+      ]
     ];
   }
 

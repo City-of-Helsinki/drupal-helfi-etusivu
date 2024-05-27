@@ -40,6 +40,7 @@ class RecommendationManager implements LoggerAwareInterface {
    */
   public function getRecommendations(EntityInterface $node): array {
 
+    // @TODO: #UHF-9964 exclude unwanted.
     $query = "
       select
          n.nid,
