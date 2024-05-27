@@ -10,7 +10,6 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\ContextDefinition;
-use Drupal\Core\Plugin\Context\ContextRepositoryInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -28,13 +27,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
     'node' => new ContextDefinition('entity:node', new TranslatableMarkup('Node'), FALSE),
   ]
 )]
-class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginInterface, ContextAwarePluginInterface {
+final class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginInterface, ContextAwarePluginInterface {
 
   public function __construct(
     array $configuration,
     $plugin_id,
     $plugin_definition,
-    private readonly ContextRepositoryInterface $contextRepository,
     private readonly RecommendationManager $recommendationManager,
     private readonly AccountInterface $currentUser,
     private readonly LoggerInterface $logger,
@@ -47,7 +45,6 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : static {
     return new static($configuration, $plugin_id, $plugin_definition,
-      $container->get('context.repository'),
       $container->get('helfi_annif.recommendation_manager'),
       $container->get('current_user'),
       $container->get('logger.channel.helfi_annif'),
