@@ -115,7 +115,7 @@ class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginIn
       '#theme' => 'recommendations_block',
       '#title' => $this->t('You might be interested in'),
       '#cache' => [
-        'tags' => "{$node->getEntityTypeId()}:{$node->id()}",
+        'tags' => ["{$node->getEntityTypeId()}:{$node->id()}"],
       ]
     ];
   }
