@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Plugin\search_api\processor;
 
