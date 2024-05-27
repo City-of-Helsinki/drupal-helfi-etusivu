@@ -60,7 +60,7 @@ class RecommendationManager implements LoggerAwareInterface {
       and n.nid != :nid
       group by n.nid
       order by relevancy DESC
-      limit 4;
+      limit 3;
     ";
 
     $response = [];
