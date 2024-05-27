@@ -41,7 +41,6 @@ class RecommendationManager implements LoggerAwareInterface {
    *   Array of recommendations.
    */
   public function getRecommendations(EntityInterface $node): array {
-
     // @todo #UHF-9964 exclude unwanted keywords and entities and refactor.
     $query = "
       select
@@ -54,9 +53,9 @@ class RecommendationManager implements LoggerAwareInterface {
           field_annif_keywords_target_id
           from node__field_annif_keywords
           where entity_id = :nid and
-          langcode = 'fi')
-      and n.langcode = 'fi'
-      and annif.langcode = 'fi'
+          langcode = :langcode)
+      and n.langcode = :langcode
+      and annif.langcode = :langcode
       and n.nid != :nid
       group by n.nid
       order by relevancy DESC
@@ -65,7 +64,9 @@ class RecommendationManager implements LoggerAwareInterface {
 
     $response = [];
     try {
-      $results = $this->connection->query($query, [':nid' => $node->id()])->fetchAll();
+
+
+      $results = $this->connection->query($query, [':nid' => $node->id(), ':langcode' => $node->get('langcode')->value])->fetchAll();
     }
     catch (\Exception $e) {
       $this->logger->error($e->getMessage());
