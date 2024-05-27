@@ -5,7 +5,7 @@ dependencies:
   module:
     - node
 _core:
-  default_config_hash: jssbRN2pIBRe8EQGsLXpg26rYhhd3XlZIebb_rTnSL8
+  default_config_hash: jz6YQ17DXETcyXSjm91GVes0Y48weHaxeU45xVPkoEQ
 id: node.tiny_teaser
 label: 'Tiny Teaser'
 description: ''
