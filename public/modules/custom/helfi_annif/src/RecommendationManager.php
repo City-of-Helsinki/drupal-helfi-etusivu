@@ -21,18 +21,20 @@ class RecommendationManager implements LoggerAwareInterface {
    * The constructor.
    *
    * @param EntityTypeManagerInterface $entityManager
+   *   The entity type manager.
    * @param Connection $connection
+   *   The connection.
    */
   public function __construct(
     private readonly EntityTypeManagerInterface $entityManager,
-    private readonly Connection $connection
+    private readonly Connection $connection,
   ) {
   }
 
   /**
    * Get recommendations for a node.
    *
-   * @param EntityInterface $node
+   * @param Drupal\Core\Entity\EntityInterface $node
    *   The node
    *
    * @return array
@@ -40,7 +42,7 @@ class RecommendationManager implements LoggerAwareInterface {
    */
   public function getRecommendations(EntityInterface $node): array {
 
-    // @TODO: #UHF-9964 exclude unwanted.
+    // @todo: #UHF-9964 exclude unwanted keywords and entities and refactor.
     $query = "
       select
          n.nid,
@@ -65,7 +67,7 @@ class RecommendationManager implements LoggerAwareInterface {
     try {
       $results = $this->connection->query($query, [':nid' => $node->id()])->fetchAll();
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->logger->error($e->getMessage());
       return $response;
     }
@@ -81,7 +83,7 @@ class RecommendationManager implements LoggerAwareInterface {
         ->getStorage($node->getEntityTypeId())
         ->loadMultiple($nids);
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->logger->error($e->getMessage());
       return [];
     }
