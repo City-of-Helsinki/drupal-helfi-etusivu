@@ -64,18 +64,8 @@
       margin: 0;
     }
 
-    // This might be removed if theming changes
-    .news-listing__title {
-      @include font('h4');
-    }
-
     .news-listing__content {
       border: none;
-
-    // This might be removed if theming changes
-      span {
-        display: none;
-      }
     }
   }
 }
