@@ -24,10 +24,13 @@ final class NewsItem extends Node {
       // Copy published_at field from latest news update.
       if ($latest = end($newsUpdates)) {
         assert($latest instanceof FieldableEntityInterface);
-        /**  @var \Drupal\Core\Datetime\DrupalDateTime $updateDate */
+
+        // PHPStan does not like $date property:
+        // https://www.drupal.org/project/drupal/issues/3425302.
+        // @phpstan-ignore-next-line
         $updateDate = $latest->get('field_news_update_date')->date;
 
-        // Replace published_at with update date from latest news update.
+        /**  @var \Drupal\Core\Datetime\DrupalDateTime $updateDate */
         $this->set('published_at', $updateDate->getTimestamp());
       }
     }
