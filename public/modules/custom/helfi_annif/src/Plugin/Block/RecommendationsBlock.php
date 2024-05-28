@@ -9,7 +9,7 @@ use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Plugin\Context\ContextDefinition;
+use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -24,7 +24,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
   id: "helfi_recommendations",
   admin_label: new TranslatableMarkup("AI powered recommendations"),
   context_definitions: [
-    'node' => new ContextDefinition('node', new TranslatableMarkup('Node'), FALSE),
+    'node' => new EntityContextDefinition(
+      data_type:'node',
+      label:new TranslatableMarkup('Node'),
+      required: TRUE,
+    ),
   ]
 )]
 final class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginInterface, ContextAwarePluginInterface {
