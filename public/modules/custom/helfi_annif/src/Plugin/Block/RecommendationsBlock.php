@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif\Plugin\Block;
 
-use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
