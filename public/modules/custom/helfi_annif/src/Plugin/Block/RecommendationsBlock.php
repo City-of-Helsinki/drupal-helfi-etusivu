@@ -83,6 +83,9 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
     return Cache::mergeContexts(parent::getCacheContexts(), ['languages:language_content']);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function getCacheTags(): array {
     return Cache::mergeTags(parent::getCacheTags(), $this->getContextValue('node')->getCacheTags());
   }
