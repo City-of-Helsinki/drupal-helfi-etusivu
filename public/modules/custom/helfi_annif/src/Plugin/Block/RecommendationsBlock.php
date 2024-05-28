@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
   id: "helfi_recommendations",
   admin_label: new TranslatableMarkup("AI powered recommendations"),
   context_definitions: [
-    'node' => new ContextDefinition('entity:node', new TranslatableMarkup('Node'), FALSE),
+    'node' => new ContextDefinition('node', new TranslatableMarkup('Node'), FALSE),
   ]
 )]
 final class RecommendationsBlock extends BlockBase implements ContainerFactoryPluginInterface, ContextAwarePluginInterface {
