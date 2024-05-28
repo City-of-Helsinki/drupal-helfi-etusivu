@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\node\Entity\Node;
+use Drupal\radioactivity\RadioactivityInterface;
 
 /**
  * A bundle class for node entities.
@@ -32,6 +33,9 @@ final class NewsItem extends Node {
 
         /**  @var \Drupal\Core\Datetime\DrupalDateTime $updateDate */
         $this->set('published_at', $updateDate->getTimestamp());
+
+        // Reset radioactivity.
+        $this->resetRadioactivity();
       }
     }
 
@@ -48,6 +52,25 @@ final class NewsItem extends Node {
     $field = $this->get('field_news_item_updating_news');
     assert($field instanceof EntityReferenceFieldItemListInterface);
     return $field->referencedEntities();
+  }
+
+  /**
+   * Resets radioactivity field.
+   */
+  private function resetRadioactivity() : void {
+    $radioactivity = $this->get('field_radioactivity');
+    assert($radioactivity instanceof EntityReferenceFieldItemListInterface);
+
+    $requestTime = \Drupal::time()->getRequestTime();
+    $defaultEnergy = $radioactivity->getFieldDefinition()->getSetting('default_energy') ?? 0.0;
+
+    foreach ($radioactivity->referencedEntities() as $entity) {
+      assert($entity instanceof RadioactivityInterface);
+
+      $entity->setEnergy($defaultEnergy);
+      $entity->setTimestamp($requestTime);
+      $entity->save();
+    }
   }
 
 }
