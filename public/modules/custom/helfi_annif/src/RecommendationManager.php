@@ -64,8 +64,6 @@ class RecommendationManager implements LoggerAwareInterface {
 
     $response = [];
     try {
-
-
       $results = $this->connection->query($query, [':nid' => $node->id(), ':langcode' => $node->get('langcode')->value])->fetchAll();
     }
     catch (\Exception $e) {
