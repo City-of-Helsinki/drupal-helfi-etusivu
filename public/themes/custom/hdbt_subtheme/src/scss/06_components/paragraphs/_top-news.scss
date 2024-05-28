@@ -1,71 +1,49 @@
 .component--top-news--news {
   .component__container {
-    padding: $spacing-double $spacing-double $spacing $spacing-double;
     background-color: $color-fog-light;
+    padding: $spacing-and-half $spacing-and-half $spacing-double;
+
+    @include breakpoint($breakpoint-m) {
+      padding: $spacing-double $spacing-double $spacing-triple;
+    }
   }
 
   .component__title + .component__content {
     margin-top: 0;
 
     @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-double;
       grid-template-columns: repeat(2, 1fr);
+      margin-top: $spacing-double;
     }
   }
 
   .news-listing--medium-teasers {
     display: grid;
+    margin-bottom: 0;
+    margin-top: $spacing-and-half;
 
     @include breakpoint($breakpoint-m) {
+      grid-column-gap: $spacing-and-half;
+      grid-row-gap: $spacing-double;
       grid-template-columns: repeat(2, 1fr);
+      margin-top: $spacing-triple;
     }
-  }
-
-  .news-listing__item {
-    width: 100%;
   }
 
   .news-listing__medium-teaser {
-    padding: 0 $spacing-and-half 0 0;
+    padding: 0;
 
     &::before {
-      display: none;
+      display: none; // Hide the border from medium-teasers when they are in the top news container.
     }
-  }
 
-  .news-listing h3 {
-    text-decoration: underline;
-  }
-}
-
-.component--top-news--articles {
-  .news-listing {
-    display: grid;
-    grid-gap: 0;
-    list-style: none;
-    padding-left: 0;
-
-    a {
+    .news-listing__title {
+      @include font('h4');
       text-decoration: underline;
     }
 
-    @include breakpoint($breakpoint-m) {
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: $spacing-and-half;
-    }
-
-    li {
-      width: 100%;
-      list-style: none;
-      margin: 0;
-    }
-
-    .news-listing__card-teaser {
-      margin: 0;
-    }
-
-    .news-listing__content {
-      border: none;
+    .news-listing__datetime {
+      margin-top: $spacing-half;
     }
   }
 }
