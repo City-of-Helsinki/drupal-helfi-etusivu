@@ -25,8 +25,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
   admin_label: new TranslatableMarkup("AI powered recommendations"),
   context_definitions: [
     'node' => new EntityContextDefinition(
-      data_type:'node',
-      label:new TranslatableMarkup('Node'),
+      data_type: 'node',
+      label: new TranslatableMarkup('Node'),
       required: TRUE,
     ),
   ]
