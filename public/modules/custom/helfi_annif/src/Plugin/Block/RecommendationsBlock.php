@@ -59,19 +59,12 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function build() : array {
-    try {
-      $node = $this->getContextValue('node');
-    }
-    catch (ContextException $exception) {
-      $this->logger->error($exception->getMessage());
-      return [];
-    }
+    $node = $this->getContextValue('node');
 
     // @todo #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
     $response = [
       '#theme' => 'recommendations_block',
       '#title' => $this->t('You might be interested in'),
-      '#cache' => ['tags' => ["{$node->getEntityTypeId()}:{$node->id()}"]],
     ];
 
     $recommendations = $this->recommendationManager->getRecommendations($node);
@@ -88,6 +81,10 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    */
   public function getCacheContexts(): array {
     return Cache::mergeContexts(parent::getCacheContexts(), ['languages:language_content']);
+  }
+
+  public function getCacheTags(): array {
+    return Cache::mergeTags(parent::getCacheTags(), $this->getContextValue('node')->getCacheTags());
   }
 
   /**
