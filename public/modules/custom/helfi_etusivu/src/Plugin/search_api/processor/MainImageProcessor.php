@@ -55,7 +55,8 @@ class MainImageProcessor extends ProcessorPluginBase {
     }
 
     $type = $node->getType();
-    if ($type !== 'news_item') {
+
+    if ($type !== 'news_item' && $type !== 'news_article') {
       return;
     }
 
