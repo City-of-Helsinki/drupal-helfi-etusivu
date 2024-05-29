@@ -1,5 +1,11 @@
-.component--top-news .news-listing__item {
-  position: relative;
+.component--top-news {
+  .news-listing {
+    padding-inline-start: 0; // Remove default padding from ul-element
+  }
+
+  .news-listing__item {
+    position: relative;
+  }
 }
 
 .component--top-news--news {
