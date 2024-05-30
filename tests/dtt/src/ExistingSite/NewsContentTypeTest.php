@@ -154,4 +154,61 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
     $this->assertEquals($node->get('published_at')->value, $updateTime->getTimestamp());
   }
 
+  /**
+   * Token [node:short-title] should work with news_article.
+   */
+  public function testNewsArticleLeadInToken() : void {
+    /** @var \Drupal\Core\Utility\Token $token */
+    $token = $this->container->get('token');
+
+    $node = $this->createNode([
+      'title' => 'Title',
+      'type' => 'news_article',
+    ]);
+    $shortTitle = $token->replace('[node:short-title]', ['node' => $node]);
+    $this->assertEquals('Title', $shortTitle);
+
+    $node->set('field_short_title', 'Short title');
+    $shortTitle = $token->replace('[node:short-title]', ['node' => $node]);
+    $this->assertEquals('Short title', $shortTitle);
+  }
+
+  /**
+   * Metatag og:image should work with news_article.
+   */
+  public function testNewsArticleOgImage() : void {
+    $node = $this->createNode([
+      'type' => 'news_article',
+      'status' => 1,
+      'langcode' => 'fi',
+    ]);
+
+    // Default image is used.
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementAttributeExists('css', 'meta[property="og:image"]', 'content');
+
+    $uri = $this->getTestFiles('image')[0]->uri;
+
+    $file = File::create([
+      'uri' => $uri,
+    ]);
+    $file->save();
+    $this->markEntityForCleanup($file);
+
+    $media = Media::create([
+      'bundle' => 'image',
+      'name' => 'Custom name',
+      'field_media_image' => $file->id(),
+    ]);
+    $media->save();
+    $this->markEntityForCleanup($file);
+
+    $node->set('field_main_image', $media->id());
+    $node->save();
+
+    // Media image is used.
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementAttributeContains('css', 'meta[property="og:image"]', 'content', $file->getFilename());
+  }
+
 }

@@ -1,0 +1,143 @@
+uuid: 375079d4-3443-4e1c-86e9-335706551a49
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news_article.field_content
+    - field.field.node.news_article.field_hero_design
+    - field.field.node.news_article.field_lead_in
+    - field.field.node.news_article.field_main_image
+    - field.field.node.news_article.field_main_image_caption
+    - field.field.node.news_article.field_news_groups
+    - field.field.node.news_article.field_news_item_links_link
+    - field.field.node.news_article.field_news_item_links_title
+    - field.field.node.news_article.field_news_item_tags
+    - field.field.node.news_article.field_news_neighbourhoods
+    - field.field.node.news_article.field_radioactivity
+    - field.field.node.news_article.field_short_title
+    - node.type.news_article
+  module:
+    - entity_reference_revisions
+    - helfi_platform_config
+    - link
+    - options
+    - radioactivity
+    - user
+_core:
+  default_config_hash: AvCTTs-O6N3Rf66v73HmbnXd4q3nkGgFtPQnztyQj3E
+id: node.news_article.default
+targetEntityType: node
+bundle: news_article
+mode: default
+content:
+  field_content:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_hero_design:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_lead_in:
+    type: text_span
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_main_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: image_content_area
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_main_image_caption:
+    type: text_span
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_news_groups:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_news_item_links_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 255
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_news_item_links_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_news_item_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_news_neighbourhoods:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_radioactivity:
+    type: radioactivity_reference_emitter
+    label: above
+    settings:
+      energy: 10.0
+      display: false
+      decimals: 0.0
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_short_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  published_at: true
+  search_api_excerpt: true
+  toc_enabled: true

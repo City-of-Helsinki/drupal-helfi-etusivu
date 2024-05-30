@@ -6,9 +6,13 @@ msgid "Trending"
 msgstr "Trendar nu"
 
 msgctxt "Front page top news paragraph title"
-msgid "Top news"
-msgstr "Toppnyheter"
+msgid "Top stories"
+msgstr "Viktigt just nu"
 
 msgctxt "Front page latest news paragraph title"
 msgid "Latest news"
 msgstr "Senaste nytt"
+
+msgctxt "Front page learn more paragraph title"
+msgid "Learn more"
+msgstr "Läs mer och få inspiration"

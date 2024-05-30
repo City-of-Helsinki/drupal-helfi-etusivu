@@ -1,0 +1,25 @@
+label: Artikkelilista
+description: 'Järjestä etusivulle nostetut artikkelit'
+display:
+  default:
+    display_options:
+      title: 'Järjestä etusivulle nostetut artikkelit'
+      empty:
+        area_text_custom:
+          content: 'Yhtään etusivun artikkelivirtaan nostettua artikkelia ei löytynyt. Voit muokata olemassaolevaa artikkelia tai luoda uuden artikkelin haluamallasi kielellä ja nosta oikean kieliversion artikkelivirtaan käyttääksesi tätä ominaisuutta.'
+      header:
+        area:
+          content:
+            value: '<p>Järjestä etusivun pääartikkeli-lohkoon nostetut artikkelit haluamaasi järjestykseen</p>'
+            format: full_html
+      fields:
+        title:
+          label: Otsikko
+        edit_node:
+          text: muokkaa
+        langcode:
+          label: 'Käännöksen kieli'
+  ordered_news_articles:
+    display_title: 'Järjestelty artikkelilista'
+    display_options:
+      display_description: 'Järjestä etusivulle nostetut artikkelit'

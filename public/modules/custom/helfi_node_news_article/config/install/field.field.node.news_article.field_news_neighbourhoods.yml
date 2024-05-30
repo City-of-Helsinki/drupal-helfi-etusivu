@@ -1,0 +1,29 @@
+uuid: ad47df27-a11e-4b28-a979-0a3cfee931e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_news_neighbourhoods
+    - node.type.news_article
+    - taxonomy.vocabulary.news_neighbourhoods
+id: node.news_article.field_news_neighbourhoods
+field_name: field_news_neighbourhoods
+entity_type: node
+bundle: news_article
+label: 'News neighbourhoods'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      news_neighbourhoods: news_neighbourhoods
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

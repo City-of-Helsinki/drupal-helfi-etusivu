@@ -6,10 +6,13 @@ msgid "Trending"
 msgstr "Pinnalla juuri nyt"
 
 msgctxt "Front page top news paragraph title"
-msgid "Top news"
-msgstr "Pääuutiset"
+msgid "Top stories"
+msgstr "Tärkeää juuri nyt"
 
 msgctxt "Front page latest news paragraph title"
 msgid "Latest news"
 msgstr "Uusimmat uutiset"
 
+msgctxt "Front page learn more paragraph title"
+msgid "Learn more"
+msgstr "Syvenny ja inspiroidu"

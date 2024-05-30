@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\helfi_etusivu\Plugin\Block;
 
 use Drupal\Core\Language\LanguageManagerInterface;
