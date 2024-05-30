@@ -43,6 +43,10 @@
   .news-listing__medium-teaser {
     padding: 0;
 
+    [dir='rtl'] & {
+      padding: 0;
+    }
+
     &::before {
       display: none; // Hide the border from medium-teasers when they are in the top news container.
     }
