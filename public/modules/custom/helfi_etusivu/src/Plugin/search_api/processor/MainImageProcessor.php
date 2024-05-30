@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\helfi_etusivu\Plugin\search_api\processor;
 
 use Drupal\image\Entity\ImageStyle;
@@ -55,7 +57,8 @@ class MainImageProcessor extends ProcessorPluginBase {
     }
 
     $type = $node->getType();
-    if ($type !== 'news_item') {
+
+    if ($type !== 'news_item' && $type !== 'news_article') {
       return;
     }
 

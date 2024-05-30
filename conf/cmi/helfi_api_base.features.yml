@@ -1,4 +1,4 @@
-disable_email_sending: true
-disable_user_password: true
-user_expire: true
 logger: true
+disable_user_password: true
+disable_email_sending: true
+user_expire: true

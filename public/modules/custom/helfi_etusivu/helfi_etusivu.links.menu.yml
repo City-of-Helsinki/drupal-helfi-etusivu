@@ -2,4 +2,10 @@ helfi_etusivu.ordered_news:
   title: 'Organize top news feed'
   route_name: view.ordered_news_list.ordered_news
   parent: hdbt_admin_tools.overview
+  weight: 98
+
+helfi_etusivu.ordered_news_articles:
+  title: 'Organize top news article feed'
+  route_name: view.ordered_news_articles_list.ordered_news_articles
+  parent: hdbt_admin_tools.overview
   weight: 99
