@@ -19,7 +19,8 @@
       });
       let exclusions = Drupal.tableOfContents.exclusions();
 
-      // Add exclusions for the news updates table of contents.
+      // Add exclusions for the news updates table of contents. NOTICE: The text paragraph is the only one that
+      // has paragraph as a prefix, so it might look a bit silly compared to the other selectors.
       exclusions +=
         ':not(.components--upper *)' +
         ':not(.component--remote-video *)' +
