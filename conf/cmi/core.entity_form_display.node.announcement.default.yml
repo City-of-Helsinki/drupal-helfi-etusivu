@@ -20,7 +20,7 @@ dependencies:
     - select2
     - text
 _core:
-  default_config_hash: 0ewsu2ZhpNhAo4t7wkUgEa9ABQAkcsF7IXtR-kFeDUg
+  default_config_hash: qqQi0rDViTGi7MGzX_kBdLCh98Fa5KYWqDcNxHrl8gs
 id: node.announcement.default
 targetEntityType: node
 bundle: announcement
@@ -102,13 +102,6 @@ content:
       match_operator: CONTAINS
       match_limit: 20
     third_party_settings: {  }
-  field_publish_externally:
-    type: boolean_checkbox
-    weight: 14
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 1
@@ -179,6 +172,13 @@ content:
     weight: 8
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_publish_externally:
+    type: boolean_checkbox
+    weight: 14
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   hide_sidebar_navigation: true
