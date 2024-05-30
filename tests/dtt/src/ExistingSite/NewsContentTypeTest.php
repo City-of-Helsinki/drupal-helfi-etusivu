@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\dtt\ExistingSite;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Tests\helfi_api_base\Functional\ExistingSiteTestBase;
 use Drupal\Tests\TestFileCreationTrait;
 
@@ -117,6 +120,38 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
 
     $this->drupalGet($node->toUrl());
     $this->assertSession()->elementAttributeContains('css', 'meta[property="og:image"]', 'content', $file->getFilename());
+  }
+
+  /**
+   * Tests that adding news update sets published_at field.
+   */
+  public function testNewsUpdate() : void {
+    $node = $this->createNode([
+      'type' => 'news_item',
+      'status' => 1,
+      'langcode' => 'fi',
+    ]);
+
+    $updateTime = new DrupalDateTime(
+      'tomorrow',
+      new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE)
+    );
+
+    $update = Paragraph::create([
+      'type' => 'news_update',
+      'field_news_update_date' => $updateTime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
+    $update->save();
+    $this->markEntityForCleanup($update);
+
+    $node->set('field_news_item_updating_news', [
+      'target_id' => $update->id(),
+      'target_revision_id' => $update->getRevisionId(),
+    ]);
+    $node->save();
+
+    // Adding news update should have updated published_at field.
+    $this->assertEquals($node->get('published_at')->value, $updateTime->getTimestamp());
   }
 
   /**
