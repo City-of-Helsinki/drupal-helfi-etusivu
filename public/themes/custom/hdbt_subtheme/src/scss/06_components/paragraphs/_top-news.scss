@@ -1,3 +1,13 @@
+.component--top-news {
+  .news-listing {
+    padding-inline-start: 0; // Remove default padding from ul-element
+  }
+
+  .news-listing__item {
+    position: relative;
+  }
+}
+
 .component--top-news--news {
   .component__container {
     background-color: $color-fog-light;
@@ -32,6 +42,10 @@
 
   .news-listing__medium-teaser {
     padding: 0;
+
+    [dir='rtl'] & {
+      padding: 0;
+    }
 
     &::before {
       display: none; // Hide the border from medium-teasers when they are in the top news container.
