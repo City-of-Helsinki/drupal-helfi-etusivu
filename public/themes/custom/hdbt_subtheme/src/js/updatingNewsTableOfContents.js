@@ -23,7 +23,7 @@
       exclusions +=
         ':not(.components--upper *)' +
         ':not(.component--remote-video *)' +
-        ':not(.component--text *)' +
+        ':not(.component--paragraph-text *)' +
         ':not(.component--banner *)' +
         ':not(.component--image *)' +
         ':not(.block--news-of-interest *)' +
