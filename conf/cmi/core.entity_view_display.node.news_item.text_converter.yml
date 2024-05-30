@@ -60,6 +60,7 @@ hidden:
   field_news_item_links_link: true
   field_news_item_links_title: true
   field_news_item_tags: true
+  field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
   langcode: true
