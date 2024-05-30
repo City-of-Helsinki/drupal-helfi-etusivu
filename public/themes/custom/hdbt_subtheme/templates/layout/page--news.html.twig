@@ -9,9 +9,22 @@
     <div class="no-sidebar enriched-content">
       {{ page.content[active_theme ~ '_page_title'] }}
     </div>
-    {# Render the main news block in before content. #}
-    {{ drupal_entity('block', 'views_block__frontpage_news_main_news', check_access=false) }}
 
+    {# TODO: This is also a bandage. In the UHF-9741 task this will be removed. (https://helsinkisolutionoffice.atlassian.net/browse/UHF-9741) #}
+    <div class="components components--lower">
+      {% embed "@hdbt/misc/component.twig" with
+        {
+          component_classes: ['component--top-news', 'component--top-news--news'],
+          component_title: 'Top stories'|t({}, {'context': 'Front page top news paragraph title'}),
+          use_component_title_lang_fallback: alternative_language ?? false,
+          component_content_class: 'main-news'
+        }
+      %}
+        {% block component_content %}
+          {{ drupal_view('frontpage_news', 'main_news') }}
+        {% endblock component_content %}
+      {% endembed %}
+    </div>
     <div id="helfi-etusivu-news-search" class="block--news-archive"></div>
   {% endblock page_before_content %}
 
