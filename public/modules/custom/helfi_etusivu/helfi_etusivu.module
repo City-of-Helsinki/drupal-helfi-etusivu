@@ -14,6 +14,7 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\helfi_annif\TextConverter\Document;
+use Drupal\helfi_etusivu\Entity\Node\NewsItem;
 use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -263,5 +264,14 @@ function helfi_etusivu_node_text_conversion_alter(Document &$document, EntityInt
   if (in_array($entity->bundle(), ['news_item', 'news_article'])) {
     $document
       ->stripNodes("//*[contains(@class, 'content-date')]");
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ */
+function helfi_etusivu_entity_bundle_info_alter(array &$bundles): void {
+  if (isset($bundles['node']['news_item'])) {
+    $bundles['node']['news_item']['class'] = NewsItem::class;
   }
 }

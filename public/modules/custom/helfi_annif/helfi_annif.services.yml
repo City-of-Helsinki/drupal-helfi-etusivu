@@ -3,6 +3,10 @@ services:
     autowire: true
     autoconfigure: true
 
+  logger.channel.helfi_annif:
+    parent: logger.channel_base
+    arguments: ['helfi_annif']
+
   Drupal\helfi_annif\KeywordManager: ~
 
   Drupal\helfi_annif\RecommendationManager: ~
