@@ -71,9 +71,9 @@ class RecommendationManager implements LoggerAwareInterface {
       $timestamp = strtotime("-1 year", time());
       $results = $this->connection
         ->query($query, [
-          ':nid' =>  $node->id(),
+          ':nid' => $node->id(),
           ':langcode' => $node->language()->getId(),
-          ':timestamp' => $timestamp
+          ':timestamp' => $timestamp,
         ])
         ->fetchAll();
     }
@@ -86,8 +86,8 @@ class RecommendationManager implements LoggerAwareInterface {
       return $response;
     }
 
-    // limit results and sort by created timestamp.
-    $nids = array_splice($results, 0,3);
+    // Limit results and sort by created timestamp.
+    $nids = array_splice($results, 0, 3);
     usort($nids, function ($a, $b) {
       if ($a->created == $b->created) {
         return 0;
