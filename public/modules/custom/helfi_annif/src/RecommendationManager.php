@@ -44,27 +44,38 @@ class RecommendationManager implements LoggerAwareInterface {
     // @todo #UHF-9964 exclude unwanted keywords and entities and refactor.
     $query = "
       select
-         n.nid,
-         count(n.nid) as relevancy
+        n.nid,
+        count(n.nid) as relevancy,
+        nfd.created
       from node as n
       left join node__field_annif_keywords as annif on n.nid = annif.entity_id
+      left join node_field_data as nfd on nfd.nid = n.nid
       where annif.field_annif_keywords_target_id in
-         (select
-          field_annif_keywords_target_id
-          from node__field_annif_keywords
-          where entity_id = :nid and
-          langcode = :langcode)
+        (select
+         field_annif_keywords_target_id
+         from node__field_annif_keywords
+         where entity_id = :nid and
+         langcode = :langcode)
       and n.langcode = :langcode
       and annif.langcode = :langcode
+      and nfd.langcode = :langcode
       and n.nid != :nid
+      and created > :timestamp
       group by n.nid
       order by relevancy DESC
-      limit 3;
+      limit 10;
     ";
 
     $response = [];
     try {
-      $results = $this->connection->query($query, [':nid' => $node->id(), ':langcode' => $node->language()->getId()])->fetchAll();
+      $timestamp = strtotime("-1 year", time());
+      $results = $this->connection
+        ->query($query, [
+          ':nid' =>  $node->id(),
+          ':langcode' => $node->language()->getId(),
+          ':timestamp' => $timestamp
+        ])
+        ->fetchAll();
     }
     catch (\Exception $e) {
       $this->logger->error($e->getMessage());
@@ -75,7 +86,15 @@ class RecommendationManager implements LoggerAwareInterface {
       return $response;
     }
 
-    $nids = array_column($results, 'nid');
+    // limit results and sort by created timestamp.
+    $nids = array_splice($results, 0,3);
+    usort($nids, function ($a, $b) {
+      if ($a->created == $b->created) {
+        return 0;
+      }
+      return ($a->created > $b->created) ? -1 : 1;
+    });
+    $nids = array_column($nids, 'nid');
 
     try {
       $response = $this->entityManager
