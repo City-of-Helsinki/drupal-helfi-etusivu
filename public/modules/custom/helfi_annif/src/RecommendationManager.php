@@ -85,7 +85,7 @@ class RecommendationManager implements LoggerAwareInterface {
     if (!$results || !is_array($results)) {
       return $response;
     }
-    
+
     usort($results, function ($a, $b) {
       if ($a->created == $b->created) {
         return 0;
