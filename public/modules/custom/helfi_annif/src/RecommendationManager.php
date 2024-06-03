@@ -63,7 +63,7 @@ class RecommendationManager implements LoggerAwareInterface {
       and created > :timestamp
       group by n.nid
       order by relevancy DESC
-      limit 10;
+      limit 3;
     ";
 
     $response = [];
@@ -85,16 +85,14 @@ class RecommendationManager implements LoggerAwareInterface {
     if (!$results || !is_array($results)) {
       return $response;
     }
-
-    // Limit results and sort by created timestamp.
-    $nids = array_splice($results, 0, 3);
-    usort($nids, function ($a, $b) {
+    
+    usort($results, function ($a, $b) {
       if ($a->created == $b->created) {
         return 0;
       }
       return ($a->created > $b->created) ? -1 : 1;
     });
-    $nids = array_column($nids, 'nid');
+    $nids = array_column($results, 'nid');
 
     try {
       $response = $this->entityManager
