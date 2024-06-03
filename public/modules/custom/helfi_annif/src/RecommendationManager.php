@@ -60,7 +60,7 @@ class RecommendationManager implements LoggerAwareInterface {
       and annif.langcode = :langcode
       and nfd.langcode = :langcode
       and n.nid != :nid
-      and created > :timestamp
+      and nfd.created > :timestamp
       group by n.nid
       order by relevancy DESC
       limit 3;
