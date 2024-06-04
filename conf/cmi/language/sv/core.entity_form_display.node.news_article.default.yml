@@ -5,7 +5,7 @@ third_party_settings:
     group_news_item_links_wrapper:
       label: Länkar
     group_main_image:
-      label: Huvudbild
+      label: 'Main image'
 content:
   field_content:
     settings:
