@@ -127,7 +127,8 @@ final class KeywordManager {
       return;
     }
 
-    $this->saveKeywords($entity, $this->keywordGenerator->suggest($entity));
+    $keywords = $this->keywordGenerator->suggest($entity) ?? [];
+    $this->saveKeywords($entity, $keywords);
   }
 
   /**

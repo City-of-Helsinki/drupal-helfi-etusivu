@@ -12,6 +12,7 @@ dependencies:
     - media.type.remote_video
     - node.type.announcement
     - node.type.landing_page
+    - node.type.news_article
     - node.type.news_item
     - node.type.page
     - taxonomy.vocabulary.keywords
@@ -60,6 +61,7 @@ permissions:
   - 'create image media'
   - 'create landing_page content'
   - 'create media'
+  - 'create news_article content'
   - 'create news_item content'
   - 'create page content'
   - 'create paragraph library item'
@@ -74,6 +76,7 @@ permissions:
   - 'delete own helfi_chart media'
   - 'delete own image media'
   - 'delete own landing_page content'
+  - 'delete own news_article content'
   - 'delete own news_item content'
   - 'delete own page content'
   - 'delete own remote_video media'
@@ -83,6 +86,7 @@ permissions:
   - 'edit any helfi_chart media'
   - 'edit any image media'
   - 'edit any landing_page content'
+  - 'edit any news_article content'
   - 'edit any news_item content'
   - 'edit any page content'
   - 'edit any remote_video media'
@@ -92,6 +96,7 @@ permissions:
   - 'edit own helfi_chart media'
   - 'edit own image media'
   - 'edit own landing_page content'
+  - 'edit own news_article content'
   - 'edit own news_item content'
   - 'edit own page content'
   - 'edit own remote_video media'
@@ -100,11 +105,13 @@ permissions:
   - 'mark as hidden in editoria11y'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
+  - 'revert news_article revisions'
   - 'revert news_item revisions'
   - 'revert page revisions'
   - 'schedule publishing of nodes'
   - 'set announcement published on date'
   - 'set landing_page published on date'
+  - 'set news_article published on date'
   - 'set news_item published on date'
   - 'set page published on date'
   - 'translate editable entities'
@@ -124,6 +131,7 @@ permissions:
   - 'view any unpublished page content'
   - 'view editoria11y checker'
   - 'view landing_page revisions'
+  - 'view news_article revisions'
   - 'view news_item revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'
