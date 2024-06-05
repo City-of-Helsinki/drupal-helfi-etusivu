@@ -1,0 +1,23 @@
+uuid: 5f81817f-94fd-4dd0-83a2-f1fb7358b4a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_listing_type
+    - paragraphs.paragraphs_type.front_page_top_news
+  module:
+    - options
+id: paragraph.front_page_top_news.field_listing_type
+field_name: field_listing_type
+entity_type: paragraph
+bundle: front_page_top_news
+label: 'Listing type'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: news
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -60,6 +60,7 @@ module:
   helfi_media_remote_video: 0
   helfi_node_announcement: 0
   helfi_node_landing_page: 0
+  helfi_node_news_article: 0
   helfi_node_news_item: 0
   helfi_node_page: 0
   helfi_paragraphs_accordion: 0

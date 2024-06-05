@@ -1,0 +1,27 @@
+uuid: c7a6b5b9-e4e3-4f74-be28-367ed760fe25
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_listing_type
+field_name: field_listing_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: news
+      label: News
+    -
+      value: articles
+      label: Articles
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

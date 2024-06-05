@@ -1,0 +1,21 @@
+uuid: cfd86644-8cdb-4471-80db-55aa01a84594
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.front_page_top_news.field_listing_type
+    - paragraphs.paragraphs_type.front_page_top_news
+id: paragraph.front_page_top_news.default
+targetEntityType: paragraph
+bundle: front_page_top_news
+mode: default
+content:
+  field_listing_type:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

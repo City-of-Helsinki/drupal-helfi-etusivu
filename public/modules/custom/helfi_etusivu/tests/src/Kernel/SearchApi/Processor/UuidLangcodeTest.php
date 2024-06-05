@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\search_api\Kernel\Processor;
 
 use Drupal\helfi_etusivu\Plugin\search_api\processor\UuidLangcode;
