@@ -3,7 +3,7 @@ msgstr ""
 
 msgctxt "Current paragraph title"
 msgid "Trending"
-msgstr "Pinnalla juuri nyt"
+msgstr "Pinnalla"
 
 msgctxt "Front page top news paragraph title"
 msgid "Top stories"
