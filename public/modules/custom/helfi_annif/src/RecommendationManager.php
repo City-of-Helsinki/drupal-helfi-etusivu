@@ -45,8 +45,7 @@ class RecommendationManager {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = NULL): array {
-    $entity_langcode = $entity->language()->getId();
-    $target_langcode = $target_langcode ?? $entity_langcode;
+    $target_langcode = $target_langcode ?? $entity->language()->getId();
 
     $results = $this->executeQuery($entity, $target_langcode);
     if (!$results || !is_array($results)) {
@@ -65,7 +64,6 @@ class RecommendationManager {
     }
 
     $results = [];
-
     foreach ($entities as $entity) {
       if ($entity instanceof TranslatableInterface && $entity->hasTranslation($target_langcode)) {
         $results[] = $entity->getTranslation($target_langcode);
