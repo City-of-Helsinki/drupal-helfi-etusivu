@@ -18,7 +18,7 @@ use Drupal\helfi_annif\Client\KeywordClient;
  */
 final class KeywordManager {
 
-  CONST array SUPPORTED_LANGUAGES = ['fi'];
+  const array SUPPORTED_LANGUAGES = ['fi'];
 
   /**
    * Taxonomy term storage.
@@ -81,7 +81,7 @@ final class KeywordManager {
   /**
    * Check if entity language is in supported languages.
    *
-   * @param EntityInterface $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity.
    */
   private function isSupportedLanguage(EntityInterface $entity) : bool {
@@ -102,7 +102,7 @@ final class KeywordManager {
       $this->isEntityProcessed($entity) ||
       // Skip if entity does not support keywords.
       !$this->supportsKeywords($entity) ||
-      // Skip if entity's language is not supported
+      // Skip if entity's language is not supported.
       !$this->isSupportedLanguage($entity) ||
       // Skip if entity already has keywords.
       (!$overwriteExisting && $this->hasKeywords($entity))

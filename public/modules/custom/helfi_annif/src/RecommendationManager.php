@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
-use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
-use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -32,7 +30,7 @@ class RecommendationManager {
   /**
    * Get recommendations for a node.
    *
-   * @param EntityInterface $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The node.
    * @param int $limit
    *   How many recommendations should be be returned.
@@ -42,10 +40,10 @@ class RecommendationManager {
    * @return array
    *   Array of recommendations.
    *
-   * @throws InvalidPluginDefinitionException
-   * @throws PluginNotFoundException
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = null): array {
+  public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = NULL): array {
     $entity_langcode = $entity->language()->getId();
     $target_langcode = $target_langcode ?? $entity_langcode;
 
@@ -62,7 +60,7 @@ class RecommendationManager {
       ->loadMultiple($nids);
 
     $results = [];
-    foreach($entities as $entity) {
+    foreach ($entities as $entity) {
       if ($entity->hasTranslation($entity_langcode)) {
         $results[] = $entity->getTranslation($entity_langcode);
       }
@@ -80,7 +78,7 @@ class RecommendationManager {
    * The recommendations can be unified between the translations
    * by always getting the results using the primary language recommendations.
    *
-   * @param EntityInterface $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity we want to suggest recommendations for.
    * @param string $langcode
    *   Langcode which is used to filter results.
