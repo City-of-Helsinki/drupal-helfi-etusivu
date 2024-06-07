@@ -48,11 +48,10 @@ class RecommendationManager {
   public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = null): array {
     $entity_langcode = $entity->language()->getId();
     $target_langcode = $target_langcode ?? $entity_langcode;
-    $response = [];
 
     $results = $this->executeQuery($entity, $target_langcode);
     if (!$results || !is_array($results)) {
-      return $response;
+      return [];
     }
 
     $this->sortByCreatedAt($results);
@@ -67,7 +66,7 @@ class RecommendationManager {
       if ($entity->hasTranslation($entity_langcode)) {
         $results[] = $entity->getTranslation($entity_langcode);
       }
-      if (count($results) >= 3) {
+      if (count($results) >= $limit) {
         break;
       }
     }
