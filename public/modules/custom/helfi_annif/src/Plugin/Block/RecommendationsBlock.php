@@ -71,7 +71,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       $recommendations = $this->recommendationManager
         ->getRecommendations($node, 3, 'fi');
     }
-    catch(\Exception $exception){
+    catch (\Exception $exception) {
       $this->logger->error($exception->getMessage());
     }
 
