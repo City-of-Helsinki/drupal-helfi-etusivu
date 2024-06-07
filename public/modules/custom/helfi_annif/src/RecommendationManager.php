@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
 
 /**
  * The recommendation manager.
  */
-class RecommendationManager implements LoggerAwareInterface {
-
-  use LoggerAwareTrait;
+class RecommendationManager {
 
   /**
    * The constructor.
@@ -34,14 +32,59 @@ class RecommendationManager implements LoggerAwareInterface {
   /**
    * Get recommendations for a node.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $node
+   * @param EntityInterface $entity
    *   The node.
+   * @param int $limit
+   *   How many recommendations should be be returned.
+   * @param string|null $target_langcode
+   *   Allow sharing the recommendations between all translations.
    *
    * @return array
    *   Array of recommendations.
+   *
+   * @throws InvalidPluginDefinitionException
+   * @throws PluginNotFoundException
    */
-  public function getRecommendations(EntityInterface $node): array {
-    // @todo #UHF-9964 exclude unwanted keywords and entities and refactor.
+  public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = null): array {
+    $target_langcode = $target_langcode ?? $entity->language()->getId();
+    $response = [];
+
+    $results = $this->executeQuery($entity, $target_langcode);
+    if (!$results || !is_array($results)) {
+      return $response;
+    }
+
+    $this->sortByCreatedAt($results);
+    $nids = array_column($results, 'nid');
+
+    $entities = $this->entityManager
+      ->getStorage($entity->getEntityTypeId())
+      ->loadByProperties([
+        'nid' => $nids,
+        'langcode' => $entity->language()->getId(),
+        'status' => 1
+      ]);
+    $entities = array_reverse($entities);
+
+    return array_splice($entities,0, $limit);
+  }
+
+  /**
+   * Execute the recommendation query.
+   *
+   * The recommendations are unified between the translations
+   * by always getting the results using the primary language recommendations.
+   *
+   * @param EntityInterface $entity
+   *   The entity we want to suggest recommendations for.
+   * @param string $langcode
+   *   Langcode which is used to filter results.
+   *
+   * @return array
+   *   Database query result.
+   */
+  private function executeQuery(EntityInterface $entity, string $langcode) {
+    // @todo #UHF-9964 exclude unwanted keywords
     $query = "
       select
         n.nid,
@@ -63,48 +106,32 @@ class RecommendationManager implements LoggerAwareInterface {
       and nfd.created > :timestamp
       group by n.nid
       order by relevancy DESC
-      limit 3;
+      limit 10;
     ";
 
-    $response = [];
-    try {
-      $timestamp = strtotime("-1 year", time());
-      $results = $this->connection
-        ->query($query, [
-          ':nid' => $node->id(),
-          ':langcode' => $node->language()->getId(),
-          ':timestamp' => $timestamp,
-        ])
-        ->fetchAll();
-    }
-    catch (\Exception $e) {
-      $this->logger->error($e->getMessage());
-      return $response;
-    }
+    $timestamp = strtotime("-1 year", time());
+    return $this->connection
+      ->query($query, [
+        ':nid' => $entity->id(),
+        ':langcode' => $langcode,
+        ':timestamp' => $timestamp,
+      ])
+      ->fetchAll();
+  }
 
-    if (!$results || !is_array($results)) {
-      return $response;
-    }
-
+  /**
+   * Sort results by created time.
+   *
+   * @param array $results
+   *   Entities to sort.
+   */
+  private function sortByCreatedAt(array &$results) : void {
     usort($results, function ($a, $b) {
       if ($a->created == $b->created) {
         return 0;
       }
       return ($a->created > $b->created) ? -1 : 1;
     });
-    $nids = array_column($results, 'nid');
-
-    try {
-      $response = $this->entityManager
-        ->getStorage($node->getEntityTypeId())
-        ->loadMultiple($nids);
-    }
-    catch (\Exception $e) {
-      $this->logger->error($e->getMessage());
-      return [];
-    }
-
-    return $response;
   }
 
 }

@@ -66,7 +66,15 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       '#title' => $this->t('You might be interested in'),
     ];
 
-    $recommendations = $this->recommendationManager->getRecommendations($node);
+    $recommendations = [];
+    try {
+      $recommendations = $this->recommendationManager
+        ->getRecommendations($node, 3, 'fi');
+    }
+    catch(\Exception $exception){
+      $this->logger->error($exception->getMessage());
+    }
+
     if (!$recommendations) {
       return $this->handleNoRecommendations($response);
     }
