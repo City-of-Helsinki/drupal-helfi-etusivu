@@ -7,6 +7,7 @@ namespace Drupal\helfi_annif;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\TranslatableInterface;
 
 /**
  * The recommendation manager.
@@ -64,8 +65,9 @@ class RecommendationManager {
     }
 
     $results = [];
+
     foreach ($entities as $entity) {
-      if ($entity->hasTranslation($target_langcode)) {
+      if ($entity instanceof TranslatableInterface && $entity->hasTranslation($target_langcode)) {
         $results[] = $entity->getTranslation($target_langcode);
       }
       if (count($results) >= $limit) {
