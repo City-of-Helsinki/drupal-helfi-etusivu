@@ -46,7 +46,8 @@ class RecommendationManager {
    * @throws PluginNotFoundException
    */
   public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = null): array {
-    $target_langcode = $target_langcode ?? $entity->language()->getId();
+    $entity_langcode = $entity->language()->getId();
+    $target_langcode = $target_langcode ?? $entity_langcode;
     $response = [];
 
     $results = $this->executeQuery($entity, $target_langcode);
@@ -59,20 +60,25 @@ class RecommendationManager {
 
     $entities = $this->entityManager
       ->getStorage($entity->getEntityTypeId())
-      ->loadByProperties([
-        'nid' => $nids,
-        'langcode' => $entity->language()->getId(),
-        'status' => 1
-      ]);
-    $entities = array_reverse($entities);
+      ->loadMultiple($nids);
 
-    return array_splice($entities,0, $limit);
+    $results = [];
+    foreach($entities as $entity) {
+      if ($entity->hasTranslation($entity_langcode)) {
+        $results[] = $entity->getTranslation($entity_langcode);
+      }
+      if (count($results) >= 3) {
+        break;
+      }
+    }
+
+    return $results;
   }
 
   /**
    * Execute the recommendation query.
    *
-   * The recommendations are unified between the translations
+   * The recommendations can be unified between the translations
    * by always getting the results using the primary language recommendations.
    *
    * @param EntityInterface $entity
