@@ -59,10 +59,14 @@ class RecommendationManager {
       ->getStorage($entity->getEntityTypeId())
       ->loadMultiple($nids);
 
+    if (!$entity->getEntityType()->isTranslatable()) {
+      return array_splice($entities, 0, 3);
+    }
+
     $results = [];
     foreach ($entities as $entity) {
-      if ($entity->hasTranslation($entity_langcode)) {
-        $results[] = $entity->getTranslation($entity_langcode);
+      if ($entity->hasTranslation($target_langcode)) {
+        $results[] = $entity->getTranslation($target_langcode);
       }
       if (count($results) >= $limit) {
         break;
