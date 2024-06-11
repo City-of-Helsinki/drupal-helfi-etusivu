@@ -154,7 +154,7 @@ final class AnnifCommands extends DrushCommands {
   /**
    * Preview entity text conversion result.
    *
-   * @param string $entityType
+   * @param string $entity_type
    *   The entity type.
    * @param string $id
    *   The entity id.
@@ -170,10 +170,10 @@ final class AnnifCommands extends DrushCommands {
   #[Option(name: 'language', description: 'Entity language', suggestedValues: ['fi', 'sv', 'en'])]
   #[Usage(name: 'drush helfi:preview-text node 123', description: 'Preview node with id 123.')]
   #[Usage(name: 'drush helfi:preview-text node 123 --language sv', description: 'Preview swedish translation of node 123.')]
-  public function preview(string $entityType, string $id, array $options = ['language' => NULL]) : int {
+  public function preview(string $entity_type, string $id, array $options = ['language' => NULL]) : int {
     try {
       $entity = $this->entityTypeManager
-        ->getStorage($entityType)
+        ->getStorage($entity_type)
         ->load($id);
 
       if (
