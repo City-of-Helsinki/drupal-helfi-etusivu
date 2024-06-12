@@ -36,7 +36,7 @@ class RecommendationManager {
    * @param int $limit
    *   How many recommendations should be be returned.
    * @param string|null $target_langcode
-   *   Allow sharing the recommendations between all translations.
+   *   Which translation to use to select the recommendations, null meaning the entity's translation.
    *
    * @return array
    *   Array of recommendations.
@@ -45,7 +45,8 @@ class RecommendationManager {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = NULL): array {
-    $target_langcode = $target_langcode ?? $entity->language()->getId();
+    $entity_langcode = $entity->language()->getId();
+    $target_langcode = $target_langcode ?? $entity_langcode;
 
     $results = $this->executeQuery($entity, $target_langcode);
     if (!$results || !is_array($results)) {
@@ -65,8 +66,8 @@ class RecommendationManager {
 
     $results = [];
     foreach ($entities as $entity) {
-      if ($entity instanceof TranslatableInterface && $entity->hasTranslation($target_langcode)) {
-        $results[] = $entity->getTranslation($target_langcode);
+      if ($entity instanceof TranslatableInterface && $entity->hasTranslation($entity_langcode)) {
+        $results[] = $entity->getTranslation($entity_langcode);
       }
       if (count($results) >= $limit) {
         break;
