@@ -18,6 +18,9 @@ use Drupal\helfi_annif\Client\KeywordClient;
  */
 final class KeywordManager {
 
+  public const KEYWORD_FIELD = 'field_annif_keywords';
+  public const KEYWORD_VID = 'annif_keywords';
+
   /**
    * Taxonomy term storage.
    *
@@ -127,7 +130,11 @@ final class KeywordManager {
       return;
     }
 
-    $keywords = $this->keywordGenerator->suggest($entity) ?? [];
+    $keywords = $this->keywordGenerator->suggest($entity);
+    if (!$keywords) {
+      return;
+    }
+
     $this->saveKeywords($entity, $keywords);
   }
 
@@ -140,6 +147,7 @@ final class KeywordManager {
    *   Overwrites existing keywords when set to TRUE.
    *
    * @throws \Drupal\helfi_annif\Client\KeywordClientException
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function processEntities(array $entities, bool $overwriteExisting = FALSE) : void {
     foreach ($this->prepareBatches($entities, $overwriteExisting) as $batch) {
@@ -147,6 +155,10 @@ final class KeywordManager {
 
       // KeywordGenerator::suggestBatch preserves ids.
       foreach ($result as $id => $keywords) {
+        if (!$keywords) {
+          continue;
+        }
+
         $this->saveKeywords($batch[$id], $keywords);
       }
     }
@@ -191,7 +203,7 @@ final class KeywordManager {
     }
 
     foreach ($buckets as $bucket) {
-      foreach (array_chunk($bucket, KeywordClient::MAX_BATCH_SIZE) as $batch) {
+      foreach (array_chunk($bucket, KeywordClient::MAX_BATCH_SIZE, preserve_keys: TRUE) as $batch) {
         yield $batch;
       }
     }
@@ -208,7 +220,7 @@ final class KeywordManager {
    */
   private function supportsKeywords(EntityInterface $entity) : bool {
     if ($entity instanceof FieldableEntityInterface) {
-      return $entity->hasField('field_annif_keywords');
+      return $entity->hasField(self::KEYWORD_FIELD);
     }
 
     return FALSE;
@@ -225,9 +237,9 @@ final class KeywordManager {
    */
   private function hasKeywords(EntityInterface $entity) : bool {
     assert($entity instanceof FieldableEntityInterface);
-    assert($entity->hasField('field_annif_keywords'));
+    assert($entity->hasField(self::KEYWORD_FIELD));
 
-    return !$entity->get('field_annif_keywords')->isEmpty();
+    return !$entity->get(self::KEYWORD_FIELD)->isEmpty();
   }
 
   /**
@@ -242,7 +254,7 @@ final class KeywordManager {
    */
   private function saveKeywords(EntityInterface $entity, array $keywords) : void {
     assert($entity instanceof FieldableEntityInterface);
-    assert($entity->hasField('field_annif_keywords'));
+    assert($entity->hasField(self::KEYWORD_FIELD));
 
     $terms = [];
 
@@ -250,7 +262,7 @@ final class KeywordManager {
       $terms[] = $this->getTerm($keyword, $entity->language()->getId());
     }
 
-    $entity->set('field_annif_keywords', $terms);
+    $entity->set(self::KEYWORD_FIELD, $terms);
 
     // This needs to be before ->save() so
     // processedItems is set for update hooks.
@@ -271,7 +283,7 @@ final class KeywordManager {
    */
   private function getTerm(Keyword $keyword, string $langcode) {
     $terms = $this->termStorage->loadByProperties([
-      'vid' => 'annif_keywords',
+      'vid' => self::KEYWORD_VID,
       // Unique identifier for keyword.
       'field_uri' => $keyword->uri,
     ]);
@@ -283,7 +295,7 @@ final class KeywordManager {
       }
 
       $term = $term->addTranslation($langcode, [
-        'vid' => 'annif_keywords',
+        'vid' => self::KEYWORD_VID,
         'name' => $keyword->label,
         'langcode' => $langcode,
         'field_uri' => $keyword->uri,
@@ -291,7 +303,7 @@ final class KeywordManager {
     }
     else {
       $term = $this->termStorage->create([
-        'vid' => 'annif_keywords',
+        'vid' => self::KEYWORD_VID,
         'name' => $keyword->label,
         'langcode' => $langcode,
         'field_uri' => $keyword->uri,
