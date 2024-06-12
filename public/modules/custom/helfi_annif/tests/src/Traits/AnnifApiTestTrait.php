@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\helfi_annif\Traits;
 
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
@@ -44,8 +48,12 @@ trait AnnifApiTestTrait {
    *
    * @param string $langcode
    *   Entity langcode. The API supports 'fi','sv','en'.
+   * @param bool|null $hasKeywords
+   *   Value for keyword field ->isEmpty(), NULL for ->hasField() = FALSE.
+   * @param bool|null $shouldSave
+   *   Bool if $entity->save() should be called, NULL for no opinion.
    */
-  protected function mockEntity(string $langcode = 'fi'): FieldableEntityInterface {
+  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL): FieldableEntityInterface {
     $language = $this->prophesize(LanguageInterface::class);
     $language
       ->getId()
@@ -55,6 +63,30 @@ trait AnnifApiTestTrait {
     $entity
       ->language()
       ->willReturn($language->reveal());
+
+    $entity->getEntityTypeId()->willReturn('test_entity');
+    $entity->bundle()->willReturn('test_entity');
+    $entity->id()->willReturn($this->randomString());
+
+    $field = $this->prophesize(FieldItemListInterface::class);
+    $field->isEmpty()->willReturn(!$hasKeywords);
+
+    $entity
+      ->hasField(Argument::exact(KeywordManager::KEYWORD_FIELD))
+      ->willReturn($hasKeywords !== NULL);
+    $entity
+      ->get(Argument::exact(KeywordManager::KEYWORD_FIELD))
+      ->willReturn($field->reveal());
+
+    if (is_bool($shouldSave)) {
+      if ($shouldSave) {
+        $entity->set(Argument::any(), Argument::any())->shouldBeCalled();
+        $entity->save()->shouldBeCalled();
+      }
+      else {
+        $entity->save()->shouldNotBeCalled();
+      }
+    }
 
     return $entity->reveal();
   }
