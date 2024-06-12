@@ -12,6 +12,7 @@ use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Utility\Error;
 use Drupal\helfi_annif\Client\KeywordClient;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
@@ -176,6 +177,11 @@ final class AnnifCommands extends DrushCommands {
         ->getStorage($entity_type)
         ->load($id);
 
+      if (!$entity) {
+        $this->io->error("Failed to load $entity_type:$id");
+        return self::EXIT_FAILURE;
+      }
+
       if (
         !empty($options['language']) &&
         $entity instanceof TranslatableInterface &&
@@ -184,13 +190,17 @@ final class AnnifCommands extends DrushCommands {
         $entity = $entity->getTranslation($options['language']);
       }
 
-      if ($entity && $content = $this->textConverter->convert($entity)) {
+      if ($content = $this->textConverter->convert($entity)) {
         $this->io()->text($content);
 
         return DrushCommands::EXIT_SUCCESS;
       }
+      else {
+        $this->io()->error("Failed to find text converter for $entity_type:$id");
+      }
     }
-    catch (InvalidPluginDefinitionException | PluginNotFoundException) {
+    catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+      Error::logException($this->logger(), $e);
     }
 
     return DrushCommands::EXIT_FAILURE;
