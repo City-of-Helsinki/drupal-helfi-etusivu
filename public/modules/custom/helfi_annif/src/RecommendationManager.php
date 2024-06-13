@@ -34,9 +34,10 @@ class RecommendationManager {
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The node.
    * @param int $limit
-   *   How many recommendations should be be returned.
+   *   How many recommendations should be returned.
    * @param string|null $target_langcode
-   *   Which translation to use to select the recommendations, null meaning the entity's translation.
+   *   Which translation to use to select the recommendations,
+   *   null uses the entity's translation.
    *
    * @return array
    *   Array of recommendations.
