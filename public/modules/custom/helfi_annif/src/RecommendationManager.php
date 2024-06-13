@@ -112,7 +112,8 @@ class RecommendationManager {
       limit {$limit};
     ";
 
-    // Cannot add :limit as parameter here, must be added directly to the query string above.
+    // Cannot add :limit as parameter here,
+    // must be added directly to the query string above.
     return $this->connection
       ->query($query, [
         ':nid' => $entity->id(),
@@ -144,7 +145,7 @@ class RecommendationManager {
    * @param array $entities
    *   Array of entities sorted by id.
    * @param array $queryResult
-   *   Array of query results sorted correctly
+   *   Array of query results sorted correctly.
    *
    * @return array
    *   Correctly sorted array of entities.
