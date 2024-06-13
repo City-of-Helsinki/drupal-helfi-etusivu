@@ -46,36 +46,26 @@ class RecommendationManager {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = NULL): array {
-    $entity_langcode = $entity->language()->getId();
-    $target_langcode = $target_langcode ?? $entity_langcode;
+    $destination_langcode = $entity->language()->getId();
+    $target_langcode = $target_langcode ?? $destination_langcode;
 
-    $results = $this->executeQuery($entity, $target_langcode);
-    if (!$results || !is_array($results)) {
+    $queryResult = $this->executeQuery($entity, $target_langcode, $destination_langcode, $limit);
+    if (!$queryResult || !is_array($queryResult)) {
       return [];
     }
 
-    $this->sortByCreatedAt($results);
-    $nids = array_column($results, 'nid');
+    $this->sortByCreatedAt($queryResult);
+    $nids = array_column($queryResult, 'nid');
 
     $entities = $this->entityManager
       ->getStorage($entity->getEntityTypeId())
       ->loadMultiple($nids);
 
-    if (!$entity->getEntityType()->isTranslatable()) {
-      return array_splice($entities, 0, 3);
-    }
+    // Entity query returns the results sorted by nid in ascending order
+    // while the raw query's results are in correct order.
+    $entities = $this->sortEntitiesByQueryResult($entities, $queryResult);
 
-    $results = [];
-    foreach ($entities as $entity) {
-      if ($entity instanceof TranslatableInterface && $entity->hasTranslation($entity_langcode)) {
-        $results[] = $entity->getTranslation($entity_langcode);
-      }
-      if (count($results) >= $limit) {
-        break;
-      }
-    }
-
-    return $results;
+    return $this->getTranslations($entities, $destination_langcode);
   }
 
   /**
@@ -86,13 +76,17 @@ class RecommendationManager {
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity we want to suggest recommendations for.
-   * @param string $langcode
-   *   Langcode which is used to filter results.
+   * @param string $target_langcode
+   *   What language are we using as a base for the recommendations.
+   * @param string $destination_langcode
+   *   What is the destination langcode.
+   * @param int $limit
+   *   How many items to get.
    *
    * @return array
    *   Database query result.
    */
-  private function executeQuery(EntityInterface $entity, string $langcode) {
+  private function executeQuery(EntityInterface $entity, string $target_langcode, string $destination_langcode, int $limit) {
     // @todo #UHF-9964 exclude unwanted keywords
     $query = "
       select
@@ -107,32 +101,33 @@ class RecommendationManager {
          field_annif_keywords_target_id
          from node__field_annif_keywords
          where entity_id = :nid and
-         langcode = :langcode)
-      and n.langcode = :langcode
-      and annif.langcode = :langcode
-      and nfd.langcode = :langcode
+         langcode = :target_langcode)
+      and n.langcode = :target_langcode
+      and annif.langcode = :destination_langcode
+      and nfd.langcode = :target_langcode
       and n.nid != :nid
       and nfd.created > :timestamp
       group by n.nid
-      order by relevancy DESC
-      limit 10;
+      order by count(n.nid) DESC
+      limit {$limit};
     ";
 
-    $timestamp = strtotime("-1 year", time());
+    // Cannot add :limit as parameter here, must be added directly to the query string above.
     return $this->connection
       ->query($query, [
         ':nid' => $entity->id(),
-        ':langcode' => $langcode,
-        ':timestamp' => $timestamp,
+        ':target_langcode' => $target_langcode,
+        ':destination_langcode' => $destination_langcode,
+        ':timestamp' => strtotime("-1 year", time()),
       ])
       ->fetchAll();
   }
 
   /**
-   * Sort results by created time.
+   * Sort query result by created time.
    *
    * @param array $results
-   *   Entities to sort.
+   *   Query results to sort.
    */
   private function sortByCreatedAt(array &$results) : void {
     usort($results, function ($a, $b) {
@@ -141,6 +136,49 @@ class RecommendationManager {
       }
       return ($a->created > $b->created) ? -1 : 1;
     });
+  }
+
+  /**
+   * Entity query changes the result sorting, it must be corrected afterward.
+   *
+   * @param array $entities
+   *   Array of entities sorted by id.
+   * @param array $queryResult
+   *   Array of query results sorted correctly
+   *
+   * @return array
+   *   Correctly sorted array of entities.
+   */
+  private function sortEntitiesByQueryResult(array $entities, array $queryResult) : array {
+    $results = [];
+    foreach ($queryResult as $result) {
+      if (!isset($entities[$result->nid])) {
+        continue;
+      }
+      $results[] = $entities[$result->nid];
+    }
+    return $results;
+  }
+
+  /**
+   * Get the translations for the recommended entities.
+   *
+   * @param array $entities
+   *   Array of entities.
+   * @param string $destination_langcode
+   *   Which translation to get.
+   *
+   * @return array
+   *   Array of translated entities.
+   */
+  private function getTranslations(array $entities, string $destination_langcode) : array {
+    $results = [];
+    foreach ($entities as $entity) {
+      if ($entity instanceof TranslatableInterface && $entity->hasTranslation($destination_langcode)) {
+        $results[] = $entity->getTranslation($destination_langcode);
+      }
+    }
+    return $results;
   }
 
 }
