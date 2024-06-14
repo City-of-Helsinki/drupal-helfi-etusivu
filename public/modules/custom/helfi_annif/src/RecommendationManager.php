@@ -48,7 +48,7 @@ class RecommendationManager {
   public function getRecommendations(EntityInterface $entity, int $limit = 3, string $target_langcode = NULL): array {
     $destination_langcode = $entity->language()->getId();
     $target_langcode = $target_langcode ?? $destination_langcode;
-    if (!$entity->hasTranslation($target_langcode)) {
+    if ($entity instanceof TranslatableInterface && !$entity->hasTranslation($target_langcode)) {
       $target_langcode = $destination_langcode;
     }
 
