@@ -32,8 +32,8 @@ display:
       pager:
         options:
           tags:
-            next: 'Nächste Seite ›'
-            previous: '‹ Vorherige Seite'
+            next: 'Weiter ›'
+            previous: '‹ Zurück'
           expose:
             items_per_page_label: 'Elemente pro Seite'
             items_per_page_options_all_label: '- Alle -'
@@ -42,7 +42,7 @@ display:
         options:
           submit_button: Filter
           reset_button_label: Zurücksetzen
-          exposed_sorts_label: 'Sortieren nach'
+          exposed_sorts_label: Sortierung
           sort_asc_label: Aufsteigend
           sort_desc_label: Absteigend
       empty:
@@ -80,8 +80,8 @@ display:
       pager:
         options:
           tags:
-            next: 'Nächste Seite ›'
-            previous: '‹ Vorherige Seite'
+            next: 'Weiter ›'
+            previous: '‹ Zurück'
           expose:
             items_per_page_label: 'Elemente pro Seite'
             items_per_page_options_all_label: '- Alle -'
