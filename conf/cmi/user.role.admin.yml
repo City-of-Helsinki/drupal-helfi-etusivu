@@ -41,7 +41,6 @@ dependencies:
     - pathauto
     - publication_date
     - redirect
-    - rest
     - role_delegation
     - scheduler
     - simple_sitemap

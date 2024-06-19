@@ -8,7 +8,7 @@ display:
         options:
           submit_button: Filter
           reset_button_label: Zurücksetzen
-          exposed_sorts_label: 'Sortieren nach'
+          exposed_sorts_label: Sortierung
           sort_asc_label: Aufsteigend
           sort_desc_label: Absteigend
       pager:
@@ -44,19 +44,19 @@ display:
             label: Statuscode
             group_items:
               1:
-                title: '300 Multiple Choices'
+                title: '300 Mehrere Auswahlmöglichkeiten'
               2:
-                title: '301 Moved Permanently'
+                title: '301 Dauerhaft verschoben'
               3:
-                title: '302 Found'
+                title: '302 Gefunden'
               4:
-                title: '303 See Other'
+                title: '303 Siehe andere'
               5:
-                title: '304 Not Modified'
+                title: '304 Nicht modifiziert'
               6:
-                title: '305 Use Proxy'
+                title: '305 Proxy verwenden'
               7:
-                title: '307 Temporary Redirect'
+                title: '307 Temporäre Weiterleitung'
         language:
           expose:
             label: Originalsprache
