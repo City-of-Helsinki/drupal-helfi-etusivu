@@ -1,12 +1,14 @@
-<div{{ attributes.addClass('block--news-of-interest') }}>
-  {{ title_prefix }}
-  {% if label %}
-    <h2{{ title_attributes }} {{ alternative_language ? create_attribute(({ 'lang': 'en', 'dir': 'ltr' })) }}>
-      {{ label }}
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-</div>
+{% block paragraph %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [ 'component--news-of-interest' ],
+      component_title: 'You might be interested in'|t({}, {'context': 'Front page news of interest title'}),
+      use_component_title_lang_fallback: alternative_language ?? false,
+      component_content_class: 'news-of-interest',
+    }
+  %}
+    {% block component_content %}
+      {{ content }}
+    {% endblock component_content %}
+  {% endembed %}
+{% endblock paragraph %}

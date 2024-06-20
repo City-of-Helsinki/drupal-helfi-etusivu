@@ -1,1 +1,7 @@
-{% include "views-view-unformatted--frontpage-news--of-interest.html.twig" %}
+<ul class="news-listing news-listing--latest-medium-teasers">
+  {% for row in rows %}
+    <li class="news-listing__item">
+      {{- row.content -}}
+    </li>
+  {% endfor %}
+</ul>
