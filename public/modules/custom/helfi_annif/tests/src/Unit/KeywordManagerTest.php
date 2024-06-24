@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_annif\Unit\TextConverter;
 
+use Drupal\Core\Cache\CacheTagsInvalidator;
+use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
@@ -128,13 +130,15 @@ class KeywordManagerTest extends UnitTestCase {
       ->get(Argument::any())
       ->willReturn($queue);
 
-    $cacheInvalidator = $this->container->get('cache_tags.invalidator');
+    $cacheInvalidator = $this->prophesize(CacheTagsInvalidatorInterface::class);
+    $cacheInvalidator
+      ->invalidateTags(['taxonomy_term:1234']);
 
     return new KeywordManager(
       $entityTypeManager->reveal(),
       $client,
       $queueFactory->reveal(),
-      $cacheInvalidator
+      $cacheInvalidator->reveal(),
     );
   }
 
