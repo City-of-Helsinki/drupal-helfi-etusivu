@@ -134,7 +134,7 @@ class KeywordManagerTest extends KernelTestBase {
       ->willReturn($queue);
 
     $cacheInvalidator = $this->container->get('cache_tags.invalidator');
-    
+
     return new KeywordManager(
       $entityTypeManager,
       $client,
