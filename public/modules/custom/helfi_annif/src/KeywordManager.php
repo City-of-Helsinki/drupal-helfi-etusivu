@@ -45,7 +45,7 @@ final class KeywordManager {
    *   The keyword generator.
    * @param \Drupal\Core\Queue\QueueFactory $queueFactory
    *   The queue factory.
-   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface
+   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cacheTagsInvalidator
    *   The cache validator.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
