@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif\Plugin\Block;
 
-use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
@@ -138,7 +136,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       $entity->get('field_annif_keywords')->referencedEntities()
     );
 
-    // flatten array by merging the destructed arrays.
+    // Flatten array by merging the destructed arrays.
     return array_merge(...$cacheTags);
   }
 
