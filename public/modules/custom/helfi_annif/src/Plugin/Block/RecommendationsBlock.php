@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif\Plugin\Block;
 
+use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
@@ -94,7 +96,11 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function getCacheTags(): array {
-    return Cache::mergeTags(parent::getCacheTags(), $this->getContextValue('node')->getCacheTags());
+    return Cache::mergeTags(
+      parent::getCacheTags(),
+      $this->getContextValue('node')->getCacheTags(),
+      $this->getAnnifKeywordCacheTags()
+    );
   }
 
   /**
@@ -113,6 +119,24 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
 
     $response['#no_results_message'] = $this->t('Calculating recommendations');
     return $response;
+  }
+
+  /**
+   * Get list of cache tags for the block.
+   *
+   * @return array
+   *   Array of cache tags for Annif-keywords related to this node.
+   */
+  private function getAnnifKeywordCacheTags(): array {
+    $entity = $this->getContextValue('node');
+    if (!$entity->hasField('field_annif_keywords') || $entity->get('field_annif_keywords')->isEmpty()) {
+      return [];
+    }
+
+    return array_map(
+      fn ($item) => "taxonomy_term:{$item['target_id']}",
+      $entity->get('field_annif_keywords')->getValue()
+    );
   }
 
 }
