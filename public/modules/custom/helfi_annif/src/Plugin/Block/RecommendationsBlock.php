@@ -133,10 +133,13 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       return [];
     }
 
-    return array_map(
-      fn ($item) => "taxonomy_term:{$item['target_id']}",
-      $entity->get('field_annif_keywords')->getValue()
+    $cacheTags = array_map(
+      fn ($term) => $term->getCacheTags(),
+      $entity->get('field_annif_keywords')->referencedEntities()
     );
+
+    // flatten array by merging the destructed arrays.
+    return array_merge(...$cacheTags);
   }
 
 }
