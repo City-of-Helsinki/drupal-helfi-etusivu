@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
+use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -52,6 +53,7 @@ final class KeywordManager {
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly KeywordClient $keywordGenerator,
     private readonly QueueFactory $queueFactory,
+    private readonly CacheTagsInvalidatorInterface $cacheTagsInvalidator,
   ) {
     $this->termStorage = $this->entityTypeManager->getStorage('taxonomy_term');
   }
@@ -268,6 +270,7 @@ final class KeywordManager {
     // processedItems is set for update hooks.
     $this->processedItems[$this->getEntityKey($entity)] = TRUE;
 
+    $this->invalidateKeywordTermsCacheTags($terms);
     $entity->save();
   }
 
@@ -313,6 +316,21 @@ final class KeywordManager {
     $term->save();
 
     return $term;
+  }
+
+  /**
+   * Invalidate Annif-keyword terms' cache tags.
+   *
+   * @param array $terms
+   *   Array of terms to process.
+   */
+  private function invalidateKeywordTermsCacheTags(array $terms): void {
+    $cacheTags = array_map(
+      fn ($term) => $term->getCacheTags(),
+      $terms
+    );
+
+    $this->cacheTagsInvalidator->invalidateTags(array_merge(...$cacheTags));
   }
 
 }
