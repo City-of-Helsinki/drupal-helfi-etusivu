@@ -25,6 +25,7 @@ class KeywordManagerTest extends KernelTestBase {
 
   use AnnifApiTestTrait;
 
+
   /**
    * {@inheritdoc}
    */
@@ -35,7 +36,6 @@ class KeywordManagerTest extends KernelTestBase {
     'taxonomy',
     'language',
     'helfi_annif',
-    'cache_tags.invalidator',
   ];
 
   /**
