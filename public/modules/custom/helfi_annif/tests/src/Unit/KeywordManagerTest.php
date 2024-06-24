@@ -133,7 +133,8 @@ class KeywordManagerTest extends UnitTestCase {
     return new KeywordManager(
       $entityTypeManager->reveal(),
       $client,
-      $queueFactory->reveal()
+      $queueFactory->reveal(),
+      $cacheInvalidator
     );
   }
 
