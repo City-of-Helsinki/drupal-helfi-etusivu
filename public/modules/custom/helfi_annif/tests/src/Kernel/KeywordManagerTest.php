@@ -35,6 +35,7 @@ class KeywordManagerTest extends KernelTestBase {
     'taxonomy',
     'language',
     'helfi_annif',
+    'cache_tags.invalidator',
   ];
 
   /**
