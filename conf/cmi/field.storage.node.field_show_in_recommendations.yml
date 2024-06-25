@@ -1,0 +1,18 @@
+uuid: c9775516-fb6f-4052-8d73-fdc9d5148a38
+langcode: fi
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_show_in_recommendations
+field_name: field_show_in_recommendations
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
