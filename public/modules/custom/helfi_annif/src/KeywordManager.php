@@ -272,7 +272,7 @@ final class KeywordManager {
     // processedItems is set for update hooks.
     $this->processedItems[$this->getEntityKey($entity)] = TRUE;
 
-    $this->invalidateKeywordTermsCacheTags($terms);
+    $this->invalidateCacheTags($terms);
     $entity->save();
   }
 
@@ -326,7 +326,7 @@ final class KeywordManager {
    * @param array $terms
    *   Array of terms to process.
    */
-  private function invalidateKeywordTermsCacheTags(array $terms): void {
+  private function invalidateCacheTags(array $terms): void {
     $cacheTags = array_map(
       fn ($term) => $term->getCacheTags(),
       $terms
