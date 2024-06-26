@@ -6,3 +6,4 @@ name: 'Annif keywords'
 vid: annif_keywords
 description: 'AI Generated keywords'
 weight: 0
+new_revision: false

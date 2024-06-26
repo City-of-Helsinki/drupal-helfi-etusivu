@@ -22,6 +22,9 @@ display:
           label: التحديث
         operations:
           label: عمليات
+        langcode:
+          label: اللغة
+          separator: ', '
       pager:
         options:
           tags:

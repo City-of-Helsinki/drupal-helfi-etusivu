@@ -22,6 +22,9 @@ display:
           label: Uuendatud
         operations:
           label: Toimingud
+        langcode:
+          label: Keel
+          separator: ', '
       pager:
         options:
           tags:
