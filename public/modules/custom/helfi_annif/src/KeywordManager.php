@@ -93,10 +93,13 @@ final class KeywordManager {
    */
   public function queueEntity(EntityInterface $entity, bool $overwriteExisting = FALSE) : void {
     if (
+      $entity instanceof RecommendableInterface &&
       // Skip if entity was processed in this request.
       $this->isEntityProcessed($entity) ||
       // Skip if entity does not support keywords.
-      !$this->supportsKeywords($entity) ||
+      !$entity instanceof RecommendableInterface ||
+      // skip if current entity is marked as non-recommendable
+      !$entity->isRecommendableContent() ||
       // Skip if entity already has keywords.
       (!$overwriteExisting && $this->hasKeywords($entity))
     ) {
