@@ -13,6 +13,7 @@ use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_annif\RecommendationManager;
+use Drupal\helfi_annif\RecommendableInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -60,7 +61,13 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   public function build() : array {
     $node = $this->getContextValue('node');
 
-    // @todo #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
+    if (
+      !$node instanceof RecommendableInterface ||
+      !$node->showRecommendationsBlock()
+    ) {
+      return [];
+    }
+
     $response = [
       '#theme' => 'recommendations_block',
       '#title' => $this->t('You might be interested in'),
