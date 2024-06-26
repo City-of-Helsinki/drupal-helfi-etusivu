@@ -9,7 +9,7 @@ declare(strict_types=1);
 /**
  * Update all news items' recommendation visibility.
  */
-function helfi_annif_update_10003() : void {
+function helfi_annif_update_10001() : void {
   $storage = \Drupal::entityTypeManager()
     ->getStorage('node');
 
@@ -21,12 +21,10 @@ function helfi_annif_update_10003() : void {
 
   while($items = $query->execute()) {
     $nodes = $storage->loadMultiple($items);
-    $tags = [];
     foreach($nodes as $node){
       $node->set('field_show_in_recommendations', 1);
       $node->set('field_show_recommendations_block', 1);
       $node->save();
-      $tags[] = $node->getCacheTagsToInvalidate()[0];
     }
     $i += 300;
     $query->range($i, 300);
