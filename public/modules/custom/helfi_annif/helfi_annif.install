@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains helfi_annif installation hooks.
+ */
+
+declare(strict_types=1);
+/**
+ * Update all news items' recommendation visibility.
+ */
+function helfi_annif_update_10003() : void {
+  $storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+
+  $i = 0;
+  $query = $storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'news_item')
+    ->range($i, 300);
+
+  while($items = $query->execute()) {
+    $nodes = $storage->loadMultiple($items);
+    $tags = [];
+    foreach($nodes as $node){
+      $node->set('field_show_in_recommendations', 1);
+      $node->set('field_show_recommendations_block', 1);
+      $node->save();
+      $tags[] = $node->getCacheTagsToInvalidate()[0];
+    }
+    $i += 300;
+    $query->range($i, 300);
+    \Drupal::service('entity.memory_cache')->deleteAll();
+  }
+}
