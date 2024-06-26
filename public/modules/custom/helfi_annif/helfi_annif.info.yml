@@ -7,3 +7,4 @@ dependencies:
   - drupal:text
   - drupal:language
   - helfi_api_base:helfi_api_base
+  - helfi_etusivu:helfi_etusivu
