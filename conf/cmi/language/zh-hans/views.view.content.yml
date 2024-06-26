@@ -22,6 +22,9 @@ display:
           label: 已更新
         operations:
           label: 操作
+        langcode:
+          label: 语言
+          separator: ', '
       pager:
         options:
           tags:

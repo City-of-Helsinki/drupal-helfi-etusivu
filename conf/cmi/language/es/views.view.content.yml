@@ -22,6 +22,9 @@ display:
           label: Actualizado
         operations:
           label: Operaciones
+        langcode:
+          label: Idioma
+          separator: ', '
       pager:
         options:
           tags:
