@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif\Plugin\Block;
 
+use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
@@ -59,12 +60,15 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function build() : array {
-    $node = $this->getContextValue('node');
+    try {
+      $node = $this->getContextValue('node');
+    }
+    catch(ContextException $exception) {
+      $this->logger->error($exception->getMessage());
+      return [];
+    }
 
-    if (
-      !$node instanceof RecommendableInterface ||
-      !$node->showRecommendationsBlock()
-    ) {
+    if (!$node instanceof RecommendableInterface || !$node->showRecommendationsBlock()) {
       return [];
     }
 
@@ -73,15 +77,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       '#title' => $this->t('You might be interested in'),
     ];
 
-    $recommendations = [];
-    try {
-      $recommendations = $this->recommendationManager
-        ->getRecommendations($node, 3, 'fi');
-    }
-    catch (\Exception $exception) {
-      $this->logger->error($exception->getMessage());
-    }
-
+    $recommendations = $this->getRecommendations($node);
     if (!$recommendations) {
       return $this->handleNoRecommendations($response);
     }
@@ -106,6 +102,27 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       $this->getContextValue('node')->getCacheTags(),
       $this->getAnnifKeywordCacheTags()
     );
+  }
+
+  /**
+   * Get the recommendations for current content entity.
+   *
+   * @param Drupal/helfi_annif/RecommendableInterface $node
+   *   Content entity to find recommendations for.
+   *
+   * @return array
+   *   Array of recommendations
+   */
+  private function getRecommendations(RecommendableInterface $node): array {
+    try {
+      $recommendations = $this->recommendationManager
+        ->getRecommendations($node, 3, 'fi');
+    }
+    catch (\Exception $exception) {
+      $this->logger->error($exception->getMessage());
+      return [];
+    }
+    return $recommendations;
   }
 
   /**
