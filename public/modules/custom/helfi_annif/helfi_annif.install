@@ -13,21 +13,54 @@ function helfi_annif_update_10001() : void {
   $storage = \Drupal::entityTypeManager()
     ->getStorage('node');
 
+  $skip_id = 6149;
+
   $i = 0;
   $query = $storage->getQuery()
     ->accessCheck(FALSE)
     ->condition('type', 'news_item')
-    ->range($i, 300);
+    ->condition('nid', $skip_id, '!=')
+    ->range($i, 200);
 
-  while($items = $query->execute()) {
+  /** @var \Drupal\Core\Database\Connection $connection */
+  $connection = \Drupal\Core\Database\Database::getConnection();
+
+  while ($items = $query->execute()) {
+    $insert_recommendations = $connection->insert('node__field_show_in_recommendations')->fields([
+      'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_in_recommendations_value'
+    ]);
+
+    $insert_blocks = $connection->insert('node__field_show_recommendations_block')->fields([
+      'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_recommendations_block_value'
+    ]);
+
     $nodes = $storage->loadMultiple($items);
-    foreach($nodes as $node){
-      $node->set('field_show_in_recommendations', 1);
-      $node->set('field_show_recommendations_block', 1);
-      $node->save();
+
+    foreach($nodes as $node) {
+      $insert_recommendations->values([
+        'bundle' => 'news_item',
+        'entity_id' => $node->id(),
+        'revision_id' => $node->getRevisionId(),
+        'langcode' => $node->language()->getId(),
+        'delta' => 0,
+        'field_show_in_recommendations_value' => 1
+      ]);
+
+      $insert_blocks->values([
+        'bundle' => 'news_item',
+        'entity_id' => $node->id(),
+        'revision_id' => $node->getRevisionId(),
+        'langcode' => $node->language()->getId(),
+        'delta' => 0,
+        'field_show_recommendations_block_value' => 1
+      ]);
     }
-    $i += 300;
+
+    $insert_recommendations->execute();
+    $insert_blocks->execute();
+
+    $i+=300;
     $query->range($i, 300);
-    \Drupal::service('entity.memory_cache')->deleteAll();
+    $storage->resetCache();
   }
 }
