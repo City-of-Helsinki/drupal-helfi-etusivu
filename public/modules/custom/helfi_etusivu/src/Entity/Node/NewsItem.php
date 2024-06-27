@@ -98,7 +98,7 @@ final class NewsItem extends Node implements RecommendableInterface {
   /**
    * {@inheritDoc}
    */
-  public function invalidateKeywordsCacheTags(array $terms = []): void {
+  public function invalidateKeywordsCacheTags(): void {
     if (!$this->isRecommendableEntity()) {
       return;
     }

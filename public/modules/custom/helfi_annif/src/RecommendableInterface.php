@@ -52,7 +52,7 @@ interface RecommendableInterface {
   /**
    * Invalidate the cache tags of the keyword taxonomy terms.
    */
-  public function invalidateKeywordsCacheTags(array $terms = []): void;
+  public function invalidateKeywordsCacheTags(): void;
 
   /**
    * Get keyword field name.
