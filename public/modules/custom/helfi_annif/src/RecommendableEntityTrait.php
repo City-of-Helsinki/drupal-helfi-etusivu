@@ -9,11 +9,11 @@ namespace Drupal\helfi_annif;
  */
 trait RecommendableEntityTrait {
 
-  static string $keywordField = 'field_annif_keywords';
+  public static string $keywordField = 'field_annif_keywords';
 
-  static string $showInRecommendations = 'field_show_in_recommendations';
+  public static string $showInRecommendations = 'field_show_in_recommendations';
 
-  static string $showRecommendationsBlock = 'field_show_recommendations_block';
+  public static string $showRecommendationsBlock = 'field_show_recommendations_block';
 
   /**
    * {@inheritDoc}

@@ -13,8 +13,8 @@ use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\helfi_annif\RecommendationManager;
 use Drupal\helfi_annif\RecommendableInterface;
+use Drupal\helfi_annif\RecommendationManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -63,7 +63,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
     try {
       $node = $this->getContextValue('node');
     }
-    catch(ContextException $exception) {
+    catch (ContextException $exception) {
       $this->logger->error($exception->getMessage());
       return [];
     }
@@ -110,7 +110,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   /**
    * Get the recommendations for current content entity.
    *
-   * @param Drupal/helfi_annif/RecommendableInterface $node
+   * @param \Drupal\helfi_annif\RecommendableInterface $node
    *   Content entity to find recommendations for.
    *
    * @return array
