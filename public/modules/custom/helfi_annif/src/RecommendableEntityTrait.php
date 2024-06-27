@@ -49,7 +49,7 @@ trait RecommendableEntityTrait {
     }
 
     return $this->isRecommendableEntity() &&
-      !$this->get(self::$keywordField)->isEmpty() &&
+      $this->hasKeywords() &&
       $this->get(self::$showRecommendationsBlock)->value;
   }
 
