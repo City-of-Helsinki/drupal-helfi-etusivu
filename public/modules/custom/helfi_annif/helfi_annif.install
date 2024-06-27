@@ -13,6 +13,8 @@ function helfi_annif_update_10001() : void {
   $storage = \Drupal::entityTypeManager()
     ->getStorage('node');
 
+  // Updating node 6149 programmatically caused
+  // duplicate entry error for some reason.
   $skip_id = 6149;
 
   $i = 0;
