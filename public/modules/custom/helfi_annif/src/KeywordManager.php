@@ -96,7 +96,7 @@ final class KeywordManager {
       // Skip if entity was processed in this request.
       $this->isEntityProcessed($entity) ||
       // Skip if entity does not support keywords.
-      !$entity->isRecommendableContent() ||
+      !$entity->isRecommendableEntity() ||
       // Skip if entity already has keywords.
       (!$overwriteExisting && $entity->hasKeywords())
     ) {
