@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Entity\Node;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
@@ -75,6 +76,33 @@ final class NewsItem extends Node implements RecommendableInterface {
       $entity->setTimestamp($requestTime);
       $entity->save();
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getKeywordsCacheTags(array $terms = []): array {
+    if (!$this->isRecommendableEntity()) {
+      return [];
+    }
+
+    $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
+    $cacheTags = array_map(
+      fn ($term) => $term->getCacheTags(),
+      $terms
+    );
+
+    return array_merge(...$cacheTags);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function invalidateKeywordsCacheTags(array $terms = []): void {
+    if (!$this->isRecommendableEntity()) {
+      return;
+    }
+    Cache::invalidateTags($this->getKeywordsCacheTags());
   }
 
 }

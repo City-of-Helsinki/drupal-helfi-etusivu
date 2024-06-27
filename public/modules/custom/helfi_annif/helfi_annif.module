@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\Document;
+use Drupal\helfi_annif\RecommendableInterface;
 
 /**
  * Implements hook_theme().
@@ -31,8 +32,10 @@ function helfi_annif_theme() : array {
  */
 function helfi_annif_entity_insert(EntityInterface $entity) : void {
   /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
-  $keywordManager = \Drupal::service(KeywordManager::class);
-  $keywordManager->queueEntity($entity, TRUE);
+  if ($entity instanceof RecommendableInterface) {
+    $keywordManager = \Drupal::service(KeywordManager::class);
+    $keywordManager->queueEntity($entity, TRUE);
+  }
 }
 
 /**
@@ -40,8 +43,10 @@ function helfi_annif_entity_insert(EntityInterface $entity) : void {
  */
 function helfi_annif_entity_update(EntityInterface $entity) : void {
   /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
-  $keywordManager = \Drupal::service(KeywordManager::class);
-  $keywordManager->queueEntity($entity, TRUE);
+  if ($entity instanceof RecommendableInterface) {
+    $keywordManager = \Drupal::service(KeywordManager::class);
+    $keywordManager->queueEntity($entity, TRUE);
+  }
 }
 
 /**
