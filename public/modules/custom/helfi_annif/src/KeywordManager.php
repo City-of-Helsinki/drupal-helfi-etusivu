@@ -114,7 +114,7 @@ final class KeywordManager {
   /**
    * Generates keywords for single entity.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param \Drupal\helfi_annif\RecommendableInterface $entity
    *   The entities.
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
@@ -122,6 +122,8 @@ final class KeywordManager {
    * @throws \Drupal\helfi_annif\Client\KeywordClientException
    */
   public function processEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
+    assert($entity instanceof EntityInterface);
+
     // Skip if entity does not support keywords.
     if (!$entity->isRecommendableEntity()) {
       return;
