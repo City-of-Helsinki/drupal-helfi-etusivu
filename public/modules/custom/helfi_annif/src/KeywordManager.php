@@ -86,22 +86,19 @@ final class KeywordManager {
   /**
    * Queues keyword generation for single entity.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param Drupal\helfi_annif\RecommendableInterface $entity
    *   The entity.
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
    */
-  public function queueEntity(EntityInterface $entity, bool $overwriteExisting = FALSE) : void {
+  public function queueEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
     if (
-      $entity instanceof RecommendableInterface &&
       // Skip if entity was processed in this request.
       $this->isEntityProcessed($entity) ||
       // Skip if entity does not support keywords.
-      !$entity instanceof RecommendableInterface ||
-      // skip if current entity is marked as non-recommendable
       !$entity->isRecommendableContent() ||
       // Skip if entity already has keywords.
-      (!$overwriteExisting && $this->hasKeywords($entity))
+      (!$overwriteExisting && $entity->hasKeywords())
     ) {
       return;
     }
@@ -126,14 +123,14 @@ final class KeywordManager {
    *
    * @throws \Drupal\helfi_annif\Client\KeywordClientException
    */
-  public function processEntity(EntityInterface $entity, bool $overwriteExisting = FALSE) : void {
+  public function processEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
     // Skip if entity does not support keywords.
-    if (!$this->supportsKeywords($entity)) {
+    if (!$entity->isRecommendableEntity()) {
       return;
     }
 
     // Skip if entity already has keywords.
-    if (!$overwriteExisting && $this->hasKeywords($entity)) {
+    if (!$overwriteExisting && $entity->hasKeywords()) {
       return;
     }
 
@@ -148,7 +145,7 @@ final class KeywordManager {
   /**
    * Generates keywords for entities.
    *
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
+   * @param \Drupal\helfi_annif\RecommendableInterface[] $entities
    *   The entities.
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
@@ -174,7 +171,7 @@ final class KeywordManager {
   /**
    * Gets entities in batches.
    *
-   * @param \Drupal\Core\Entity\EntityInterface[] $entities
+   * @param \Drupal\helfi_annif\RecommendableInterface[] $entities
    *   The entities.
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
@@ -190,12 +187,12 @@ final class KeywordManager {
 
     foreach ($entities as $key => $entity) {
       // Skip if entity does not support keywords.
-      if (!$this->supportsKeywords($entity)) {
+      if (!$entity->isRecommendableEntity()) {
         continue;
       }
 
       // Skip if entity already has keywords.
-      if (!$overwriteExisting && $this->hasKeywords($entity)) {
+      if (!$overwriteExisting && $entity->hasKeywords()) {
         continue;
       }
 
@@ -217,51 +214,18 @@ final class KeywordManager {
   }
 
   /**
-   * Returns true if entity supports keywords.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity.
-   *
-   * @return bool
-   *   TRUE if entity supports keywords.
-   */
-  private function supportsKeywords(EntityInterface $entity) : bool {
-    if ($entity instanceof FieldableEntityInterface) {
-      return $entity->hasField(self::KEYWORD_FIELD);
-    }
-
-    return FALSE;
-  }
-
-  /**
-   * Returns true if entity has keywords.
-   *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *   The entity.
-   *
-   * @return bool
-   *   TRUE if entity has keywords.
-   */
-  private function hasKeywords(EntityInterface $entity) : bool {
-    assert($entity instanceof FieldableEntityInterface);
-    assert($entity->hasField(self::KEYWORD_FIELD));
-
-    return !$entity->get(self::KEYWORD_FIELD)->isEmpty();
-  }
-
-  /**
    * Saves keywords to entity.
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * @param \Drupal\Core\Entity\RecommendableInterface $entity
    *   The entity.
    * @param \Drupal\helfi_annif\Client\Keyword[] $keywords
    *   Keywords.
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  private function saveKeywords(EntityInterface $entity, array $keywords) : void {
+  private function saveKeywords(RecommendableInterface $entity, array $keywords) : void {
     assert($entity instanceof FieldableEntityInterface);
-    assert($entity->hasField(self::KEYWORD_FIELD));
+    assert($entity->isRecommendableEntity());
 
     $terms = [];
 
@@ -269,13 +233,13 @@ final class KeywordManager {
       $terms[] = $this->getTerm($keyword, $entity->language()->getId());
     }
 
-    $entity->set(self::KEYWORD_FIELD, $terms);
+    $entity->set($entity->getKeywordFieldName(), $terms);
 
     // This needs to be before ->save() so
     // processedItems is set for update hooks.
     $this->processedItems[$this->getEntityKey($entity)] = TRUE;
 
-    $this->invalidateCacheTags($terms);
+    $entity->invalidateKeywordsCacheTags();
     $entity->save();
   }
 
@@ -321,21 +285,6 @@ final class KeywordManager {
     $term->save();
 
     return $term;
-  }
-
-  /**
-   * Invalidate Annif-keyword terms' cache tags.
-   *
-   * @param array $terms
-   *   Array of terms to process.
-   */
-  private function invalidateCacheTags(array $terms): void {
-    $cacheTags = array_map(
-      fn ($term) => $term->getCacheTags(),
-      $terms
-    );
-
-    $this->cacheTagsInvalidator->invalidateTags(array_merge(...$cacheTags));
   }
 
 }

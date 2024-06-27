@@ -53,4 +53,18 @@ trait RecommendableEntityTrait {
       $this->get(self::$showRecommendationsBlock)->value;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public function hasKeywords(): bool {
+    return !$this->get(self::$keywordField)->isEmpty();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public static function getKeywordFieldName(): string {
+    return self::$keywordField;
+  }
+
 }

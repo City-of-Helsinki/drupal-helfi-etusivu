@@ -32,4 +32,36 @@ interface RecommendableInterface {
    *   Show recommendations block.
    */
   public function showRecommendationsBlock(): bool;
+
+  /**
+   * Check if the entity has keywords.
+   *
+   * @return bool
+   *   Entity has keywords.
+   */
+  public function hasKeywords(): bool;
+
+  /**
+   * Get cache tags for keywords.
+   *
+   * @return array
+   *   Keywords cache tags.
+   */
+  public function getKeywordsCacheTags(): array;
+
+  /**
+   * Invalidate the cache tags of the keyword taxonomy terms.
+   */
+  public function invalidateKeywordsCacheTags(array $terms = []): void;
+
+  /**
+   * Get keyword field name.
+   *
+   * @return string
+   *   Name of the field which holds the keywords.
+   */
+  public static function getKeywordFieldName(): string;
+
+
+
 }
