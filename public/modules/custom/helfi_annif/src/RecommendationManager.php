@@ -90,7 +90,6 @@ class RecommendationManager {
    *   Database query result.
    */
   private function executeQuery(EntityInterface $entity, string $target_langcode, string $destination_langcode, int $limit) {
-    // @todo #UHF-9964 exclude unwanted keywords
     $query = "
       select
         n.nid,
@@ -100,11 +99,14 @@ class RecommendationManager {
       left join node__field_annif_keywords as annif on n.nid = annif.entity_id
       left join node_field_data as nfd on nfd.nid = n.nid
       where annif.field_annif_keywords_target_id in
-        (select
-         field_annif_keywords_target_id
+        (select field_annif_keywords_target_id
          from node__field_annif_keywords
          where entity_id = :nid and
          langcode = :target_langcode)
+      and n.nid not in
+          (select distinct restriction.entity_id
+           from node__field_show_in_recommendations as restriction
+           where restriction.field_show_in_recommendations_value = 0)
       and n.langcode = :target_langcode
       and annif.langcode = :destination_langcode
       and nfd.langcode = :target_langcode
