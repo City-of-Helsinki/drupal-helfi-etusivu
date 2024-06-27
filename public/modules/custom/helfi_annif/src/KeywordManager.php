@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
-use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -45,8 +44,6 @@ final class KeywordManager {
    *   The keyword generator.
    * @param \Drupal\Core\Queue\QueueFactory $queueFactory
    *   The queue factory.
-   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cacheTagsInvalidator
-   *   The cache validator.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -55,7 +52,6 @@ final class KeywordManager {
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly KeywordClient $keywordGenerator,
     private readonly QueueFactory $queueFactory,
-    private readonly CacheTagsInvalidatorInterface $cacheTagsInvalidator,
   ) {
     $this->termStorage = $this->entityTypeManager->getStorage('taxonomy_term');
   }
@@ -86,12 +82,14 @@ final class KeywordManager {
   /**
    * Queues keyword generation for single entity.
    *
-   * @param Drupal\helfi_annif\RecommendableInterface $entity
+   * @param \Drupal\helfi_annif\RecommendableInterface $entity
    *   The entity.
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
    */
   public function queueEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
+    assert($entity instanceof EntityInterface);
+
     if (
       // Skip if entity was processed in this request.
       $this->isEntityProcessed($entity) ||
@@ -216,7 +214,7 @@ final class KeywordManager {
   /**
    * Saves keywords to entity.
    *
-   * @param \Drupal\Core\Entity\RecommendableInterface $entity
+   * @param \Drupal\helfi_annif\RecommendableInterface $entity
    *   The entity.
    * @param \Drupal\helfi_annif\Client\Keyword[] $keywords
    *   Keywords.

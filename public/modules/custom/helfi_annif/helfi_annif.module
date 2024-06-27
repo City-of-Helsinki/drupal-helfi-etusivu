@@ -31,8 +31,8 @@ function helfi_annif_theme() : array {
  * Implements hook_entity_insert().
  */
 function helfi_annif_entity_insert(EntityInterface $entity) : void {
-  /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
   if ($entity instanceof RecommendableInterface) {
+    /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
     $keywordManager = \Drupal::service(KeywordManager::class);
     $keywordManager->queueEntity($entity, TRUE);
   }
@@ -42,8 +42,8 @@ function helfi_annif_entity_insert(EntityInterface $entity) : void {
  * Implements hook_entity_update().
  */
 function helfi_annif_entity_update(EntityInterface $entity) : void {
-  /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
   if ($entity instanceof RecommendableInterface) {
+    /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
     $keywordManager = \Drupal::service(KeywordManager::class);
     $keywordManager->queueEntity($entity, TRUE);
   }
