@@ -62,6 +62,4 @@ interface RecommendableInterface {
    */
   public static function getKeywordFieldName(): string;
 
-
-
 }

@@ -6,6 +6,9 @@
  */
 
 declare(strict_types=1);
+
+use Drupal\Core\Database\Database;
+
 /**
  * Update all news items' recommendation visibility.
  */
@@ -25,27 +28,27 @@ function helfi_annif_update_10001() : void {
     ->range($i, 200);
 
   /** @var \Drupal\Core\Database\Connection $connection */
-  $connection = \Drupal\Core\Database\Database::getConnection();
+  $connection = Database::getConnection();
 
   while ($items = $query->execute()) {
     $insert_recommendations = $connection->insert('node__field_show_in_recommendations')->fields([
-      'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_in_recommendations_value'
+      'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_in_recommendations_value',
     ]);
 
     $insert_blocks = $connection->insert('node__field_show_recommendations_block')->fields([
-      'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_recommendations_block_value'
+      'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_recommendations_block_value',
     ]);
 
     $nodes = $storage->loadMultiple($items);
 
-    foreach($nodes as $node) {
+    foreach ($nodes as $node) {
       $insert_recommendations->values([
         'bundle' => 'news_item',
         'entity_id' => $node->id(),
         'revision_id' => $node->getRevisionId(),
         'langcode' => $node->language()->getId(),
         'delta' => 0,
-        'field_show_in_recommendations_value' => 1
+        'field_show_in_recommendations_value' => 1,
       ]);
 
       $insert_blocks->values([
@@ -54,14 +57,14 @@ function helfi_annif_update_10001() : void {
         'revision_id' => $node->getRevisionId(),
         'langcode' => $node->language()->getId(),
         'delta' => 0,
-        'field_show_recommendations_block_value' => 1
+        'field_show_recommendations_block_value' => 1,
       ]);
     }
 
     $insert_recommendations->execute();
     $insert_blocks->execute();
 
-    $i+=300;
+    $i += 300;
     $query->range($i, 300);
     $storage->resetCache();
   }

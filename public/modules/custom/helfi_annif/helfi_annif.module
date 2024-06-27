@@ -10,8 +10,8 @@ declare(strict_types=1);
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\helfi_annif\KeywordManager;
-use Drupal\helfi_annif\TextConverter\Document;
 use Drupal\helfi_annif\RecommendableInterface;
+use Drupal\helfi_annif\TextConverter\Document;
 
 /**
  * Implements hook_theme().
