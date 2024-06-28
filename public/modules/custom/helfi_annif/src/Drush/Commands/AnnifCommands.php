@@ -229,8 +229,6 @@ final class AnnifCommands extends DrushCommands {
       ->condition('nid', $skip_id, '!=')
       ->range($i, 200);
 
-    /** @var \Drupal\Core\Database\Connection $connection */
-
     while ($items = $query->execute()) {
       $insert_recommendations = $this->connection->insert($show_in_recommendations)->fields([
         'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_in_recommendations_value',
