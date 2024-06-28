@@ -264,7 +264,7 @@ final class AnnifCommands extends DrushCommands {
         $insert_recommendations->execute();
         $insert_blocks->execute();
       }
-      catch(\Exception $e) {
+      catch (\Exception $e) {
         Error::logException($this->logger(), $e);
       }
 
