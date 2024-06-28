@@ -61,5 +61,5 @@ interface RecommendableInterface {
    *   Name of the field which holds the keywords.
    */
   public static function getKeywordFieldName(): string;
-  
+
 }
