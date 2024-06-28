@@ -6,6 +6,9 @@ namespace Drupal\helfi_annif;
 
 use Drupal\node\Entity\Node;
 
+/**
+ * Base class for recommendations.
+ */
 abstract class RecommendableBase extends Node implements RecommendableInterface {
 
   public const string KEYWORDFIELD = 'field_annif_keywords';
