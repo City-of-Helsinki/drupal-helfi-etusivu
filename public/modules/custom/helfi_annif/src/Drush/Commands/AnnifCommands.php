@@ -215,7 +215,7 @@ final class AnnifCommands extends DrushCommands {
     $show_in_recommendations = 'node__field_show_in_recommendations';
     $show_recommendations_block = 'node__field_show_recommendations_block';
 
-    $storage = \Drupal::entityTypeManager()
+    $storage = $this->entityTypeManager
       ->getStorage('node');
 
     // Updating node 6149 programmatically caused
