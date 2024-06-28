@@ -206,6 +206,9 @@ final class AnnifCommands extends DrushCommands {
     return DrushCommands::EXIT_FAILURE;
   }
 
+  /**
+   * Set new fields' default values.
+   */
   #[Command(name: 'helfi:annif-entity-defaults')]
   public function setEntityDefaultAnnifValues() {
 
@@ -260,7 +263,8 @@ final class AnnifCommands extends DrushCommands {
       try {
         $insert_recommendations->execute();
         $insert_blocks->execute();
-      } catch(\Exception $e) {
+      }
+      catch(\Exception $e) {
         Error::logException($this->logger(), $e);
       }
 
