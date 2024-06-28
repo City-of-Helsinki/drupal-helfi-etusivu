@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
+use Drupal\Core\Language\LanguageInterface;
+
 /**
  * Interface for recommendable entity.
  */
@@ -61,5 +63,10 @@ interface RecommendableInterface {
    *   Name of the field which holds the keywords.
    */
   public static function getKeywordFieldName(): string;
+
+  /**
+   * Added for tests.
+   */
+  public function language(): LanguageInterface;
 
 }
