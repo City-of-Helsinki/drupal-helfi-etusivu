@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
-use Drupal\Core\Language\LanguageInterface;
-
 /**
  * Interface for recommendable entity.
  */
