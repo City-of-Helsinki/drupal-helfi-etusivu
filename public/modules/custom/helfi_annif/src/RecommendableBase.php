@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\Entity\Node;
 
 /**
  * Base class for recommendations.
  */
-abstract class RecommendableBase extends Node implements RecommendableInterface {
+abstract class RecommendableBase extends Node implements EntityInterface, RecommendableInterface {
 
   public const string KEYWORDFIELD = 'field_annif_keywords';
 
