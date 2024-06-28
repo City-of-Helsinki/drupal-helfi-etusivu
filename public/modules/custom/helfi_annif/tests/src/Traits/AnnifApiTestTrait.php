@@ -7,6 +7,7 @@ namespace Drupal\Tests\helfi_annif\Traits;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\helfi_annif\KeywordManager;
+use Drupal\helfi_annif\RecommendableBase;
 use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
@@ -59,7 +60,7 @@ trait AnnifApiTestTrait {
       ->getId()
       ->willReturn($langcode);
 
-    $entity = $this->prophesize(RecommendableInterface::class);
+    $entity = $this->prophesize(RecommendableBase::class);
     $entity
       ->language()
       ->willReturn($language->reveal());
