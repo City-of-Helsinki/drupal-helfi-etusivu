@@ -186,6 +186,8 @@ final class KeywordManager {
     $buckets = [];
 
     foreach ($entities as $key => $entity) {
+      assert($entity instanceof EntityInterface);
+
       // Skip if entity does not support keywords.
       if (!$entity->isRecommendableEntity()) {
         continue;
