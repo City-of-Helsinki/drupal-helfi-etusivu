@@ -67,6 +67,6 @@ interface RecommendableInterface {
   /**
    * Added for tests.
    */
-  public function language(): LanguageInterface;
+  public function language();
 
 }
