@@ -206,4 +206,68 @@ final class AnnifCommands extends DrushCommands {
     return DrushCommands::EXIT_FAILURE;
   }
 
+  #[Command(name: 'helfi:annif-entity-defaults')]
+  public function setEntityDefaultAnnifValues() {
+
+    $show_in_recommendations = 'node__field_show_in_recommendations';
+    $show_recommendations_block = 'node__field_show_recommendations_block';
+
+    $storage = \Drupal::entityTypeManager()
+      ->getStorage('node');
+
+    // Updating node 6149 programmatically caused
+    // duplicate entry error for some reason.
+    $skip_id = 6149;
+
+    $i = 0;
+    $query = $storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('type', 'news_item')
+      ->condition('nid', $skip_id, '!=')
+      ->range($i, 200);
+
+    /** @var \Drupal\Core\Database\Connection $connection */
+
+    while ($items = $query->execute()) {
+      $insert_recommendations = $this->connection->insert($show_in_recommendations)->fields([
+        'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_in_recommendations_value',
+      ]);
+
+      $insert_blocks = $this->connection->insert($show_recommendations_block)->fields([
+        'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_recommendations_block_value',
+      ]);
+
+      $nodes = $storage->loadMultiple($items);
+
+      foreach ($nodes as $node) {
+        $default_values = [
+          'bundle' => 'news_item',
+          'entity_id' => $node->id(),
+          'revision_id' => $node->getRevisionId(),
+          'langcode' => $node->language()->getId(),
+          'delta' => 0,
+        ];
+
+        // Set the entity recommended value to 1.
+        $default_values['field_show_in_recommendations_value'] = 1;
+        $insert_recommendations->values($default_values);
+
+        // Set the block visibility to 1.
+        $default_values['field_show_recommendations_block_value'] = 1;
+        $insert_blocks->values($default_values);
+      }
+
+      try {
+        $insert_recommendations->execute();
+        $insert_blocks->execute();
+      } catch(\Exception $e) {
+        Error::logException($this->logger(), $e);
+      }
+
+      $i += 300;
+      $query->range($i, 300);
+      $storage->resetCache();
+    }
+  }
+
 }
