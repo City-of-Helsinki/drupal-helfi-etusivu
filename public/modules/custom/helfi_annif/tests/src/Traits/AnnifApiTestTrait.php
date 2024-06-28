@@ -11,6 +11,7 @@ use Drupal\helfi_annif\RecommendableBase;
 use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
+use Drupal\helfi_etusivu\Entity\Node\NewsItem;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -60,7 +61,7 @@ trait AnnifApiTestTrait {
       ->getId()
       ->willReturn($langcode);
 
-    $entity = $this->prophesize(RecommendableBase::class);
+    $entity = $this->prophesize(NewsItem::class);
     $entity
       ->language()
       ->willReturn($language->reveal());
