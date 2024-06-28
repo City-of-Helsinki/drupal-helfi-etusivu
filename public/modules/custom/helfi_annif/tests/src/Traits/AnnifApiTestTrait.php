@@ -8,6 +8,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\helfi_annif\KeywordManager;
+use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
@@ -53,13 +54,13 @@ trait AnnifApiTestTrait {
    * @param bool|null $shouldSave
    *   Bool if $entity->save() should be called, NULL for no opinion.
    */
-  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL): FieldableEntityInterface {
+  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL): RecommendableInterface {
     $language = $this->prophesize(LanguageInterface::class);
     $language
       ->getId()
       ->willReturn($langcode);
 
-    $entity = $this->prophesize(FieldableEntityInterface::class);
+    $entity = $this->prophesize(RecommendableInterface::class);
     $entity
       ->language()
       ->willReturn($language->reveal());
