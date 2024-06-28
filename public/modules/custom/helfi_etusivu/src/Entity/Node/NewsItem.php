@@ -8,15 +8,14 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
+use Drupal\helfi_annif\RecommendableBase;
 use Drupal\helfi_annif\RecommendableEntityTrait;
-use Drupal\helfi_annif\RecommendableInterface;
-use Drupal\node\Entity\Node;
 use Drupal\radioactivity\RadioactivityInterface;
 
 /**
  * A bundle class for NewsItem -node.
  */
-final class NewsItem extends Node implements RecommendableInterface {
+final class NewsItem extends RecommendableBase {
 
   use RecommendableEntityTrait;
 
