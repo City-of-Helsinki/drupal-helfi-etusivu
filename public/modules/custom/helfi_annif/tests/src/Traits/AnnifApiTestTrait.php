@@ -65,6 +65,8 @@ trait AnnifApiTestTrait {
       ->language()
       ->willReturn($language->reveal());
 
+    $entity->isRecommendableEntity()->willReturn(TRUE);
+
     $entity->getEntityTypeId()->willReturn('test_entity');
     $entity->bundle()->willReturn('test_entity');
     $entity->id()->willReturn($this->randomString());
