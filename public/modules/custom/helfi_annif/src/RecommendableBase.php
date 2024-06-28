@@ -4,31 +4,21 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
-/**
- * Annif-recommendation trait.
- */
-trait RecommendableEntityTrait {
+use Drupal\node\Entity\Node;
 
-  /**
-   * Keyword - field name.
-   */
-  public static string $keywordField = 'field_annif_keywords';
+abstract class RecommendableBase extends Node implements RecommendableInterface {
 
-  /**
-   * Show in recommendations - field name.
-   */
-  public static string $showInRecommendations = 'field_show_in_recommendations';
+  public const string KEYWORDFIELD = 'field_annif_keywords';
 
-  /**
-   * Show recommendations block - field name.
-   */
-  public static string $showRecommendationsBlock = 'field_show_recommendations_block';
+  public const string SHOWINRECOMMENDATION = 'field_show_in_recommendations';
+
+  public const string SHOWRECOMMENDATIONSBLOCK = 'field_show_recommendations_block';
 
   /**
    * {@inheritDoc}
    */
   public function isRecommendableEntity(): bool {
-    return $this->hasField(self::$keywordField);
+    return $this->hasField(self::KEYWORDFIELD);
   }
 
   /**
@@ -38,14 +28,14 @@ trait RecommendableEntityTrait {
     // Not having the field to hide this entity from recommendations
     // should not hide it by default.
     if (
-      !$this->hasField(self::$showInRecommendations)
+      !$this->hasField(self::SHOWINRECOMMENDATION)
     ) {
       return TRUE;
     }
 
     return $this->isRecommendableEntity() &&
-      !$this->get(self::$keywordField)->isEmpty() &&
-      $this->get(self::$showInRecommendations)->value;
+      !$this->get(self::KEYWORDFIELD)->isEmpty() &&
+      $this->get(self::SHOWINRECOMMENDATION)->value;
   }
 
   /**
@@ -53,27 +43,27 @@ trait RecommendableEntityTrait {
    */
   public function showRecommendationsBlock(): bool {
     // Not having the field to hide the block should not hide it by default.
-    if (!$this->hasField(self::$showRecommendationsBlock)) {
+    if (!$this->hasField(self::SHOWRECOMMENDATIONSBLOCK)) {
       return TRUE;
     }
 
     return $this->isRecommendableEntity() &&
       $this->hasKeywords() &&
-      $this->get(self::$showRecommendationsBlock)->value;
+      $this->get(self::SHOWRECOMMENDATIONSBLOCK)->value;
   }
 
   /**
    * {@inheritDoc}
    */
   public function hasKeywords(): bool {
-    return !$this->get(self::$keywordField)->isEmpty();
+    return !$this->get(self::KEYWORDFIELD)->isEmpty();
   }
 
   /**
    * {@inheritDoc}
    */
   public static function getKeywordFieldName(): string {
-    return self::$keywordField;
+    return self::KEYWORDFIELD;
   }
 
 }
