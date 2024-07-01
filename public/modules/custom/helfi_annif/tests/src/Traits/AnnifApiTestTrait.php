@@ -10,7 +10,6 @@ use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
-use Drupal\helfi_etusivu\Entity\Node\NewsItem;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -53,6 +52,8 @@ trait AnnifApiTestTrait {
    *   Value for keyword field ->isEmpty(), NULL for ->hasField() = FALSE.
    * @param bool|null $shouldSave
    *   Bool if $entity->save() should be called, NULL for no opinion.
+   * @param bool $isRecommendableEntity
+   *   Is the entity recommendable.
    */
   protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL, bool $isRecommendableEntity = TRUE): RecommendableInterface {
     $language = $this->prophesize(LanguageInterface::class);

@@ -9,7 +9,6 @@ use Drupal\helfi_annif\TextConverter\RenderTextConverter;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\BrowserTestBase;
 use Drush\TestTraits\DrushTestTrait;
-use PHPStan\Process\CpuCoreCounter;
 
 /**
  * Tests drush command.
