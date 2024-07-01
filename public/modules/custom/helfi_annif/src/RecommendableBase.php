@@ -12,11 +12,11 @@ use Drupal\node\Entity\Node;
  */
 abstract class RecommendableBase extends Node implements EntityInterface, RecommendableInterface {
 
-  public const string KEYWORDFIELD = 'field_annif_keywords';
+  protected const string KEYWORDFIELD = 'field_annif_keywords';
 
-  public const string SHOWINRECOMMENDATION = 'field_show_in_recommendations';
+  protected const string SHOWINRECOMMENDATION = 'field_show_in_recommendations';
 
-  public const string SHOWRECOMMENDATIONSBLOCK = 'field_show_recommendations_block';
+  protected const string SHOWRECOMMENDATIONSBLOCK = 'field_show_recommendations_block';
 
   /**
    * {@inheritDoc}
@@ -66,7 +66,7 @@ abstract class RecommendableBase extends Node implements EntityInterface, Recomm
   /**
    * {@inheritDoc}
    */
-  public static function getKeywordFieldName(): string {
+  public function getKeywordFieldName(): string {
     return self::KEYWORDFIELD;
   }
 
