@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
+use Drupal\Core\Entity\FieldableEntityInterface;
+
 /**
  * Interface for recommendable entity.
  */
-interface RecommendableInterface {
+interface RecommendableInterface extends FieldableEntityInterface {
 
   /**
    * Entity can handle recommendations.
@@ -60,6 +62,6 @@ interface RecommendableInterface {
    * @return string
    *   Name of the field which holds the keywords.
    */
-  public static function getKeywordFieldName(): string;
+  public function getKeywordFieldName(): string;
 
 }
