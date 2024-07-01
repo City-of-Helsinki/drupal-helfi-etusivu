@@ -1,0 +1,5 @@
+label: 'Näytä suositteluissa'
+description: 'Näytä tämä sivu muiden sivujen suositteluissa.'
+settings:
+  on_label: Kyllä
+  off_label: Ei

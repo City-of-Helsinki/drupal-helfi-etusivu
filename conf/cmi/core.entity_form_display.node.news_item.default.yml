@@ -55,7 +55,7 @@ third_party_settings:
       label: Links
       region: content
       parent_name: ''
-      weight: 18
+      weight: 20
       format_type: fieldset
       format_settings:
         classes: ''
@@ -70,7 +70,7 @@ third_party_settings:
       label: 'Main image'
       region: content
       parent_name: ''
-      weight: 16
+      weight: 17
       format_type: details
       format_settings:
         classes: ''
@@ -82,11 +82,10 @@ third_party_settings:
     group_updating_news:
       children:
         - field_news_item_updating_news
-        - field_news_item_updating_news
       label: 'Updating news'
       region: content
       parent_name: ''
-      weight: 17
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -94,6 +93,22 @@ third_party_settings:
         id: ''
         open: false
         description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
+        required_fields: false
+    group_automatically_recommended:
+      children:
+        - field_show_in_recommendations
+        - field_show_recommendations_block
+        - field_annif_keywords
+      label: 'Automatically recommended content'
+      region: content
+      parent_name: ''
+      weight: 25
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        description: 'Recommended content may include news or articles. Recommendations are based on automatically selected news categories. The news categories are chosen based on the page content when the page is saved.'
         required_fields: false
 _core:
   default_config_hash: dW1Kmx2dOCHZosI85sWLQGupPRXvS8NL-lmM_O44boc
@@ -120,7 +135,7 @@ content:
     third_party_settings: {  }
   field_content:
     type: paragraphs
-    weight: 17
+    weight: 18
     region: content
     settings:
       title: Paragraph
@@ -139,7 +154,7 @@ content:
     third_party_settings: {  }
   field_lead_in:
     type: string_textarea
-    weight: 15
+    weight: 16
     region: content
     settings:
       rows: 5
@@ -162,7 +177,7 @@ content:
     third_party_settings: {  }
   field_news_groups:
     type: select2_entity_reference
-    weight: 26
+    weight: 22
     region: content
     settings:
       width: 100%
@@ -190,7 +205,7 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 19
+    weight: 21
     region: content
     settings:
       width: 100%
@@ -220,7 +235,7 @@ content:
     third_party_settings: {  }
   field_news_neighbourhoods:
     type: select2_entity_reference
-    weight: 27
+    weight: 23
     region: content
     settings:
       width: 100%
@@ -230,7 +245,7 @@ content:
     third_party_settings: {  }
   field_radioactivity:
     type: radioactivity_reference
-    weight: 28
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -244,14 +259,14 @@ content:
     third_party_settings: {  }
   field_show_in_recommendations:
     type: boolean_checkbox
-    weight: 30
+    weight: 27
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_show_recommendations_block:
     type: boolean_checkbox
-    weight: 31
+    weight: 28
     region: content
     settings:
       display_label: true
@@ -278,7 +293,7 @@ content:
     third_party_settings: {  }
   publish_on:
     type: datetime_timestamp_no_default
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -294,13 +309,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 14
+    weight: 15
     region: content
     settings:
       display_label: true
@@ -337,12 +352,12 @@ content:
     third_party_settings: {  }
   unpublish_on:
     type: datetime_timestamp_no_default
-    weight: 12
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   url_redirects:
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
