@@ -22,6 +22,9 @@ display:
           label: 'Mis à jour'
         operations:
           label: Actions
+        langcode:
+          label: Langue
+          separator: ', '
       pager:
         options:
           tags:
