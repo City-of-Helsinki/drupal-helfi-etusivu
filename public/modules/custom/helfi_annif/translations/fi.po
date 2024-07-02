@@ -1,0 +1,6 @@
+msgid ""
+msgstr ""
+
+msgctxt "Recommendations block title"
+msgid "You might be interested in"
+msgstr "Sinua voisi kiinnostaa"
