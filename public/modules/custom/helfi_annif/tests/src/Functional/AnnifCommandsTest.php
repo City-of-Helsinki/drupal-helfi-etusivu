@@ -27,6 +27,10 @@ class AnnifCommandsTest extends BrowserTestBase {
     'content_translation',
     'node',
     'helfi_annif',
+    'helfi_etusivu',
+    'datetime',
+    'paragraphs',
+    'helfi_node_news_item',
   ];
 
   /**
@@ -55,7 +59,11 @@ class AnnifCommandsTest extends BrowserTestBase {
       ->setStatus(1)
       ->save();
 
+    $languages = ConfigurableLanguage::loadMultiple(['fi', 'sv']);
     foreach (['fi', 'sv'] as $langcode) {
+      if (isset($languages[$langcode])) {
+        continue;
+      }
       ConfigurableLanguage::createFromLangcode($langcode)->save();
     }
   }

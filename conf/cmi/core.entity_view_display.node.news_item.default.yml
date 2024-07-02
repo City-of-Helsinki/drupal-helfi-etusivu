@@ -16,6 +16,8 @@ dependencies:
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
+    - field.field.node.news_item.field_show_in_recommendations
+    - field.field.node.news_item.field_show_recommendations_block
     - node.type.news_item
   module:
     - entity_reference_revisions
@@ -132,6 +134,26 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_show_in_recommendations:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_show_recommendations_block:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 15
     region: content
   links:
     settings: {  }

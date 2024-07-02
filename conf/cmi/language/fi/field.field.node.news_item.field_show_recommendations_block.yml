@@ -1,0 +1,5 @@
+label: 'Näytä automaattisesti suositellut sisällöt'
+description: 'Näytä automaattisesti suositellut sisällöt tällä sivulla.'
+settings:
+  on_label: Kyllä
+  off_label: Ei

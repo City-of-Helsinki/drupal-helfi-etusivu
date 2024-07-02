@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_annif\Traits;
 
-use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\helfi_annif\KeywordManager;
+use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
@@ -52,17 +52,26 @@ trait AnnifApiTestTrait {
    *   Value for keyword field ->isEmpty(), NULL for ->hasField() = FALSE.
    * @param bool|null $shouldSave
    *   Bool if $entity->save() should be called, NULL for no opinion.
+   * @param bool $isRecommendableEntity
+   *   Is the entity recommendable.
    */
-  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL): FieldableEntityInterface {
+  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL, bool $isRecommendableEntity = TRUE): RecommendableInterface {
     $language = $this->prophesize(LanguageInterface::class);
     $language
       ->getId()
       ->willReturn($langcode);
 
-    $entity = $this->prophesize(FieldableEntityInterface::class);
+    $entity = $this->prophesize(RecommendableInterface::class);
     $entity
       ->language()
       ->willReturn($language->reveal());
+
+    $entity->hasKeywords()->willReturn($hasKeywords);
+
+    $entity->hasField('field_annif_keywords')->willReturn(TRUE);
+    $entity->isRecommendableEntity()->willReturn($isRecommendableEntity);
+    $entity->getKeywordFieldName()->willReturn('field_annif_keywords');
+    $entity->invalidateKeywordsCacheTags();
 
     $entity->getEntityTypeId()->willReturn('test_entity');
     $entity->bundle()->willReturn('test_entity');

@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Entity\Node;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
-use Drupal\node\Entity\Node;
+use Drupal\helfi_annif\RecommendableBase;
 use Drupal\radioactivity\RadioactivityInterface;
 
 /**
- * A bundle class for node entities.
+ * A bundle class for NewsItem -node.
  */
-final class NewsItem extends Node {
+final class NewsItem extends RecommendableBase {
 
   /**
    * {@inheritdoc}
@@ -71,6 +72,33 @@ final class NewsItem extends Node {
       $entity->setTimestamp($requestTime);
       $entity->save();
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getKeywordsCacheTags(array $terms = []): array {
+    if (!$this->isRecommendableEntity()) {
+      return [];
+    }
+
+    $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
+    $cacheTags = array_map(
+      fn ($term) => $term->getCacheTags(),
+      $terms
+    );
+
+    return array_merge(...$cacheTags);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function invalidateKeywordsCacheTags(): void {
+    if (!$this->isRecommendableEntity()) {
+      return;
+    }
+    Cache::invalidateTags($this->getKeywordsCacheTags());
   }
 
 }
