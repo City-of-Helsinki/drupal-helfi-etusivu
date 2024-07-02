@@ -16,3 +16,7 @@ msgstr "Senaste nytt"
 msgctxt "Front page learn more paragraph title"
 msgid "Learn more"
 msgstr "Läs mer och få inspiration"
+
+msgctxt "Front page news of interest title"
+msgid "You might be interested in"
+msgstr "Du kanske är intresserad av"
