@@ -13,6 +13,7 @@
 }
 
 .component--news-of-interest {
+  @include component-margin-top();
   background-color:  $color-black-5;
   margin-left: $spacing;
   margin-right: $spacing;
@@ -26,5 +27,5 @@
     // TODO… UHF-9866 Remove this when the card style is renewed and the arrow is removed
     // (https://helsinkisolutionoffice.atlassian.net/browse/UHF-9866).
     padding: $spacing-and-half;
-  } 
+  }
 }
