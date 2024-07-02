@@ -66,7 +66,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
     // @todo #UHF-9964 Add recommendation block hiding feature.
     $response = [
       '#theme' => 'recommendations_block',
-      '#title' => $this->t('You might be interested in'),
+      '#title' => $this->t('You might be interested in', [], ['context' => 'Recommendations block title']),
     ];
 
     $recommendations = [];
