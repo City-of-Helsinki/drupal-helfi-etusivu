@@ -212,64 +212,61 @@ final class AnnifCommands extends DrushCommands {
   #[Command(name: 'helfi:annif-entity-defaults')]
   public function setEntityDefaultAnnifValues() {
 
-    $show_in_recommendations = 'node__field_show_in_recommendations';
-    $show_recommendations_block = 'node__field_show_recommendations_block';
-
-    $storage = $this->entityTypeManager
-      ->getStorage('node');
-
-    // Updating node 6149 programmatically caused
-    // duplicate entry error for some reason.
-    $skip_id = 6149;
-
-    $i = 0;
-    $query = $storage->getQuery()
+    $query = $this->entityTypeManager
+      ->getStorage('node')
+      ->getQuery()
       ->accessCheck(FALSE)
-      ->condition('type', 'news_item')
-      ->condition('nid', $skip_id, '!=')
-      ->range($i, 200);
+      ->condition('type', 'news_item');
 
-    while ($items = $query->execute()) {
-      $insert_recommendations = $this->connection->insert($show_in_recommendations)->fields([
-        'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_in_recommendations_value',
+    $batch = (new BatchBuilder())
+      ->addOperation([$this, 'batchVisibilityFieldsDefaultValues'], [
+        $query->execute(),
       ]);
 
-      $insert_blocks = $this->connection->insert($show_recommendations_block)->fields([
-        'bundle', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_show_recommendations_block_value',
-      ]);
+    batch_set($batch->toArray());
 
-      $nodes = $storage->loadMultiple($items);
+    drush_backend_batch_process();
 
-      foreach ($nodes as $node) {
-        $default_values = [
-          'bundle' => 'news_item',
-          'entity_id' => $node->id(),
-          'revision_id' => $node->getRevisionId(),
-          'langcode' => $node->language()->getId(),
-          'delta' => 0,
-        ];
+    return DrushCommands::EXIT_SUCCESS;
+  }
 
-        // Set the entity recommended value to 1.
-        $default_values['field_show_in_recommendations_value'] = 1;
-        $insert_recommendations->values($default_values);
+  public function batchVisibilityFieldsDefaultValues(array $entityIds, &$context,): void {
+    $batchSize = 200;
 
-        // Set the block visibility to 1.
-        $default_values['field_show_recommendations_block_value'] = 1;
-        $insert_blocks->values($default_values);
-      }
-
-      try {
-        $insert_recommendations->execute();
-        $insert_blocks->execute();
-      }
-      catch (\Exception $e) {
-        Error::logException($this->logger(), $e);
-      }
-
-      $i += 300;
-      $query->range($i, 300);
-      $storage->resetCache();
+    // Check if the sandbox should be initialized.
+    if (!isset($context['sandbox']['from'])) {
+      $context['sandbox']['from'] = 0;
     }
+
+    $from = $context['sandbox']['from'];
+    $to = min($from + $batchSize, count($entityIds));
+    $slice = array_slice($entityIds, $from, $to - $from);
+
+    try {
+      $entities = $this->entityTypeManager
+        ->getStorage('node')
+        ->loadMultiple($slice);
+
+      foreach ($entities as $entity) {
+        $entity->set('field_show_in_recommendations', 1);
+        $entity->set('field_show_recommendations_block', 1);
+        // todo: Prevent updating updated_at time when saving.
+        $entity->save();
+      }
+
+      $context['sandbox']['from'] = $to;
+      $context['message'] = $this->t("@total entities remaining", [
+        '@total' => count($entityIds) - $to,
+      ]);
+
+      // Everything has been processed?
+      $context['finished'] = $to >= count($entityIds);
+    }
+    catch (\Exception $e) {
+      $context['message'] = $this->t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
+      $context['finished'] = 1;
+    }
+
   }
 
 }
