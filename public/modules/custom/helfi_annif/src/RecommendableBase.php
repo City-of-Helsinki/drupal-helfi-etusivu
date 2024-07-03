@@ -14,9 +14,7 @@ abstract class RecommendableBase extends Node implements EntityInterface, Recomm
 
   protected const string KEYWORDFIELD = 'field_annif_keywords';
 
-  protected const string SHOWINRECOMMENDATION = 'field_show_in_recommendations';
-
-  protected const string SHOWRECOMMENDATIONSBLOCK = 'show_recommendations';
+  protected const string SHOW_RECOMMENDATIONS_BLOCK = 'show_annif_block';
 
   /**
    * {@inheritDoc}
@@ -30,7 +28,7 @@ abstract class RecommendableBase extends Node implements EntityInterface, Recomm
    */
   public function showRecommendationsBlock(): bool {
     return $this->hasKeywords() &&
-      $this->get(self::SHOWRECOMMENDATIONSBLOCK)->value;
+      $this->get(self::SHOW_RECOMMENDATIONS_BLOCK)->value;
   }
 
   /**

@@ -8,7 +8,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
+use Drupal\helfi_annif\Client\KeywordClientException;
 use Drupal\helfi_annif\KeywordManager;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -36,6 +38,8 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
    */
   private EntityTypeManagerInterface $entityTypeManager;
 
+  private LoggerInterface $logger;
+
   /**
    * {@inheritDoc}
    */
@@ -47,6 +51,7 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
     );
     $instance->keywordManager = $container->get(KeywordManager::class);
     $instance->entityTypeManager = $container->get(EntityTypeManagerInterface::class);
+    $instance->logger = $container->get(LoggerInterface::class);
     return $instance;
   }
 
@@ -75,9 +80,17 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
       $entity = $entity->getTranslation($language);
     }
 
-    if ($entity) {
+    if (!$entity) {
+      return;
+    }
+
+    try {
       $this->keywordManager->processEntity($entity, overwriteExisting: $overwrite);
     }
+    catch(KeywordClientException $exception) {
+      $this->logger->error($exception->getMessage());
+    }
+
   }
 
 }
