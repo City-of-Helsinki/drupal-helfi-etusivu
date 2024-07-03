@@ -16,33 +16,19 @@ abstract class RecommendableBase extends Node implements EntityInterface, Recomm
 
   protected const string SHOWINRECOMMENDATION = 'field_show_in_recommendations';
 
-  protected const string SHOWRECOMMENDATIONSBLOCK = 'field_show_recommendations_block';
+  protected const string SHOWRECOMMENDATIONSBLOCK = 'show_recommendations';
 
   /**
    * {@inheritDoc}
    */
   public function isRecommendableContent(): bool {
-    // Not having the field to hide this entity from recommendations
-    // should not hide it by default.
-    if (
-      !$this->hasField(self::SHOWINRECOMMENDATION)
-    ) {
-      return TRUE;
-    }
-
-    return !$this->get(self::KEYWORDFIELD)->isEmpty() &&
-      $this->get(self::SHOWINRECOMMENDATION)->value;
+    return !$this->get(self::KEYWORDFIELD)->isEmpty();
   }
 
   /**
    * {@inheritDoc}
    */
   public function showRecommendationsBlock(): bool {
-    // Not having the field to hide the block should not hide it by default.
-    if (!$this->hasField(self::SHOWRECOMMENDATIONSBLOCK)) {
-      return TRUE;
-    }
-
     return $this->hasKeywords() &&
       $this->get(self::SHOWRECOMMENDATIONSBLOCK)->value;
   }

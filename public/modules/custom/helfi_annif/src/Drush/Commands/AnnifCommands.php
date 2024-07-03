@@ -256,8 +256,8 @@ final class AnnifCommands extends DrushCommands {
         ->loadMultiple($slice);
 
       foreach ($entities as $entity) {
-        $entity->set('field_show_in_recommendations', 1);
-        $entity->set('field_show_recommendations_block', 1);
+        $entity->set('show_recommendations', 1);
+        $entity->set('show_annif_block', 1);
         // @todo Prevent updating updated time when saving.
         $entity->save();
       }
