@@ -12,14 +12,6 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 interface RecommendableInterface extends FieldableEntityInterface {
 
   /**
-   * Entity can handle recommendations.
-   *
-   * @return bool
-   *   Entity can handle recommendations.
-   */
-  public function isRecommendableEntity(): bool;
-
-  /**
    * Current entity can be used as a recommendation based on keywords.
    *
    * @return bool

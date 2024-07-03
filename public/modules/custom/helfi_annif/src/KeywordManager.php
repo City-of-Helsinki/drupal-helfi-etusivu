@@ -93,8 +93,6 @@ final class KeywordManager {
     if (
       // Skip if entity was processed in this request.
       $this->isEntityProcessed($entity) ||
-      // Skip if entity does not support keywords.
-      !$entity->isRecommendableEntity() ||
       // Skip if entity already has keywords.
       (!$overwriteExisting && $entity->hasKeywords())
     ) {
@@ -123,11 +121,6 @@ final class KeywordManager {
    */
   public function processEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
     assert($entity instanceof EntityInterface);
-
-    // Skip if entity does not support keywords.
-    if (!$entity->isRecommendableEntity()) {
-      return;
-    }
 
     // Skip if entity already has keywords.
     if (!$overwriteExisting && $entity->hasKeywords()) {
@@ -188,11 +181,6 @@ final class KeywordManager {
     foreach ($entities as $key => $entity) {
       assert($entity instanceof EntityInterface);
 
-      // Skip if entity does not support keywords.
-      if (!$entity->isRecommendableEntity()) {
-        continue;
-      }
-
       // Skip if entity already has keywords.
       if (!$overwriteExisting && $entity->hasKeywords()) {
         continue;
@@ -227,7 +215,6 @@ final class KeywordManager {
    */
   private function saveKeywords(RecommendableInterface $entity, array $keywords) : void {
     assert($entity instanceof FieldableEntityInterface);
-    assert($entity->isRecommendableEntity());
 
     $terms = [];
 

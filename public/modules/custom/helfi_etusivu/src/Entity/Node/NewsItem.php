@@ -78,10 +78,6 @@ final class NewsItem extends RecommendableBase {
    * {@inheritDoc}
    */
   public function getKeywordsCacheTags(array $terms = []): array {
-    if (!$this->isRecommendableEntity()) {
-      return [];
-    }
-
     $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
     $cacheTags = array_map(
       fn ($term) => $term->getCacheTags(),
@@ -95,9 +91,6 @@ final class NewsItem extends RecommendableBase {
    * {@inheritDoc}
    */
   public function invalidateKeywordsCacheTags(): void {
-    if (!$this->isRecommendableEntity()) {
-      return;
-    }
     Cache::invalidateTags($this->getKeywordsCacheTags());
   }
 
