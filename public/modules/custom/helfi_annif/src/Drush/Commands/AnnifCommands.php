@@ -230,6 +230,14 @@ final class AnnifCommands extends DrushCommands {
     return DrushCommands::EXIT_SUCCESS;
   }
 
+  /**
+   * Set the block and recommendation visibility for all nodes.
+   *
+   * @param array $entityIds
+   *   Ids of entities to update.
+   * @param $context
+   *   The context.
+   */
   public function batchVisibilityFieldsDefaultValues(array $entityIds, &$context,): void {
     $batchSize = 200;
 
@@ -250,7 +258,7 @@ final class AnnifCommands extends DrushCommands {
       foreach ($entities as $entity) {
         $entity->set('field_show_in_recommendations', 1);
         $entity->set('field_show_recommendations_block', 1);
-        // todo: Prevent updating updated_at time when saving.
+        // todo: Prevent updating updated time when saving.
         $entity->save();
       }
 
@@ -266,7 +274,6 @@ final class AnnifCommands extends DrushCommands {
       $context['message'] = $this->t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
       $context['finished'] = 1;
     }
-
   }
 
 }
