@@ -105,8 +105,8 @@ class RecommendationManager {
          langcode = :target_langcode)
       and n.nid not in
           (select distinct restriction.entity_id
-           from node__field_show_in_recommendations as restriction
-           where restriction.field_show_in_recommendations_value = 0)
+           from node__show_recommendations as restriction
+           where restriction.show_recommendations_value = 0)
       and n.langcode = :target_langcode
       and annif.langcode = :destination_langcode
       and nfd.langcode = :target_langcode
