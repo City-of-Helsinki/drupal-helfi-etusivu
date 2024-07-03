@@ -21,13 +21,6 @@ abstract class RecommendableBase extends Node implements EntityInterface, Recomm
   /**
    * {@inheritDoc}
    */
-  public function isRecommendableEntity(): bool {
-    return $this->hasField(self::KEYWORDFIELD);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
   public function isRecommendableContent(): bool {
     // Not having the field to hide this entity from recommendations
     // should not hide it by default.
@@ -37,8 +30,7 @@ abstract class RecommendableBase extends Node implements EntityInterface, Recomm
       return TRUE;
     }
 
-    return $this->isRecommendableEntity() &&
-      !$this->get(self::KEYWORDFIELD)->isEmpty() &&
+    return !$this->get(self::KEYWORDFIELD)->isEmpty() &&
       $this->get(self::SHOWINRECOMMENDATION)->value;
   }
 
@@ -51,8 +43,7 @@ abstract class RecommendableBase extends Node implements EntityInterface, Recomm
       return TRUE;
     }
 
-    return $this->isRecommendableEntity() &&
-      $this->hasKeywords() &&
+    return $this->hasKeywords() &&
       $this->get(self::SHOWRECOMMENDATIONSBLOCK)->value;
   }
 

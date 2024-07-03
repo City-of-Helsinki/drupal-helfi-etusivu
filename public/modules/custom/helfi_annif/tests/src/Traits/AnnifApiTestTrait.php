@@ -52,10 +52,8 @@ trait AnnifApiTestTrait {
    *   Value for keyword field ->isEmpty(), NULL for ->hasField() = FALSE.
    * @param bool|null $shouldSave
    *   Bool if $entity->save() should be called, NULL for no opinion.
-   * @param bool $isRecommendableEntity
-   *   Is the entity recommendable.
    */
-  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL, bool $isRecommendableEntity = TRUE): RecommendableInterface {
+  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL): RecommendableInterface {
     $language = $this->prophesize(LanguageInterface::class);
     $language
       ->getId()
@@ -69,7 +67,6 @@ trait AnnifApiTestTrait {
     $entity->hasKeywords()->willReturn($hasKeywords);
 
     $entity->hasField('field_annif_keywords')->willReturn(TRUE);
-    $entity->isRecommendableEntity()->willReturn($isRecommendableEntity);
     $entity->getKeywordFieldName()->willReturn('field_annif_keywords');
     $entity->invalidateKeywordsCacheTags();
 
