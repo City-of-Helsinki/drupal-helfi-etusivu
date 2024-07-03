@@ -16,8 +16,6 @@ dependencies:
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
-    - field.field.node.news_item.field_show_in_recommendations
-    - field.field.node.news_item.field_show_recommendations_block
     - node.type.news_item
   module:
     - field_group
@@ -96,8 +94,6 @@ third_party_settings:
         required_fields: false
     group_automatically_recommended:
       children:
-        - field_show_in_recommendations
-        - field_show_recommendations_block
         - field_annif_keywords
       label: 'Automatically recommended content'
       region: content
@@ -256,20 +252,6 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  field_show_in_recommendations:
-    type: boolean_checkbox
-    weight: 27
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_show_recommendations_block:
-    type: boolean_checkbox
-    weight: 28
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   langcode:
     type: language_select
