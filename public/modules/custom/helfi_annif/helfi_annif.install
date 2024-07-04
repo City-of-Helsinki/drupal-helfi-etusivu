@@ -32,6 +32,6 @@ function helfi_annif_hook_install() {
 /**
  * Create entity definitions for annif-fields.
  */
-function helfi_annif_update_9001() {
+function helfi_annif_update_9000() {
   helfi_annif_hook_install();
 }
