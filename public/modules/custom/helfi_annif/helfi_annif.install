@@ -2,17 +2,36 @@
 
 declare(strict_types=1);
 
+/**
+ * Implements hook_install().
+ */
 function helfi_annif_hook_install() {
   $entity_field_manager = \Drupal::service('entity_field.manager');
   // This gets all fields defined for the bundle, including base fields.
   $type_fields = $entity_field_manager->getFieldDefinitions('node', 'news_item');
 
-
-  foreach (['show_annif_block', 'show_recommendations'] as $field_name) {
-    Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition($field_name, 'node', 'helfi_annif', $type_fields[$field_name]);
+  foreach (['show_annif_block', 'in_recommendations'] as $field_name) {
+    Drupal::entityDefinitionUpdateManager()
+      ->installFieldStorageDefinition(
+        $field_name,
+        'node',
+        'helfi_annif',
+        $type_fields[$field_name]
+      );
   }
+
+  Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition(
+      'the_annif_keywords',
+      'node',
+      'helfi_annif',
+      $type_fields['the_annif_keywords']
+    );
 }
 
-function helfi_annif_update_9000() {
+/**
+ * Create entity definitions for annif-fields.
+ */
+function helfi_annif_update_9001() {
   helfi_annif_hook_install();
 }

@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.tiny_teaser
-    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -63,7 +62,6 @@ content:
     weight: 2
     region: content
 hidden:
-  field_annif_keywords: true
   field_content: true
   field_lead_in: true
   field_main_image: true
@@ -75,6 +73,9 @@ hidden:
   field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
+  in_recommendations: true
   langcode: true
   search_api_excerpt: true
+  show_annif_block: true
+  the_annif_keywords: true
   toc_enabled: true
