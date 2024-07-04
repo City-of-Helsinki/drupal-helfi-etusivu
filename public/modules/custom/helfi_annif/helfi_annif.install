@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Contains annif installation hooks.
  */
 
 declare(strict_types=1);
