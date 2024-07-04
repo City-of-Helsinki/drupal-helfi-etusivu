@@ -108,7 +108,7 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
       ->setDisplayConfigurable('view', TRUE);
   }
 
-  $keywordfieldId = 'the_annif_keywords';
+  $keywordfieldId = 'annif_keywords';
   $keywordfieldName = new TranslatableMarkup('Automatically selected news categories');
 
   $fields[$keywordfieldId] = BundleFieldDefinition::create('entity_reference')

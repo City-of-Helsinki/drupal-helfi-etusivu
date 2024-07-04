@@ -95,7 +95,7 @@ third_party_settings:
       children:
         - in_recommendations
         - show_annif_block
-        - the_annif_keywords
+        - annif_keywords
       label: 'Automatically recommended content'
       region: content
       parent_name: ''
@@ -321,7 +321,7 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-  the_annif_keywords:
+  annif_keywords:
     type: readonly_field_widget
     weight: 2
     region: content

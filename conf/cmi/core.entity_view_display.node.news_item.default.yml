@@ -166,5 +166,5 @@ hidden:
   langcode: true
   search_api_excerpt: true
   show_annif_block: true
-  the_annif_keywords: true
+  annif_keywords: true
   toc_enabled: true
