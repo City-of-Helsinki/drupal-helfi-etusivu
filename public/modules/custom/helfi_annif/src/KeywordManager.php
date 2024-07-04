@@ -18,7 +18,7 @@ use Drupal\helfi_annif\Client\KeywordClient;
  */
 final class KeywordManager {
 
-  public const KEYWORD_FIELD = 'field_annif_keywords';
+  public const KEYWORD_FIELD = 'the_annif_keywords';
   public const KEYWORD_VID = 'annif_keywords';
 
   /**

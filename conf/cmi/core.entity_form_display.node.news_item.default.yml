@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -94,9 +93,9 @@ third_party_settings:
         required_fields: false
     group_automatically_recommended:
       children:
-        - show_recommendations
+        - in_recommendations
         - show_annif_block
-        - field_annif_keywords
+        - the_annif_keywords
       label: 'Automatically recommended content'
       region: content
       parent_name: ''
@@ -120,16 +119,6 @@ content:
     weight: 4
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_annif_keywords:
-    type: readonly_field_widget
-    weight: 2
-    region: content
-    settings:
-      label: above
-      formatter_type: null
-      formatter_settings: {  }
-      show_description: false
     third_party_settings: {  }
   field_content:
     type: paragraphs
@@ -255,6 +244,13 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  in_recommendations:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 0
@@ -324,6 +320,20 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  the_annif_keywords:
+    type: readonly_field_widget
+    weight: 2
+    region: content
+    settings:
+      label: above
+      formatter_type: entity_reference_label
+      formatter_settings:
+        entity_reference_entity_view:
+          view_mode: default
+        entity_reference_label:
+          link: true
+      show_description: false
     third_party_settings: {  }
   title:
     type: string_textfield

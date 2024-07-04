@@ -66,8 +66,8 @@ trait AnnifApiTestTrait {
 
     $entity->hasKeywords()->willReturn($hasKeywords);
 
-    $entity->hasField('field_annif_keywords')->willReturn(TRUE);
-    $entity->getKeywordFieldName()->willReturn('field_annif_keywords');
+    $entity->hasField('the_annif_keywords')->willReturn(TRUE);
+    $entity->getKeywordFieldName()->willReturn('the_annif_keywords');
     $entity->invalidateKeywordsCacheTags();
 
     $entity->getEntityTypeId()->willReturn('test_entity');

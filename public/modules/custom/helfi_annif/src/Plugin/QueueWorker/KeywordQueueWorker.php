@@ -51,7 +51,8 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
     );
     $instance->keywordManager = $container->get(KeywordManager::class);
     $instance->entityTypeManager = $container->get(EntityTypeManagerInterface::class);
-    $instance->logger = $container->get(LoggerInterface::class);
+    $instance->logger = $container->get('logger.channel.helfi_annif');
+
     return $instance;
   }
 
@@ -90,7 +91,6 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
     catch(KeywordClientException $exception) {
       $this->logger->error($exception->getMessage());
     }
-
   }
 
 }

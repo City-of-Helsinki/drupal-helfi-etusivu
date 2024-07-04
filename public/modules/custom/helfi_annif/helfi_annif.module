@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -90,7 +91,7 @@ function helfi_annif_entity_field_storage_info(EntityTypeInterface $entity_type)
  */
 function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): array {
   $visibilityFields = [
-    'show_recommendations' => new TranslatableMarkup('Show in recommendations'),
+    'in_recommendations' => new TranslatableMarkup('Show in recommendations'),
     'show_annif_block' => new TranslatableMarkup('Show recommendations block'),
   ];
 
@@ -105,8 +106,24 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
       ->setSettings(['default_value' => true])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
-
   }
+
+  $keywordfieldId = 'the_annif_keywords';
+  $keywordfieldName = new TranslatableMarkup('Automatically selected news categories');
+
+  $fields[$keywordfieldId] = BundleFieldDefinition::create('entity_reference')
+    ->setName($keywordfieldId)
+    ->setLabel($keywordfieldName)
+    ->setSettings(['target_type' => 'taxonomy_term',])
+    ->setTargetEntityTypeId($entity_type_id)
+    ->setTargetBundle($bundle)
+    ->setDisplayOptions('form', ['type' => 'readonly_field_widget', 'formatter_type' => 'entity_reference_label'])
+    ->setReadonly(TRUE)
+    ->setTranslatable(FALSE)
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayConfigurable('view', TRUE);
+
   return $fields;
 }
 
