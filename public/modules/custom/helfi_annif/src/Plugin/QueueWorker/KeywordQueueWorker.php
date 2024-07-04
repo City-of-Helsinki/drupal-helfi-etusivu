@@ -38,6 +38,11 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
    */
   private EntityTypeManagerInterface $entityTypeManager;
 
+  /**
+   * The logger.
+   *
+   * @var LoggerInterface
+   */
   private LoggerInterface $logger;
 
   /**
@@ -88,7 +93,7 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
     try {
       $this->keywordManager->processEntity($entity, overwriteExisting: $overwrite);
     }
-    catch(KeywordClientException $exception) {
+    catch (KeywordClientException $exception) {
       $this->logger->error($exception->getMessage());
     }
   }

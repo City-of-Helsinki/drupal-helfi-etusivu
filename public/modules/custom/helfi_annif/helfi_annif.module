@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\entity\BundleFieldDefinition;
 use Drupal\helfi_annif\KeywordManager;
@@ -63,7 +63,7 @@ function helfi_annif_entity_bundle_field_info_alter(&$fields, EntityTypeInterfac
   }
 
   if ($entityType->id() == 'node' && $bundle == 'news_item') {
-    foreach(helfi_annif_bundle_fields($entityType->id(), $bundle) as $name => $field){
+    foreach (helfi_annif_bundle_fields($entityType->id(), $bundle) as $name => $field) {
       $fields[$name] = $field;
     }
   }
@@ -103,7 +103,7 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
       ->setTargetEntityTypeId($entity_type_id)
       ->setTargetBundle($bundle)
       ->setCardinality(1)
-      ->setSettings(['default_value' => true])
+      ->setSettings(['default_value' => TRUE])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
   }
@@ -114,7 +114,7 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
   $fields[$keywordfieldId] = BundleFieldDefinition::create('entity_reference')
     ->setName($keywordfieldId)
     ->setLabel($keywordfieldName)
-    ->setSettings(['target_type' => 'taxonomy_term',])
+    ->setSettings(['target_type' => 'taxonomy_term'])
     ->setTargetEntityTypeId($entity_type_id)
     ->setTargetBundle($bundle)
     ->setDisplayOptions('form', ['type' => 'readonly_field_widget', 'formatter_type' => 'entity_reference_label'])
