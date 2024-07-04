@@ -8,9 +8,9 @@
 declare(strict_types=1);
 
 /**
- * Implements hook_install().
+ * Create entity definitions for annif-fields.
  */
-function helfi_annif_hook_install() {
+function helfi_annif_update_9000() {
   $entity_field_manager = \Drupal::service('entity_field.manager');
   // This gets all fields defined for the bundle, including base fields.
   $type_fields = $entity_field_manager->getFieldDefinitions('node', 'news_item');
@@ -32,11 +32,4 @@ function helfi_annif_hook_install() {
       'helfi_annif',
       $type_fields['annif_keywords']
     );
-}
-
-/**
- * Create entity definitions for annif-fields.
- */
-function helfi_annif_update_9000() {
-  helfi_annif_hook_install();
 }

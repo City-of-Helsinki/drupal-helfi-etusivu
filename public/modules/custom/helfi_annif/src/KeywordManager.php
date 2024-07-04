@@ -91,6 +91,7 @@ final class KeywordManager {
     assert($entity instanceof EntityInterface);
 
     if (
+      !$entity->hasField('annif_keywords') ||
       // Skip if entity was processed in this request.
       $this->isEntityProcessed($entity) ||
       // Skip if entity already has keywords.
@@ -121,6 +122,10 @@ final class KeywordManager {
    */
   public function processEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
     assert($entity instanceof EntityInterface);
+
+    if (!$entity->hasField('annif_keywords')) {
+      return;
+    }
 
     // Skip if entity already has keywords.
     if (!$overwriteExisting && $entity->hasKeywords()) {
@@ -181,8 +186,12 @@ final class KeywordManager {
     foreach ($entities as $key => $entity) {
       assert($entity instanceof EntityInterface);
 
+      if (!$entity->hasField('annif_keywords')) {
+        return;
+      }
+
       // Skip if entity already has keywords.
-      if (!$overwriteExisting && $entity->hasKeywords()) {
+      if (!$overwriteExisting  && $entity->hasKeywords()) {
         continue;
       }
 
