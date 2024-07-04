@@ -12,7 +12,7 @@ use Drupal\node\Entity\Node;
  */
 abstract class RecommendableBase extends Node implements EntityInterface, RecommendableInterface {
 
-  protected const string KEYWORDFIELD = 'the_annif_keywords';
+  protected const string KEYWORDFIELD = 'annif_keywords';
 
   protected const string SHOW_RECOMMENDATIONS_BLOCK = 'show_annif_block';
 

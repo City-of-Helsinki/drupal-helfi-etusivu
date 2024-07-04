@@ -27,10 +27,10 @@ function helfi_annif_hook_install() {
 
   Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition(
-      'the_annif_keywords',
+      'annif_keywords',
       'node',
       'helfi_annif',
-      $type_fields['the_annif_keywords']
+      $type_fields['annif_keywords']
     );
 }
 

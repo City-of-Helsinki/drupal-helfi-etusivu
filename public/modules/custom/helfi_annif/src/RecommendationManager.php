@@ -96,11 +96,11 @@ class RecommendationManager {
         count(n.nid) as relevancy,
         nfd.created
       from node as n
-      left join node__the_annif_keywords as annif on n.nid = annif.entity_id
+      left join node__annif_keywords as annif on n.nid = annif.entity_id
       left join node_field_data as nfd on nfd.nid = n.nid
       where annif.annif_keywords_target_id in
         (select annif_keywords_target_id
-         from node__the_annif_keywords
+         from node__annif_keywords
          where entity_id = :nid and
          langcode = :target_langcode)
       and n.nid not in
