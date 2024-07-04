@@ -41,7 +41,7 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
   /**
    * The logger.
    *
-   * @var Psr\Log\LoggerInterface
+   * @var \Psr\Log\LoggerInterface
    */
   private LoggerInterface $logger;
 
