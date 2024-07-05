@@ -1,0 +1,10 @@
+uuid: 5a45b4bb-8239-4b11-ab7e-d5fec282adc8
+langcode: en
+status: true
+dependencies: {  }
+id: news_archive
+label: 'News archive'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }
