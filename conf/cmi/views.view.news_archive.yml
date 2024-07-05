@@ -111,6 +111,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 0
@@ -128,7 +129,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -396,8 +396,25 @@ display:
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.field_lead_in'
-  feed_1:
-    id: feed_1
+  news_archive_block:
+    id: news_archive_block
+    display_title: Block
+    display_plugin: block
+    position: 3
+    display_options:
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+      tags:
+        - 'config:field.storage.node.field_lead_in'
+  news_archive_feed:
+    id: news_archive_feed
     display_title: Feed
     display_plugin: feed
     position: 2
@@ -1325,6 +1342,10 @@ display:
       css_class: ''
       display_extenders: {  }
       path: news/rss
+      displays:
+        default: '0'
+        news_archive_block: '0'
+        page_1: '0'
     cache_metadata:
       max-age: -1
       contexts:
