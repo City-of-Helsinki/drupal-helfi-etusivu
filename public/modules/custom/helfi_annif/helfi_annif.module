@@ -103,6 +103,7 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
       ->setTargetEntityTypeId($entity_type_id)
       ->setTargetBundle($bundle)
       ->setCardinality(1)
+      ->setDefaultValue(1)
       ->setSettings(['default_value' => TRUE])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
