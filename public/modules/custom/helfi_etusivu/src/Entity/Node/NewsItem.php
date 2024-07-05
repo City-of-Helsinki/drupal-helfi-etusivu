@@ -77,6 +77,13 @@ final class NewsItem extends RecommendableBase {
   /**
    * {@inheritDoc}
    */
+  public function getCacheTags() {
+    return array_merge(parent::getCacheTags(), $this->getKeywordsCacheTags());
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   public function getKeywordsCacheTags(array $terms = []): array {
     $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
     $cacheTags = array_map(
