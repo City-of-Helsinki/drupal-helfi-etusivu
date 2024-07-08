@@ -388,3 +388,4 @@ if ($env = getenv('APP_ENV')) {
 if (empty($settings['deployment_identifier'])) {
   $settings['deployment_identifier'] = filemtime(__DIR__ . '/../../../composer.lock');
 }
+
