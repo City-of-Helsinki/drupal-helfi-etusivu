@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
+use _PHPStan_156ee64ba\Nette\Neon\Exception;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -187,7 +188,7 @@ final class KeywordManager {
       assert($entity instanceof EntityInterface);
 
       if (!$entity->hasField('annif_keywords')) {
-        return;
+        continue;
       }
 
       // Skip if entity already has keywords.
