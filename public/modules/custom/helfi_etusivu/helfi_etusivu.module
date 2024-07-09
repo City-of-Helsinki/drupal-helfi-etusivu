@@ -278,44 +278,8 @@ function helfi_etusivu_entity_bundle_info_alter(array &$bundles): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_first_paragraph_grey_alter().
  */
-function helfi_etusivu_preprocess_block(&$variables) {
-  if ($variables['plugin_id'] !== 'hero_block') {
-    return;
-  }
-
-  // Get current entity and entity version.
-  $entity_matcher = \Drupal::service('helfi_platform_config.entity_version_matcher')->getType();
-
-  /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-  $entity = $entity_matcher['entity'];
-
-  // No need to continue if current entity doesn't have hero set.
-  if (
-    !$entity instanceof ContentEntityInterface ||
-    !$entity->hasField('field_has_hero') ||
-    !(bool) $entity->get('field_has_hero')->value ||
-    $entity->get('field_content')->isEmpty()
-  ) {
-    return;
-  }
-  $paragraph = $entity->get('field_content')->first()->get('entity')->getValue();
-
-  if (
-    empty($paragraph) ||
-    !in_array($entity->bundle(), ['landing_page', 'page']) ||
-    !$paragraph instanceof ParagraphInterface
-  ) {
-    return;
-  }
-  $first_paragraph_gray = &$variables['content']['hero_block']['#first_paragraph_grey'];
-
-  // Check if the content field first paragraph is news archive
-  // and add classes accordingly.
-  switch ($paragraph->getType()) {
-    case 'news_archive':
-      $first_paragraph_gray = 'has-first-gray-bg-block';
-      break;
-  }
+function helfi_etusivu_first_paragraph_grey_alter(array &$paragraphs): void {
+  $paragraphs[] = 'news_archive';
 }
