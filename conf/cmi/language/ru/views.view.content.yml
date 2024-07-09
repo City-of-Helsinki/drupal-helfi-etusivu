@@ -22,6 +22,9 @@ display:
           label: Обновлено
         operations:
           label: Операции
+        langcode:
+          label: Язык
+          separator: ', '
       pager:
         options:
           tags:

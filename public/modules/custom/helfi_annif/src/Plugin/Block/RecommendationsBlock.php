@@ -104,7 +104,11 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function getCacheTags(): array {
-    return Cache::mergeTags(parent::getCacheTags(), $this->getContextValue('node')->getCacheTags());
+    return Cache::mergeTags(
+      parent::getCacheTags(),
+      $this->getContextValue('node')->getCacheTags(),
+      $this->getAnnifKeywordCacheTags()
+    );
   }
 
   /**
@@ -123,6 +127,27 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
 
     $response['#no_results_message'] = $this->t('Calculating recommendations');
     return $response;
+  }
+
+  /**
+   * Get list of cache tags for the block.
+   *
+   * @return array
+   *   Array of cache tags for Annif-keywords related to this node.
+   */
+  private function getAnnifKeywordCacheTags(): array {
+    $entity = $this->getContextValue('node');
+    if (!$entity->hasField('field_annif_keywords') || $entity->get('field_annif_keywords')->isEmpty()) {
+      return [];
+    }
+
+    $cacheTags = array_map(
+      fn ($term) => $term->getCacheTags(),
+      $entity->get('field_annif_keywords')->referencedEntities()
+    );
+
+    // Flatten array by merging the destructed arrays.
+    return array_merge(...$cacheTags);
   }
 
 }
