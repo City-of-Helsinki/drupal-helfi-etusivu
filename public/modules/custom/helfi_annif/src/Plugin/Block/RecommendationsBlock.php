@@ -7,6 +7,7 @@ namespace Drupal\helfi_annif\Plugin\Block;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
@@ -37,6 +38,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
     $plugin_id,
     $plugin_definition,
     private readonly RecommendationManager $recommendationManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly AccountInterface $currentUser,
     private readonly LoggerInterface $logger,
   ) {
@@ -49,6 +51,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : static {
     return new static($configuration, $plugin_id, $plugin_definition,
       $container->get(RecommendationManager::class),
+      $container->get('entity_type.manager'),
       $container->get('current_user'),
       $container->get('logger.channel.helfi_annif'),
     );
@@ -60,10 +63,10 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   public function build() : array {
     $node = $this->getContextValue('node');
 
-    // @todo #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
+    // @todo #UHF-9964 Add recommendation block hiding feature.
     $response = [
       '#theme' => 'recommendations_block',
-      '#title' => $this->t('You might be interested in'),
+      '#title' => $this->t('You might be interested in', [], ['context' => 'Recommendations block title']),
     ];
 
     $recommendations = [];
@@ -79,7 +82,14 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       return $this->handleNoRecommendations($response);
     }
 
-    $response['#rows'] = $recommendations;
+    $nodes = [];
+    // We want to render the recommendation results as nodes
+    // so that all fields are correctly preprocessed.
+    foreach ($recommendations as $recommendation) {
+      $view_builder = $this->entityTypeManager->getViewBuilder('node');
+      $nodes[] = $view_builder->view($recommendation, 'teaser');
+    }
+    $response['#rows'] = $nodes;
     return $response;
   }
 

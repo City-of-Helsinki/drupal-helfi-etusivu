@@ -7,3 +7,5 @@ dependencies:
   - drupal:text
   - drupal:language
   - helfi_api_base:helfi_api_base
+'interface translation project': helfi_annif
+'interface translation server pattern': modules/custom/helfi_annif/translations/%language.po
