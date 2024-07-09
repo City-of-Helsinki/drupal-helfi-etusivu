@@ -6,7 +6,7 @@ display:
         options:
           tags:
             next: Nästa
-            previous: Föregående
+            previous: Tidigare
             first: Första
             last: Sista
       title: 'Alla nyheter'
