@@ -61,7 +61,7 @@ final class RenderTextConverter implements TextConverterInterface {
     $view = $builder->view($entity, self::TEXT_CONVERTER_VIEW_MODE, $entity->language()->getId());
     $markup = $this
       ->renderer
-      ->renderPlain($view);
+      ->renderInIsolation($view);
 
     $document = new Document($markup);
 
