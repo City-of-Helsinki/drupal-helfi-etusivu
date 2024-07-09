@@ -10,7 +10,7 @@ declare(strict_types=1);
 /**
  * Create entity definitions for annif-fields.
  */
-function helfi_annif_update_9000() {
+function helfi_annif_update_9000(): void {
   $entity_field_manager = \Drupal::service('entity_field.manager');
   // This gets all fields defined for the bundle, including base fields.
   $type_fields = $entity_field_manager->getFieldDefinitions('node', 'news_item');

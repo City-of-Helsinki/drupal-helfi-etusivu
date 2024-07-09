@@ -210,7 +210,7 @@ final class AnnifCommands extends DrushCommands {
    * Set new fields' default values.
    */
   #[Command(name: 'helfi:annif-entity-defaults')]
-  public function setEntityDefaultAnnifValues() {
+  public function setEntityDefaultAnnifValues(): int {
 
     $query = $this->entityTypeManager
       ->getStorage('node')

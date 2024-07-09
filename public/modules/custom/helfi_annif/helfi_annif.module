@@ -72,7 +72,7 @@ function helfi_annif_entity_bundle_field_info_alter(&$fields, EntityTypeInterfac
 /**
  * Implements hook_entity_field_storage_info().
  */
-function helfi_annif_entity_field_storage_info(EntityTypeInterface $entity_type) {
+function helfi_annif_entity_field_storage_info(EntityTypeInterface $entity_type): array {
   if ($entity_type->id() === 'node') {
     return helfi_annif_bundle_fields($entity_type->id(), 'news_item');
   }
