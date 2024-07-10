@@ -248,7 +248,7 @@ function helfi_etusivu_update_9011() : void {
       ->getStorage('path_alias');
 
     $aliases = $storage->loadByProperties([
-      'path' => '/news'
+      'path' => '/news',
     ]);
 
     foreach ($aliases as $alias) {
