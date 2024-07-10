@@ -1,7 +1,3 @@
-<ul class="news-listing news-listing--latest-medium-teasers">
-  {% for row in rows %}
-    <li class="news-listing__item">
-      {{- row.content -}}
-    </li>
-  {% endfor %}
-</ul>
+{% for row in rows %}
+  {{- row.content -}}
+{% endfor %}
