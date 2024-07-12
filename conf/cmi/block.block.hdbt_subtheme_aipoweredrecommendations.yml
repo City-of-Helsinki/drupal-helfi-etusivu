@@ -10,8 +10,8 @@ dependencies:
     - hdbt_subtheme
 id: hdbt_subtheme_aipoweredrecommendations
 theme: hdbt_subtheme
-region: after_content
-weight: -12
+region: content
+weight: 1
 provider: null
 plugin: helfi_recommendations
 settings:
