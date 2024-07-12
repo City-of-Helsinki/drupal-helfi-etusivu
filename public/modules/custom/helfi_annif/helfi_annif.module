@@ -126,7 +126,7 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
         'settings' =>
           [
             'formatter_type' => 'entity_reference_label',
-          ]
+          ],
       ]
     )
     ->setReadonly(TRUE)
