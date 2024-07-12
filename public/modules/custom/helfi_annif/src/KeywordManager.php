@@ -88,8 +88,6 @@ final class KeywordManager {
    *   Overwrites existing keywords when set to TRUE.
    */
   public function queueEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
-    assert($entity instanceof EntityInterface);
-
     if (
       !$entity->hasField('annif_keywords') ||
       // Skip if entity was processed in this request.
