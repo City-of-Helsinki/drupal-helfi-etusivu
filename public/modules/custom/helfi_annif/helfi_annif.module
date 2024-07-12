@@ -76,6 +76,7 @@ function helfi_annif_entity_field_storage_info(EntityTypeInterface $entity_type)
   if ($entity_type->id() === 'node') {
     return helfi_annif_bundle_fields($entity_type->id(), 'news_item');
   }
+  return [];
 }
 
 /**
