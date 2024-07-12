@@ -42,7 +42,7 @@ This will log you inside the app container:
 $ make shell
 ```
 
-## Instance specific customizations
+## Instance specific features
 
 Etusivu instance has quite a lot of unique features because it is used as a master data source in many features such as
 global navigation and news.
@@ -119,13 +119,20 @@ global announcements. Code related to the global announcements can be found in `
 `helfi_platform_config` and the configuration for the `Publish on external site` is in the conf/cmi folder of this
 instance and the configuration rewrite is [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/e2643195b8fc2989da835313c052ae533b8e0143/public/modules/custom/helfi_etusivu_config/config/rewrite/core.entity_form_display.node.announcement.default.yml).
 
-### Enabled languages
-
-This instance, unlike other core instances, has more than the three main languages enabled. These additional languages
-are referred to as alternative languages.
-
 ### Helfi Annif integration
 
 This feature, currently specific to the Etusivu instance, provides automatic tagging to news items and articles using
 artificial intelligence.  Based on these tags, users receive recommendations for further reading on the subject at the
 end of the news item or article. For more information, see the `helfi_annfi` custom module [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/tree/dev/public/modules/custom/helfi_annif).
+
+## Customizations
+
+### Enabled languages
+
+This instance, unlike other core instances, has more than the three main languages enabled. These additional languages
+are referred to as alternative languages. There is also partial support for languages that are read from right to left,
+indicated in the labels of paragraphs that support this feature. The labels are added to the configuration files of
+each paragraph that support the alternative languages. For example `paragraphs.paragraphs_type.text.yml` in [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/conf/cmi/paragraphs.paragraphs_type.text.yml).
+
+Regarding this alternative language support there is a custom module called `helfi_alt_lang_fallback` that provides
+menu and block fallbacks for the alternative languages. See more from the module itself [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/tree/dev/public/modules/custom/helfi_alt_lang_fallback).
