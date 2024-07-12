@@ -97,9 +97,13 @@ content:
     region: content
     settings:
       label: above
-      formatter_type: null
-      formatter_settings: { }
+      formatter_type: entity_reference_label
+      formatter_settings:
+        entity_reference_entity_view:
+          view_mode: default
+        entity_reference_label:
+          link: true
       show_description: false
-    third_party_settings: { }
+    third_party_settings: {  }
 hidden:
   hide_sidebar_navigation: true
