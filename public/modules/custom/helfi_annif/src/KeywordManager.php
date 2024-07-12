@@ -7,7 +7,6 @@ namespace Drupal\helfi_annif;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\helfi_annif\Client\Keyword;
@@ -119,8 +118,6 @@ final class KeywordManager {
    * @throws \Drupal\helfi_annif\Client\KeywordClientException
    */
   public function processEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
-    assert($entity instanceof EntityInterface);
-
     if (!$entity->hasField('annif_keywords')) {
       return;
     }
@@ -221,8 +218,6 @@ final class KeywordManager {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   private function saveKeywords(RecommendableInterface $entity, array $keywords) : void {
-    assert($entity instanceof FieldableEntityInterface);
-
     $terms = [];
 
     foreach ($keywords as $keyword) {
