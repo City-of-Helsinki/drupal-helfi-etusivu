@@ -11,3 +11,5 @@ dependencies:
   - readonly_field_widget:readonly_field_widget
   - drupal:field
   - helfi_node_news_item:helfi_node_news_item
+'interface translation project': helfi_annif
+'interface translation server pattern': modules/custom/helfi_annif/translations/%language.po
