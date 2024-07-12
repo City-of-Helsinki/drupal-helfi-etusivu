@@ -96,9 +96,9 @@ selection of what to show is determined by the `field_listing_type`, and the par
 #### News archive (news_archive)
 
 The _news_archive_ paragraph provides the news archive search that can be added to landing pages. The news archive is
-a React search that uses views listing (`news_archive_index`) as a fallback when JavaScript is not enabled. All the
-React searches are in the `hdbt` theme and so most of the logic related to the functionality is also found in the
-`hdbt` theme. The _news_archive_ paragraph has editable title and description.
+a React search that uses views listing (`news_archive_index`) as a fallback when JavaScript is not enabled. All React
+searches are in the `hdbt` theme, so most of the related logic is also found there. The _news_archive_ paragraph has an
+editable title and description.
 - React search code can be found under the `hdbt` theme [here](https://github.com/City-of-Helsinki/drupal-hdbt/tree/main/src/js/react/apps/news-archive).
 - Additional configuration for the React app is under the `hdbt_subtheme` theme function
 `hdbt_subtheme_preprocess_paragraph` [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme)
@@ -123,3 +123,9 @@ instance and the configuration rewrite is [here](https://github.com/City-of-Hels
 
 This instance, unlike other core instances, has more than the three main languages enabled. These additional languages
 are referred to as alternative languages.
+
+### Helfi Annif integration
+
+This feature, currently specific to the Etusivu instance, provides automatic tagging to news items and articles using
+artificial intelligence.  Based on these tags, users receive recommendations for further reading on the subject at the
+end of the news item or article. For more information, see the `helfi_annfi` custom module [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/tree/dev/public/modules/custom/helfi_annif).
