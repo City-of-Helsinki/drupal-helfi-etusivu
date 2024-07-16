@@ -88,7 +88,7 @@ final class KeywordManager {
    */
   public function queueEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
     if (
-      !$entity->hasField('annif_keywords') ||
+      !$entity->hasField(self::KEYWORD_FIELD) ||
       // Skip if entity was processed in this request.
       $this->isEntityProcessed($entity) ||
       // Skip if entity already has keywords.

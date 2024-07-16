@@ -94,11 +94,4 @@ final class NewsItem extends RecommendableBase {
     return array_merge(...$cacheTags);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function invalidateKeywordsCacheTags(): void {
-    Cache::invalidateTags($this->getKeywordsCacheTags());
-  }
-
 }
