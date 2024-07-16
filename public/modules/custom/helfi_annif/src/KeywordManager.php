@@ -230,7 +230,6 @@ final class KeywordManager {
     // processedItems is set for update hooks.
     $this->processedItems[$this->getEntityKey($entity)] = TRUE;
 
-    $entity->invalidateKeywordsCacheTags();
     $entity->save();
   }
 

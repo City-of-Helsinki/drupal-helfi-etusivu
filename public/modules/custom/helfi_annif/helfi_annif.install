@@ -12,24 +12,19 @@ declare(strict_types=1);
  */
 function helfi_annif_update_9000(): void {
   $entity_field_manager = \Drupal::service('entity_field.manager');
-  // This gets all fields defined for the bundle, including base fields.
   $type_fields = $entity_field_manager->getFieldDefinitions('node', 'news_item');
+  $entity_definition_update_manager = Drupal::entityDefinitionUpdateManager();
 
-  foreach (['show_annif_block', 'in_recommendations'] as $field_name) {
-    Drupal::entityDefinitionUpdateManager()
-      ->installFieldStorageDefinition(
-        $field_name,
-        'node',
-        'helfi_annif',
-        $type_fields[$field_name]
-      );
-  }
+  foreach (['show_annif_block', 'in_recommendations', 'annif_keywords'] as $field_name) {
+    if ($entity_definition_update_manager->getFieldStorageDefinition($field_name, 'node')) {
+      continue;
+    }
 
-  Drupal::entityDefinitionUpdateManager()
-    ->installFieldStorageDefinition(
-      'annif_keywords',
+    $entity_definition_update_manager->installFieldStorageDefinition(
+      $field_name,
       'node',
       'helfi_annif',
-      $type_fields['annif_keywords']
+      $type_fields[$field_name]
     );
+  }
 }
