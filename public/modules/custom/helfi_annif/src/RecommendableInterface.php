@@ -45,11 +45,6 @@ interface RecommendableInterface extends EntityInterface, FieldableEntityInterfa
   public function getKeywordsCacheTags(): array;
 
   /**
-   * Invalidate the cache tags of the keyword taxonomy terms.
-   */
-  public function invalidateKeywordsCacheTags(): void;
-
-  /**
    * Get keyword field name.
    *
    * @return string

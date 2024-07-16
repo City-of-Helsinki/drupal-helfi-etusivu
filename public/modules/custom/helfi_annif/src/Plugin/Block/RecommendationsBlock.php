@@ -111,12 +111,10 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    */
   public function getCacheTags(): array {
     $node = $this->getContextValue('node');
-    $keywordCacheTags = $node instanceof RecommendableInterface ? $node->getKeywordsCacheTags() : [];
 
     return Cache::mergeTags(
       parent::getCacheTags(),
       $node->getCacheTags(),
-      $keywordCacheTags
     );
   }
 
