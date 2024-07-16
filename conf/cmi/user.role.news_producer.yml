@@ -5,9 +5,6 @@ dependencies:
   config:
     - filter.format.full_html
     - filter.format.minimal
-    - media.type.file
-    - media.type.hel_map
-    - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
     - node.type.news_article
@@ -38,9 +35,6 @@ permissions:
   - 'administer nodes'
   - 'cancel account'
   - 'change own username'
-  - 'create file media'
-  - 'create hel_map media'
-  - 'create helfi_chart media'
   - 'create image media'
   - 'create media'
   - 'create news_article content'
@@ -48,24 +42,22 @@ permissions:
   - 'create paragraph library item'
   - 'create remote_video media'
   - 'create url aliases'
+  - 'delete any image media'
   - 'delete any news_article content'
   - 'delete any news_item content'
+  - 'delete any remote_video media'
   - 'delete media'
   - 'delete news_article revisions'
   - 'delete news_item revisions'
-  - 'delete own file media'
   - 'delete own files'
-  - 'delete own hel_map media'
-  - 'delete own helfi_chart media'
   - 'delete own image media'
   - 'delete own news_article content'
   - 'delete own news_item content'
   - 'delete own remote_video media'
+  - 'edit any image media'
   - 'edit any news_article content'
   - 'edit any news_item content'
-  - 'edit own file media'
-  - 'edit own hel_map media'
-  - 'edit own helfi_chart media'
+  - 'edit any remote_video media'
   - 'edit own image media'
   - 'edit own news_article content'
   - 'edit own news_item content'
