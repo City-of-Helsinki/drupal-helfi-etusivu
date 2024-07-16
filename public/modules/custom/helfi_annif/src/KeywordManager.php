@@ -118,7 +118,7 @@ final class KeywordManager {
    * @throws \Drupal\helfi_annif\Client\KeywordClientException
    */
   public function processEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
-    if (!$entity->hasField('annif_keywords')) {
+    if (!$entity->hasField(self::KEYWORD_FIELD)) {
       return;
     }
 
@@ -181,7 +181,7 @@ final class KeywordManager {
     foreach ($entities as $key => $entity) {
       assert($entity instanceof EntityInterface);
 
-      if (!$entity->hasField('annif_keywords')) {
+      if (!$entity->hasField(self::KEYWORD_FIELD)) {
         continue;
       }
 
