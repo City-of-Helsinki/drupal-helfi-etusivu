@@ -6,7 +6,6 @@ namespace Drupal\Tests\helfi_annif\Functional;
 
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\helfi_annif\TextConverter\RenderTextConverter;
-use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\BrowserTestBase;
 use Drush\TestTraits\DrushTestTrait;
 
