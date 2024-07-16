@@ -179,7 +179,7 @@ final class KeywordManager {
     $buckets = [];
 
     foreach ($entities as $key => $entity) {
-      assert($entity instanceof EntityInterface);
+      assert($entity instanceof RecommendableInterface);
 
       if (!$entity->hasField(self::KEYWORD_FIELD)) {
         continue;
