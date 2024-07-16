@@ -100,7 +100,10 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function getCacheContexts(): array {
-    return Cache::mergeContexts(parent::getCacheContexts(), ['languages:language_content']);
+    return Cache::mergeContexts(
+      parent::getCacheContexts(),
+      ['languages:language_content', 'user.roles:anonymous'],
+    );
   }
 
   /**
