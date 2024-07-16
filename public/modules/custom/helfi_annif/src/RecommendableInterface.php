@@ -37,14 +37,6 @@ interface RecommendableInterface extends EntityInterface, FieldableEntityInterfa
   public function hasKeywords(): bool;
 
   /**
-   * Get cache tags for keywords.
-   *
-   * @return array
-   *   Keywords cache tags.
-   */
-  public function getKeywordsCacheTags(): array;
-
-  /**
    * Get keyword field name.
    *
    * @return string
