@@ -104,6 +104,16 @@ editable title and description.
 `hdbt_subtheme_preprocess_paragraph` [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme)
 - Fallback view when JavaScript is not enabled can be found in the `/conf/cim` folder [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/conf/cmi/views.view.news_archive_index.yml).
 
+### Custom roles
+
+#### Menu API (menu_api)
+
+Role used for writing the global menu entities through the API.
+
+#### News producer (news_producer)
+
+User role limited to news item and article production.
+
 ### Global navigation
 
 Global navigation refers to the common navigation elements that can be found on all the core instances. This instance
