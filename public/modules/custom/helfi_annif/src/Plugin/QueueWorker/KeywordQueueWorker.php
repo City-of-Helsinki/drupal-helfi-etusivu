@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif\Plugin\QueueWorker;
 
-use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
