@@ -206,4 +206,74 @@ final class AnnifCommands extends DrushCommands {
     return DrushCommands::EXIT_FAILURE;
   }
 
+  /**
+   * Set new fields' default values.
+   */
+  #[Command(name: 'helfi:annif-entity-defaults')]
+  public function setEntityDefaultAnnifValues(): int {
+
+    $query = $this->entityTypeManager
+      ->getStorage('node')
+      ->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('type', 'news_item');
+
+    $batch = (new BatchBuilder())
+      ->addOperation([$this, 'batchVisibilityFieldsDefaultValues'], [
+        $query->execute(),
+      ]);
+
+    batch_set($batch->toArray());
+
+    drush_backend_batch_process();
+
+    return DrushCommands::EXIT_SUCCESS;
+  }
+
+  /**
+   * Set the block and recommendation visibility for all nodes.
+   *
+   * @param array $entityIds
+   *   Ids of entities to update.
+   * @param array $context
+   *   The context.
+   */
+  public function batchVisibilityFieldsDefaultValues(array $entityIds, &$context,): void {
+    $batchSize = 200;
+
+    // Check if the sandbox should be initialized.
+    if (!isset($context['sandbox']['from'])) {
+      $context['sandbox']['from'] = 0;
+    }
+
+    $from = $context['sandbox']['from'];
+    $to = min($from + $batchSize, count($entityIds));
+    $slice = array_slice($entityIds, $from, $to - $from);
+
+    try {
+      $entities = $this->entityTypeManager
+        ->getStorage('node')
+        ->loadMultiple($slice);
+
+      foreach ($entities as $entity) {
+        $entity->set('in_recommendations', 1);
+        $entity->set('show_annif_block', 1);
+        // @todo Prevent updating updated time when saving.
+        $entity->save();
+      }
+
+      $context['sandbox']['from'] = $to;
+      $context['message'] = $this->t("@total entities remaining", [
+        '@total' => count($entityIds) - $to,
+      ]);
+
+      // Everything has been processed?
+      $context['finished'] = $to >= count($entityIds);
+    }
+    catch (\Exception $e) {
+      $context['message'] = $this->t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
+      $context['finished'] = 1;
+    }
+  }
+
 }

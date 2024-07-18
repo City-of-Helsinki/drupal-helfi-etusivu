@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif\Plugin\Block;
 
+use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
@@ -13,6 +14,7 @@ use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\RecommendationManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -61,23 +63,24 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function build() : array {
-    $node = $this->getContextValue('node');
+    try {
+      $node = $this->getContextValue('node');
+    }
+    catch (ContextException $exception) {
+      $this->logger->error($exception->getMessage());
+      return [];
+    }
 
-    // @todo #UHF-9964 Add recommendation block hiding feature.
+    if (!$node instanceof RecommendableInterface || !$node->showRecommendationsBlock()) {
+      return [];
+    }
+
     $response = [
       '#theme' => 'recommendations_block',
       '#title' => $this->t('You might be interested in', [], ['context' => 'Recommendations block title']),
     ];
 
-    $recommendations = [];
-    try {
-      $recommendations = $this->recommendationManager
-        ->getRecommendations($node, 3, 'fi');
-    }
-    catch (\Exception $exception) {
-      $this->logger->error($exception->getMessage());
-    }
-
+    $recommendations = $this->getRecommendations($node);
     if (!$recommendations) {
       return $this->handleNoRecommendations($response);
     }
@@ -97,18 +100,43 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function getCacheContexts(): array {
-    return Cache::mergeContexts(parent::getCacheContexts(), ['languages:language_content']);
+    return Cache::mergeContexts(
+      parent::getCacheContexts(),
+      ['languages:language_content', 'user.roles:anonymous'],
+    );
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCacheTags(): array {
+    $node = $this->getContextValue('node');
+
     return Cache::mergeTags(
       parent::getCacheTags(),
-      $this->getContextValue('node')->getCacheTags(),
-      $this->getAnnifKeywordCacheTags()
+      $node->getCacheTags(),
     );
+  }
+
+  /**
+   * Get the recommendations for current content entity.
+   *
+   * @param \Drupal\helfi_annif\RecommendableInterface $node
+   *   Content entity to find recommendations for.
+   *
+   * @return array
+   *   Array of recommendations
+   */
+  private function getRecommendations(RecommendableInterface $node): array {
+    try {
+      $recommendations = $this->recommendationManager
+        ->getRecommendations($node, 3, 'fi');
+    }
+    catch (\Exception $exception) {
+      $this->logger->error($exception->getMessage());
+      return [];
+    }
+    return $recommendations;
   }
 
   /**
@@ -127,27 +155,6 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
 
     $response['#no_results_message'] = $this->t('Calculating recommendations');
     return $response;
-  }
-
-  /**
-   * Get list of cache tags for the block.
-   *
-   * @return array
-   *   Array of cache tags for Annif-keywords related to this node.
-   */
-  private function getAnnifKeywordCacheTags(): array {
-    $entity = $this->getContextValue('node');
-    if (!$entity->hasField('field_annif_keywords') || $entity->get('field_annif_keywords')->isEmpty()) {
-      return [];
-    }
-
-    $cacheTags = array_map(
-      fn ($term) => $term->getCacheTags(),
-      $entity->get('field_annif_keywords')->referencedEntities()
-    );
-
-    // Flatten array by merging the destructed arrays.
-    return array_merge(...$cacheTags);
   }
 
 }

@@ -2,7 +2,6 @@ config_rewrite:
   replace: ['hidden', 'dependencies']
 dependencies:
   config:
-    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -46,16 +45,6 @@ third_party_settings:
         description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
         required_fields: false
 content:
-  field_annif_keywords:
-    type: readonly_field_widget
-    weight: 29
-    region: content
-    settings:
-      label: above
-      formatter_type: null
-      formatter_settings: { }
-      show_description: false
-    third_party_settings: { }
   field_news_item_updating_news:
     type: paragraphs
     weight: 17
@@ -101,6 +90,20 @@ content:
     weight: 28
     region: content
     settings: {  }
+    third_party_settings: {  }
+  annif_keywords:
+    type: readonly_field_widget
+    weight: 2
+    region: content
+    settings:
+      label: above
+      formatter_type: entity_reference_label
+      formatter_settings:
+        entity_reference_entity_view:
+          view_mode: default
+        entity_reference_label:
+          link: true
+      show_description: false
     third_party_settings: {  }
 hidden:
   hide_sidebar_navigation: true
