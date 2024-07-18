@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Entity\Node;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
@@ -76,14 +77,30 @@ final class NewsItem extends RecommendableBase {
   /**
    * {@inheritDoc}
    */
-  public function getCacheTags() {
+  public function getCacheTagsToInvalidate(): array {
+    $parentCacheTags = parent::getCacheTagsToInvalidate();
+    if (!$this->hasField(self::getKeywordFieldName())) {
+      return $parentCacheTags;
+    }
+
+    $keywordsCacheTags = $this->getKeywordsCacheTags();
+    return Cache::mergeTags($parentCacheTags, $keywordsCacheTags);
+  }
+
+  /**
+   * Get the cache tags for all of the keywords.
+   *
+   * @return array
+   *   Array of cache tags for keywrods.
+   */
+  private function getKeywordsCacheTags(): array {
     $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
-    $cacheTags = array_map(
+
+    $tags = array_map(
       fn ($term) => $term->getCacheTags(),
       $terms
     );
-
-    return array_merge(parent::getCacheTags(), ...$cacheTags);
+    return array_merge(...$tags);
   }
 
 }
