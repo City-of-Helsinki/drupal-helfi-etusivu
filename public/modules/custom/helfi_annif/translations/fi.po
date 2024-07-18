@@ -44,3 +44,15 @@ msgstr "Suositellut sisällöt tälle sivulle"
 msgctxt "Annif"
 msgid "No recommended content has been created for this page yet"
 msgstr "Tälle sivulle ei ole vielä luotu suositeltuja sisältöjä"
+
+msgctxt "annif"
+msgid "Automatically selected news categories"
+msgstr "Automaattisesti valitut uutisluokat"
+
+msgctxt "annif"
+msgid "Show in recommendations"
+msgstr "Näytä tämä sivu muiden sivujen suositteluissa"
+
+msgctxt "annif"
+msgid "Show recommendations block"
+msgstr "Näytä automaattisesti suositellut sisällöt tällä sivulla."
