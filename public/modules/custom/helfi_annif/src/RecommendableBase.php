@@ -59,10 +59,10 @@ abstract class RecommendableBase extends Node implements RecommendableInterface 
   }
 
   /**
-   * Get the cache tags for all of the keywords.
+   * Get the cache tags for all the keywords.
    *
    * @return array
-   *   Array of cache tags for keywrods.
+   *   Array of cache tags for keywords.
    */
   protected function getKeywordsCacheTags(): array {
     $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
