@@ -9,7 +9,11 @@ declare(strict_types=1);
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\entity\BundleFieldDefinition;
 use Drupal\helfi_annif\KeywordManager;
+use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\Document;
 
 /**
@@ -30,18 +34,22 @@ function helfi_annif_theme() : array {
  * Implements hook_entity_insert().
  */
 function helfi_annif_entity_insert(EntityInterface $entity) : void {
-  /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
-  $keywordManager = \Drupal::service(KeywordManager::class);
-  $keywordManager->queueEntity($entity, TRUE);
+  if ($entity instanceof RecommendableInterface) {
+    /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
+    $keywordManager = \Drupal::service(KeywordManager::class);
+    $keywordManager->queueEntity($entity, TRUE);
+  }
 }
 
 /**
  * Implements hook_entity_update().
  */
 function helfi_annif_entity_update(EntityInterface $entity) : void {
-  /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
-  $keywordManager = \Drupal::service(KeywordManager::class);
-  $keywordManager->queueEntity($entity, TRUE);
+  if ($entity instanceof RecommendableInterface) {
+    /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
+    $keywordManager = \Drupal::service(KeywordManager::class);
+    $keywordManager->queueEntity($entity, TRUE);
+  }
 }
 
 /**
@@ -53,6 +61,81 @@ function helfi_annif_entity_bundle_field_info_alter(&$fields, EntityTypeInterfac
       $fields['field_uri']->addConstraint('UniqueField');
     }
   }
+
+  if ($entityType->id() == 'node' && $bundle == 'news_item') {
+    foreach (helfi_annif_bundle_fields($entityType->id(), $bundle) as $name => $field) {
+      $fields[$name] = $field;
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_field_storage_info().
+ */
+function helfi_annif_entity_field_storage_info(EntityTypeInterface $entity_type): array {
+  if ($entity_type->id() === 'node') {
+    return helfi_annif_bundle_fields($entity_type->id(), 'news_item');
+  }
+  return [];
+}
+
+/**
+ * Get annif bundle fields.
+ *
+ * @param string $entity_type_id
+ *   The entity type id.
+ * @param string $bundle
+ *   The bundle.
+ *
+ * @return array
+ *   Array of bundleFieldDefinitions.
+ */
+function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): array {
+  $visibilityFields = [
+    'in_recommendations' => new TranslatableMarkup('Show in recommendations', [], ['context' => 'annif']),
+    'show_annif_block' => new TranslatableMarkup('Show recommendations block', [], ['context' => 'annif']),
+  ];
+
+  $fields = [];
+  foreach ($visibilityFields as $id => $name) {
+    $fields[$id] = BundleFieldDefinition::create('boolean')
+      ->setName($id)
+      ->setLabel($name)
+      ->setTargetEntityTypeId($entity_type_id)
+      ->setTargetBundle($bundle)
+      ->setCardinality(1)
+      ->setDefaultValue(1)
+      ->setSettings(['default_value' => TRUE])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+  }
+
+  $keywordfieldId = 'annif_keywords';
+  $keywordfieldName = new TranslatableMarkup('Automatically selected news categories', [], ['context' => 'annif']);
+
+  $fields[$keywordfieldId] = BundleFieldDefinition::create('entity_reference')
+    ->setName($keywordfieldId)
+    ->setLabel($keywordfieldName)
+    ->setSettings(['target_type' => 'taxonomy_term'])
+    ->setTargetEntityTypeId($entity_type_id)
+    ->setTargetBundle($bundle)
+    ->setDisplayOptions('form',
+      [
+        'type' => 'readonly_field_widget',
+        'third_party_settings' => [],
+        'settings' =>
+          [
+            'formatter_type' => 'entity_reference_label',
+          ],
+      ]
+    )
+    ->setReadonly(TRUE)
+    ->setTranslatable(FALSE)
+    ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayConfigurable('view', TRUE);
+
+  return $fields;
 }
 
 /**

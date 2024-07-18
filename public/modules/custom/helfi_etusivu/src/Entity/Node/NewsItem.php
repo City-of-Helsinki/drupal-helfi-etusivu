@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Entity\Node;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
-use Drupal\node\Entity\Node;
+use Drupal\helfi_annif\RecommendableBase;
 use Drupal\radioactivity\RadioactivityInterface;
 
 /**
- * A bundle class for node entities.
+ * A bundle class for NewsItem -node.
  */
-final class NewsItem extends Node {
+final class NewsItem extends RecommendableBase {
 
   /**
    * {@inheritdoc}
@@ -71,6 +72,35 @@ final class NewsItem extends Node {
       $entity->setTimestamp($requestTime);
       $entity->save();
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getCacheTagsToInvalidate(): array {
+    $parentCacheTags = parent::getCacheTagsToInvalidate();
+    if (!$this->hasField(self::getKeywordFieldName())) {
+      return $parentCacheTags;
+    }
+
+    $keywordsCacheTags = $this->getKeywordsCacheTags();
+    return Cache::mergeTags($parentCacheTags, $keywordsCacheTags);
+  }
+
+  /**
+   * Get the cache tags for all of the keywords.
+   *
+   * @return array
+   *   Array of cache tags for keywrods.
+   */
+  private function getKeywordsCacheTags(): array {
+    $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
+
+    $tags = array_map(
+      fn ($term) => $term->getCacheTags(),
+      $terms
+    );
+    return array_merge(...$tags);
   }
 
 }

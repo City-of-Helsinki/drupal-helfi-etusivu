@@ -6,7 +6,6 @@ namespace Drupal\Tests\helfi_annif\Functional;
 
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\helfi_annif\TextConverter\RenderTextConverter;
-use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\BrowserTestBase;
 use Drush\TestTraits\DrushTestTrait;
 
@@ -27,6 +26,12 @@ class AnnifCommandsTest extends BrowserTestBase {
     'content_translation',
     'node',
     'helfi_annif',
+    'helfi_etusivu',
+    'datetime',
+    'paragraphs',
+    'helfi_node_news_item',
+    'readonly_field_widget',
+    'field',
   ];
 
   /**
@@ -54,10 +59,6 @@ class AnnifCommandsTest extends BrowserTestBase {
       ])
       ->setStatus(1)
       ->save();
-
-    foreach (['fi', 'sv'] as $langcode) {
-      ConfigurableLanguage::createFromLangcode($langcode)->save();
-    }
   }
 
   /**
