@@ -47,13 +47,6 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
   private LoggerInterface $logger;
 
   /**
-   * The cache tags invalidator.
-   *
-   * @var CacheTagsInvalidatorInterface
-   */
-  private CacheTagsInvalidatorInterface $cacheTagsInvalidator;
-
-  /**
    * {@inheritDoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : self {
@@ -65,7 +58,6 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
     $instance->keywordManager = $container->get(KeywordManager::class);
     $instance->entityTypeManager = $container->get(EntityTypeManagerInterface::class);
     $instance->logger = $container->get('logger.channel.helfi_annif');
-    $instance->cache = $container->get('cache_tags.invalidator');
 
     return $instance;
   }
@@ -101,7 +93,6 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
 
     try {
       $this->keywordManager->processEntity($entity, overwriteExisting: $overwrite);
-      $this->cacheTagsInvalidator->invalidateTags($entity->getCacheTags());
     }
     catch (KeywordClientException $exception) {
       $this->logger->error($exception->getMessage());
