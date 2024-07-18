@@ -74,33 +74,4 @@ final class NewsItem extends RecommendableBase {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function getCacheTagsToInvalidate(): array {
-    $parentCacheTags = parent::getCacheTagsToInvalidate();
-    if (!$this->hasField(self::getKeywordFieldName())) {
-      return $parentCacheTags;
-    }
-
-    $keywordsCacheTags = $this->getKeywordsCacheTags();
-    return Cache::mergeTags($parentCacheTags, $keywordsCacheTags);
-  }
-
-  /**
-   * Get the cache tags for all of the keywords.
-   *
-   * @return array
-   *   Array of cache tags for keywrods.
-   */
-  private function getKeywordsCacheTags(): array {
-    $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
-
-    $tags = array_map(
-      fn ($term) => $term->getCacheTags(),
-      $terms
-    );
-    return array_merge(...$tags);
-  }
-
 }
