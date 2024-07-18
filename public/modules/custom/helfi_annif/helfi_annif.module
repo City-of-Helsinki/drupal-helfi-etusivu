@@ -62,7 +62,8 @@ function helfi_annif_entity_bundle_field_info_alter(&$fields, EntityTypeInterfac
     }
   }
 
-  if ($entityType->id() == 'node' && $bundle == 'news_item') {
+  $recommendable_node_bundles = ['news_item', 'news_article'];
+  if ($entityType->id() == 'node' && in_array($bundle, $recommendable_node_bundles)) {
     foreach (helfi_annif_bundle_fields($entityType->id(), $bundle) as $name => $field) {
       $fields[$name] = $field;
     }
@@ -74,7 +75,10 @@ function helfi_annif_entity_bundle_field_info_alter(&$fields, EntityTypeInterfac
  */
 function helfi_annif_entity_field_storage_info(EntityTypeInterface $entity_type): array {
   if ($entity_type->id() === 'node') {
-    return helfi_annif_bundle_fields($entity_type->id(), 'news_item');
+    return [
+      'news_item' => helfi_annif_bundle_fields($entity_type->id(), 'news_item'),
+      'news_article' => helfi_annif_bundle_fields($entity_type->id(), 'news_article'),
+    ];
   }
   return [];
 }

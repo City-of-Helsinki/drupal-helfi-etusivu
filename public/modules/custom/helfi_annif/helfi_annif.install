@@ -28,3 +28,25 @@ function helfi_annif_update_9000(): void {
     );
   }
 }
+
+/**
+ * Create entity definitions for news_article annif-fields.
+ */
+function helfi_annif_update_9001(): void {
+  $entity_field_manager = \Drupal::service('entity_field.manager');
+  $type_fields = $entity_field_manager->getFieldDefinitions('node', 'news_article');
+  $entity_definition_update_manager = Drupal::entityDefinitionUpdateManager();
+
+  foreach (['show_annif_block', 'in_recommendations', 'annif_keywords'] as $field_name) {
+    if ($entity_definition_update_manager->getFieldStorageDefinition($field_name, 'node')) {
+      continue;
+    }
+
+    $entity_definition_update_manager->installFieldStorageDefinition(
+      $field_name,
+      'node',
+      'helfi_annif',
+      $type_fields[$field_name]
+    );
+  }
+}

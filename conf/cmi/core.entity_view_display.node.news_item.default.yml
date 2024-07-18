@@ -157,6 +157,7 @@ content:
     weight: 3
     region: content
 hidden:
+  annif_keywords: true
   field_news_groups: true
   field_news_item_tags: true
   field_news_item_updating_news: true
@@ -166,5 +167,4 @@ hidden:
   langcode: true
   search_api_excerpt: true
   show_annif_block: true
-  annif_keywords: true
   toc_enabled: true
