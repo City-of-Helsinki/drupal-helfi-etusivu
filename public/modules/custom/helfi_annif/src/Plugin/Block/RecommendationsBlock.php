@@ -82,7 +82,12 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
 
     $recommendations = $this->getRecommendations($node);
     if (!$recommendations) {
-      return $this->handleNoRecommendations($response);
+      if ($this->currentUser->isAnonymous()) {
+        return [];
+      }
+
+      $response['#no_results_message'] = $this->t('No recommended content has been created for this page yet');
+      return $response;
     }
 
     $nodes = [];
@@ -137,24 +142,6 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       return [];
     }
     return $recommendations;
-  }
-
-  /**
-   * Create response when recommendations are not yet created.
-   *
-   * @param array $response
-   *   Render array.
-   *
-   * @return array
-   *   Render array.
-   */
-  private function handleNoRecommendations(array $response): array {
-    if ($this->currentUser->isAnonymous()) {
-      return [];
-    }
-
-    $response['#no_results_message'] = $this->t('No recommended content has been created for this page yet');
-    return $response;
   }
 
 }
