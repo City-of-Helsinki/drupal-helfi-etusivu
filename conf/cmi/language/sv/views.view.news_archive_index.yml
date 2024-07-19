@@ -1,0 +1,17 @@
+label: Nyhetsarkiv
+display:
+  default:
+    display_options:
+      pager:
+        options:
+          tags:
+            next: Nästa
+            previous: Tidigare
+            first: Första
+            last: Sista
+      title: 'Alla nyheter'
+  news_archive_index_block:
+    display_title: Nyhetsarkiv
+  news_archive_feed_index:
+    display_options:
+      title: Nyheter

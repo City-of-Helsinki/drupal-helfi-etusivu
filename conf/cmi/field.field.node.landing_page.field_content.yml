@@ -18,6 +18,7 @@ dependencies:
     - paragraphs.paragraphs_type.liftup_with_image
     - paragraphs.paragraphs_type.list_of_links
     - paragraphs.paragraphs_type.map
+    - paragraphs.paragraphs_type.news_archive
     - paragraphs.paragraphs_type.phasing
     - paragraphs.paragraphs_type.popular_services
     - paragraphs.paragraphs_type.remote_video
@@ -57,6 +58,7 @@ settings:
       chart: chart
       target_group_links: target_group_links
       hearings: hearings
+      news_archive: news_archive
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -97,6 +99,9 @@ settings:
         enabled: true
       map:
         weight: 8
+        enabled: true
+      news_archive:
+        weight: 19
         enabled: true
       phasing:
         weight: 7

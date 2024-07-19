@@ -116,6 +116,7 @@ function helfi_etusivu_helfi_paragraph_types() : array {
           'front_page_top_news' => 16,
           'front_page_latest_news' => 17,
           'event_list' => 18,
+          'news_archive' => 19,
         ],
       ],
       'page' => [
@@ -274,4 +275,11 @@ function helfi_etusivu_entity_bundle_info_alter(array &$bundles): void {
   if (isset($bundles['node']['news_item'])) {
     $bundles['node']['news_item']['class'] = NewsItem::class;
   }
+}
+
+/**
+ * Implements hook_first_paragraph_grey_alter().
+ */
+function helfi_etusivu_first_paragraph_grey_alter(array &$paragraphs): void {
+  $paragraphs[] = 'news_archive';
 }
