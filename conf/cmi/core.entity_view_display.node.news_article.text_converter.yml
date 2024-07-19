@@ -57,6 +57,7 @@ content:
     region: content
 hidden:
   annif_keywords: true
+  field_hero_design: true
   field_main_image: true
   field_main_image_caption: true
   field_news_groups: true
@@ -68,9 +69,8 @@ hidden:
   field_radioactivity: true
   in_recommendations: true
   langcode: true
+  links: true
   published_at: true
   search_api_excerpt: true
   show_annif_block: true
   toc_enabled: true
-  links: true
-
