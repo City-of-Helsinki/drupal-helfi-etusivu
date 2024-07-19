@@ -1,0 +1,27 @@
+label: Uutisarkisto
+display:
+  default:
+    display_options:
+      title: 'Kaikki uutiset'
+      pager:
+        options:
+          tags:
+            next: Seuraava
+            previous: Edellinen
+            first: Ensimmäinen
+            last: Viimeinen
+          expose:
+            items_per_page_label: 'Kohtaa per sivu'
+            items_per_page_options_all_label: '- Kaikki -'
+      exposed_form:
+        options:
+          submit_button: Suorita
+          reset_button_label: Palauta
+          exposed_sorts_label: Järjestä
+          sort_asc_label: Nouseva
+          sort_desc_label: Laskeva
+  news_archive_feed_index:
+    display_options:
+      title: Uutiset
+  news_archive_index_block:
+    display_title: Uutisarkisto
