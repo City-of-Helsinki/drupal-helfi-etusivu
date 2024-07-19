@@ -216,7 +216,7 @@ final class AnnifCommands extends DrushCommands {
       ->getStorage('node')
       ->getQuery()
       ->accessCheck(FALSE)
-      ->condition('type', 'news_item');
+      ->condition('type', ['news_item', 'news_article'], 'in');
 
     $batch = (new BatchBuilder())
       ->addOperation([$this, 'batchVisibilityFieldsDefaultValues'], [
