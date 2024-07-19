@@ -37,4 +37,5 @@ visibility:
     context_mapping:
       node: '@node.node_route_context:node'
     bundles:
+      news_article: news_article
       news_item: news_item
