@@ -74,6 +74,7 @@ display:
       tab_options:
         title: Contenu
         description: 'Find and manage scheduled content'
+      display_description: "Vue d'ensemble de tous les contenus planifiés, dans un onglet de la page principale d'administration du contenu"
     display_title: "Vue d'ensemble des contenus"
   user_page:
     display_options:
@@ -86,4 +87,9 @@ display:
         uid:
           exception:
             title: Tout
+      display_description: "Onglet de contenu planifié sur le profil de l'utilisateur, affichant uniquement les contenus qu'il(elle) a planifié"
+      empty:
+        area_text_custom:
+          content: "Aucun contenu planifié pour l'utilisateur {{ arguments.uid }}"
     display_title: 'User profile tab'
+description: 'Chercher et gérer le contenu planifié.'
