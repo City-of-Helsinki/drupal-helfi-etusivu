@@ -140,7 +140,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   }
 
   /**
-   * Return response when recommendations are not yet calculated.
+   * Create response when recommendations are not yet created.
    *
    * @param array $response
    *   Render array.
@@ -153,7 +153,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       return [];
     }
 
-    $response['#no_results_message'] = $this->t('Calculating recommendations');
+    $response['#no_results_message'] = $this->t('No recommended content has been created for this page yet');
     return $response;
   }
 
