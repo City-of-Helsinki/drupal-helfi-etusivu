@@ -1,0 +1,9 @@
+uuid: 7ec657c8-9419-43a9-bfd9-604035102827
+langcode: en
+status: true
+dependencies: { }
+id: news_producer
+label: 'News producer'
+weight: 7
+is_admin: null
+permissions: { }
