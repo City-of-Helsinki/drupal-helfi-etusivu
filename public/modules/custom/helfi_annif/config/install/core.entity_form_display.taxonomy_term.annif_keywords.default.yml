@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.annif_keywords.field_uri
     - taxonomy.vocabulary.annif_keywords
   module:
     - path
