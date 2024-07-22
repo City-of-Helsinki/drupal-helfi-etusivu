@@ -82,7 +82,7 @@ function helfi_node_news_article_get_block_configurations(string $theme) {
               'news_article' => 'news_article',
             ],
           ],
-        ]
+        ],
       ],
       'variations' => [
         [
@@ -94,7 +94,7 @@ function helfi_node_news_article_get_block_configurations(string $theme) {
           'region' => 'content',
         ],
       ],
-    ]
+    ],
   ];
 }
 

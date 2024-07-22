@@ -91,11 +91,13 @@ function helfi_annif_get_block_configurations(string $theme) {
             'id' => 'language',
             'negate' => 'false',
             'context_mapping' => [
-              'language' => '@language.current_language_context:language_interface'
+              'language' => '@language.current_language_context:language_interface',
             ],
             'langcodes' => [
-              'fi' => 'fi', 'sv' => 'sv', 'en' => 'en'
-            ]
+              'fi' => 'fi',
+              'sv' => 'sv',
+              'en' => 'en',
+            ],
           ],
           'entity_bundle:node' => [
             'id' => 'entity_bundle:node',
@@ -108,7 +110,7 @@ function helfi_annif_get_block_configurations(string $theme) {
               'news_article' => 'news_article',
             ],
           ],
-        ]
+        ],
       ],
       'variations' => [
         [
@@ -120,7 +122,7 @@ function helfi_annif_get_block_configurations(string $theme) {
           'region' => 'content',
         ],
       ],
-    ]
+    ],
   ];
 }
 
