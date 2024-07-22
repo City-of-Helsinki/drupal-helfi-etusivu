@@ -16,6 +16,89 @@ use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\node\NodeInterface;
 
 /**
+ * Implements hook_themes_installed().
+ */
+function helfi_node_news_article_themes_installed($theme_list) {
+  /** @var Drupal\helfi_platform_config\Helper\BlockInstaller $block_installer */
+  $block_installer = Drupal::service('helfi_platform_config.helper.block_installer');
+
+  foreach ($theme_list as $theme) {
+    if (in_array($theme, ['stark', 'hdbt', 'hdbt_subtheme'])) {
+      // Set the current theme as default theme.
+      Drupal::configFactory()->getEditable('system.theme')
+        ->set('default', $theme)
+        ->save();
+
+      foreach (helfi_node_news_article_get_block_configurations($theme) as $block_config) {
+        ['block' => $block, 'variations' => $variations] = $block_config;
+        $block_installer->install($block, $variations);
+      }
+    }
+  }
+}
+
+/**
+ * Gets the block configurations.
+ *
+ * Example block:
+ *
+ * @code
+ * [
+ *   'breadbrumbs' => [
+ *     'block' => [
+ *       ...
+ *     ],
+ *     'variations' => [
+ *       ...
+ *     ],
+ *   ],
+ * ];
+ * @endcode
+ *
+ * @return array[]
+ *   The block configurations.
+ */
+function helfi_node_news_article_get_block_configurations(string $theme) {
+  return [
+    'hdbt_subtheme_newsarticleheroblock' => [
+      'block' => [
+        'id' => 'hdbt_subtheme_newsarticleheroblock',
+        'plugin' => 'news_article_hero_block',
+        'provider' => NULL,
+        'settings' => [
+          'id' => 'news_article_hero_block',
+          'label' => 'News article hero block',
+          'label_display' => 0,
+          'provider' => 'helfi_node_news_article',
+        ],
+        'visibility' => [
+          'entity_bundle:node' => [
+            'id' => 'entity_bundle:node',
+            'negate' => FALSE,
+            'context_mapping' => [
+              'node' => '@node.node_route_context:node',
+            ],
+            'bundles' => [
+              'news_article' => 'news_article',
+            ],
+          ],
+        ]
+      ],
+      'variations' => [
+        [
+          'theme' => $theme,
+          'region' => 'before_content',
+        ],
+        [
+          'theme' => 'stark',
+          'region' => 'content',
+        ],
+      ],
+    ]
+  ];
+}
+
+/**
  * Implements hook_helfi_paragraph_types().
  */
 function helfi_node_news_article_helfi_paragraph_types() : array {
