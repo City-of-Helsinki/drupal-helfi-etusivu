@@ -57,14 +57,14 @@ msgctxt "annif"
 msgid "Show recommendations block"
 msgstr "Näytä automaattisesti suositellut sisällöt tällä sivulla"
 
-msgtxt "annif"
+msgctxt "annif"
 msgid "You may update the news categories if you have edited the page. The news categories are automatically selected based on the page content when the page is saved"
 msgstr "Voit päivittää uutisluokat, jos olet muokannut sivua. Uutisluokat valitaan sivun sisällön perusteella automaattisesti, kun sivu tallennetaan"
 
-msgtxt "annif"
+msgctxt "annif"
 msgid "- None -"
 msgstr "- Ei mitään -"
 
-msgtxt "annif"
+msgctxt "annif"
 msgid "Note! Recommended content changes as new pages suitable for the selected categories are added to the site. Content older than one year is not recommended"
 msgstr "Huom! Suositellut sisällöt vaihtuvat, kun sivustolle tulee uusia, valittuihin luokkiin sopivia sivuja. Yli vuoden vanhoja sisältöjä ei suositella"
