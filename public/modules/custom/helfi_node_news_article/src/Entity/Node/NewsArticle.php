@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Entity\Node;
+namespace Drupal\helfi_node_news_article\Entity\Node;
 
 use Drupal\helfi_annif\RecommendableBase;
 
