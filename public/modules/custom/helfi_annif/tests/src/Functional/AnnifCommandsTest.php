@@ -30,6 +30,7 @@ class AnnifCommandsTest extends BrowserTestBase {
     'datetime',
     'paragraphs',
     'helfi_node_news_item',
+    'helfi_node_news_article',
     'readonly_field_widget',
     'field',
   ];
