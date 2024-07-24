@@ -112,6 +112,7 @@ class RecommendationManager {
       and nfd.langcode = :target_langcode
       and n.nid != :nid
       and nfd.created > :timestamp
+      and ndf.status = 1;
       group by n.nid
       order by count(n.nid) DESC
       limit {$limit};
