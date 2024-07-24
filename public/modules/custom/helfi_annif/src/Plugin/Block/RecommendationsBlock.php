@@ -71,7 +71,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       return [];
     }
 
-    if (!$node instanceof RecommendableInterface || !$node->showRecommendationsBlock()) {
+    if (!$node instanceof RecommendableInterface || !$node->isBlockSetVisible()) {
       return [];
     }
 
