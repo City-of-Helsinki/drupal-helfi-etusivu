@@ -94,7 +94,8 @@ class RecommendationManager {
       select
         n.nid,
         count(n.nid) as relevancy,
-        nfd.created
+        nfd.created,
+        nfd.status
       from node as n
       left join node__annif_keywords as annif on n.nid = annif.entity_id
       left join node_field_data as nfd on nfd.nid = n.nid
@@ -107,12 +108,12 @@ class RecommendationManager {
           (select distinct restriction.entity_id
            from node__in_recommendations as restriction
            where restriction.in_recommendations_value = 0)
+      and nfd.status = 1
       and n.langcode = :target_langcode
       and annif.langcode = :destination_langcode
       and nfd.langcode = :target_langcode
       and n.nid != :nid
       and nfd.created > :timestamp
-      and ndf.status = 1;
       group by n.nid
       order by count(n.nid) DESC
       limit {$limit};
