@@ -24,6 +24,7 @@ function helfi_annif_theme() : array {
     'recommendations_block' => [
       'variables' => [
         'rows' => NULL,
+        'no_results_message' => NULL,
       ],
       'template' => 'recommendations-block',
     ],
