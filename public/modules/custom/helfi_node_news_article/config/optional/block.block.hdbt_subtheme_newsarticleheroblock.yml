@@ -1,10 +1,11 @@
 langcode: en
 status: true
 dependencies:
+  enforced:
+    theme:
+      - hdbt_subtheme
   module:
     - node
-  theme:
-    - hdbt_subtheme
 id: hdbt_subtheme_newsarticleheroblock
 theme: hdbt_subtheme
 region: before_content
