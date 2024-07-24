@@ -24,10 +24,7 @@ abstract class RecommendableBase extends Node implements RecommendableInterface 
   }
 
   /**
-   * Check if block has been manually disabled for single content page.
-   *
-   * @return bool
-   *   Block is visible.
+   * {@inheritDoc}
    */
   public function isBlockSetVisible(): bool {
     return (bool) $this->get(self::SHOW_RECOMMENDATIONS_BLOCK)->value;

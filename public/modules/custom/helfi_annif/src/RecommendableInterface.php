@@ -21,6 +21,14 @@ interface RecommendableInterface extends EntityInterface, FieldableEntityInterfa
   public function isRecommendableContent(): bool;
 
   /**
+   * Check if block has been manually disabled for single content page.
+   *
+   * @return bool
+   *   Block is visible.
+   */
+  public function isBlockSetVisible(): bool;
+
+  /**
    * Current entity should show recommendations block.
    *
    * @return bool
