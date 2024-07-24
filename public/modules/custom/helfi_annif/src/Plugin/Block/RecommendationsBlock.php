@@ -86,7 +86,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
         return [];
       }
 
-      $response['#no_results_message'] = $this->t('No recommended content has been created for this page yet');
+      $response['#no_results_message'] = $this->t('No recommended content has been created for this page yet.', [], ['context' => 'Annif']);
       return $response;
     }
 
