@@ -23,14 +23,11 @@ bundle: news_article
 mode: card_teaser
 content:
   field_main_image:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: 3_2_m
-    third_party_settings: {  }
-    weight: 1
-    region: content
+      view_mode: card_teaser
+      link: false
   field_news_item_links_title:
     type: string
     label: hidden

@@ -85,3 +85,11 @@ function helfi_node_news_article_install($is_syncing) : void {
 function helfi_node_news_article_update_10001(): void {
   helfi_node_news_article_grant_permissions();
 }
+
+/**
+ * UHF-10191: Change news_article to use new responsive image styles.
+ */
+function helfi_node_news_article_update_10002(): void {
+  \Drupal::service('helfi_platform_config.config_update_helper')
+    ->update('helfi_node_news_article');
+}
