@@ -211,14 +211,26 @@ function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) : void {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function hdbt_subtheme_preprocess_node(array &$variables): void {
-  if (
-    !$variables['node'] instanceof NodeInterface ||
-    $variables['node']->bundle() !== 'news_item'
-  ) {
-    return;
-  }
-
+function hdbt_subtheme_preprocess_node__news_item(array &$variables): void {
   // Attach the updating news table of contents library to the news item page.
   $variables['#attached']['library'][] = 'hdbt_subtheme/updating-news-table-of-contents';
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_subtheme_preprocess_node__news_article(array &$variables): void {
+  $image_style = match ($variables['node']->get('field_hero_design')->value) {
+    'with-image-right', 'with-image-left' => 'hero__left_right',
+    'with-image-bottom' => 'hero__bottom',
+    default => 'hero__diagonal',
+  };
+
+  _hdbt_set_image_style(
+    $variables,
+    'node',
+    'field_main_image',
+    $image_style,
+  );
+}
+
