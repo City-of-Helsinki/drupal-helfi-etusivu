@@ -36,24 +36,56 @@ class NewsArticleHeroBlock extends ContentBlockBase {
 
     $image_display_options = [
       'label' => 'hidden',
-      'type' => 'entity_reference_entity_view',
+      'type' => 'responsive_image',
       'settings' => [
-        'view_mode' => 'hero',
+        'responsive_image_style' => $this->getHeroDesign($entity),
+        'image_link' => '',
+        'image_loading' => [
+          'attribute' => 'eager',
+        ],
       ],
     ];
+
+    $image = $entity->get('field_main_image')
+      ?->first()
+      ?->get('entity')
+      ?->getTarget()
+      ?->getEntity()
+      ?->get('field_media_image')
+      ?->first()
+      ?->view($image_display_options);
 
     $build['news_article_hero_block'] = [
       '#theme' => 'news_article_hero_block',
       '#title' => $entity->label(),
       '#description' => $entity->get('field_lead_in')?->first()?->view(),
       '#design' => $entity->get('field_hero_design')?->first()?->getString(),
-      '#image' => $entity->get('field_main_image')?->view($image_display_options),
+      '#image' => $image,
       '#cache' => [
         'tags' => $entity->getCacheTags(),
       ],
     ];
 
     return $build;
+  }
+
+  /**
+   * Get field hero design value and return responsive image style as a string.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Content entity.
+   *
+   * @return string
+   *   Return responsive image style as a string.
+   *
+   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+   */
+  protected function getHeroDesign(ContentEntityInterface $entity): string {
+    return match ($entity->get('field_hero_design')?->first()?->getString()) {
+      'with-image-right', 'with-image-left' => 'hero__left_right',
+      'with-image-bottom' => 'hero__bottom',
+      default => 'hero__diagonal',
+    };
   }
 
 }
