@@ -80,31 +80,6 @@ function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $
 }
 
 /**
- * Implements hook_cron().
- */
-function helfi_etusivu_cron() : void {
-  // Get promoted news_item nodes that are more than one month old.
-  $result = \Drupal::entityQuery('node')
-    ->condition('type', ['news_item', 'news_article'], 'IN')
-    ->condition('promote', 1)
-    ->condition('created', strtotime('-1 month'), '<')
-    ->range(0, 50)
-    ->accessCheck(FALSE)
-    ->execute();
-
-  $promoted_nodes = \Drupal::entityTypeManager()
-    ->getStorage('node')
-    ->loadMultiple($result);
-
-  // Remove promotion.
-  foreach ($promoted_nodes as $node) {
-    $node->setPromoted(FALSE);
-    $node->save();
-  }
-
-}
-
-/**
  * Implements hook_helfi_paragraph_types().
  */
 function helfi_etusivu_helfi_paragraph_types() : array {
