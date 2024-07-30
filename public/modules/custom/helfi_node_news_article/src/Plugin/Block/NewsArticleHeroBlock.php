@@ -46,11 +46,19 @@ class NewsArticleHeroBlock extends ContentBlockBase {
       ],
     ];
 
-    $image = $entity->get('field_main_image')
+    /** @var \Drupal\Core\Entity\Plugin\DataType\EntityReference $entity_reference */
+    $entity_reference = $entity->get('field_main_image')
       ?->first()
-      ?->get('entity')
-      ?->getTarget()
-      ?->getEntity()
+      ?->get('entity');
+
+    /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $entity_adapter */
+    $entity_adapter = $entity_reference?->getTarget();
+
+    /** @var \Drupal\media\Entity\Media $media */
+    $media = $entity_adapter?->getEntity();
+
+    // Render array of the image.
+    $image = $media
       ?->get('field_media_image')
       ?->first()
       ?->view($image_display_options);
