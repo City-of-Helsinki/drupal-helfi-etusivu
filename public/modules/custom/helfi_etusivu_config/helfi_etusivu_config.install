@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Contains installation hooks for HELfi etusivu config module.
+ */
+
+/**
+ * UHF-9708: Enable helfi_etusivu_entities module.
+ */
+function helfi_etusivu_config_update_9001() : void {
+  $module_installer = \Drupal::service('module_installer');
+
+  // Enable helfi_node_survey module.
+  if (!\Drupal::moduleHandler()->moduleExists('helfi_etusivu_entities')) {
+    $module_installer->install(['helfi_etusivu_entities']);
+  }
+
+  // Ensure config overrides are installed.
+  \Drupal::service("helfi_platform_config.config_update_helper")
+    ->update("helfi_node_survey");
+}
