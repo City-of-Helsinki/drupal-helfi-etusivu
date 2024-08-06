@@ -74,7 +74,7 @@ function helfi_node_news_article_get_block_configurations(string $theme) {
       'block' => [
         'id' => 'hdbt_subtheme_newsarticleheroblock',
         'plugin' => 'news_article_hero_block',
-        'provider' => NULL,
+        'provider' => 'helfi_node_news_article',
         'settings' => [
           'id' => 'news_article_hero_block',
           'label' => 'News article hero block',

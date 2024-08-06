@@ -80,7 +80,7 @@ function helfi_annif_get_block_configurations(string $theme) {
       'block' => [
         'id' => 'hdbt_subtheme_hdbt_subtheme_aipoweredrecommendations',
         'plugin' => 'helfi_recommendations',
-        'provider' => NULL,
+        'provider' => 'helfi_annif',
         'settings' => [
           'id' => 'helfi_recommendations',
           'label' => 'AI powered recommendations',
