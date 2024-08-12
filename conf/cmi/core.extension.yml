@@ -64,6 +64,7 @@ module:
   helfi_node_news_article: 0
   helfi_node_news_item: 0
   helfi_node_page: 0
+  helfi_node_survey: 0
   helfi_paragraphs_accordion: 0
   helfi_paragraphs_banner: 0
   helfi_paragraphs_chart: 0
