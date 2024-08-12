@@ -8,6 +8,7 @@ dependencies:
     - rest.resource.helfi_menu_link_collection
   module:
     - eu_cookie_compliance
+    - external_entities
     - helfi_api_base
     - helfi_global_navigation
     - media
@@ -28,5 +29,7 @@ permissions:
   - 'restful get helfi_global_mobile_menu'
   - 'restful get helfi_menu_link_collection'
   - 'view global_menu'
+  - 'view helfi_announcements external entity'
+  - 'view helfi_surveys external entity'
   - 'view media'
   - 'view remote entities'
