@@ -15,6 +15,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\helfi_annif\TextConverter\Document;
 use Drupal\helfi_etusivu\Entity\Node\NewsItem;
+use Drupal\helfi_etusivu_entities\Plugin\ExternalEntities\StorageClient\Announcements;
+use Drupal\helfi_etusivu_entities\Plugin\ExternalEntities\StorageClient\Surveys;
 use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -179,10 +181,10 @@ function helfi_etusivu_invalidate_external_caches(EntityInterface $entity) : voi
   // Only flush caches when we're saving announcement or survey node with
   // 'field_publish_externally' option checked.
   if ($entity->bundle() === 'announcement') {
-    $invalidateTag = 'helfi_external_entity_announcement';
+    $invalidateTag = Announcements::$customCacheTag;
   }
   elseif ($entity->bundle() === 'survey') {
-    $invalidateTag = 'helfi_external_entity_survey';
+    $invalidateTag = Surveys::$customCacheTag;
   }
   else {
     return;
