@@ -9,6 +9,7 @@ dependencies:
   module:
     - draggableviews
     - eu_cookie_compliance
+    - external_entities
     - file
     - helfi_api_base
     - helfi_global_navigation
@@ -38,6 +39,8 @@ permissions:
   - 'restful get helfi_menu_link_collection'
   - 'setup own tfa'
   - 'view global_menu'
+  - 'view helfi_announcements external entity'
+  - 'view helfi_surveys external entity'
   - 'view media'
   - 'view remote entities'
   - 'view unpublished paragraphs'
