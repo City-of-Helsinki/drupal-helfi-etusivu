@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * @file
  * Contains installation hooks for HELfi etusivu config module.
  */
+
+declare(strict_types=1);
 
 /**
  * UHF-9708: Enable helfi_etusivu_entities module.
