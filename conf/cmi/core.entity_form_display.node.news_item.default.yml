@@ -125,7 +125,7 @@ content:
         entity_reference_entity_view:
           view_mode: default
         entity_reference_label:
-          link: true
+          link: false
       show_description: false
     third_party_settings: {  }
   created:
