@@ -1,0 +1,32 @@
+uuid: 5ed05234-117e-431c-b69b-d9cab2c3a689
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.news_archive.field_news_archive_desc
+    - field.field.paragraph.news_archive.field_news_archive_title
+    - paragraphs.paragraphs_type.news_archive
+  module:
+    - text
+id: paragraph.news_archive.default
+targetEntityType: paragraph
+bundle: news_archive
+mode: default
+content:
+  field_news_archive_desc:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_news_archive_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

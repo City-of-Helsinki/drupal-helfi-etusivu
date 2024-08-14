@@ -130,40 +130,36 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
       $variables['seasonal_illustration'] = $illustration;
     }
   }
-}
 
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_subtheme_preprocess_page__news(array &$variables) {
-  $config = \Drupal::config('elastic_proxy.settings');
-  if ($config->get('elastic_proxy_url')) {
-    $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
+  if ($paragraph_type == 'news_archive') {
+    $config = \Drupal::config('elastic_proxy.settings');
+    if ($config->get('elastic_proxy_url')) {
+      $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
+    }
+
+    $react_search_config = \Drupal::config('react_search.settings');
+    if ($sentry_dsn_react = $react_search_config->get('sentry_dsn_react')) {
+      $variables['#attached']['drupalSettings']['helfi_react_search']['sentry_dsn_react'] = $sentry_dsn_react;
+    }
+
+    $feed_base_url = Url::fromRoute('view.news_archive_index.news_archive_feed_index')->toString();
+
+    if ($feed_base_url) {
+      $feed_link = [
+        '#type' => 'html_tag',
+        '#tag' => 'link',
+        '#attributes' => [
+          'rel' => 'alternative',
+          'type' => 'application/rss+xml',
+          'href' => $feed_base_url,
+          'id' => 'news-feed-url',
+        ],
+      ];
+
+      $variables['#attached']['html_head'][] = [$feed_link, 'feed_link'];
+      $variables['#attached']['drupalSettings']['helfi_news_archive']['feed_base_url'] = $feed_base_url;
+    }
   }
-
-  $react_search_config = \Drupal::config('react_search.settings');
-  if ($sentry_dsn_react = $react_search_config->get('sentry_dsn_react')) {
-    $variables['#attached']['drupalSettings']['helfi_react_search']['sentry_dsn_react'] = $sentry_dsn_react;
-  }
-
-  $feed_base_url = Url::fromRoute('view.news_archive.feed_1')->toString();
-
-  if ($feed_base_url) {
-    $feed_link = [
-      '#type' => 'html_tag',
-      '#tag' => 'link',
-      '#attributes' => [
-        'rel' => 'alternative',
-        'type' => 'application/rss+xml',
-        'href' => $feed_base_url,
-        'id' => 'news-feed-url',
-      ],
-    ];
-
-    $variables['#attached']['html_head'][] = [$feed_link, 'feed_link'];
-    $variables['#attached']['drupalSettings']['helfi_news_archive']['feed_base_url'] = $feed_base_url;
-  }
-
 }
 
 /**

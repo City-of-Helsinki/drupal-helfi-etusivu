@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.text_converter
-    - field.field.node.news_item.field_annif_keywords
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -13,6 +12,7 @@ dependencies:
     - field.field.node.news_item.field_news_item_links_link
     - field.field.node.news_item.field_news_item_links_title
     - field.field.node.news_item.field_news_item_tags
+    - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
@@ -53,7 +53,7 @@ content:
     weight: 0
     region: content
 hidden:
-  field_annif_keywords: true
+  annif_keywords: true
   field_main_image: true
   field_main_image_caption: true
   field_news_groups: true
@@ -63,8 +63,10 @@ hidden:
   field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
+  in_recommendations: true
   langcode: true
   links: true
   published_at: true
   search_api_excerpt: true
+  show_annif_block: true
   toc_enabled: true

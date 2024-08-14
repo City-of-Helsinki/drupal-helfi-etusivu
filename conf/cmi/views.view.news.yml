@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.medium_teaser
     - core.entity_view_mode.node.tiny_teaser
     - field.storage.node.field_main_image
-    - node.type.news_article
     - node.type.news_item
   module:
     - draggableviews

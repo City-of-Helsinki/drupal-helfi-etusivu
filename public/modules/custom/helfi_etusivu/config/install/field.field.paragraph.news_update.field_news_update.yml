@@ -4,11 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_news_update
-    - paragraphs.paragraphs_type.banner
-    - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.news_update
-    - paragraphs.paragraphs_type.remote_video
-    - paragraphs.paragraphs_type.text
   module:
     - entity_reference_revisions
 id: paragraph.news_update.field_news_update

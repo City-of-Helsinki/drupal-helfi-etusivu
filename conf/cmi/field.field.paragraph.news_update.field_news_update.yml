@@ -12,7 +12,7 @@ dependencies:
   module:
     - entity_reference_revisions
 _core:
-  default_config_hash: yLDIO76pewsWmipYIxaOo5H7QA-p9My_0OBLAQkiaX8
+  default_config_hash: H-xCn-te81E81gsPhnaZG_s6Efc6RojmuS6B7sJU224
 id: paragraph.news_update.field_news_update
 field_name: field_news_update
 entity_type: paragraph

@@ -226,3 +226,33 @@ function helfi_etusivu_update_9009(): void {
   \Drupal::service('helfi_platform_config.config_update_helper')
     ->update('helfi_etusivu');
 }
+
+/**
+ * UHF-9741: Add 'news archive' paragraph to landing page.
+ */
+function helfi_etusivu_update_9010(): void {
+  \Drupal::service('helfi_platform_config.config_update_helper')
+    ->update('helfi_etusivu');
+}
+
+/**
+ * UHF-9741: Delete path aliases for the News archive view.
+ */
+function helfi_etusivu_update_9011() : void {
+
+  /** @var \Drupal\Core\Extension\ModuleHandler $moduleHandler */
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('path_alias')) {
+    $storage = \Drupal::entityTypeManager()
+      ->getStorage('path_alias');
+
+    $aliases = $storage->loadByProperties([
+      'path' => '/news',
+    ]);
+
+    foreach ($aliases as $alias) {
+      $alias->delete();
+    }
+  }
+}

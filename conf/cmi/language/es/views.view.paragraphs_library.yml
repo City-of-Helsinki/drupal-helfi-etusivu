@@ -27,7 +27,7 @@ display:
           label: Tipo
           separator: ', '
         paragraphs__target_id:
-          label: Parráfos
+          label: Paragraphs
           separator: ', '
         langcode:
           label: Idioma

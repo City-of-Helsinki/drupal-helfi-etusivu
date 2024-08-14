@@ -25,6 +25,7 @@ class KeywordManagerTest extends KernelTestBase {
 
   use AnnifApiTestTrait;
 
+
   /**
    * {@inheritdoc}
    */
@@ -136,7 +137,7 @@ class KeywordManagerTest extends KernelTestBase {
     return new KeywordManager(
       $entityTypeManager,
       $client,
-      $queueFactory->reveal()
+      $queueFactory->reveal(),
     );
   }
 

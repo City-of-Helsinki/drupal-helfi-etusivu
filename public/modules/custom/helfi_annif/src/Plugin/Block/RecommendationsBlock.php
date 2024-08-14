@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif\Plugin\Block;
 
+use Drupal\Component\Plugin\Exception\ContextException;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\RecommendationManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -37,6 +40,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
     $plugin_id,
     $plugin_definition,
     private readonly RecommendationManager $recommendationManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly AccountInterface $currentUser,
     private readonly LoggerInterface $logger,
   ) {
@@ -49,6 +53,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : static {
     return new static($configuration, $plugin_id, $plugin_definition,
       $container->get(RecommendationManager::class),
+      $container->get('entity_type.manager'),
       $container->get('current_user'),
       $container->get('logger.channel.helfi_annif'),
     );
@@ -58,28 +63,41 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function build() : array {
-    $node = $this->getContextValue('node');
+    try {
+      $node = $this->getContextValue('node');
+    }
+    catch (ContextException $exception) {
+      $this->logger->error($exception->getMessage());
+      return [];
+    }
 
-    // @todo #UHF-9964 Lisätään suosittelulohkon piilotustoiminto.
+    if (!$node instanceof RecommendableInterface || !$node->isBlockSetVisible()) {
+      return [];
+    }
+
     $response = [
       '#theme' => 'recommendations_block',
-      '#title' => $this->t('You might be interested in'),
+      '#title' => $this->t('You might be interested in', [], ['context' => 'Recommendations block title']),
     ];
 
-    $recommendations = [];
-    try {
-      $recommendations = $this->recommendationManager
-        ->getRecommendations($node, 3, 'fi');
-    }
-    catch (\Exception $exception) {
-      $this->logger->error($exception->getMessage());
-    }
-
+    $recommendations = $this->getRecommendations($node);
     if (!$recommendations) {
-      return $this->handleNoRecommendations($response);
+      if ($this->currentUser->isAnonymous()) {
+        return [];
+      }
+
+      $response['#no_results_message'] = $this->t('No recommended content has been created for this page yet.', [], ['context' => 'Annif']);
+      return $response;
     }
 
-    $response['#rows'] = $recommendations;
+    $nodes = [];
+    // We want to render the recommendation results as nodes
+    // so that all fields are correctly preprocessed.
+    foreach ($recommendations as $recommendation) {
+      $view_builder = $this->entityTypeManager->getViewBuilder('node');
+      $nodes[] = $view_builder->view($recommendation, 'teaser');
+    }
+    $response['#rows'] = $nodes;
     return $response;
   }
 
@@ -87,32 +105,43 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function getCacheContexts(): array {
-    return Cache::mergeContexts(parent::getCacheContexts(), ['languages:language_content']);
+    return Cache::mergeContexts(
+      parent::getCacheContexts(),
+      ['languages:language_content', 'user.roles:anonymous'],
+    );
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCacheTags(): array {
-    return Cache::mergeTags(parent::getCacheTags(), $this->getContextValue('node')->getCacheTags());
+    $node = $this->getContextValue('node');
+
+    return Cache::mergeTags(
+      parent::getCacheTags(),
+      $node->getCacheTags(),
+    );
   }
 
   /**
-   * Return response when recommendations are not yet calculated.
+   * Get the recommendations for current content entity.
    *
-   * @param array $response
-   *   Render array.
+   * @param \Drupal\helfi_annif\RecommendableInterface $node
+   *   Content entity to find recommendations for.
    *
    * @return array
-   *   Render array.
+   *   Array of recommendations
    */
-  private function handleNoRecommendations(array $response): array {
-    if ($this->currentUser->isAnonymous()) {
+  private function getRecommendations(RecommendableInterface $node): array {
+    try {
+      $recommendations = $this->recommendationManager
+        ->getRecommendations($node, 3, 'fi');
+    }
+    catch (\Exception $exception) {
+      $this->logger->error($exception->getMessage());
       return [];
     }
-
-    $response['#no_results_message'] = $this->t('Calculating recommendations');
-    return $response;
+    return $recommendations;
   }
 
 }
