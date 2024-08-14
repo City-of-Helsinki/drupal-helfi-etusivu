@@ -9,6 +9,7 @@ dependencies:
   module:
     - draggableviews
     - eu_cookie_compliance
+    - external_entities
     - file
     - helfi_api_base
     - helfi_global_navigation
@@ -17,6 +18,7 @@ dependencies:
     - paragraphs
     - rest
     - system
+    - tfa
     - toolbar
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
@@ -30,11 +32,15 @@ permissions:
   - 'access openapi api docs'
   - 'access toolbar'
   - 'delete own files'
+  - 'disable own tfa'
   - 'display eu cookie compliance popup'
   - 'restful get helfi_global_menu_collection'
   - 'restful get helfi_global_mobile_menu'
   - 'restful get helfi_menu_link_collection'
+  - 'setup own tfa'
   - 'view global_menu'
+  - 'view helfi_announcements external entity'
+  - 'view helfi_surveys external entity'
   - 'view media'
   - 'view remote entities'
   - 'view unpublished paragraphs'
