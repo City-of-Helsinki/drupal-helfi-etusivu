@@ -1,0 +1,34 @@
+uuid: b6e5887f-6dd5-489c-8f18-0ff893a3d61b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.news_archive.field_news_archive_desc
+    - field.field.paragraph.news_archive.field_news_archive_title
+    - paragraphs.paragraphs_type.news_archive
+  module:
+    - text
+id: paragraph.news_archive.default
+targetEntityType: paragraph
+bundle: news_archive
+mode: default
+content:
+  field_news_archive_desc:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_news_archive_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

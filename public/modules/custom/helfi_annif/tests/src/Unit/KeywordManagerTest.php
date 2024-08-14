@@ -29,7 +29,7 @@ class KeywordManagerTest extends UnitTestCase {
    */
   public function testUnsupportedEntity(): void {
     // hasField(KeywordManager::KEYWORD_FIELD) for entity is FALSE.
-    $entity = $this->mockEntity(hasKeywords: NULL);
+    $entity = $this->mockEntity(hasKeywords: NULL, hasKeywordField: FALSE);
     $queue = $this->prophesize(QueueInterface::class);
     $queue
       ->createItem(Argument::any())
@@ -131,7 +131,7 @@ class KeywordManagerTest extends UnitTestCase {
     return new KeywordManager(
       $entityTypeManager->reveal(),
       $client,
-      $queueFactory->reveal()
+      $queueFactory->reveal(),
     );
   }
 

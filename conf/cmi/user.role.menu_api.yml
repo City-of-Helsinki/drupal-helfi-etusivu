@@ -5,6 +5,7 @@ dependencies:
   module:
     - file
     - helfi_global_navigation
+    - tfa
 id: menu_api
 label: 'Menu API'
 weight: 6
@@ -12,4 +13,6 @@ is_admin: null
 permissions:
   - 'create global_menu'
   - 'delete own files'
+  - 'disable own tfa'
+  - 'setup own tfa'
   - 'update global_menu'

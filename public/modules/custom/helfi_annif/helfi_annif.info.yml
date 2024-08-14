@@ -7,3 +7,10 @@ dependencies:
   - drupal:text
   - drupal:language
   - helfi_api_base:helfi_api_base
+  - helfi_etusivu:helfi_etusivu
+  - readonly_field_widget:readonly_field_widget
+  - drupal:field
+  - helfi_node_news_item:helfi_node_news_item
+  - helfi_node_news_article:helfi_node_news_article
+'interface translation project': helfi_annif
+'interface translation server pattern': modules/custom/helfi_annif/translations/%language.po

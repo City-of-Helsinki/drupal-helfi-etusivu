@@ -38,6 +38,8 @@ display:
         count:
           label: Utilisé
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
+          alter:
+            path: 'admin/content/entity-usage/paragraphs_library_item/{{ id }}'
         changed:
           label: Modifié
           separator: ', '

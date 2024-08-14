@@ -21,6 +21,8 @@ display:
           label: به‌روز
         operations:
           label: عملیات
+        langcode:
+          label: زبان
       exposed_form:
         options:
           submit_button: فیلتر

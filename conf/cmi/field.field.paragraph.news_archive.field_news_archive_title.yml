@@ -1,0 +1,19 @@
+uuid: 97aa9fa5-2de4-4c91-9be6-42d2ee1c0268
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_news_archive_title
+    - paragraphs.paragraphs_type.news_archive
+id: paragraph.news_archive.field_news_archive_title
+field_name: field_news_archive_title
+entity_type: paragraph
+bundle: news_archive
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -25,6 +25,7 @@ dependencies:
     - path
     - publication_date
     - radioactivity
+    - readonly_field_widget
     - scheduler
     - select2
 third_party_settings:
@@ -75,6 +76,22 @@ third_party_settings:
         open: false
         description: ''
         required_fields: true
+    group_automatically_recommended:
+      children:
+        - in_recommendations
+        - show_annif_block
+        - annif_keywords
+      label: 'Automatically recommended content'
+      region: content
+      parent_name: ''
+      weight: 25
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: 'Recommended content may include news or articles. Recommendations are based on automatically selected news categories. The news categories are chosen based on the page content when the page is saved.'
+        required_fields: false
 _core:
   default_config_hash: Pnb6wyNhWan2d_Guak8rAn8-FFMa8DndKS8XZfnR-MM
 id: node.news_article.default
@@ -82,6 +99,20 @@ targetEntityType: node
 bundle: news_article
 mode: default
 content:
+  annif_keywords:
+    type: readonly_field_widget
+    weight: 30
+    region: content
+    settings:
+      label: above
+      formatter_type: entity_reference_label
+      formatter_settings:
+        entity_reference_entity_view:
+          view_mode: default
+        entity_reference_label:
+          link: false
+      show_description: false
+    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 4
@@ -198,6 +229,13 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  in_recommendations:
+    type: boolean_checkbox
+    weight: 28
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 0
@@ -234,6 +272,13 @@ content:
     weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  show_annif_block:
+    type: boolean_checkbox
+    weight: 29
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 12

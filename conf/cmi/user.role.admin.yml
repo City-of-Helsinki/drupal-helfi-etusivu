@@ -46,6 +46,7 @@ dependencies:
     - simple_sitemap
     - system
     - taxonomy
+    - tfa
     - toolbar
     - view_unpublished
     - views_bulk_edit
@@ -139,6 +140,7 @@ permissions:
   - 'delete terms in news_group'
   - 'delete terms in news_neighbourhoods'
   - 'delete terms in news_tags'
+  - 'disable own tfa'
   - 'edit any announcement content'
   - 'edit any file media'
   - 'edit any hel_map media'
@@ -178,6 +180,7 @@ permissions:
   - 'set news_article published on date'
   - 'set news_item published on date'
   - 'set page published on date'
+  - 'setup own tfa'
   - 'translate announcement node'
   - 'translate any entity'
   - 'translate configuration'

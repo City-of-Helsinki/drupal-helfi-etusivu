@@ -234,7 +234,7 @@ display:
         type: some
         options:
           offset: 0
-          items_per_page: 4
+          items_per_page: 3
       exposed_form:
         type: basic
         options:
@@ -1400,6 +1400,11 @@ display:
           text: view
           output_url_as_text: true
           absolute: false
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 4
       sorts:
         weight:
           id: weight
@@ -1431,6 +1436,7 @@ display:
           view_mode: medium_teaser
       defaults:
         title: false
+        pager: false
         style: false
         row: false
         fields: false
@@ -1836,6 +1842,11 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 3
       empty: {  }
       sorts:
         published_at:
@@ -2036,10 +2047,24 @@ display:
         operator: AND
         groups:
           1: AND
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: true
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: teaser
       defaults:
         empty: false
         title: false
+        pager: false
         group_by: false
+        style: false
+        row: false
         fields: false
         sorts: false
         arguments: false
