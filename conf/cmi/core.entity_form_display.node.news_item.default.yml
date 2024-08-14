@@ -79,10 +79,11 @@ third_party_settings:
     group_updating_news:
       children:
         - field_news_item_updating_news
+        - field_news_item_updating_news
       label: 'Updating news'
       region: content
       parent_name: ''
-      weight: 19
+      weight: 17
       format_type: details
       format_settings:
         classes: ''
@@ -125,7 +126,7 @@ content:
         entity_reference_entity_view:
           view_mode: default
         entity_reference_label:
-          link: true
+          link: false
       show_description: false
     third_party_settings: {  }
   created:
@@ -178,7 +179,7 @@ content:
     third_party_settings: {  }
   field_news_groups:
     type: select2_entity_reference
-    weight: 22
+    weight: 26
     region: content
     settings:
       width: 100%
@@ -236,7 +237,7 @@ content:
     third_party_settings: {  }
   field_news_neighbourhoods:
     type: select2_entity_reference
-    weight: 23
+    weight: 27
     region: content
     settings:
       width: 100%
@@ -246,7 +247,7 @@ content:
     third_party_settings: {  }
   field_radioactivity:
     type: radioactivity_reference
-    weight: 24
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -79,6 +79,7 @@ content:
     region: content
 hidden:
   annif_keywords: true
+  field_annif_keywords: true
   field_content: true
   field_lead_in: true
   field_main_image_caption: true

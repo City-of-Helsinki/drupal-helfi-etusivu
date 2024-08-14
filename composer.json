@@ -58,6 +58,7 @@
         "drupal/drupal": "*"
     },
     "config": {
+        "process-timeout": 0,
         "optimize-autoloader": true,
         "sort-packages": true,
         "allow-plugins": {
