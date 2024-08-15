@@ -17,21 +17,13 @@
       reservedElems.forEach(function (elem) {
         Drupal.tableOfContents.reservedIds.push(elem.id);
       });
-      let exclusions = Drupal.tableOfContents.exclusions();
 
-      // Add exclusions for the news updates table of contents. NOTICE: The text paragraph is the only one that
-      // has paragraph as a prefix, so it might look a bit silly compared to the other selectors.
-      exclusions +=
-        ':not(.components--upper *)' +
-        ':not(.component--remote-video *)' +
-        ':not(.component--paragraph-text *)' +
-        ':not(.component--banner *)' +
-        ':not(.component--image *)' +
-        ':not(.block--news-of-interest *)' +
-        ':not(#helfi-toc-table-of-contents-news-updates *)';
+      // Instead of targeting all headings on page, lets focus on only news update headings.
+      // This will generate selector like: .component--news-update h2.component__title, .component--news-update h3.component__title...
+      const titleComponents = Drupal.tableOfContents.titleComponents('.component__title').map(el => '.component--news-update ' + el);
 
       // Craft table of contents for news item.
-      once('updating-news-table-of-contents', Drupal.tableOfContents.titleComponents(exclusions).join(','), mainContent)
+      once('updating-news-table-of-contents', titleComponents.join(','), mainContent)
         .forEach(function (content) {
 
           const { nodeName, anchorName} = Drupal.tableOfContents.createTableOfContentElements(content, []);
