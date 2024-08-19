@@ -1411,6 +1411,9 @@ display:
       display_extenders: {  }
       path: news/rss
       sitename_title: false
+      displays:
+        news_archive_block: news_archive_block
+        default: '0'
     cache_metadata:
       max-age: -1
       contexts:
