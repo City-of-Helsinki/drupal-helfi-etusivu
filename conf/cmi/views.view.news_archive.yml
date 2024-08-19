@@ -397,7 +397,7 @@ display:
         - 'config:field.storage.node.field_lead_in'
   news_archive_block:
     id: news_archive_block
-    display_title: 'All news'
+    display_title: 'News archive'
     display_plugin: block
     position: 1
     display_options:
