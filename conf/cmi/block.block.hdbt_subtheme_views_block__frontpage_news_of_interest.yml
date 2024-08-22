@@ -1,10 +1,11 @@
 uuid: 2780cd50-1615-40f6-a1eb-7a193bad7c9a
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - views.view.frontpage_news
   module:
+    - language
     - node
     - views
   theme:
@@ -32,3 +33,20 @@ visibility:
     bundles:
       news_article: news_article
       news_item: news_item
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      de: de
+      fr: fr
+      ru: ru
+      uk: uk
+      ar: ar
+      et: et
+      fa: fa
+      es: es
+      so: so
+      se: se
+      zh-hans: zh-hans
