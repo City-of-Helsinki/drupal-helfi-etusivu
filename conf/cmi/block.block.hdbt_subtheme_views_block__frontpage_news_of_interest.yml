@@ -1,6 +1,6 @@
 uuid: 2780cd50-1615-40f6-a1eb-7a193bad7c9a
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.frontpage_news
