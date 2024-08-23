@@ -110,7 +110,7 @@ class RecommendationManager {
            where restriction.in_recommendations_value = 0)
       and nfd.status = 1
       and n.langcode = :target_langcode
-      and annif.langcode = :destination_langcode
+      and annif.langcode = :target_langcode
       and nfd.langcode = :target_langcode
       and n.nid != :nid
       and nfd.created > :timestamp
