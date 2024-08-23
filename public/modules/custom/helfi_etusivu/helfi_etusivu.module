@@ -62,7 +62,7 @@ function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_sta
 function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $query) : void {
   $draggable_views = [
     'frontpage_news',
-    'ordered_news_articles',
+    'ordered_news_articles_list',
     'ordered_news_list',
   ];
   if (in_array($view->id(), $draggable_views)) {
