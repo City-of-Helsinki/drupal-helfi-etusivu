@@ -111,7 +111,7 @@ class RecommendationManager {
       and nfd.status = 1
       and n.langcode = :target_langcode
       and annif.langcode = :target_langcode
-      and nfd.langcode = :target_langcode
+      and nfd.langcode = :destination_langcode
       and n.nid != :nid
       and nfd.created > :timestamp
       group by n.nid
