@@ -150,3 +150,15 @@ each paragraph that support the alternative languages. For example `paragraphs.p
 
 Regarding this alternative language support there is a custom module called `helfi_alt_lang_fallback` that provides
 menu and block fallbacks for the alternative languages. See more from the module itself [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/tree/dev/public/modules/custom/helfi_alt_lang_fallback).
+
+### News and article feed reordering with drupal/draggableviews
+
+Drupal/draggableviews -module is used to allow content creators to reorder the `main news feed` and `main articles feed`
+located in the front page. Adding content to the front page news feed can be done from node edit page by enabling
+`Publish the news article in the top news articles flow` selection.
+
+Draggableviews-module doesn't support translations out of the box and some patching has been done to get it working.
+The initial feed ordering view was done in [this PR](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/pull/103/files#diff-eac9bb841152af0a402bf0d14621ac75c98ff734db71f6a34a7156b9812346df)
+- `langcode` column was added to draggableviews -database table.
+- Query alter was created for views utilizing draggableviews to filter out content by language.
+- Page preprocess was included to add custom styling to the admin interface of the view used to organize the items.
