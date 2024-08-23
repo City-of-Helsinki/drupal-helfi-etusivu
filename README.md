@@ -153,12 +153,12 @@ menu and block fallbacks for the alternative languages. See more from the module
 
 ### News and article feed reordering with drupal/draggableviews
 
-Drupal/draggableviews -module is used to allow content creators to reorder the ´main news feed´ and ´main articles feed´
+Drupal/draggableviews -module is used to allow content creators to reorder the `main news feed` and `main articles feed`
 located in the front page. Adding content to the front page news feed can be done from node edit page by enabling
-`Näytä artikkeli pääartikkelivirrassa` selection.
+`Publish the news article in the top news articles flow` selection.
 
 Draggableviews-module doesn't support translations out of the box and some patching has been done to get it working.
 The initial feed ordering view was done in [this PR](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/pull/103/files#diff-eac9bb841152af0a402bf0d14621ac75c98ff734db71f6a34a7156b9812346df)
-- langcode -column added to draggableviews -database table.
-- Query alter for views utilizing draggableviews to filter out content by language.
-- Page preprocess to add custom styles to the ordering views.
+- `langcode` column was added to draggableviews -database table.
+- Query alter was created for views utilizing draggableviews to filter out content by language.
+- Page preprocess was included to add custom styling to the admin interface of the view used to organize the items.
