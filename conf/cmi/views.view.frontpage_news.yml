@@ -631,7 +631,7 @@ display:
       use_more_always: true
       use_more_text: 'See all news'
       link_display: custom_url
-      link_url: /news
+      link_url: /news/archive
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -797,7 +797,7 @@ display:
       use_more_always: true
       use_more_text: 'See all news'
       link_display: custom_url
-      link_url: /news
+      link_url: /news/archive
       display_extenders: {  }
     cache_metadata:
       max-age: -1

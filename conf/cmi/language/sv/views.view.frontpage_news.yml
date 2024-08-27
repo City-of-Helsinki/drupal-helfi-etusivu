@@ -9,9 +9,9 @@ display:
     display_options:
       title: 'Senaste nyheter'
       use_more_text: 'Se alla nyheter'
-      link_url: /nyheter
+      link_url: /nyheter/arkiv
   latest_news_minimal:
     display_options:
       title: 'Senaste nyheter'
       use_more_text: 'Se alla nyheter'
-      link_url: /nyheter
+      link_url: /nyheter/arkiv
