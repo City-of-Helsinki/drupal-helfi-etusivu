@@ -10,8 +10,8 @@ display:
             first: Första
             last: Sista
       title: 'Alla nyheter'
-  news_archive_index_block:
+  news_archive_block:
     display_title: Nyhetsarkiv
-  news_archive_feed_index:
+  news_archive_feed:
     display_options:
       title: Nyheter
