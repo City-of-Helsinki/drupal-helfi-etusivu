@@ -77,10 +77,11 @@ selected color palette of the node that the paragraph is added to.
 
 #### Latest news (front_page_latest_news)
 
-_Latest news_ paragraph lists six latest news and links to the news archive page. You can select between two designs
-for the listing (minimal and cards). The link for the news archive page is hardcoded, and it is done in the view called
-`frontpage_news`. The configuration is found from `views.view.frontpage_news.yml` and the link to news archive page is
-defined [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/e2643195b8fc2989da835313c052ae533b8e0143/conf/cmi/views.view.frontpage_news.yml#L594).
+_Latest news_ paragraph lists six latest news and links to the news archive page or the "What's new" page. You can
+select between two designs for the listing (minimal and cards). The links for the news archive page / "What's new" page
+are hardcoded, and it is done in the view called `frontpage_news`. The minimal design links to the "What's new" page and
+the card design links to the news archive page. The configuration is found from `views.view.frontpage_news.yml` and
+the links are defined there for each display.
 
 #### News update (news_update)
 
