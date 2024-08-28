@@ -96,13 +96,17 @@ selection of what to show is determined by the `field_listing_type`, and the par
 #### News archive (news_archive)
 
 The _news_archive_ paragraph provides the news archive search that can be added to landing pages. The news archive is
-a React search that uses views listing (`news_archive_index`) as a fallback when JavaScript is not enabled. All React
+a React search that uses views listing (`news_archive`) as a fallback when JavaScript is not enabled. All React
 searches are in the `hdbt` theme, so most of the related logic is also found there. The _news_archive_ paragraph has an
 editable title and description.
 - React search code can be found under the `hdbt` theme [here](https://github.com/City-of-Helsinki/drupal-hdbt/tree/main/src/js/react/apps/news-archive).
 - Additional configuration for the React app is under the `hdbt_subtheme` theme function
 `hdbt_subtheme_preprocess_paragraph` [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme)
-- Fallback view when JavaScript is not enabled can be found in the `/conf/cim` folder [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/conf/cmi/views.view.news_archive_index.yml).
+- Fallback view when JavaScript is not enabled can be found in the `/conf/cim` folder [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/conf/cmi/views.view.news_archive.yml).
+- **NOTICE:** The fallback view and RSS view retrieve data from the regular database, while the React application queries
+the Elasticsearch index. This is because switching the view to use the Elasticsearch index as the data source limits
+its ability to filter using URL queries, compared to the regular view. For example, queries in the format
+`?tags%5b%5d=375` would no longer work out of the box, and the contextual filters would need to be added separately.
 
 ### Custom roles
 
@@ -146,3 +150,15 @@ each paragraph that support the alternative languages. For example `paragraphs.p
 
 Regarding this alternative language support there is a custom module called `helfi_alt_lang_fallback` that provides
 menu and block fallbacks for the alternative languages. See more from the module itself [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/tree/dev/public/modules/custom/helfi_alt_lang_fallback).
+
+### News and article feed reordering with drupal/draggableviews
+
+Drupal/draggableviews -module is used to allow content creators to reorder the `main news feed` and `main articles feed`
+located in the front page. Adding content to the front page news feed can be done from node edit page by enabling
+`Publish the news article in the top news articles flow` selection.
+
+Draggableviews-module doesn't support translations out of the box and some patching has been done to get it working.
+The initial feed ordering view was done in [this PR](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/pull/103/files#diff-eac9bb841152af0a402bf0d14621ac75c98ff734db71f6a34a7156b9812346df)
+- `langcode` column was added to draggableviews -database table.
+- Query alter was created for views utilizing draggableviews to filter out content by language.
+- Page preprocess was included to add custom styling to the admin interface of the view used to organize the items.
