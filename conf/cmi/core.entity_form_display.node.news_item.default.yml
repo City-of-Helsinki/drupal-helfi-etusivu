@@ -234,7 +234,7 @@ content:
         collapse_edit_all: '0'
         convert: '0'
         duplicate: '0'
-      third_party_settings: {  }
+    third_party_settings: {  }
   field_news_neighbourhoods:
     type: select2_entity_reference
     weight: 27
