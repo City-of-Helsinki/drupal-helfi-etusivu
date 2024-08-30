@@ -528,18 +528,18 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
-            is_grouped: false
-            group_info:
-              label: ''
-              description: ''
-              identifier: ''
-              optional: true
-              widget: select
-              multiple: false
-              remember: false
-              default_group: All
-              default_group_multiple: { }
-              group_items: { }
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         langcode:
           id: langcode
           table: node_field_data
