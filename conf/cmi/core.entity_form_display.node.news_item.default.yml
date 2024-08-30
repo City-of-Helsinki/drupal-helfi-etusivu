@@ -92,6 +92,22 @@ third_party_settings:
         open: false
         description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
         required_fields: false
+    group_automatically_recommended:
+      children:
+        - in_recommendations
+        - show_annif_block
+        - annif_keywords
+      label: 'Automatically recommended content'
+      region: content
+      parent_name: ''
+      weight: 25
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        description: 'Recommended content may include news or articles. Recommendations are based on automatically selected news categories. The news categories are chosen based on the page content when the page is saved.'
+        required_fields: false
 _core:
   default_config_hash: dW1Kmx2dOCHZosI85sWLQGupPRXvS8NL-lmM_O44boc
 id: node.news_item.default
