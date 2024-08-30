@@ -16,24 +16,22 @@ dependencies:
     - field.field.node.news_article.field_news_neighbourhoods
     - field.field.node.news_article.field_radioactivity
     - field.field.node.news_article.field_short_title
-    - image.style.3_2_m
     - node.type.news_article
   module:
-    - media
     - user
 _core:
-  default_config_hash: iVurdIrmFb-9zouILb7tpBzFwTaBuujRblTpAaITWFY
+  default_config_hash: PzgE8bHA2ujrM2wIS9zbtMyH_JL-liD36JKtieYKGRI
 id: node.news_article.card_teaser
 targetEntityType: node
 bundle: news_article
 mode: card_teaser
 content:
   field_main_image:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: 3_2_m
+      view_mode: card_teaser
+      link: false
     third_party_settings: {  }
     weight: 1
     region: content

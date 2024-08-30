@@ -5,12 +5,16 @@ dependencies:
   config:
     - core.entity_view_mode.node.card_teaser
     - field.field.node.news_article.field_content
+    - field.field.node.news_article.field_hero_design
     - field.field.node.news_article.field_lead_in
     - field.field.node.news_article.field_main_image
     - field.field.node.news_article.field_main_image_caption
+    - field.field.node.news_article.field_news_groups
     - field.field.node.news_article.field_news_item_links_link
     - field.field.node.news_article.field_news_item_links_title
     - field.field.node.news_article.field_news_item_tags
+    - field.field.node.news_article.field_news_neighbourhoods
+    - field.field.node.news_article.field_radioactivity
     - field.field.node.news_article.field_short_title
     - image.style.3_2_m
     - node.type.news_article
@@ -23,11 +27,11 @@ bundle: news_article
 mode: card_teaser
 content:
   field_main_image:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: 3_2_m
+      view_mode: card_teaser
+      link: false
     third_party_settings: {  }
     weight: 1
     region: content
@@ -72,10 +76,18 @@ content:
     weight: 4
     region: content
 hidden:
+  annif_keywords: true
   field_content: true
+  field_hero_design: true
   field_lead_in: true
   field_main_image_caption: true
+  field_news_groups: true
   field_news_item_links_link: true
   field_news_item_tags: true
+  field_news_neighbourhoods: true
+  field_radioactivity: true
+  in_recommendations: true
   langcode: true
+  search_api_excerpt: true
+  show_annif_block: true
   toc_enabled: true
