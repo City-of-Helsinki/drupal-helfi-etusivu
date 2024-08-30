@@ -24,7 +24,7 @@ dependencies:
     - radioactivity
     - user
 _core:
-  default_config_hash: AvCTTs-O6N3Rf66v73HmbnXd4q3nkGgFtPQnztyQj3E
+  default_config_hash: _Zju5NRRpGOfDAmDj9yPKTgTsE993KZ3KO1ZN-52ZWs
 id: node.news_article.default
 targetEntityType: node
 bundle: news_article
@@ -57,7 +57,7 @@ content:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: image_content_area
+      view_mode: hero
       link: false
     third_party_settings: {  }
     weight: 4
