@@ -213,6 +213,13 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  in_recommendations:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: { }
   langcode:
     type: language_select
     weight: 0
@@ -250,6 +257,20 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  show_annif_block:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: { }
+  show_recommendations:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: { }
   simple_sitemap:
     weight: 10
     region: content

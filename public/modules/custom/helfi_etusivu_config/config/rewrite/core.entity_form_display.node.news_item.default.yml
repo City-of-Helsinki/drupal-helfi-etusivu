@@ -121,5 +121,26 @@ content:
           link: false
       show_description: false
     third_party_settings: {  }
+  in_recommendations:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: { }
+  show_annif_block:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: { }
+  show_recommendations:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: { }
 hidden:
   hide_sidebar_navigation: true
