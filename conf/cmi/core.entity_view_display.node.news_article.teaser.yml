@@ -20,7 +20,7 @@ dependencies:
   module:
     - user
 _core:
-  default_config_hash: jHxJ-y_ToXm-HVy6369tgW6szmiwfFXkjoq93RfIuh0
+  default_config_hash: PUQ8kL-SwMo65hnIdT0cHPb9bfpVDyK9h-eGr3rqS-Q
 id: node.news_article.teaser
 targetEntityType: node
 bundle: news_article
@@ -30,7 +30,7 @@ content:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: media_library
+      view_mode: card
       link: false
     third_party_settings: {  }
     weight: 1
