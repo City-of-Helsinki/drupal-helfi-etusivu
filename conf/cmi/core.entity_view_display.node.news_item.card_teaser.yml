@@ -22,18 +22,18 @@ dependencies:
     - media
     - user
 _core:
-  default_config_hash: Mr1QBPHLSABqi-fUL-8TBc8xRHxfVs5cf0QbTjXomDc
+  default_config_hash: '-ZK99iYUlZ06f4WmPOTzcXWXnz-Nh5x2ZIA0I3PT0Bo'
 id: node.news_item.card_teaser
 targetEntityType: node
 bundle: news_item
 mode: card_teaser
 content:
   field_main_image:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: 3_2_m
+      view_mode: card_teaser
+      link: false
     third_party_settings: {  }
     weight: 1
     region: content
