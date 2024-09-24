@@ -9,6 +9,8 @@ services:
 
   Drupal\helfi_annif\TopicsManager: ~
 
+  Drupal\helfi_annif\ReferenceUpdater: ~
+
   Drupal\helfi_annif\RecommendationManager: ~
 
   Drupal\helfi_annif\Client\ApiClient : ~

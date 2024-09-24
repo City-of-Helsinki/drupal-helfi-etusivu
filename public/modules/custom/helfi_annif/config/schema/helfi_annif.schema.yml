@@ -10,3 +10,11 @@ field.value.helfi_annif_suggestion:
     score:
       type: label
       label: Score
+
+field.value.suggested_topics_reference:
+  type: mapping
+  label: Default value
+  mapping:
+    value:
+      type: label
+      label: Value

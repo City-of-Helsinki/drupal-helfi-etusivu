@@ -68,4 +68,11 @@ final class SuggestedTopics extends ContentEntityBase implements SuggestedTopics
     return $fields;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public function hasKeywords(): bool {
+    return $this->keywords->isEmpty();
+  }
+
 }

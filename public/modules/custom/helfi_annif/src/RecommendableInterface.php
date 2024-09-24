@@ -45,11 +45,11 @@ interface RecommendableInterface extends EntityInterface, FieldableEntityInterfa
   public function hasKeywords(): bool;
 
   /**
-   * Get keyword field name.
+   * Get keyword field.
    *
-   * @return string
-   *   Name of the field which holds the keywords.
+   * @return \Drupal\Core\Field\EntityReferenceFieldItemListInterface
+   *   Field which holds the keywords.
    */
-  public function getKeywordFieldName(): string;
+  public function getTopicsField(): EntityReferenceFieldItemListInterface;
 
 }
