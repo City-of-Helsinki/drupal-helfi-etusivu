@@ -12,9 +12,9 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\entity\BundleFieldDefinition;
-use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\Document;
+use Drupal\helfi_annif\TopicsManager;
 
 /**
  * Implements hook_theme().
@@ -132,9 +132,9 @@ function helfi_annif_get_block_configurations(string $theme): array {
  */
 function helfi_annif_entity_insert(EntityInterface $entity) : void {
   if ($entity instanceof RecommendableInterface) {
-    /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
-    $keywordManager = \Drupal::service(KeywordManager::class);
-    $keywordManager->queueEntity($entity, TRUE);
+    /** @var \Drupal\helfi_annif\TopicsManager $topicsManager */
+    $topicsManager = \Drupal::service(TopicsManager::class);
+    $topicsManager->queueEntity($entity, TRUE);
   }
 }
 
@@ -143,9 +143,9 @@ function helfi_annif_entity_insert(EntityInterface $entity) : void {
  */
 function helfi_annif_entity_update(EntityInterface $entity) : void {
   if ($entity instanceof RecommendableInterface) {
-    /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
-    $keywordManager = \Drupal::service(KeywordManager::class);
-    $keywordManager->queueEntity($entity, TRUE);
+    /** @var \Drupal\helfi_annif\TopicsManager $topicsManager */
+    $topicsManager = \Drupal::service(TopicsManager::class);
+    $topicsManager->queueEntity($entity, TRUE);
   }
 }
 

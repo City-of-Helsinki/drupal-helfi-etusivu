@@ -6,10 +6,10 @@ namespace Drupal\Tests\helfi_annif\Traits;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
+use Drupal\helfi_annif\TopicsManager;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -81,10 +81,10 @@ trait AnnifApiTestTrait {
     $field->isEmpty()->willReturn(!$hasKeywords);
 
     $entity
-      ->hasField(Argument::exact(KeywordManager::KEYWORD_FIELD))
+      ->hasField(Argument::exact(TopicsManager::KEYWORD_FIELD))
       ->willReturn($hasKeywords !== NULL);
     $entity
-      ->get(Argument::exact(KeywordManager::KEYWORD_FIELD))
+      ->get(Argument::exact(TopicsManager::KEYWORD_FIELD))
       ->willReturn($field->reveal());
 
     if (is_bool($shouldSave)) {

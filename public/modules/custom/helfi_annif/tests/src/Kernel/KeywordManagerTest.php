@@ -8,8 +8,8 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\helfi_annif\Client\ApiClient;
-use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
+use Drupal\helfi_annif\TopicsManager;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\helfi_annif\Traits\AnnifApiTestTrait;
@@ -17,7 +17,7 @@ use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 
 /**
- * Tests KeywordManager.
+ * Tests TopicsManager.
  *
  * @group helfi_annif
  */
@@ -113,7 +113,7 @@ class KeywordManagerTest extends KernelTestBase {
     array $responses = [],
     ?TextConverterInterface $textConverter = NULL,
     ?QueueInterface $queue = NULL,
-  ): KeywordManager {
+  ): TopicsManager {
     $textConverterManager = $this->getTextConverterManager($textConverter);
 
     $client = new ApiClient(
@@ -134,7 +134,7 @@ class KeywordManagerTest extends KernelTestBase {
       ->get(Argument::any())
       ->willReturn($queue);
 
-    return new KeywordManager(
+    return new TopicsManager(
       $entityTypeManager,
       $client,
       $queueFactory->reveal(),

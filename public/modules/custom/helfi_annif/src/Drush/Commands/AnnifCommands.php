@@ -14,7 +14,7 @@ use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Utility\Error;
 use Drupal\helfi_annif\Client\ApiClient;
-use Drupal\helfi_annif\KeywordManager;
+use Drupal\helfi_annif\TopicsManager;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
 use Drush\Attributes\Argument;
 use Drush\Attributes\Command;
@@ -41,14 +41,14 @@ final class AnnifCommands extends DrushCommands {
    *   The entity type manager.
    * @param \Drupal\helfi_annif\TextConverter\TextConverterManager $textConverter
    *   The text converter.
-   * @param \Drupal\helfi_annif\KeywordManager $keywordManager
+   * @param \Drupal\helfi_annif\TopicsManager $topicsManager
    *   The keyword generator.
    */
   public function __construct(
     private readonly Connection $connection,
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly TextConverterManager $textConverter,
-    private readonly KeywordManager $keywordManager,
+    private readonly TopicsManager $topicsManager,
   ) {
     parent::__construct();
   }
@@ -136,7 +136,7 @@ final class AnnifCommands extends DrushCommands {
         ->getStorage($entityType)
         ->loadMultiple($slice);
 
-      $this->keywordManager->processEntities($entities, $overwrite);
+      $this->topicsManager->processEntities($entities, $overwrite);
 
       $context['sandbox']['from'] = $to;
       $context['message'] = $this->t("@total entities remaining", [

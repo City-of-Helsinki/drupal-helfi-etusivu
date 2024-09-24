@@ -9,14 +9,14 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
 use Drupal\helfi_annif\Client\ApiClient;
-use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
+use Drupal\helfi_annif\TopicsManager;
 use Drupal\Tests\helfi_annif\Traits\AnnifApiTestTrait;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\Argument;
 
 /**
- * Tests KeywordManager.
+ * Tests TopicsManager.
  *
  * @group helfi_annif
  */
@@ -28,7 +28,7 @@ class KeywordManagerTest extends UnitTestCase {
    * Tests entities without keyword field.
    */
   public function testUnsupportedEntity(): void {
-    // hasField(KeywordManager::KEYWORD_FIELD) for entity is FALSE.
+    // hasField(TopicsManager::KEYWORD_FIELD) for entity is FALSE.
     $entity = $this->mockEntity(hasKeywords: NULL, hasKeywordField: FALSE);
     $queue = $this->prophesize(QueueInterface::class);
     $queue
@@ -67,7 +67,7 @@ class KeywordManagerTest extends UnitTestCase {
    * Tests entities with unsupported langcode.
    */
   public function testUnsupportedLangcode(): void {
-    // hasField(KeywordManager::KEYWORD_FIELD) for entity is FALSE.
+    // hasField(TopicsManager::KEYWORD_FIELD) for entity is FALSE.
     $entity = $this->mockEntity(langcode: 'xzz', shouldSave: FALSE);
     $sut = $this->getSut();
 
@@ -98,7 +98,7 @@ class KeywordManagerTest extends UnitTestCase {
     ?TextConverterInterface $textConverter = NULL,
     ?EntityStorageInterface $termStorage = NULL,
     ?QueueInterface $queue = NULL,
-  ): KeywordManager {
+  ): TopicsManager {
     $textConverterManager = $this->getTextConverterManager($textConverter);
 
     $client = new ApiClient(
@@ -128,7 +128,7 @@ class KeywordManagerTest extends UnitTestCase {
       ->get(Argument::any())
       ->willReturn($queue);
 
-    return new KeywordManager(
+    return new TopicsManager(
       $entityTypeManager->reveal(),
       $client,
       $queueFactory->reveal(),
