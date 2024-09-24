@@ -9,13 +9,16 @@ use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\EntityContextDefinition;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Utility\Error;
 use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\RecommendationManager;
+use Drupal\helfi_annif\TopicsManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -50,8 +53,8 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : static {
-    return new static($configuration, $plugin_id, $plugin_definition,
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : self {
+    return new self($configuration, $plugin_id, $plugin_definition,
       $container->get(RecommendationManager::class),
       $container->get('entity_type.manager'),
       $container->get('current_user'),
@@ -67,7 +70,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       $node = $this->getContextValue('node');
     }
     catch (ContextException $exception) {
-      $this->logger->error($exception->getMessage());
+      Error::logException($this->logger, $exception);
       return [];
     }
 
@@ -90,14 +93,17 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
       return $response;
     }
 
-    $nodes = [];
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
+
     // We want to render the recommendation results as nodes
     // so that all fields are correctly preprocessed.
+    $nodes = [];
     foreach ($recommendations as $recommendation) {
-      $view_builder = $this->entityTypeManager->getViewBuilder('node');
       $nodes[] = $view_builder->view($recommendation, 'teaser');
     }
+
     $response['#rows'] = $nodes;
+
     return $response;
   }
 
@@ -107,7 +113,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   public function getCacheContexts(): array {
     return Cache::mergeContexts(
       parent::getCacheContexts(),
-      ['languages:language_content', 'user.roles:anonymous'],
+      ['languages:language_content', 'user.roles:anonymous', 'url.path'],
     );
   }
 
@@ -117,10 +123,15 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
   public function getCacheTags(): array {
     $node = $this->getContextValue('node');
 
-    return Cache::mergeTags(
-      parent::getCacheTags(),
-      $node->getCacheTags(),
-    );
+    $topics = $node->get(TopicsManager::TOPICS_FIELD);
+    assert($topics instanceof EntityReferenceFieldItemListInterface);
+
+    $tags = [];
+    foreach ($topics->referencedEntities() as $entity) {
+      $tags[] = $entity->getCacheTags();
+    }
+
+    return Cache::mergeTags(parent::getCacheTags(), ...$tags);
   }
 
   /**
@@ -138,7 +149,7 @@ final class RecommendationsBlock extends BlockBase implements ContainerFactoryPl
         ->getRecommendations($node, 3, 'fi');
     }
     catch (\Exception $exception) {
-      $this->logger->error($exception->getMessage());
+      Error::logException($this->logger, $exception);
       return [];
     }
     return $recommendations;

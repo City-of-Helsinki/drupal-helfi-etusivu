@@ -44,12 +44,4 @@ interface RecommendableInterface extends EntityInterface, FieldableEntityInterfa
    */
   public function hasKeywords(): bool;
 
-  /**
-   * Get keyword field name.
-   *
-   * @return string
-   *   Name of the field which holds the keywords.
-   */
-  public function getKeywordFieldName(): string;
-
 }

@@ -10,12 +10,14 @@ use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Utility\Error;
-use Drupal\helfi_annif\Client\KeywordClient;
-use Drupal\helfi_annif\KeywordManager;
+use Drupal\helfi_annif\Client\ApiClient;
+use Drupal\helfi_annif\ReferenceUpdater;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
+use Drupal\helfi_annif\TopicsManager;
 use Drush\Attributes\Argument;
 use Drush\Attributes\Command;
 use Drush\Attributes\Option;
@@ -41,14 +43,17 @@ final class AnnifCommands extends DrushCommands {
    *   The entity type manager.
    * @param \Drupal\helfi_annif\TextConverter\TextConverterManager $textConverter
    *   The text converter.
-   * @param \Drupal\helfi_annif\KeywordManager $keywordManager
+   * @param \Drupal\helfi_annif\TopicsManager $topicsManager
    *   The keyword generator.
+   * @param \Drupal\helfi_annif\ReferenceUpdater $referenceManager
+   *   The reference manager.
    */
   public function __construct(
     private readonly Connection $connection,
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly TextConverterManager $textConverter,
-    private readonly KeywordManager $keywordManager,
+    private readonly TopicsManager $topicsManager,
+    private readonly ReferenceUpdater $referenceManager,
   ) {
     parent::__construct();
   }
@@ -79,7 +84,7 @@ final class AnnifCommands extends DrushCommands {
     string $bundle,
     array $options = [
       'overwrite' => FALSE,
-      'batch-size' => KeywordClient::MAX_BATCH_SIZE,
+      'batch-size' => ApiClient::MAX_BATCH_SIZE,
     ],
   ) : int {
     $definition = $this->entityTypeManager->getDefinition($entityType);
@@ -136,7 +141,7 @@ final class AnnifCommands extends DrushCommands {
         ->getStorage($entityType)
         ->loadMultiple($slice);
 
-      $this->keywordManager->processEntities($entities, $overwrite);
+      $this->topicsManager->processEntities($entities, $overwrite);
 
       $context['sandbox']['from'] = $to;
       $context['message'] = $this->t("@total entities remaining", [
@@ -274,6 +279,65 @@ final class AnnifCommands extends DrushCommands {
       $context['message'] = $this->t('An error occurred during processing: @message', ['@message' => $e->getMessage()]);
       $context['finished'] = 1;
     }
+  }
+
+  /**
+   * Fix entity references in a batch.
+   *
+   * @param array $entityIds
+   *   Ids of entities to update.
+   * @param array $context
+   *   The context.
+   */
+  public function batchFixEntityReferences(array $entityIds, array &$context): void {
+    if (!isset($context['sandbox']['from'])) {
+      $context['sandbox']['from'] = 0;
+    }
+
+    $batchSize = 50;
+    $from = $context['sandbox']['from'];
+    $to = min($from + $batchSize, count($entityIds));
+    $slice = array_slice($entityIds, $from, $to - $from);
+
+    try {
+      foreach ($slice as $item) {
+        ['entity_type' => $entity_type, 'id' => $id] = $item;
+
+        $entity = $this->entityTypeManager
+          ->getStorage($entity_type)
+          ->load($id);
+
+        assert($entity instanceof FieldableEntityInterface);
+        $this->referenceManager->updateEntityReferenceFields($entity);
+      }
+
+      $context['sandbox']['from'] = $to;
+      $context['message'] = sprintf("%d entities remaining", count($entityIds) - $to);
+      $context['finished'] = $to >= count($entityIds);
+    }
+    catch (\Exception $e) {
+      $context['message'] = sprintf('An error occurred during processing: %s', $e->getMessage());
+      $context['finished'] = 1;
+    }
+  }
+
+  /**
+   * Set new fields' default values.
+   */
+  #[Command(name: 'helfi:annif-fix-references')]
+  public function fixEntityReferences(): int {
+    $entities = $this->referenceManager->getReferencesWithoutTarget();
+
+    $batch = (new BatchBuilder())
+      ->addOperation([$this, 'batchFixEntityReferences'], [
+        $entities,
+      ]);
+
+    batch_set($batch->toArray());
+
+    drush_backend_batch_process();
+
+    return DrushCommands::EXIT_SUCCESS;
   }
 
 }

@@ -19,13 +19,13 @@ dependencies:
   module:
     - field_group
     - hdbt_admin_tools
+    - helfi_annif
     - linkit
     - media_library
     - paragraphs
     - path
     - publication_date
     - radioactivity
-    - readonly_field_widget
     - scheduler
     - select2
 third_party_settings:
@@ -79,7 +79,6 @@ third_party_settings:
     group_updating_news:
       children:
         - field_news_item_updating_news
-        - field_news_item_updating_news
       label: 'Updating news'
       region: content
       parent_name: ''
@@ -94,9 +93,9 @@ third_party_settings:
         required_fields: false
     group_automatically_recommended:
       children:
+        - annif_suggested_topics
         - in_recommendations
         - show_annif_block
-        - annif_keywords
       label: 'Automatically recommended content'
       region: content
       parent_name: ''
@@ -115,19 +114,11 @@ targetEntityType: node
 bundle: news_item
 mode: default
 content:
-  annif_keywords:
-    type: readonly_field_widget
-    weight: 2
+  annif_suggested_topics:
+    type: suggested_topics_reference
+    weight: 29
     region: content
-    settings:
-      label: above
-      formatter_type: entity_reference_label
-      formatter_settings:
-        entity_reference_entity_view:
-          view_mode: default
-        entity_reference_label:
-          link: false
-      show_description: false
+    settings: {  }
     third_party_settings: {  }
   created:
     type: datetime_timestamp
@@ -261,7 +252,7 @@ content:
     third_party_settings: {  }
   in_recommendations:
     type: boolean_checkbox
-    weight: 0
+    weight: 30
     region: content
     settings:
       display_label: true
@@ -305,7 +296,7 @@ content:
     third_party_settings: {  }
   show_annif_block:
     type: boolean_checkbox
-    weight: 1
+    weight: 31
     region: content
     settings:
       display_label: true

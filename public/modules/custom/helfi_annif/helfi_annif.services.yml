@@ -7,11 +7,13 @@ services:
     parent: logger.channel_base
     arguments: ['helfi_annif']
 
-  Drupal\helfi_annif\KeywordManager: ~
+  Drupal\helfi_annif\TopicsManager: ~
+
+  Drupal\helfi_annif\ReferenceUpdater: ~
 
   Drupal\helfi_annif\RecommendationManager: ~
 
-  Drupal\helfi_annif\Client\KeywordClient: ~
+  Drupal\helfi_annif\Client\ApiClient : ~
 
   Drupal\helfi_annif\TextConverter\TextConverterManager:
     tags:

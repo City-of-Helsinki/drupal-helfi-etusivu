@@ -89,34 +89,37 @@ class RecommendationManager {
    * @return array
    *   Database query result.
    */
-  private function executeQuery(EntityInterface $entity, string $target_langcode, string $destination_langcode, int $limit) {
+  private function executeQuery(EntityInterface $entity, string $target_langcode, string $destination_langcode, int $limit): array {
     $query = "
-      select
+      SELECT
         n.nid,
         count(n.nid) as relevancy,
         nfd.created,
         nfd.status
-      from node as n
-      left join node__annif_keywords as annif on n.nid = annif.entity_id
-      left join node_field_data as nfd on nfd.nid = n.nid
-      where annif.annif_keywords_target_id in
-        (select annif_keywords_target_id
-         from node__annif_keywords
-         where entity_id = :nid and
-         langcode = :target_langcode)
-      and n.nid not in
-          (select distinct restriction.entity_id
-           from node__in_recommendations as restriction
-           where restriction.in_recommendations_value = 0)
-      and nfd.status = 1
-      and n.langcode = :target_langcode
-      and annif.langcode = :target_langcode
-      and nfd.langcode = :destination_langcode
-      and n.nid != :nid
-      and nfd.created > :timestamp
-      group by n.nid
-      order by count(n.nid) DESC
-      limit {$limit};
+      FROM node as n
+      INNER JOIN node__annif_suggested_topics as reference ON n.nid = reference.entity_id
+      INNER JOIN suggested_topics as topics ON topics.id = reference.annif_suggested_topics_target_id
+      INNER JOIN suggested_topics__keywords as keywords ON topics.id = keywords.entity_id
+      INNER JOIN node_field_data as nfd ON nfd.nid = n.nid AND nfd.langcode = :destination_langcode
+      WHERE
+        nfd.status = 1
+        -- Select rows that have keywords in common with current entity.
+        AND keywords.keywords_target_id IN
+          (SELECT keywords_target_id
+           FROM suggested_topics__keywords stk
+           INNER JOIN node__annif_suggested_topics AS node ON stk.entity_id = node.annif_suggested_topics_target_id
+           WHERE node.entity_id = :nid)
+        -- Filter out entities that should be hidden from recommendations.
+        AND n.nid NOT IN
+          (SELECT DISTINCT restriction.entity_id
+           FROM node__in_recommendations as restriction
+           WHERE restriction.in_recommendations_value = 0)
+        AND n.langcode = :target_langcode
+        AND n.nid != :nid
+        AND nfd.created > :timestamp
+      GROUP BY n.nid
+      ORDER BY count(n.nid) DESC
+      LIMIT {$limit};
     ";
 
     // Cannot add :limit as parameter here,
