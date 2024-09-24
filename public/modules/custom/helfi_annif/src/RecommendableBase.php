@@ -53,38 +53,9 @@ abstract class RecommendableBase extends Node implements RecommendableInterface 
   }
 
   /**
-   * {@inheritDoc}
+   * Get topics field.
    */
-  public function getCacheTagsToInvalidate(): array {
-    $parentCacheTags = parent::getCacheTagsToInvalidate();
-    if (!$this->hasField(TopicsManager::TOPICS_FIELD)) {
-      return $parentCacheTags;
-    }
-
-    $keywordsCacheTags = $this->getKeywordsCacheTags();
-    return Cache::mergeTags($parentCacheTags, $keywordsCacheTags);
-  }
-
-  /**
-   * Get the cache tags for all the keywords.
-   *
-   * @return array
-   *   Array of cache tags for keywords.
-   */
-  protected function getKeywordsCacheTags(): array {
-    $field = $this->getTopicsField();
-
-    $tags = array_map(
-      fn ($term) => $term->getCacheTags(),
-      $field->referencedEntities()
-    );
-    return array_merge(...$tags);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public function getTopicsField(): EntityReferenceFieldItemListInterface {
+  private function getTopicsField(): EntityReferenceFieldItemListInterface {
     $field = $this->get(TopicsManager::TOPICS_FIELD);
     assert($field instanceof EntityReferenceFieldItemListInterface);
 

@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_annif\Traits;
 
-use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\helfi_annif\Entity\SuggestedTopics;
 use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
@@ -52,10 +53,8 @@ trait AnnifApiTestTrait {
    *   Value for keyword field ->isEmpty(), NULL for ->hasField() = FALSE.
    * @param bool|null $shouldSave
    *   Bool if $entity->save() should be called, NULL for no opinion.
-   * @param bool $hasKeywordField
-   *   Bool if entity should have keyword field.
    */
-  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL, $hasKeywordField = TRUE): RecommendableInterface {
+  protected function mockEntity(string $langcode = 'fi', bool|NULL $hasKeywords = FALSE, bool|NULL $shouldSave = NULL): RecommendableInterface {
     $language = $this->prophesize(LanguageInterface::class);
     $language
       ->getId()
@@ -66,34 +65,32 @@ trait AnnifApiTestTrait {
       ->language()
       ->willReturn($language->reveal());
 
-    $entity->hasField('annif_keywords')->willReturn($hasKeywordField);
-
-    $entity->hasKeywords()->willReturn($hasKeywords ?? FALSE);
-
-    $entity->hasField('annif_keywords')->willReturn(TRUE);
-    $entity->getKeywordFieldName()->willReturn('annif_keywords');
-
     $entity->getEntityTypeId()->willReturn('test_entity');
     $entity->bundle()->willReturn('test_entity');
     $entity->id()->willReturn($this->randomString());
 
-    $field = $this->prophesize(FieldItemListInterface::class);
-    $field->isEmpty()->willReturn(!$hasKeywords);
-
     $entity
       ->hasField(Argument::exact(TopicsManager::TOPICS_FIELD))
       ->willReturn($hasKeywords !== NULL);
+    $entity->hasKeywords()->willReturn($hasKeywords ?? FALSE);
+
+    $topicsEntity = $this->prophesize(SuggestedTopics::class);
+
+    $field = $this->prophesize(EntityReferenceFieldItemListInterface::class);
+    $field->isEmpty()->willReturn(!$hasKeywords);
+    $field->referencedEntities()->willReturn([$topicsEntity->reveal()]);
+
     $entity
       ->get(Argument::exact(TopicsManager::TOPICS_FIELD))
       ->willReturn($field->reveal());
 
     if (is_bool($shouldSave)) {
       if ($shouldSave) {
-        $entity->set(Argument::any(), Argument::any())->shouldBeCalled();
-        $entity->save()->shouldBeCalled();
+        $topicsEntity->set(Argument::any(), Argument::any())->shouldBeCalled();
+        $topicsEntity->save()->shouldBeCalled();
       }
       else {
-        $entity->save()->shouldNotBeCalled();
+        $topicsEntity->save()->shouldNotBeCalled();
       }
     }
 

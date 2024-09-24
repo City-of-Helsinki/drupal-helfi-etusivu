@@ -218,7 +218,9 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
     ->setTargetEntityTypeId($entity_type_id)
     ->setTargetBundle($bundle)
     ->setReadonly(TRUE)
-    ->setTranslatable(FALSE);
+    ->setTranslatable(FALSE)
+    ->setDisplayOptions('form', ['type' => 'suggested_topics_reference'])
+    ->setDisplayConfigurable('form', TRUE);
 
   // @todo remove this.
   $keywordfieldId = 'annif_keywords';
@@ -226,8 +228,6 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
     ->setName($keywordfieldId)
     ->setTargetEntityTypeId($entity_type_id)
     ->setTargetBundle($bundle)
-    ->setDisplayOptions('form', ['type' => 'hidden'])
-    ->setDisplayOptions('view', ['type' => 'hidden'])
     ->setReadonly(TRUE)
     ->setTranslatable(FALSE)
     ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
