@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   cron = {"time" = 60}
  * )
  */
-final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+final class QueueWorker extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
   /**
    * The keyword manager.
