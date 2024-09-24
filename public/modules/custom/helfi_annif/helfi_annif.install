@@ -50,3 +50,13 @@ function helfi_annif_update_9001(): void {
     );
   }
 }
+
+/**
+ * Creates the database table for the HelfiRecommendations entity.
+ */
+function helfi_annif_update_9002(): void {
+  $definition = \Drupal::entityTypeManager()->getDefinition('suggested_topics');
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installEntityType($definition);
+}
