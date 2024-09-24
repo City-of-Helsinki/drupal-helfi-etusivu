@@ -62,7 +62,7 @@ final class ScoredEntityReferenceItem extends EntityReferenceItem {
   public static function generateSampleValue(FieldDefinitionInterface $field_definition): array {
     $values = parent::generateSampleValue($field_definition);
 
-    $values['score'] = mt_rand() / mt_getrandmax();
+    $values['score'] = random_int(0, 100) / 100;
 
     return $values;
   }
