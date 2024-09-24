@@ -13,9 +13,9 @@ use Drupal\helfi_annif\Client\ApiClient;
 use Drupal\helfi_annif\Client\Keyword;
 
 /**
- * The keyword manager.
+ * The topic manager.
  */
-final class KeywordManager {
+final class TopicsManager {
 
   public const KEYWORD_FIELD = 'annif_keywords';
   public const KEYWORD_VID = 'annif_keywords';
