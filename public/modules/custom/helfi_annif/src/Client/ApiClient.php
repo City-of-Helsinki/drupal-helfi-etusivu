@@ -13,7 +13,7 @@ use GuzzleHttp\Utils;
 /**
  * The keyword generator.
  */
-final class KeywordClient {
+final class ApiClient {
 
   /**
    * Maximum batch size.
@@ -62,7 +62,7 @@ final class KeywordClient {
    * @return \Drupal\helfi_annif\Client\Keyword[]|null
    *   Keywords or NULL if unsupported entity.
    *
-   * @throws KeywordClientException
+   * @throws \Drupal\helfi_annif\Client\ApiClientException
    *   If keyword generator returns an error.
    */
   public function suggest(EntityInterface $entity) : ?array {
@@ -93,7 +93,7 @@ final class KeywordClient {
       return $this->mapResults(Utils::jsonDecode($response->getBody()->getContents()));
     }
     catch (GuzzleException $e) {
-      throw new KeywordClientException($e->getMessage(), previous: $e);
+      throw new ApiClientException($e->getMessage(), previous: $e);
     }
   }
 
@@ -107,7 +107,7 @@ final class KeywordClient {
    *   Batch suggestion results keyed by input array keys. The
    *   results array might not contain all input entities.
    *
-   * @throws KeywordClientException
+   * @throws \Drupal\helfi_annif\Client\ApiClientException
    *   If keyword generator returns an error.
    */
   public function suggestBatch(array $entities) : array {
@@ -171,7 +171,7 @@ final class KeywordClient {
       );
     }
     catch (GuzzleException $e) {
-      throw new KeywordClientException($e->getMessage(), previous: $e);
+      throw new ApiClientException($e->getMessage(), previous: $e);
     }
   }
 

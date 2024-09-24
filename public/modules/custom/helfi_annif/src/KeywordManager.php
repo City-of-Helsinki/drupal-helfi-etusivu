@@ -9,8 +9,8 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Queue\QueueFactory;
+use Drupal\helfi_annif\Client\ApiClient;
 use Drupal\helfi_annif\Client\Keyword;
-use Drupal\helfi_annif\Client\KeywordClient;
 
 /**
  * The keyword manager.
@@ -39,7 +39,7 @@ final class KeywordManager {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
-   * @param \Drupal\helfi_annif\Client\KeywordClient $keywordGenerator
+   * @param \Drupal\helfi_annif\Client\ApiClient $keywordGenerator
    *   The keyword generator.
    * @param \Drupal\Core\Queue\QueueFactory $queueFactory
    *   The queue factory.
@@ -49,7 +49,7 @@ final class KeywordManager {
    */
   public function __construct(
     private readonly EntityTypeManagerInterface $entityTypeManager,
-    private readonly KeywordClient $keywordGenerator,
+    private readonly ApiClient $keywordGenerator,
     private readonly QueueFactory $queueFactory,
   ) {
     $this->termStorage = $this->entityTypeManager->getStorage('taxonomy_term');
@@ -115,7 +115,8 @@ final class KeywordManager {
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
    *
-   * @throws \Drupal\helfi_annif\Client\KeywordClientException
+   * @throws \Drupal\helfi_annif\Client\ApiClientException
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function processEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
     if (!$entity->hasField(self::KEYWORD_FIELD)) {
@@ -143,7 +144,7 @@ final class KeywordManager {
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
    *
-   * @throws \Drupal\helfi_annif\Client\KeywordClientException
+   * @throws \Drupal\helfi_annif\Client\ApiClientException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function processEntities(array $entities, bool $overwriteExisting = FALSE) : void {
@@ -201,7 +202,7 @@ final class KeywordManager {
     }
 
     foreach ($buckets as $bucket) {
-      foreach (array_chunk($bucket, KeywordClient::MAX_BATCH_SIZE, preserve_keys: TRUE) as $batch) {
+      foreach (array_chunk($bucket, ApiClient::MAX_BATCH_SIZE, preserve_keys: TRUE) as $batch) {
         yield $batch;
       }
     }

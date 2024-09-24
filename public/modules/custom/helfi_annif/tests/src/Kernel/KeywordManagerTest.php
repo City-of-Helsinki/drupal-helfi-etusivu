@@ -7,7 +7,7 @@ namespace Drupal\Tests\helfi_annif\Kernel\TextConverter;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
-use Drupal\helfi_annif\Client\KeywordClient;
+use Drupal\helfi_annif\Client\ApiClient;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\KernelTests\KernelTestBase;
@@ -116,7 +116,7 @@ class KeywordManagerTest extends KernelTestBase {
   ): KeywordManager {
     $textConverterManager = $this->getTextConverterManager($textConverter);
 
-    $client = new KeywordClient(
+    $client = new ApiClient(
       $this->createMockHttpClient($responses),
       $textConverterManager,
     );

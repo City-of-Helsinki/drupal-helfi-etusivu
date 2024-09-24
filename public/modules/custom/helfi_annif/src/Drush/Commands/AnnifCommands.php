@@ -13,7 +13,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Utility\Error;
-use Drupal\helfi_annif\Client\KeywordClient;
+use Drupal\helfi_annif\Client\ApiClient;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterManager;
 use Drush\Attributes\Argument;
@@ -79,7 +79,7 @@ final class AnnifCommands extends DrushCommands {
     string $bundle,
     array $options = [
       'overwrite' => FALSE,
-      'batch-size' => KeywordClient::MAX_BATCH_SIZE,
+      'batch-size' => ApiClient::MAX_BATCH_SIZE,
     ],
   ) : int {
     $definition = $this->entityTypeManager->getDefinition($entityType);
