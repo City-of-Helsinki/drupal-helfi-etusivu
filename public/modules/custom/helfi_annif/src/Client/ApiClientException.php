@@ -7,5 +7,5 @@ namespace Drupal\helfi_annif\Client;
 /**
  * Exceptions for keyword generator errors.
  */
-class KeywordClientException extends \Exception {
+class ApiClientException extends \Exception {
 }

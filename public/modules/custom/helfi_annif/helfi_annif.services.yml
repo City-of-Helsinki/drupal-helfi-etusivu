@@ -11,7 +11,7 @@ services:
 
   Drupal\helfi_annif\RecommendationManager: ~
 
-  Drupal\helfi_annif\Client\KeywordClient: ~
+  Drupal\helfi_annif\Client\ApiClient : ~
 
   Drupal\helfi_annif\TextConverter\TextConverterManager:
     tags:

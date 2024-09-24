@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
-use Drupal\helfi_annif\Client\KeywordClient;
+use Drupal\helfi_annif\Client\ApiClient;
 use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\Tests\helfi_annif\Traits\AnnifApiTestTrait;
@@ -101,7 +101,7 @@ class KeywordManagerTest extends UnitTestCase {
   ): KeywordManager {
     $textConverterManager = $this->getTextConverterManager($textConverter);
 
-    $client = new KeywordClient(
+    $client = new ApiClient(
       $this->createMockHttpClient($responses),
       $textConverterManager,
     );
