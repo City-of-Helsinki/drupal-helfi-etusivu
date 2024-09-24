@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
+use Drupal\Core\Utility\Error;
 use Drupal\helfi_annif\Client\KeywordClientException;
 use Drupal\helfi_annif\KeywordManager;
 use Psr\Log\LoggerInterface;
@@ -94,7 +95,7 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
       $this->keywordManager->processEntity($entity, overwriteExisting: $overwrite);
     }
     catch (KeywordClientException $exception) {
-      $this->logger->error($exception->getMessage());
+      Error::logException($this->logger, $exception);
     }
   }
 

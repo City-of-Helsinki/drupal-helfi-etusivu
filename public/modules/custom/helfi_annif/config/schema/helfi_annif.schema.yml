@@ -1,0 +1,12 @@
+field.value.helfi_annif_suggestion:
+  type: mapping
+  label: Default value
+  mapping:
+    target_id:
+      type: string
+      label: 'Value'
+    target_uuid:
+      type: uuid
+    score:
+      type: label
+      label: Score
