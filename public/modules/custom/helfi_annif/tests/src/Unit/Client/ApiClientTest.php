@@ -22,7 +22,7 @@ use Prophecy\Argument;
  *
  * @group helfi_annif
  */
-class KeywordClientTest extends UnitTestCase {
+class ApiClientTest extends UnitTestCase {
 
   use AnnifApiTestTrait;
 

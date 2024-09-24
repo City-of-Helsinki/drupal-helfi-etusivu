@@ -46,6 +46,7 @@ class KeywordManagerTest extends KernelTestBase {
 
     $entities = [
       'taxonomy_term',
+      'suggested_topics',
     ];
 
     foreach ($entities as $entity) {

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif\Entity;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_annif\SuggestedTopicsInterface;
@@ -32,7 +34,7 @@ use Drupal\helfi_annif\SuggestedTopicsInterface;
  *   },
  * )
  */
-final class SuggestedTopics extends ContentEntityBase implements SuggestedTopicsInterface {
+class SuggestedTopics extends ContentEntityBase implements SuggestedTopicsInterface {
 
   /**
    * {@inheritdoc}
@@ -72,7 +74,32 @@ final class SuggestedTopics extends ContentEntityBase implements SuggestedTopics
    * {@inheritDoc}
    */
   public function hasKeywords(): bool {
-    return $this->keywords->isEmpty();
+    return $this->get('keywords')->isEmpty();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getCacheTagsToInvalidate(): array {
+    return Cache::mergeTags(parent::getCacheTagsToInvalidate(), ...$this->getKeywordsCacheTags());
+  }
+
+  /**
+   * Get the cache tags for all the keywords.
+   *
+   * @return array
+   *   Array of cache tags for keywords.
+   */
+  protected function getKeywordsCacheTags(): array {
+    $tags = [];
+
+    $field = $this->get('keywords');
+    assert($field instanceof EntityReferenceFieldItemListInterface);
+    foreach ($field->referencedEntities() as $keyword) {
+      $tags[] = $keyword->getCacheTags();
+    }
+
+    return $tags;
   }
 
 }
