@@ -12,9 +12,9 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\entity\BundleFieldDefinition;
-use Drupal\helfi_annif\KeywordManager;
 use Drupal\helfi_annif\RecommendableInterface;
 use Drupal\helfi_annif\TextConverter\Document;
+use Drupal\helfi_annif\TopicsManager;
 
 /**
  * Implements hook_theme().
@@ -34,7 +34,7 @@ function helfi_annif_theme() : array {
 /**
  * Implements hook_themes_installed().
  */
-function helfi_annif_themes_installed($theme_list) {
+function helfi_annif_themes_installed($theme_list): void {
   /** @var Drupal\helfi_platform_config\Helper\BlockInstaller $block_installer */
   $block_installer = Drupal::service('helfi_platform_config.helper.block_installer');
 
@@ -74,7 +74,7 @@ function helfi_annif_themes_installed($theme_list) {
  * @return array[]
  *   The block configurations.
  */
-function helfi_annif_get_block_configurations(string $theme) {
+function helfi_annif_get_block_configurations(string $theme): array {
   return [
     'hdbt_subtheme_hdbt_subtheme_aipoweredrecommendations' => [
       'block' => [
@@ -132,9 +132,9 @@ function helfi_annif_get_block_configurations(string $theme) {
  */
 function helfi_annif_entity_insert(EntityInterface $entity) : void {
   if ($entity instanceof RecommendableInterface) {
-    /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
-    $keywordManager = \Drupal::service(KeywordManager::class);
-    $keywordManager->queueEntity($entity, TRUE);
+    /** @var \Drupal\helfi_annif\TopicsManager $topicsManager */
+    $topicsManager = \Drupal::service(TopicsManager::class);
+    $topicsManager->queueEntity($entity, TRUE);
   }
 }
 
@@ -143,9 +143,9 @@ function helfi_annif_entity_insert(EntityInterface $entity) : void {
  */
 function helfi_annif_entity_update(EntityInterface $entity) : void {
   if ($entity instanceof RecommendableInterface) {
-    /** @var \Drupal\helfi_annif\KeywordManager $keywordManager */
-    $keywordManager = \Drupal::service(KeywordManager::class);
-    $keywordManager->queueEntity($entity, TRUE);
+    /** @var \Drupal\helfi_annif\TopicsManager $topicsManager */
+    $topicsManager = \Drupal::service(TopicsManager::class);
+    $topicsManager->queueEntity($entity, TRUE);
   }
 }
 
@@ -159,6 +159,7 @@ function helfi_annif_entity_bundle_field_info_alter(&$fields, EntityTypeInterfac
     }
   }
 
+  // @todo remove dependency to etusivu config.
   $recommendable_node_bundles = ['news_item', 'news_article'];
   if ($entityType->id() == 'node' && in_array($bundle, $recommendable_node_bundles)) {
     foreach (helfi_annif_bundle_fields($entityType->id(), $bundle) as $name => $field) {
@@ -172,7 +173,10 @@ function helfi_annif_entity_bundle_field_info_alter(&$fields, EntityTypeInterfac
  */
 function helfi_annif_entity_field_storage_info(EntityTypeInterface $entity_type): array {
   if ($entity_type->id() === 'node') {
-    return array_merge(helfi_annif_bundle_fields($entity_type->id(), 'news_item'), helfi_annif_bundle_fields($entity_type->id(), 'news_article'));
+    return array_merge(
+      helfi_annif_bundle_fields($entity_type->id(), 'news_item'),
+      helfi_annif_bundle_fields($entity_type->id(), 'news_article')
+    );
   }
   return [];
 }
@@ -208,30 +212,27 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
       ->setDisplayConfigurable('view', TRUE);
   }
 
-  $keywordfieldId = 'annif_keywords';
-  $keywordfieldName = new TranslatableMarkup('Automatically selected news categories', [], ['context' => 'annif']);
-
-  $fields[$keywordfieldId] = BundleFieldDefinition::create('entity_reference')
-    ->setName($keywordfieldId)
-    ->setLabel($keywordfieldName)
-    ->setSettings(['target_type' => 'taxonomy_term'])
+  $fields['annif_suggested_topics'] = BundleFieldDefinition::create('suggested_topics_reference')
+    ->setName('annif_suggested_topics')
+    ->setLabel(new TranslatableMarkup('Automatically selected news categories', [], ['context' => 'annif']))
     ->setTargetEntityTypeId($entity_type_id)
     ->setTargetBundle($bundle)
-    ->setDisplayOptions('form',
-      [
-        'type' => 'readonly_field_widget',
-        'third_party_settings' => [],
-        'settings' =>
-          [
-            'formatter_type' => 'entity_reference_label',
-          ],
-      ]
-    )
+    ->setReadonly(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDisplayOptions('form', ['type' => 'suggested_topics_reference'])
+    ->setDisplayConfigurable('form', TRUE);
+
+  // @todo remove this.
+  $keywordfieldId = 'annif_keywords';
+  $fields[$keywordfieldId] = BundleFieldDefinition::create('entity_reference')
+    ->setName($keywordfieldId)
+    ->setTargetEntityTypeId($entity_type_id)
+    ->setTargetBundle($bundle)
     ->setReadonly(TRUE)
     ->setTranslatable(FALSE)
     ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
-    ->setDisplayConfigurable('form', TRUE)
-    ->setDisplayConfigurable('view', TRUE);
+    ->setDisplayConfigurable('form', FALSE)
+    ->setDisplayConfigurable('view', FALSE);
 
   return $fields;
 }

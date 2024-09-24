@@ -50,3 +50,49 @@ function helfi_annif_update_9001(): void {
     );
   }
 }
+
+/**
+ * Creates the database table for the HelfiRecommendations entity.
+ */
+function helfi_annif_update_9002(): void {
+  $definition = \Drupal::entityTypeManager()->getDefinition('suggested_topics');
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installEntityType($definition);
+}
+
+/**
+ * Updates field storage definition for etusivu news entities.
+ */
+function helfi_annif_update_9003(): void {
+  $updates = [
+    'annif_suggested_topics' => [
+      'node' => [
+        'news_article',
+        'news_item',
+      ],
+    ],
+  ];
+
+  $entity_field_manager = \Drupal::service('entity_field.manager');
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  foreach ($updates as $field => $entity_types) {
+    foreach ($entity_types as $entity_type_id => $bundles) {
+      foreach ($bundles as $bundle) {
+        $field_definitions = $entity_field_manager->getFieldDefinitions($entity_type_id, $bundle);
+
+        $update_manager->installFieldStorageDefinition(
+          $field,
+          $entity_type_id,
+          'helfi_annif',
+          $field_definitions[$field],
+        );
+      }
+    }
+  }
+
+  \Drupal::messenger()->addMessage('Run drush helfi:annif-fix-references');
+
+  // @todo remove obsolete field annif_keywords in a future update hook.
+}

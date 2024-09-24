@@ -8,8 +8,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
-use Drupal\helfi_annif\Client\KeywordClientException;
-use Drupal\helfi_annif\KeywordManager;
+use Drupal\Core\Utility\Error;
+use Drupal\helfi_annif\Client\ApiClientException;
+use Drupal\helfi_annif\TopicsManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -22,14 +23,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   cron = {"time" = 60}
  * )
  */
-final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+final class QueueWorker extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
   /**
    * The keyword manager.
    *
-   * @var \Drupal\helfi_annif\KeywordManager
+   * @var \Drupal\helfi_annif\TopicsManager
    */
-  private KeywordManager $keywordManager;
+  private TopicsManager $topicsManager;
 
   /**
    * The entity repository.
@@ -54,7 +55,7 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
       $plugin_id,
       $plugin_definition,
     );
-    $instance->keywordManager = $container->get(KeywordManager::class);
+    $instance->topicsManager = $container->get(TopicsManager::class);
     $instance->entityTypeManager = $container->get(EntityTypeManagerInterface::class);
     $instance->logger = $container->get('logger.channel.helfi_annif');
 
@@ -91,10 +92,10 @@ final class KeywordQueueWorker extends QueueWorkerBase implements ContainerFacto
     }
 
     try {
-      $this->keywordManager->processEntity($entity, overwriteExisting: $overwrite);
+      $this->topicsManager->processEntity($entity, overwriteExisting: $overwrite);
     }
-    catch (KeywordClientException $exception) {
-      $this->logger->error($exception->getMessage());
+    catch (ApiClientException $exception) {
+      Error::logException($this->logger, $exception);
     }
   }
 
