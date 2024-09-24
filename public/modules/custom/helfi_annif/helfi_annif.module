@@ -159,6 +159,7 @@ function helfi_annif_entity_bundle_field_info_alter(&$fields, EntityTypeInterfac
     }
   }
 
+  // @todo remove dependency to etusivu config.
   $recommendable_node_bundles = ['news_item', 'news_article'];
   if ($entityType->id() == 'node' && in_array($bundle, $recommendable_node_bundles)) {
     foreach (helfi_annif_bundle_fields($entityType->id(), $bundle) as $name => $field) {
@@ -211,30 +212,27 @@ function helfi_annif_bundle_fields(string $entity_type_id, string $bundle): arra
       ->setDisplayConfigurable('view', TRUE);
   }
 
-  $keywordfieldId = 'annif_keywords';
-  $keywordfieldName = new TranslatableMarkup('Automatically selected news categories', [], ['context' => 'annif']);
-
-  $fields[$keywordfieldId] = BundleFieldDefinition::create('entity_reference')
-    ->setName($keywordfieldId)
-    ->setLabel($keywordfieldName)
-    ->setSettings(['target_type' => 'taxonomy_term'])
+  $fields['annif_suggested_topics'] = BundleFieldDefinition::create('suggested_topics_reference')
+    ->setName('annif_suggested_topics')
+    ->setLabel(new TranslatableMarkup('Automatically selected news categories', [], ['context' => 'annif']))
     ->setTargetEntityTypeId($entity_type_id)
     ->setTargetBundle($bundle)
-    ->setDisplayOptions('form',
-      [
-        'type' => 'readonly_field_widget',
-        'third_party_settings' => [],
-        'settings' =>
-          [
-            'formatter_type' => 'entity_reference_label',
-          ],
-      ]
-    )
+    ->setReadonly(TRUE)
+    ->setTranslatable(FALSE);
+
+  // @todo remove this.
+  $keywordfieldId = 'annif_keywords';
+  $fields[$keywordfieldId] = BundleFieldDefinition::create('entity_reference')
+    ->setName($keywordfieldId)
+    ->setTargetEntityTypeId($entity_type_id)
+    ->setTargetBundle($bundle)
+    ->setDisplayOptions('form', ['type' => 'hidden'])
+    ->setDisplayOptions('view', ['type' => 'hidden'])
     ->setReadonly(TRUE)
     ->setTranslatable(FALSE)
     ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
-    ->setDisplayConfigurable('form', TRUE)
-    ->setDisplayConfigurable('view', TRUE);
+    ->setDisplayConfigurable('form', FALSE)
+    ->setDisplayConfigurable('view', FALSE);
 
   return $fields;
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_annif;
 
-use Drupal\Core\Cache\Cache;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\node\Entity\Node;
 
 /**
@@ -12,15 +12,13 @@ use Drupal\node\Entity\Node;
  */
 abstract class RecommendableBase extends Node implements RecommendableInterface {
 
-  protected const string KEYWORDFIELD = 'annif_keywords';
-
-  protected const string SHOW_RECOMMENDATIONS_BLOCK = 'show_annif_block';
+  protected const SHOW_RECOMMENDATIONS_BLOCK = 'show_annif_block';
 
   /**
    * {@inheritDoc}
    */
   public function isRecommendableContent(): bool {
-    return !$this->get(self::KEYWORDFIELD)->isEmpty();
+    return !$this->get(TopicsManager::TOPICS_FIELD)->isEmpty();
   }
 
   /**
@@ -42,14 +40,16 @@ abstract class RecommendableBase extends Node implements RecommendableInterface 
    * {@inheritDoc}
    */
   public function hasKeywords(): bool {
-    return !$this->get(self::KEYWORDFIELD)->isEmpty();
-  }
+    $field = $this->getTopicsField();
 
-  /**
-   * {@inheritDoc}
-   */
-  public function getKeywordFieldName(): string {
-    return self::KEYWORDFIELD;
+    foreach ($field->referencedEntities() as $topics) {
+      assert($topics instanceof SuggestedTopicsInterface);
+      if ($topics->hasKeywords()) {
+        return TRUE;
+      }
+    }
+
+    return FALSE;
   }
 
   /**
@@ -57,7 +57,7 @@ abstract class RecommendableBase extends Node implements RecommendableInterface 
    */
   public function getCacheTagsToInvalidate(): array {
     $parentCacheTags = parent::getCacheTagsToInvalidate();
-    if (!$this->hasField(self::getKeywordFieldName())) {
+    if (!$this->hasField(TopicsManager::TOPICS_FIELD)) {
       return $parentCacheTags;
     }
 
@@ -72,13 +72,23 @@ abstract class RecommendableBase extends Node implements RecommendableInterface 
    *   Array of cache tags for keywords.
    */
   protected function getKeywordsCacheTags(): array {
-    $terms = $this->get(self::getKeywordFieldName())->referencedEntities();
+    $field = $this->getTopicsField();
 
     $tags = array_map(
       fn ($term) => $term->getCacheTags(),
-      $terms
+      $field->referencedEntities()
     );
     return array_merge(...$tags);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getTopicsField(): EntityReferenceFieldItemListInterface {
+    $field = $this->get(TopicsManager::TOPICS_FIELD);
+    assert($field instanceof EntityReferenceFieldItemListInterface);
+
+    return $field;
   }
 
 }

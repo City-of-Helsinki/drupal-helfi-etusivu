@@ -9,6 +9,7 @@ dependencies:
   - helfi_api_base:helfi_api_base
   - readonly_field_widget:readonly_field_widget
   - drupal:field
+  # TODO: remove dependency to etusivu.
   - helfi_etusivu:helfi_etusivu
   - helfi_node_news_item:helfi_node_news_item
   - helfi_node_news_article:helfi_node_news_article

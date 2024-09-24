@@ -81,10 +81,10 @@ trait AnnifApiTestTrait {
     $field->isEmpty()->willReturn(!$hasKeywords);
 
     $entity
-      ->hasField(Argument::exact(TopicsManager::KEYWORD_FIELD))
+      ->hasField(Argument::exact(TopicsManager::TOPICS_FIELD))
       ->willReturn($hasKeywords !== NULL);
     $entity
-      ->get(Argument::exact(TopicsManager::KEYWORD_FIELD))
+      ->get(Argument::exact(TopicsManager::TOPICS_FIELD))
       ->willReturn($field->reveal());
 
     if (is_bool($shouldSave)) {
