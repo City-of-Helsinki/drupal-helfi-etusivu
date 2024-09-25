@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_annif\Unit\Client;
 
+use Drupal\helfi_annif\Client\ApiClient;
+use Drupal\helfi_annif\Client\ApiClientException;
 use Drupal\helfi_annif\Client\Keyword;
-use Drupal\helfi_annif\Client\KeywordClient;
-use Drupal\helfi_annif\Client\KeywordClientException;
 use Drupal\helfi_annif\TextConverter\TextConverterInterface;
 use Drupal\Tests\helfi_annif\Traits\AnnifApiTestTrait;
 use Drupal\Tests\UnitTestCase;
@@ -22,7 +22,7 @@ use Prophecy\Argument;
  *
  * @group helfi_annif
  */
-class KeywordClientTest extends UnitTestCase {
+class ApiClientTest extends UnitTestCase {
 
   use AnnifApiTestTrait;
 
@@ -78,7 +78,7 @@ class KeywordClientTest extends UnitTestCase {
       new RequestException('Bad request', new Request('GET', 'test')),
     ]);
 
-    $this->expectException(KeywordClientException::class);
+    $this->expectException(ApiClientException::class);
     $sut->suggest($entity);
   }
 
@@ -92,7 +92,7 @@ class KeywordClientTest extends UnitTestCase {
       new RequestException('Bad request', new Request('GET', 'test')),
     ]);
 
-    $this->expectException(KeywordClientException::class);
+    $this->expectException(ApiClientException::class);
     $sut->suggestBatch([$entity]);
   }
 
@@ -150,7 +150,7 @@ class KeywordClientTest extends UnitTestCase {
     ]);
 
     $textConverterManager = $this->getTextConverterManager();
-    $sut = new KeywordClient($httpClient, $textConverterManager);
+    $sut = new ApiClient($httpClient, $textConverterManager);
 
     $batch = $sut->suggestBatch($entities);
 
@@ -175,7 +175,7 @@ class KeywordClientTest extends UnitTestCase {
   public function testMaxBatchSize() : void {
     $sut = $this->getSut([]);
 
-    $batch = array_fill(0, KeywordClient::MAX_BATCH_SIZE + 1, $this->mockEntity());
+    $batch = array_fill(0, ApiClient::MAX_BATCH_SIZE + 1, $this->mockEntity());
 
     $this->expectException(\InvalidArgumentException::class);
     $sut->suggestBatch($batch);
@@ -184,11 +184,11 @@ class KeywordClientTest extends UnitTestCase {
   /**
    * Gets service under test.
    */
-  private function getSut(array $responses, ?TextConverterInterface $textConverter = NULL): KeywordClient {
+  private function getSut(array $responses, ?TextConverterInterface $textConverter = NULL): ApiClient {
     $client = $this->createMockHttpClient($responses);
     $textConverterManager = $this->getTextConverterManager($textConverter);
 
-    return new KeywordClient($client, $textConverterManager);
+    return new ApiClient($client, $textConverterManager);
   }
 
 }

@@ -8,16 +8,17 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Queue\QueueFactory;
+use Drupal\helfi_annif\Client\ApiClient;
 use Drupal\helfi_annif\Client\Keyword;
-use Drupal\helfi_annif\Client\KeywordClient;
 
 /**
- * The keyword manager.
+ * The topic manager.
  */
-final class KeywordManager {
+final class TopicsManager {
 
-  public const KEYWORD_FIELD = 'annif_keywords';
+  public const TOPICS_FIELD = 'annif_suggested_topics';
   public const KEYWORD_VID = 'annif_keywords';
 
   /**
@@ -39,7 +40,7 @@ final class KeywordManager {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
-   * @param \Drupal\helfi_annif\Client\KeywordClient $keywordGenerator
+   * @param \Drupal\helfi_annif\Client\ApiClient $keywordGenerator
    *   The keyword generator.
    * @param \Drupal\Core\Queue\QueueFactory $queueFactory
    *   The queue factory.
@@ -49,7 +50,7 @@ final class KeywordManager {
    */
   public function __construct(
     private readonly EntityTypeManagerInterface $entityTypeManager,
-    private readonly KeywordClient $keywordGenerator,
+    private readonly ApiClient $keywordGenerator,
     private readonly QueueFactory $queueFactory,
   ) {
     $this->termStorage = $this->entityTypeManager->getStorage('taxonomy_term');
@@ -88,7 +89,7 @@ final class KeywordManager {
    */
   public function queueEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
     if (
-      !$entity->hasField(self::KEYWORD_FIELD) ||
+      !$entity->hasField(self::TOPICS_FIELD) ||
       // Skip if entity was processed in this request.
       $this->isEntityProcessed($entity) ||
       // Skip if entity already has keywords.
@@ -111,14 +112,15 @@ final class KeywordManager {
    * Generates keywords for single entity.
    *
    * @param \Drupal\helfi_annif\RecommendableInterface $entity
-   *   The entities.
+   *   The entity.
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
    *
-   * @throws \Drupal\helfi_annif\Client\KeywordClientException
+   * @throws \Drupal\helfi_annif\Client\ApiClientException
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function processEntity(RecommendableInterface $entity, bool $overwriteExisting = FALSE) : void {
-    if (!$entity->hasField(self::KEYWORD_FIELD)) {
+    if (!$entity->hasField(self::TOPICS_FIELD)) {
       return;
     }
 
@@ -143,7 +145,7 @@ final class KeywordManager {
    * @param bool $overwriteExisting
    *   Overwrites existing keywords when set to TRUE.
    *
-   * @throws \Drupal\helfi_annif\Client\KeywordClientException
+   * @throws \Drupal\helfi_annif\Client\ApiClientException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function processEntities(array $entities, bool $overwriteExisting = FALSE) : void {
@@ -180,8 +182,7 @@ final class KeywordManager {
 
     foreach ($entities as $key => $entity) {
       assert($entity instanceof RecommendableInterface);
-
-      if (!$entity->hasField(self::KEYWORD_FIELD)) {
+      if (!$entity->hasField(self::TOPICS_FIELD)) {
         continue;
       }
 
@@ -201,7 +202,7 @@ final class KeywordManager {
     }
 
     foreach ($buckets as $bucket) {
-      foreach (array_chunk($bucket, KeywordClient::MAX_BATCH_SIZE, preserve_keys: TRUE) as $batch) {
+      foreach (array_chunk($bucket, ApiClient::MAX_BATCH_SIZE, preserve_keys: TRUE) as $batch) {
         yield $batch;
       }
     }
@@ -218,19 +219,22 @@ final class KeywordManager {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   private function saveKeywords(RecommendableInterface $entity, array $keywords) : void {
-    $terms = [];
+    $values = array_map(fn($keyword) => [
+      'entity' => $this->getTerm($keyword, $entity->language()->getId()),
+      'score' => $keyword->score,
+    ], $keywords);
 
-    foreach ($keywords as $keyword) {
-      $terms[] = $this->getTerm($keyword, $entity->language()->getId());
+    $field = $entity->get(self::TOPICS_FIELD);
+    assert($field instanceof EntityReferenceFieldItemListInterface);
+    foreach ($field->referencedEntities() as $topicsEntity) {
+      /** @var \Drupal\helfi_annif\SuggestedTopicsInterface $topicsEntity */
+      $topicsEntity->set('keywords', $values);
+      $topicsEntity->save();
     }
 
-    $entity->set($entity->getKeywordFieldName(), $terms);
-
-    // This needs to be before ->save() so
-    // processedItems is set for update hooks.
+    // Mark as processed so the same entity is bombarding the
+    // API if it is queued multiple times for some reason.
     $this->processedItems[$this->getEntityKey($entity)] = TRUE;
-
-    $entity->save();
   }
 
   /**
