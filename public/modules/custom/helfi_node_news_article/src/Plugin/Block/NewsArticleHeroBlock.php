@@ -63,12 +63,18 @@ class NewsArticleHeroBlock extends ContentBlockBase {
       ?->first()
       ?->view($image_display_options);
 
+
+
     $build['news_article_hero_block'] = [
       '#theme' => 'news_article_hero_block',
       '#title' => $entity->label(),
       '#description' => $entity->get('field_lead_in')?->first()?->view(),
       '#design' => $entity->get('field_hero_design')?->first()?->getString(),
       '#image' => $image,
+      '#published_time' => $entity->getPublishedHumanReadable(),
+      '#html_published_time' => $entity->getPublishedMachineReadable(),
+      '#updated_time' => $entity->getUpdatedHumanReadable(),
+      '#html_updated_time' => $entity->getUpdatedMachineReadable(),
       '#cache' => [
         'tags' => $entity->getCacheTags(),
       ],
