@@ -276,7 +276,6 @@ function helfi_etusivu_first_paragraph_grey_alter(array &$paragraphs): void {
   $paragraphs[] = 'news_archive';
 }
 
-
 /**
  * Implements hook_preprocess().
  */
@@ -285,7 +284,8 @@ function helfi_etusivu_preprocess_node__news_item__full(array &$variables): void
   assert($node instanceof NewsItem);
   $updating_news_publish_date = $node->getFirstUpdatingNewsPublishDate();
 
-  // Change the published_at variable only if there is updating news on the news item.
+  // Change the published_at variable only if
+  // there is updating news on the news item.
   if (!is_null($updating_news_publish_date)) {
     $variables['published_at'] = $updating_news_publish_date;
   }

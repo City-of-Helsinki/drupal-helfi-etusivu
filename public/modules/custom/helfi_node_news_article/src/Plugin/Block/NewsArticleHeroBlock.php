@@ -63,8 +63,6 @@ class NewsArticleHeroBlock extends ContentBlockBase {
       ?->first()
       ?->view($image_display_options);
 
-
-
     $build['news_article_hero_block'] = [
       '#theme' => 'news_article_hero_block',
       '#title' => $entity->label(),
