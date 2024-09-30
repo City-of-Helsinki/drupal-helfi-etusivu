@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_node_news_article\Plugin\Block;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\helfi_node_news_article\Entity\Node\NewsArticle;
 use Drupal\helfi_platform_config\Plugin\Block\ContentBlockBase;
 
 /**
@@ -25,6 +26,11 @@ class NewsArticleHeroBlock extends ContentBlockBase {
 
     /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
     ['entity' => $entity] = $this->getCurrentEntityVersion();
+
+    // No need to continue if current entity is not an instance of News article.
+    if (!$entity instanceof NewsArticle) {
+      return $build;
+    }
 
     // No need to continue if current entity doesn't have hero field.
     if (
