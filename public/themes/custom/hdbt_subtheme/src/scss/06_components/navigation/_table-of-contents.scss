@@ -75,7 +75,8 @@
 
     @include breakpoint($breakpoint-m) {
       // Make sure that the TOC publish dates and the titles align vertically what ever the date is.
-      flex-basis: 110px;
+      flex: none;
+      width: 110px;
     }
 
     &:dir(rtl) {
