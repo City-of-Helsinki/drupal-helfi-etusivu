@@ -38,7 +38,7 @@ final class NewsArticle extends RecommendableBase {
    *   The human-readable "updated at" time.
    */
   public function getUpdatedHumanReadable(): string {
-    return \Drupal::service('date.formatter')->format($this->get('created')->value, 'publication_date_format');
+    return \Drupal::service('date.formatter')->format($this->get('changed')->value, 'publication_date_format');
   }
 
   /**
@@ -48,7 +48,7 @@ final class NewsArticle extends RecommendableBase {
    *   The machine-readabe "updated" time.
    */
   public function getUpdatedMachineReadable(): string {
-    return \Drupal::service('date.formatter')->format($this->get('created')->value, 'custom', 'Y-m-d\TH:i');
+    return \Drupal::service('date.formatter')->format($this->get('changed')->value, 'custom', 'Y-m-d\TH:i');
   }
 
 }
