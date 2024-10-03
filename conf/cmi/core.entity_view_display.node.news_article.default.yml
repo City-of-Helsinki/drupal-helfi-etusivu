@@ -137,7 +137,6 @@ content:
     weight: 0
     region: content
 hidden:
-  annif_keywords: true
   in_recommendations: true
   langcode: true
   published_at: true
