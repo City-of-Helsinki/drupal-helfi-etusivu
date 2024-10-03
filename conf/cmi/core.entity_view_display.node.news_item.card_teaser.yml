@@ -78,7 +78,6 @@ content:
     weight: 4
     region: content
 hidden:
-  annif_keywords: true
   field_annif_keywords: true
   field_content: true
   field_lead_in: true
