@@ -84,51 +84,6 @@ function hdbt_subtheme_preprocess_field(&$variables) {
 }
 
 /**
- * Implements template_preprocess_paragraph__HOOK().
- *
- * @param array $variables
- *   An associative array containing:
- *   - elements: An array of elements to display in view mode.
- *   - paragraph: The paragraph object.
- *   - view_mode: View mode; e.g., 'full', 'teaser'...
- */
-function hdbt_subtheme_preprocess_paragraph__current(array &$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-
-  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
-  $service = \Drupal::service('file_url_generator');
-  $theme = \Drupal::service('theme_handler')->getTheme('hdbt_subtheme');
-
-  // Add theme path to as variable.
-  $path = $service->generate("{$theme->getPath()}/src/images/")
-    ->toString(TRUE)->getGeneratedUrl();
-
-  $illustration = match($paragraph->get('field_seasons')->value) {
-    'spring' => [
-      'url' => $path . 'spring.svg',
-      'photographer' => 'Lille Santanen',
-    ],
-    'summer' => [
-      'url' => $path . 'summer.svg',
-      'photographer' => 'Lille Santanen',
-    ],
-    'autumn' => [
-      'url' => $path . 'autumn.svg',
-      'photographer' => 'Lille Santanen',
-    ],
-    'winter' => [
-      'url' => $path . 'winter.svg',
-      'photographer' => 'Lille Santanen',
-    ],
-  };
-
-  if ($illustration) {
-    $variables['seasonal_illustration'] = $illustration;
-  }
-}
-
-/**
  * Implements template_preprocess_paragraph().
  *
  * @param array $variables
@@ -142,14 +97,45 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
   $paragraph = $variables['paragraph'];
   $paragraph_type = $paragraph->getType();
 
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+  $service = \Drupal::service('file_url_generator');
+  $theme = \Drupal::service('theme_handler')->getTheme('hdbt_subtheme');
+
+  // Add theme path to as variable.
+  $path = $service->generate("{$theme->getPath()}/src/images/")
+    ->toString(TRUE)->getGeneratedUrl();
+
+  if ($paragraph_type == 'current') {
+    $illustration = match($paragraph->get('field_seasons')->value) {
+      'spring' => [
+        'url' => $path . 'spring.svg',
+        'photographer' => 'Lille Santanen',
+      ],
+      'summer' => [
+        'url' => $path . 'summer.svg',
+        'photographer' => 'Lille Santanen',
+      ],
+      'autumn' => [
+        'url' => $path . 'autumn.svg',
+        'photographer' => 'Lille Santanen',
+      ],
+      'winter' => [
+        'url' => $path . 'winter.svg',
+        'photographer' => 'Lille Santanen',
+      ],
+    };
+
+    if ($illustration) {
+      $variables['seasonal_illustration'] = $illustration;
+    }
+  }
+
   if ($paragraph_type == 'news_archive') {
-    // TODO: move this to helfi_react_search_preprocess_paragraph().
     $config = \Drupal::config('elastic_proxy.settings');
     if ($config->get('elastic_proxy_url')) {
       $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
     }
 
-    // TODO: move this to helfi_react_search_preprocess_paragraph().
     $react_search_config = \Drupal::config('react_search.settings');
     if ($sentry_dsn_react = $react_search_config->get('sentry_dsn_react')) {
       $variables['#attached']['drupalSettings']['helfi_react_search']['sentry_dsn_react'] = $sentry_dsn_react;
