@@ -73,6 +73,12 @@
   time {
     padding-left: $spacing;
 
+    @include breakpoint($breakpoint-m) {
+      // Make sure that the TOC publish dates and the titles align vertically what ever the date is.
+      flex: none;
+      width: 110px;
+    }
+
     &:dir(rtl) {
       padding-left: 0;
       padding-right: $spacing;

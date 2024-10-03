@@ -73,4 +73,27 @@ final class NewsItem extends RecommendableBase {
     }
   }
 
+  /**
+   * Gets the first updating news items publish date timestamp.
+   *
+   * @return int|null
+   *   The timestamp or null.
+   */
+  public function getFirstUpdatingNewsPublishDate() : ?int {
+    $newsUpdates = $this->getNewsUpdates();
+
+    if ($first = reset($newsUpdates)) {
+      assert($first instanceof FieldableEntityInterface);
+
+      // PHPStan does not like $date property:
+      // https://www.drupal.org/project/drupal/issues/3425302.
+      // @phpstan-ignore-next-line
+      $updateDate = $first->get('field_news_update_date')->date->getTimestamp();
+
+      return $updateDate;
+    }
+
+    return NULL;
+  }
+
 }

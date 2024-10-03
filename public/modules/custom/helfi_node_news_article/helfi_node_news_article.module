@@ -161,6 +161,10 @@ function helfi_node_news_article_theme() : array {
         'title' => NULL,
         'description' => NULL,
         'image' => NULL,
+        'published_time' => NULL,
+        'html_published_time' => NULL,
+        'updated_time' => NULL,
+        'html_updated_time' => NULL,
       ],
     ],
   ];
