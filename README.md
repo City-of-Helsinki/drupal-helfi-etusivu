@@ -87,7 +87,11 @@ the links are defined there for each display.
 
 _News update_ is used on updating news items, and it can be referred to the `field_news_item_updating_news` field. This
 is the only place it can be used, and it essentially contains the information of one update on an ongoing news story.
-For example, if there is an updating news story about a soccer match, a new goal would be one news update.
+For example, if there is an updating news story about a soccer match, a new goal would be one news update. Every time
+a new update is added the news item's publishing time is updated to use the latest updates time so that the news item
+remains on the top of time based listings while updating. Because of this the publishing time on the node page is
+altered to display the oldest news update time as the publishing time to give the readers more correct information. The
+other views of the news such as the teaser still use the news item's normal publishing time however.
 
 #### Top news (front_page_top_news)
 
