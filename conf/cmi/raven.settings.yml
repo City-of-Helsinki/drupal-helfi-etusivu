@@ -42,4 +42,6 @@ show_report_dialog: false
 error_embed_url: ''
 tunnel: false
 modules: false
+cron_monitor_id: ''
+profiles_sample_rate: null
 http_compression: true
