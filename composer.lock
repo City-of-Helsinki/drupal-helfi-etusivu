@@ -4586,16 +4586,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.6.10",
+            "version": "4.6.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "f24e3dc0f9a95a2a5e1a5e34cdbeab35d21e0b4c"
+                "reference": "46f83e38d3e63714779f3b040e040c9b4be406bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/f24e3dc0f9a95a2a5e1a5e34cdbeab35d21e0b4c",
-                "reference": "f24e3dc0f9a95a2a5e1a5e34cdbeab35d21e0b4c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/46f83e38d3e63714779f3b040e040c9b4be406bb",
+                "reference": "46f83e38d3e63714779f3b040e040c9b4be406bb",
                 "shasum": ""
             },
             "require": {
@@ -4714,10 +4714,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.6.10",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.6.11",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2024-10-04T07:44:38+00:00"
+            "time": "2024-10-08T06:10:45+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -7994,11 +7994,11 @@
             ],
             "authors": [
                 {
-                    "name": "Berdir",
+                    "name": "berdir",
                     "homepage": "https://www.drupal.org/user/214652"
                 },
                 {
-                    "name": "Dave Reid",
+                    "name": "dave reid",
                     "homepage": "https://www.drupal.org/user/53892"
                 },
                 {
