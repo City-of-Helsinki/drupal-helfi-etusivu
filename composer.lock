@@ -4253,16 +4253,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.7.5",
+            "version": "6.7.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "9c2b2ae745b62791bc33eacc3b6e99606241ef62"
+                "reference": "9ad05cc9c80d0dc536132ae07625ae4375c51d3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/9c2b2ae745b62791bc33eacc3b6e99606241ef62",
-                "reference": "9c2b2ae745b62791bc33eacc3b6e99606241ef62",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/9ad05cc9c80d0dc536132ae07625ae4375c51d3d",
+                "reference": "9ad05cc9c80d0dc536132ae07625ae4375c51d3d",
                 "shasum": ""
             },
             "require": {
@@ -4281,10 +4281,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.7.5",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.7.8",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2024-10-03T11:30:20+00:00"
+            "time": "2024-10-07T12:37:51+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4586,16 +4586,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.6.9",
+            "version": "4.6.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "72be279c99d2ce04ed5e1dc24840d0ebbe81e16c"
+                "reference": "46f83e38d3e63714779f3b040e040c9b4be406bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/72be279c99d2ce04ed5e1dc24840d0ebbe81e16c",
-                "reference": "72be279c99d2ce04ed5e1dc24840d0ebbe81e16c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/46f83e38d3e63714779f3b040e040c9b4be406bb",
+                "reference": "46f83e38d3e63714779f3b040e040c9b4be406bb",
                 "shasum": ""
             },
             "require": {
@@ -4652,7 +4652,7 @@
                 "drupal/social_media": "^2.0",
                 "drupal/stage_file_proxy": "^2",
                 "drupal/stomp": "^2.0",
-                "drupal/tfa": "^1.7",
+                "drupal/tfa": "^1.8",
                 "drupal/token": "^1.9",
                 "drupal/translatable_menu_link_uri": "^2.0",
                 "drupal/view_unpublished": "^1.0",
@@ -4714,10 +4714,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.6.9",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.6.11",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2024-10-02T11:42:34+00:00"
+            "time": "2024-10-08T06:10:45+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -6676,17 +6676,17 @@
         },
         {
             "name": "drupal/raven",
-            "version": "5.0.18",
+            "version": "5.0.19",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/raven.git",
-                "reference": "5.0.18"
+                "reference": "5.0.19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/raven-5.0.18.zip",
-                "reference": "5.0.18",
-                "shasum": "7107a602cb87e4f652991e66d5083f876defa4d1"
+                "url": "https://ftp.drupal.org/files/projects/raven-5.0.19.zip",
+                "reference": "5.0.19",
+                "shasum": "7ff86084a389c0740a42aa1d23b5fbcaa1a42d9f"
             },
             "require": {
                 "drupal/core": "^10.1 || ^11",
@@ -6700,8 +6700,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "5.0.18",
-                    "datestamp": "1726679171",
+                    "version": "5.0.19",
+                    "datestamp": "1728261182",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7994,11 +7994,11 @@
             ],
             "authors": [
                 {
-                    "name": "Berdir",
+                    "name": "berdir",
                     "homepage": "https://www.drupal.org/user/214652"
                 },
                 {
-                    "name": "Dave Reid",
+                    "name": "dave reid",
                     "homepage": "https://www.drupal.org/user/53892"
                 },
                 {
@@ -11358,7 +11358,7 @@
         },
         {
             "name": "phootwork/collection",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phootwork/collection.git",
@@ -11407,22 +11407,22 @@
             ],
             "support": {
                 "issues": "https://github.com/phootwork/phootwork/issues",
-                "source": "https://github.com/phootwork/collection/tree/v3.2.2"
+                "source": "https://github.com/phootwork/collection/tree/v3.2.3"
             },
             "time": "2022-08-27T12:51:24+00:00"
         },
         {
             "name": "phootwork/lang",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phootwork/lang.git",
-                "reference": "baaf154ae7d521ebeee5e89105f5b12b0f234597"
+                "reference": "52ec8cce740ce1c424eef02f43b43d5ddfec7b5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phootwork/lang/zipball/baaf154ae7d521ebeee5e89105f5b12b0f234597",
-                "reference": "baaf154ae7d521ebeee5e89105f5b12b0f234597",
+                "url": "https://api.github.com/repos/phootwork/lang/zipball/52ec8cce740ce1c424eef02f43b43d5ddfec7b5e",
+                "reference": "52ec8cce740ce1c424eef02f43b43d5ddfec7b5e",
                 "shasum": ""
             },
             "require": {
@@ -11456,9 +11456,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phootwork/phootwork/issues",
-                "source": "https://github.com/phootwork/lang/tree/v3.2.2"
+                "source": "https://github.com/phootwork/lang/tree/v3.2.3"
             },
-            "time": "2023-05-26T05:37:59+00:00"
+            "time": "2024-10-03T13:43:19+00:00"
         },
         {
             "name": "phpowermove/docblock",
