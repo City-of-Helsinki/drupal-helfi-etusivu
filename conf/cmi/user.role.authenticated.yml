@@ -16,6 +16,7 @@ dependencies:
     - media
     - openapi
     - paragraphs
+    - raven
     - rest
     - system
     - tfa
@@ -37,6 +38,7 @@ permissions:
   - 'restful get helfi_global_menu_collection'
   - 'restful get helfi_global_mobile_menu'
   - 'restful get helfi_menu_link_collection'
+  - 'send javascript errors to sentry'
   - 'setup own tfa'
   - 'view global_menu'
   - 'view helfi_announcements external entity'
