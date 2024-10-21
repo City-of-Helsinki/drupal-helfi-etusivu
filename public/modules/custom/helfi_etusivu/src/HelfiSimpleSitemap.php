@@ -18,8 +18,7 @@ class HelfiSimpleSitemap extends SimpleSitemap {
     $parameters = isset($options['delta']) ? ['page' => $options['delta']] : [];
 
     if ($parameters['page']) {
-      $language = $this->languageManager->getCurrentLanguage();
-      $options['language'] = $language;
+      $options['language'] = $this->languageManager->getCurrentLanguage();
     }
 
     return parent::toUrl($rel, $options);
