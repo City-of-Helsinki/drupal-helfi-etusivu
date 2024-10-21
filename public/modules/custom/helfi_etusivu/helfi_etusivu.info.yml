@@ -10,5 +10,6 @@ dependencies:
   - elasticsearch_connector:elasticsearch_connector
   - helfi_api_base:helfi_api_base
   - helfi_annif:helfi_annif
+  - simple_sitemap:simple_sitemap
 'interface translation project': helfi_etusivu
 'interface translation server pattern': modules/custom/helfi_etusivu/translations/%language.po
