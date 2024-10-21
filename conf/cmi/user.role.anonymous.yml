@@ -13,6 +13,7 @@ dependencies:
     - helfi_global_navigation
     - media
     - openapi
+    - raven
     - rest
     - system
 _core:
@@ -28,6 +29,7 @@ permissions:
   - 'restful get helfi_global_menu_collection'
   - 'restful get helfi_global_mobile_menu'
   - 'restful get helfi_menu_link_collection'
+  - 'send javascript errors to sentry'
   - 'view global_menu'
   - 'view helfi_announcements external entity'
   - 'view helfi_surveys external entity'
