@@ -18,7 +18,6 @@ class HelfiSimpleSitemap extends SimpleSitemap {
     $parameters = isset($options['delta']) ? ['page' => $options['delta']] : [];
 
     if ($parameters['page']) {
-      //$langcode = \Drupal::languageManager()->getCurrentLanguage();
       $language = $this->languageManager->getCurrentLanguage();
       $options['language'] = $language;
     }
