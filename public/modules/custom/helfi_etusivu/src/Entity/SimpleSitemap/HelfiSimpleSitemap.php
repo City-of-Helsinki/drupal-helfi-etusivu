@@ -5,7 +5,14 @@ namespace Drupal\helfi_etusivu\Entity\SimpleSitemap;
 use Drupal\Core\Url;
 use Drupal\simple_sitemap\Entity\SimpleSitemap;
 
+/**
+ * Overrides the simple_sitemap entity.
+ */
 class HelfiSimpleSitemap extends SimpleSitemap {
+
+  /**
+   * {@inheritDoc}
+   */
   public function toUrl($rel = 'canonical', array $options = []) {
     if ($rel !== 'canonical') {
       return parent::toUrl($rel, $options);
@@ -23,7 +30,6 @@ class HelfiSimpleSitemap extends SimpleSitemap {
     // #UHF-10812 paged sitemap had wrong url due to how helfi works,
     // enabling path processing fixes this.
     // $options['path_processing'] = FALSE;
-
     return $this->isDefault()
       ? Url::fromRoute(
         'simple_sitemap.sitemap_default',
@@ -34,4 +40,5 @@ class HelfiSimpleSitemap extends SimpleSitemap {
         $parameters + ['variant' => $this->id()],
         $options);
   }
+
 }
