@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.chart
     - paragraphs.paragraphs_type.columns
     - paragraphs.paragraphs_type.content_cards
+    - paragraphs.paragraphs_type.curated_event_list
     - paragraphs.paragraphs_type.current
     - paragraphs.paragraphs_type.event_list
     - paragraphs.paragraphs_type.from_library
@@ -59,6 +60,7 @@ settings:
       chart: chart
       target_group_links: target_group_links
       hearings: hearings
+      curated_event_list: curated_event_list
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -72,6 +74,9 @@ settings:
         enabled: true
       content_cards:
         weight: 1
+        enabled: true
+      curated_event_list:
+        weight: 15
         enabled: true
       current:
         weight: 15
