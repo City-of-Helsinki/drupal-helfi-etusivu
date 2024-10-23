@@ -1,9 +1,17 @@
+config_rewrite:
+  replace: ['third_party_settings']
 third_party_settings:
   field_group:
+    group_news_item_links:
+      label: Linkit
+    group_news_item_links_wrapper:
+      label: Linkit
+    group_main_image:
+      label: Pääkuva
     group_updating_news:
       label: 'Päivittyvä uutinen'
       format_settings:
-        description: "Jätä sisältöalue tyhjäksi päivittyvän uutisen yläpuolelta, jos luot päivittyvän uutisen.<br />Lisää uusin uutispäivitys viimeiseksi. Verkkosivulla uutispäivitykset näytetään lukijalle uusimmasta vanhimpaan."
+        description: 'Jätä sisältöalue tyhjäksi päivittyvän uutisen yläpuolelta, jos luot päivittyvän uutisen.<br />Lisää uusin uutispäivitys viimeiseksi. Verkkosivulla uutispäivitykset näytetään lukijalle uusimmasta vanhimpaan.'
     group_automatically_recommended:
       label: 'Automaattisesti suositellut sisällöt'
       format_settings:

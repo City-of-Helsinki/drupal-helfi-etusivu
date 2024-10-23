@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.chart
     - paragraphs.paragraphs_type.columns
     - paragraphs.paragraphs_type.content_cards
+    - paragraphs.paragraphs_type.curated_event_list
     - paragraphs.paragraphs_type.current
     - paragraphs.paragraphs_type.event_list
     - paragraphs.paragraphs_type.from_library
@@ -26,7 +27,7 @@ dependencies:
   module:
     - entity_reference_revisions
 _core:
-  default_config_hash: zEXoDFJnyArUOiL2ZrtDuq4YDWKyn6ung9JndPk_Ntg
+  default_config_hash: hTXPpiRGSAr_S4UXdMrZbYum_JkD4y-qlfTvBS_M-X4
 id: node.landing_page.field_content
 field_name: field_content
 entity_type: node
@@ -45,6 +46,7 @@ settings:
       front_page_top_news: front_page_top_news
       front_page_latest_news: front_page_latest_news
       event_list: event_list
+      news_archive: news_archive
       list_of_links: list_of_links
       content_cards: content_cards
       banner: banner
@@ -58,7 +60,7 @@ settings:
       chart: chart
       target_group_links: target_group_links
       hearings: hearings
-      news_archive: news_archive
+      curated_event_list: curated_event_list
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -72,6 +74,9 @@ settings:
         enabled: true
       content_cards:
         weight: 1
+        enabled: true
+      curated_event_list:
+        weight: 15
         enabled: true
       current:
         weight: 15
