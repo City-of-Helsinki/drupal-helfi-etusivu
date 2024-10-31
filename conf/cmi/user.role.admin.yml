@@ -29,6 +29,7 @@ dependencies:
     - eu_cookie_compliance
     - file
     - filter
+    - hdbt_cookie_banner
     - helfi_api_base
     - locale
     - media
@@ -72,6 +73,7 @@ permissions:
   - 'administer blocks'
   - 'administer eu cookie compliance categories'
   - 'administer eu cookie compliance popup'
+  - 'administer hdbt_cookie_banner'
   - 'administer menu'
   - 'administer nodes'
   - 'administer paragraphs library'
