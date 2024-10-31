@@ -30,6 +30,7 @@ permissions:
   - 'restful get helfi_global_mobile_menu'
   - 'restful get helfi_menu_link_collection'
   - 'send javascript errors to sentry'
+  - 'send performance traces to sentry'
   - 'view global_menu'
   - 'view helfi_announcements external entity'
   - 'view helfi_surveys external entity'
