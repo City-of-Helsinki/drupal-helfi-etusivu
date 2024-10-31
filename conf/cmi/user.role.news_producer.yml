@@ -20,6 +20,7 @@ dependencies:
     - paragraphs_library
     - path
     - publication_date
+    - raven
     - scheduler
     - system
     - tfa
@@ -69,6 +70,7 @@ permissions:
   - 'revert news_article revisions'
   - 'revert news_item revisions'
   - 'schedule publishing of nodes'
+  - 'send performance traces to sentry'
   - 'set news_article published on date'
   - 'set news_item published on date'
   - 'setup own tfa'
