@@ -4,10 +4,10 @@ client_key: ''
 environment: ''
 release: ''
 log_levels:
-  emergency: true
-  alert: true
-  critical: true
-  error: true
+  emergency: false
+  alert: false
+  critical: false
+  error: false
   warning: false
   notice: false
   info: false
