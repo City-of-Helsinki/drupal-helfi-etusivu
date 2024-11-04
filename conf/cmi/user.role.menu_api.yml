@@ -5,6 +5,7 @@ dependencies:
   module:
     - file
     - helfi_global_navigation
+    - raven
     - tfa
 id: menu_api
 label: 'Menu API'
@@ -14,5 +15,6 @@ permissions:
   - 'create global_menu'
   - 'delete own files'
   - 'disable own tfa'
+  - 'send performance traces to sentry'
   - 'setup own tfa'
   - 'update global_menu'
