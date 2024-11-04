@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af3aa7a3b833a93a4bfff3671f6a5c6e",
+    "content-hash": "418f745bde621515c623957f4976bc56",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -20751,7 +20751,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/elasticsearch_connector": 15,
         "drupal/helfi_drupal_tools": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5,
