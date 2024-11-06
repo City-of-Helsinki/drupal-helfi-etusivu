@@ -8,7 +8,6 @@ dependencies:
     - rest.resource.helfi_menu_link_collection
   module:
     - draggableviews
-    - eu_cookie_compliance
     - external_entities
     - file
     - helfi_api_base
@@ -34,7 +33,6 @@ permissions:
   - 'access toolbar'
   - 'delete own files'
   - 'disable own tfa'
-  - 'display eu cookie compliance popup'
   - 'restful get helfi_global_menu_collection'
   - 'restful get helfi_global_mobile_menu'
   - 'restful get helfi_menu_link_collection'
