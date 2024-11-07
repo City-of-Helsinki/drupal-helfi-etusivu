@@ -246,6 +246,7 @@ function helfi_etusivu_entity_insert(EntityInterface $entity) : void {
 function helfi_etusivu_helfi_hero_design_alter(array &$designs, FieldStorageDefinitionInterface $definition, FieldableEntityInterface|null $entity) : void {
   if ($entity instanceof ParagraphInterface) {
     $designs['with-search'] = t('With search');
+    $designs['with-helsinki-near-you'] = t('With Helsinki near you');
   }
 }
 
