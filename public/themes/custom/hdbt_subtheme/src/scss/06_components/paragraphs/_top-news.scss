@@ -53,7 +53,6 @@
 
     .news-listing__title {
       @include font('h4');
-      text-decoration: underline;
     }
 
     .news-listing__datetime {
