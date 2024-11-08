@@ -15,6 +15,7 @@ dependencies:
     - paragraphs.paragraphs_type.from_library
     - paragraphs.paragraphs_type.front_page_latest_news
     - paragraphs.paragraphs_type.front_page_top_news
+    - paragraphs.paragraphs_type.graphics
     - paragraphs.paragraphs_type.hearings
     - paragraphs.paragraphs_type.liftup_with_image
     - paragraphs.paragraphs_type.list_of_links
@@ -61,6 +62,7 @@ settings:
       target_group_links: target_group_links
       hearings: hearings
       curated_event_list: curated_event_list
+      graphics: graphics
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -92,6 +94,9 @@ settings:
         enabled: true
       front_page_top_news:
         weight: 16
+        enabled: true
+      graphics:
+        weight: 20
         enabled: true
       hearings:
         weight: 14
