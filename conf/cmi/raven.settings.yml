@@ -4,10 +4,10 @@ client_key: ''
 environment: ''
 release: ''
 log_levels:
-  emergency: false
-  alert: false
-  critical: false
-  error: false
+  emergency: true
+  alert: true
+  critical: true
+  error: true
   warning: false
   notice: false
   info: false
@@ -16,7 +16,7 @@ stack: true
 timeout: 2.0
 message_limit: 2048
 trace: false
-fatal_error_handler: false
+fatal_error_handler: true
 fatal_error_handler_memory: 2560
 javascript_error_handler: false
 drush_error_handler: true
