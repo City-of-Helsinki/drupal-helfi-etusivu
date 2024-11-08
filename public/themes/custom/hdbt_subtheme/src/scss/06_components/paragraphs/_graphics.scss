@@ -1,0 +1,29 @@
+.graphics {
+  @include breakpoint($breakpoint-l) {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.graphics__text-container {
+  @include breakpoint($breakpoint-l) {
+    min-height: 300px; // This height is from design to align the text nicely with the illustration.
+  }
+}
+
+.graphics__title {
+  margin-top: 0;
+}
+
+.graphics__illustration-container {
+  margin-top: $spacing-quadruple;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: 0;
+  }
+}
+
+.graphics__illustration {
+  max-width: 100%;
+}
