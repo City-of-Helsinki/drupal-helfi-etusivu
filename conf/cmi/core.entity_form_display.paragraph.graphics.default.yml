@@ -1,0 +1,41 @@
+uuid: b6116e12-4755-4837-b234-ba4adcb31ef5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.graphics.field_graphics_desc
+    - field.field.paragraph.graphics.field_graphics_illustrations
+    - field.field.paragraph.graphics.field_graphics_title
+    - paragraphs.paragraphs_type.graphics
+  module:
+    - text
+id: paragraph.graphics.default
+targetEntityType: paragraph
+bundle: graphics
+mode: default
+content:
+  field_graphics_desc:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_graphics_illustrations:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_graphics_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

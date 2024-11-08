@@ -1,0 +1,19 @@
+uuid: 7c5f292c-d1ae-4ad3-ba01-997f11dc990a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_graphics_title
+    - paragraphs.paragraphs_type.graphics
+id: paragraph.graphics.field_graphics_title
+field_name: field_graphics_title
+entity_type: paragraph
+bundle: graphics
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
