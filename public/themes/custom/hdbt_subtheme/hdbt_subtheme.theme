@@ -214,3 +214,29 @@ function hdbt_subtheme_preprocess_node__news_item(array &$variables): void {
   // Attach the updating news table of contents library to the news item page.
   $variables['#attached']['library'][] = 'hdbt_subtheme/updating-news-table-of-contents';
 }
+
+/**
+ * Implements hook_preprocess_paragraph__HOOK().
+ */
+function hdbt_subtheme_preprocess_paragraph__graphics(&$variables) {
+  $paragraph = $variables['paragraph'];
+
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $service */
+  $service = \Drupal::service('file_url_generator');
+  $theme = \Drupal::service('theme_handler')->getTheme('hdbt_subtheme');
+
+  // Add theme path to as variable.
+  $path = $service->generate("{$theme->getPath()}/src/images/")
+    ->toString(TRUE)->getGeneratedUrl();
+
+  $illustration = match($paragraph->get('field_graphics_illustrations')->value) {
+    'photographer' => [
+      'url' => $path . 'photographer.svg',
+      'photographer' => 'Lille Santanen',
+    ],
+  };
+
+  if ($illustration) {
+    $variables['selected_illustration'] = $illustration;
+  }
+}

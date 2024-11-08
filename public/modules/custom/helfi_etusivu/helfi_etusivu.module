@@ -113,6 +113,7 @@ function helfi_etusivu_helfi_paragraph_types() : array {
           'front_page_latest_news' => 17,
           'event_list' => 18,
           'news_archive' => 19,
+          'graphics' => 20,
         ],
       ],
       'page' => [
