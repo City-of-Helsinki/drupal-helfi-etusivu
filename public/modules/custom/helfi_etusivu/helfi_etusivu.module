@@ -247,7 +247,18 @@ function helfi_etusivu_entity_insert(EntityInterface $entity) : void {
 function helfi_etusivu_helfi_hero_design_alter(array &$designs, FieldStorageDefinitionInterface $definition, FieldableEntityInterface|null $entity) : void {
   if ($entity instanceof ParagraphInterface) {
     $designs['with-search'] = t('With search');
-    $designs['with-helsinki-near-you'] = t('With Helsinki near you');
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_etusivu_preprocess_html(&$variables): void {
+  $route = \Drupal::routeMatch()->getRouteName();
+
+  // Set the theme color to engel on Helsinki near you landing page.
+  if ($route === 'helfi_etusivu.helsinki_near_you') {
+    $variables['theme_color'] = 'engel';
   }
 }
 
@@ -256,6 +267,13 @@ function helfi_etusivu_helfi_hero_design_alter(array &$designs, FieldStorageDefi
  */
 function helfi_etusivu_preprocess_page(&$variables): void {
   $route = \Drupal::routeMatch()->getRouteName();
+
+  // There is hero block on Helsinki near you landing page but since it isn't a paragraph we must set this
+  // variable manually.
+  if ($route === 'helfi_etusivu.helsinki_near_you') {
+    $variables['has_hero'] = TRUE;
+  }
+
   $ordered_news_list = [
     'view.ordered_news_list.ordered_news',
     'view.ordered_news_articles_list.ordered_news_articles',
@@ -301,4 +319,19 @@ function helfi_etusivu_preprocess_node__news_item__full(array &$variables): void
   if (!is_null($updating_news_publish_date)) {
     $variables['published_at'] = $updating_news_publish_date;
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function helfi_etusivu_theme() : array {
+  return [
+    'helsinki_near_you_landing_page' => [
+      'variables' => [
+        'content' => NULL,
+        'illustration' => NULL,
+      ],
+      'template' => 'helsinki_near_you_landing_page',
+    ],
+  ];
 }

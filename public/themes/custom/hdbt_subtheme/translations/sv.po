@@ -20,3 +20,23 @@ msgstr "Läs mer och få inspiration"
 msgctxt "Front page news of interest title"
 msgid "You might be interested in"
 msgstr "Du kanske är intresserad av"
+
+msgctxt "Helsinki near you"
+msgid "Address"
+msgstr "Adress"
+
+msgctxt "Helsinki near you"
+msgid "For example, Mannerheimintie 1"
+msgstr "T.ex. Mannerheimvägen 1"
+
+msgctxt "Helsinki near you"
+msgid "Search"
+msgstr "Sök"
+
+msgctxt "Helsinki near you"
+msgid "First make a search with your address"
+msgstr "Först gör en sökning med din adress"
+
+msgctxt "Helsinki near you"
+msgid "Fill in your address to the search bar above and find services, events and news near you."
+msgstr "Fyll i din adress i sökfältet ovan och hitta tjänster, evenemang och nyheter nära dig."
