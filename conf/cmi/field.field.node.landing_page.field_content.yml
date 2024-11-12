@@ -62,7 +62,6 @@ settings:
       target_group_links: target_group_links
       hearings: hearings
       curated_event_list: curated_event_list
-      graphics: graphics
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -94,9 +93,6 @@ settings:
         enabled: true
       front_page_top_news:
         weight: 16
-        enabled: true
-      graphics:
-        weight: 20
         enabled: true
       hearings:
         weight: 14
