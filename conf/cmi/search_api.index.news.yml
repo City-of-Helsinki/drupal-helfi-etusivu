@@ -122,6 +122,17 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_short_title
+  news_location:
+    label: 'Kaupunginosat » Luokittelutermi » Location'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_neighbourhoods:entity:field_location'
+    type: location
+    dependencies:
+      config:
+        - field.storage.node.field_news_neighbourhoods
+        - field.storage.taxonomy_term.field_location
+      module:
+        - taxonomy
   main_image_url:
     label: 'Main Image'
     property_path: main_image_url
