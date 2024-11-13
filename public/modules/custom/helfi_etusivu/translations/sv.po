@@ -19,3 +19,39 @@ msgstr "Senaste uppdateringar"
 msgctxt "Updating news"
 msgid "News update published time"
 msgstr "Uppdatering publicerad tid"
+
+msgctxt "Helsinki near you"
+msgid "Helsinki near you"
+msgstr "Helsingfors nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Find services, events and news close to you. Start by searching with your address."
+msgstr "Hitta tjänster, evenemang och nyheter nära dig. Börja med att söka med din adress."
+
+msgctxt "Helsinki near you"
+msgid "Address"
+msgstr "Adress"
+
+msgctxt "Helsinki near you"
+msgid "For example, Mannerheimintie 1"
+msgstr "T.ex. Mannerheimvägen 1"
+
+msgctxt "Helsinki near you"
+msgid "Search"
+msgstr "Sök"
+
+msgctxt "Helsinki near you"
+msgid "First make a search with your address"
+msgstr "Först gör en sökning med din adress"
+
+msgctxt "Helsinki near you"
+msgid "Fill in your address to the search bar above and find services, events and news near you."
+msgstr "Fyll i din adress i sökfältet ovan och hitta tjänster, evenemang och nyheter nära dig."
+
+msgctxt "Helsinki near you"
+msgid "Picture: Lille Santanen"
+msgstr "Bild: Lille Santanen"
+
+msgctxt "Helsinki near you"
+msgid "Edit address"
+msgstr "Redigera adress"

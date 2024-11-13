@@ -1,44 +1,27 @@
-{% set form %}
-  <form class="helfi-helsinki-near-you__form" action="{{ url('helfi_etusivu.helsinki_near_you') }}" method="get" role="search">
-    <div class="form-item hds-text-input">
-      <label class="hds-text-input__label" for="search-form-helsinki-near-you">{{ 'Address'|t({}, {'context': 'Helsinki near you'}) }}</label>
-      <div class="hds-text-input__input-wrapper">
-        <input type="search" id="search-form-helsinki-near-you" name="q" value="" class="form-text hds-text-input__input" placeholder="{{ 'For example, Mannerheimintie 1'|t({}, {'context': 'Helsinki near you'}) }}">
-      </div>
-    </div>
-    <button class="hds-button hds-button--primary helfi-search__submit-button" type="submit" value="Submit">
-      <span class="hds-button__label">{{ 'Search'|t({}, {'context': 'Helsinki near you'}) }}</span>
-    </button>
-  </form>
-{% endset %}
-
-
-{% embed '@hdbt/component/hero.twig' with {
-  design: 'with-helsinki-near-you',
-  title: 'Helsinki near you'|t({}, {'context': 'Helsinki near you'}),
-  description: 'Find services, events and news close to you. Start by searching with your address.'|t({}, {'context': 'Helsinki near you'}),
-  form: form,
-} %}
-{% endembed %}
-
-{% embed "@hdbt/misc/component.twig" with
-  {
-    component_classes: [
-    'component--graphics',
-  ],
-    component_content_class: 'graphics',
-  }
-%}
-  {% block component_content %}
-    <div class="graphics__text-container">
-      <h2 class="graphics__title">{{ 'First make a search with your address'|t({}, {'context': 'Helsinki near you'}) }}</h2>
-      <div class="graphics__description">
-        <p>{{ 'Fill in your address to the search bar above and find services, events and news near you.'|t({}, {'context': 'Helsinki near you'}) }}</p>
-      </div>
-    </div>
-    <div class="graphics__illustration-container">
-      <img src="{{ illustration }}" data-photographer="Picture: Lille Santanen" alt="" class="graphics__illustration" />
-    </div>
-  {% endblock component_content %}
-{% endembed %}
-
+<article>
+  <div class="components components--computed">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--graphics',
+        ],
+        component_content_class: 'graphics',
+      }
+    %}
+      {% block component_content %}
+        <div class="graphics__text-container">
+          <h2 class="graphics__title">{{ title }}</h2>
+          <div class="graphics__description">
+            <p>{{ description }}</p>
+          </div>
+        </div>
+        <div class="graphics__illustration-container">
+          <figure>
+            <img src="{{ illustration }}" data-photographer="{{ illustration_caption }}" alt class="graphics__illustration" />
+            <figcaption>{{ illustration_caption }}</figcaption>
+          </figure>
+        </div>
+      {% endblock component_content %}
+    {% endembed %}
+  </div>
+</article>
