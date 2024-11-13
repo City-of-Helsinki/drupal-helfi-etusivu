@@ -1,3 +1,7 @@
+.component--graphics {
+  max-width: 100%;
+}
+
 .graphics {
   @include breakpoint($breakpoint-l) {
     align-items: center;
@@ -26,4 +30,8 @@
 
 .graphics__illustration {
   max-width: 100%;
+}
+
+.page-title + article > .components--helsinki-near-you-results:first-child {
+  margin-top: $spacing;
 }

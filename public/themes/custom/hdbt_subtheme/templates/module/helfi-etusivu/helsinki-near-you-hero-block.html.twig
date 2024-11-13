@@ -1,0 +1,21 @@
+{% set form %}
+  <form class="helfi-helsinki-near-you__form" action="{{ result_page_url }}" method="get" role="search">
+    <div class="form-item hds-text-input">
+      <label class="hds-text-input__label" for="search-form-helsinki-near-you">{{ form_item_label }}</label>
+      <div class="hds-text-input__input-wrapper">
+        <input type="search" id="search-form-helsinki-near-you" name="q" value="" class="form-text hds-text-input__input" placeholder="{{ form_item_placeholder }}">
+      </div>
+    </div>
+    <button class="hds-button hds-button--primary helfi-search__submit-button" type="submit" value="Submit">
+      <span class="hds-button__label">{{ form_item_submit }}</span>
+    </button>
+  </form>
+{% endset %}
+
+{% embed '@hdbt/component/hero.twig' with {
+  design: 'with-helsinki-near-you',
+  title: hero_title,
+  description: hero_description,
+  form: form,
+} %}
+{% endembed %}
