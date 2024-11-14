@@ -3,7 +3,7 @@
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [
-          'component--back-to-link',
+          'component--back-to-edit-link',
         ],
       }
     %}
@@ -12,7 +12,7 @@
           type: 'supplementary',
           label: back_link_label,
           url: back_link_url,
-          link_options: {'class': ['back-link']},
+          link_options: {'class': ['back-to-edit-link']},
         } %}
       {% endblock component_content %}
     {% endembed %}
