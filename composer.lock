@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "418f745bde621515c623957f4976bc56",
+    "content-hash": "0f7aa3edb438f5171e570ae22b1ecc17",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2364,16 +2364,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "10.3.7",
+            "version": "10.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "5b11ec4e38e71748c51287cbd64cfcc43faeb624"
+                "reference": "4006024a8dd7c9976fad0a2af7c9034d120c8e44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/5b11ec4e38e71748c51287cbd64cfcc43faeb624",
-                "reference": "5b11ec4e38e71748c51287cbd64cfcc43faeb624",
+                "url": "https://api.github.com/repos/drupal/core/zipball/4006024a8dd7c9976fad0a2af7c9034d120c8e44",
+                "reference": "4006024a8dd7c9976fad0a2af7c9034d120c8e44",
                 "shasum": ""
             },
             "require": {
@@ -2419,7 +2419,7 @@
                 "symfony/serializer": "^6.4",
                 "symfony/validator": "^6.4",
                 "symfony/yaml": "^6.4",
-                "twig/twig": "^3.14.0"
+                "twig/twig": "^3.14.2"
             },
             "conflict": {
                 "drush/drush": "<12.4.3"
@@ -2522,9 +2522,9 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/10.3.7"
+                "source": "https://github.com/drupal/core/tree/10.3.8"
             },
-            "time": "2024-11-07T08:22:50+00:00"
+            "time": "2024-11-12T09:52:10+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
@@ -20587,6 +20587,6 @@
     "platform": {
         "ext-libxml": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
