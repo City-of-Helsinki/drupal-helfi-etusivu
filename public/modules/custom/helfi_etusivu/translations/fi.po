@@ -66,3 +66,7 @@ msgstr "Kuva: Lille Santanen"
 msgctxt "Helsinki near you"
 msgid "Edit address"
 msgstr "Muokkaa osoitetta"
+
+msgctxt "Helsinki near you"
+msgid "Services, events and news near your address @address"
+msgstr "Palvelut, tapahtumat ja uutiset osoitteella @address"
