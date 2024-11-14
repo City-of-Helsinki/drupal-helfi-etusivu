@@ -1,0 +1,25 @@
+uuid: 04dcf865-ab62-4795-a169-ce57d1da73d7
+langcode: fi
+status: true
+dependencies:
+  module:
+    - helfi_etusivu
+    - system
+  theme:
+    - hdbt_subtheme
+id: hdbt_subtheme_helsinkinearyouheroblock
+theme: hdbt_subtheme
+region: before_content
+weight: 0
+provider: null
+plugin: helsinki_near_you_hero_block
+settings:
+  id: helsinki_near_you_hero_block
+  label: 'Helsinki near you hero block'
+  label_display: '0'
+  provider: helfi_etusivu
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/helsinki-near-you\r\n/helsinki-lahellasi\r\n/helsingfors-nara-dig"
