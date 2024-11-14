@@ -59,3 +59,9 @@ msgstr "Redigera adress"
 msgctxt "Helsinki near you"
 msgid "Services, events and news near your address @address"
 msgstr "Tjänster, evenemang och nyheter nära din adress @address"
+
+msgid "Helsinki near you"
+msgstr "Helsingfors nära dig"
+
+msgid "Services, events and news near your address"
+msgstr "Tjänster, evenemang och nyheter nära din adress"
