@@ -15,7 +15,6 @@ dependencies:
     - paragraphs.paragraphs_type.from_library
     - paragraphs.paragraphs_type.front_page_latest_news
     - paragraphs.paragraphs_type.front_page_top_news
-    - paragraphs.paragraphs_type.graphics
     - paragraphs.paragraphs_type.hearings
     - paragraphs.paragraphs_type.liftup_with_image
     - paragraphs.paragraphs_type.list_of_links
