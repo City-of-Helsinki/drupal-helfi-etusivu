@@ -74,6 +74,9 @@
         "patches": {
             "drupal/draggableviews": {
                 "Save langcode as part of draggableviews data in order to sort by by weight and language": "patches/draggableviews_language.patch"
+            },
+            "drupal/core": {
+                "": "https://git.drupalcode.org/project/drupal/-/merge_requests/10177.patch"
             }
         },
         "composer-exit-on-patch-failure": true,
