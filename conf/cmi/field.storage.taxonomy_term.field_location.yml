@@ -5,6 +5,8 @@ dependencies:
   module:
     - helfi_platform_config
     - taxonomy
+_core:
+  default_config_hash: J3VYlUUqe9orySkqRTkfaf3zmiABVwpRFgS2Wk-qykg
 id: taxonomy_term.field_location
 field_name: field_location
 entity_type: taxonomy_term

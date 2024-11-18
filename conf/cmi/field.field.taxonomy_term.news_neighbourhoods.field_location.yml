@@ -7,6 +7,8 @@ dependencies:
     - taxonomy.vocabulary.news_neighbourhoods
   module:
     - helfi_platform_config
+_core:
+  default_config_hash: zMqD_YIcxb2SEi-zEfioqQpiVagAuP6dpQnuKTmr4LU
 id: taxonomy_term.news_neighbourhoods.field_location
 field_name: field_location
 entity_type: taxonomy_term
