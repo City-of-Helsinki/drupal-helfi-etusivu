@@ -7,7 +7,6 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
@@ -15,10 +14,11 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\helfi_annif\TextConverter\Document;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
+use Drupal\helfi_etusivu\Entity\Node\Announcement;
 use Drupal\helfi_etusivu\Entity\Node\NewsItem;
+use Drupal\helfi_etusivu\Entity\Node\PublishExternallyInterface;
+use Drupal\helfi_etusivu\Entity\Node\Survey;
 use Drupal\helfi_etusivu\Entity\SimpleSitemap\HelfiSimpleSitemap;
-use Drupal\helfi_etusivu_entities\Plugin\ExternalEntities\StorageClient\Announcements;
-use Drupal\helfi_etusivu_entities\Plugin\ExternalEntities\StorageClient\Surveys;
 use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -32,6 +32,12 @@ use Drupal\views\ViewExecutable;
 function helfi_etusivu_entity_bundle_info_alter(array &$bundles): void {
   if (isset($bundles['node']['news_item'])) {
     $bundles['node']['news_item']['class'] = NewsItem::class;
+  }
+  if (isset($bundles['node']['announcement'])) {
+    $bundles['node']['announcement']['class'] = Announcement::class;
+  }
+  if (isset($bundles['node']['survey'])) {
+    $bundles['node']['survey']['class'] = Survey::class;
   }
 }
 
@@ -189,35 +195,17 @@ function helfi_etusivu_block_alter(&$definitions) : void {
  *   The entity to flush cache tags for.
  */
 function helfi_etusivu_invalidate_external_caches(EntityInterface $entity) : void {
-  if (!$entity instanceof ContentEntityInterface) {
+  if (!$entity instanceof PublishExternallyInterface) {
     return;
   }
 
-  // Only act on nodes.
-  if ($entity->getEntityTypeId() !== 'node') {
-    return;
-  }
-
-  // Only flush caches when we're saving announcement or survey node with
-  // 'field_publish_externally' option checked.
-  if ($entity->bundle() === 'announcement') {
-    $invalidateTag = Announcements::$customCacheTag;
-  }
-  elseif ($entity->bundle() === 'survey') {
-    $invalidateTag = Surveys::$customCacheTag;
-  }
-  else {
-    return;
-  }
-
-  $publishExternally = $entity->hasField('field_publish_externally') && (bool) $entity->get('field_publish_externally')->value === TRUE;
-  if (!$publishExternally) {
+  if (!$entity->publishExternally()) {
     return;
   }
 
   /** @var \Drupal\helfi_api_base\Cache\CacheTagInvalidator $service */
   $service = \Drupal::service(CacheTagInvalidator::class);
-  $service->invalidateTags([$invalidateTag]);
+  $service->invalidateTags($entity->getExternalCacheTags());
 }
 
 /**
