@@ -7,7 +7,6 @@ dependencies:
     - node.type.news_item
     - paragraphs.paragraphs_type.banner
     - paragraphs.paragraphs_type.image
-    - paragraphs.paragraphs_type.image_gallery
     - paragraphs.paragraphs_type.remote_video
     - paragraphs.paragraphs_type.text
   module:
@@ -36,111 +35,17 @@ settings:
       image: image
       remote_video: remote_video
       banner: banner
-      image_gallery: image_gallery
     negate: 0
     target_bundles_drag_drop:
-      accordion:
-        weight: 38
-        enabled: false
-      accordion_item:
-        weight: 39
-        enabled: false
       banner:
         weight: 3
         enabled: true
-      chart:
-        weight: 41
-        enabled: false
-      columns:
-        weight: 42
-        enabled: false
-      contact_card:
-        weight: 43
-        enabled: false
-      contact_card_listing:
-        weight: 44
-        enabled: false
-      content_cards:
-        weight: 45
-        enabled: false
-      curated_event_list:
-        weight: 46
-        enabled: false
-      current:
-        weight: 47
-        enabled: false
-      event_list:
-        weight: 48
-        enabled: false
-      from_library:
-        weight: 49
-        enabled: false
-      front_page_latest_news:
-        weight: 50
-        enabled: false
-      front_page_top_news:
-        weight: 51
-        enabled: false
-      hearings:
-        weight: 52
-        enabled: false
-      hero:
-        weight: 53
-        enabled: false
       image:
         weight: 1
         enabled: true
-      image_gallery:
-        weight: 36
-        enabled: true
-      image_gallery_item:
-        weight: 37
-        enabled: false
-      liftup_with_image:
-        weight: 55
-        enabled: false
-      list_of_links:
-        weight: 56
-        enabled: false
-      list_of_links_item:
-        weight: 57
-        enabled: false
-      map:
-        weight: 58
-        enabled: false
-      news_archive:
-        weight: 59
-        enabled: false
-      news_update:
-        weight: 60
-        enabled: false
-      phasing:
-        weight: 61
-        enabled: false
-      phasing_item:
-        weight: 62
-        enabled: false
-      popular_service_item:
-        weight: 64
-        enabled: false
-      popular_services:
-        weight: 63
-        enabled: false
       remote_video:
         weight: 2
         enabled: true
-      sidebar_text:
-        weight: 66
-        enabled: false
-      social_media_link:
-        weight: 67
-        enabled: false
-      target_group_link_item:
-        weight: 69
-        enabled: false
-      target_group_links:
-        weight: 68
-        enabled: false
       text:
         weight: 0
         enabled: true
