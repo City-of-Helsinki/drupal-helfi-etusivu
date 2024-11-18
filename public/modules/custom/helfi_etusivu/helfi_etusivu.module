@@ -21,6 +21,7 @@ use Drupal\helfi_etusivu_entities\Plugin\ExternalEntities\StorageClient\Surveys;
 use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
+use Drupal\Tests\helfi_api_base\Traits\CacheTagInvalidator;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\Plugin\views\query\Sql;
 use Drupal\views\ViewExecutable;
@@ -215,7 +216,7 @@ function helfi_etusivu_invalidate_external_caches(EntityInterface $entity) : voi
   }
 
   /** @var \Drupal\helfi_api_base\Cache\CacheTagInvalidator $service */
-  $service = \Drupal::service('helfi_api_base.cache_tag_invalidator');
+  $service = \Drupal::service(CacheTagInvalidator::class);
   $service->invalidateTags([$invalidateTag]);
 }
 
