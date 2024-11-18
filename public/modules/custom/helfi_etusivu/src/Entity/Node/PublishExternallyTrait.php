@@ -10,7 +10,7 @@ namespace Drupal\helfi_etusivu\Entity\Node;
 trait PublishExternallyTrait {
 
   /**
-   * Whether the announcement should be published to all sites or not.
+   * Whether the entity should be published on all sites or not.
    *
    * @return bool
    *   TRUE if the entity should be published externally.
