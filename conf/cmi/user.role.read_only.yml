@@ -9,6 +9,7 @@ dependencies:
     - node.type.news_item
     - node.type.page
   module:
+    - eu_cookie_compliance
     - file
     - node
     - paragraphs
@@ -26,6 +27,7 @@ permissions:
   - 'access toolbar'
   - 'delete own files'
   - 'disable own tfa'
+  - 'display eu cookie compliance popup'
   - 'send performance traces to sentry'
   - 'setup own tfa'
   - 'view any unpublished announcement content'

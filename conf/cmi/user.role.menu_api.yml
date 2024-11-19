@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - eu_cookie_compliance
     - file
     - helfi_global_navigation
     - raven
@@ -15,6 +16,7 @@ permissions:
   - 'create global_menu'
   - 'delete own files'
   - 'disable own tfa'
+  - 'display eu cookie compliance popup'
   - 'send performance traces to sentry'
   - 'setup own tfa'
   - 'update global_menu'
