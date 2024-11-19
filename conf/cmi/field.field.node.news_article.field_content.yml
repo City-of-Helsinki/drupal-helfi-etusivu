@@ -7,6 +7,7 @@ dependencies:
     - node.type.news_article
     - paragraphs.paragraphs_type.banner
     - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.image_gallery
     - paragraphs.paragraphs_type.remote_video
     - paragraphs.paragraphs_type.text
   module:
@@ -35,6 +36,7 @@ settings:
       image: image
       remote_video: remote_video
       banner: banner
+      image_gallery: image_gallery
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -42,6 +44,9 @@ settings:
         enabled: true
       image:
         weight: 1
+        enabled: true
+      image_gallery:
+        weight: 4
         enabled: true
       remote_video:
         weight: 2

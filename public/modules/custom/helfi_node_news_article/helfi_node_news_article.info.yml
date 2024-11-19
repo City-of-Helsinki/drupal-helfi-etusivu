@@ -8,6 +8,7 @@ dependencies:
   - radioactivity:radioactivity
   - helfi_platform_config:helfi_node_news_item
   - helfi_platform_config:helfi_paragraphs_hero
+  - helfi_platform_config:helfi_paragraphs_image_gallery
   - helfi_platform_config:helfi_image_styles
   - helfi_platform_config:helfi_media
   - publication_date:publication_date
