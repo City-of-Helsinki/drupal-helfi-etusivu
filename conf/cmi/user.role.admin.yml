@@ -26,9 +26,9 @@ dependencies:
     - content_translation
     - editoria11y
     - entity_usage
+    - eu_cookie_compliance
     - file
     - filter
-    - hdbt_cookie_banner
     - helfi_api_base
     - locale
     - media
@@ -70,7 +70,8 @@ permissions:
   - 'access toolbar'
   - 'access user profiles'
   - 'administer blocks'
-  - 'administer hdbt_cookie_banner'
+  - 'administer eu cookie compliance categories'
+  - 'administer eu cookie compliance popup'
   - 'administer menu'
   - 'administer nodes'
   - 'administer paragraphs library'
@@ -141,6 +142,7 @@ permissions:
   - 'delete terms in news_neighbourhoods'
   - 'delete terms in news_tags'
   - 'disable own tfa'
+  - 'display eu cookie compliance popup'
   - 'edit any announcement content'
   - 'edit any file media'
   - 'edit any hel_map media'
