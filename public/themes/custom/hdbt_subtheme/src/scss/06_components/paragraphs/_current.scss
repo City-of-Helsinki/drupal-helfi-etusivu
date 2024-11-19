@@ -11,6 +11,11 @@ $illustration-offset-xl: $spacing-quadruple;
 // Illustration aspect-ratio.
 $illustration-aspect-ratio: 1;
 
+$-current-item-font: 'special.large_link';
+
+// Lets calculate the padding size for the service-item based on the line-height of the chosen font.
+$-current-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-current-item-font, $unremify: true) ) * 0.5;
+
 .component--current {
   background-color: var(--hdbt-color-palette--secondary);
   color: var(--hdbt-color-palette-text--secondary);
@@ -26,6 +31,23 @@ $illustration-aspect-ratio: 1;
   @include breakpoint($breakpoint-m) {
     flex-direction: row;
   }
+}
+
+.current__content__list {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.current__content__list-item {
+  // The link wrapper needs to have the same font size and line-height as the link itself so that the list marker is
+  // shown in the correct position.
+  @include font($-current-item-font);
+  margin-bottom: $spacing - 2 * $-current-item-padding;
+  margin-top: 0;
+
+  // The padding here is also to help align the list marker to correct position.
+  padding-block: $-current-item-padding;
+  vertical-align: top;
 }
 
 .current__links-container {
