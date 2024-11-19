@@ -1,14 +1,10 @@
-_core:
-  default_config_hash: zmkyvoZ03LGqfVeB0mtslC-pkWMOrGIU9lJl9_jqUkc
 langcode: en
 dependencies:
   config:
     - filter.format.full_html
-uuid: dfcda20e-4c35-42ec-a65a-d633ffdc4659
 popup_enabled: true
 popup_clicking_confirmation: false
 popup_scrolling_confirmation: false
-eu_countries: {  }
 eu_only: false
 eu_only_js: false
 popup_position: false
