@@ -4255,16 +4255,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.8.5",
+            "version": "6.8.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "45ae632cf0b62b990b8098f9a07f53a348fa1bf1"
+                "reference": "788a852f02962d5c38be053989b6a18ba00daf0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/45ae632cf0b62b990b8098f9a07f53a348fa1bf1",
-                "reference": "45ae632cf0b62b990b8098f9a07f53a348fa1bf1",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/788a852f02962d5c38be053989b6a18ba00daf0b",
+                "reference": "788a852f02962d5c38be053989b6a18ba00daf0b",
                 "shasum": ""
             },
             "require": {
@@ -4283,23 +4283,23 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.8.5",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.8.7",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2024-11-14T10:30:35+00:00"
+            "time": "2024-11-18T15:33:25+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
-            "version": "3.2.7",
+            "version": "3.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt-admin.git",
-                "reference": "76454c97d12ea80c2e6859fea8d5926dca80bf7e"
+                "reference": "d1c02090ec6536e3d43abeb236a535416b97e669"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/76454c97d12ea80c2e6859fea8d5926dca80bf7e",
-                "reference": "76454c97d12ea80c2e6859fea8d5926dca80bf7e",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/d1c02090ec6536e3d43abeb236a535416b97e669",
+                "reference": "d1c02090ec6536e3d43abeb236a535416b97e669",
                 "shasum": ""
             },
             "require": {
@@ -4327,10 +4327,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/3.2.7",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/3.2.8",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/issues"
             },
-            "time": "2024-11-01T05:47:57+00:00"
+            "time": "2024-11-18T15:28:13+00:00"
         },
         {
             "name": "drupal/health_check",
@@ -4595,16 +4595,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.7.2",
+            "version": "4.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "18e44beda4703c7ad44277228c801fe5a20ad7b4"
+                "reference": "760d470ec819fcc7749d77d319b904a42812ac85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/18e44beda4703c7ad44277228c801fe5a20ad7b4",
-                "reference": "18e44beda4703c7ad44277228c801fe5a20ad7b4",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/760d470ec819fcc7749d77d319b904a42812ac85",
+                "reference": "760d470ec819fcc7749d77d319b904a42812ac85",
                 "shasum": ""
             },
             "require": {
@@ -4701,7 +4701,8 @@
                         "[#UHF-9388] Process configuration translation files for custom modules (https://www.drupal.org/i/2845437)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/fd68277191b8f8ec290e53b5fbbae699b2260384/patches/drupal-2845437-process-custom-module-translation-config-10.3.x.patch",
                         "[#UHF-9690] Allow updating lists when switching from allowed values to allowed values function (https://www.drupal.org/i/2873353)": "https://www.drupal.org/files/issues/2021-05-18/allow-allowed-values-function-update-D9-2873353_1.patch",
                         "[#UHF-9952, #UHF-9980] Duplicate <br /> tags (https://www.drupal.org/i/3083786)": "https://www.drupal.org/files/issues/2024-08-08/3083786--mr-8066--10-3-backport.patch",
-                        "[#UHF-10716] Ensure consistent ordering when calculating library asset order (https://www.drupal.org/i/3467860)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/955e2fc9493c6574ab070187b8a5a8634da7daab/patches/drupal-3467860-optimized-js-assets-mismatch.patch"
+                        "[#UHF-10716] Ensure consistent ordering when calculating library asset order (https://www.drupal.org/i/3467860)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/955e2fc9493c6574ab070187b8a5a8634da7daab/patches/drupal-3467860-optimized-js-assets-mismatch.patch",
+                        "[#UHF-10967] Performance Degraded after update to twig 3.14.2 (https://www.drupal.org/project/drupal/issues/3487031)": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/90b44ce5a778d05bbe89f7eaca6412b7bd34efa0/patches/10177.patch"
                     },
                     "drupal/default_content": {
                         "https://www.drupal.org/project/default_content/issues/2640734#comment-14638943": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/main/patches/default_content_2.0.0-alpha2-2640734_manual_imports-e164a354.patch"
@@ -4730,10 +4731,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.7.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.7.5",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2024-11-14T08:16:58+00:00"
+            "time": "2024-11-19T09:09:39+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -9791,28 +9792,28 @@
         },
         {
             "name": "jean85/pretty-package-versions",
-            "version": "2.0.6",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jean85/pretty-package-versions.git",
-                "reference": "f9fdd29ad8e6d024f52678b570e5593759b550b4"
+                "reference": "3c4e5f62ba8d7de1734312e4fff32f67a8daaf10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/f9fdd29ad8e6d024f52678b570e5593759b550b4",
-                "reference": "f9fdd29ad8e6d024f52678b570e5593759b550b4",
+                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/3c4e5f62ba8d7de1734312e4fff32f67a8daaf10",
+                "reference": "3c4e5f62ba8d7de1734312e4fff32f67a8daaf10",
                 "shasum": ""
             },
             "require": {
-                "composer-runtime-api": "^2.0.0",
-                "php": "^7.1|^8.0"
+                "composer-runtime-api": "^2.1.0",
+                "php": "^7.4|^8.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.2",
                 "jean85/composer-provided-replaced-stub-package": "^1.0",
                 "phpstan/phpstan": "^1.4",
-                "phpunit/phpunit": "^7.5|^8.5|^9.4",
-                "vimeo/psalm": "^4.3"
+                "phpunit/phpunit": "^7.5|^8.5|^9.6",
+                "vimeo/psalm": "^4.3 || ^5.0"
             },
             "type": "library",
             "extra": {
@@ -9844,9 +9845,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Jean85/pretty-package-versions/issues",
-                "source": "https://github.com/Jean85/pretty-package-versions/tree/2.0.6"
+                "source": "https://github.com/Jean85/pretty-package-versions/tree/2.1.0"
             },
-            "time": "2024-03-08T09:58:59+00:00"
+            "time": "2024-11-18T16:19:46+00:00"
         },
         {
             "name": "josdejong/jsoneditor",
