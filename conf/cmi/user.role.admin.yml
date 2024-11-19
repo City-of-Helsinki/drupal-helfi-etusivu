@@ -142,7 +142,6 @@ permissions:
   - 'delete terms in news_neighbourhoods'
   - 'delete terms in news_tags'
   - 'disable own tfa'
-  - 'display eu cookie compliance popup'
   - 'edit any announcement content'
   - 'edit any file media'
   - 'edit any hel_map media'

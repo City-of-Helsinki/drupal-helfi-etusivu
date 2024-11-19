@@ -6,7 +6,6 @@ dependencies:
     - node.type.survey
   module:
     - content_translation
-    - eu_cookie_compliance
     - node
     - publication_date
     - raven
@@ -21,7 +20,6 @@ permissions:
   - 'delete any survey content'
   - 'delete own survey content'
   - 'delete survey revisions'
-  - 'display eu cookie compliance popup'
   - 'edit any survey content'
   - 'edit own survey content'
   - 'revert survey revisions'
