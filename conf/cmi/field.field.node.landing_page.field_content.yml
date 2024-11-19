@@ -16,6 +16,7 @@ dependencies:
     - paragraphs.paragraphs_type.front_page_latest_news
     - paragraphs.paragraphs_type.front_page_top_news
     - paragraphs.paragraphs_type.hearings
+    - paragraphs.paragraphs_type.image_gallery
     - paragraphs.paragraphs_type.liftup_with_image
     - paragraphs.paragraphs_type.list_of_links
     - paragraphs.paragraphs_type.map
@@ -59,8 +60,9 @@ settings:
       remote_video: remote_video
       chart: chart
       target_group_links: target_group_links
-      hearings: hearings
+      image_gallery: image_gallery
       curated_event_list: curated_event_list
+      hearings: hearings
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -95,6 +97,9 @@ settings:
         enabled: true
       hearings:
         weight: 14
+        enabled: true
+      image_gallery:
+        weight: 15
         enabled: true
       liftup_with_image:
         weight: 3
