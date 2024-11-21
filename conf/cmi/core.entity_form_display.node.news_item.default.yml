@@ -114,20 +114,6 @@ targetEntityType: node
 bundle: news_item
 mode: default
 content:
-  annif_keywords:
-    type: readonly_field_widget
-    weight: 2
-    region: content
-    settings:
-      label: above
-      formatter_type: entity_reference_label
-      formatter_settings:
-        entity_reference_entity_view:
-          view_mode: default
-        entity_reference_label:
-          link: false
-      show_description: false
-    third_party_settings: {  }
   annif_suggested_topics:
     type: suggested_topics_reference
     weight: 26
