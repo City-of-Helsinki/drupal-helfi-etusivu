@@ -13,3 +13,10 @@ helfi_etusivu.helsinki_near_you_results:
     _title: 'Services, events and news near your address'
   requirements:
     _permission: 'access content'
+
+helfi_etusivu.helsinki_near_you_autocomplete:
+  path: '/helsinki-near-you/results/autocomplete'
+  defaults:
+    _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController::addressSuggestions'
+  requirements:
+    _permission: 'access content'
