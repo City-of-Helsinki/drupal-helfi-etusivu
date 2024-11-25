@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\helfi_etusivu\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 
 /**
  * Search form for near you page.
@@ -47,4 +48,5 @@ class NearYouForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $form_state->setRedirect('helfi_etusivu.helsinki_near_you_results', ['q' => urlencode($form_state->getValue('q'))]);
   }
+
 }

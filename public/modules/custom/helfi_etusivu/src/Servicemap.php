@@ -1,21 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\helfi_etusivu;
 
 use Drupal\Component\Utility\Xss;
-use Drupal\Core\Language\LanguageManager;
-use Error;
-use GuzzleHttp\Client;
+use Drupal\Core\Language\LanguageManagerInterface;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-class Servicemap {
-  const API_URL = 'https://api.hel.fi/servicemap/v2/search/';
+/**
+ * Class for interacting with Servicemap API.
+ */
+final class Servicemap {
 
+  /**
+   * API URL.
+   *
+   * @var string
+   */
+  private const API_URL = 'https://api.hel.fi/servicemap/v2/search/';
+
+  /**
+   * Constructs a new instance.
+   *
+   * @param \GuzzleHttp\Client $client
+   *   The HTTP client.
+   * @param \Drupal\Core\Language\LanguageManager $languageManager
+   *   Language manager.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   Logger.
+   */
   public function __construct(
-    protected readonly Client $client,
-    protected readonly LanguageManager $languageManager,
-    protected readonly LoggerInterface $logger
+    private readonly ClientInterface $client,
+    private readonly LanguageManagerInterface $languageManager,
+    #[Autowire(service: 'logger.channel.helfi_etusivu')]
+    private readonly LoggerInterface $logger,
   ) {
   }
 
@@ -28,6 +50,7 @@ class Servicemap {
    *   Maximum number or results.
    *
    * @return array
+   *   Array of results.
    */
   public function query(string $address, int $page_size = 1) : array {
     $address = Xss::filter($address);
@@ -40,9 +63,10 @@ class Servicemap {
           'page_size' => $page_size,
           'q' => $address,
           'type' => 'address',
-        ]
+        ],
       ]);
-    } catch (GuzzleException $e) {
+    }
+    catch (GuzzleException $e) {
       $this->logger->error('Servicemap query failed: ' . $e->getMessage());
       return [];
     }
