@@ -6,7 +6,6 @@ namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Servicemap;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,7 +24,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   The servicemap service.
    */
   public function __construct(
-    protected readonly Servicemap $servicemap
+    protected readonly Servicemap $servicemap,
   ) {
   }
 
@@ -77,7 +76,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
    *
-   * @return JsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   The result as JSON.
    */
   public function addressSuggestions(Request $request) : JsonResponse {

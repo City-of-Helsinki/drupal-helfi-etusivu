@@ -29,7 +29,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
     ContainerInterface $container,
     $configuration,
     $plugin_id,
-    $plugin_definition
+    $plugin_definition,
   ) {
     return new static(
       $configuration,
