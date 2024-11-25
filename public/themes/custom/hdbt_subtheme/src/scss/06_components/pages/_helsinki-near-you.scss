@@ -40,6 +40,11 @@
   margin-bottom: $spacing-and-half;
 }
 
+// Tweak Drupal throbber position, needs specific selector
+.helfi-etusivu-near-you-form .form-item-q .form-autocomplete {
+  background-position: 98% center;
+}
+
 // Built in classes with no way to change them
 .ui-menu.ui-front .ui-menu-item-wrapper {
   color: $color-black;
