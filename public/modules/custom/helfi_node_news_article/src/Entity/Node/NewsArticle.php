@@ -18,7 +18,7 @@ final class NewsArticle extends RecommendableBase {
    *   The human-readable "published at" time.
    */
   public function getPublishedHumanReadable(): string {
-    $published = !$this->get('published_at')->isEmpty() ? $this->get('published_at')->value : $this->getCreatedTime();
+    $published = $this->get('published_at')->value ?? $this->getCreatedTime();
     return \Drupal::service('date.formatter')->format((int)$published, 'publication_date_format');
   }
 
@@ -29,7 +29,7 @@ final class NewsArticle extends RecommendableBase {
    *   The machine-readable "published at" time.
    */
   public function getPublishedMachineReadable(): string {
-    $published = !$this->get('published_at')->isEmpty() ? $this->get('published_at')->value : $this->getCreatedTime();
+    $published = $this->get('published_at')->value ?? $this->getCreatedTime();
     return \Drupal::service('date.formatter')->format((int)$published, 'custom', 'Y-m-d\TH:i');
   }
 
