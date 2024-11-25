@@ -4,15 +4,18 @@ namespace Drupal\helfi_etusivu;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Language\LanguageManager;
+use Error;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Log\LoggerInterface;
 
 class Servicemap {
   const API_URL = 'https://api.hel.fi/servicemap/v2/search/';
 
   public function __construct(
     protected readonly Client $client,
-    protected readonly LanguageManager $languageManager
+    protected readonly LanguageManager $languageManager,
+    protected readonly LoggerInterface $logger
   ) {
   }
 
@@ -40,14 +43,14 @@ class Servicemap {
         ]
       ]);
     } catch (GuzzleException $e) {
-      // @todo log error
+      $this->logger->error('Servicemap query failed: ' . $e->getMessage());
       return [];
     }
 
     $result = json_decode($response->getBody()->getContents());
 
     if (!isset($result->results)) {
-      // @todo log unexpected response
+      $this->logger->error('Servicemap query failed: Unexpected response. Results not present.');
       return [];
     }
 
