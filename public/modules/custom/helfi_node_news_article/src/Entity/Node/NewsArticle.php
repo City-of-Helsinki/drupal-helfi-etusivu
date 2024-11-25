@@ -26,7 +26,7 @@ final class NewsArticle extends RecommendableBase {
    * Get machine-readable "published at" time of the News article.
    *
    * @return string
-   *   The machine-readabe "published at" time.
+   *   The machine-readable "published at" time.
    */
   public function getPublishedMachineReadable(): string {
     $published = !$this->get('published_at')->isEmpty() ? $this->get('published_at')->value : $this->getCreatedTime();
