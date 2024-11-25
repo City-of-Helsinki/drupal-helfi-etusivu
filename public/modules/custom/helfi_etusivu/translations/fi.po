@@ -76,3 +76,7 @@ msgstr "Helsinki lähelläsi"
 
 msgid "Services, events and news near your address"
 msgstr "Palvelut, tapahtumat ja uutiset osoitteesi lähellä"
+
+msgctxt "Helsinki near you"
+msgid "Eg. Vaasankatu 5"
+msgstr "Esimerkiksi Vaasankatu 5"

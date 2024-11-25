@@ -23,7 +23,10 @@ final class HelsinkiNearYouHeroBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() : array {
+    $autosuggest_form = \Drupal::formBuilder()->getForm('Drupal\helfi_etusivu\Form\NearYouForm');
+
     $build['helsinki_near_you_hero_block'] = [
+      '#autosuggest_form' => $autosuggest_form,
       '#theme' => 'helsinki_near_you_hero_block',
       '#result_page_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_results'),
       '#form_item_label' => $this->t('Address', [], ['context' => 'Helsinki near you']),

@@ -35,3 +35,20 @@
 .page-title + article > .components--helsinki-near-you-results:first-child {
   margin-top: $spacing;
 }
+
+.helfi-etusivu-near-you-form .form-item-q {
+  margin-bottom: $spacing-and-half;
+}
+
+// Built in classes with no way to change them
+.ui-menu.ui-front .ui-menu-item-wrapper {
+  color: $color-black;
+  display: inline-block;
+  padding: $spacing;
+  width: 100%;
+}
+
+.ui-menu.ui-front .ui-menu-item-wrapper.ui-state-active {
+  background-color: $color-bus-light;
+  border: 1px solid $color-bus;
+}
