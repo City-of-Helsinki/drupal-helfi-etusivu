@@ -5,10 +5,9 @@ dependencies:
   config:
     - search_api.server.news
   module:
-    - taxonomy
-    - search_api
     - helfi_etusivu
     - helfi_react_search
+    - taxonomy
 id: news_terms
 name: news-terms
 description: ''
