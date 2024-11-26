@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Servicemap;
+use Drupal\helfi_react_search\LinkedEvents;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,9 +23,12 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *
    * @param \Drupal\helfi_etusivu\Servicemap $servicemap
    *   The servicemap service.
+   * @param \Drupal\helfi_react_search\LinkedEvents $linkedEvents
+   *   The linked events service.
    */
   public function __construct(
     protected readonly Servicemap $servicemap,
+    protected readonly LinkedEvents $linkedEvents,
   ) {
   }
 
@@ -58,6 +62,16 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     }
 
     return [
+      '#attached' => [
+        'drupalSettings' => [
+          'helsinki_near_you' => [
+            'events_api_url' => $this->linkedEvents->getEventsRequest([
+              'dwithin_origin' => $addressData['coordinates'],
+              'dwithin_distance' => 1000,
+            ]),
+          ],
+        ],
+      ],
       '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
       '#back_link_url' => $return_url,
       '#coordinates' => $addressData ? $addressData['coordinates'] : NULL,
