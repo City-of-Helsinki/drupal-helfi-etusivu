@@ -63,6 +63,7 @@ final class Servicemap {
           'page_size' => $page_size,
           'q' => $address,
           'type' => 'address',
+          'language' => $this->languageManager->getCurrentLanguage()->getId(),
         ],
       ]);
     }
