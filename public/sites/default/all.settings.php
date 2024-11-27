@@ -7,13 +7,12 @@
 
 // Elasticsearch settings.
 if (getenv('ELASTICSEARCH_URL')) {
-  $config['elasticsearch_connector.cluster.news']['url'] = getenv('ELASTICSEARCH_URL');
+  $config['search_api.server.news']['backend_config']['connector_config']['url'] = getenv('ELASTICSEARCH_URL');
 
   if (getenv('ELASTIC_USER') && getenv('ELASTIC_PASSWORD')) {
-    $config['elasticsearch_connector.cluster.news']['options']['use_authentication'] = '1';
-    $config['elasticsearch_connector.cluster.news']['options']['authentication_type'] = 'Basic';
-    $config['elasticsearch_connector.cluster.news']['options']['username'] = getenv('ELASTIC_USER');
-    $config['elasticsearch_connector.cluster.news']['options']['password'] = getenv('ELASTIC_PASSWORD');
+    $config['search_api.server.news']['backend_config']['connector'] = 'basicauth';
+    $config['search_api.server.news']['backend_config']['connector_config']['username'] = getenv('ELASTIC_USER');
+    $config['search_api.server.news']['backend_config']['connector_config']['password'] = getenv('ELASTIC_PASSWORD');
   }
 }
 
@@ -68,6 +67,9 @@ $additionalEnvVars = [
   'ELASTIC_USER',
   'ELASTIC_PASSWORD',
   'SENTRY_DSN_REACT',
+  'AMQ_BROKERS',
+  'AMQ_USER',
+  'AMQ_PASSWORD',
 ];
 foreach ($additionalEnvVars as $var) {
   $preflight_checks['environmentVariables'][] = $var;
