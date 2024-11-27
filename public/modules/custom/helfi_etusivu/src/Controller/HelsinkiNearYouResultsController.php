@@ -46,7 +46,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     $return_url = Url::fromRoute('helfi_etusivu.helsinki_near_you');
 
     if (!$address) {
-      $this->messenger()->addMessage($this->t('Please enter an address', [], ['context' => 'Helsinki near you']), 'error');
+      $this->messenger()->addError($this->t('Please enter an address', [], ['context' => 'Helsinki near you']));
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
 
@@ -57,7 +57,13 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     );
 
     if (!$addressData) {
-      $this->messenger()->addMessage($this->t('Address not found', [], ['context' => 'Helsinki near you']), 'error');
+      $this->messenger()->addError(
+        $this->t(
+          'The address you input yielded no results. You may want to try a different address.',
+          [],
+          ['context' => 'Helsinki near you']
+        )
+      );
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
 
