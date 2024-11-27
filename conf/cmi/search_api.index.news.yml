@@ -4,27 +4,34 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_media_image
+    - field.storage.media.field_photographer
     - field.storage.node.field_main_image
     - field.storage.node.field_main_image_caption
     - field.storage.node.field_news_groups
     - field.storage.node.field_news_item_tags
     - field.storage.node.field_news_neighbourhoods
-    - field.storage.media.field_photographer
     - field.storage.node.field_short_title
     - search_api.server.news
   module:
-    - media
-    - node
-    - taxonomy
-    - publication_date
-    - search_api
     - helfi_etusivu
     - helfi_react_search
+    - media
+    - node
+    - publication_date
+    - taxonomy
 id: news
 name: news
 description: ''
 read_only: false
 field_settings:
+  _language:
+    label: Language
+    datasource_id: 'entity:node'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - node
   alt:
     label: 'Main image » Media » Image » Alternative text'
     datasource_id: 'entity:node'
