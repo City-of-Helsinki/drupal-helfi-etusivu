@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\Core\Database\Database;
 use Drupal\node\Entity\Node;
+use Drupal\path_alias\Entity\PathAlias;
 
 /**
  * Implements hook_install().
@@ -254,5 +255,36 @@ function helfi_etusivu_update_9011() : void {
     foreach ($aliases as $alias) {
       $alias->delete();
     }
+  }
+}
+
+/**
+ * UHF-10771: Add path aliases for helsinki-near-you url.
+ */
+function helfi_etusivu_update_9012(): void {
+  $paths = [
+    [
+      'path' => '/helsinki-near-you',
+      'alias' => '/helsinki-lahellasi',
+      'langcode' => 'fi',
+    ],
+    [
+      'path' => '/helsinki-near-you',
+      'alias' => '/helsingfors-nara-dig',
+      'langcode' => 'sv',
+    ],
+    [
+      'path' => '/helsinki-near-you/results',
+      'alias' => '/helsinki-lahellasi/tulokset',
+      'langcode' => 'fi',
+    ],
+    [
+      'path' => '/helsinki-near-you/results',
+      'alias' => '/helsingfors-nara-dig/resultat',
+      'langcode' => 'sv',
+    ],
+  ];
+  foreach ($paths as $path) {
+    PathAlias::create($path)->save();
   }
 }
