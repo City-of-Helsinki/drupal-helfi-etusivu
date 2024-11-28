@@ -1,0 +1,27 @@
+<article>
+  <div class="components components--computed">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--graphics',
+        ],
+        component_content_class: 'graphics',
+      }
+    %}
+      {% block component_content %}
+        <div class="graphics__text-container">
+          <h2 class="graphics__title">{{ title }}</h2>
+          <div class="graphics__description">
+            <p>{{ description }}</p>
+          </div>
+        </div>
+        <div class="graphics__illustration-container">
+          <figure>
+            <img src="{{ illustration }}" data-photographer="{{ illustration_caption }}" alt class="graphics__illustration" />
+            <figcaption>{{ illustration_caption }}</figcaption>
+          </figure>
+        </div>
+      {% endblock component_content %}
+    {% endembed %}
+  </div>
+</article>

@@ -1,0 +1,59 @@
+.component--graphics {
+  max-width: 100%;
+}
+
+.graphics {
+  @include breakpoint($breakpoint-l) {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.graphics__text-container {
+  @include breakpoint($breakpoint-l) {
+    min-height: 300px; // This height is from design to align the text nicely with the illustration.
+  }
+}
+
+.graphics__title {
+  margin-top: 0;
+}
+
+.graphics__illustration-container {
+  margin-top: $spacing-quadruple;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: 0;
+  }
+}
+
+.graphics__illustration {
+  max-width: 100%;
+}
+
+.page-title + article > .components--helsinki-near-you-results:first-child {
+  margin-top: $spacing;
+}
+
+.helfi-etusivu-near-you-form .form-item-q {
+  margin-bottom: $spacing-and-half;
+}
+
+// Tweak Drupal throbber position, needs specific selector
+.helfi-etusivu-near-you-form .form-item-q .form-autocomplete {
+  background-position: 98% center;
+}
+
+// Built in classes with no way to change them
+.ui-menu.ui-front .ui-menu-item-wrapper {
+  color: $color-black;
+  display: inline-block;
+  padding: $spacing;
+  width: 100%;
+}
+
+.ui-menu.ui-front .ui-menu-item-wrapper.ui-state-active {
+  background-color: $color-bus-light;
+  border: 1px solid $color-bus;
+}

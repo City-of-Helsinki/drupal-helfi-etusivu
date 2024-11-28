@@ -1,0 +1,20 @@
+<article>
+  <div class="components components--computed components--helsinki-near-you-results">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--back-to-edit-link',
+        ],
+      }
+    %}
+      {% block component_content %}
+        {% include '@hdbt/navigation/link-button.html.twig' with {
+          type: 'supplementary',
+          label: back_link_label,
+          url: back_link_url,
+          link_options: {'class': ['back-to-edit-link']},
+        } %}
+      {% endblock component_content %}
+    {% endembed %}
+  </div>
+</article>
