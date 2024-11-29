@@ -43,12 +43,12 @@ settings:
       contact_card_listing: contact_card_listing
       content_cards: content_cards
       image: image
+      image_gallery: image_gallery
       liftup_with_image: liftup_with_image
       list_of_links: list_of_links
       map: map
       sidebar_text: sidebar_text
       text: text
-      image_gallery: image_gallery
     negate: 0
     target_bundles_drag_drop:
       accordion:
