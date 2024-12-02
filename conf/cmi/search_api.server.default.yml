@@ -4,7 +4,7 @@ status: true
 dependencies:
   module:
     - elasticsearch_connector
-id: news
+id: default
 name: news
 description: ''
 backend: elasticsearch
