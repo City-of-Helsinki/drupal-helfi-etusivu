@@ -49,7 +49,7 @@ function helfi_etusivu_install() : void {
       // Never override image style settings.
       if ($consumer->get('image_styles')->isEmpty()) {
         $consumer->set('image_styles', [
-          'original_l',
+          'orig_1264w_free',
         ])
           ->save();
       }
