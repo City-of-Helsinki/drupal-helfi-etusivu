@@ -11,6 +11,8 @@
 }
 
 .graphics__text-container {
+  @include font(body);
+
   @include breakpoint($breakpoint-l) {
     min-height: 300px; // This height is from design to align the text nicely with the illustration.
   }
@@ -36,12 +38,24 @@
   margin-top: $spacing;
 }
 
-.helfi-etusivu-near-you-form .form-item-q {
-  margin-bottom: $spacing-and-half;
+.helfi-etusivu-near-you-form__description {
+  @include font(body);
+  margin-top: $spacing;
+}
+
+.helfi-etusivu-near-you-form__address-input {
+  margin-top: $spacing-double;
+}
+
+.helfi-etusivu-near-you-form .helfi-search__submit-button {
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-half;
+  }
 }
 
 // Tweak Drupal throbber position, needs specific selector
-.helfi-etusivu-near-you-form .form-item-q .form-autocomplete {
+.helfi-etusivu-near-you-form .form-item-q .form-autocomplete,
+.helfi-etusivu-near-you-form .form-item-q .form-autocomplete.ui-autocomplete-loading {
   background-position: 98% center;
 }
 

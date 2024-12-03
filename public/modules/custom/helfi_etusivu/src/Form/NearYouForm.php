@@ -25,18 +25,36 @@ class NearYouForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['#attributes']['class'][] = 'helfi-etusivu-near-you-form';
 
+    $form['description'] = [
+      '#markup' =>
+      '<div class="helfi-etusivu-near-you-form__description">' .
+      $this->t('Find services, events, and news near you. Start by searching with your address.', [], ['context' => 'Helsinki near you']) .
+      '</div>',
+      '#type' => 'markup',
+    ];
+
     $form['q'] = [
       '#autocomplete_route_name' => 'helfi_etusivu.helsinki_near_you_autocomplete',
       '#placeholder' => $this->t('Eg. Vaasankatu 5', [], ['context' => 'Helsinki near you']),
       '#required' => TRUE,
       '#title' => $this->t('Address'),
       '#type' => 'textfield',
+      '#wrapper_attributes' => [
+        'class' => ['helfi-etusivu-near-you-form__address-input'],
+      ],
     ];
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
+      '#attributes' => [
+        'class' => [
+          'hds-button',
+          'hds-button--primary',
+          'helfi-search__submit-button',
+        ],
+      ],
       '#type' => 'submit',
-      '#value' => $this->t('Search'),
+      '#value' => $this->t('Search', [], ['context' => 'Helsinki near you']),
     ];
 
     return $form;

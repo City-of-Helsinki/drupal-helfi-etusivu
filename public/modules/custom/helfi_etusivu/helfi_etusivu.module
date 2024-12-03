@@ -244,9 +244,9 @@ function helfi_etusivu_helfi_hero_design_alter(array &$designs, FieldStorageDefi
 function helfi_etusivu_preprocess_html(&$variables): void {
   $route = \Drupal::routeMatch()->getRouteName();
 
-  // Set the theme color to engel on Helsinki near you landing page.
+  // Set the theme color to suomenlinna on Helsinki near you landing page.
   if ($route === 'helfi_etusivu.helsinki_near_you') {
-    $variables['theme_color'] = 'engel';
+    $variables['theme_color'] = 'suomenlinna';
   }
 }
 
