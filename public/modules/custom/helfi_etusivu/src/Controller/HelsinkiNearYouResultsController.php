@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Component\Utility\Xss;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Servicemap;
@@ -80,6 +81,9 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ],
       '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
       '#back_link_url' => $return_url,
+      '#cache' => [
+        'contexts' => ['url.query_args:q'],
+      ],
       '#coordinates' => $addressData ? $addressData['coordinates'] : NULL,
       '#theme' => 'helsinki_near_you_results_page',
       '#title' => $this->t(

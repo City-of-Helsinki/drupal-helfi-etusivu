@@ -84,3 +84,7 @@ msgstr "Esimerkiksi Vaasankatu 5"
 msgctxt "Helsinki near you"
 msgid "The address you input yielded no results. You may want to try a different address."
 msgstr "Antamallasi osoitteella ei löytynyt tuloksia. Voit kokeilla muuttaa hakuehtojasi."
+
+msgctxt "Helsinki near you"
+msgid "Search"
+msgstr "Hae"
