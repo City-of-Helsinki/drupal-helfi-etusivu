@@ -45,6 +45,10 @@ msgid "First make a search with your address"
 msgstr "Först gör en sökning med din adress"
 
 msgctxt "Helsinki near you"
+msgid "Find services, events, and news near you. Start by searching with your address."
+msgstr "Hitta tjänster, evenemang och nyheter nära dig. Börja med att söka med din adress."
+
+msgctxt "Helsinki near you"
 msgid "Fill in your address to the search bar above and find services, events and news near you."
 msgstr "Fyll i din adress i sökfältet ovan och hitta tjänster, evenemang och nyheter nära dig."
 
@@ -73,3 +77,7 @@ msgstr "Till exempel Vasagatan 5"
 msgctxt "Helsinki near you"
 msgid "The address you input yielded no results. You may want to try a different address."
 msgstr "Adressen du angav gav inga resultat. Du kanske vill prova en annan adress."
+
+msgctxt "Helsinki near you"
+msgid "Search"
+msgstr "Söka"

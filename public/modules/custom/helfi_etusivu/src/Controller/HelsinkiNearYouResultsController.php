@@ -80,6 +80,9 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ],
       '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
       '#back_link_url' => $return_url,
+      '#cache' => [
+        'contexts' => ['url.query_args:q'],
+      ],
       '#coordinates' => $addressData ? $addressData['coordinates'] : NULL,
       '#theme' => 'helsinki_near_you_results_page',
       '#title' => $this->t(
