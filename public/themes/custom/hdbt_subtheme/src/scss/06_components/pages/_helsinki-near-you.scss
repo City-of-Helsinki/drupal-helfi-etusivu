@@ -40,8 +40,11 @@
 
 .helfi-etusivu-near-you-form__description {
   @include font(body);
-  margin-bottom: $spacing-double;
   margin-top: $spacing;
+}
+
+.helfi-etusivu-near-you-form__address-input {
+  margin-top: $spacing-double;
 }
 
 .helfi-etusivu-near-you-form .helfi-search__submit-button {
