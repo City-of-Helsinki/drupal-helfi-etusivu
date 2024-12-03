@@ -56,10 +56,6 @@ msgid "First make a search with your address"
 msgstr "Tee aluksi haku osoitteellasi"
 
 msgctxt "Helsinki near you"
-msgid "Find services, events, and news near you. Start by searching with your address."
-msgstr "Löydä palvelut, tapahtumat ja uutiset läheltäsi. Aloita kirjoittamalla osoitteesi."
-
-msgctxt "Helsinki near you"
 msgid "Fill in your address to the search bar above and find services, events and news near you."
 msgstr "Täytä osoitteesi yllä olevaan hakuun ja löydä palveluita, tapahtumia ja uutisia läheltäsi."
 
