@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Component\Utility\Xss;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Servicemap;
