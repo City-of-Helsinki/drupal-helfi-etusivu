@@ -39,6 +39,9 @@ class NearYouForm extends FormBase {
       '#required' => TRUE,
       '#title' => $this->t('Address'),
       '#type' => 'textfield',
+      '#wrapper_attributes' => [
+        'class' => ['helfi-etusivu-near-you-form__address-input']
+      ],
     ];
 
     $form['actions']['#type'] = 'actions';
