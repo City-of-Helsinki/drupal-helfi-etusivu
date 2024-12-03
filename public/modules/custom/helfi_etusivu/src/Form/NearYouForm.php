@@ -27,9 +27,9 @@ class NearYouForm extends FormBase {
 
     $form['description'] = [
       '#markup' =>
-        '<div class="helfi-etusivu-near-you-form__description">' .
-        $this->t('Find services, events, and news near you. Start by searching with your address.') .
-        '</div>',
+      '<div class="helfi-etusivu-near-you-form__description">' .
+      $this->t('Find services, events, and news near you. Start by searching with your address.') .
+      '</div>',
       '#type' => 'markup',
     ];
 
