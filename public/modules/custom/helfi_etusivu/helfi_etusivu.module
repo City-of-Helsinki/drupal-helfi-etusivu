@@ -246,7 +246,7 @@ function helfi_etusivu_preprocess_html(&$variables): void {
 
   // Set the theme color to engel on Helsinki near you landing page.
   if ($route === 'helfi_etusivu.helsinki_near_you') {
-    $variables['theme_color'] = 'engel';
+    $variables['theme_color'] = 'suomenlinna';
   }
 }
 
