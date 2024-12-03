@@ -40,7 +40,7 @@ class NearYouForm extends FormBase {
       '#title' => $this->t('Address'),
       '#type' => 'textfield',
       '#wrapper_attributes' => [
-        'class' => ['helfi-etusivu-near-you-form__address-input']
+        'class' => ['helfi-etusivu-near-you-form__address-input'],
       ],
     ];
 
