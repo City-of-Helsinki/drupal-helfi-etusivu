@@ -73,3 +73,7 @@ msgstr "Till exempel Vasagatan 5"
 msgctxt "Helsinki near you"
 msgid "The address you input yielded no results. You may want to try a different address."
 msgstr "Adressen du angav gav inga resultat. Du kanske vill prova en annan adress."
+
+msgctxt "Helsinki near you"
+msgid "Search"
+msgstr "Söka"

@@ -31,12 +31,22 @@ class NearYouForm extends FormBase {
       '#required' => TRUE,
       '#title' => $this->t('Address'),
       '#type' => 'textfield',
+      '#wrapper_attributes' => [
+        'class' => ['helfi-etusivu-near-you-form__address-input'],
+      ],
     ];
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
+      '#attributes' => [
+        'class' => [
+          'hds-button',
+          'hds-button--primary',
+          'helfi-search__submit-button',
+        ],
+      ],
       '#type' => 'submit',
-      '#value' => $this->t('Search'),
+      '#value' => $this->t('Search', [], ['context' => 'Helsinki near you']),
     ];
 
     return $form;
