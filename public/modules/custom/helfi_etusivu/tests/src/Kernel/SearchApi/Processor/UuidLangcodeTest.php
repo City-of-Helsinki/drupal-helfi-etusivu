@@ -24,6 +24,8 @@ class UuidLangcodeTest extends ProcessorTestBase {
    */
   protected static $modules = [
     'helfi_etusivu',
+    'helfi_api_base',
+    'helfi_react_search',
   ];
 
   /**

@@ -241,8 +241,27 @@ function helfi_etusivu_helfi_hero_design_alter(array &$designs, FieldStorageDefi
 /**
  * Implements hook_preprocess_HOOK().
  */
+function helfi_etusivu_preprocess_html(&$variables): void {
+  $route = \Drupal::routeMatch()->getRouteName();
+
+  // Set the theme color to suomenlinna on Helsinki near you landing page.
+  if ($route === 'helfi_etusivu.helsinki_near_you') {
+    $variables['theme_color'] = 'suomenlinna';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function helfi_etusivu_preprocess_page(&$variables): void {
   $route = \Drupal::routeMatch()->getRouteName();
+
+  // There is hero block on Helsinki near you landing page but
+  // since it isn't a paragraph we must set this variable manually.
+  if ($route === 'helfi_etusivu.helsinki_near_you') {
+    $variables['has_hero'] = TRUE;
+  }
+
   $ordered_news_list = [
     'view.ordered_news_list.ordered_news',
     'view.ordered_news_articles_list.ordered_news_articles',
@@ -288,4 +307,42 @@ function helfi_etusivu_preprocess_node__news_item__full(array &$variables): void
   if (!is_null($updating_news_publish_date)) {
     $variables['published_at'] = $updating_news_publish_date;
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function helfi_etusivu_theme() : array {
+  return [
+    'helsinki_near_you_landing_page' => [
+      'variables' => [
+        'title' => NULL,
+        'description' => NULL,
+        'illustration' => NULL,
+        'illustration_caption' => NULL,
+      ],
+      'template' => 'helsinki-near-you-landing-page',
+    ],
+    'helsinki_near_you_results_page' => [
+      'variables' => [
+        'back_link_label' => NULL,
+        'back_link_url' => NULL,
+        'coordinates' => NULL,
+        'title' => NULL,
+      ],
+      'template' => 'helsinki-near-you-results-page',
+    ],
+    'helsinki_near_you_hero_block' => [
+      'variables' => [
+        'result_page_url' => NULL,
+        'form_item_label' => NULL,
+        'form_item_placeholder' => NULL,
+        'form_item_submit' => NULL,
+        'hero_title' => NULL,
+        'hero_description' => NULL,
+        'autosuggest_form' => NULL,
+      ],
+      'template' => 'helsinki-near-you-hero-block',
+    ],
+  ];
 }
