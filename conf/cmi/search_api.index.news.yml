@@ -11,7 +11,7 @@ dependencies:
     - field.storage.node.field_news_item_tags
     - field.storage.node.field_news_neighbourhoods
     - field.storage.node.field_short_title
-    - search_api.server.news
+    - search_api.server.default
   module:
     - helfi_etusivu
     - helfi_react_search
@@ -280,4 +280,4 @@ options:
   cron_limit: 50
   index_directly: true
   track_changes_in_references: true
-server: news
+server: default
