@@ -288,3 +288,29 @@ function helfi_etusivu_update_9012(): void {
     PathAlias::create($path)->save();
   }
 }
+
+/**
+ * UHF-10555: Update the deprecated consumer image style.
+ */
+function helfi_etusivu_update_9013(): void {
+  /** @var \Drupal\Core\Extension\ModuleHandler $moduleHandler */
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if ($moduleHandler->moduleExists('consumer_image_styles')) {
+    $storage = \Drupal::entityTypeManager()->getStorage('consumer');
+
+    /** @var \Drupal\consumers\Entity\Consumer $consumer */
+    foreach ($storage->loadMultiple() as $consumer) {
+      if (!$consumer->get('third_party')->value) {
+        continue;
+      }
+
+      if (!$consumer->hasField('image_styles')) {
+        continue;
+      }
+
+      // Update the consumer image styles.
+      $consumer->set('image_styles', ['orig_1264w_free'])->save();
+    }
+  }
+}
