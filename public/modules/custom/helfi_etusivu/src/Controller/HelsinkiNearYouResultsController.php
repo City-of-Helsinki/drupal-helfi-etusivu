@@ -71,7 +71,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       '#attached' => [
         'drupalSettings' => [
           'helfi_events' => [
-            'base_url' => LinkedEvents::BASE_URL,
+            'baseUrl' => LinkedEvents::BASE_URL,
             'data' => [
               'helfi-coordinates-based-event-list' => [
                 'events_api_url' => $this->linkedEvents->getEventsRequest([
