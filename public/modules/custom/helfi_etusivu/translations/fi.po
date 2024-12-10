@@ -88,3 +88,15 @@ msgstr "Antamallasi osoitteella ei löytynyt tuloksia. Voit kokeilla muuttaa hak
 msgctxt "Helsinki near you"
 msgid "Search"
 msgstr "Hae"
+
+msgctxt "Helsinki near you"
+msgid "See all events"
+msgstr "Katso kaikki tapahtumat"
+
+msgctxt "Helsinki near you"
+msgid "Events near you"
+msgstr "Tapahtumat lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "Browse events near you, sorted by their start time"
+msgstr "Tutustu tapahtumiin tapahtumisajan mukaisessa järjestyksessä."

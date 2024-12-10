@@ -77,3 +77,15 @@ msgstr "Adressen du angav gav inga resultat. Du kanske vill prova en annan adres
 msgctxt "Helsinki near you"
 msgid "Search"
 msgstr "Söka"
+
+msgctxt "Helsinki near you"
+msgid "See all events"
+msgstr "Se alla evenemang"
+
+msgctxt "Helsinki near you"
+msgid "Events near you"
+msgstr "Evenemang nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Browse events near you, sorted by their start time"
+msgstr "Utforska evenemang i ordning efter deras starttid."
