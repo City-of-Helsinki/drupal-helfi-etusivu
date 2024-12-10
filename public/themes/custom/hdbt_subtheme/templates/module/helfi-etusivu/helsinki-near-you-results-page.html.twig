@@ -16,5 +16,32 @@
         } %}
       {% endblock component_content %}
     {% endembed %}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--full-width',
+        'component--react-search',
+        'component--event-list',
+        ],
+        component_title: 'Events near you'|trans({}, {'context': 'Helsinki near you'}),
+        component_description: 'Browse events near you, sorted by their start time'|trans({}, {'context': 'Helsinki near you'}),
+        component_content_class: 'event-list',
+      }
+    %}
+      {% block component_content %}
+        {# Hook React app to this div #}
+        <div
+          id="helfi-events-search"
+          data-paragraph-id="helfi-coordinates-based-event-list"
+        >
+        </div>
+        {# Indicate JS not enabled #}
+        <noscript>
+          <div class="event-list__javascript-disabled">
+            {{ 'You must enable JavaScript in your browser for event list to work'|t }}
+          </div>
+        </noscript>
+      {% endblock %}
+    {% endembed %}
   </div>
 </article>
