@@ -89,3 +89,59 @@ msgstr "Evenemang nära dig"
 msgctxt "Helsinki near you"
 msgid "Browse events near you, sorted by their start time"
 msgstr "Utforska evenemang i ordning efter deras starttid."
+
+msgctxt "Helsinki near you"
+msgid "Health is key"
+msgstr "Ta hand om din hälsa"
+
+msgctxt "Helsinki near you"
+msgid "Your own health station"
+msgstr "Din egen hälsostation"
+
+msgctxt "Helsinki near you"
+msgid "Closest maternity and child health clinic"
+msgstr "Närmaste mödra- och barnrådgivning"
+
+msgctxt "Helsinki near you"
+msgid "Grow and learn"
+msgstr "Väx och lär dig"
+
+msgctxt "Helsinki near you"
+msgid "Schools close to you"
+msgstr "Närliggande skolor"
+
+msgctxt "Helsinki near you"
+msgid "Closest playgrounds and family houses"
+msgstr "Närmaste lekparker och familjehus"
+
+msgctxt "Helsinki near you"
+msgid "Closest daycare centres"
+msgstr "Närmaste daghem"
+
+msgctxt "Helsinki near you"
+msgid "Move around the city"
+msgstr "Rör dig i staden"
+
+msgctxt "Helsinki near you"
+msgid "Roadway ploughing schedule"
+msgstr "Plogningstidtabell"
+
+msgctxt "Helsinki near you"
+msgid "Roadworks and events on map"
+msgstr "Vägarbeten och evenemang på kartan"
+
+msgctxt "Helsinki near you"
+msgid "City bike stations"
+msgstr "Stadscykelstationer och cykelställ"
+
+msgctxt "Helsinki near you"
+msgid "The city is developing"
+msgstr "Staden utvecklas"
+
+msgctxt "Helsinki near you"
+msgid "Street and park development"
+msgstr "Gatu- och parkområdesprojekt"
+
+msgctxt "Helsinki near you"
+msgid "Plans in process"
+msgstr "Pågående planeringsprojekt"

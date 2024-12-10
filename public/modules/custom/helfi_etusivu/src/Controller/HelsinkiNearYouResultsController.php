@@ -99,6 +99,68 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         ['@address' => $addressData ? $this->resolveTranslation($addressData['address_translations']) : ''],
         ['context' => 'Helsinki near you']
       ),
+      '#service_groups' => [
+        [
+          'title' => $this->t('Health is key', [], ['context' => 'Helsinki near you']),
+          'service_links' => [
+            [
+              'link_label' => $this->t('Your own health station', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+            ],
+            [
+              'link_label' => $this->t('Closest maternity and child health clinic', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+            ],
+          ],
+        ],
+        [
+          'title' => $this->t('Grow and learn', [], ['context' => 'Helsinki near you']),
+          'service_links' => [
+            [
+              'link_label' => $this->t('Schools close to you', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+            ],
+            [
+              'link_label' => $this->t('Closest playgrounds and family houses', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+            ],
+            [
+              'link_label' => $this->t('Closest daycare centres', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+            ],
+          ],
+        ],
+        [
+          'title' => $this->t('Move around the city', [], ['context' => 'Helsinki near you']),
+          'service_links' => [
+            [
+              'link_label' => $this->t('Roadway ploughing schedule', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+            ],
+            [
+              'link_label' => $this->t('Roadworks and events on map', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromUri('https://kartta.hel.fi'),
+            ],
+            [
+              'link_label' => $this->t('City bike stations', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromUri('https://www.hsl.fi/en/citybikes/helsinki'),
+            ],
+          ],
+        ],
+        [
+          'title' => $this->t('The city is developing', [], ['context' => 'Helsinki near you']),
+          'service_links' => [
+            [
+              'link_label' => $this->t('Street and park development', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromUri('https://kartta.hel.fi'),
+            ],
+            [
+              'link_label' => $this->t('Plans in process', [], ['context' => 'Helsinki near you']),
+              'link_url' => Url::fromUri('https://kartta.hel.fi'),
+            ],
+          ],
+        ],
+      ],
     ];
   }
 
