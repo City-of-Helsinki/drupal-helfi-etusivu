@@ -75,8 +75,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
             'data' => [
               'helfi-coordinates-based-event-list' => [
                 'events_api_url' => $this->linkedEvents->getEventsRequest([
-                  'dwithin_origin' => $addressData['coordinates'],
-                  'dwithin_distance' => 1000,
+                  'dwithin_origin' => implode(',', $addressData['coordinates']),
+                  'dwithin_metres' => 2000,
                 ]),
                 'field_event_count' => 3,
               ],
