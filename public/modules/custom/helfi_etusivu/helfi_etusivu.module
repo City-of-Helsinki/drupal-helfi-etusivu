@@ -329,6 +329,7 @@ function helfi_etusivu_theme() : array {
         'back_link_url' => NULL,
         'coordinates' => NULL,
         'title' => NULL,
+        'service_groups' => NULL,
       ],
       'template' => 'helsinki-near-you-results-page',
     ],

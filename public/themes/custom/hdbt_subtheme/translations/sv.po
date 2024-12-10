@@ -20,3 +20,11 @@ msgstr "Läs mer och få inspiration"
 msgctxt "Front page news of interest title"
 msgid "You might be interested in"
 msgstr "Du kanske är intresserad av"
+
+msgctxt "Services close to you block"
+msgid "Services close to you"
+msgstr "Tjänster nära dig"
+
+msgctxt "Services close to you block"
+msgid "Use the links to go to results based on your address."
+msgstr "Använd länkarna för att visa resultat baserat på din adress."
