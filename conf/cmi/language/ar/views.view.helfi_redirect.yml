@@ -1,0 +1,42 @@
+display:
+  default:
+    display_title: الرئيسي
+    display_options:
+      fields:
+        redirect_source__path:
+          label: من
+          separator: ', '
+        is_custom:
+          label: مخصص
+          separator: ', '
+        created:
+          label: الإنشاء
+      pager:
+        options:
+          tags:
+            next: 'التالية ›'
+            previous: '‹ السابقة'
+            first: '« الأولى'
+            last: 'الأخيرة »'
+          expose:
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
+      exposed_form:
+        options:
+          submit_button: انتقاء
+          reset_button_label: 'إعادة الضبط'
+          exposed_sorts_label: 'الترتيب حسب'
+          sort_asc_label: تصاعدي
+          sort_desc_label: تنازلي
+      filters:
+        redirect_source__path:
+          expose:
+            label: من
+        redirect_redirect__uri:
+          expose:
+            label: إلى
+        is_custom:
+          expose:
+            label: مخصص
+  page_1:
+    display_title: الصفحة

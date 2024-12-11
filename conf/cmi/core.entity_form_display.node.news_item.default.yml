@@ -79,6 +79,7 @@ third_party_settings:
     group_updating_news:
       children:
         - field_news_item_updating_news
+        - field_news_item_updating_news
       label: 'Updating news'
       region: content
       parent_name: ''
@@ -93,6 +94,9 @@ third_party_settings:
         required_fields: false
     group_automatically_recommended:
       children:
+        - in_recommendations
+        - show_annif_block
+        - annif_suggested_topics
         - in_recommendations
         - show_annif_block
         - annif_suggested_topics
