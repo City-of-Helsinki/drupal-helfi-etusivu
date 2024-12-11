@@ -16,7 +16,6 @@ dependencies:
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
     - field.field.node.news_item.field_short_title
-    - image.style.3_2_m
     - node.type.news_item
   module:
     - media
@@ -78,7 +77,6 @@ content:
     weight: 4
     region: content
 hidden:
-  field_annif_keywords: true
   field_content: true
   field_lead_in: true
   field_main_image_caption: true
@@ -93,3 +91,4 @@ hidden:
   search_api_excerpt: true
   show_annif_block: true
   toc_enabled: true
+  field_annif_keywords: true
