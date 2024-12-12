@@ -31,7 +31,6 @@ final class Servicemap {
    */
   private const SITE_URL = 'https://kartta.hel.fi/';
 
-
   /**
    * Constructs a new instance.
    *
@@ -94,19 +93,26 @@ final class Servicemap {
   /**
    * Generate link to servicemap view with predefined data visible.
    *
-   * @param ServiceMapLink
+   * @param \Drupal\helfi_etusivu\Enum\ServiceMapLink $link
+   *   Service map link option.
    * @param string $address
+   *   Address param for the link.
+   *
    * @return string
+   *   The resulting link.
    */
   public function getLink(ServiceMapLink $link, string $address) : string {
     $url = Url::fromUri(
       self::SITE_URL,
-      ['query' => [
-        'link' => $link->link(),
-        'addresslocation' => Xss::filter($address),
-      ]],
+      [
+        'query' => [
+          'link' => $link->link(),
+          'addresslocation' => Xss::filter($address),
+        ],
+      ],
     );
 
     return $url->toString();
   }
+
 }
