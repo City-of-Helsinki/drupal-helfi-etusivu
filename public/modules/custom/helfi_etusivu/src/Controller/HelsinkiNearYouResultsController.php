@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
+use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
 use Drupal\helfi_etusivu\Servicemap;
 use Drupal\helfi_react_search\LinkedEvents;
@@ -43,7 +44,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   A renderable array.
    */
   public function content(Request $request) : array|RedirectResponse {
-    $address = $request->query->get('q');
+    $address = Xss::filter($request->query->get('q'));
     $return_url = Url::fromRoute('helfi_etusivu.helsinki_near_you');
 
     if (!$address) {
@@ -51,11 +52,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
 
-    $addressData = $this->getCoordinates(
-      Xss::filter(
-        urldecode($address)
-      )
-    );
+    $addressData = $this->getCoordinates(urldecode($address));
 
     if (!$addressData) {
       $this->messenger()->addError(
@@ -108,11 +105,17 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'service_links' => [
             [
               'link_label' => $this->t('Your own health station', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+              'link_url' => $this->getInternalSearchLink(
+                InternalSearchLink::HEALTH_STATIONS,
+                $addressName,
+              )
             ],
             [
               'link_label' => $this->t('Closest maternity and child health clinic', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+              'link_url' => $this->getInternalSearchLink(
+                InternalSearchLink::CHILD_HEALTH_STATIONS,
+                $addressName,
+              )
             ],
           ],
         ],
@@ -121,15 +124,24 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'service_links' => [
             [
               'link_label' => $this->t('Schools close to you', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+              'link_url' => $this->getInternalSearchLink(
+                InternalSearchLink::SCHOOLS,
+                $addressName,
+              )
             ],
             [
               'link_label' => $this->t('Closest playgrounds and family houses', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+              'link_url' => $this->getInternalSearchLink(
+                InternalSearchLink::PLAYGROUNDS_FAMILY_HOUSES,
+                $addressName,
+              )
             ],
             [
               'link_label' => $this->t('Closest daycare centres', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+              'link_url' => $this->getInternalSearchLink(
+                InternalSearchLink::DAYCARES,
+                $addressName,
+              )
             ],
           ],
         ],
@@ -138,7 +150,10 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'service_links' => [
             [
               'link_label' => $this->t('Roadway ploughing schedule', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
+              'link_url' => $this->getInternalSearchLink(
+                InternalSearchLink::PLOWING_SCHEDULES,
+                $addressName,
+              )
             ],
             [
               'link_label' => $this->t('Roadworks and events on map', [], ['context' => 'Helsinki near you']),
@@ -234,6 +249,23 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   protected function resolveTranslation(\stdClass $translations) : string {
     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
     return $translations->{"$langcode"} ?? $translations->fi;
+  }
+
+  /**
+   *
+   */
+  protected function getInternalSearchLink(
+    InternalSearchLink $link,
+    string $address
+  ) : string {
+    $langcode = $this->languageManager()->getCurrentLanguage()->getId();
+    $query = ['address' => urlencode($address)];
+    $url = Url::fromUri(
+      $link->getLinkTranslations()[$langcode],
+      ['query' => $query],
+    );
+
+    return $url->toString();
   }
 
 }
