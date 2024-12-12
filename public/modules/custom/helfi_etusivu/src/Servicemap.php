@@ -103,7 +103,7 @@ final class Servicemap {
       self::SITE_URL,
       ['query' => [
         'link' => $link->link(),
-        'address' => Xss::filter($address),
+        'addresslocation' => Xss::filter($address),
       ]],
     );
 
