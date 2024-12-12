@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Enum;
 
@@ -22,6 +22,7 @@ enum InternalSearchLink {
    * Return array of link translations.
    *
    * @return array
+   *   Array of link translations.
    */
   public function getLinkTranslations() : array {
     return match ($this) {
@@ -57,4 +58,5 @@ enum InternalSearchLink {
       ],
     };
   }
+
 }

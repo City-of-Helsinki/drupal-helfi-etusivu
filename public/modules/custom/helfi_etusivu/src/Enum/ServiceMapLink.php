@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Enum;
 
@@ -17,6 +17,7 @@ enum ServiceMapLink {
    * Get link param for service map.
    *
    * @return string
+   *   Link param.
    */
   public function link(): string {
     return match($this) {
@@ -26,4 +27,5 @@ enum ServiceMapLink {
       ServiceMapLink::PLANS_IN_PROCESS => 'eCCv3K',
     };
   }
+
 }

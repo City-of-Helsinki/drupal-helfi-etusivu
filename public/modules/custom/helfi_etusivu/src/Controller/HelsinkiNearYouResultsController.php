@@ -36,6 +36,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
 
   /**
    * Returns a renderable array.
+   *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *
    *   The request.
@@ -108,14 +109,14 @@ class HelsinkiNearYouResultsController extends ControllerBase {
               'link_url' => $this->getInternalSearchLink(
                 InternalSearchLink::HEALTH_STATIONS,
                 $addressName,
-              )
+              ),
             ],
             [
               'link_label' => $this->t('Closest maternity and child health clinic', [], ['context' => 'Helsinki near you']),
               'link_url' => $this->getInternalSearchLink(
                 InternalSearchLink::CHILD_HEALTH_STATIONS,
                 $addressName,
-              )
+              ),
             ],
           ],
         ],
@@ -127,21 +128,21 @@ class HelsinkiNearYouResultsController extends ControllerBase {
               'link_url' => $this->getInternalSearchLink(
                 InternalSearchLink::SCHOOLS,
                 $addressName,
-              )
+              ),
             ],
             [
               'link_label' => $this->t('Closest playgrounds and family houses', [], ['context' => 'Helsinki near you']),
               'link_url' => $this->getInternalSearchLink(
                 InternalSearchLink::PLAYGROUNDS_FAMILY_HOUSES,
                 $addressName,
-              )
+              ),
             ],
             [
               'link_label' => $this->t('Closest daycare centres', [], ['context' => 'Helsinki near you']),
               'link_url' => $this->getInternalSearchLink(
                 InternalSearchLink::DAYCARES,
                 $addressName,
-              )
+              ),
             ],
           ],
         ],
@@ -153,7 +154,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
               'link_url' => $this->getInternalSearchLink(
                 InternalSearchLink::PLOWING_SCHEDULES,
                 $addressName,
-              )
+              ),
             ],
             [
               'link_label' => $this->t('Roadworks and events on map', [], ['context' => 'Helsinki near you']),
@@ -252,11 +253,19 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   }
 
   /**
+   * Generate link to internal search with address param set.
    *
+   * @param \Drupal\helfi_etusivu\Enum\InternalSearchLink $link
+   *   Internal search link option.
+   * @param string $address
+   *   Address param for the link.
+   *
+   * @return string
+   *   The resulting link.
    */
   protected function getInternalSearchLink(
     InternalSearchLink $link,
-    string $address
+    string $address,
   ) : string {
     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
     $query = ['address' => urlencode($address)];
