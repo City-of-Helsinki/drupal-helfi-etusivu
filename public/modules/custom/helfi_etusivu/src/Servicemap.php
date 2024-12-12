@@ -6,6 +6,8 @@ namespace Drupal\helfi_etusivu;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Url;
+use Drupal\helfi_etusivu\Enum\ServiceMapLink;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
@@ -17,11 +19,18 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 final class Servicemap {
 
   /**
-   * API URL.
+   * API URL for querying data.
    *
    * @var string
    */
   private const API_URL = 'https://api.hel.fi/servicemap/v2/search/';
+  /**
+   * Site url for redirecting users.
+   *
+   * @var string
+   */
+  private const SITE_URL = 'https://kartta.hel.fi/';
+
 
   /**
    * Constructs a new instance.
@@ -82,4 +91,22 @@ final class Servicemap {
     return $result->results;
   }
 
+  /**
+   * Generate link to servicemap view with predefined data visible.
+   *
+   * @param ServiceMapLink
+   * @param string $address
+   * @return string
+   */
+  public function getLink(ServiceMapLink $link, string $address) : string {
+    $url = Url::fromUri(
+      self::SITE_URL,
+      ['query' => [
+        'link' => $link->link(),
+        'address' => Xss::filter($address),
+      ]],
+    );
+
+    return $url->toString();
+  }
 }

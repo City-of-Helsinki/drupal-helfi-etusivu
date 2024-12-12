@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\Controller;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
+use Drupal\helfi_etusivu\Enum\ServiceMapLink;
 use Drupal\helfi_etusivu\Servicemap;
 use Drupal\helfi_react_search\LinkedEvents;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,8 +35,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
 
   /**
    * Returns a renderable array.
-   *
    * @param \Symfony\Component\HttpFoundation\Request $request
+   *
    *   The request.
    *
    * @return array
@@ -67,6 +68,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
 
+    $addressName = $this->resolveTranslation($addressData['address_translations']);
+
     return [
       '#attached' => [
         'drupalSettings' => [
@@ -92,11 +95,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       '#cache' => [
         'contexts' => ['url.query_args:q'],
       ],
-      '#coordinates' => $addressData ? $addressData['coordinates'] : NULL,
+      '#coordinates' => $addressData['coordinates'],
       '#theme' => 'helsinki_near_you_results_page',
       '#title' => $this->t(
         'Services, events and news near your address @address',
-        ['@address' => $addressData ? $this->resolveTranslation($addressData['address_translations']) : ''],
+        ['@address' => $addressName],
         ['context' => 'Helsinki near you']
       ),
       '#service_groups' => [
@@ -139,11 +142,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
             ],
             [
               'link_label' => $this->t('Roadworks and events on map', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromUri('https://kartta.hel.fi'),
+              'link_url' => $this->servicemap->getLink(ServiceMapLink::ROADWORK_EVENTS, $addressName),
             ],
             [
               'link_label' => $this->t('City bike stations', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromUri('https://www.hsl.fi/en/citybikes/helsinki'),
+              'link_url' => $this->servicemap->getLink(ServiceMapLink::CITYBIKE_STATIONS_STANDS, $addressName),
             ],
           ],
         ],
@@ -152,11 +155,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'service_links' => [
             [
               'link_label' => $this->t('Street and park development', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromUri('https://kartta.hel.fi'),
+              'link_url' => $this->servicemap->getLink(ServiceMapLink::STREET_PARK_PROJECTS, $addressName),
             ],
             [
               'link_label' => $this->t('Plans in process', [], ['context' => 'Helsinki near you']),
-              'link_url' => Url::fromUri('https://kartta.hel.fi'),
+              'link_url' => $this->servicemap->getLink(ServiceMapLink::PLANS_IN_PROCESS, $addressName),
             ],
           ],
         ],
