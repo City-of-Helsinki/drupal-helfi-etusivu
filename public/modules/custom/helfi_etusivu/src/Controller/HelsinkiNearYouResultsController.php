@@ -70,13 +70,22 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     return [
       '#attached' => [
         'drupalSettings' => [
-          'helsinki_near_you' => [
-            'events_api_url' => $this->linkedEvents->getEventsRequest([
-              'dwithin_origin' => $addressData['coordinates'],
-              'dwithin_distance' => 1000,
-            ]),
+          'helfi_events' => [
+            'baseUrl' => LinkedEvents::BASE_URL,
+            'data' => [
+              'helfi-coordinates-based-event-list' => [
+                'events_api_url' => $this->linkedEvents->getEventsRequest([
+                  'dwithin_origin' => implode(',', $addressData['coordinates']),
+                  'dwithin_metres' => 2000,
+                ]),
+                'field_event_count' => 3,
+              ],
+            ],
+            'seeAllButtonOverride' => $this->t('See all events', [], ['context' => 'Helsinki near you']),
+            'useExperimentalGhosts' => TRUE,
           ],
         ],
+        'library' => ['hdbt/event-list'],
       ],
       '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
       '#back_link_url' => $return_url,
