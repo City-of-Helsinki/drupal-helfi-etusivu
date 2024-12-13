@@ -6,14 +6,6 @@ third_party_settings:
       label: Linkit
     group_main_image:
       label: Pääkuva
-    group_updating_news:
-      label: 'Päivittyvä uutinen'
-      format_settings:
-        description: 'Jätä sisältöalue tyhjäksi päivittyvän uutisen yläpuolelta, jos luot päivittyvän uutisen.<br />Lisää uusin uutispäivitys viimeiseksi. Verkkosivulla uutispäivitykset näytetään lukijalle uusimmasta vanhimpaan.'
-    group_automatically_recommended:
-      label: 'Automaattisesti suositellut sisällöt'
-      format_settings:
-        description: 'Suositellut sisällöt voivat olla uutisia tai artikkeleita. Suositukset perustuvat automaattisesti valittuihin uutisluokkiin. Uutisluokat valitaan sivun sisällön perusteella, kun sivu tallennetaan.'
 content:
   field_content:
     settings:

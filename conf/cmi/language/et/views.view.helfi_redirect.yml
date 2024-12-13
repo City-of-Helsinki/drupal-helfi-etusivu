@@ -1,0 +1,54 @@
+label: Redirect
+display:
+  default:
+    display_title: Peamine
+    display_options:
+      title: Redirect
+      fields:
+        redirect_source__path:
+          label: From
+          separator: ', '
+        is_custom:
+          label: Custom
+          separator: ', '
+        created:
+          label: Created
+      pager:
+        options:
+          tags:
+            next: 'järgmine ›'
+            previous: '‹ eelmine'
+            first: '« esimene'
+            last: 'viimane »'
+          expose:
+            items_per_page_label: 'Kirjeid lehel'
+            items_per_page_options_all_label: '- Kõik -'
+            offset_label: Nihe
+      exposed_form:
+        options:
+          submit_button: Filtreeri
+          reset_button_label: Tühista
+          exposed_sorts_label: 'Sorteerimise alus'
+          sort_asc_label: Kasvav
+          sort_desc_label: Kahanev
+      filters:
+        redirect_source__path:
+          expose:
+            label: From
+        redirect_redirect__uri:
+          expose:
+            label: To
+        language:
+          expose:
+            label: 'Original language'
+        is_custom:
+          expose:
+            label: Custom
+        status:
+          expose:
+            label: Avaldatud
+  page_1:
+    display_title: Lehekülg
+    display_options:
+      menu:
+        title: Redirect
