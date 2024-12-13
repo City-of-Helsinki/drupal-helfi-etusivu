@@ -6,19 +6,19 @@ display:
           group_info:
             group_items:
               7:
-                title: '300 Multiple Choices'
+                title: '307 Tilapäinen uudelleenohjaus'
               1:
-                title: '300 Multiple Choices'
+                title: '300 Useita valintoja'
               2:
-                title: '301 Moved Permanently'
+                title: '301 Pysyvästi siirretty'
               3:
-                title: '302 Found'
+                title: '302 Löydetty'
               4:
-                title: '303 See Other'
+                title: '303 Kts. toinen'
               5:
-                title: '304 Not Modified'
+                title: '304 Muuttamaton'
               6:
-                title: '305 Use Proxy'
+                title: '305 Käytä proxyä'
             label: Tilakoodi
           expose:
             label: Tilakoodi
@@ -41,10 +41,10 @@ display:
       pager:
         options:
           tags:
-            previous: '‹ previous'
-            next: 'next ›'
-            first: '« first'
-            last: 'last »'
+            previous: '‹ edellinen'
+            next: 'seuraava ›'
+            first: '« ensimmäinen'
+            last: 'viimeinen »'
           expose:
             items_per_page_label: 'Merkintöjä sivua kohti'
             items_per_page_options_all_label: '- Kaikki -'

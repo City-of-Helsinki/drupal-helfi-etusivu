@@ -1,0 +1,73 @@
+label: Redirect
+display:
+  default:
+    display_title: 主
+    display_options:
+      title: Redirect
+      fields:
+        redirect_bulk_form:
+          action_title: 'With selection'
+        redirect_source__path:
+          label: From
+          separator: ', '
+        is_custom:
+          label: Custom
+          separator: ', '
+        created:
+          label: Created
+      pager:
+        options:
+          tags:
+            next: '下一页 ›'
+            previous: '‹ 上一页'
+            first: '« 第一页'
+            last: '末页 »'
+          expose:
+            items_per_page_label: 每页条目数
+            items_per_page_options_all_label: '- 全部 -'
+            offset_label: 偏移量
+      exposed_form:
+        options:
+          submit_button: 过滤
+          reset_button_label: 重置
+          exposed_sorts_label: 排序依据
+          sort_asc_label: 升序
+          sort_desc_label: 降序
+      filters:
+        redirect_source__path:
+          expose:
+            label: From
+        redirect_redirect__uri:
+          expose:
+            label: To
+        status_code:
+          group_info:
+            group_items:
+              1:
+                title: '300 Multiple Choices'
+              2:
+                title: '301 Moved Permanently'
+              3:
+                title: '302 Found'
+              4:
+                title: '303 See Other'
+              5:
+                title: '304 Not Modified'
+              6:
+                title: '305 Use Proxy'
+              7:
+                title: '307 Temporary Redirect'
+        language:
+          expose:
+            label: 'Original language'
+        is_custom:
+          expose:
+            label: Custom
+        status:
+          expose:
+            label: 已发布
+  page_1:
+    display_title: 页面
+    display_options:
+      menu:
+        title: Redirect
