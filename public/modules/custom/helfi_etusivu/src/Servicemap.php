@@ -106,11 +106,8 @@ final class Servicemap {
     $query = [
       'link' => $link->link(),
       'addresslocation' => Xss::filter($address),
+      'setlanguage' => $langcode,
     ];
-
-    if ($langcode !== 'fi') {
-      $query['setlanguage'] = $langcode;
-    }
 
     $url = Url::fromUri(
       self::SITE_URL,
