@@ -3,6 +3,29 @@ display:
   default:
     display_title: Основной
     display_options:
+      title: Redirect
+      fields:
+        redirect_bulk_form:
+          action_title: 'With selection'
+        redirect_source__path:
+          label: From
+          separator: ', '
+        is_custom:
+          label: Custom
+          separator: ', '
+        created:
+          label: Created
+      pager:
+        options:
+          tags:
+            next: 'следующая ›'
+            previous: '‹ предыдущая'
+            first: '« первая'
+            last: 'последняя »'
+          expose:
+            items_per_page_label: 'Элементов на страницу'
+            items_per_page_options_all_label: '- Все -'
+            offset_label: Пропустить
       exposed_form:
         options:
           submit_button: Фильтр
@@ -10,25 +33,9 @@ display:
           exposed_sorts_label: 'Сортировать по'
           sort_asc_label: 'По возрастанию'
           sort_desc_label: 'По убыванию'
-      pager:
-        options:
-          tags:
-            previous: '‹ предыдущая'
-            next: 'следующая ›'
-            first: '« первая'
-            last: 'последняя »'
-          expose:
-            items_per_page_label: 'Элементов на страницу'
-            items_per_page_options_all_label: '- Все -'
-            offset_label: Пропустить
-      fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
-        redirect_source__path:
-          label: From
-          separator: ', '
-        created:
-          label: Created
+      empty:
+        area_text_custom:
+          content: 'There is no redirect yet.'
       filters:
         redirect_source__path:
           expose:
@@ -59,9 +66,14 @@ display:
         language:
           expose:
             label: 'Original language'
-      title: Redirect
-      empty:
-        area_text_custom:
-          content: 'There is no redirect yet.'
+        is_custom:
+          expose:
+            label: Custom
+        status:
+          expose:
+            label: Опубликовано
   page_1:
     display_title: Страница
+    display_options:
+      menu:
+        title: Redirect

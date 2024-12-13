@@ -22,17 +22,17 @@ display:
             offset_label: جابجایی
       fields:
         redirect_bulk_form:
-          action_title: 'با انتخاب شده‌ها'
+          action_title: 'With selection'
         redirect_source__path:
-          label: از
+          label: From
         created:
-          label: 'ایجاد گردید'
+          label: Created
       filters:
         redirect_source__path:
           expose:
-            label: از
+            label: From
         redirect_redirect__uri:
           expose:
-            label: به
+            label: To
   page_1:
     display_title: صفحه
