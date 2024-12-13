@@ -102,13 +102,20 @@ final class Servicemap {
    *   The resulting link.
    */
   public function getLink(ServiceMapLink $link, string $address) : string {
+    $langcode = $this->languageManager->getCurrentLanguage()->getId();
+    $query = [
+      'link' => $link->link(),
+      'addresslocation' => Xss::filter($address),
+    ];
+
+    if ($langcode !== 'fi') {
+      $query['setlanguage'] = $langcode;
+    }
+
     $url = Url::fromUri(
       self::SITE_URL,
       [
-        'query' => [
-          'link' => $link->link(),
-          'addresslocation' => Xss::filter($address),
-        ],
+        'query' => $query,
       ],
     );
 
