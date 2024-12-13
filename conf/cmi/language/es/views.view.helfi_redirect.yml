@@ -1,0 +1,80 @@
+label: Redirección
+description: 'List of redirects'
+display:
+  default:
+    display_title: Máster
+    display_options:
+      title: Redirección
+      fields:
+        redirect_bulk_form:
+          action_title: 'Con selección'
+        redirect_source__path:
+          label: Desde
+          separator: ', '
+        is_custom:
+          label: Custom
+          separator: ', '
+        created:
+          label: Creado
+      pager:
+        options:
+          tags:
+            next: 'siguiente ›'
+            previous: '‹ anterior'
+            first: '« primero'
+            last: 'último »'
+          expose:
+            items_per_page_label: 'Elementos por página'
+            items_per_page_options_all_label: '- Todo -'
+            offset_label: Desplazamiento
+      exposed_form:
+        options:
+          submit_button: Filtro
+          reset_button_label: Restablecer
+          exposed_sorts_label: 'Ordenar por'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      empty:
+        area_text_custom:
+          content: 'There is no redirect yet.'
+      filters:
+        redirect_source__path:
+          expose:
+            label: Desde
+        redirect_redirect__uri:
+          expose:
+            label: Para
+        status_code:
+          expose:
+            label: 'Status code'
+          group_info:
+            label: 'Status code'
+            group_items:
+              1:
+                title: '300 Múltiples posibilidades'
+              2:
+                title: '301 Movido permanentemente'
+              3:
+                title: '302 Encontrado'
+              4:
+                title: '303 Ver otra ubicación'
+              5:
+                title: '304 No modificado'
+              6:
+                title: '305 Usar proxy'
+              7:
+                title: '307 Redirección temporal'
+        language:
+          expose:
+            label: 'Lenguaje original'
+        is_custom:
+          expose:
+            label: Custom
+        status:
+          expose:
+            label: Publicado
+  page_1:
+    display_title: Página
+    display_options:
+      menu:
+        title: Redirección
