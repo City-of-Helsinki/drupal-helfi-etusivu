@@ -1,0 +1,79 @@
+label: Redirect
+display:
+  default:
+    display_title: Основной
+    display_options:
+      title: Redirect
+      fields:
+        redirect_bulk_form:
+          action_title: 'With selection'
+        redirect_source__path:
+          label: From
+          separator: ', '
+        is_custom:
+          label: Custom
+          separator: ', '
+        created:
+          label: Created
+      pager:
+        options:
+          tags:
+            next: 'следующая ›'
+            previous: '‹ предыдущая'
+            first: '« первая'
+            last: 'последняя »'
+          expose:
+            items_per_page_label: 'Элементов на страницу'
+            items_per_page_options_all_label: '- Все -'
+            offset_label: Пропустить
+      exposed_form:
+        options:
+          submit_button: Фильтр
+          reset_button_label: Сбросить
+          exposed_sorts_label: 'Сортировать по'
+          sort_asc_label: 'По возрастанию'
+          sort_desc_label: 'По убыванию'
+      empty:
+        area_text_custom:
+          content: 'There is no redirect yet.'
+      filters:
+        redirect_source__path:
+          expose:
+            label: From
+        redirect_redirect__uri:
+          expose:
+            label: To
+        status_code:
+          expose:
+            label: 'Status code'
+          group_info:
+            label: 'Status code'
+            group_items:
+              1:
+                title: '300 Multiple Choices'
+              2:
+                title: '301 Moved Permanently'
+              3:
+                title: '302 Found'
+              4:
+                title: '303 See Other'
+              5:
+                title: '304 Not Modified'
+              6:
+                title: '305 Use Proxy'
+              7:
+                title: '307 Temporary Redirect'
+        language:
+          expose:
+            label: 'Original language'
+        is_custom:
+          expose:
+            label: Custom
+        status:
+          expose:
+            label: Опубликовано
+  page_1:
+    display_title: Страница
+    display_options:
+      menu:
+        title: Redirect
