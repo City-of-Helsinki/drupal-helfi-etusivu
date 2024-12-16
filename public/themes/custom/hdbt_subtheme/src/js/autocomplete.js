@@ -65,8 +65,6 @@
           '[data-helfi-etusivu-autocomplete]',
           context,
         ).forEach(init);
-
-        console.log(Drupal.t('No address suggestions were found', {}, {context: 'Front page autocomplete'}));
     },
   };
 })(Drupal, once);
