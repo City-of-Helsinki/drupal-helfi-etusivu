@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Drupal\helfi_node_news_article\Plugin\Block;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\helfi_node_news_article\Entity\Node\NewsArticle;
 use Drupal\helfi_platform_config\Plugin\Block\ContentBlockBase;
 
@@ -73,13 +71,13 @@ class NewsArticleHeroBlock extends ContentBlockBase {
 
     $image_author = '';
 
-    $image_author_name =  $media
+    $image_author_name = $media
       ?->get('field_photographer')
       ?->first()
       ?->getString();
 
-    if(!empty($image_author_name)) {
-      $image_author = t(
+    if (!empty($image_author_name)) {
+      $image_author = $this->t(
         'Image: @image_author',
         ['@image_author' => $image_author_name],
         ['context' => 'Helfi Paragraphs Hero']
