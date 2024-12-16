@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\helfi_node_news_article\Plugin\Block;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\helfi_node_news_article\Entity\Node\NewsArticle;
 use Drupal\helfi_platform_config\Plugin\Block\ContentBlockBase;
 
@@ -69,12 +71,28 @@ class NewsArticleHeroBlock extends ContentBlockBase {
       ?->first()
       ?->view($image_display_options);
 
+    $image_author = '';
+
+    $image_author_name =  $media
+      ?->get('field_photographer')
+      ?->first()
+      ?->getString();
+
+    if(!empty($image_author_name)) {
+      $image_author = t(
+        'Image: @image_author',
+        ['@image_author' => $image_author_name],
+        ['context' => 'Helfi Paragraphs Hero']
+      );
+    }
+
     $build['news_article_hero_block'] = [
       '#theme' => 'news_article_hero_block',
       '#title' => $entity->label(),
       '#description' => $entity->get('field_lead_in')?->first()?->view(),
       '#design' => $entity->get('field_hero_design')?->first()?->getString(),
       '#image' => $image,
+      '#image_author' => $image_author,
       '#published_time' => $entity->getPublishedHumanReadable(),
       '#html_published_time' => $entity->getPublishedMachineReadable(),
       '#updated_time' => $entity->getUpdatedHumanReadable(),
