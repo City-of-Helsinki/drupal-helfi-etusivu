@@ -15,6 +15,9 @@ display:
           separator: ', '
         created:
           label: Created
+        status:
+          label: Опубліковано
+          separator: ', '
       pager:
         options:
           tags:

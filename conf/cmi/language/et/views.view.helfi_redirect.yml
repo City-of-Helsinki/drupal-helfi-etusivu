@@ -13,6 +13,9 @@ display:
           separator: ', '
         created:
           label: Created
+        status:
+          label: Avaldatud
+          separator: ', '
       pager:
         options:
           tags:

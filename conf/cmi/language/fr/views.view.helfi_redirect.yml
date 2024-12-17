@@ -16,6 +16,9 @@ display:
           separator: ', '
         created:
           label: Created
+        status:
+          label: Publié
+          separator: ', '
       pager:
         options:
           tags:
