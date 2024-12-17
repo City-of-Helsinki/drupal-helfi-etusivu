@@ -15,6 +15,9 @@ display:
           separator: ', '
         created:
           label: Created
+        status:
+          label: 已发布
+          separator: ', '
       pager:
         options:
           tags:

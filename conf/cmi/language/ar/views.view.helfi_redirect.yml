@@ -11,6 +11,9 @@ display:
           separator: ', '
         created:
           label: Created
+        status:
+          label: منشور
+          separator: ', '
       pager:
         options:
           tags:
