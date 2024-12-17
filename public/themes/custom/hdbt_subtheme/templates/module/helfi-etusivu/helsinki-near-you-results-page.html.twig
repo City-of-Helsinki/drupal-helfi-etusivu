@@ -18,8 +18,34 @@
     {% endembed %}
     {% embed "@hdbt/misc/component.twig" with
       {
+        component_classes: [ 'component--popular-services' ],
+        component_title: 'Services close to you'|t({}, {'context': 'Services close to you block'}),
+        component_description: 'Use the links to go to results based on your address.'|t({}, {'context': 'Services close to you block'}),
+        component_content_class: 'popular-services',
+      }
+    %}
+      {% block component_content %}
+        {% for service_group in service_groups %}
+          {% embed "@hdbt/misc/popular-service-item.twig" with { title: service_group.title } %}
+            {% block links %}
+              {% embed "@hdbt/misc/popular-service-links.twig" with { items: service_group.service_links } %}
+                {% block link %}
+                  {% set link_attributes = {
+                    'class': [
+                      'link__style--highlight',
+                    ],
+                  } %}
+                  {{ link(item.link_label, item.link_url, link_attributes) }}
+                {% endblock %}
+              {% endembed %}
+            {% endblock links %}
+          {% endembed %}
+        {% endfor %}
+      {% endblock component_content %}
+    {% endembed %}
+    {% embed "@hdbt/misc/component.twig" with
+      {
         component_classes: [
-        'component--full-width',
         'component--react-search',
         'component--event-list',
         'component--coordinates-based-event-list',
