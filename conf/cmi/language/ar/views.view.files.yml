@@ -22,8 +22,8 @@ display:
             next: 'التالي ›'
             previous: '‹ السابق'
           expose:
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       exposed_form:
         options:
           submit_button: انتقاء
@@ -60,8 +60,8 @@ display:
             next: 'التالي ›'
             previous: '‹ السابق'
           expose:
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       arguments:
         fid:
           exception:

@@ -1,4 +1,4 @@
-label: Redirect
+label: 'Suunatakse ümber'
 display:
   default:
     display_title: Peamine
@@ -23,20 +23,20 @@ display:
             offset_label: Nihe
       fields:
         redirect_source__path:
-          label: From
+          label: Kellelt
           separator: ', '
         created:
-          label: Created
+          label: Loodud
       filters:
         redirect_source__path:
           expose:
-            label: From
+            label: Kellelt
         redirect_redirect__uri:
           expose:
-            label: To
+            label: Kellele
         language:
           expose:
-            label: 'Original language'
-      title: Redirect
+            label: 'Algne keel'
+      title: 'Suunatakse ümber'
   page_1:
     display_title: Lehekülg
