@@ -74,6 +74,7 @@ class InstallationTest extends BrowserTestBase {
     $this->assertCount(1, $accounts);
 
     $account = reset($accounts);
+    // @phpstan-ignore-next-line
     $account->passRaw = '123';
     $this->drupalLogin($account);
     $this->assertTrue($account->hasRole('menu_api'));
