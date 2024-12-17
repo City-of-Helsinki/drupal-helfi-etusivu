@@ -156,3 +156,7 @@ msgstr "Katu- ja puistohankkeet"
 msgctxt "Helsinki near you"
 msgid "Plans in process"
 msgstr "Valmisteilla oleva kaavat"
+
+msgctxt "Helsinki near you"
+msgid "Please enter an address"
+msgstr "Syötä osoite"

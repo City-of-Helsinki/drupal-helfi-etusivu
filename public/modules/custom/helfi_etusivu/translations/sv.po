@@ -145,3 +145,7 @@ msgstr "Gatu- och parkområdesprojekt"
 msgctxt "Helsinki near you"
 msgid "Plans in process"
 msgstr "Pågående planeringsprojekt"
+
+msgctxt "Helsinki near you"
+msgid "Please enter an address"
+msgstr "Ange en adress"
