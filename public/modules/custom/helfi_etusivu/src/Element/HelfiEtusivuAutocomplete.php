@@ -10,7 +10,7 @@ use Drupal\Core\Render\Element\Textfield;
 /**
  * Autocomplete element for Helsinki near you form.
  *
- * To be evaluated if this could be used domain-wide.
+ * @todo evaluate if this could be used domain-wide.
  */
 #[FormElement('helfi_etusivu_autocomplete')]
 class HelfiEtusivuAutocomplete extends Textfield {
