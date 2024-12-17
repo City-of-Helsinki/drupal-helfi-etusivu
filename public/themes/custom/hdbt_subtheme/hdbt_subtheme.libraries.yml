@@ -20,7 +20,7 @@ a11y_autocomplete:
 helfi_etusivu_autocomplete:
   js:
     dist/js/autocomplete.min.js: {}
-  version: 1.0.0
+  version: 1.0.1
   dependencies:
     - hdbt_subtheme/a11y_autocomplete
     - core/drupal

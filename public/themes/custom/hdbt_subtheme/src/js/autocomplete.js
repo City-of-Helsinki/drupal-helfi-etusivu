@@ -21,6 +21,7 @@
     }
 
     const {
+      autocompleteRoute,
       noResultsAssistiveHint,
       someResultsAssistiveHint,
       oneResultAssistiveHint,
@@ -39,7 +40,7 @@
         }
 
         try {
-          const response = await fetch(`/helsinki-near-you/results/autocomplete?q=${searchTerm}`, {});
+          const response = await fetch(`${autocompleteRoute}?q=${searchTerm}`, {});
           const data = await response.json();
           results(data);
         }
