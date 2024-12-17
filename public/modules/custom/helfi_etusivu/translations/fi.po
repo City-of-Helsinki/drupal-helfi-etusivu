@@ -142,20 +142,20 @@ msgid "Roadworks and events on map"
 msgstr "Katutyöt ja tapahtumat kartalla"
 
 msgctxt "Helsinki near you"
-msgid "City bike stations"
-msgstr "Kaupunkipyöräasemat ja pyörätelineet"
+msgid "City bike stations on map"
+msgstr "Kaupunkipyöräasemat ja pyörätelineet kartalla"
 
 msgctxt "Helsinki near you"
 msgid "The city is developing"
 msgstr "Kaupunki kehittyy"
 
 msgctxt "Helsinki near you"
-msgid "Street and park development"
-msgstr "Katu- ja puistohankkeet"
+msgid "Street and park development on map"
+msgstr "Katu- ja puistohankkeet kartalla"
 
 msgctxt "Helsinki near you"
-msgid "Plans in process"
-msgstr "Valmisteilla oleva kaavat"
+msgid "Plans in process on map"
+msgstr "Valmisteilla oleva kaavat kartalla"
 
 msgctxt "Helsinki near you"
 msgid "Please enter an address"
