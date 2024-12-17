@@ -161,7 +161,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
               'link_url' => $this->servicemap->getLink(ServiceMapLink::ROADWORK_EVENTS, $addressName),
             ],
             [
-              'link_label' => $this->t('City bike stations', [], ['context' => 'Helsinki near you']),
+              'link_label' => $this->t('City bike stations on map', [], ['context' => 'Helsinki near you']),
               'link_url' => $this->servicemap->getLink(ServiceMapLink::CITYBIKE_STATIONS_STANDS, $addressName),
             ],
           ],
@@ -170,11 +170,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'title' => $this->t('The city is developing', [], ['context' => 'Helsinki near you']),
           'service_links' => [
             [
-              'link_label' => $this->t('Street and park development', [], ['context' => 'Helsinki near you']),
+              'link_label' => $this->t('Street and park development on map', [], ['context' => 'Helsinki near you']),
               'link_url' => $this->servicemap->getLink(ServiceMapLink::STREET_PARK_PROJECTS, $addressName),
             ],
             [
-              'link_label' => $this->t('Plans in process', [], ['context' => 'Helsinki near you']),
+              'link_label' => $this->t('Plans in process on map', [], ['context' => 'Helsinki near you']),
               'link_url' => $this->servicemap->getLink(ServiceMapLink::PLANS_IN_PROCESS, $addressName),
             ],
           ],
