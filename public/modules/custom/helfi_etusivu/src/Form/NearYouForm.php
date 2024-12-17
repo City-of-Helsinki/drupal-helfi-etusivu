@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Search form for near you page.
@@ -30,6 +31,7 @@ class NearYouForm extends FormBase {
       '#attached' => [
         'drupalSettings' => [
           'helsinki_near_you_form' => [
+            'autocompleteRoute' => Url::fromRoute('helfi_etusivu.helsinki_near_you_autocomplete')->tosTring(),
             'minCharAssistiveHint' => $this->t('Type @count or more characters for results', [], ['context' => $translation_context]),
             'inputAssistiveHint' => $this->t(
               'When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.',
@@ -51,6 +53,11 @@ class NearYouForm extends FormBase {
       '#placeholder' => $this->t('Eg. Vaasankatu 5', [], ['context' => 'Helsinki near you']),
       '#required' => TRUE,
       '#title' => $this->t('Address'),
+      '#label_attributes' => [
+        'class' => [
+          'hds-text-input__label',
+        ],
+      ],
       '#type' => 'helfi_etusivu_autocomplete',
       '#wrapper_attributes' => [
         'class' => [
