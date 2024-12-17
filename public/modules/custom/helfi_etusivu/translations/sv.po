@@ -77,3 +77,99 @@ msgstr "Adressen du angav gav inga resultat. Du kanske vill prova en annan adres
 msgctxt "Helsinki near you"
 msgid "Search"
 msgstr "Söka"
+
+msgctxt "Helsinki near you"
+msgid "See all events"
+msgstr "Se alla evenemang"
+
+msgctxt "Helsinki near you"
+msgid "Events near you"
+msgstr "Evenemang nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Browse events near you, sorted by their start time"
+msgstr "Utforska evenemang i ordning efter deras starttid."
+
+msgctxt "Helsinki near you"
+msgid "Health is key"
+msgstr "Ta hand om din hälsa"
+
+msgctxt "Helsinki near you"
+msgid "Your own health station"
+msgstr "Din egen hälsostation"
+
+msgctxt "Helsinki near you"
+msgid "Closest maternity and child health clinic"
+msgstr "Närmaste mödra- och barnrådgivning"
+
+msgctxt "Helsinki near you"
+msgid "Grow and learn"
+msgstr "Väx och lär dig"
+
+msgctxt "Helsinki near you"
+msgid "Schools close to you"
+msgstr "Närliggande skolor"
+
+msgctxt "Helsinki near you"
+msgid "Closest playgrounds and family houses"
+msgstr "Närmaste lekparker och familjehus"
+
+msgctxt "Helsinki near you"
+msgid "Closest daycare centres"
+msgstr "Närmaste daghem"
+
+msgctxt "Helsinki near you"
+msgid "Move around the city"
+msgstr "Rör dig i staden"
+
+msgctxt "Helsinki near you"
+msgid "Roadway ploughing schedule"
+msgstr "Plogningstidtabell"
+
+msgctxt "Helsinki near you"
+msgid "Roadworks and events on map"
+msgstr "Vägarbeten och evenemang på kartan"
+
+msgctxt "Helsinki near you"
+msgid "City bike stations on map"
+msgstr "Stadscykelstationer och cykelställ på kartan"
+
+msgctxt "Helsinki near you"
+msgid "The city is developing"
+msgstr "Staden utvecklas"
+
+msgctxt "Helsinki near you"
+msgid "Street and park development on map"
+msgstr "Gatu- och parkområdesprojekt på kartan"
+
+msgctxt "Helsinki near you"
+msgid "Plans in process on map"
+msgstr "Pågående planeringsprojekt på kartan"
+
+msgctxt "Helsinki near you"
+msgid "Please enter an address"
+msgstr "Ange en adress"
+
+msgctxt "Helsinki near you form"
+msgid "Type @count or more characters for results"
+msgstr "Skriv @count eller fler tecken för att se resultat"
+
+msgctxt "Helsinki near you form"
+msgid "When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures."
+msgstr "När autokomplettering är tillgänglig, använd upp- och nedåtpilarna för att bläddra och tryck enter för att välja. För pekskärmsanvändare, navigera med beröring eller svepgester."
+
+msgctxt "Helsinki near you form"
+msgid "No address suggestions were found"
+msgstr "Inga adressförslag hittades"
+
+msgctxt "Helsinki near you form"
+msgid "There are @count results available."
+msgstr "Det finns @count resultat tillgängliga."
+
+msgctxt "Helsinki near you form"
+msgid "There is one result available."
+msgstr "Det finns ett resultat tillgängligt."
+
+msgctxt "Helsinki near you form"
+msgid "@selectedItem @position of @count is highlighted"
+msgstr "@selectedItem @position av @count är markerad"

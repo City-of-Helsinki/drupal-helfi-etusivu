@@ -1,6 +1,7 @@
 const path = require('path');
 const glob = require('glob');
 
+const CopyPlugin = require('copy-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@nuxt/friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
@@ -108,7 +109,16 @@ module.exports = (env, argv) => {
       new RemoveEmptyScriptsPlugin(),
       new MiniCssExtractPlugin({
         filename: 'css/[name].min.css',
-      })
+      }),
+      new CopyPlugin({
+        'patterns': [
+          {
+            'from': 'node_modules/@drupal/autocomplete/dist/a11y.autocomplete.min.js',
+            'to': path.resolve(__dirname, 'dist/js/a11y-autocomplete.min.js'),
+            'force': true
+          },
+        ],
+      }),
     ],
     watchOptions: {
       aggregateTimeout: 300,

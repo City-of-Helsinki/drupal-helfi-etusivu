@@ -1,0 +1,48 @@
+display:
+  default:
+    display_title: مدیر
+    display_options:
+      fields:
+        redirect_bulk_form:
+          action_title: 'With selection'
+        redirect_source__path:
+          label: From
+        is_custom:
+          label: Custom
+        created:
+          label: Created
+        status:
+          label: 'منتشر شده'
+      pager:
+        options:
+          tags:
+            next: 'بعدی ›'
+            previous: '‹ قبلی'
+            first: '« ابتدا'
+            last: 'انتها »'
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
+      exposed_form:
+        options:
+          submit_button: فیلتر
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+      filters:
+        redirect_source__path:
+          expose:
+            label: From
+        redirect_redirect__uri:
+          expose:
+            label: To
+        is_custom:
+          expose:
+            label: Custom
+        status:
+          expose:
+            label: 'منتشر شده'
+  page_1:
+    display_title: صفحه

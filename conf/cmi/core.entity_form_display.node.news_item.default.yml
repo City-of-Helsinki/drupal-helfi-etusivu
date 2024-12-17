@@ -116,7 +116,7 @@ mode: default
 content:
   annif_suggested_topics:
     type: suggested_topics_reference
-    weight: 26
+    weight: 29
     region: content
     settings: {  }
     third_party_settings: {  }

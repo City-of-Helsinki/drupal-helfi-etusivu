@@ -88,3 +88,99 @@ msgstr "Antamallasi osoitteella ei löytynyt tuloksia. Voit kokeilla muuttaa hak
 msgctxt "Helsinki near you"
 msgid "Search"
 msgstr "Hae"
+
+msgctxt "Helsinki near you"
+msgid "See all events"
+msgstr "Katso kaikki tapahtumat"
+
+msgctxt "Helsinki near you"
+msgid "Events near you"
+msgstr "Tapahtumat lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "Browse events near you, sorted by their start time"
+msgstr "Tutustu tapahtumiin tapahtumisajan mukaisessa järjestyksessä."
+
+msgctxt "Helsinki near you"
+msgid "Health is key"
+msgstr "Hoida terveyttä"
+
+msgctxt "Helsinki near you"
+msgid "Your own health station"
+msgstr "Oma terveysasema"
+
+msgctxt "Helsinki near you"
+msgid "Closest maternity and child health clinic"
+msgstr "Lähin neuvola"
+
+msgctxt "Helsinki near you"
+msgid "Grow and learn"
+msgstr "Kasva ja opi"
+
+msgctxt "Helsinki near you"
+msgid "Schools close to you"
+msgstr "Lähikoulut"
+
+msgctxt "Helsinki near you"
+msgid "Closest playgrounds and family houses"
+msgstr "Lähimmät leikkipuistot ja perhetalot"
+
+msgctxt "Helsinki near you"
+msgid "Closest daycare centres"
+msgstr "Lähimmät päiväkodit"
+
+msgctxt "Helsinki near you"
+msgid "Move around the city"
+msgstr "Kulje kaupungissa"
+
+msgctxt "Helsinki near you"
+msgid "Roadway ploughing schedule"
+msgstr "Aurausaikataulu"
+
+msgctxt "Helsinki near you"
+msgid "Roadworks and events on map"
+msgstr "Katutyöt ja tapahtumat kartalla"
+
+msgctxt "Helsinki near you"
+msgid "City bike stations on map"
+msgstr "Kaupunkipyöräasemat ja pyörätelineet kartalla"
+
+msgctxt "Helsinki near you"
+msgid "The city is developing"
+msgstr "Kaupunki kehittyy"
+
+msgctxt "Helsinki near you"
+msgid "Street and park development on map"
+msgstr "Katu- ja puistohankkeet kartalla"
+
+msgctxt "Helsinki near you"
+msgid "Plans in process on map"
+msgstr "Valmisteilla oleva kaavat kartalla"
+
+msgctxt "Helsinki near you"
+msgid "Please enter an address"
+msgstr "Syötä osoite"
+
+msgctxt "Helsinki near you form"
+msgid "Type @count or more characters for results"
+msgstr "Kirjoita @count tai enemmän kirjainta nähdäksesi tuloksia"
+
+msgctxt "Helsinki near you form"
+msgid "When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures."
+msgstr "Kun osoite-ehdotustuloksia tarjotaan, käytä nuolinäppäimiä ylä- ja alasuuntaan liikkumiseen. Paina enter-painiketta käyttääksesi valittua ehdotusta. Kosketuslaitteiden käyttäjät voivat selata listaa pyyhkäisyeleillä."
+
+msgctxt "Helsinki near you form"
+msgid "No address suggestions were found"
+msgstr "Osoite-ehdotuksia ei löytynyt"
+
+msgctxt "Helsinki near you form"
+msgid "There are @count results available."
+msgstr "Osoite-ehdotuksia löytyi @count kappaletta."
+
+msgctxt "Helsinki near you form"
+msgid "There is one result available."
+msgstr "Yksi osoite-ehdotus löytyi."
+
+msgctxt "Helsinki near you form"
+msgid "@selectedItem @position of @count is highlighted"
+msgstr "Vaihtoehto numero @position: @selectedItem korostettu. Vaihtoehtojen määrä: @count."

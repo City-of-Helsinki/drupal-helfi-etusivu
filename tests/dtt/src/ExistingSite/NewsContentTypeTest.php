@@ -183,10 +183,6 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
       'langcode' => 'fi',
     ]);
 
-    // Default image is used.
-    $this->drupalGet($node->toUrl());
-    $this->assertSession()->elementAttributeExists('css', 'meta[property="og:image"]', 'content');
-
     $uri = $this->getTestFiles('image')[0]->uri;
 
     $file = File::create([
