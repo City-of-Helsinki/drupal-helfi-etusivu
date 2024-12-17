@@ -5,6 +5,8 @@ display:
       fields:
         created:
           label: Almmuhuvvon
+        status:
+          label: Almmuhuvvon
       pager:
         options:
           tags:

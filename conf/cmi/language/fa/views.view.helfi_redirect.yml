@@ -11,6 +11,8 @@ display:
           label: Custom
         created:
           label: Created
+        status:
+          label: 'منتشر شده'
       pager:
         options:
           tags:
