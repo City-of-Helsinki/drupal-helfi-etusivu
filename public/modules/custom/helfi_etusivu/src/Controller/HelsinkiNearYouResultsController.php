@@ -45,14 +45,14 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   A renderable array.
    */
   public function content(Request $request) : array|RedirectResponse {
-    $address = Xss::filter($request->query->get('q'));
+    $address = $request->query->get('q');
     $return_url = Url::fromRoute('helfi_etusivu.helsinki_near_you');
 
     if (!$address) {
       $this->messenger()->addError($this->t('Please enter an address', [], ['context' => 'Helsinki near you']));
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
-
+    $address = Xss::filter($address);
     $addressData = $this->getCoordinates(urldecode($address));
 
     if (!$addressData) {
