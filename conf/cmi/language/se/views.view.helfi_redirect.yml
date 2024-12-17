@@ -1,0 +1,25 @@
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        created:
+          label: Almmuhuvvon
+        status:
+          label: Almmuhuvvon
+      pager:
+        options:
+          tags:
+            next: 'boahtte ›'
+            previous: '‹ ovddit'
+            first: '« vuosttaš'
+            last: 'maŋemuš »'
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      filters:
+        status:
+          expose:
+            label: Almmuhuvvon
+  page_1:
+    display_title: Siidu

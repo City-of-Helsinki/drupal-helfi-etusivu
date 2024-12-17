@@ -48,21 +48,35 @@
   }
 }
 
-// Tweak Drupal throbber position, needs specific selector
-.helfi-etusivu-near-you-form .form-item-q .form-autocomplete,
-.helfi-etusivu-near-you-form .form-item-q .form-autocomplete.ui-autocomplete-loading {
-  background-position: 98% center;
-}
-
-// Built in classes with no way to change them
-.ui-menu.ui-front .ui-menu-item-wrapper {
-  color: $color-black;
-  display: inline-block;
-  padding: $spacing;
+.helfi-etusivu-autocomplete {
+  position: relative;
   width: 100%;
 }
 
-.ui-menu.ui-front .ui-menu-item-wrapper.ui-state-active {
+.helfi-etusivu-autocomplete [data-autocomplete-live-region] {
+  @include visually-hidden();
+}
+
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item-list] {
+  border-color: $color-black-50;
+  border-style: solid;
+  border-top: none;
+  border-width: 2px;
+  list-style-type: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+  position: absolute;
+}
+
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item] {
+  background-color: $color-white;
+  cursor: pointer;
+  padding: $spacing;
+}
+
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:hover,
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:focus,
+.helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:active {
   background-color: $color-bus-light;
-  border: 1px solid $color-bus;
 }

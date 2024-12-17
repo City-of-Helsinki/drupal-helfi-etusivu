@@ -129,7 +129,7 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
    * @return bool
    *   If language is considered alternative and not fully supported.
    */
-  public function isAltLanguage(string $langcode = NULL): bool {
+  public function isAltLanguage(?string $langcode = NULL): bool {
     return $this->defaultLanguageResolver->isAltLanguage($langcode);
   }
 
