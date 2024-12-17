@@ -29,7 +29,7 @@ final class UuidLangcode extends ProcessorPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getPropertyDefinitions(DataSourceInterface $datasource = NULL) : array {
+  public function getPropertyDefinitions(?DataSourceInterface $datasource = NULL) : array {
     $properties = [];
 
     if (!$datasource) {
