@@ -131,20 +131,20 @@ msgid "Roadworks and events on map"
 msgstr "Vägarbeten och evenemang på kartan"
 
 msgctxt "Helsinki near you"
-msgid "City bike stations"
-msgstr "Stadscykelstationer och cykelställ"
+msgid "City bike stations on map"
+msgstr "Stadscykelstationer och cykelställ på kartan"
 
 msgctxt "Helsinki near you"
 msgid "The city is developing"
 msgstr "Staden utvecklas"
 
 msgctxt "Helsinki near you"
-msgid "Street and park development"
-msgstr "Gatu- och parkområdesprojekt"
+msgid "Street and park development on map"
+msgstr "Gatu- och parkområdesprojekt på kartan"
 
 msgctxt "Helsinki near you"
-msgid "Plans in process"
-msgstr "Pågående planeringsprojekt"
+msgid "Plans in process on map"
+msgstr "Pågående planeringsprojekt på kartan"
 
 msgctxt "Helsinki near you"
 msgid "Please enter an address"
