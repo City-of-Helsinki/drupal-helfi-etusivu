@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
@@ -18,6 +19,8 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
  * Class for interacting with Servicemap API.
  */
 final class Servicemap {
+
+  use StringTranslationTrait;
 
   /**
    * API URL for querying data.
@@ -32,7 +35,6 @@ final class Servicemap {
    */
   private const SITE_URL = 'https://kartta.hel.fi/';
 
-
   /**
    * Gets the address label for a given service map link.
    *
@@ -44,13 +46,12 @@ final class Servicemap {
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
    *   The address label corresponding to the service map link.
    */
-
   private function getAddressLabel(ServiceMapLink $link, string $address) : TranslatableMarkup {
     return match($link) {
-      ServiceMapLink::ROADWORK_EVENTS => t('Street works and events near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
-      ServiceMapLink::CITYBIKE_STATIONS_STANDS => t('City bike stations and bicycle racks near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
-      ServiceMapLink::STREET_PARK_PROJECTS => t('Street and park projects near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
-      ServiceMapLink::PLANS_IN_PROCESS => t('Plans under preparation near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::ROADWORK_EVENTS => $this->t('Street works and events near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::CITYBIKE_STATIONS_STANDS => $this->t('City bike stations and bicycle racks near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::STREET_PARK_PROJECTS => $this->t('Street and park projects near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::PLANS_IN_PROCESS => $this->t('Plans under preparation near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
     };
   }
 
