@@ -21,10 +21,10 @@ enum ServiceMapLink {
    */
   public function link(): string {
     return match($this) {
-      ServiceMapLink::ROADWORK_EVENTS => 'eCBuut',
-      ServiceMapLink::CITYBIKE_STATIONS_STANDS => 'eCAduu',
-      ServiceMapLink::STREET_PARK_PROJECTS => 'eCBJGT',
-      ServiceMapLink::PLANS_IN_PROCESS => 'eCCv3K',
+      ServiceMapLink::ROADWORK_EVENTS => 'eDAB7W',
+      ServiceMapLink::CITYBIKE_STATIONS_STANDS => 'eDFeCc',
+      ServiceMapLink::STREET_PARK_PROJECTS => 'eDBTcc',
+      ServiceMapLink::PLANS_IN_PROCESS => 'eDB7Rk',
     };
   }
 
