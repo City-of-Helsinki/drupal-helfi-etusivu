@@ -17,20 +17,20 @@ display:
             first: '« الأولى'
             last: 'الأخيرة »'
           expose:
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       fields:
         redirect_source__path:
-          label: From
+          label: من
           separator: ', '
         created:
-          label: Created
+          label: الإنشاء
       filters:
         redirect_source__path:
           expose:
-            label: From
+            label: من
         redirect_redirect__uri:
           expose:
-            label: To
+            label: إلى
   page_1:
-    display_title: Page
+    display_title: الصفحة

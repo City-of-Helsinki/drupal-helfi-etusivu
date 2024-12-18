@@ -6,8 +6,8 @@ display:
       pager:
         options:
           expose:
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       exposed_form:
         options:
           submit_button: تطبيق
@@ -22,4 +22,4 @@ display:
   feed_1:
     display_title: التلقيمة
   page_1:
-    display_title: Page
+    display_title: الصفحة
