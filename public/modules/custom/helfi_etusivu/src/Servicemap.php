@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
 use GuzzleHttp\ClientInterface;
@@ -30,6 +31,28 @@ final class Servicemap {
    * @var string
    */
   private const SITE_URL = 'https://kartta.hel.fi/';
+
+
+  /**
+   * Gets the address label for a given service map link.
+   *
+   * @param \Drupal\helfi_etusivu\Enum\ServiceMapLink $link
+   *   The service map link option.
+   * @param string $address
+   *   The address for which the label is generated.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The address label corresponding to the service map link.
+   */
+
+  private function getAddressLabel(ServiceMapLink $link, string $address) : TranslatableMarkup {
+    return match($link) {
+      ServiceMapLink::ROADWORK_EVENTS => t('Street works and events near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::CITYBIKE_STATIONS_STANDS => t('City bike stations and bicycle racks near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::STREET_PARK_PROJECTS => t('Street and park projects near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::PLANS_IN_PROCESS => t('Plans under preparation near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+    };
+  }
 
   /**
    * Constructs a new instance.
@@ -104,8 +127,9 @@ final class Servicemap {
   public function getLink(ServiceMapLink $link, string $address) : string {
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
     $query = [
-      'link' => $link->link(),
+      'addresslabel' => $this->getAddressLabel($link, $address),
       'addresslocation' => Xss::filter($address),
+      'link' => $link->link(),
       'setlanguage' => $langcode,
     ];
 
