@@ -29,8 +29,8 @@ display:
             next: 'التالي ›'
             previous: '‹ السابق'
           expose:
-            items_per_page_options_all_label: '- الكل -'
-            offset_label: الإزاحة
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       exposed_form:
         options:
           submit_button: انتقاء
@@ -58,7 +58,7 @@ display:
             label: الصلاحية
       use_more_text: المزيد
   page_1:
-    display_title: الصفحة
+    display_title: Page
     display_options:
       menu:
         title: لائحة

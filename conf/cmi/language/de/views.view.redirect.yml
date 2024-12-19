@@ -1,5 +1,5 @@
-label: Umleiten
-description: 'Liste der Umleitungen'
+label: Redirect
+description: 'List of redirects'
 display:
   default:
     display_title: Master
@@ -24,45 +24,45 @@ display:
             offset_label: Versatz
       fields:
         redirect_bulk_form:
-          action_title: 'Mit Auswahl'
+          action_title: 'With selection'
         redirect_source__path:
-          label: Von
+          label: From
           separator: ', '
         created:
-          label: Erstellt
+          label: Created
       filters:
         redirect_source__path:
           expose:
-            label: Von
+            label: From
         redirect_redirect__uri:
           expose:
-            label: An
+            label: To
         status_code:
           expose:
-            label: Statuscode
+            label: 'Status code'
           group_info:
-            label: Statuscode
+            label: 'Status code'
             group_items:
               1:
-                title: '300 Mehrere Auswahlmöglichkeiten'
+                title: '300 Multiple Choices'
               2:
-                title: '301 Dauerhaft verschoben'
+                title: '301 Moved Permanently'
               3:
-                title: '302 Gefunden'
+                title: '302 Found'
               4:
-                title: '303 Siehe andere'
+                title: '303 See Other'
               5:
-                title: '304 Nicht modifiziert'
+                title: '304 Not Modified'
               6:
-                title: '305 Proxy verwenden'
+                title: '305 Use Proxy'
               7:
-                title: '307 Temporäre Weiterleitung'
+                title: '307 Temporary Redirect'
         language:
           expose:
-            label: Originalsprache
-      title: Umleiten
+            label: 'Original language'
+      title: Redirect
       empty:
         area_text_custom:
-          content: 'Es wurde noch keine Umleitung eingerichtet.'
+          content: 'There is no redirect yet.'
   page_1:
     display_title: Seite
