@@ -12,8 +12,8 @@ display:
       pager:
         options:
           expose:
-            items_per_page_options_all_label: '- الكل -'
-            offset_label: الإزاحة
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       fields:
         label:
           label: التسمية
@@ -44,4 +44,4 @@ display:
           expose:
             label: النوع
   page_1:
-    display_title: الصفحة
+    display_title: Page
