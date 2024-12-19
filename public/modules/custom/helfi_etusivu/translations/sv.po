@@ -173,3 +173,19 @@ msgstr "Det finns ett resultat tillgängligt."
 msgctxt "Helsinki near you form"
 msgid "@selectedItem @position of @count is highlighted"
 msgstr "@selectedItem @position av @count är markerad"
+
+msgctxt "Helsinki near you address label"
+msgid "Street works and events near the address @address"
+msgstr "Gatuarbeten och evenemang nära adressen @address"
+
+msgctxt "Helsinki near you address label"
+msgid "City bike stations and bicycle racks near the address @address"
+msgstr "Stadscykelstationer och cykelställ nära adressen @address"
+
+msgctxt "Helsinki near you address label"
+msgid "Street and park projects near the address @address"
+msgstr "Gatu- och parkprojekt nära adressen @address"
+
+msgctxt "Helsinki near you address label"
+msgid "Plans under preparation near the address @address"
+msgstr "Detaljplaner under beredning nära adressen @address"
