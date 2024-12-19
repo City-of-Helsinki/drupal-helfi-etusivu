@@ -199,4 +199,4 @@ msgstr "Katu- ja puistohankkeet lähellä osoitetta @address"
 
 msgctxt "Helsinki near you address label"
 msgid "Plans under preparation near the address @address"
-msgstr "Valmisteilla oleva kaavat lähellä osoitetta @address"
+msgstr "Valmisteilla olevat kaavat lähellä osoitetta @address"
