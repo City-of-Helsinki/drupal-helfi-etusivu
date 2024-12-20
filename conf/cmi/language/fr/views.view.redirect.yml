@@ -1,5 +1,5 @@
-label: Rediriger
-description: 'Liste des redirections'
+label: Redirect
+description: 'List of redirects'
 display:
   default:
     display_title: Maître
@@ -24,45 +24,45 @@ display:
             offset_label: Décalage
       fields:
         redirect_bulk_form:
-          action_title: 'Pour la sélection'
+          action_title: 'With selection'
         redirect_source__path:
-          label: 'A partir de'
+          label: From
           separator: ', '
         created:
-          label: Créé
+          label: Created
       filters:
         redirect_source__path:
           expose:
-            label: 'A partir de'
+            label: From
         redirect_redirect__uri:
           expose:
-            label: À
+            label: To
         status_code:
           expose:
-            label: 'Code du statut'
+            label: 'Status code'
           group_info:
-            label: 'Code du statut'
+            label: 'Status code'
             group_items:
               1:
-                title: '300 Choix Multiples'
+                title: '300 Multiple Choices'
               2:
-                title: '301 Redirection Permanente'
+                title: '301 Moved Permanently'
               3:
-                title: '302 Trouvé'
+                title: '302 Found'
               4:
-                title: '303 Voir Ailleurs'
+                title: '303 See Other'
               5:
-                title: '304 Non Modifié'
+                title: '304 Not Modified'
               6:
-                title: '305 Utilise un Proxy'
+                title: '305 Use Proxy'
               7:
-                title: '307 Redirection Temporaire'
+                title: '307 Temporary Redirect'
         language:
           expose:
-            label: 'Langue initiale'
-      title: Rediriger
+            label: 'Original language'
+      title: Redirect
       empty:
         area_text_custom:
-          content: "Il n'y a pas encore de redirection."
+          content: 'There is no redirect yet.'
   page_1:
     display_title: Page
