@@ -28,7 +28,7 @@ display:
           label: 'Verwendet in'
           alter:
             path: 'admin/content/files/usage/{{ fid }}'
-          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
+          format_plural_string: !!binary QGNvdW50IFZlcndlbmR1bmcDQGNvdW50IFZlcndlbmR1bmdlbg==
       pager:
         options:
           tags:
