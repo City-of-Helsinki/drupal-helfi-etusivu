@@ -16,14 +16,15 @@ display:
           label: الحالة
         count:
           label: 'مستخدمة في'
+          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       pager:
         options:
           tags:
             next: 'التالي ›'
             previous: '‹ السابق'
           expose:
-            items_per_page_options_all_label: '- الكل -'
-            offset_label: الإزاحة
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       exposed_form:
         options:
           submit_button: انتقاء
@@ -60,8 +61,8 @@ display:
             next: 'التالي ›'
             previous: '‹ السابق'
           expose:
-            items_per_page_options_all_label: '- الكل -'
-            offset_label: الإزاحة
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       arguments:
         fid:
           exception:

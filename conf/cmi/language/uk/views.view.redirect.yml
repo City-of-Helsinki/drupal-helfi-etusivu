@@ -1,4 +1,4 @@
-label: Переспрямувати
+label: Redirect
 display:
   default:
     display_title: Головне
@@ -23,42 +23,42 @@ display:
             offset_label: Зміщення
       fields:
         redirect_bulk_form:
-          action_title: 'З вибраним'
+          action_title: 'With selection'
         redirect_source__path:
-          label: Від
+          label: From
           separator: ', '
         created:
-          label: Створено
+          label: Created
       filters:
         redirect_source__path:
           expose:
-            label: Від
+            label: From
         redirect_redirect__uri:
           expose:
-            label: До
+            label: To
         status_code:
           expose:
-            label: 'Код стану'
+            label: 'Status code'
           group_info:
-            label: 'Код стану'
+            label: 'Status code'
             group_items:
               1:
-                title: '300 Безліч Виборів'
+                title: '300 Multiple Choices'
               2:
-                title: '301 Переміщене Остаточно'
+                title: '301 Moved Permanently'
               3:
-                title: '302 Знайдене'
+                title: '302 Found'
               4:
-                title: '303 Дивитися Інше'
+                title: '303 See Other'
               5:
-                title: '304 Не Змінювалося'
+                title: '304 Not Modified'
               6:
-                title: '305 Використовувати Проксі'
+                title: '305 Use Proxy'
               7:
-                title: '307 - Тимчасово переміщене'
+                title: '307 Temporary Redirect'
         language:
           expose:
-            label: 'Мова оригіналу'
-      title: Переспрямувати
+            label: 'Original language'
+      title: Redirect
   page_1:
     display_title: Сторінка

@@ -1,4 +1,4 @@
-label: Переадресация
+label: Redirect
 display:
   default:
     display_title: Основной
@@ -23,45 +23,45 @@ display:
             offset_label: Пропустить
       fields:
         redirect_bulk_form:
-          action_title: 'С выделенным'
+          action_title: 'With selection'
         redirect_source__path:
-          label: От
+          label: From
           separator: ', '
         created:
-          label: Создано
+          label: Created
       filters:
         redirect_source__path:
           expose:
-            label: От
+            label: From
         redirect_redirect__uri:
           expose:
-            label: Кому
+            label: To
         status_code:
           expose:
-            label: 'Код состояния'
+            label: 'Status code'
           group_info:
-            label: 'Код состояния'
+            label: 'Status code'
             group_items:
               1:
-                title: '300 Множество Выборов'
+                title: '300 Multiple Choices'
               2:
-                title: '301 Перемещёно Окончательно'
+                title: '301 Moved Permanently'
               3:
-                title: '302 Найдено'
+                title: '302 Found'
               4:
-                title: '303 Смотреть Другое'
+                title: '303 See Other'
               5:
-                title: '304 Не Изменялось'
+                title: '304 Not Modified'
               6:
-                title: '305 Использовать Прокси'
+                title: '305 Use Proxy'
               7:
-                title: '307 - Временно перемещено'
+                title: '307 Temporary Redirect'
         language:
           expose:
-            label: 'Язык оригинала'
-      title: Переадресация
+            label: 'Original language'
+      title: Redirect
       empty:
         area_text_custom:
-          content: 'Перенаправлений пока нет.'
+          content: 'There is no redirect yet.'
   page_1:
     display_title: Страница
