@@ -1,0 +1,27 @@
+uuid: 74b4a174-2f90-4dbf-aede-425fd3903f72
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_limit
+    - paragraphs.paragraphs_type.news_list
+_core:
+  default_config_hash: 4kAYV9U8y3qkYQKOzN40EOym0oqgr0IqaNJeaLgTwSs
+id: paragraph.news_list.field_limit
+field_name: field_limit
+entity_type: paragraph
+bundle: news_list
+label: 'Number of items to show'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 10
+default_value_callback: ''
+settings:
+  min: 1
+  max: 50
+  prefix: ''
+  suffix: ''
+field_type: integer
