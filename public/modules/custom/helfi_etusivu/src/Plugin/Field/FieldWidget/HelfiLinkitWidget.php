@@ -74,7 +74,7 @@ class HelfiLinkitWidget extends LinkitWidget {
     array $third_party_settings,
     AccountProxyInterface $currentUser,
     EntityTypeManagerInterface $entityTypeManager,
-    protected RequestStack $requestStack
+    protected RequestStack $requestStack,
   ) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings, $currentUser, $entityTypeManager);
   }
