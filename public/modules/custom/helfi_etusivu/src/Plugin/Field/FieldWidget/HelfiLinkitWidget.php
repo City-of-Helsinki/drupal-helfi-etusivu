@@ -23,7 +23,8 @@ use Drupal\linkit\Utility\LinkitHelper;
 class HelfiLinkitWidget extends LinkitWidget {
 
   /**
-   * Circumvent Linkit functionality to allow linking to internal pages directly.
+   * Circumvent Linkit to allow linking to internal pages directly.
+   *
    * This prevents stripping language param from internal links.
    */
   protected function convertToUri(string $input) {
@@ -47,4 +48,5 @@ class HelfiLinkitWidget extends LinkitWidget {
     }
     return $values;
   }
+
 }
