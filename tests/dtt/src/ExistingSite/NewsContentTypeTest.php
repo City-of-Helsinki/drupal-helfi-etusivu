@@ -100,8 +100,8 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
     $file = File::create([
       'uri' => $uri,
     ]);
+    $file->setTemporary();
     $file->save();
-    $this->markEntityForCleanup($file);
 
     $media = Media::create([
       'bundle' => 'image',
@@ -109,7 +109,7 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
       'field_media_image' => $file->id(),
     ]);
     $media->save();
-    $this->markEntityForCleanup($file);
+    $this->markEntityForCleanup($media);
 
     $node = $this->createNode([
       'type' => 'news_item',
@@ -188,8 +188,8 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
     $file = File::create([
       'uri' => $uri,
     ]);
+    $file->setTemporary();
     $file->save();
-    $this->markEntityForCleanup($file);
 
     $media = Media::create([
       'bundle' => 'image',
@@ -197,7 +197,7 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
       'field_media_image' => $file->id(),
     ]);
     $media->save();
-    $this->markEntityForCleanup($file);
+    $this->markEntityForCleanup($media);
 
     $node->set('field_main_image', $media->id());
     $node->save();

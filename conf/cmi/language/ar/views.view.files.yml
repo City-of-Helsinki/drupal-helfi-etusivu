@@ -16,6 +16,7 @@ display:
           label: الحالة
         count:
           label: 'مستخدمة في'
+          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       pager:
         options:
           tags:
