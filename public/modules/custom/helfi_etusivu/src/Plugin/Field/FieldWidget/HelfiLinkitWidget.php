@@ -25,7 +25,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
   field_types: ['link']
 )]
 
-class HelfiLinkitWidget extends LinkitWidget {
+final class HelfiLinkitWidget extends LinkitWidget {
 
   /**
    * {@inheritdoc}
