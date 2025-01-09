@@ -80,9 +80,11 @@ final class HelfiLinkitWidget extends LinkitWidget {
   }
 
   /**
-   * Circumvent Linkit to allow linking to internal pages directly.
+   * Circumvent Linkit to allow linking to internal pages using absolute URLs.
    *
-   * This prevents stripping language param from internal links.
+   * \Drupal\Linkit\Plugin\Field\FieldWidget\LinkitWidget always runs links
+   * through uriFromUserInput, which coerces absolute URLs to node links if
+   * they belong to the current site.
    *
    * @param string $input
    *   The user input.
