@@ -1,0 +1,46 @@
+uuid: 191a9a9d-7a09-4e4d-847f-8fd93b3fa315
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: daIUGTR2nijXztOFPGoKZP9hdqNwUXU1g1Iksa29Rxo
+id: helfi_news
+label: 'Helfi: News'
+label_plural: 'Helfi: News'
+description: ''
+generate_aliases: false
+read_only: true
+field_mapper_id: jsonpath
+field_mapper_config:
+  field_mappings:
+    id:
+      value: '$._source.uuid_langcode[0]'
+    uuid:
+      value: '$._source.uuid[0]'
+    title:
+      value: '$._source.title[0]'
+    tags_uuid:
+      value: '$._source.news_tags_uuid[*]'
+    tags:
+      value: '$._source.field_news_item_tags[*]'
+    groups:
+      value: '$._source.field_news_groups[*]'
+    groups_uuid:
+      value: '$._source.news_groups_uuid[*]'
+    neighbourhoods:
+      value: '$._source.field_news_neighbourhoods[*]'
+    neighbourhoods_uuid:
+      value: '$._source.neighbourhoods_uuid[*]'
+    node_url:
+      value: '$._source.url[0]'
+    published_at:
+      value: '$._source.published_at[0]'
+    short_title:
+      value: '$._source.short_title[0]'
+storage_client_id: helfi_news
+storage_client_config: {  }
+persistent_cache_max_age: 1800
+annotation_entity_type_id: null
+annotation_bundle_id: null
+annotation_field_name: null
+inherits_annotation_fields: false

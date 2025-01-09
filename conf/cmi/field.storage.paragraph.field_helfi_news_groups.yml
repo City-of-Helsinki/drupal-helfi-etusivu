@@ -1,0 +1,22 @@
+uuid: 872c1317-4d2a-4582-a3ab-b9d8ef75e1a9
+langcode: en
+status: true
+dependencies:
+  module:
+    - external_entities
+    - paragraphs
+_core:
+  default_config_hash: wq65JaPUw7t2ky47ukc-A2jTYVFxzQYWTyIMKvVWqy4
+id: paragraph.field_helfi_news_groups
+field_name: field_helfi_news_groups
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: helfi_news_groups
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
