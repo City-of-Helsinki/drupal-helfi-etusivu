@@ -1,0 +1,29 @@
+uuid: 90364f2e-993e-4b70-ac17-74178ceeccd0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_news_list_description
+    - paragraphs.paragraphs_type.news_list
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - minimal
+_core:
+  default_config_hash: Ba7omOgoQ1RguPjBSpjtpx8YqwE5BXBoNRVs_eQzNRQ
+id: paragraph.news_list.field_news_list_description
+field_name: field_news_list_description
+entity_type: paragraph
+bundle: news_list
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long
