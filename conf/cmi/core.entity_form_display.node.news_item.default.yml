@@ -20,7 +20,7 @@ dependencies:
     - field_group
     - hdbt_admin_tools
     - helfi_annif
-    - linkit
+    - helfi_etusivu
     - media_library
     - paragraphs
     - path
@@ -179,7 +179,7 @@ content:
       match_limit: 10
     third_party_settings: {  }
   field_news_item_links_link:
-    type: linkit
+    type: helfi_linkit
     weight: 20
     region: content
     settings:
