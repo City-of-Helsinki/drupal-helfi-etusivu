@@ -347,3 +347,17 @@ function helfi_etusivu_theme() : array {
     ],
   ];
 }
+
+/**
+ * Implements hook_metatags_alter().
+ */
+function helfi_etusivu_metatags_alter(array &$metatags, array &$context) {
+  $entity = $context['entity'];
+  if (!$entity instanceof NewsItem) {
+    return;
+  }
+
+  if (!$entity->get('field_news_item_updating_news')->isEmpty()) {
+    $metatags['article_published_time'] = '[node:changed:html_datetime]';
+  }
+}
