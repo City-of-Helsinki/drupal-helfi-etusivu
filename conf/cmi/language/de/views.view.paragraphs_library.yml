@@ -39,7 +39,7 @@ display:
           label: Verwendet
           alter:
             path: 'admin/content/entity-usage/paragraphs_library_item/{{ id }}'
-          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
+          format_plural_string: !!binary QGNvdW50IFZlcndlbmR1bmcDQGNvdW50IFZlcndlbmR1bmdlbg==
         changed:
           label: Geändert
           separator: ', '

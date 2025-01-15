@@ -58,7 +58,7 @@ display:
           expose:
             label: اللغة
   page_1:
-    display_title: الصفحة
+    display_title: Page
     display_options:
       menu:
         title: المحتوى

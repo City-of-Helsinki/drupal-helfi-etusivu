@@ -1,0 +1,13 @@
+uuid: ed41b465-ef0e-494c-9dff-5b4a41ae7d33
+langcode: en
+status: true
+dependencies:
+  module:
+    - external_entities
+_core:
+  default_config_hash: Fl8HX68URx0CChkXzE5wAEZ9p94KnjuIbgmVIo6r5n4
+id: helfi_news.medium_teaser
+label: 'Medium Teaser'
+description: ''
+targetEntityType: helfi_news
+cache: true

@@ -1,0 +1,21 @@
+uuid: c245a17a-a17d-41d4-9cb1-06324277387f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_news_list_title
+    - paragraphs.paragraphs_type.news_list
+_core:
+  default_config_hash: RDGC7tc3EzJDFQyJSUHpJc8vP__9Q6BJ27icD5o4APY
+id: paragraph.news_list.field_news_list_title
+field_name: field_news_list_title
+entity_type: paragraph
+bundle: news_list
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
