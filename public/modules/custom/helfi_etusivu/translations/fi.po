@@ -155,7 +155,7 @@ msgstr "Katu- ja puistohankkeet kartalla"
 
 msgctxt "Helsinki near you"
 msgid "Plans in process on map"
-msgstr "Valmisteilla oleva kaavat kartalla"
+msgstr "Valmisteilla olevat kaavat kartalla"
 
 msgctxt "Helsinki near you"
 msgid "Please enter an address"
@@ -184,3 +184,19 @@ msgstr "Yksi osoite-ehdotus löytyi."
 msgctxt "Helsinki near you form"
 msgid "@selectedItem @position of @count is highlighted"
 msgstr "Vaihtoehto numero @position: @selectedItem korostettu. Vaihtoehtojen määrä: @count."
+
+msgctxt "Helsinki near you address label"
+msgid "Street works and events near the address @address"
+msgstr "Katutyöt ja tapahtumat lähellä osoitetta @address"
+
+msgctxt "Helsinki near you address label"
+msgid "City bike stations and bicycle racks near the address @address"
+msgstr "Kaupunkipyöräasemat ja pyörätelineet lähellä osoitetta @address"
+
+msgctxt "Helsinki near you address label"
+msgid "Street and park projects near the address @address"
+msgstr "Katu- ja puistohankkeet lähellä osoitetta @address"
+
+msgctxt "Helsinki near you address label"
+msgid "Plans under preparation near the address @address"
+msgstr "Valmisteilla olevat kaavat lähellä osoitetta @address"

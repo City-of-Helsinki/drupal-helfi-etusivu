@@ -1,4 +1,4 @@
-label: 重定向
+label: Redirect
 display:
   default:
     display_title: 主
@@ -23,39 +23,39 @@ display:
             offset_label: 偏移量
       fields:
         redirect_bulk_form:
-          action_title: 对所选项目
+          action_title: 'With selection'
         redirect_source__path:
-          label: 源自
+          label: From
           separator: ', '
         created:
-          label: 已建立
+          label: Created
       filters:
         redirect_source__path:
           expose:
-            label: 源自
+            label: From
         redirect_redirect__uri:
           expose:
-            label: 到
+            label: To
         status_code:
           group_info:
             group_items:
               1:
-                title: 300多种选择
+                title: '300 Multiple Choices'
               2:
-                title: 301永久移动
+                title: '301 Moved Permanently'
               3:
-                title: 302临时重定向
+                title: '302 Found'
               4:
-                title: 303查看其它位置
+                title: '303 See Other'
               5:
-                title: 304未修改
+                title: '304 Not Modified'
               6:
-                title: 305使用代理
+                title: '305 Use Proxy'
               7:
-                title: 307临时重定向
+                title: '307 Temporary Redirect'
         language:
           expose:
-            label: 原始语言
-      title: 重定向
+            label: 'Original language'
+      title: Redirect
   page_1:
     display_title: 页面
