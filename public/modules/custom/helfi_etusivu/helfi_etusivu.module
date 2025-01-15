@@ -361,6 +361,6 @@ function helfi_etusivu_metatags_alter(array &$metatags, array &$context) {
   }
 
   if (!$entity->get('field_news_item_updating_news')->isEmpty()) {
-    $metatags['article_published_time'] = '[node:changed:html_datetime]';
+    $metatags['article_published_time'] = '[updating-news:changed:html_datetime]';
   }
 }
