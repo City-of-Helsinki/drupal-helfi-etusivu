@@ -18,14 +18,13 @@ function helfi_etusivu_token_info(): array {
   $info['types']['node']['updating-news:changed:html_datetime'] = [
     'name' => 'updating-news',
     'description' => 'Get the latest changed time of updating news',
-    'needs-data' => 'node'
+    'needs-data' => 'node',
   ];
 
   $info['tokens']['node']['updating-news:changed:html_datetime'] = [
     'name' => 'Updating news latest update',
   ];
-
-
+  
   return $info;
 }
 
