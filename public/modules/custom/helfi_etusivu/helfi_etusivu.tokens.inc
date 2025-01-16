@@ -39,6 +39,10 @@ function helfi_etusivu_tokens(
   if ($type !== 'updating-news' || empty($data['node'])) {
     return [];
   }
+
+  /** @var \Drupal\Core\Datetime\DateFormatterInterface $dateFormatterService */
+  $dateFormatterService = \Drupal::service('date.formatter');
+
   $replacements = [];
   $entity = $data['node'];
 
@@ -53,10 +57,11 @@ function helfi_etusivu_tokens(
     $updates = $entity->getNewsUpdates();
     $latest = end($updates);
     // @phpstan-ignore-next-line
-    $datetime = $latest->get('field_news_update_date')
+    $timestamp = $latest->get('field_news_update_date')
       ->date
-      ->setTimezone(new DateTimeZone('Europe/Helsinki'))
-      ->format('c');
+      ->getTimestamp();
+
+    $datetime = $dateFormatterService->format($timestamp,'html_datetime', 'c');
 
     $replacements[$original] = $datetime;
   }
