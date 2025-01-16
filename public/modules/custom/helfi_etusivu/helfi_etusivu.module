@@ -354,7 +354,7 @@ function helfi_etusivu_theme() : array {
  * UHF-11151 For updating news items, set the published time
  * same as the changed time for better google search results.
  */
-function helfi_etusivu_metatags_alter(array &$metatags, array &$context) {
+function helfi_etusivu_metatags_alter(array &$metatags, array &$context): void {
   $entity = $context['entity'];
   if (!$entity instanceof NewsItem) {
     return;

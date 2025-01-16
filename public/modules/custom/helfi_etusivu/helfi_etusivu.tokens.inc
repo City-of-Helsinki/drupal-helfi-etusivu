@@ -61,7 +61,7 @@ function helfi_etusivu_tokens(
       ->date
       ->getTimestamp();
 
-    $datetime = $dateFormatterService->format($timestamp,'html_datetime', 'c');
+    $datetime = $dateFormatterService->format($timestamp, 'html_datetime', 'c');
 
     $replacements[$original] = $datetime;
   }
