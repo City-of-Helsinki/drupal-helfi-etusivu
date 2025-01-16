@@ -24,7 +24,7 @@ function helfi_etusivu_token_info(): array {
   $info['tokens']['node']['updating-news:changed:html_datetime'] = [
     'name' => 'Updating news latest update',
   ];
-  
+
   return $info;
 }
 
