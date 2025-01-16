@@ -123,7 +123,7 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
   }
 
   /**
-   * Tests that adding news update sets published_at field.
+   * Tests that adding news update sets published_at field and the article:published_time metatag updates.
    */
   public function testNewsUpdate() : void {
     $node = $this->createNode([
@@ -152,6 +152,13 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
 
     // Adding news update should have updated published_at field.
     $this->assertEquals($node->get('published_at')->value, $updateTime->getTimestamp());
+
+    $dateFormatter = $this->container->get('date.formatter');
+    $newTimestamp = $dateFormatter->format($update->get('field_news_update_date')->date->getTimestamp(), 'html_datetime', 'c');
+
+    // Article:published_time-metatag is set to the updated news creation time.
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementAttributeContains('css', 'meta[property="article:published_time"]', 'content', $newTimestamp);
   }
 
   /**

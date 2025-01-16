@@ -48,7 +48,7 @@ final class NewsItem extends RecommendableBase {
    * @return \Drupal\Core\Entity\EntityInterface[]
    *   News updates entities.
    */
-  private function getNewsUpdates() : array {
+  public function getNewsUpdates() : array {
     $field = $this->get('field_news_item_updating_news');
     assert($field instanceof EntityReferenceFieldItemListInterface);
     return $field->referencedEntities();
