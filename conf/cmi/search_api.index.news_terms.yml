@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.taxonomy_term.field_location
     - search_api.server.default
   module:
     - helfi_etusivu
@@ -81,6 +82,14 @@ field_settings:
     dependencies:
       module:
         - taxonomy
+  field_location:
+    label: Location
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_location
+    type: location
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_location
 datasource_settings:
   'entity:taxonomy_term':
     bundles:

@@ -3,8 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_main_image_caption
-    - field.storage.taxonomy_term.field_location
     - field.storage.media.field_media_image
     - field.storage.media.field_photographer
     - field.storage.node.field_main_image
@@ -15,11 +13,6 @@ dependencies:
     - field.storage.node.field_short_title
     - search_api.server.default
   module:
-    - node
-    - taxonomy
-    - media
-    - publication_date
-    - search_api
     - helfi_etusivu
     - helfi_react_search
     - media
@@ -62,14 +55,6 @@ field_settings:
     label: 'Entity type'
     property_path: search_api_entity_type
     type: string
-  field_location:
-    label: Location
-    datasource_id: 'entity:taxonomy_term'
-    property_path: field_location
-    type: location
-    dependencies:
-      config:
-        - field.storage.taxonomy_term.field_location
   field_main_image_caption:
     label: Caption
     datasource_id: 'entity:node'
@@ -127,17 +112,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_short_title
-  news_location:
-    label: 'Kaupunginosat » Luokittelutermi » Location'
-    datasource_id: 'entity:node'
-    property_path: 'field_news_neighbourhoods:entity:field_location'
-    type: location
-    dependencies:
-      config:
-        - field.storage.node.field_news_neighbourhoods
-        - field.storage.taxonomy_term.field_location
-      module:
-        - taxonomy
   main_image_url:
     label: 'Main Image'
     property_path: main_image_url
