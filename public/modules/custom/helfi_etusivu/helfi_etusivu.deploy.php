@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains etusivu deployo hooks.
+ * Contains etusivu deploy hooks.
  */
 
 declare(strict_types=1);
