@@ -330,6 +330,8 @@ function helfi_etusivu_theme() : array {
         'coordinates' => NULL,
         'title' => NULL,
         'service_groups' => NULL,
+        'nearby_neighbourhoods' => NULL,
+        'news_archive_url' => NULL,
       ],
       'template' => 'helsinki-near-you-results-page',
     ],
