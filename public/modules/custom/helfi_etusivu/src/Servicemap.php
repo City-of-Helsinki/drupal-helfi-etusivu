@@ -74,12 +74,37 @@ final class Servicemap {
   }
 
   /**
+   * Get coordinates from servicemap API.
+   *
+   * @param string $address
+   *   The address.
+   *
+   * @return ?array
+   *   The coordinates.
+   */
+  public function getAddressData(string $address) : ?array {
+    $results = $this->query($address);
+
+    if (
+      isset($results['0']->name) &&
+      isset($results['0']->location->coordinates)
+    ) {
+      return [
+        'address_translations' => $results['0']->name,
+        'coordinates' => $results['0']->location->coordinates,
+      ];
+    }
+
+    return NULL;
+  }
+
+  /**
    * Queries location data based on address.
    *
    * @param string $address
    *   Address to query against.
    * @param int $page_size
-   *   Maximum number or results.
+   *   Maximum number of results.
    *
    * @return array
    *   Array of results.
