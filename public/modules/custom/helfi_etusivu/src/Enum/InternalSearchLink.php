@@ -17,6 +17,7 @@ enum InternalSearchLink {
   case PLAYGROUNDS_FAMILY_HOUSES;
   case DAYCARES;
   case PLOWING_SCHEDULES;
+  case NEWS_ARCHIVE;
 
   /**
    * Return array of link translations.
@@ -56,6 +57,11 @@ enum InternalSearchLink {
         'sv' => 'https://www.hel.fi/sv/stadsmiljo-och-trafik/underhall/gatuunderhall/vinterunderhall-av-gator',
         'en' => 'https://www.hel.fi/en/urban-environment-and-traffic/general-maintenance/street-maintenance/winter-street-maintenance',
       ],
+      InternalSearchLink::NEWS_ARCHIVE => [
+        'fi' => 'https://www.hel.fi/fi/uutiset/etsi-uutisia',
+        'sv' => 'https://www.hel.fi/sv/nyheter/sok-efter-nyheter',
+        'en' => 'https://www.hel.fi/en/news/search-for-news',
+      ]
     };
   }
 
