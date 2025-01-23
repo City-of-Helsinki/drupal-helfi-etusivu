@@ -128,8 +128,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   Render array.
    */
   public function buildServiceGroups(string $addressName) : array {
-    $addressQuery = ['address' => urlencode($addressName)];
-    $viewsAddressQuery = ['address_search' => urlencode($addressName)];
+    $addressQuery = ['address' => $addressName];
+    $viewsAddressQuery = ['address_search' => $addressName];
 
     return [
       [
@@ -255,7 +255,6 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     array $query,
   ) : string {
     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
-    $query = ['address' => $address];
     $url = Url::fromUri(
       $link->getLinkTranslations()[$langcode],
       ['query' => $query],
