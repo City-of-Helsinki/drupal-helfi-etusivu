@@ -128,7 +128,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   Render array.
    */
   public function buildServiceGroups(string $addressName) : array {
-    $addressQuery = ['address' => urlencode($addressName)];
+    $addressQuery = ['address' => $addressName];
+    $viewsAddressQuery = ['address_search' => $addressName];
 
     return [
       [
@@ -153,11 +154,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           ],
           [
             'link_label' => $this->t('Closest playgrounds and family houses', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PLAYGROUNDS_FAMILY_HOUSES, $addressQuery),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PLAYGROUNDS_FAMILY_HOUSES, $viewsAddressQuery),
           ],
           [
             'link_label' => $this->t('Closest daycare centres', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::DAYCARES, $addressQuery),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::DAYCARES, $viewsAddressQuery),
           ],
         ],
       ],
