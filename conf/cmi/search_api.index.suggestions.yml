@@ -1,0 +1,69 @@
+uuid: 1a06b7cd-eb89-4e5d-bb5d-2bfb922b9543
+langcode: fi
+status: true
+dependencies:
+  config:
+    - search_api.server.default
+  module:
+    - helfi_annif
+    - helfi_etusivu
+    - helfi_react_search
+id: suggestions
+name: Suggestions
+description: ''
+read_only: false
+field_settings:
+  keywords:
+    label: Keywords
+    datasource_id: 'entity:suggested_topics'
+    property_path: keywords_scored
+    type: scored_item
+  parent_id:
+    label: 'Isännän ID'
+    datasource_id: 'entity:suggested_topics'
+    property_path: parent_id
+    type: string
+    dependencies:
+      module:
+        - helfi_annif
+  parent_instance:
+    label: 'Parent instance'
+    datasource_id: 'entity:suggested_topics'
+    property_path: parent_instance
+    type: string
+    dependencies:
+      module:
+        - helfi_annif
+  parent_type:
+    label: 'Parent type'
+    datasource_id: 'entity:suggested_topics'
+    property_path: parent_type
+    type: string
+    dependencies:
+      module:
+        - helfi_annif
+datasource_settings:
+  'entity:suggested_topics': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  custom_value: {  }
+  district_image_absolute_url: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  main_image_url: {  }
+  project_execution_schedule: {  }
+  project_image_absolute_url: {  }
+  project_plan_schedule: {  }
+  rendered_item: {  }
+  scored_reference: {  }
+  uuid_langcode: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  delete_on_fail: true
+  index_directly: true
+  track_changes_in_references: true
+server: default

@@ -22,3 +22,5 @@ services:
   Drupal\helfi_annif\TextConverter\RenderTextConverter:
     tags:
       - { name: helfi_annif.text_converter, priority: -1 }
+
+  Drupal\helfi_annif\EventSubscriber\SearchApiSubscriber: ~
