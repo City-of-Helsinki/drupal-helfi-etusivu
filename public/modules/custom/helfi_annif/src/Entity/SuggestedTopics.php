@@ -67,22 +67,6 @@ class SuggestedTopics extends ContentEntityBase implements SuggestedTopicsInterf
       ])
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['parent_id'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Parent ID'))
-      ->setDescription(t('The ID of the parent entity of which this entity is referenced.'))
-      ->setSetting('is_ascii', TRUE);
-
-    $fields['parent_type'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Parent type'))
-      ->setDescription(t('The entity parent type to which this entity is referenced.'))
-      ->setSetting('is_ascii', TRUE)
-      ->setSetting('max_length', EntityTypeInterface::ID_MAX_LENGTH);
-
-    $fields['parent_instance'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Parent instance'))
-      ->setDescription(t('The name of the instance where this entity is located at.'))
-      ->setSetting('is_ascii', TRUE);
-
     return $fields;
   }
 
