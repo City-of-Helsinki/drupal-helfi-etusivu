@@ -13,7 +13,7 @@ use Drupal\search_api\DataType\DataTypePluginBase;
  *   id = "scored_item",
  *   label = @Translation("Scored item"),
  *   description = @Translation("Item with score."),
- *   default = "true"
+ *   fallback_type = "string"
  * )
  */
 class ScoredItemDataType extends DataTypePluginBase {
