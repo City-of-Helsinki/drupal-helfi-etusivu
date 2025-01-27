@@ -9,6 +9,7 @@ use Drupal\Core\Field\EntityReferenceFieldItemList;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\helfi_annif\Entity\SuggestedTopics;
 
 /**
  * Defines the 'suggested_topics_reference' field type.
@@ -58,12 +59,16 @@ final class SuggestedTopicsReferenceItem extends EntityReferenceItem {
   /**
    * {@inheritdoc}
    */
-  public function preSave() {
-    if ($this->hasNewEntity()) {
-      $this->entity->save();
-    }
+  public function postSave($update): bool {
+    $parent = $this->getEntity();
+    $entity = $this->entity;
+    assert($entity instanceof SuggestedTopics);
 
-    parent::preSave();
+    $entity
+      ->set('parent_id', $parent->id())
+      ->save();
+
+    return FALSE;
   }
 
   /**
