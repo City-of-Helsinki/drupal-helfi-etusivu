@@ -58,14 +58,12 @@ final class SuggestedTopicsReferenceItem extends EntityReferenceItem {
   /**
    * {@inheritdoc}
    */
-  public function postSave($update): bool {
-    /** @var \Drupal\helfi_annif\Entity\SuggestedTopics $entity */
-    $parent = $this->getEntity();
-    $this->entity
-      ->set('parent_id', $parent->id())
-      ->save();
+  public function preSave() {
+    if ($this->hasNewEntity()) {
+      $this->entity->save();
+    }
 
-    return FALSE;
+    parent::preSave();
   }
 
   /**

@@ -15,8 +15,6 @@ use Drupal\Core\TypedData\DataDefinition;
 /**
  * Defines the 'scored_entity_reference' field type.
  *
- * @property mixed $score Item score.
- *
  * @see \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem
  * @see \Drupal\Core\Field\Plugin\Field\FieldType\FloatItem
  */
