@@ -474,11 +474,11 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items:
-              -
+              1:
                 title: Published
                 operator: '='
                 value: '1'
-              -
+              2:
                 title: Unpublished
                 operator: '='
                 value: '0'
@@ -497,17 +497,6 @@ display:
             fi: fi
             sv: sv
             en: en
-            de: de
-            fr: fr
-            ru: ru
-            uk: uk
-            ar: ar
-            et: et
-            fa: fa
-            es: es
-            so: so
-            se: se
-            zh-hans: zh-hans
           group: 1
           exposed: true
           expose:
@@ -525,13 +514,8 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
-              read_only: '0'
-              content_producer: '0'
-              editor: '0'
               admin: '0'
-              menu_api: '0'
-              news_producer: '0'
-              debug_api: '0'
+              content_producer: '0'
             reduce: true
           is_grouped: false
           group_info:
@@ -560,7 +544,7 @@ display:
       filter_groups:
         operator: AND
         groups:
-          - AND
+          1: AND
       style:
         type: table
         options:
