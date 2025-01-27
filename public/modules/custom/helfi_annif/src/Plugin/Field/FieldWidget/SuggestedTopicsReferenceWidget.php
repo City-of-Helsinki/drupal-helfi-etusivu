@@ -62,6 +62,7 @@ final class SuggestedTopicsReferenceWidget extends WidgetBase {
     /** @var \Drupal\helfi_annif\Entity\SuggestedTopics $entity */
     $entity = $hasTargetEntity ? $items[$delta]->entity : SuggestedTopics::create([
       'parent_type' => $items->getEntity()->getEntityTypeId(),
+      'parent_bundle' => $items->getEntity()->bundle(),
       'parent_instance' => $project,
     ]);
 
