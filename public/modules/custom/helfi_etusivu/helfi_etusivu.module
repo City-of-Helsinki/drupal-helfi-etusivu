@@ -244,8 +244,13 @@ function helfi_etusivu_helfi_hero_design_alter(array &$designs, FieldStorageDefi
 function helfi_etusivu_preprocess_html(&$variables): void {
   $route = \Drupal::routeMatch()->getRouteName();
 
-  // Set the theme color to suomenlinna on Helsinki near you landing page.
-  if ($route === 'helfi_etusivu.helsinki_near_you') {
+  // Set the theme color to suomenlinna on Helsinki near you landing pages.
+  $near_you_pages = [
+    'helfi_etusivu.helsinki_near_you',
+    'helfi_etusivu.helsinki_near_you_events'
+  ];
+
+  if (in_array($route, $near_you_pages)) {
     $variables['theme_color'] = 'suomenlinna';
   }
 }
@@ -347,6 +352,9 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-hero-block',
     ],
+    'helsinki_near_you_events' => [
+      'template' => 'helsinki-near-you-events',
+    ]
   ];
 }
 
