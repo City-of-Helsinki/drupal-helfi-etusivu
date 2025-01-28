@@ -1,5 +1,10 @@
 config_rewrite:
-  replace: ['hidden', 'dependencies']
+  replace: [
+    'hidden',
+    'dependencies',
+    'third_party_settings.field_group.group_updating_news.children',
+    'third_party_settings.field_group.group_automatically_recommended.children',
+  ]
 dependencies:
   config:
     - field.field.node.news_item.field_content
