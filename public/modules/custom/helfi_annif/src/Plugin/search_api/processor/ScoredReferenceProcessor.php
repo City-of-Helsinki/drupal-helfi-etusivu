@@ -82,10 +82,7 @@ final class ScoredReferenceProcessor extends ProcessorPluginBase {
           'label' => $scoredReference->entity->id(),
         ];
 
-        $field->addValue(match ($objectSupport) {
-          FALSE => json_encode($value),
-          default => $value,
-        });
+        $field->addValue($objectSupport ? $value : json_encode($value));
       }
     }
   }
