@@ -22,10 +22,10 @@ display:
       pager:
         options:
           tags:
-            next: 'nächste Seite ›'
-            previous: '‹ vorherige Seite'
-            first: '« erste Seite'
-            last: 'letzte Seite »'
+            next: Weiter
+            previous: Vorherige
+            first: Anfang
+            last: Ende
           expose:
             items_per_page_label: 'Elemente pro Seite'
             items_per_page_options_all_label: '- Alle -'

@@ -24,8 +24,8 @@ display:
           tags:
             next: "suivant\_›"
             previous: "‹\_précédent"
-            first: "«\_premier"
-            last: "dernier\_»"
+            first: Premier(e)
+            last: Dernier
           expose:
             items_per_page_label: 'Éléments par page'
             items_per_page_options_all_label: '- Tout -'

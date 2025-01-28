@@ -21,8 +21,8 @@ display:
           tags:
             next: 'järgmine ›'
             previous: '‹ eelmine'
-            first: '« esimene'
-            last: 'viimane »'
+            first: Esimene
+            last: Viimane
           expose:
             items_per_page_label: 'Kirjeid lehel'
             items_per_page_options_all_label: '- Kõik -'
