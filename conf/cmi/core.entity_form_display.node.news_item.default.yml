@@ -20,7 +20,7 @@ dependencies:
     - field_group
     - hdbt_admin_tools
     - helfi_annif
-    - helfi_etusivu
+    - linkit
     - media_library
     - paragraphs
     - path

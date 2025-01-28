@@ -46,6 +46,8 @@ display:
             group_items:
               1:
                 title: 已发布
+              2:
+                title: 未发布
         name:
           expose:
             label: 名称
