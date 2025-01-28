@@ -17,11 +17,6 @@ final class SearchApiSubscriber implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents(): array {
-    // Bail if search_api is not installed.
-    if (!class_exists(SearchApiEvents::class)) {
-      return [];
-    }
-
     return [
       SearchApiEvents::MAPPING_FIELD_TYPES => 'mapFieldTypes',
     ];
