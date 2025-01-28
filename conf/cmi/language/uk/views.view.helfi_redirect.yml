@@ -21,10 +21,10 @@ display:
       pager:
         options:
           tags:
-            next: 'наступна ›'
-            previous: '‹ попередня'
-            first: '« перша'
-            last: 'остання »'
+            next: Наступний
+            previous: Попередній
+            first: Перший
+            last: Останній
           expose:
             items_per_page_label: 'Елементів на сторінку'
             items_per_page_options_all_label: '- Усе -'
