@@ -39,7 +39,13 @@ final class SuggestedTopicsReferenceWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    $instance = new self($plugin_id, $plugin_definition, $configuration['field_definition'], $configuration['settings'], $configuration['third_party_settings']);
+    $instance = new self(
+      $plugin_id,
+      $plugin_definition,
+      $configuration['field_definition'],
+      $configuration['settings'],
+      $configuration['third_party_settings'],
+    );
     $instance->environmentResolver = $container->get(EnvironmentResolverInterface::class);
     return $instance;
   }
