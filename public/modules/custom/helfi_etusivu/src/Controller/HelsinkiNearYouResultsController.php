@@ -246,6 +246,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   Internal search link option.
    * @param array $query
    *   Query params for the link.
+   * @param string|null $anchor
+   *   Anchor to add to the link.
    *
    * @return string
    *   The resulting link.
@@ -253,7 +255,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   protected function getInternalSearchLink(
     InternalSearchLink $link,
     array $query,
-    ?string $anchor = NULL
+    ?string $anchor = NULL,
   ) : string {
     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
     $url = Url::fromUri(
