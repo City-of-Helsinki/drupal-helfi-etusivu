@@ -9,6 +9,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\search_api\Item\Field;
+use Drupal\search_api\Processor\ProcessorPropertyInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\Tests\search_api\Kernel\PostRequestIndexingTrait;
@@ -79,6 +80,42 @@ class ScoredReferenceProcessorTest extends ProcessorTestBase {
     $this->index->addField($searchApiField);
     $this->index->setOption('index_directly', TRUE);
     $this->index->save();
+  }
+
+  /**
+   * Tests that field values are added correctly.
+   */
+  public function testDatasource() : void {
+    /** @var \Drupal\search_api\Utility\PluginHelperInterface $pluginHelper */
+    $pluginHelper = $this->container->get('search_api.plugin_helper');
+
+    $term = Term::create([
+      'name' => $this->randomMachineName(),
+      'vid' => $this->vocabulary->id(),
+    ]);
+    $term->save();
+
+    Node::create([
+      'title' => 'Test',
+      'type' => 'test_node_bundle',
+      'test_keywords' => [
+        [
+          'entity' => $term,
+          'score' => 0.5,
+        ],
+      ],
+    ])->save();
+
+    $datasource = $pluginHelper->createDatasourcePlugin($this->index, 'entity:node');
+    $sut = $pluginHelper->createProcessorPlugin($this->index, 'scored_reference');
+
+    $properties = $sut->getPropertyDefinitions(NULL);
+    $this->assertEmpty($properties);
+
+    $properties = $sut->getPropertyDefinitions($datasource);
+    $this->assertNotEmpty($properties);
+    $this->assertArrayHasKey('test_keywords_scored', $properties);
+    $this->assertInstanceOf(ProcessorPropertyInterface::class, $properties['test_keywords_scored']);
   }
 
   /**

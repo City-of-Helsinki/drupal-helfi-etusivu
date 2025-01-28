@@ -64,6 +64,8 @@ final class ScoredReferenceProcessor extends ProcessorPluginBase {
       return;
     }
 
+    $objectSupport = $this->index->getServerInstance()->getBackendId() === 'elasticsearch';
+
     foreach ($item->getFields() as $field) {
       if ($field->getOriginalType() !== 'scored_item') {
         continue;
@@ -80,8 +82,8 @@ final class ScoredReferenceProcessor extends ProcessorPluginBase {
           'label' => $scoredReference->entity->id(),
         ];
 
-        $field->addValue(match ($field->getType()) {
-          'string' => json_encode($value),
+        $field->addValue(match ($objectSupport) {
+          FALSE => json_encode($value),
           default => $value,
         });
       }
