@@ -154,11 +154,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           ],
           [
             'link_label' => $this->t('Closest playgrounds and family houses', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PLAYGROUNDS_FAMILY_HOUSES, $viewsAddressQuery),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PLAYGROUNDS_FAMILY_HOUSES, $viewsAddressQuery, 'views-exposed-form-playground-search-block'),
           ],
           [
             'link_label' => $this->t('Closest daycare centres', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::DAYCARES, $viewsAddressQuery),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::DAYCARES, $viewsAddressQuery, 'views-exposed-form-daycare-search-block'),
           ],
         ],
       ],
@@ -253,6 +253,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   protected function getInternalSearchLink(
     InternalSearchLink $link,
     array $query,
+    ?string $anchor = NULL
   ) : string {
     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
     $url = Url::fromUri(
@@ -260,7 +261,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ['query' => $query],
     );
 
-    return $url->toString();
+    return $url->toString() . ($anchor ? "#$anchor" : '');
   }
 
   /**
