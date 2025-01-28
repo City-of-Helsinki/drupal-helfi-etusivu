@@ -6,6 +6,12 @@ Keywords are generated for entities that have `field_annif_keywords` with `hook_
 
 See the API documentation at: [https://ai.finto.fi/v1/ui/](https://ai.finto.fi/v1/ui/).
 
+## Suggestions across hel.fi instances
+
+**This feature is work in progress.**
+
+Suggested topics entities are synced to suggestions search api index. In the future, other instances communicate with etusivu so that suggested topics entity is created for their content, and they can search suggestions for their content from the shared search index.
+
 ## Text converter
 
 The AI API accepts raw text only. Drupal content must be converted to UTF-8 encoded raw text. This is achieved with `TextConverterManager`.
