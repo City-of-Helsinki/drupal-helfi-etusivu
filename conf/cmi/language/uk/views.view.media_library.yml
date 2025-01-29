@@ -46,6 +46,8 @@ display:
             group_items:
               1:
                 title: Опубліковано
+              2:
+                title: Неопубліковано
         name:
           expose:
             label: "Назва (ім'я)"

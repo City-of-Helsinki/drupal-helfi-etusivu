@@ -11,6 +11,7 @@ use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_annif\Entity\SuggestedTopics;
+use Drupal\helfi_api_base\Environment\Project;
 
 /**
  * Defines the 'suggested_topics_reference' field widget.
@@ -37,7 +38,11 @@ final class SuggestedTopicsReferenceWidget extends WidgetBase {
     $hasTargetEntity = !empty($items[$delta]->target_id) && $items[$delta]->entity;
 
     /** @var \Drupal\helfi_annif\Entity\SuggestedTopics $entity */
-    $entity = $hasTargetEntity ? $items[$delta]->entity : SuggestedTopics::create([]);
+    $entity = $hasTargetEntity ? $items[$delta]->entity : SuggestedTopics::create([
+      'parent_type' => $items->getEntity()->getEntityTypeId(),
+      'parent_bundle' => $items->getEntity()->bundle(),
+      'parent_instance' => Project::ETUSIVU,
+    ]);
 
     $element['entity'] = [
       '#type' => 'value',

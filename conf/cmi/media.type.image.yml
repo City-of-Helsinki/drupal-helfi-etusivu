@@ -10,7 +10,7 @@ third_party_settings:
 _core:
   default_config_hash: LX01N5rjJ7mTGbJeTSQJuX_ZvFCUl0sCBkxSR3a18Bg
 id: image
-label: Image
+label: 'Image (supported in other languages)'
 description: 'Use local image for reusable media.'
 source: image
 queue_thumbnail_downloads: false

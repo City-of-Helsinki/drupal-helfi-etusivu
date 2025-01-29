@@ -330,6 +330,8 @@ function helfi_etusivu_theme() : array {
         'coordinates' => NULL,
         'title' => NULL,
         'service_groups' => NULL,
+        'nearby_neighbourhoods' => NULL,
+        'news_archive_url' => NULL,
       ],
       'template' => 'helsinki-near-you-results-page',
     ],
@@ -346,4 +348,21 @@ function helfi_etusivu_theme() : array {
       'template' => 'helsinki-near-you-hero-block',
     ],
   ];
+}
+
+/**
+ * Implements hook_metatags_alter().
+ *
+ * UHF-11151 For updating news items, set the published time
+ * same as the changed time for better google search results.
+ */
+function helfi_etusivu_metatags_alter(array &$metatags, array &$context): void {
+  $entity = $context['entity'];
+  if (!$entity instanceof NewsItem) {
+    return;
+  }
+
+  if (!$entity->get('field_news_item_updating_news')->isEmpty()) {
+    $metatags['article_published_time'] = '[updating-news:changed:html_datetime]';
+  }
 }

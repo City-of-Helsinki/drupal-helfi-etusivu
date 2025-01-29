@@ -46,6 +46,8 @@ display:
             group_items:
               1:
                 title: Veröffentlicht
+              2:
+                title: 'Nicht veröffentlicht'
         name:
           expose:
             label: Name
