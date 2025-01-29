@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.taxonomy_term.field_location
     - search_api.server.default
   module:
     - helfi_etusivu
@@ -25,6 +26,14 @@ field_settings:
     label: 'Entity type'
     property_path: search_api_entity_type
     type: string
+  field_location:
+    label: Location
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_location
+    type: location
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_location
   name:
     label: Name
     datasource_id: 'entity:taxonomy_term'

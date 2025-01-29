@@ -25,6 +25,22 @@ msgctxt "Services close to you block"
 msgid "Services close to you"
 msgstr "Palvelut lähelläsi"
 
+msgctxt "News close to you block"
+msgid "News close to you"
+msgstr "Uutisia läheltäsi"
+
+msgctxt "News close to you block"
+msgid " and "
+msgstr " ja "
+
+msgctxt "News close to you block"
+msgid "Check out the news from the neighborhoods of %neighbourhoods%"
+msgstr "Katso uutisia kaupunginosista %neighbourhoods%"
+
+msgctxt "News close to you block"
+msgid "View all news"
+msgstr "Katso kaikki uutiset"
+
 msgctxt "Services close to you block"
 msgid "Use the links to go to results based on your address."
 msgstr "Siirry linkeistä oman osoitteesi mukaisiin hakutuloksiin."

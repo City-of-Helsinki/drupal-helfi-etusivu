@@ -7,6 +7,9 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+
 /**
  * Create entity definitions for annif-fields.
  */
@@ -95,4 +98,30 @@ function helfi_annif_update_9003(): void {
   \Drupal::messenger()->addMessage('Run drush helfi:annif-fix-references');
 
   // @todo remove obsolete field annif_keywords in a future update hook.
+}
+
+/**
+ * Updates entity fields for suggested_topics.
+ */
+function helfi_annif_update_9004(): void {
+  $fields['parent_id'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Parent ID'))
+    ->setDescription(t('The ID of the parent entity of which this entity is referenced.'))
+    ->setSetting('is_ascii', TRUE);
+
+  $fields['parent_type'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Parent type'))
+    ->setDescription(t('The entity parent type to which this entity is referenced.'))
+    ->setSetting('is_ascii', TRUE)
+    ->setSetting('max_length', EntityTypeInterface::ID_MAX_LENGTH);
+
+  $fields['parent_instance'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Parent instance'))
+    ->setDescription(t('The name of the instance where this entity is located at.'))
+    ->setSetting('is_ascii', TRUE);
+
+  foreach ($fields as $name => $field) {
+    \Drupal::entityDefinitionUpdateManager()
+      ->installFieldStorageDefinition($name, 'suggested_topics', 'helfi_annif', $field);
+  }
 }

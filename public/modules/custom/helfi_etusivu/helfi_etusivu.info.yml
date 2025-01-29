@@ -12,5 +12,6 @@ dependencies:
   - helfi_annif:helfi_annif
   - simple_sitemap:simple_sitemap
   - helfi_react_search:helfi_react_search
+  - helfi_platform_config:helfi_paragraphs_news_list
 'interface translation project': helfi_etusivu
 'interface translation server pattern': modules/custom/helfi_etusivu/translations/%language.po

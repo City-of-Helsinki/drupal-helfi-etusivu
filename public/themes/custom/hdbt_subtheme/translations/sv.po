@@ -25,6 +25,22 @@ msgctxt "Services close to you block"
 msgid "Services close to you"
 msgstr "Tjänster nära dig"
 
+msgctxt "News close to you block"
+msgid "News close to you"
+msgstr "Nyheter nära dig"
+
+msgctxt "News close to you block"
+msgid " and "
+msgstr " och "
+
+msgctxt "News close to you block"
+msgid "Check out the news from the neighborhoods of %neighbourhoods%"
+msgstr "Kolla in nyheterna från stadsdelarna %neighbourhoods%"
+
+msgctxt "News close to you block"
+msgid "View all news"
+msgstr "Se alla nyheter"
+
 msgctxt "Services close to you block"
 msgid "Use the links to go to results based on your address."
 msgstr "Använd länkarna för att visa resultat baserat på din adress."
