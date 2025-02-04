@@ -30,6 +30,8 @@ display:
           tags:
             next: 'التالي ›'
             previous: '‹ السابق'
+            first: '« First'
+            last: 'Last »'
       exposed_form:
         options:
           submit_button: انتقاء
