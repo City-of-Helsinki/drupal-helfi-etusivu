@@ -28,6 +28,8 @@ display:
           tags:
             next: 'التالي ›'
             previous: '‹ السابق'
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page_options_all_label: '- All -'
             offset_label: Offset

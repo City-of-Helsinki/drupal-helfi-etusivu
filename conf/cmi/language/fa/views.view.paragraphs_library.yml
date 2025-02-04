@@ -15,6 +15,9 @@ display:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
+          tags:
+            previous: Previous
+            next: Next
       fields:
         label:
           label: برچسب

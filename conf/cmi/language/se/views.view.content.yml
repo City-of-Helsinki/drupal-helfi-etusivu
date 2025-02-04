@@ -35,6 +35,11 @@ display:
         langcode:
           expose:
             label: Giella
+      pager:
+        options:
+          tags:
+            first: First
+            last: Last
   page_1:
     display_title: Siidu
     display_options:
