@@ -7,14 +7,18 @@
 
 declare(strict_types=1);
 
+use Drupal\helfi_api_base\Language\DefaultLanguageResolver;
+
 /**
  * Implements hook_preprocess_HOOK().
  */
 function helfi_alt_lang_fallback_preprocess_region(&$variables): void {
   /** @var \Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks $lang_fallbacks */
   $lang_fallbacks = \Drupal::service('helfi_alt_lang_fallback');
+  /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
+  $defaultLanguageResolver = \Drupal::service(DefaultLanguageResolver::class);
   if ($lang_fallbacks->shouldAttributesBeAddedToRegion($variables['region'])) {
-    $attributes = $lang_fallbacks->getLangAttributes();
+    $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
     $variables['attributes'] = array_replace($variables['attributes'], $attributes);
   }
 }
@@ -34,12 +38,15 @@ function helfi_alt_lang_fallback_preprocess_block(&$variables): void {
   if (!$lang_fallbacks->shouldAttributesBeAddedToBlock($variables['plugin_id'])) {
     return;
   }
+  /** @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver $defaultLanguageResolver */
+  $defaultLanguageResolver = \Drupal::service(DefaultLanguageResolver::class);
+
   // Check if block has fallback content. Otherwise add current lang attributes.
   if ($lang_fallbacks->checkIfBlockHasFallbackContent($variables)) {
-    $attributes = $lang_fallbacks->getLangAttributes();
+    $attributes = $defaultLanguageResolver->getFallbackLangAttributes();
   }
   else {
-    $attributes = $lang_fallbacks->getCurrentLangAttributes();
+    $attributes = $defaultLanguageResolver->getCurrentLangAttributes();
   }
 
   // Add either fallback or current language attributes.
