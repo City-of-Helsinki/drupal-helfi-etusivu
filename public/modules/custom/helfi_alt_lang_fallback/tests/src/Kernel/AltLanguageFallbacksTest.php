@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_alt_lang_fallback\Kernel;
 
-use Drupal\Core\Block\BlockManagerInterface;
+use Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
@@ -110,15 +110,8 @@ class AltLanguageFallbacksTest extends KernelTestBase {
    */
   private function renderMenuBlock(string $menuId, string $langcode) : array {
     $this->setOverrideLanguageCode($langcode);
-    $blockManager = $this->container->get(BlockManagerInterface::class);
-    $block = $blockManager->createInstance('menu_block_current_language:' . $menuId, [
-      'region' => 'footer',
-      'id' => 'machine_name',
-      'theme' => 'stark',
-      'level' => 1,
-      'depth' => 0,
-    ]);
-    return $block->build();
+    $sut = AltLanguageFallbacks::create($this->container);
+    return $sut->replaceMenuTree($menuId);
   }
 
   /**
@@ -139,22 +132,21 @@ class AltLanguageFallbacksTest extends KernelTestBase {
     foreach ($links as $item) {
       $this->createMenuLink($item['title'], $item['langcode'], 'headertopnavigation');
     }
-
-    $build = $this->renderMenuBlock('headertopnavigation', 'en');
-    // Make sure the default language filter works.
-    $this->assertCount(1, $build['#items']);
-
-    // Make sure nothing is rendered for alt language unless
-    // there's a <nolink> link.
-    $build = $this->renderMenuBlock('headertopnavigation', 'et');
-    $this->assertArrayNotHasKey('#items', $build);
-
     // Make sure english link is rendered for alt language.
     $this->createMenuLink('Test title et', 'et', 'headertopnavigation', 'route:<nolink>');
     $build = $this->renderMenuBlock('headertopnavigation', 'et');
-    $this->assertCount(1, $build['#items']);
-    $key = key($build['#items']);
-    $this->assertEquals('Test title et', $build['#items'][$key]['title']);
+    $this->assertCount(1, $build);
+    $item = reset($build);
+    $this->assertEquals('Test title en', $item['title']);
+
+    $variables = [
+      'menu_name' => 'headertopnavigation',
+      'items' => $build,
+    ];
+    helfi_alt_lang_fallback_preprocess_menu($variables);
+
+    // Make sure preprocess yields same menu items.
+    $this->assertEquals($build, $variables['items']);
   }
 
 }
