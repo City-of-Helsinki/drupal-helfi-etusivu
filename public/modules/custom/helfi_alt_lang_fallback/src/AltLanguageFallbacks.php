@@ -268,24 +268,4 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
     return [];
   }
 
-  /**
-   * Gets lang, dir and other attributes for fallback elements.
-   *
-   * @return array
-   *   Array with attributes.
-   */
-  public function getLangAttributes(): array {
-    return $this->defaultLanguageResolver->getFallbackLangAttributes();
-  }
-
-  /**
-   * Gets lang, dir and other attributes for fallback elements.
-   *
-   * @return array
-   *   Array with attributes.
-   */
-  public function getCurrentLangAttributes(): array {
-    return $this->defaultLanguageResolver->getCurrentLangAttributes();
-  }
-
 }
