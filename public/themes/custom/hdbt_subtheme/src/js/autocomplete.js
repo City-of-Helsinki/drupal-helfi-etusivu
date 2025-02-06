@@ -54,6 +54,7 @@
       inputAssistiveHint,
       noResultsAssistiveHint,
       someResultsAssistiveHint,
+      sort: false,
       oneResultAssistiveHint,
       highlightedAssistiveHint,
     });
