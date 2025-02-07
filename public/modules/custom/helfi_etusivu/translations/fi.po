@@ -200,3 +200,23 @@ msgstr "Katu- ja puistohankkeet lähellä osoitetta @address"
 msgctxt "Helsinki near you address label"
 msgid "Plans under preparation near the address @address"
 msgstr "Valmisteilla olevat kaavat lähellä osoitetta @address"
+
+msgctxt "Helsinki near you events search"
+msgid "For example, Kotikatu 1"
+msgstr "Esim. Kotikatu 1"
+
+msgctxt "Helsinki near you events search"
+msgid "Find events near you"
+msgstr "Etsi tapahtumia lähelläsi"
+
+msgctxt "Helsinki near you events search"
+msgid "Browse events near you or search for events by theme, location or date."
+msgstr "Voit selata lähialueesi tapahtumia tai etsiä tapahtumia aiheen, tapahtumapaikan tai ajankohdan mukaan."
+
+msgctxt "Helsinki near you events search"
+msgid "Find events in your neighbourhood that interest you."
+msgstr "Löydä sinua kiinnostavat tapahtumat lähialueeltasi."
+
+msgctxt "Helsinki near you events search"
+msgid "Search for more events on the Events website"
+msgstr "Etsi lisää tapahtumia Tapahtumat-sivustolta"

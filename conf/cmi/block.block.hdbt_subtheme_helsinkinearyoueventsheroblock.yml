@@ -1,0 +1,25 @@
+uuid: e100646b-2af9-4b0d-ae6e-d2b74498f2fc
+langcode: fi
+status: true
+dependencies:
+  module:
+    - helfi_etusivu
+    - system
+  theme:
+    - hdbt_subtheme
+id: hdbt_subtheme_helsinkinearyoueventsheroblock
+theme: hdbt_subtheme
+region: before_content
+weight: 0
+provider: null
+plugin: helsinki_near_you_events_hero_block
+settings:
+  id: helsinki_near_you_events_hero_block
+  label: 'Helsinki near you events hero block'
+  label_display: '0'
+  provider: helfi_etusivu
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: "/helsinki-near-you/events\r\n/helsinki-lahellasi/tapahtumat\r\n/helsingfors-nara-dig/utbildningar"

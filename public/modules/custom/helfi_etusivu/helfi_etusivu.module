@@ -261,9 +261,14 @@ function helfi_etusivu_preprocess_html(&$variables): void {
 function helfi_etusivu_preprocess_page(&$variables): void {
   $route = \Drupal::routeMatch()->getRouteName();
 
+  $near_you_pages = [
+    'helfi_etusivu.helsinki_near_you',
+    'helfi_etusivu.helsinki_near_you_events'
+  ];
+
   // There is hero block on Helsinki near you landing page but
   // since it isn't a paragraph we must set this variable manually.
-  if ($route === 'helfi_etusivu.helsinki_near_you') {
+  if (in_array($route, $near_you_pages)) {
     $variables['has_hero'] = TRUE;
   }
 
@@ -354,6 +359,13 @@ function helfi_etusivu_theme() : array {
     ],
     'helsinki_near_you_events' => [
       'template' => 'helsinki-near-you-events',
+    ],
+    'helsinki_near_you_events_hero_block' => [
+      'variables' => [
+        'hero_title' => NULL,
+        'hero_description' => NULL,
+      ],
+      'template' => 'helsinki-near-you-events-hero-block',
     ]
   ];
 }
