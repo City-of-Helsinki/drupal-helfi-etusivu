@@ -214,3 +214,7 @@ msgstr "Sök fler evenemang på webbplatsen Evenemang"
 msgctxt "Helsinki near you events search"
 msgid "See all events near you"
 msgstr "Se alla evenemang nära dig"
+
+msgctxt "Helsinki near you events search"
+msgid "Start by searching with your address."
+msgstr "Börja med att söka med din adress."
