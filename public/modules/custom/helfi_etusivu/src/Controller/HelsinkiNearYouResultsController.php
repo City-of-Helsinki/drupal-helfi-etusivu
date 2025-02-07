@@ -78,7 +78,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     $eventsNearYouRoute = Url::fromRoute('helfi_etusivu.helsinki_near_you_events', [], [
       'query' => [
         'address' => $addressName,
-      ]
+      ],
     ]);
 
     return [

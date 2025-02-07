@@ -6,7 +6,6 @@ namespace Drupal\helfi_etusivu\Plugin\Block;
 
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
@@ -29,4 +28,5 @@ final class HelsinkiNearYouEventsHeroBlock extends BlockBase {
     ];
     return $build;
   }
+
 }
