@@ -202,7 +202,6 @@ msgctxt "Helsinki near you events search"
 msgid "Browse events near you or search for events by theme, location or date."
 msgstr "Du kan bläddra i evenemang nära dig eller söka evenemang enligt tema, plats eller tidpunkt."
 
-
 msgctxt "Helsinki near you events search"
 msgid "Find events in your neighbourhood that interest you."
 msgstr "Hitta intressanta evenemang nära dig."
