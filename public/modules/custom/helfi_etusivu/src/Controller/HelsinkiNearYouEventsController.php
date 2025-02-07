@@ -54,11 +54,7 @@ class HelsinkiNearYouEventsController extends ControllerBase {
         ],
       ],
       '#theme' => 'helsinki_near_you_events',
-      '#title' => $this->t(
-        'Events near you',
-        [],
-        ['context' => 'Helsinki near you event search']
-      ),
+      '#title' => $this->t('Events near you', [], ['context' => 'Helsinki near you']),
     ];
   }
 
