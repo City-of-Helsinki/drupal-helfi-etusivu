@@ -329,7 +329,7 @@ function helfi_etusivu_update_9014(): void {
       'path' => '/helsinki-near-you/events',
       'alias' => '/helsingfors-nara-dig/utbildningar',
       'langcode' => 'sv',
-    ]
+    ],
   ];
   foreach ($paths as $path) {
     PathAlias::create($path)->save();

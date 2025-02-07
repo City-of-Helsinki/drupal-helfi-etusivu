@@ -220,3 +220,7 @@ msgstr "Löydä sinua kiinnostavat tapahtumat lähialueeltasi."
 msgctxt "Helsinki near you events search"
 msgid "Search for more events on the Events website"
 msgstr "Etsi lisää tapahtumia Tapahtumat-sivustolta"
+
+msgctxt "Helsinki near you events search"
+msgid "See all events near you"
+msgstr "Katso kaikki tapahtumat lähelläsi"

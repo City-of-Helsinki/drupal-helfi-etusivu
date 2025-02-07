@@ -247,7 +247,7 @@ function helfi_etusivu_preprocess_html(&$variables): void {
   // Set the theme color to suomenlinna on Helsinki near you landing pages.
   $near_you_pages = [
     'helfi_etusivu.helsinki_near_you',
-    'helfi_etusivu.helsinki_near_you_events'
+    'helfi_etusivu.helsinki_near_you_events',
   ];
 
   if (in_array($route, $near_you_pages)) {
@@ -263,7 +263,7 @@ function helfi_etusivu_preprocess_page(&$variables): void {
 
   $near_you_pages = [
     'helfi_etusivu.helsinki_near_you',
-    'helfi_etusivu.helsinki_near_you_events'
+    'helfi_etusivu.helsinki_near_you_events',
   ];
 
   // There is hero block on Helsinki near you landing page but

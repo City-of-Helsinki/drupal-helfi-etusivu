@@ -58,7 +58,8 @@ class HelsinkiNearYouEventsController extends ControllerBase {
         'Events near you',
         [],
         ['context' => 'Helsinki near you event search']
-      )
+      ),
     ];
   }
+
 }
