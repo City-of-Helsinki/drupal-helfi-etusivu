@@ -22,6 +22,8 @@ class HelsinkiNearYouEventsController extends ControllerBase {
    * Returns a renderable array.
    */
   public function content() : array {
+    $events_url = $this->linkedEvents->getEventsRequest();
+
     return [
       '#attached' => [
         'drupalSettings' => [
@@ -29,9 +31,15 @@ class HelsinkiNearYouEventsController extends ControllerBase {
             'baseUrl' => LinkedEvents::BASE_URL,
             'data' => [
               'helfi-coordinates-based-event-list' => [
-                'events_api_url' => $this->linkedEvents->getEventsRequest(),
+                'events_api_url' => $events_url,
+                'field_event_count' => 10,
                 'field_event_location' => TRUE,
                 'field_event_time' => TRUE,
+                'field_free_events' => TRUE,
+                'field_remote_events' => TRUE,
+                'places' => $this->linkedEvents->getPlacesList($events_url),
+                'useFullLocationFilter' => TRUE,
+                'useFullTopicsFilter' => TRUE,
                 'useLocationSearch' => TRUE,
               ],
             ],
@@ -43,7 +51,7 @@ class HelsinkiNearYouEventsController extends ControllerBase {
       '#title' => $this->t(
         'Events near you',
         [],
-        ['context' => 'Helsinki near you']
+        ['context' => 'Helsinki near you event search']
       )
     ];
   }
