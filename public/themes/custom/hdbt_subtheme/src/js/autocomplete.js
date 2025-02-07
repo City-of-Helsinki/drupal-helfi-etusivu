@@ -31,6 +31,7 @@
     } = drupalSettings.helsinki_near_you_form;
 
     A11yAutocomplete(element, {
+      allowRepeatValues: true,
       classes: {
         wrapper: 'helfi-etusivu-autocomplete'
       },
