@@ -43,6 +43,11 @@ class HelsinkiNearYouEventsController extends ControllerBase {
                 'useLocationSearch' => TRUE,
               ],
             ],
+            'seeAllButtonOverride' => $this->t(
+              'Search for more events on the Events website',
+              [],
+              ['context' => 'Helsinki near you events search']
+            ),
             'useExperimentalGhosts' => TRUE,
           ],
         ],
