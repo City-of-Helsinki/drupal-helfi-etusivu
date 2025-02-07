@@ -96,7 +96,6 @@ class HelsinkiNearYouResultsController extends ControllerBase {
                 'hidePagination' => TRUE,
               ],
             ],
-            'seeAllButtonOverride' => $this->t('See all events near you', [], ['context' => 'Helsinki near you']),
             'seeAllNearYouLink' => $eventsNearYouRoute->toString(),
             'useExperimentalGhosts' => TRUE,
           ],

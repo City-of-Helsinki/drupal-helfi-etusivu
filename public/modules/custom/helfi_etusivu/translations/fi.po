@@ -228,3 +228,6 @@ msgstr "Katso kaikki tapahtumat lähelläsi"
 msgctxt "Helsinki near you events search"
 msgid "Start by searching with your address."
 msgstr "Aloita kirjoittamalla osoitteesi."
+
+msgid "Events near you"
+msgstr "Tapahtumat lähelläsi"
