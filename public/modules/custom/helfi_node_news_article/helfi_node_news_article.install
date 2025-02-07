@@ -8,80 +8,8 @@
 declare(strict_types=1);
 
 /**
- * Gets the permissions.
- *
- * @throws \Drupal\Core\Entity\EntityStorageException
- */
-function helfi_node_news_article_grant_permissions() : void {
-  $permissions = [
-    'admin' => [
-      'create news_article content',
-      'delete any news_article content',
-      'delete news_article revisions',
-      'delete own news_article content',
-      'edit any news_article content',
-      'edit own news_article content',
-      'revert news_article revisions',
-      'set news_article published on date',
-      'translate news_article node',
-      'view news_article revisions',
-    ],
-    'content_producer' => [
-      'create news_article content',
-      'delete own news_article content',
-      'edit any news_article content',
-      'edit own news_article content',
-      'revert news_article revisions',
-      'set news_article published on date',
-      'view news_article revisions',
-    ],
-    'editor' => [
-      'create news_article content',
-      'delete any news_article content',
-      'delete news_article revisions',
-      'delete own news_article content',
-      'edit any news_article content',
-      'edit own news_article content',
-      'revert news_article revisions',
-      'set news_article published on date',
-      'translate news_article node',
-      'view news_article revisions',
-    ],
-    'news_producer' => [
-      'create news_article content',
-      'delete any news_article content',
-      'delete news_article revisions',
-      'delete own news_article content',
-      'edit any news_article content',
-      'edit own news_article content',
-      'revert news_article revisions',
-      'set news_article published on date',
-      'translate news_article node',
-      'view news_article revisions',
-    ],
-    'read_only' => [
-      'view any unpublished news_article content',
-    ],
-  ];
-  helfi_platform_config_grant_permissions($permissions);
-}
-
-/**
- * Implements hook_install().
- */
-function helfi_node_news_article_install($is_syncing) : void {
-  // Do not perform following steps if the module is being installed as part
-  // of a configuration import.
-  if ($is_syncing) {
-    return;
-  }
-
-  helfi_node_news_article_grant_permissions();
-}
-
-/**
  * Grants permissions to `news_article` for `news_producer` role.
  */
 function helfi_node_news_article_update_10001(): void {
-  helfi_node_news_article_grant_permissions();
+  // This is now automated.
 }
