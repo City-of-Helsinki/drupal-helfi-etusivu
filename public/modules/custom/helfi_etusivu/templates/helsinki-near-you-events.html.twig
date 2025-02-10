@@ -1,0 +1,31 @@
+<article>
+  <div class="components components--computed components--helsinki-near-you-events">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--react-search',
+          'component--event-list',
+          'component--full-width',
+        ],
+        component_title: 'Find events near you'|t({}, {'context': 'Helsinki near you events search'}),
+        component_description: 'Browse events near you or search for events by theme, location or date.'|t({}, {'context': 'Helsinki near you events search'}),
+      }
+    %}
+      {% block component_content %}
+        {# Hook React app to this div #}
+        {{ attach_library('hdbt/event-list') }}
+        <div
+          id="helfi-events-search"
+          data-paragraph-id="helfi-coordinates-based-event-list"
+        >
+        </div>
+        {# Indicate JS not enabled #}
+        <noscript>
+          <div class="event-list__javascript-disabled">
+            {{ 'You must enable JavaScript in your browser for event list to work'|t }}
+          </div>
+        </noscript>
+      {% endblock %}
+    {% endembed %}
+  </div>
+</article>
