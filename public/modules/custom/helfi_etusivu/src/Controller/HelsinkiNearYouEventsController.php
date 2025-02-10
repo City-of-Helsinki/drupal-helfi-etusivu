@@ -38,7 +38,7 @@ class HelsinkiNearYouEventsController extends ControllerBase {
                 'field_free_events' => TRUE,
                 'field_remote_events' => TRUE,
                 'places' => $this->linkedEvents->getPlacesList($events_url),
-                'showHeading' => FALSE,
+                'hideHeading' => TRUE,
                 'useFullLocationFilter' => TRUE,
                 'useFullTopicsFilter' => TRUE,
                 'useLocationSearch' => TRUE,
