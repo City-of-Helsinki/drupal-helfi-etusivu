@@ -20,3 +20,11 @@ helfi_etusivu.helsinki_near_you_autocomplete:
     _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController::addressSuggestions'
   requirements:
     _role: 'authenticated'
+
+helfi_etusivu.helsinki_near_you_events:
+  path: '/helsinki-near-you/events'
+  defaults:
+    _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouEventsController::content'
+    _title: 'Events near you'
+  requirements:
+    _role: 'authenticated'
