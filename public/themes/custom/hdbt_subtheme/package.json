@@ -35,6 +35,7 @@
     "eslint-import-resolver-webpack": "0.13.10",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^5.0.0",
+    "expose-loader": "^4.0.0",
     "glob": "^10.0.0",
     "hds-design-tokens": "^2.0.0",
     "html-loader": "^4.0.0",
