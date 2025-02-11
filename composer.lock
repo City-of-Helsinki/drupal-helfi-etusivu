@@ -3702,6 +3702,10 @@
                     "homepage": "https://www.drupal.org/user/125814"
                 },
                 {
+                    "name": "colan",
+                    "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
                     "name": "guignonv",
                     "homepage": "https://www.drupal.org/user/423148"
                 },
@@ -4582,16 +4586,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.12.15",
+            "version": "4.12.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "2d5bb34b840845b05cafa240212854ab192e18a3"
+                "reference": "f903111158324d608b3d60f837472934d3d93f2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/2d5bb34b840845b05cafa240212854ab192e18a3",
-                "reference": "2d5bb34b840845b05cafa240212854ab192e18a3",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/f903111158324d608b3d60f837472934d3d93f2d",
+                "reference": "f903111158324d608b3d60f837472934d3d93f2d",
                 "shasum": ""
             },
             "require": {
@@ -4715,10 +4719,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.12.15",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.12.16",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-02-10T11:32:31+00:00"
+            "time": "2025-02-10T15:16:22+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
