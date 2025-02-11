@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb7e0cfcdb461c05f2f95cafa401bd58",
+    "content-hash": "6f0f0cd63f778360da36a898a7f5db3c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6671,35 +6671,33 @@
         },
         {
             "name": "drupal/radioactivity",
-            "version": "dev-4.0.x",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/radioactivity.git",
-                "reference": "987b7a8359f45022ebd2370786a8e2a49e91db96"
+                "reference": "4.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/radioactivity-4.1.0.zip",
+                "reference": "4.1.0",
+                "shasum": "674a7f278433b4dcfa13f6980e3253296eb9b348"
             },
             "require": {
-                "drupal/core": "^9 || ^10",
-                "php": ">=7.4"
+                "drupal/core": "^10.3 || ^11"
             },
             "require-dev": {
-                "drupal/rules": "^3.0"
+                "drupal/rules": "^4.0",
+                "drush/drush": ">=12.5"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-4.0.x": "4.0.x-dev"
-                },
                 "drupal": {
-                    "version": "4.0.3+9-dev",
-                    "datestamp": "1694098152",
+                    "version": "4.1.0",
+                    "datestamp": "1739142082",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
-                },
-                "drush": {
-                    "services": {
-                        "drush.services.yml": "^10"
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -6709,20 +6707,16 @@
             ],
             "authors": [
                 {
-                    "name": "matthewmessmer",
-                    "homepage": "https://www.drupal.org/user/2496364"
-                },
-                {
                     "name": "skiminki",
                     "homepage": "https://www.drupal.org/user/265179"
                 },
                 {
-                    "name": "Sutharsan",
+                    "name": "sutharsan",
                     "homepage": "https://www.drupal.org/user/73854"
                 },
                 {
-                    "name": "thomasdegraaff",
-                    "homepage": "https://www.drupal.org/user/989866"
+                    "name": "tr",
+                    "homepage": "https://www.drupal.org/user/202830"
                 }
             ],
             "description": "Provides a field which can be used to track popularity, views, etc.",
@@ -21044,6 +21038,6 @@
     "platform": {
         "ext-libxml": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
