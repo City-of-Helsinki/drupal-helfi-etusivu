@@ -210,8 +210,8 @@ msgid "Find events near you"
 msgstr "Etsi tapahtumia lähelläsi"
 
 msgctxt "Helsinki near you events search"
-msgid "Browse events near you or search for events by theme, location or date."
-msgstr "Voit selata lähialueesi tapahtumia tai etsiä tapahtumia aiheen, tapahtumapaikan tai ajankohdan mukaan."
+msgid "Browse events near you or search for events by theme, location or date. The search shows results at most two kilometers from the address."
+msgstr "Voit selata lähialueesi tapahtumia tai etsiä tapahtumia aiheen, tapahtumapaikan tai ajankohdan mukaan. Haku näyttää tuloksia enintään kahden kilometrin päässä osoitteesta."
 
 msgctxt "Helsinki near you events search"
 msgid "Find events in your neighbourhood that interest you."

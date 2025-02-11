@@ -4,7 +4,7 @@ helfi_etusivu.helsinki_near_you:
     _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouController::content'
     _title: 'Helsinki near you'
   requirements:
-    _role: 'authenticated'
+    _permission: 'access content'
 
 helfi_etusivu.helsinki_near_you_results:
   path: '/helsinki-near-you/results'
@@ -12,14 +12,14 @@ helfi_etusivu.helsinki_near_you_results:
     _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController::content'
     _title: 'Services, events and news near your address'
   requirements:
-    _role: 'authenticated'
+    _permission: 'access content'
 
 helfi_etusivu.helsinki_near_you_autocomplete:
   path: '/helsinki-near-you/results/autocomplete'
   defaults:
     _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController::addressSuggestions'
   requirements:
-    _role: 'authenticated'
+    _permission: 'access content'
 
 helfi_etusivu.helsinki_near_you_events:
   path: '/helsinki-near-you/events'
@@ -27,4 +27,4 @@ helfi_etusivu.helsinki_near_you_events:
     _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouEventsController::content'
     _title: 'Events near you'
   requirements:
-    _role: 'authenticated'
+    _permission: 'access content'
