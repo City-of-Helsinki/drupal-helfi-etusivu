@@ -108,7 +108,7 @@ third_party_settings:
         description: 'Recommended content may include news or articles. Recommendations are based on automatically selected news categories. The news categories are chosen based on the page content when the page is saved.'
         required_fields: false
 _core:
-  default_config_hash: dW1Kmx2dOCHZosI85sWLQGupPRXvS8NL-lmM_O44boc
+  default_config_hash: 8VB52G7NLFlO7n5sxx7SGXc03Mixt3Kogv33toVIV2Q
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item
@@ -168,16 +168,6 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_news_groups:
-    type: select2_entity_reference
-    weight: 25
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
   field_news_item_links_link:
     type: helfi_linkit
     weight: 20
@@ -206,42 +196,6 @@ content:
       match_operator: CONTAINS
       match_limit: 10
     third_party_settings: {  }
-  field_news_item_updating_news:
-    type: paragraphs
-    weight: 17
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: _none
-      features:
-        add_above: '0'
-        collapse_edit_all: '0'
-        convert: '0'
-        duplicate: '0'
-    third_party_settings: {  }
-  field_news_neighbourhoods:
-    type: select2_entity_reference
-    weight: 27
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_radioactivity:
-    type: radioactivity_reference
-    weight: 28
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_short_title:
     type: string_textfield
     weight: 2
@@ -249,13 +203,6 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  in_recommendations:
-    type: boolean_checkbox
-    weight: 0
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -293,20 +240,6 @@ content:
     weight: 9
     region: content
     settings: {  }
-    third_party_settings: {  }
-  show_annif_block:
-    type: boolean_checkbox
-    weight: 1
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  show_recommendations:
-    type: boolean_checkbox
-    weight: 0
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 10
@@ -360,6 +293,73 @@ content:
     weight: 13
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_news_item_updating_news:
+    type: paragraphs
+    weight: 17
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: '0'
+        convert: '0'
+        duplicate: '0'
+    third_party_settings: {  }
+  field_news_groups:
+    type: select2_entity_reference
+    weight: 25
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_news_neighbourhoods:
+    type: select2_entity_reference
+    weight: 27
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_radioactivity:
+    type: radioactivity_reference
+    weight: 28
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  in_recommendations:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  show_annif_block:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  show_recommendations:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   hide_sidebar_navigation: true

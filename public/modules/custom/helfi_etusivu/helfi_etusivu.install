@@ -314,3 +314,24 @@ function helfi_etusivu_update_9013(): void {
     }
   }
 }
+
+/**
+ * UHF-11235: Add events landing page to helsinki-near-you.
+ */
+function helfi_etusivu_update_9014(): void {
+  $paths = [
+    [
+      'path' => '/helsinki-near-you/events',
+      'alias' => '/helsinki-lahellasi/tapahtumat',
+      'langcode' => 'fi',
+    ],
+    [
+      'path' => '/helsinki-near-you/events',
+      'alias' => '/helsingfors-nara-dig/utbildningar',
+      'langcode' => 'sv',
+    ],
+  ];
+  foreach ($paths as $path) {
+    PathAlias::create($path)->save();
+  }
+}

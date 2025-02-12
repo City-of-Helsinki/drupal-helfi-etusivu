@@ -119,21 +119,6 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
   }
 
   /**
-   * Check if current or specific language is considered not fully supported.
-   *
-   * Does not account for language being actually in use.
-   *
-   * @param string|null $langcode
-   *   Langcode to check. Defaults to current language.
-   *
-   * @return bool
-   *   If language is considered alternative and not fully supported.
-   */
-  public function isAltLanguage(?string $langcode = NULL): bool {
-    return $this->defaultLanguageResolver->isAltLanguage($langcode);
-  }
-
-  /**
    * Checks if region has fallback language content.
    *
    * Currently only determined by region name.
@@ -146,7 +131,7 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
    */
   public function shouldAttributesBeAddedToRegion(string $region_name): bool {
     // Only act on alternative languages.
-    if (!$this->isAltLanguage()) {
+    if (!$this->defaultLanguageResolver->isAltLanguage()) {
       return FALSE;
     }
 
@@ -166,7 +151,7 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
    */
   public function shouldAttributesBeAddedToBlock(string $plugin_id): bool {
     // Only act on alternative languages.
-    if (!$this->isAltLanguage()) {
+    if (!$this->defaultLanguageResolver->isAltLanguage()) {
       return FALSE;
     }
 
@@ -184,7 +169,7 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
    */
   public function checkIfBlockHasFallbackContent(array $variables): bool {
     // Only act on alternative languages.
-    if (!$this->isAltLanguage()) {
+    if (!$this->defaultLanguageResolver->isAltLanguage()) {
       return FALSE;
     }
 
@@ -213,7 +198,7 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
    */
   public function shouldMenuTreeBeReplaced(string $menu_name, array $items): bool {
     // Only act on alternative languages.
-    if (!$this->isAltLanguage()) {
+    if (!$this->defaultLanguageResolver->isAltLanguage()) {
       return FALSE;
     }
 
@@ -281,26 +266,6 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
     }
 
     return [];
-  }
-
-  /**
-   * Gets lang, dir and other attributes for fallback elements.
-   *
-   * @return array
-   *   Array with attributes.
-   */
-  public function getLangAttributes(): array {
-    return $this->defaultLanguageResolver->getFallbackLangAttributes();
-  }
-
-  /**
-   * Gets lang, dir and other attributes for fallback elements.
-   *
-   * @return array
-   *   Array with attributes.
-   */
-  public function getCurrentLangAttributes(): array {
-    return $this->defaultLanguageResolver->getCurrentLangAttributes();
   }
 
 }

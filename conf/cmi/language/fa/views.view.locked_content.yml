@@ -15,6 +15,11 @@ display:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
+          tags:
+            next: Next
+            previous: Previous
+            first: First
+            last: Last
       fields:
         node_bulk_form:
           action_title: عملکرد
