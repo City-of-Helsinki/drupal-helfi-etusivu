@@ -14,6 +14,11 @@ display:
           expose:
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
       fields:
         node_bulk_form:
           action_title: إجراء
