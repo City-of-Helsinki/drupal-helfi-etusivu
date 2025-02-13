@@ -4066,17 +4066,17 @@
         },
         {
             "name": "drupal/gin",
-            "version": "4.0.2",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gin.git",
-                "reference": "4.0.2"
+                "reference": "4.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gin-4.0.2.zip",
-                "reference": "4.0.2",
-                "shasum": "501f167bd7009cffa29848a918b3982cb0a8245b"
+                "url": "https://ftp.drupal.org/files/projects/gin-4.0.3.zip",
+                "reference": "4.0.3",
+                "shasum": "c8b80935b558985f88ee7d5fa7dbb25ec4024dd0"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
@@ -4085,8 +4085,8 @@
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "4.0.2",
-                    "datestamp": "1735405135",
+                    "version": "4.0.3",
+                    "datestamp": "1739275596",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4249,16 +4249,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.9.16",
+            "version": "6.9.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "b30f5a708ee6a9fbf5b777683667a35473103fa7"
+                "reference": "dc7f4711a1a439226d483eceaf10797b4eac4815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/b30f5a708ee6a9fbf5b777683667a35473103fa7",
-                "reference": "b30f5a708ee6a9fbf5b777683667a35473103fa7",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/dc7f4711a1a439226d483eceaf10797b4eac4815",
+                "reference": "dc7f4711a1a439226d483eceaf10797b4eac4815",
                 "shasum": ""
             },
             "require": {
@@ -4277,10 +4277,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.9.16",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.9.18",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-02-11T07:11:26+00:00"
+            "time": "2025-02-12T12:48:42+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4468,12 +4468,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-tools.git",
-                "reference": "bc5416375195d1307adf188098d75a19a5de0224"
+                "reference": "5970c81bf894e2f76f3e6b3322f6bfaf8eb47471"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/bc5416375195d1307adf188098d75a19a5de0224",
-                "reference": "bc5416375195d1307adf188098d75a19a5de0224",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/5970c81bf894e2f76f3e6b3322f6bfaf8eb47471",
+                "reference": "5970c81bf894e2f76f3e6b3322f6bfaf8eb47471",
                 "shasum": ""
             },
             "require": {
@@ -4548,7 +4548,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/main",
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
-            "time": "2025-01-15T12:24:04+00:00"
+            "time": "2025-02-11T08:34:01+00:00"
         },
         {
             "name": "drupal/helfi_navigation",
@@ -4586,16 +4586,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.12.16",
+            "version": "4.12.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "f903111158324d608b3d60f837472934d3d93f2d"
+                "reference": "36697a71b4e6b517d3f3100610dde32482289e5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/f903111158324d608b3d60f837472934d3d93f2d",
-                "reference": "f903111158324d608b3d60f837472934d3d93f2d",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/36697a71b4e6b517d3f3100610dde32482289e5e",
+                "reference": "36697a71b4e6b517d3f3100610dde32482289e5e",
                 "shasum": ""
             },
             "require": {
@@ -4719,10 +4719,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.12.16",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.12.17",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-02-10T15:16:22+00:00"
+            "time": "2025-02-13T11:03:02+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -8280,12 +8280,20 @@
                 "shasum": "9fbddb71417113d58345d2fbe9d0a1aa9c5d5c36"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10"
+                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/purge": "~3.0"
             },
             "require-dev": {
-                "drupal/purge": "*",
+                "behat/mink-extension": "v2.2",
+                "behat/mink-selenium2-driver": "1.3.x-dev",
+                "bex/behat-screenshot": "dev-master",
+                "drupal/coder": "^8.3",
+                "drupal/drupal-extension": "master-dev",
+                "drupal/purge": "dev-3.x",
                 "drupal/purge_tokens": "*",
-                "drupal/varnish_purger-varnish_purger": "*"
+                "drupal/varnish_purger-varnish_purger": "*",
+                "phpmd/phpmd": "dev-master",
+                "phpmetrics/phpmetrics": "dev-master"
             },
             "type": "drupal-module",
             "extra": {
@@ -8300,12 +8308,16 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
                     "name": "deadbeef",
                     "homepage": "https://www.drupal.org/user/93644"
+                },
+                {
+                    "name": "dieterholvoet",
+                    "homepage": "https://www.drupal.org/user/3567222"
                 },
                 {
                     "name": "javivf",
@@ -8316,10 +8328,11 @@
                     "homepage": "https://www.drupal.org/user/2479724"
                 },
                 {
-                    "name": "MiSc",
+                    "name": "misc",
                     "homepage": "https://www.drupal.org/user/382892"
                 }
             ],
+            "description": "Provides a purger for Varnish for Purger module.",
             "homepage": "https://www.drupal.org/project/varnish_purge",
             "support": {
                 "source": "https://git.drupalcode.org/project/varnish_purge"
@@ -8451,17 +8464,17 @@
         },
         {
             "name": "drupal/views_bulk_operations",
-            "version": "4.3.2",
+            "version": "4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_bulk_operations.git",
-                "reference": "4.3.2"
+                "reference": "4.3.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.3.2.zip",
-                "reference": "4.3.2",
-                "shasum": "b3d0ee06abb15520595b83324e93c5500d5dcef3"
+                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.3.3.zip",
+                "reference": "4.3.3",
+                "shasum": "60d83a18ef31fd1e85fb30137fd03a55cad275f3"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11"
@@ -8478,8 +8491,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.3.2",
-                    "datestamp": "1731070018",
+                    "version": "4.3.3",
+                    "datestamp": "1739278730",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8507,9 +8520,9 @@
             "description": "Adds an ability to perform bulk operations on selected entities from view results. Provides an API to create such operations.",
             "homepage": "https://www.drupal.org/project/views_bulk_operations",
             "support": {
-                "source": "https://git.drupalcode.org/project/views_bulk_operations/-/tree/8.x-3.x",
-                "issues": "https://www.drupal.org/project/issues/views_bulk_operations?version=8.x",
-                "docs": "https://www.drupal.org/docs/8/modules/views-bulk-operations-vbo"
+                "source": "https://git.drupalcode.org/project/views_bulk_operations",
+                "issues": "https://www.drupal.org/project/issues/views_bulk_operations?version=any_4.",
+                "docs": "https://www.drupal.org/docs/contributed-modules/views-bulk-operations-vbo"
             }
         },
         {
@@ -15397,24 +15410,23 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.19.0",
+            "version": "v3.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d4f8c2b86374f08efc859323dbcd95c590f7124e"
+                "reference": "3468920399451a384bef53cf7996965f7cd40183"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d4f8c2b86374f08efc859323dbcd95c590f7124e",
-                "reference": "d4f8c2b86374f08efc859323dbcd95c590f7124e",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3468920399451a384bef53cf7996965f7cd40183",
+                "reference": "3468920399451a384bef53cf7996965f7cd40183",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.2",
+                "php": ">=8.1.0",
                 "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "^1.8",
-                "symfony/polyfill-mbstring": "^1.3",
-                "symfony/polyfill-php81": "^1.29"
+                "symfony/polyfill-mbstring": "^1.3"
             },
             "require-dev": {
                 "phpstan/phpstan": "^2.0",
@@ -15461,7 +15473,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.19.0"
+                "source": "https://github.com/twigphp/Twig/tree/v3.20.0"
             },
             "funding": [
                 {
@@ -15473,7 +15485,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-29T07:06:14+00:00"
+            "time": "2025-02-13T08:34:43+00:00"
         },
         {
             "name": "twistor/flysystem-stream-wrapper",
