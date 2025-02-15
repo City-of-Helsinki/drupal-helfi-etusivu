@@ -3,7 +3,7 @@
  * Initiates autocomplete with support for remote options.
  */
 
-'use strict';
+
 
 ((Drupal, once) => {
   /**
@@ -12,6 +12,7 @@
    * @param {HTMLSelectElement} element Select element.
    */
   const init = element => {
+    // eslint-disable-next-line no-undef
     if (!A11yAutocomplete) {
       throw new Error('A11yAutocomplete object not found. Make sure the library is loaded.');
     }
@@ -30,8 +31,8 @@
       minCharAssistiveHint
     } = drupalSettings.helsinki_near_you_form;
 
+    // eslint-disable-next-line no-undef
     A11yAutocomplete(element, {
-      allowRepeatValues: true,
       classes: {
         wrapper: 'helfi-etusivu-autocomplete'
       },
@@ -46,6 +47,7 @@
           results(data);
         }
         catch (e) {
+          // eslint-disable-next-line no-console
           console.error(e);
           results([]);
         }
@@ -55,19 +57,18 @@
       inputAssistiveHint,
       noResultsAssistiveHint,
       someResultsAssistiveHint,
-      sort: false,
       oneResultAssistiveHint,
       highlightedAssistiveHint,
     });
   };
 
   Drupal.behaviors.helfi_etusivu_autocomplete = {
-    attach: function (context, settings) {
-        once(
-          'a11y_autocomplete_element',
-          '[data-helfi-etusivu-autocomplete]',
-          context,
-        ).forEach(init);
+    attach (context) {
+      once(
+        'a11y_autocomplete_element',
+        '[data-helfi-etusivu-autocomplete]',
+        context,
+      ).forEach(init);
     },
   };
 })(Drupal, once);

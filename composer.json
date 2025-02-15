@@ -28,7 +28,7 @@
         "drupal/migrate_plus": "^6.0",
         "drupal/openapi_jsonapi": "^3.0",
         "drupal/openapi_ui_redoc": "^1.0@RC",
-        "drupal/radioactivity": "^4.0",
+        "drupal/radioactivity": "^4.1",
         "drupal/redis": "^1.5",
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/views_rss": "^2.0@RC",
