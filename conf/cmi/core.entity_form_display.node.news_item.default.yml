@@ -108,7 +108,7 @@ third_party_settings:
         description: 'Recommended content may include news or articles. Recommendations are based on automatically selected news categories. The news categories are chosen based on the page content when the page is saved.'
         required_fields: false
 _core:
-  default_config_hash: dW1Kmx2dOCHZosI85sWLQGupPRXvS8NL-lmM_O44boc
+  default_config_hash: 8VB52G7NLFlO7n5sxx7SGXc03Mixt3Kogv33toVIV2Q
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item

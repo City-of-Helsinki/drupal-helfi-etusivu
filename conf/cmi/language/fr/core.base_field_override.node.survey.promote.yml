@@ -1,4 +1,4 @@
-label: 'Promoted to front page'
+label: "Promu en page d'accueil"
 settings:
   on_label: 'On'
   off_label: 'Off'
