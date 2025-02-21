@@ -75,6 +75,12 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     ];
     $newsArchiveUrl = $this->getInternalSearchLink(InternalSearchLink::NEWS_ARCHIVE, $newsQuery);
 
+    $eventsNearYouRoute = Url::fromRoute('helfi_etusivu.helsinki_near_you_events', [], [
+      'query' => [
+        'address' => $addressName,
+      ],
+    ]);
+
     return [
       '#attached' => [
         'drupalSettings' => [
@@ -87,9 +93,10 @@ class HelsinkiNearYouResultsController extends ControllerBase {
                   'dwithin_metres' => 2000,
                 ]),
                 'field_event_count' => 3,
+                'hidePagination' => TRUE,
               ],
             ],
-            'seeAllButtonOverride' => $this->t('See all events', [], ['context' => 'Helsinki near you']),
+            'seeAllNearYouLink' => $eventsNearYouRoute->toString(),
             'useExperimentalGhosts' => TRUE,
           ],
           'helfi_news_archive' => [

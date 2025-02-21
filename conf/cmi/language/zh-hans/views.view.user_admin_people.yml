@@ -26,7 +26,7 @@ display:
           label: 上次访问
           settings:
             past_format: '@interval 前'
-            future_format: '@interval hence'
+            future_format: '@interval 后'
         operations:
           label: 操作
         mail:
