@@ -24,10 +24,10 @@
         use_component_title_lang_fallback: alternative_language ?? false,
         component_content_class: component_content_class
       }
-      %}
-        {% block component_content %}
-          {{ drupal_view('frontpage_news', view)  }}
-        {% endblock component_content %}
+    %}
+      {% block component_content %}
+        {{ drupal_view('frontpage_news', view) }}
+      {% endblock component_content %}
     {% endembed %}
   {% endblock paragraph %}
 
