@@ -39,13 +39,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_publish_externally:
-    type: boolean_checkbox
-    weight: 14
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   field_survey_content_pages:
     type: select2_entity_reference
     weight: 14
@@ -134,6 +127,13 @@ content:
     weight: 8
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_publish_externally:
+    type: boolean_checkbox
+    weight: 14
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   hide_sidebar_navigation: true
