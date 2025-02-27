@@ -8,7 +8,7 @@ third_party_settings:
   paragraphs_library:
     allow_library_conversion: true
 _core:
-  default_config_hash: quCqNy8X3E6ITit4b7BJnq9E6Ai6Tx3xYpBz1pByy0E
+  default_config_hash: FisTIvx0ki4mAwQgws5PIWpH11vL_hyF3bE33LK7awk
 id: text
 label: 'Text (supported in other languages)'
 icon_uuid: null

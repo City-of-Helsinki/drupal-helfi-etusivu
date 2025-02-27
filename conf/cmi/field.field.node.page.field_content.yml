@@ -53,8 +53,8 @@ settings:
       chart: chart
       event_list: event_list
       contact_card_listing: contact_card_listing
-      image_gallery: image_gallery
       news_list: news_list
+      image_gallery: image_gallery
     negate: 0
     target_bundles_drag_drop:
       accordion:
