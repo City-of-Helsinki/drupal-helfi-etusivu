@@ -9,7 +9,7 @@ dependencies:
   module:
     - text
 _core:
-  default_config_hash: oEXxwKRL_SQCkrCkFWUquEfltY6ZTGpAIkfF9q1Ox9I
+  default_config_hash: ubsaI6ihyXTogop68h6TD794HrLGNfMg0UundWE6_GQ
 id: paragraph.sidebar_text.default
 targetEntityType: paragraph
 bundle: sidebar_text
