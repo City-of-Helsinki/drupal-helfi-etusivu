@@ -4252,16 +4252,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.9.35",
+            "version": "6.9.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "0892ce506fd0dc9521d07a0327e80aad0fa055b4"
+                "reference": "1e09483ed9ba1c35dd39fcf80a4c9da38dea3aaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/0892ce506fd0dc9521d07a0327e80aad0fa055b4",
-                "reference": "0892ce506fd0dc9521d07a0327e80aad0fa055b4",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/1e09483ed9ba1c35dd39fcf80a4c9da38dea3aaa",
+                "reference": "1e09483ed9ba1c35dd39fcf80a4c9da38dea3aaa",
                 "shasum": ""
             },
             "require": {
@@ -4280,10 +4280,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.9.35",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.9.37",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-03-05T11:55:32+00:00"
+            "time": "2025-03-10T08:02:34+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4589,16 +4589,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.12.24",
+            "version": "4.12.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "e78668d719fd05cdaaa25e90952b680853978b4d"
+                "reference": "fea9561f5f20f6080ff4a33b38f15e13cdb8fcf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/e78668d719fd05cdaaa25e90952b680853978b4d",
-                "reference": "e78668d719fd05cdaaa25e90952b680853978b4d",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/fea9561f5f20f6080ff4a33b38f15e13cdb8fcf1",
+                "reference": "fea9561f5f20f6080ff4a33b38f15e13cdb8fcf1",
                 "shasum": ""
             },
             "require": {
@@ -4719,10 +4719,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.12.24",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.12.25",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-02-26T11:06:49+00:00"
+            "time": "2025-03-10T07:57:57+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -8449,17 +8449,17 @@
         },
         {
             "name": "drupal/views_bulk_operations",
-            "version": "4.3.3",
+            "version": "4.3.4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_bulk_operations.git",
-                "reference": "4.3.3"
+                "reference": "4.3.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.3.3.zip",
-                "reference": "4.3.3",
-                "shasum": "60d83a18ef31fd1e85fb30137fd03a55cad275f3"
+                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.3.4.zip",
+                "reference": "4.3.4",
+                "shasum": "c0974356f26d49ad9e99450e9db9650de94c6010"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11"
@@ -8476,8 +8476,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.3.3",
-                    "datestamp": "1739278730",
+                    "version": "4.3.4",
+                    "datestamp": "1741604495",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10543,16 +10543,16 @@
         },
         {
             "name": "mck89/peast",
-            "version": "v1.16.3",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mck89/peast.git",
-                "reference": "645ec21b650bc2aced18285c85f220d22afc1430"
+                "reference": "3a752d39bd7d8dc1e19bcf424f3d5ac1a1ca6ad5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mck89/peast/zipball/645ec21b650bc2aced18285c85f220d22afc1430",
-                "reference": "645ec21b650bc2aced18285c85f220d22afc1430",
+                "url": "https://api.github.com/repos/mck89/peast/zipball/3a752d39bd7d8dc1e19bcf424f3d5ac1a1ca6ad5",
+                "reference": "3a752d39bd7d8dc1e19bcf424f3d5ac1a1ca6ad5",
                 "shasum": ""
             },
             "require": {
@@ -10565,7 +10565,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16.3-dev"
+                    "dev-master": "1.17.0-dev"
                 }
             },
             "autoload": {
@@ -10586,9 +10586,9 @@
             "description": "Peast is PHP library that generates AST for JavaScript code",
             "support": {
                 "issues": "https://github.com/mck89/peast/issues",
-                "source": "https://github.com/mck89/peast/tree/v1.16.3"
+                "source": "https://github.com/mck89/peast/tree/v1.17.0"
             },
-            "time": "2024-07-23T14:00:32+00:00"
+            "time": "2025-03-07T19:44:14+00:00"
         },
         {
             "name": "microsoft/azure-storage-blob",
