@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f0f0cd63f778360da36a898a7f5db3c",
+    "content-hash": "993752f1c8eb351df60c31fc1bb9f56b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4252,16 +4252,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.9.38",
+            "version": "6.9.38.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "72c573405b2865e6fd0c5e1c911b704fbc191296"
+                "reference": "dd5709e6f76861c50736326765df79799b9762c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/72c573405b2865e6fd0c5e1c911b704fbc191296",
-                "reference": "72c573405b2865e6fd0c5e1c911b704fbc191296",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/dd5709e6f76861c50736326765df79799b9762c3",
+                "reference": "dd5709e6f76861c50736326765df79799b9762c3",
                 "shasum": ""
             },
             "require": {
@@ -4280,10 +4280,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.9.38",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.9.38.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-03-11T07:35:20+00:00"
+            "time": "2025-03-14T10:02:22+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -21046,6 +21046,6 @@
     "platform": {
         "ext-libxml": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
