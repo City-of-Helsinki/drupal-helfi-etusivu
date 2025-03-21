@@ -51,8 +51,6 @@ function helfi_etusivu_entity_type_alter(array &$entity_types): void {
 }
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter().
- *
  * Alter promoted to front page label value and position in news content forms.
  *
  * This module alter hook is too early to fully handle the
@@ -60,7 +58,7 @@ function helfi_etusivu_entity_type_alter(array &$entity_types): void {
  * are altered by Gin theme and HDBT Admin theme.
  * See: hdbt_admin/hdbt_admin.theme / hdbt_admin_apply_form_theme().
  */
-function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
+function _helfi_etusivu_form_promote_field_alter(&$form, FormStateInterface $form_state, $form_id) : void {
   if (
     !isset($form['promote']) ||
     !str_contains($form_id, 'news_item') &&
@@ -80,6 +78,34 @@ function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_sta
     $form['promote']['widget']['value']['#title'] = t('Publish the news article in the top news articles flow', [], ['context' => 'News article promoted field title']);
     $form['promote']['widget']['#title'] = t('Top news article flow', [], ['context' => 'News article promoted field wrapper title']);
   }
+}
+
+/**
+ * Alter the node form to hide the updating news field for news items.
+ */
+function _helfi_etusivu_form_updating_news_field_alter(&$form, FormStateInterface $form_state, $form_id) : void {
+  if (!str_contains($form_id, 'news_item')) {
+    return;
+  }
+
+  if (!isset($form['field_news_item_updating_news'])) {
+    return;
+  }
+
+  $storage = $form_state->getStorage();
+
+  // Hide the published_at field if the updating news field is set.
+  if (!empty($storage['field_storage']) && !empty($storage['field_storage']['#parents']['field_news_item_updating_news'])) {
+    $form['published_at']['widget']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
+  _helfi_etusivu_form_promote_field_alter($form, $form_state, $form_id);
+  _helfi_etusivu_form_updating_news_field_alter($form, $form_state, $form_id);
 }
 
 /**
