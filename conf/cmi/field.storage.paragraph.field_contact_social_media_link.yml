@@ -1,4 +1,4 @@
-uuid: cdd0765e-b19c-4897-8c53-c7e9c5ed4b1d
+uuid: 4f267178-b6ce-40dc-9f8f-ca0fb026dc57
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     - link
     - paragraphs
 _core:
-  default_config_hash: _PbEO_NEuQjNl5bxgtJhWa1oTBG6olKRqb24Edi8KSw
-id: paragraph.field_banner_link
-field_name: field_banner_link
+  default_config_hash: orC4vPJ-BnuBierieRFblPkARsyj1wSHskfqx_bv3NU
+id: paragraph.field_contact_social_media_link
+field_name: field_contact_social_media_link
 entity_type: paragraph
 type: link
 settings: {  }
 module: link
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
