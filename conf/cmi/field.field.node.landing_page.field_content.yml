@@ -61,10 +61,10 @@ settings:
       remote_video: remote_video
       chart: chart
       target_group_links: target_group_links
+      news_list: news_list
       image_gallery: image_gallery
       curated_event_list: curated_event_list
       hearings: hearings
-      news_list: news_list
     negate: 0
     target_bundles_drag_drop:
       banner:
