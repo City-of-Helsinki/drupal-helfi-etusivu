@@ -1,11 +1,9 @@
-uuid: 9a7ba25b-3012-4457-aa5b-99fe3c0d87cb
+uuid: ff53debc-5079-4609-aaa1-e534a1a02e3a
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: SK-c5yVwCPoF2ik9ncEi-CRQDj0JrwIfabMS-u9uDGc
-id: node__news_item
-label: 'Content: News item'
+id: node__news_article
+label: 'Content: News article'
 tags:
   article_published_time: '[node:published:html_datetime]'
   title: '[node:short-title] | [site:page-title-suffix]'
