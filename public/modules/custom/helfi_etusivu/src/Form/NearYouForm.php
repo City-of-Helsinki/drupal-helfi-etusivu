@@ -50,7 +50,7 @@ class NearYouForm extends FormBase {
         ],
       ],
       '#autocomplete_route_name' => 'helfi_etusivu.helsinki_near_you_autocomplete',
-      '#placeholder' => $this->t('Eg. Vaasankatu 5', [], ['context' => 'Helsinki near you']),
+      '#placeholder' => $this->t('For example, Kotikatu 1', [], ['context' => 'Helsinki near you']),
       '#required' => TRUE,
       '#title' => $this->t('Address'),
       '#label_attributes' => [
