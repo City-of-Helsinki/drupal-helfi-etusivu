@@ -50,6 +50,7 @@ class HelsinkiNearYouEventsController extends ControllerBase {
               ['context' => 'Helsinki near you events search']
             ),
             'useExperimentalGhosts' => TRUE,
+            'cardsWithBorders' => TRUE,
           ],
         ],
       ],
