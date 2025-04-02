@@ -25,7 +25,7 @@ msgid "Helsinki near you"
 msgstr "Helsingfors nära dig"
 
 msgctxt "Helsinki near you"
-msgid "Find services, events and news close to you. Start by searching with your address."
+msgid "Discover services, events and news near you. Start by entering your street address."
 msgstr "Hitta tjänster, evenemang och nyheter nära dig. Börja med att söka med din adress."
 
 msgctxt "Helsinki near you"
@@ -41,11 +41,11 @@ msgid "Search"
 msgstr "Sök"
 
 msgctxt "Helsinki near you"
-msgid "First make a search with your address"
+msgid "Start by entering your street address"
 msgstr "Först gör en sökning med din adress"
 
 msgctxt "Helsinki near you"
-msgid "Fill in your address to the search bar above and find services, events and news near you."
+msgid "Enter your street address in the search field above to find services, events and news related to your neighbourhood."
 msgstr "Fyll i din adress i sökfältet ovan och hitta tjänster, evenemang och nyheter nära dig."
 
 msgctxt "Helsinki near you"
@@ -57,7 +57,7 @@ msgid "Edit address"
 msgstr "Redigera adress"
 
 msgctxt "Helsinki near you"
-msgid "Services, events and news near your address @address"
+msgid "Services, events and news for @address"
 msgstr "Tjänster, evenemang och nyheter nära din adress @address"
 
 msgid "Helsinki near you"
@@ -67,11 +67,11 @@ msgid "Services, events and news near your address"
 msgstr "Tjänster, evenemang och nyheter nära din adress"
 
 msgctxt "Helsinki near you"
-msgid "Eg. Vaasankatu 5"
-msgstr "Till exempel Vasagatan 5"
+msgid "For example, Kotikatu 1"
+msgstr "T.ex. Hemgatan 1"
 
 msgctxt "Helsinki near you"
-msgid "The address you input yielded no results. You may want to try a different address."
+msgid "Please try another address."
 msgstr "Adressen du angav gav inga resultat. Du kanske vill prova en annan adress."
 
 msgctxt "Helsinki near you"
@@ -87,7 +87,7 @@ msgid "Events near you"
 msgstr "Evenemang nära dig"
 
 msgctxt "Helsinki near you"
-msgid "Browse events near you, sorted by their start time"
+msgid "Browse events near you by date."
 msgstr "Utforska evenemang i ordning efter deras starttid."
 
 msgctxt "Helsinki near you"
@@ -95,11 +95,11 @@ msgid "Health is key"
 msgstr "Ta hand om din hälsa"
 
 msgctxt "Helsinki near you"
-msgid "Your own health station"
+msgid "Your health station"
 msgstr "Din egen hälsostation"
 
 msgctxt "Helsinki near you"
-msgid "Closest maternity and child health clinic"
+msgid "The maternity and child health clinic near you"
 msgstr "Närmaste mödra- och barnrådgivning"
 
 msgctxt "Helsinki near you"
@@ -107,43 +107,43 @@ msgid "Grow and learn"
 msgstr "Väx och lär dig"
 
 msgctxt "Helsinki near you"
-msgid "Schools close to you"
+msgid "Your local school"
 msgstr "Närliggande skolor"
 
 msgctxt "Helsinki near you"
-msgid "Closest playgrounds and family houses"
+msgid "Playgrounds and family houses near you"
 msgstr "Närmaste lekparker och familjehus"
 
 msgctxt "Helsinki near you"
-msgid "Closest daycare centres"
+msgid "Daycare centres near you"
 msgstr "Närmaste daghem"
 
 msgctxt "Helsinki near you"
-msgid "Move around the city"
+msgid "Getting around the city"
 msgstr "Rör dig i staden"
 
 msgctxt "Helsinki near you"
-msgid "Roadway ploughing schedule"
+msgid "Ploughing schedule"
 msgstr "Plogningstidtabell"
 
 msgctxt "Helsinki near you"
-msgid "Roadworks and events on map"
+msgid "Roadworks on the map"
 msgstr "Vägarbeten och evenemang på kartan"
 
 msgctxt "Helsinki near you"
-msgid "City bike stations on map"
+msgid "City bike stations and bikeracks on the map"
 msgstr "Stadscykelstationer och cykelställ på kartan"
 
 msgctxt "Helsinki near you"
-msgid "The city is developing"
+msgid "Urban development"
 msgstr "Staden utvecklas"
 
 msgctxt "Helsinki near you"
-msgid "Street and park development on map"
+msgid "Street and park projects on the map"
 msgstr "Gatu- och parkområdesprojekt på kartan"
 
 msgctxt "Helsinki near you"
-msgid "Plans in process on map"
+msgid "Plans under preparation on the map"
 msgstr "Pågående planeringsprojekt på kartan"
 
 msgctxt "Helsinki near you"

@@ -59,7 +59,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     if (!$addressData) {
       $this->messenger()->addError(
         $this->t(
-          'The address you input yielded no results. You may want to try a different address.',
+          'Please try another address.',
           [],
           ['context' => 'Helsinki near you']
         )
@@ -116,7 +116,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       '#coordinates' => $addressData['coordinates'],
       '#theme' => 'helsinki_near_you_results_page',
       '#title' => $this->t(
-        'Services, events and news near your address @address',
+        'Services, events and news for @address',
         ['@address' => $addressName],
         ['context' => 'Helsinki near you']
       ),
@@ -143,11 +143,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         'title' => $this->t('Health is key', [], ['context' => 'Helsinki near you']),
         'service_links' => [
           [
-            'link_label' => $this->t('Your own health station', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Your health station', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->getInternalSearchLink(InternalSearchLink::HEALTH_STATIONS, $addressQuery),
           ],
           [
-            'link_label' => $this->t('Closest maternity and child health clinic', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('The maternity and child health clinic near you', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->getInternalSearchLink(InternalSearchLink::CHILD_HEALTH_STATIONS, $addressQuery),
           ],
         ],
@@ -156,45 +156,45 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         'title' => $this->t('Grow and learn', [], ['context' => 'Helsinki near you']),
         'service_links' => [
           [
-            'link_label' => $this->t('Schools close to you', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Your local school', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->getInternalSearchLink(InternalSearchLink::SCHOOLS, $addressQuery),
           ],
           [
-            'link_label' => $this->t('Closest playgrounds and family houses', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Playgrounds and family houses near you', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->getInternalSearchLink(InternalSearchLink::PLAYGROUNDS_FAMILY_HOUSES, $viewsAddressQuery, 'views-exposed-form-playground-search-block'),
           ],
           [
-            'link_label' => $this->t('Closest daycare centres', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Daycare centres near you', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->getInternalSearchLink(InternalSearchLink::DAYCARES, $viewsAddressQuery, 'views-exposed-form-daycare-search-block'),
           ],
         ],
       ],
       [
-        'title' => $this->t('Move around the city', [], ['context' => 'Helsinki near you']),
+        'title' => $this->t('Getting around the city', [], ['context' => 'Helsinki near you']),
         'service_links' => [
           [
-            'link_label' => $this->t('Roadway ploughing schedule', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Ploughing schedule', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->getInternalSearchLink(InternalSearchLink::PLOWING_SCHEDULES, $addressQuery),
           ],
           [
-            'link_label' => $this->t('Roadworks and events on map', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Roadworks on the map', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->servicemap->getLink(ServiceMapLink::ROADWORK_EVENTS, $addressName),
           ],
           [
-            'link_label' => $this->t('City bike stations on map', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('City bike stations and bikeracks on the map', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->servicemap->getLink(ServiceMapLink::CITYBIKE_STATIONS_STANDS, $addressName),
           ],
         ],
       ],
       [
-        'title' => $this->t('The city is developing', [], ['context' => 'Helsinki near you']),
+        'title' => $this->t('Urban development', [], ['context' => 'Helsinki near you']),
         'service_links' => [
           [
-            'link_label' => $this->t('Street and park development on map', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Street and park projects on the map', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->servicemap->getLink(ServiceMapLink::STREET_PARK_PROJECTS, $addressName),
           ],
           [
-            'link_label' => $this->t('Plans in process on map', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Plans under preparation on the map', [], ['context' => 'Helsinki near you']),
             'link_url' => $this->servicemap->getLink(ServiceMapLink::PLANS_IN_PROCESS, $addressName),
           ],
         ],
