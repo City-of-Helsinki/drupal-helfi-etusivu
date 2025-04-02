@@ -74,7 +74,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
       '#form_item_placeholder' => $this->t('For example, Mannerheimintie 1', [], ['context' => 'Helsinki near you']),
       '#form_item_submit' => $this->t('Search', [], ['context' => 'Helsinki near you']),
       '#hero_title' => $this->t('Helsinki near you', [], ['context' => 'Helsinki near you']),
-      '#hero_description' => $this->t('Find services, events and news close to you. Start by searching with your address.', [], ['context' => 'Helsinki near you']),
+      '#hero_description' => $this->t('Discover services, events and news near you. Start by entering your street address.', [], ['context' => 'Helsinki near you']),
     ];
     return $build;
   }

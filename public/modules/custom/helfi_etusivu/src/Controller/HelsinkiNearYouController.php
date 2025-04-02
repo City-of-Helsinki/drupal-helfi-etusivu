@@ -49,8 +49,8 @@ final class HelsinkiNearYouController extends ControllerBase implements Containe
 
     $build = [
       '#theme' => 'helsinki_near_you_landing_page',
-      '#title' => $this->t('First make a search with your address', [], ['context' => 'Helsinki near you']),
-      '#description' => $this->t('Fill in your address to the search bar above and find services, events and news near you.', [], ['context' => 'Helsinki near you']),
+      '#title' => $this->t('Start by entering your street address', [], ['context' => 'Helsinki near you']),
+      '#description' => $this->t('Enter your street address in the search field above to find services, events and news related to your neighbourhood.', [], ['context' => 'Helsinki near you']),
       '#illustration' => $path . 'photographer.svg',
       '#illustration_caption' => $this->t('Picture: Lille Santanen', [], ['context' => 'Helsinki near you']),
     ];
