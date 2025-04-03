@@ -356,6 +356,8 @@ function helfi_etusivu_theme() : array {
         'title' => NULL,
         'description' => NULL,
         'illustration' => NULL,
+        'illustration_url_1x' => NULL,
+        'illustration_url_2x' => NULL,
         'illustration_caption' => NULL,
       ],
       'template' => 'helsinki-near-you-landing-page',
