@@ -51,7 +51,8 @@ final class HelsinkiNearYouController extends ControllerBase implements Containe
       '#theme' => 'helsinki_near_you_landing_page',
       '#title' => $this->t('Start by entering your street address', [], ['context' => 'Helsinki near you']),
       '#description' => $this->t('Enter your street address in the search field above to find services, events and news related to your neighbourhood.', [], ['context' => 'Helsinki near you']),
-      '#illustration' => $path . 'photographer.svg',
+      '#illustration_url_1x' => $path . 'walking_by_houses-513x513.png',
+      '#illustration_url_2x' => $path . 'walking_by_houses-1026x1026.png',
       '#illustration_caption' => $this->t('Picture: Lille Santanen', [], ['context' => 'Helsinki near you']),
     ];
 

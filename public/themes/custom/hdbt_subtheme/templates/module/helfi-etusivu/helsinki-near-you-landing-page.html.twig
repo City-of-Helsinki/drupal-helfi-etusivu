@@ -16,10 +16,17 @@
           </div>
         </div>
         <div class="graphics__illustration-container">
-          <figure>
-            <img src="{{ illustration }}" data-photographer="{{ illustration_caption }}" alt class="graphics__illustration" />
-            <figcaption>{{ illustration_caption }}</figcaption>
-          </figure>
+          {% if illustration %}
+            <figure>
+              <img src="{{ illustration }}" data-photographer="{{ illustration_caption }}" alt class="graphics__illustration" />
+              <figcaption>{{ illustration_caption }}</figcaption>
+            </figure>
+          {% else %}
+            <picture>
+              <source srcset="{{ illustration_url_1x }} 1x, {{ illustration_url_2x }} 2x" height="513" width="513" type="image/png" media="all and (min-width: 320px)" />
+              <img src="{{ illustration_url_1x }}" height="513" width="513" data-photographer="{{ illustration_caption }}" alt class="graphics__illustration">
+            </picture>
+          {% endif %}
         </div>
       {% endblock component_content %}
     {% endembed %}
