@@ -36,7 +36,7 @@
       classes: {
         wrapper: 'helfi-etusivu-autocomplete'
       },
-      source: async (searchTerm, results) => {
+      source: async(searchTerm, results) => {
         if (searchTerm.length < 3) {
           return results([]);
         }
@@ -63,7 +63,7 @@
   };
 
   Drupal.behaviors.helfi_etusivu_autocomplete = {
-    attach (context) {
+    attach(context) {
       once(
         'a11y_autocomplete_element',
         '[data-helfi-etusivu-autocomplete]',
