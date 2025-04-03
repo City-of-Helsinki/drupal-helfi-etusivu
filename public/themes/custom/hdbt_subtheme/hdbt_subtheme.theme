@@ -214,3 +214,26 @@ function hdbt_subtheme_preprocess_node__news_item(array &$variables): void {
   // Attach the updating news table of contents library to the news item page.
   $variables['#attached']['library'][] = 'hdbt_subtheme/updating-news-table-of-contents';
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hdbt_subtheme_preprocess_status_messages(&$variables): void {
+  // This is not something I am very proud of but these
+  // error messages require changes to the error message header.
+  $error_messages = [
+    'Please try another address.',
+    'Du kanske vill prova en annan adress.',
+    'Voit kokeilla muuttaa osoitetta.',
+  ];
+
+  if (
+    !isset($variables['message_list']['error']) ||
+    count($variables['message_list']['error']) !== 1 ||
+    !in_array(current($variables['message_list']['error']), $error_messages)
+  ) {
+    return;
+  }
+
+  $variables['status_headings']['error'] = t('No results for the address entered', [], ['context' => 'Helsinki near you']);
+}
