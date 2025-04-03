@@ -25,8 +25,8 @@ msgid "Helsinki near you"
 msgstr "Helsingfors nära dig"
 
 msgctxt "Helsinki near you"
-msgid "Discover services, events and news near you. Start by entering your street address."
-msgstr "Hitta tjänster, evenemang och nyheter nära dig. Börja med att söka med din adress."
+msgid "Discover city services, events and news near you. Start by entering your street address."
+msgstr "Hitta stadens tjänster, evenemang och nyheter nära dig. Börja med att söka med din adress."
 
 msgctxt "Helsinki near you"
 msgid "Address"
@@ -71,8 +71,12 @@ msgid "For example, Kotikatu 1"
 msgstr "T.ex. Hemgatan 1"
 
 msgctxt "Helsinki near you"
+msgid "No results for the address entered"
+msgstr "Adressen du angav gav inga resultat"
+
+msgctxt "Helsinki near you"
 msgid "Please try another address."
-msgstr "Adressen du angav gav inga resultat. Du kanske vill prova en annan adress."
+msgstr "Du kanske vill prova en annan adress."
 
 msgctxt "Helsinki near you"
 msgid "Search"
