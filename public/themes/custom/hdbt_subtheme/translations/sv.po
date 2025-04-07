@@ -35,24 +35,24 @@ msgstr " och "
 
 msgctxt "News close to you block"
 msgid "See news related to the neighbourhoods of %neighbourhoods%"
-msgstr "Kolla in nyheterna från stadsdelarna %neighbourhoods%"
+msgstr "Se nyheter från stadsdelarna %neighbourhoods%"
 
 msgctxt "News close to you block"
-msgid "See all news"
-msgstr "Se alla nyheter"
+msgid "See all news near you"
+msgstr "Se alla nyheter närä dig"
 
 msgctxt "Services near you block"
 msgid "Go from the links to the search results for your address."
-msgstr "Använd länkarna för att visa resultat baserat på din adress."
+msgstr "Klicka på länkarna för att se sökresultat enligt din adress."
 
 msgctxt "Helsinki near you"
 msgid "Send feedback on the Helsinki near you webpages!"
-msgstr "Skicka synpunkter på webbplatserna för Helsingfors nära dig!"
+msgstr "Ge respons om webbplatsen Helsingfors nära dig!"
 
 msgctxt "Helsinki near you"
 msgid "What do you think of these new webpages? We are currently developing them and would appreciate your thoughts and ideas."
-msgstr "Vad tycker du om de här nya webbplatserna? Vi håller just nu på att utveckla dem och skulle uppskatta dina tankar och idéer."
+msgstr "Vad tycker du om denna nya webbplats? Vi utvecklar den och vill därför höra  hur du upplever den och få utvecklingsförslag."
 
 msgctxt "Helsinki near you"
 msgid "Send feedback"
-msgstr "Skicka synpunkter"
+msgstr "Ge respons"

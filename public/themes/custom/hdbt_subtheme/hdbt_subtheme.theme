@@ -222,9 +222,9 @@ function hdbt_subtheme_preprocess_status_messages(&$variables): void {
   // This is not something I am very proud of but these
   // error messages require changes to the error message header.
   $error_messages = [
-    'Please try another address.',
-    'Du kanske vill prova en annan adress.',
-    'Voit kokeilla muuttaa osoitetta.',
+    'Make sure the address is written correctly. You can also search using a nearby street number.',
+    'Se till att adressen är skriven korrekt. Du kan också söka med ett närliggande gatunummer.',
+    'Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esimerkiksi viereisellä katunumerolla.',
   ];
 
   if (
