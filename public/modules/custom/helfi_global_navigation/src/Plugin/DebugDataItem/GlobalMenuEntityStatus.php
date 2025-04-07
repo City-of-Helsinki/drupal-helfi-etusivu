@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 #[DebugDataItem(
   id: 'helfi_globalmenu',
-  label: new TranslatableMarkup('Global menu entity status'),
+  title: new TranslatableMarkup('Global menu entity status'),
 )]
 final class GlobalMenuEntityStatus extends DebugDataItemPluginBase implements ContainerFactoryPluginInterface {
 
