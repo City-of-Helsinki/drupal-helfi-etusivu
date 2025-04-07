@@ -86,8 +86,8 @@ msgid "No results for the address entered"
 msgstr "Antamallasi osoitteella ei löytynyt tuloksia"
 
 msgctxt "Helsinki near you"
-msgid "Please try another address."
-msgstr "Voit kokeilla muuttaa osoitetta."
+msgid "Make sure the address is written correctly. You can also search using a nearby street number."
+msgstr "Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esimerkiksi viereisellä katunumerolla."
 
 msgctxt "Helsinki near you"
 msgid "Search"
@@ -143,7 +143,7 @@ msgstr "Aurausaikataulu"
 
 msgctxt "Helsinki near you"
 msgid "Roadworks on the map"
-msgstr "Katutyöt ja tapahtumat kartalla"
+msgstr "Katutyöt kartalla"
 
 msgctxt "Helsinki near you"
 msgid "City bike stations and bikeracks on the map"
@@ -215,7 +215,7 @@ msgstr "Etsi tapahtumia lähelläsi"
 
 msgctxt "Helsinki near you events search"
 msgid "Browse events near you or search for events by theme, location or date. The search shows results at most two kilometers from the address."
-msgstr "Voit selata lähialueesi tapahtumia tai etsiä tapahtumia aiheen, tapahtumapaikan tai ajankohdan mukaan. Haku näyttää tuloksia enintään kahden kilometrin päässä osoitteesta."
+msgstr "Voit selata lähialueesi tapahtumia tai etsiä tapahtumia aiheen, tapahtumapaikan tai ajankohdan mukaan. Haku näyttää tuloksia enintään kahden kilometrin etäisyydeltä osoitteesta."
 
 msgctxt "Helsinki near you events search"
 msgid "Find events in your neighbourhood that interest you."
