@@ -59,7 +59,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     if (!$addressData) {
       $this->messenger()->addError(
         $this->t(
-          'Please try another address.',
+          'Make sure the address is written correctly. You can also search using a nearby street number.',
           [],
           ['context' => 'Helsinki near you']
         )

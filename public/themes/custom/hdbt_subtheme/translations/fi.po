@@ -38,8 +38,8 @@ msgid "See news related to the neighbourhoods of %neighbourhoods%"
 msgstr "Katso uutisia kaupunginosista %neighbourhoods%"
 
 msgctxt "News close to you block"
-msgid "See all news"
-msgstr "Katso kaikki uutiset"
+msgid "See all news near you"
+msgstr "Katso kaikki uutiset lähelläsi"
 
 msgctxt "Services near you block"
 msgid "Go from the links to the search results for your address."
