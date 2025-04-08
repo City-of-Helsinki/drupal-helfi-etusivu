@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 _core:
-  default_config_hash: SK-c5yVwCPoF2ik9ncEi-CRQDj0JrwIfabMS-u9uDGc
+  default_config_hash: X_gDRFjMjfSjLlV3goeoQCVuSSFGa2jf-h6cNnsFlbg
 id: node__news_item
 label: 'Content: News item'
 tags:

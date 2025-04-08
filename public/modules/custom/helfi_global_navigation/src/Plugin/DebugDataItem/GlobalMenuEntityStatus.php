@@ -6,19 +6,19 @@ namespace Drupal\helfi_global_navigation\Plugin\DebugDataItem;
 
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\helfi_api_base\Attribute\DebugDataItem;
 use Drupal\helfi_api_base\DebugDataItemPluginBase;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin implementation of the debug_data_item.
- *
- * @DebugDataItem(
- *   id = "helfi_globalmenu",
- *   label = @Translation("Global menu entity status"),
- *   description = @Translation("Global menu entity status")
- * )
  */
+#[DebugDataItem(
+  id: 'helfi_globalmenu',
+  title: new TranslatableMarkup('Global menu entity status'),
+)]
 final class GlobalMenuEntityStatus extends DebugDataItemPluginBase implements ContainerFactoryPluginInterface {
 
   /**
@@ -31,7 +31,7 @@ final class GlobalMenuEntityStatus extends DebugDataItemPluginBase implements Co
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : self {
     $instance = new self($configuration, $plugin_id, $plugin_definition);
     $instance->dateFormatter = $container->get('date.formatter');
     return $instance;
