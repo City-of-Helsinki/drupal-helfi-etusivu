@@ -9,7 +9,6 @@ dependencies:
   - search_api:search_api
   - elasticsearch_connector:elasticsearch_connector
   - helfi_api_base:helfi_api_base
-  - helfi_annif:helfi_annif
   - simple_sitemap:simple_sitemap
   - helfi_react_search:helfi_react_search
   - helfi_platform_config:helfi_paragraphs_news_list

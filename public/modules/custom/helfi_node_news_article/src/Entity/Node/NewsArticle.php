@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_node_news_article\Entity\Node;
 
-use Drupal\helfi_annif\RecommendableBase;
+use Drupal\node\Entity\Node;
 
 /**
  * A bundle class for News article -node.
  */
-final class NewsArticle extends RecommendableBase {
+final class NewsArticle extends Node {
 
   /**
    * Get human-readable "published at" time of the News article.
