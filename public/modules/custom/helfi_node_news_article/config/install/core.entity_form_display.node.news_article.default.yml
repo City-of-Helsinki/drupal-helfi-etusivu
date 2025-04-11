@@ -14,11 +14,13 @@ dependencies:
     - field.field.node.news_article.field_news_item_tags
     - field.field.node.news_article.field_news_neighbourhoods
     - field.field.node.news_article.field_radioactivity
+    - field.field.node.news_article.field_recommendation_topics
     - field.field.node.news_article.field_short_title
     - node.type.news_article
   module:
     - field_group
     - hdbt_admin_tools
+    - helfi_recommendations
     - linkit
     - media_library
     - paragraphs
@@ -74,6 +76,22 @@ third_party_settings:
         id: ''
         open: false
         description: ''
+        required_fields: true
+    group_automatically_recommended:
+      children:
+        - field_recommendation_topics
+      label: 'Automatically recommended content'
+      region: content
+      parent_name: ''
+      weight: 25
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        open: false
+        description: 'Recommendations are based on automatically selected categories. The categories are chosen based on the page content when the page is saved.'
         required_fields: true
 id: node.news_article.default
 targetEntityType: node
@@ -185,6 +203,12 @@ content:
   field_radioactivity:
     type: radioactivity_reference
     weight: 24
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_recommendation_topics:
+    type: suggested_topics_reference
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }

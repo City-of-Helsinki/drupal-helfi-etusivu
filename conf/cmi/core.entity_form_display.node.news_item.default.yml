@@ -1,4 +1,4 @@
-uuid: 40a9b698-fc6f-4b16-842a-441883768104
+uuid: 668b7dd2-7225-4e18-a4e9-a07ce0aeccb5
 langcode: en
 status: true
 dependencies:
@@ -14,12 +14,13 @@ dependencies:
     - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
+    - field.field.node.news_item.field_recommendation_topics
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:
     - field_group
     - hdbt_admin_tools
-    - helfi_annif
+    - helfi_recommendations
     - linkit
     - media_library
     - paragraphs
@@ -52,7 +53,7 @@ third_party_settings:
       label: Links
       region: content
       parent_name: ''
-      weight: 18
+      weight: 20
       format_type: fieldset
       format_settings:
         classes: ''
@@ -67,7 +68,7 @@ third_party_settings:
       label: 'Main image'
       region: content
       parent_name: ''
-      weight: 16
+      weight: 17
       format_type: details
       format_settings:
         classes: ''
@@ -82,7 +83,7 @@ third_party_settings:
       label: 'Updating news'
       region: content
       parent_name: ''
-      weight: 17
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -93,33 +94,25 @@ third_party_settings:
         required_fields: false
     group_automatically_recommended:
       children:
-        - in_recommendations
-        - show_annif_block
-        - annif_suggested_topics
+        - field_recommendation_topics
       label: 'Automatically recommended content'
       region: content
       parent_name: ''
-      weight: 28
-      format_type: fieldset
+      weight: 26
+      format_type: details
       format_settings:
         classes: ''
-        show_empty_fields: true
+        show_empty_fields: false
         id: ''
-        description: 'Recommended content may include news or articles. Recommendations are based on automatically selected news categories. The news categories are chosen based on the page content when the page is saved.'
-        required_fields: false
-_core:
-  default_config_hash: 4idwAdzBNTQx52km5yufL0uOiF01vQLSO2JIpnb2AnE
+        label_as_html: false
+        open: false
+        description: ''
+        required_fields: true
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item
 mode: default
 content:
-  annif_suggested_topics:
-    type: suggested_topics_reference
-    weight: 29
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 4
@@ -128,7 +121,7 @@ content:
     third_party_settings: {  }
   field_content:
     type: paragraphs
-    weight: 17
+    weight: 18
     region: content
     settings:
       title: Paragraph
@@ -147,7 +140,7 @@ content:
     third_party_settings: {  }
   field_lead_in:
     type: string_textarea
-    weight: 15
+    weight: 16
     region: content
     settings:
       rows: 5
@@ -167,6 +160,16 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_news_groups:
+    type: select2_entity_reference
+    weight: 21
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
     third_party_settings: {  }
   field_news_item_links_link:
     type: helfi_linkit
@@ -188,13 +191,55 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 26
+    weight: 22
     region: content
     settings:
       width: 100%
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
+    third_party_settings: {  }
+  field_news_item_updating_news:
+    type: paragraphs
+    weight: 17
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: '0'
+        convert: '0'
+        duplicate: '0'
+    third_party_settings: {  }
+  field_news_neighbourhoods:
+    type: select2_entity_reference
+    weight: 24
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_radioactivity:
+    type: radioactivity_reference
+    weight: 25
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_recommendation_topics:
+    type: suggested_topics_reference
+    weight: 23
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_short_title:
     type: string_textfield
@@ -226,7 +271,7 @@ content:
     third_party_settings: {  }
   publish_on:
     type: datetime_timestamp_no_default
-    weight: 11
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -242,13 +287,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 14
+    weight: 15
     region: content
     settings:
       display_label: true
@@ -285,81 +330,14 @@ content:
     third_party_settings: {  }
   unpublish_on:
     type: datetime_timestamp_no_default
-    weight: 12
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  url_redirects:
     weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_news_item_updating_news:
-    type: paragraphs
-    weight: 17
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: _none
-      features:
-        add_above: '0'
-        collapse_edit_all: '0'
-        convert: '0'
-        duplicate: '0'
-    third_party_settings: {  }
-  field_news_groups:
-    type: select2_entity_reference
-    weight: 25
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_news_neighbourhoods:
-    type: select2_entity_reference
-    weight: 27
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_radioactivity:
-    type: radioactivity_reference
-    weight: 28
+  url_redirects:
+    weight: 14
     region: content
     settings: {  }
-    third_party_settings: {  }
-  in_recommendations:
-    type: boolean_checkbox
-    weight: 0
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  show_annif_block:
-    type: boolean_checkbox
-    weight: 1
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  show_recommendations:
-    type: boolean_checkbox
-    weight: 0
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
 hidden:
   hide_sidebar_navigation: true

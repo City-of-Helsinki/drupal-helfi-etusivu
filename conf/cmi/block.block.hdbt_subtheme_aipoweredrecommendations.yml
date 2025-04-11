@@ -1,0 +1,39 @@
+uuid: bed4a853-663c-4ac0-bda8-56f4fbdda78a
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_recommendations
+    - language
+    - node
+  theme:
+    - hdbt_subtheme
+id: hdbt_subtheme_aipoweredrecommendations
+theme: hdbt_subtheme
+region: content
+weight: 1
+provider: null
+plugin: helfi_recommendations
+settings:
+  id: helfi_recommendations
+  label: 'AI powered recommendations'
+  label_display: visible
+  provider: helfi_recommendations
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      fi: fi
+      sv: sv
+      en: en
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      news_article: news_article
+      news_item: news_item
