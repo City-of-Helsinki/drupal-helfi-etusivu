@@ -12,7 +12,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\helfi_annif\TextConverter\Document;
+use Drupal\helfi_recommendations\TextConverter\Document;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
 use Drupal\helfi_etusivu\Entity\Node\NewsItem;

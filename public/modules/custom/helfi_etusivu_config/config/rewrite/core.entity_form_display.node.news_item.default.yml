@@ -17,11 +17,13 @@ dependencies:
     - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
+    - field.field.node.news_item.field_recommendation_topics
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:
     - field_group
     - hdbt_admin_tools
+    - helfi_recommendations
     - linkit
     - media_library
     - paragraphs
@@ -38,7 +40,7 @@ third_party_settings:
       label: 'Updating news'
       region: content
       parent_name: ''
-      weight: 17
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -70,7 +72,7 @@ content:
     third_party_settings: {  }
   field_news_groups:
     type: select2_entity_reference
-    weight: 25
+    weight: 21
     region: content
     settings:
       width: 100%
@@ -80,7 +82,7 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 26
+    weight: 22
     region: content
     settings:
       width: 100%
@@ -90,7 +92,7 @@ content:
     third_party_settings: {  }
   field_news_neighbourhoods:
     type: select2_entity_reference
-    weight: 27
+    weight: 24
     region: content
     settings:
       width: 100%
@@ -100,7 +102,7 @@ content:
     third_party_settings: {  }
   field_radioactivity:
     type: radioactivity_reference
-    weight: 28
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
