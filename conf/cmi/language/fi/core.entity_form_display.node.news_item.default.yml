@@ -13,7 +13,7 @@ third_party_settings:
     group_automatically_recommended:
       label: 'Automaattisesti suositellut sisällöt'
       format_settings:
-        description: 'Suositellut sisällöt voivat olla uutisia tai artikkeleita. Suositukset perustuvat automaattisesti valittuihin uutisluokkiin. Uutisluokat valitaan sivun sisällön perusteella, kun sivu tallennetaan.'
+        description: 'Suositukset perustuvat automaattisesti valittuihin luokkiin. Luokat valitaan sivun sisällön perusteella, kun sivu tallennetaan.'
 content:
   field_content:
     settings:
