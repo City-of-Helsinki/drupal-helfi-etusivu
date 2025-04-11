@@ -10,7 +10,7 @@ third_party_settings:
 _core:
   default_config_hash: gDXuY08GhPzrE9CIzWBczy-XvrG5NkORfABxfkMWbCU
 id: liftup_with_image
-label: 'Liftup with image'
+label: 'Liftup with image (supported in other languages)'
 icon_uuid: null
 icon_default: null
 description: 'Liftup with image is a fairly large element that you can use to promote content with large image next to the text.'

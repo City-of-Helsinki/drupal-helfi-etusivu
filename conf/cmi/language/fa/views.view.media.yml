@@ -55,6 +55,9 @@ display:
         langcode:
           expose:
             label: زبان
+      empty:
+        area_text_custom:
+          content: 'رسانه‌ای در دسترس نیست'
   media_page_list:
     display_title: رسانه
     display_options:
