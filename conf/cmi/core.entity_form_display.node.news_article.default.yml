@@ -14,12 +14,13 @@ dependencies:
     - field.field.node.news_article.field_news_item_tags
     - field.field.node.news_article.field_news_neighbourhoods
     - field.field.node.news_article.field_radioactivity
+    - field.field.node.news_article.field_recommendation_topics
     - field.field.node.news_article.field_short_title
     - node.type.news_article
   module:
     - field_group
     - hdbt_admin_tools
-    - helfi_annif
+    - helfi_recommendations
     - linkit
     - media_library
     - paragraphs
@@ -78,33 +79,25 @@ third_party_settings:
         required_fields: true
     group_automatically_recommended:
       children:
-        - annif_suggested_topics
-        - in_recommendations
-        - show_annif_block
+        - field_recommendation_topics
       label: 'Automatically recommended content'
       region: content
       parent_name: ''
       weight: 25
-      format_type: fieldset
+      format_type: details
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        description: 'Recommended content may include news or articles. Recommendations are based on automatically selected news categories. The news categories are chosen based on the page content when the page is saved.'
-        required_fields: false
-_core:
-  default_config_hash: Pnb6wyNhWan2d_Guak8rAn8-FFMa8DndKS8XZfnR-MM
+        label_as_html: false
+        open: false
+        description: 'Recommendations are based on automatically selected categories. The categories are chosen based on the page content when the page is saved.'
+        required_fields: true
 id: node.news_article.default
 targetEntityType: node
 bundle: news_article
 mode: default
 content:
-  annif_suggested_topics:
-    type: suggested_topics_reference
-    weight: 31
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 4
@@ -213,6 +206,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_recommendation_topics:
+    type: suggested_topics_reference
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_short_title:
     type: string_textfield
     weight: 2
@@ -220,13 +219,6 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  in_recommendations:
-    type: boolean_checkbox
-    weight: 32
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   langcode:
     type: language_select
@@ -264,13 +256,6 @@ content:
     weight: 10
     region: content
     settings: {  }
-    third_party_settings: {  }
-  show_annif_block:
-    type: boolean_checkbox
-    weight: 33
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 12
