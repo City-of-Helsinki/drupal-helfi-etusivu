@@ -1,10 +1,3 @@
-/**
- * @file
- * Initiates autocomplete with support for remote options.
- */
-
-
-
 ((Drupal, once) => {
   /**
    * Initialize autocomplete.
