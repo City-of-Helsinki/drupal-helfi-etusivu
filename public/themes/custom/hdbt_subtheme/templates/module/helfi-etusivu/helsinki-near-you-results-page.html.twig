@@ -123,7 +123,11 @@
         {% set feedback_banner_title = 'Send feedback on the Helsinki near you webpages!'|t({}, {'context': 'Helsinki near you'}) %}
         {% set feedback_banner_desc = 'What do you think of these new webpages? We are currently developing them and would appreciate your thoughts and ideas.'|t({}, {'context': 'Helsinki near you'}) %}
         {% set feedback_banner_link_text = 'Send feedback'|t({}, {'context': 'Helsinki near you'}) %}
-        {% set feedback_banner_link_url = 'https://hel.fi' %}
+        {% if language.id %}
+          {% set feedback_banner_link_url = 'https://yhteiso.hel.fi/activity/public/6/742?lang=' ~ language.id %}
+        {% else %}
+          {% set feedback_banner_link_url = 'https://yhteiso.hel.fi/activity/public/6/742?lang=fi' %}
+        {% endif %}
         <div class="banner__content-wrapper">
           <div class="banner__content">
             <h2 class="banner__title">{{ feedback_banner_title }}</h2>
