@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
-    - field.field.node.news_item.field_recommendation_topics
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:

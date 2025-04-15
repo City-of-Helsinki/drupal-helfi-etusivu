@@ -15,7 +15,6 @@ dependencies:
     - field.field.node.news_article.field_news_item_tags
     - field.field.node.news_article.field_news_neighbourhoods
     - field.field.node.news_article.field_radioactivity
-    - field.field.node.news_article.field_recommendation_topics
     - field.field.node.news_article.field_short_title
     - node.type.news_article
   module:
@@ -84,7 +83,6 @@ hidden:
   field_news_item_tags: true
   field_news_neighbourhoods: true
   field_radioactivity: true
-  field_recommendation_topics: true
   in_recommendations: true
   langcode: true
   search_api_excerpt: true

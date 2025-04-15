@@ -14,13 +14,11 @@ dependencies:
     - field.field.node.news_item.field_news_item_updating_news
     - field.field.node.news_item.field_news_neighbourhoods
     - field.field.node.news_item.field_radioactivity
-    - field.field.node.news_item.field_recommendation_topics
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:
     - field_group
     - hdbt_admin_tools
-    - helfi_recommendations
     - linkit
     - media_library
     - paragraphs
@@ -92,22 +90,6 @@ third_party_settings:
         open: false
         description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
         required_fields: false
-    group_automatically_recommended:
-      children:
-        - field_recommendation_topics
-      label: 'Automatically recommended content'
-      region: content
-      parent_name: ''
-      weight: 26
-      format_type: details
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
-        label_as_html: false
-        open: false
-        description: ''
-        required_fields: true
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item
@@ -232,12 +214,6 @@ content:
   field_radioactivity:
     type: radioactivity_reference
     weight: 25
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_recommendation_topics:
-    type: suggested_topics_reference
-    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
