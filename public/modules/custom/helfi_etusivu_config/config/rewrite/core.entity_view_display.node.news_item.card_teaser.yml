@@ -20,4 +20,5 @@ dependencies:
     - media
     - user
 hidden:
+  field_annif_keywords: true
   field_news_item_updating_news: true

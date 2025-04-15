@@ -2,7 +2,7 @@ config_rewrite:
   replace: ['dependencies']
 dependencies:
   config:
-    - core.entity_view_mode.node.tiny_teaser
+    - core.entity_view_mode.node.teaser
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
