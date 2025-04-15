@@ -104,8 +104,14 @@ class HelsinkiNearYouControllerTest extends KernelTestBase {
     $this->assertIsArray($build);
     $this->assertArrayHasKey('#theme', $build);
     $this->assertEquals('helsinki_near_you_landing_page', $build['#theme']);
+    $this->assertEquals('Start by entering your street address', (string) $build['#title']);
+    $this->assertEquals(
+      'Enter your street address in the search field above to find services, events and news related to your neighbourhood.',
+      (string) $build['#description']
+    );
     $this->assertEquals($image_path . 'walking_by_houses-513x513.png', $build['#illustration_url_1x']);
     $this->assertEquals($image_path . 'walking_by_houses-1026x1026.png', $build['#illustration_url_2x']);
+    $this->assertEquals('Picture: Lille Santanen', (string) $build['#illustration_caption']);
   }
 
 }
