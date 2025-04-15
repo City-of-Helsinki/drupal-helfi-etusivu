@@ -1,0 +1,32 @@
+{% embed "@hdbt/misc/component.twig" with
+  {
+    component_classes: [
+    'component--banner',
+    'component--banner-secondary',
+    component_modifier_class,
+  ],
+    component_content_class: 'banner',
+  }
+%}
+  {% block component_content %}
+    {% set feedback_banner_title = 'Send feedback on the Helsinki near you webpages!'|t({}, {'context': 'Helsinki near you'}) %}
+    {% set feedback_banner_desc = 'What do you think of these new webpages? We are currently developing them and would appreciate your thoughts and ideas.'|t({}, {'context': 'Helsinki near you'}) %}
+    {% set feedback_banner_link_text = 'Send feedback'|t({}, {'context': 'Helsinki near you'}) %}
+    {% if language.id %}
+      {% set feedback_banner_link_url = 'https://yhteiso.hel.fi/activity/public/6/742?lang=' ~ language.id %}
+    {% else %}
+      {% set feedback_banner_link_url = 'https://yhteiso.hel.fi/activity/public/6/742?lang=fi' %}
+    {% endif %}
+    <div class="banner__content-wrapper">
+      <div class="banner__content">
+        <h2 class="banner__title">{{ feedback_banner_title }}</h2>
+        <div class="banner__desc user-edited-content">{{ feedback_banner_desc }}</div>
+      </div>
+      {% include '@hdbt/navigation/link-button.html.twig' with {
+        type: 'primary',
+        label: feedback_banner_link_text,
+        url: feedback_banner_link_url,
+      } %}
+    </div>
+  {% endblock component_content %}
+{% endembed %}

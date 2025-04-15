@@ -274,6 +274,7 @@ function helfi_etusivu_preprocess_html(&$variables): void {
   $near_you_pages = [
     'helfi_etusivu.helsinki_near_you',
     'helfi_etusivu.helsinki_near_you_events',
+    'helfi_etusivu.helsinki_near_you_results',
   ];
 
   if (in_array($route, $near_you_pages)) {
@@ -355,6 +356,8 @@ function helfi_etusivu_theme() : array {
         'title' => NULL,
         'description' => NULL,
         'illustration' => NULL,
+        'illustration_url_1x' => NULL,
+        'illustration_url_2x' => NULL,
         'illustration_caption' => NULL,
       ],
       'template' => 'helsinki-near-you-landing-page',
