@@ -85,6 +85,8 @@ hidden:
   field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
+  in_recommendations: true
   langcode: true
   search_api_excerpt: true
+  show_annif_block: true
   toc_enabled: true
