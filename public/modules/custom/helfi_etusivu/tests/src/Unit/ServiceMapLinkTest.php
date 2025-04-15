@@ -2,25 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Kernel;
+namespace Drupal\Tests\helfi_etusivu\Unit;
 
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the ServiceMapLink enum.
+ * @coversDefaultClass \Drupal\helfi_etusivu\Enum\ServiceMapLink
  *
  * @group helfi_etusivu
  */
-class ServiceMapLinkTest extends KernelTestBase {
+class ServiceMapLinkTest extends TestCase {
 
   /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [];
-
-  /**
-   * Tests the link() method of ServiceMapLink enum.
+   * @covers ::link
    */
   public function testLinkMethod(): void {
     $this->assertSame('eDAB7W', ServiceMapLink::ROADWORK_EVENTS->link());
