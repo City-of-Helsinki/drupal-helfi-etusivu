@@ -5,6 +5,10 @@ display:
       fields:
         view_node:
           text: view
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
       exposed_form:
         options:
           submit_button: تایید
