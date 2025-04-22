@@ -25,6 +25,8 @@ display:
             past_format: '@interval پیش'
         operations:
           label: عملیات
+        mail:
+          separator: ', '
       pager:
         options:
           expose:
@@ -34,6 +36,8 @@ display:
           tags:
             first: First
             last: Last
+            next: 'Next ›'
+            previous: '‹ Previous'
       exposed_form:
         options:
           submit_button: فیلتر

@@ -49,6 +49,8 @@ display:
           text: ویرایش
         delete_media:
           text: حذف
+        name:
+          separator: ', '
   widget:
     display_title: ساختار
     display_options:
