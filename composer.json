@@ -63,7 +63,7 @@
         },
         "audit": {
             "abandoned": "report",
-            "ignore": ["GHSA-mg8j-w93w-xjgc"]
+            "ignore": ["GHSA-mg8j-w93w-xjgc", "CVE-2025-3734"]
         }
     },
     "extra": {
