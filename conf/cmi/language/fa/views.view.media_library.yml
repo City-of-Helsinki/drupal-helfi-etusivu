@@ -36,6 +36,9 @@ display:
         langcode:
           expose:
             label: زبان
+      empty:
+        area_text_custom:
+          content: 'رسانه‌ای در دسترس نیست'
   page:
     display_title: صفحه
     display_options:
@@ -46,6 +49,8 @@ display:
           text: ویرایش
         delete_media:
           text: حذف
+        name:
+          separator: ', '
   widget:
     display_title: ساختار
     display_options:

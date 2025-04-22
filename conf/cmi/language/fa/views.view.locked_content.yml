@@ -25,10 +25,14 @@ display:
           action_title: عملکرد
         title:
           label: عنوان
+          separator: ', '
         type:
           label: 'نوع محتوا'
+          separator: ', '
         operations:
           label: عملیات
+        name:
+          separator: ', '
       filters:
         status:
           expose:
