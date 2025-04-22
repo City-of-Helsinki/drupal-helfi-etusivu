@@ -10,9 +10,11 @@ use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\helfi_etusivu\Servicemap;
 use Drupal\helfi_etusivu\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_react_search\LinkedEvents;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,12 +27,13 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   /**
    * Constructs a new instance.
    *
-   * @param \Drupal\helfi_etusivu\Servicemap $servicemap
+   * @param \Drupal\helfi_etusivu\ServicemapInterface $servicemap
    *   The servicemap service.
    * @param \Drupal\helfi_react_search\LinkedEvents $linkedEvents
    *   The linked events service.
    */
   public function __construct(
+    #[Autowire(service: 'Drupal\helfi_etusivu\Servicemap')]
     protected readonly ServiceMapInterface $servicemap,
     protected readonly LinkedEvents $linkedEvents,
   ) {
