@@ -7,6 +7,7 @@ display:
       fields:
         filename:
           label: نام
+          separator: ', '
         filemime:
           label: 'نوع فایل'
         filesize:
@@ -22,6 +23,7 @@ display:
           label: 'تاریخ تغییر'
         count:
           label: 'استفاده شده در'
+          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       pager:
         options:
           expose:
