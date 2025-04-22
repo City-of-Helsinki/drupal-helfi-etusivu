@@ -26,7 +26,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   /**
    * Constructs a new instance.
    *
-   * @param \Drupal\helfi_etusivu\ServicemapInterface $servicemap
+   * @param \Drupal\helfi_etusivu\ServiceMapInterface $servicemap
    *   The servicemap service.
    * @param \Drupal\helfi_react_search\LinkedEvents $linkedEvents
    *   The linked events service.
