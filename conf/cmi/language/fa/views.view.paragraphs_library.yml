@@ -21,16 +21,23 @@ display:
       fields:
         label:
           label: برچسب
+          separator: ', '
         type:
           label: نوع
+          separator: ', '
         langcode:
           label: زبان
+          separator: ', '
         id:
           label: شناسه
+          separator: ', '
         changed:
           label: 'تغییر یافته'
+          separator: ', '
         operations:
           label: عملیات
+        paragraphs__target_id:
+          separator: ', '
       filters:
         label:
           expose:
