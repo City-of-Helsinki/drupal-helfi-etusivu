@@ -10,7 +10,7 @@ use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
-use Drupal\helfi_etusivu\Servicemap;
+use Drupal\helfi_etusivu\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_react_search\LinkedEvents;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,7 +31,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   The linked events service.
    */
   public function __construct(
-    protected readonly Servicemap $servicemap,
+    protected readonly ServiceMapInterface $servicemap,
     protected readonly LinkedEvents $linkedEvents,
   ) {
   }
@@ -97,7 +97,6 @@ class HelsinkiNearYouResultsController extends ControllerBase {
               ],
             ],
             'seeAllNearYouLink' => $eventsNearYouRoute->toString(),
-            'useExperimentalGhosts' => TRUE,
             'cardsWithBorders' => TRUE,
           ],
           'helfi_news_archive' => [
