@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 /**
  * Class for interacting with Servicemap API.
  */
-final class Servicemap {
+final class Servicemap implements ServiceMapInterface {
 
   use StringTranslationTrait;
 
@@ -74,13 +74,7 @@ final class Servicemap {
   }
 
   /**
-   * Get coordinates from servicemap API.
-   *
-   * @param string $address
-   *   The address.
-   *
-   * @return ?array
-   *   The coordinates.
+   * {@inheritdoc}
    */
   public function getAddressData(string $address) : ?array {
     $results = $this->query($address);
@@ -99,15 +93,7 @@ final class Servicemap {
   }
 
   /**
-   * Queries location data based on address.
-   *
-   * @param string $address
-   *   Address to query against.
-   * @param int $page_size
-   *   Maximum number of results.
-   *
-   * @return array
-   *   Array of results.
+   * {@inheritdoc}
    */
   public function query(string $address, int $page_size = 1) : array {
     $address = Xss::filter($address);
@@ -140,15 +126,7 @@ final class Servicemap {
   }
 
   /**
-   * Generate link to servicemap view with predefined data visible.
-   *
-   * @param \Drupal\helfi_etusivu\Enum\ServiceMapLink $link
-   *   Service map link option.
-   * @param string $address
-   *   Address param for the link.
-   *
-   * @return string
-   *   The resulting link.
+   * {@inheritdoc}
    */
   public function getLink(ServiceMapLink $link, string $address) : string {
     $langcode = $this->languageManager->getCurrentLanguage()->getId();

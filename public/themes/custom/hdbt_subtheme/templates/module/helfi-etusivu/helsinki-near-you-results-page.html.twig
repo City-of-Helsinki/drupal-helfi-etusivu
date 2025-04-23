@@ -19,8 +19,8 @@
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [ 'component--popular-services' ],
-        component_title: 'Services close to you'|t({}, {'context': 'Services close to you block'}),
-        component_description: 'Use the links to go to results based on your address.'|t({}, {'context': 'Services close to you block'}),
+        component_title: 'Services near you'|t({}, {'context': 'Services near you block'}),
+        component_description: 'Go from the links to the search results for your address.'|t({}, {'context': 'Services near you block'}),
         component_content_class: 'popular-services',
       }
     %}
@@ -51,7 +51,7 @@
         'component--coordinates-based-list',
         ],
         component_title: 'Events near you'|trans({}, {'context': 'Helsinki near you'}),
-        component_description: 'Browse events near you, sorted by their start time'|trans({}, {'context': 'Helsinki near you'}),
+        component_description: 'Browse events near you by date.'|trans({}, {'context': 'Helsinki near you'}),
         component_content_class: 'event-list',
       }
     %}
@@ -80,8 +80,8 @@
           'component--news-archive',
           'component--coordinates-based-list',
         ],
-          component_title: 'News close to you'|t({}, {'context': 'News close to you block'}),
-          component_description: 'Check out the news from the neighborhoods of %neighbourhoods%'|t({'%neighbourhoods%': neighbourhood_names}, {'context': 'News close to you block'}),
+          component_title: 'News related to your neighbourhood'|t({}, {'context': 'News close to you block'}),
+          component_description: 'See news related to the neighbourhoods of %neighbourhoods%'|t({'%neighbourhoods%': neighbourhood_names}, {'context': 'News close to you block'}),
           component_content_class: 'news-archive',
         }
       %}
@@ -100,7 +100,7 @@
             </div>
           </noscript>
           <div class="news-archive__link-wrapper">
-            {% set news_archive_title = 'View all news'|t({}, {'context': 'News close to you block'}) %}
+            {% set news_archive_title = 'See all news near you'|t({}, {'context': 'News close to you block'}) %}
             {% include '@hdbt/navigation/link-button.html.twig' with {
               type: 'primary',
               label: news_archive_title,
@@ -110,5 +110,6 @@
         {% endblock component_content %}
       {% endembed %}
     {% endif %}
+    {% include '@hdbt_subtheme/module/helfi-etusivu/helsinki-near-you-feedback-block.html.twig' %}
   </div>
 </article>
