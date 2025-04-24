@@ -22,6 +22,7 @@ dependencies:
     - paragraphs.paragraphs_type.map
     - paragraphs.paragraphs_type.news_archive
     - paragraphs.paragraphs_type.news_list
+    - paragraphs.paragraphs_type.number_highlights
     - paragraphs.paragraphs_type.phasing
     - paragraphs.paragraphs_type.popular_services
     - paragraphs.paragraphs_type.remote_video
@@ -63,6 +64,7 @@ settings:
       target_group_links: target_group_links
       news_list: news_list
       image_gallery: image_gallery
+      number_highlights: number_highlights
       curated_event_list: curated_event_list
       hearings: hearings
     negate: 0
@@ -117,6 +119,9 @@ settings:
         enabled: true
       news_list:
         weight: 14
+        enabled: true
+      number_highlights:
+        weight: 16
         enabled: true
       phasing:
         weight: 7
