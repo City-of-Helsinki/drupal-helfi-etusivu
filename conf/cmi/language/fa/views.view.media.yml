@@ -9,19 +9,26 @@ display:
           action_title: عملکرد
         thumbnail__target_id:
           label: 'تصویر بندانگشتی'
+          separator: ', '
         bundle:
           label: نوع
+          separator: ', '
         uid:
           label: نویسنده
+          separator: ', '
         status:
           label: وضعیت
           settings:
             format_custom_false: 'منتشر نشده'
             format_custom_true: 'منتشر شده'
+          separator: ', '
         changed:
           label: به‌روز
+          separator: ', '
         operations:
           label: عملیات
+        name:
+          separator: ', '
       pager:
         options:
           expose:
@@ -29,6 +36,8 @@ display:
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
           tags:
+            next: Next
+            previous: Previous
             first: First
             last: Last
       exposed_form:
@@ -55,6 +64,9 @@ display:
         langcode:
           expose:
             label: زبان
+      empty:
+        area_text_custom:
+          content: 'رسانه‌ای در دسترس نیست'
   media_page_list:
     display_title: رسانه
     display_options:

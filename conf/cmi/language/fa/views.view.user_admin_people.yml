@@ -25,6 +25,8 @@ display:
             past_format: '@interval پیش'
         operations:
           label: عملیات
+        mail:
+          separator: ', '
       pager:
         options:
           expose:
@@ -32,6 +34,8 @@ display:
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
           tags:
+            next: Next
+            previous: Previous
             first: First
             last: Last
       exposed_form:
