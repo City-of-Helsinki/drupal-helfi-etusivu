@@ -21,12 +21,12 @@ msgctxt "Front page news of interest title"
 msgid "You might be interested in"
 msgstr "Sinua voisi kiinnostaa"
 
-msgctxt "Services close to you block"
-msgid "Services close to you"
+msgctxt "Services near you block"
+msgid "Services near you"
 msgstr "Palvelut lähelläsi"
 
 msgctxt "News close to you block"
-msgid "News close to you"
+msgid "News related to your neighbourhood"
 msgstr "Uutisia läheltäsi"
 
 msgctxt "News close to you block"
@@ -34,13 +34,25 @@ msgid " and "
 msgstr " ja "
 
 msgctxt "News close to you block"
-msgid "Check out the news from the neighborhoods of %neighbourhoods%"
+msgid "See news related to the neighbourhoods of %neighbourhoods%"
 msgstr "Katso uutisia kaupunginosista %neighbourhoods%"
 
 msgctxt "News close to you block"
-msgid "View all news"
-msgstr "Katso kaikki uutiset"
+msgid "See all news near you"
+msgstr "Katso kaikki uutiset lähelläsi"
 
-msgctxt "Services close to you block"
-msgid "Use the links to go to results based on your address."
+msgctxt "Services near you block"
+msgid "Go from the links to the search results for your address."
 msgstr "Siirry linkeistä oman osoitteesi mukaisiin hakutuloksiin."
+
+msgctxt "Helsinki near you"
+msgid "Send feedback on the Helsinki near you webpages!"
+msgstr "Anna palautetta Helsinki lähelläsi -sivustosta!"
+
+msgctxt "Helsinki near you"
+msgid "What do you think of these new webpages? We are currently developing them and would appreciate your thoughts and ideas."
+msgstr "Mitä mieltä olet tästä uudesta sivustosta? Kehitämme tätä parhaillaan ja haluamme kuulla kokemuksiasi ja kehitystoiveitasi."
+
+msgctxt "Helsinki near you"
+msgid "Send feedback"
+msgstr "Anna palautetta"
