@@ -53,6 +53,39 @@
   width: 100%;
 }
 
+.helfi-etusivu-autocomplete input.hds-text-input__input {
+  padding-right: $spacing-triple;
+}
+
+.helfi-etusivu-autocomplete__loader {
+  align-items: center;
+  display: none;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  width: $spacing-triple;
+}
+
+.helfi-etusivu-autocomplete__wrapper:has(.location-loading) input.hds-text-input__input {
+  background-color: $color-black-5;
+  pointer-events: none;
+}
+
+.helfi-etusivu-autocomplete__wrapper:has(.location-loading) .helfi-etusivu-autocomplete__loader {
+  display: flex;
+}
+
+.helfi-etusivu-autocomplete__loader .hds-loading-spinner {
+  left: unset;
+  position: relative;
+  top: unset;
+}
+
+.helfi-etusivu-near-you-form__errors .hds-notification {
+  margin-top: $spacing
+}
+
 .helfi-etusivu-autocomplete [data-autocomplete-live-region] {
   @include visually-hidden();
 }
@@ -79,16 +112,4 @@
 .helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:focus,
 .helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:active {
   background-color: $color-bus-light;
-}
-
-.helfi-etusivu-near-you-form__address-input.loading {
-  pointer-events: none;
-}
-
-.helfi-etusivu-near-you-form__address-input .loader {
-  display: none;
-}
-
-.helfi-etusivu-near-you-form__address-input.loading .loader {
-  display: block;
 }

@@ -1,5 +1,6 @@
 const LOCATION_OPTION = Drupal.t('Use current Location', {}, { context: 'Helsinki near you' });
 const API_URL = 'https://api.hel.fi/servicemap/v2/address/';
+const LOCATION_LOADING = 'location-loading';
 
 const { currentLanguage } = drupalSettings.path;
 
@@ -43,38 +44,54 @@ const getTranslation = (fullName) => {
  * Renders automatic location error.
  */
 const displayLocationError = () => {
-  const errorElement = document.createElement('div');
-  errorElement.innerHTML = Drupal.t('Couldn\'t retrieve location. Please type desired address manually', {}, {
+  const errorContainer = document.createElement('section');
+  errorContainer.classList.add('hds-notification', 'hds-notification--error');
+  errorContainer.setAttribute('aria-label', Drupal.t('Notification'));
+  const errorContentContainer = document.createElement('div');
+  errorContentContainer.classList.add('hds-notification__content');
+  const errorLabel = document.createElement('div');
+  errorLabel.classList.add('hds-notification__label');
+  errorLabel.setAttribute('role', 'heading');
+  errorLabel.setAttribute('aria-level', '2');
+  const errorIcon = document.createElement('span');
+  errorIcon.classList.add('hel-icon', 'hel-icon--error');
+  errorIcon.setAttribute('role', 'img');
+  errorIcon.setAttribute('aria-hidden', 'true');
+  errorLabel.appendChild(errorIcon);
+  const errorLabelText = document.createElement('span');
+  errorLabelText.innerHTML = Drupal.t('Location determination unsuccessful', {}, {
     context: 'Helsinki near you'
   });
+  errorLabel.appendChild(errorLabelText);
+  const errorBody = document.createElement('div');
+  errorBody.classList.add('hds-notification__body');
+  errorBody.innerHTML = Drupal.t('Please type desired address manually', {}, {
+    context: 'Helsinki near you'
+  });
+  errorContentContainer.appendChild(errorLabel);
+  errorContentContainer.appendChild(errorBody);
+  errorContainer.appendChild(errorContentContainer);
   const errorArea = document.querySelector('.helfi-etusivu-near-you-form__errors');
   errorArea.innerHTML = '';
-  errorArea.appendChild(errorElement);
+  errorArea.appendChild(errorContainer);
 };
 
 /**
  * Reflect loading and filling location in UI.
  * 
+ * @param {HTMLElement} element - element to affect.
  * @param {object} autocompleteInstance - instance to affect.
  * @param {boolean} state - true to set loading.
  */
-const setLoading = (autocompleteInstance, state) => {
-  autocompleteInstance.disabled = state;
+const setLoading = (element, autocompleteInstance, state) => {
+  autocompleteInstance.close();
 
   if (state) {
-    autocompleteInstance.addClasses(
-      autocompleteInstance.input,
-      autocompleteInstance.options.classes.inputLoading
-    );
-
+    element.classList.toggle(LOCATION_LOADING, true);
     return;
   }
 
-  autocompleteInstance.removeClasses(
-    autocompleteInstance.input,
-    autocompleteInstance.options.classes.inputLoading
-  );
-  autocompleteInstance.close();
+  element.classList.toggle(LOCATION_LOADING, false);
 };
 
 ((Drupal, once) => {
@@ -141,10 +158,17 @@ const setLoading = (autocompleteInstance, state) => {
       }
 
       event.preventDefault();
-      setLoading(autocompleteInstance, true);
+      setLoading(element, autocompleteInstance, true);
       navigator.geolocation.getCurrentPosition(async(position) => {
         const { coords: { latitude, longitude } } = position;
         
+        if (!latitude || !longitude) {
+          displayLocationError();
+          setLoading(element, autocompleteInstance, false);
+
+          return;
+        }
+
         const params = new URLSearchParams({
           lat: latitude,
           lon: longitude,
@@ -152,17 +176,39 @@ const setLoading = (autocompleteInstance, state) => {
         const reqUrl = new URL(API_URL);
         reqUrl.search = params.toString();
 
-        const response = await fetch(reqUrl.toString());
-        const json = await response.json();
-
-        event.target.value = getTranslation(json.results[0].full_name);
+        try {
+          const response = await fetch(reqUrl.toString());
+          const json = await response.json();
+          event.target.value = getTranslation(json.results[0].full_name);
+        }
+        catch (e) {
+         displayLocationError(); 
+        }
+        finally {
+          setLoading(element, autocompleteInstance, false);
+        }
       });
-      setLoading(autocompleteInstance, false);
     });
-
+    
+    // Opens the dropdown on focus when input is empty
+    // Not supported by the a11y-autocomplete library
     element.addEventListener('focus', () => {
-      displayLocationError();
+      if (element.classList.contains(LOCATION_LOADING)) {
+        return;
+      }
+
       if (autocompleteInstance.input.value === '' && defaultOptions.length) {
+        autocompleteInstance.displayResults(defaultOptions);
+      }
+    });
+    // Similar to above, allow opening list with arrow keys
+    element.addEventListener('keydown', (event) => {
+      if (
+        autocompleteInstance.input.value === '' &&
+        defaultOptions.length &&
+        autocompleteInstance.suggestions.length === 0 &&
+        event.key === 'ArrowDown'
+      ) {
         autocompleteInstance.displayResults(defaultOptions);
       }
     });
