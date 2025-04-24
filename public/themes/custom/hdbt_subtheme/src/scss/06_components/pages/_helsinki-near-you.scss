@@ -80,3 +80,15 @@
 .helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:active {
   background-color: $color-bus-light;
 }
+
+.helfi-etusivu-near-you-form__address-input.loading {
+  pointer-events: none;
+}
+
+.helfi-etusivu-near-you-form__address-input .loader {
+  display: none;
+}
+
+.helfi-etusivu-near-you-form__address-input.loading .loader {
+  display: block;
+}
