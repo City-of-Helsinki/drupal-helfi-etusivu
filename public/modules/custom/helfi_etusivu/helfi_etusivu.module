@@ -390,7 +390,7 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'attributes' => [],
         'children' => NULL,
-      ]
+      ],
     ],
     'helsinki_near_you_events' => [
       'variables' => [],
