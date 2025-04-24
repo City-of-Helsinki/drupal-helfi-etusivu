@@ -7,12 +7,15 @@ display:
           action_title: 'With selection'
         redirect_source__path:
           label: From
+          separator: ', '
         is_custom:
           label: Custom
+          separator: ', '
         created:
           label: Created
         status:
           label: 'منتشر شده'
+          separator: ', '
       pager:
         options:
           tags:

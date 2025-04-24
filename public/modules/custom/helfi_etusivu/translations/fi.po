@@ -36,8 +36,8 @@ msgid "Helsinki near you"
 msgstr "Helsinki lähelläsi"
 
 msgctxt "Helsinki near you"
-msgid "Find services, events and news close to you. Start by searching with your address."
-msgstr "Löydä palvelut, tapahtumat ja uutiset läheltäsi. Aloita kirjoittamalla osoitteesi."
+msgid "Discover city services, events and news near you. Start by entering your street address."
+msgstr "Löydä kaupungin palvelut, tapahtumat ja uutiset läheltäsi. Aloita kirjoittamalla osoitteesi."
 
 msgctxt "Helsinki near you"
 msgid "Address"
@@ -52,12 +52,12 @@ msgid "Search"
 msgstr "Etsi"
 
 msgctxt "Helsinki near you"
-msgid "First make a search with your address"
+msgid "Start by entering your street address"
 msgstr "Tee aluksi haku osoitteellasi"
 
 msgctxt "Helsinki near you"
-msgid "Fill in your address to the search bar above and find services, events and news near you."
-msgstr "Täytä osoitteesi yllä olevaan hakuun ja löydä palveluita, tapahtumia ja uutisia läheltäsi."
+msgid "Enter your street address in the search field above to find services, events and news related to your neighbourhood."
+msgstr "Kirjoita osoitteesi yllä olevaan hakuun ja löydä palveluita, tapahtumia ja uutisia läheltäsi."
 
 msgctxt "Helsinki near you"
 msgid "Picture: Lille Santanen"
@@ -68,7 +68,7 @@ msgid "Edit address"
 msgstr "Muokkaa osoitetta"
 
 msgctxt "Helsinki near you"
-msgid "Services, events and news near your address @address"
+msgid "Services, events and news for @address"
 msgstr "Palvelut, tapahtumat ja uutiset osoitteella @address"
 
 msgid "Helsinki near you"
@@ -78,12 +78,16 @@ msgid "Services, events and news near your address"
 msgstr "Palvelut, tapahtumat ja uutiset osoitteesi lähellä"
 
 msgctxt "Helsinki near you"
-msgid "Eg. Vaasankatu 5"
-msgstr "Esimerkiksi Vaasankatu 5"
+msgid "For example, Kotikatu 1"
+msgstr "Esim. Kotikatu 1"
 
 msgctxt "Helsinki near you"
-msgid "The address you input yielded no results. You may want to try a different address."
-msgstr "Antamallasi osoitteella ei löytynyt tuloksia. Voit kokeilla muuttaa hakuehtojasi."
+msgid "No results for the address entered"
+msgstr "Antamallasi osoitteella ei löytynyt tuloksia"
+
+msgctxt "Helsinki near you"
+msgid "Make sure the address is written correctly. You can also search using a nearby street number."
+msgstr "Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esimerkiksi viereisellä katunumerolla."
 
 msgctxt "Helsinki near you"
 msgid "Search"
@@ -98,19 +102,19 @@ msgid "Events near you"
 msgstr "Tapahtumat lähelläsi"
 
 msgctxt "Helsinki near you"
-msgid "Browse events near you, sorted by their start time"
-msgstr "Tutustu tapahtumiin tapahtumisajan mukaisessa järjestyksessä."
+msgid "Browse events near you by date."
+msgstr "Tutustu lähialueesi tapahtumiin, jotka on järjestetty ajankohdan mukaan."
 
 msgctxt "Helsinki near you"
 msgid "Health is key"
 msgstr "Hoida terveyttä"
 
 msgctxt "Helsinki near you"
-msgid "Your own health station"
+msgid "Your health station"
 msgstr "Oma terveysasema"
 
 msgctxt "Helsinki near you"
-msgid "Closest maternity and child health clinic"
+msgid "The maternity and child health clinic near you"
 msgstr "Lähin neuvola"
 
 msgctxt "Helsinki near you"
@@ -118,43 +122,43 @@ msgid "Grow and learn"
 msgstr "Kasva ja opi"
 
 msgctxt "Helsinki near you"
-msgid "Schools close to you"
-msgstr "Lähikoulut"
+msgid "Your local school"
+msgstr "Lähikoulu"
 
 msgctxt "Helsinki near you"
-msgid "Closest playgrounds and family houses"
+msgid "Playgrounds and family houses near you"
 msgstr "Lähimmät leikkipuistot ja perhetalot"
 
 msgctxt "Helsinki near you"
-msgid "Closest daycare centres"
+msgid "Daycare centres near you"
 msgstr "Lähimmät päiväkodit"
 
 msgctxt "Helsinki near you"
-msgid "Move around the city"
+msgid "Getting around the city"
 msgstr "Kulje kaupungissa"
 
 msgctxt "Helsinki near you"
-msgid "Roadway ploughing schedule"
+msgid "Ploughing schedule"
 msgstr "Aurausaikataulu"
 
 msgctxt "Helsinki near you"
-msgid "Roadworks and events on map"
-msgstr "Katutyöt ja tapahtumat kartalla"
+msgid "Roadworks on the map"
+msgstr "Katutyöt kartalla"
 
 msgctxt "Helsinki near you"
-msgid "City bike stations on map"
+msgid "City bike stations and bikeracks on the map"
 msgstr "Kaupunkipyöräasemat ja pyörätelineet kartalla"
 
 msgctxt "Helsinki near you"
-msgid "The city is developing"
+msgid "Urban development"
 msgstr "Kaupunki kehittyy"
 
 msgctxt "Helsinki near you"
-msgid "Street and park development on map"
+msgid "Street and park projects on the map"
 msgstr "Katu- ja puistohankkeet kartalla"
 
 msgctxt "Helsinki near you"
-msgid "Plans in process on map"
+msgid "Plans under preparation on the map"
 msgstr "Valmisteilla olevat kaavat kartalla"
 
 msgctxt "Helsinki near you"
@@ -211,7 +215,7 @@ msgstr "Etsi tapahtumia lähelläsi"
 
 msgctxt "Helsinki near you events search"
 msgid "Browse events near you or search for events by theme, location or date. The search shows results at most two kilometers from the address."
-msgstr "Voit selata lähialueesi tapahtumia tai etsiä tapahtumia aiheen, tapahtumapaikan tai ajankohdan mukaan. Haku näyttää tuloksia enintään kahden kilometrin päässä osoitteesta."
+msgstr "Voit selata lähialueesi tapahtumia tai etsiä tapahtumia aiheen, tapahtumapaikan tai ajankohdan mukaan. Haku näyttää tuloksia enintään kahden kilometrin etäisyydeltä osoitteesta."
 
 msgctxt "Helsinki near you events search"
 msgid "Find events in your neighbourhood that interest you."
