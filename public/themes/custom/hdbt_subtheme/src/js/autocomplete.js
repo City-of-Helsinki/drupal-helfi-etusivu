@@ -56,43 +56,28 @@ const getTranslation = (fullName) => {
       }
     }] : [];
 
+    const parent = element.closest('.hds-text-input');
+
     /**
      * Renders automatic location error.
      */
     const displayLocationError = () => {
-      const errorContainer = document.createElement('section');
-      errorContainer.classList.add('hds-notification', 'hds-notification--error');
-      errorContainer.setAttribute('aria-label', Drupal.t('Notification'));
-      const errorContentContainer = document.createElement('div');
-      errorContentContainer.classList.add('hds-notification__content');
-      const errorLabel = document.createElement('div');
-      errorLabel.classList.add('hds-notification__label');
-      errorLabel.setAttribute('role', 'heading');
-      errorLabel.setAttribute('aria-level', '2');
-      const errorIcon = document.createElement('span');
-      errorIcon.classList.add('hel-icon', 'hel-icon--error');
-      errorIcon.setAttribute('role', 'img');
-      errorIcon.setAttribute('aria-hidden', 'true');
-      errorLabel.appendChild(errorIcon);
-      const errorLabelText = document.createElement('span');
-      errorLabelText.innerHTML = Drupal.t('Location determination unsuccessful', {}, {
-        context: 'Helsinki near you'
-      });
-      errorLabel.appendChild(errorLabelText);
-      const errorBody = document.createElement('div');
-      errorBody.classList.add('hds-notification__body');
-      errorBody.innerHTML = Drupal.t('Please type desired address manually', {}, {
-        context: 'Helsinki near you'
-      });
-      errorContentContainer.appendChild(errorLabel);
-      errorContentContainer.appendChild(errorBody);
-      errorContainer.appendChild(errorContentContainer);
-      const errorArea = document.querySelector('.helfi-etusivu-near-you-form__errors');
-      errorArea.innerHTML = '';
-      errorArea.appendChild(errorContainer);
+      parent.classList.add('hds-text-input--invalid');
+      const errorSpan = document.createElement('span');
+      errorSpan.classList.add('hds-text-input__error-text');
+      errorSpan.textContent = Drupal.t('Failed to retrieve device location. Please type the address manually.', {}, { context: 'Helsinki near you' });
+      parent.appendChild(errorSpan);
 
       // Remove automatic location from default options
       defaultOptions = [];
+    };
+
+    /**
+     * Removes automatic location error.
+     */
+    const removeLocationError = () => {
+      parent.classList.remove('hds-text-input--invalid');
+      parent.querySelector('.hds-text-input__error-text').remove();
     };
 
     const {
@@ -210,6 +195,8 @@ const getTranslation = (fullName) => {
         autocompleteInstance.displayResults(defaultOptions);
       }
     });
+    // Hide location error input when changing input
+    element.addEventListener('change', removeLocationError);
   };
 
   Drupal.behaviors.helfi_etusivu_autocomplete = {
