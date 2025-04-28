@@ -11,17 +11,6 @@ const locationOptionLabel = `
   </div>
 `;
 
-// Dont add 'Use current location' option if location not available
-const defaultOptions = 'geolocation' in navigator ? [{
-  label: locationOptionLabel,
-  value: LOCATION_OPTION,
-  index: 0,
-  item: {
-    label: LOCATION_OPTION,
-    value: LOCATION_OPTION,
-  }
-}] : [];
-
 /**
  * Get the most appropriate translation for address.
  * 
@@ -40,60 +29,6 @@ const getTranslation = (fullName) => {
   return Object.values(fullName)[0];
 };
 
-/**
- * Renders automatic location error.
- */
-const displayLocationError = () => {
-  const errorContainer = document.createElement('section');
-  errorContainer.classList.add('hds-notification', 'hds-notification--error');
-  errorContainer.setAttribute('aria-label', Drupal.t('Notification'));
-  const errorContentContainer = document.createElement('div');
-  errorContentContainer.classList.add('hds-notification__content');
-  const errorLabel = document.createElement('div');
-  errorLabel.classList.add('hds-notification__label');
-  errorLabel.setAttribute('role', 'heading');
-  errorLabel.setAttribute('aria-level', '2');
-  const errorIcon = document.createElement('span');
-  errorIcon.classList.add('hel-icon', 'hel-icon--error');
-  errorIcon.setAttribute('role', 'img');
-  errorIcon.setAttribute('aria-hidden', 'true');
-  errorLabel.appendChild(errorIcon);
-  const errorLabelText = document.createElement('span');
-  errorLabelText.innerHTML = Drupal.t('Location determination unsuccessful', {}, {
-    context: 'Helsinki near you'
-  });
-  errorLabel.appendChild(errorLabelText);
-  const errorBody = document.createElement('div');
-  errorBody.classList.add('hds-notification__body');
-  errorBody.innerHTML = Drupal.t('Please type desired address manually', {}, {
-    context: 'Helsinki near you'
-  });
-  errorContentContainer.appendChild(errorLabel);
-  errorContentContainer.appendChild(errorBody);
-  errorContainer.appendChild(errorContentContainer);
-  const errorArea = document.querySelector('.helfi-etusivu-near-you-form__errors');
-  errorArea.innerHTML = '';
-  errorArea.appendChild(errorContainer);
-};
-
-/**
- * Reflect loading and filling location in UI.
- * 
- * @param {HTMLElement} element - element to affect.
- * @param {object} autocompleteInstance - instance to affect.
- * @param {boolean} state - true to set loading.
- */
-const setLoading = (element, autocompleteInstance, state) => {
-  autocompleteInstance.close();
-
-  if (state) {
-    element.classList.toggle(LOCATION_LOADING, true);
-    return;
-  }
-
-  element.classList.toggle(LOCATION_LOADING, false);
-};
-
 ((Drupal, once) => {
   /**
    * Initialize autocomplete.
@@ -109,6 +44,56 @@ const setLoading = (element, autocompleteInstance, state) => {
     if (!drupalSettings.helsinki_near_you_form) {
       throw new Error('Helsinki near you form object not found. Configuration cannot be loaded for autocomplete.');
     }
+
+    // Dont add 'Use current location' option if location not available
+    let defaultOptions = 'geolocation' in navigator ? [{
+      label: locationOptionLabel,
+      value: LOCATION_OPTION,
+      index: 0,
+      item: {
+        label: LOCATION_OPTION,
+        value: LOCATION_OPTION,
+      }
+    }] : [];
+
+    /**
+     * Renders automatic location error.
+     */
+    const displayLocationError = () => {
+      const errorContainer = document.createElement('section');
+      errorContainer.classList.add('hds-notification', 'hds-notification--error');
+      errorContainer.setAttribute('aria-label', Drupal.t('Notification'));
+      const errorContentContainer = document.createElement('div');
+      errorContentContainer.classList.add('hds-notification__content');
+      const errorLabel = document.createElement('div');
+      errorLabel.classList.add('hds-notification__label');
+      errorLabel.setAttribute('role', 'heading');
+      errorLabel.setAttribute('aria-level', '2');
+      const errorIcon = document.createElement('span');
+      errorIcon.classList.add('hel-icon', 'hel-icon--error');
+      errorIcon.setAttribute('role', 'img');
+      errorIcon.setAttribute('aria-hidden', 'true');
+      errorLabel.appendChild(errorIcon);
+      const errorLabelText = document.createElement('span');
+      errorLabelText.innerHTML = Drupal.t('Location determination unsuccessful', {}, {
+        context: 'Helsinki near you'
+      });
+      errorLabel.appendChild(errorLabelText);
+      const errorBody = document.createElement('div');
+      errorBody.classList.add('hds-notification__body');
+      errorBody.innerHTML = Drupal.t('Please type desired address manually', {}, {
+        context: 'Helsinki near you'
+      });
+      errorContentContainer.appendChild(errorLabel);
+      errorContentContainer.appendChild(errorBody);
+      errorContainer.appendChild(errorContentContainer);
+      const errorArea = document.querySelector('.helfi-etusivu-near-you-form__errors');
+      errorArea.innerHTML = '';
+      errorArea.appendChild(errorContainer);
+
+      // Remove automatic location from default options
+      defaultOptions = [];
+    };
 
     const {
       autocompleteRoute,
@@ -152,6 +137,23 @@ const setLoading = (element, autocompleteInstance, state) => {
     });
     const autocompleteInstance = autocomplete._internal_object;
 
+    /**
+     * Reflect loading and filling location in UI.
+     *
+     * @param {boolean} state - true to set loading.
+     */
+    const setLoading = (state) => {
+      autocompleteInstance.close();
+
+      if (state) {
+        element.classList.toggle(LOCATION_LOADING, true);
+        return;
+      }
+
+      element.classList.toggle(LOCATION_LOADING, false);
+    };
+
+    // Handle automatic location selection
     element.addEventListener('autocomplete-select', (event) => {
       if (event.detail.selected.value !== LOCATION_OPTION) {
         return;
@@ -162,13 +164,6 @@ const setLoading = (element, autocompleteInstance, state) => {
       navigator.geolocation.getCurrentPosition(async(position) => {
         const { coords: { latitude, longitude } } = position;
         
-        if (!latitude || !longitude) {
-          displayLocationError();
-          setLoading(element, autocompleteInstance, false);
-
-          return;
-        }
-
         const params = new URLSearchParams({
           lat: latitude,
           lon: longitude,
@@ -181,12 +176,15 @@ const setLoading = (element, autocompleteInstance, state) => {
           const json = await response.json();
           event.target.value = getTranslation(json.results[0].full_name);
         }
-        catch (e) {
-         displayLocationError(); 
+        catch(e) {
+          displayLocationError();
         }
         finally {
-          setLoading(element, autocompleteInstance, false);
+          setLoading(false);
         }
+      }, () => {
+        displayLocationError();
+        setLoading(false);
       });
     });
     
