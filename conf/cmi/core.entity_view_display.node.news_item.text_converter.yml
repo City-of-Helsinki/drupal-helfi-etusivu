@@ -1,9 +1,9 @@
-uuid: a676c2be-6f5e-417f-afba-7c4b80954a38
+uuid: 7990c930-431a-4371-8775-7a09d0bea730
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.text_converter
     - field.field.node.news_item.field_content
     - field.field.node.news_item.field_lead_in
     - field.field.node.news_item.field_main_image
@@ -18,52 +18,30 @@ dependencies:
     - field.field.node.news_item.field_short_title
     - node.type.news_item
   module:
-    - user
-_core:
-  default_config_hash: GZ4RFPkRq0OjD31t8jG9R5KZvzi7xhjM1-7kONczzrA
-id: node.news_item.tiny_teaser
+    - entity_reference_revisions
+    - helfi_platform_config
+id: node.news_item.text_converter
 targetEntityType: node
 bundle: news_item
-mode: tiny_teaser
+mode: text_converter
 content:
-  field_main_image:
-    settings: {  }
-    region: content
-  field_short_title:
-    type: string
+  field_content:
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
-      link_to_entity: false
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 5
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
-  published_at:
-    type: timestamp
+  field_lead_in:
+    type: text_span
     label: hidden
-    settings:
-      date_format: publication_date_format
-      custom_date_format: ''
-      timezone: ''
-      tooltip:
-        date_format: ''
-        custom_date_format: ''
-      time_diff:
-        enabled: false
-        future_format: '@interval hence'
-        past_format: '@interval ago'
-        granularity: 2
-        refresh: 60
+    settings: {  }
     third_party_settings: {  }
     weight: 2
     region: content
 hidden:
-  field_content: true
-  field_lead_in: true
   field_main_image: true
   field_main_image_caption: true
   field_news_groups: true
@@ -73,6 +51,9 @@ hidden:
   field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
+  field_short_title: true
   langcode: true
+  links: true
+  published_at: true
   search_api_excerpt: true
   toc_enabled: true
