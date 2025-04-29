@@ -386,6 +386,12 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-hero-block',
     ],
+    'helfi_etusivu_autocomplete' => [
+      'variables' => [
+        'attributes' => [],
+        'children' => NULL,
+      ],
+    ],
     'helsinki_near_you_events' => [
       'variables' => [],
       'template' => 'helsinki-near-you-events',

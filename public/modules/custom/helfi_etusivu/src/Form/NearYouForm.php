@@ -58,6 +58,7 @@ class NearYouForm extends FormBase {
           'hds-text-input__label',
         ],
       ],
+      '#theme' => 'helfi_etusivu_autocomplete',
       '#type' => 'helfi_etusivu_autocomplete',
       '#wrapper_attributes' => [
         'class' => [
