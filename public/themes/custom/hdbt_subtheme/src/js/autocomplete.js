@@ -65,7 +65,7 @@ const getTranslation = (fullName) => {
       parent.classList.add('hds-text-input--invalid');
       const errorSpan = document.createElement('span');
       errorSpan.classList.add('hds-text-input__error-text');
-      errorSpan.textContent = Drupal.t('Failed to retrieve device location. Please type the address manually.', {}, { context: 'Helsinki near you' });
+      errorSpan.textContent = Drupal.t('We couldn\'t retrieve your current location. Try entering an address.', {}, { context: 'Helsinki near you' });
       parent.appendChild(errorSpan);
 
       // Remove automatic location from default options

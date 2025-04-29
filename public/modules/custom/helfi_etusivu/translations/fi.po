@@ -241,5 +241,5 @@ msgid "Use current Location"
 msgstr "Käytä nykyistä sijaintia"
 
 msgctxt "Helsinki near you"
-msgid "Failed to retrieve device location. Please type the address manually."
-msgstr "Laitteen sijaintia ei voitu hakea. Voit täyttää osoitteen manuaalisesti."
+msgid "We couldn\'t retrieve your current location. Try entering an address."
+msgstr "Nykyisen sijainnin käyttö ei onnistunut. Kokeile kirjoittaa osoite."
