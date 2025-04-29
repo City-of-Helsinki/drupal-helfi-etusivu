@@ -235,3 +235,11 @@ msgstr "Aloita kirjoittamalla osoitteesi."
 
 msgid "Events near you"
 msgstr "Tapahtumat lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "Use current Location"
+msgstr "Käytä nykyistä sijaintia"
+
+msgctxt "Helsinki near you"
+msgid "We couldn\'t retrieve your current location. Try entering an address."
+msgstr "Nykyisen sijainnin käyttö ei onnistunut. Kokeile kirjoittaa osoite."

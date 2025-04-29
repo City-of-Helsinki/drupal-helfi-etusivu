@@ -224,3 +224,11 @@ msgstr "Börja med att söka med din adress."
 
 msgid "Events near you"
 msgstr "Evenemang nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Use current Location"
+msgstr "Använd aktuell plats"
+
+msgctxt "Helsinki near you"
+msgid "We couldn\'t retrieve your current location. Try entering an address."
+msgstr "Kunde inte använda din position. Prova att skriva in en adress."
