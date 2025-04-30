@@ -5,6 +5,17 @@
  * Contains site specific overrides.
  */
 
+// Elasticsearch server config for suggestions server.
+if (getenv('ELASTICSEARCH_URL')) {
+  $config['search_api.server.etusivu']['backend_config']['connector_config']['url'] = getenv('ELASTICSEARCH_URL');
+
+  if (getenv('ELASTIC_USER') && getenv('ELASTIC_PASSWORD')) {
+    $config['search_api.server.etusivu']['backend_config']['connector'] = 'helfi_connector';
+    $config['search_api.server.etusivu']['backend_config']['connector_config']['username'] = getenv('ELASTIC_USER');
+    $config['search_api.server.etusivu']['backend_config']['connector_config']['password'] = getenv('ELASTIC_PASSWORD');
+  }
+}
+
 // Elastic proxy URL.
 $config['elastic_proxy.settings']['elastic_proxy_url'] = getenv('ELASTIC_PROXY_URL');
 
