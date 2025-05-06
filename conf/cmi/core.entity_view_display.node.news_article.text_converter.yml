@@ -1,4 +1,4 @@
-uuid: c80eef0f-6d22-46b5-80c5-f3c584fa2074
+uuid: 3f985912-9dd4-465c-b8dd-f1ace1668f2e
 langcode: en
 status: true
 dependencies:
@@ -20,12 +20,6 @@ dependencies:
   module:
     - entity_reference_revisions
     - helfi_platform_config
-    - link
-    - options
-    - radioactivity
-    - user
-_core:
-  default_config_hash: AvCTTs-O6N3Rf66v73HmbnXd4q3nkGgFtPQnztyQj3E
 id: node.news_article.text_converter
 targetEntityType: node
 bundle: news_article
@@ -47,14 +41,6 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_short_title:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 1
-    region: content
 hidden:
   field_hero_design: true
   field_main_image: true
@@ -63,13 +49,11 @@ hidden:
   field_news_item_links_link: true
   field_news_item_links_title: true
   field_news_item_tags: true
-  field_news_item_updating_news: true
   field_news_neighbourhoods: true
   field_radioactivity: true
-  in_recommendations: true
+  field_short_title: true
   langcode: true
   links: true
   published_at: true
   search_api_excerpt: true
-  show_annif_block: true
   toc_enabled: true

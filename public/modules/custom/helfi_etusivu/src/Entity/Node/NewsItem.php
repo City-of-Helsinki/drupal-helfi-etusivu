@@ -7,13 +7,13 @@ namespace Drupal\helfi_etusivu\Entity\Node;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
-use Drupal\helfi_annif\RecommendableBase;
 use Drupal\radioactivity\RadioactivityInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * A bundle class for NewsItem -node.
  */
-final class NewsItem extends RecommendableBase {
+final class NewsItem extends Node {
 
   /**
    * {@inheritdoc}

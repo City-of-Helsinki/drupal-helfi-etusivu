@@ -3,7 +3,6 @@ config_rewrite:
     'hidden',
     'dependencies',
     'third_party_settings.field_group.group_updating_news.children',
-    'third_party_settings.field_group.group_automatically_recommended.children',
   ]
 dependencies:
   config:
@@ -23,7 +22,6 @@ dependencies:
   module:
     - field_group
     - hdbt_admin_tools
-    - helfi_annif
     - linkit
     - media_library
     - paragraphs
@@ -40,7 +38,7 @@ third_party_settings:
       label: 'Updating news'
       region: content
       parent_name: ''
-      weight: 17
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -48,22 +46,6 @@ third_party_settings:
         id: ''
         open: false
         description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
-        required_fields: false
-    group_automatically_recommended:
-      children:
-        - in_recommendations
-        - show_annif_block
-        - annif_suggested_topics
-      label: 'Automatically recommended content'
-      region: content
-      parent_name: ''
-      weight: 28
-      format_type: fieldset
-      format_settings:
-        classes: ''
-        show_empty_fields: true
-        id: ''
-        description: 'Recommended content may include news or articles. Recommendations are based on automatically selected news categories. The news categories are chosen based on the page content when the page is saved.'
         required_fields: false
 content:
   field_news_item_updating_news:
@@ -88,7 +70,7 @@ content:
     third_party_settings: {  }
   field_news_groups:
     type: select2_entity_reference
-    weight: 25
+    weight: 21
     region: content
     settings:
       width: 100%
@@ -98,7 +80,7 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 26
+    weight: 22
     region: content
     settings:
       width: 100%
@@ -108,7 +90,7 @@ content:
     third_party_settings: {  }
   field_news_neighbourhoods:
     type: select2_entity_reference
-    weight: 27
+    weight: 24
     region: content
     settings:
       width: 100%
@@ -118,30 +100,9 @@ content:
     third_party_settings: {  }
   field_radioactivity:
     type: radioactivity_reference
-    weight: 28
+    weight: 25
     region: content
     settings: {  }
-    third_party_settings: {  }
-  in_recommendations:
-    type: boolean_checkbox
-    weight: 0
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  show_annif_block:
-    type: boolean_checkbox
-    weight: 1
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  show_recommendations:
-    type: boolean_checkbox
-    weight: 0
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
 hidden:
   hide_sidebar_navigation: true
