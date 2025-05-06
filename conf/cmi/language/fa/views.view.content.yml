@@ -55,13 +55,6 @@ display:
         langcode:
           expose:
             label: زبان
-      pager:
-        options:
-          tags:
-            next: Next
-            previous: Previous
-            first: First
-            last: Last
   page_1:
     display_title: صفحه
     display_options:
