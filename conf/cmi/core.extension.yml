@@ -46,7 +46,6 @@ module:
   hdbt_cookie_banner: 0
   health_check: 0
   helfi_alt_lang_fallback: 0
-  helfi_annif: 0
   helfi_api_base: 0
   helfi_azure_fs: 0
   helfi_base_content: 0
@@ -81,6 +80,7 @@ module:
   helfi_paragraphs_list_of_links: 0
   helfi_paragraphs_map: 0
   helfi_paragraphs_news_list: 0
+  helfi_paragraphs_number_highlights: 0
   helfi_paragraphs_phasing: 0
   helfi_paragraphs_popular_services: 0
   helfi_paragraphs_remote_video: 0
@@ -91,6 +91,7 @@ module:
   helfi_platform_config_base: 0
   helfi_proxy: 0
   helfi_react_search: 0
+  helfi_recommendations: 0
   helfi_tfa: 0
   helfi_toc: 0
   helfi_tunnistamo: 0

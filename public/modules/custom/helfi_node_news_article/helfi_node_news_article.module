@@ -175,6 +175,7 @@ function helfi_node_news_article_helfi_paragraph_types() : array {
       'remote_video' => 2,
       'banner' => 3,
       'image_gallery' => 4,
+      'number_highlights' => 5,
     ],
   ];
 

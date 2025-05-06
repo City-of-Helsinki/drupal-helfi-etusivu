@@ -12,7 +12,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\helfi_annif\TextConverter\Document;
+use Drupal\helfi_recommendations\TextConverter\Document;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
 use Drupal\helfi_etusivu\Entity\Node\NewsItem;
@@ -274,6 +274,7 @@ function helfi_etusivu_preprocess_html(&$variables): void {
   $near_you_pages = [
     'helfi_etusivu.helsinki_near_you',
     'helfi_etusivu.helsinki_near_you_events',
+    'helfi_etusivu.helsinki_near_you_results',
   ];
 
   if (in_array($route, $near_you_pages)) {
@@ -355,6 +356,8 @@ function helfi_etusivu_theme() : array {
         'title' => NULL,
         'description' => NULL,
         'illustration' => NULL,
+        'illustration_url_1x' => NULL,
+        'illustration_url_2x' => NULL,
         'illustration_caption' => NULL,
       ],
       'template' => 'helsinki-near-you-landing-page',
@@ -382,6 +385,12 @@ function helfi_etusivu_theme() : array {
         'autosuggest_form' => NULL,
       ],
       'template' => 'helsinki-near-you-hero-block',
+    ],
+    'helfi_etusivu_autocomplete' => [
+      'variables' => [
+        'attributes' => [],
+        'children' => NULL,
+      ],
     ],
     'helsinki_near_you_events' => [
       'variables' => [],
