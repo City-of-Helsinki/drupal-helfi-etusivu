@@ -1939,6 +1939,50 @@
             }
         },
         {
+            "name": "drupal/big_pipe_sessionless",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/big_pipe_sessionless.git",
+                "reference": "2.2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/big_pipe_sessionless-2.2.0.zip",
+                "reference": "2.2.0",
+                "shasum": "e894f61cb862511b3a79ed256f83c2c8fb98d5c7"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.2.0",
+                    "datestamp": "1698145025",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Wim Leers",
+                    "homepage": "https://www.drupal.org/user/99777"
+                }
+            ],
+            "description": "Accelerates Page Cache misses using the BigPipe technique.",
+            "homepage": "https://www.drupal.org/project/big_pipe_sessionless",
+            "support": {
+                "source": "https://git.drupalcode.org/project/big_pipe_sessionless"
+            }
+        },
+        {
             "name": "drupal/ckeditor",
             "version": "1.0.2",
             "source": {
@@ -4372,19 +4416,20 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.7.27",
+            "version": "2.7.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "5a8a1e82f0fc27678a6d2150882abf1776b6ba61"
+                "reference": "4ab4bfb56eba1f3c8846085bac8c2a4f8fb18bd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/5a8a1e82f0fc27678a6d2150882abf1776b6ba61",
-                "reference": "5a8a1e82f0fc27678a6d2150882abf1776b6ba61",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/4ab4bfb56eba1f3c8846085bac8c2a4f8fb18bd6",
+                "reference": "4ab4bfb56eba1f3c8846085bac8c2a4f8fb18bd6",
                 "shasum": ""
             },
             "require": {
+                "drupal/big_pipe_sessionless": "^2.0",
                 "drupal/entity": "^1.0",
                 "drupal/health_check": "^3.0",
                 "drupal/monolog": "^3.0",
@@ -4413,10 +4458,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.7.27",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.7.28",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2025-04-08T08:14:54+00:00"
+            "time": "2025-05-07T08:37:01+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -4588,16 +4633,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.13.6",
+            "version": "4.13.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "c3aec3a4aac984f0ab56ca154a1bc3b48eea61f8"
+                "reference": "f84f51b5f1927358c99deef65a912e4e55f6537e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/c3aec3a4aac984f0ab56ca154a1bc3b48eea61f8",
-                "reference": "c3aec3a4aac984f0ab56ca154a1bc3b48eea61f8",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/f84f51b5f1927358c99deef65a912e4e55f6537e",
+                "reference": "f84f51b5f1927358c99deef65a912e4e55f6537e",
                 "shasum": ""
             },
             "require": {
@@ -4717,10 +4762,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.13.6",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.13.7",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-05-05T12:09:19+00:00"
+            "time": "2025-05-07T06:25:58+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
