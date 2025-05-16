@@ -4295,16 +4295,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.10.30",
+            "version": "6.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "5f60c5da286ed40f30378a869e6acccd158a9904"
+                "reference": "f5a4aea563cf26a689407754e9dc25c04fbc52e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/5f60c5da286ed40f30378a869e6acccd158a9904",
-                "reference": "5f60c5da286ed40f30378a869e6acccd158a9904",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/f5a4aea563cf26a689407754e9dc25c04fbc52e3",
+                "reference": "f5a4aea563cf26a689407754e9dc25c04fbc52e3",
                 "shasum": ""
             },
             "require": {
@@ -4323,10 +4323,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.10.30",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.11.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-05-15T05:01:02+00:00"
+            "time": "2025-05-15T11:00:09+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4633,16 +4633,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.13.10",
+            "version": "4.14.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "3cdcb3bbe16320e57d5df0f27d8a0fa47ea5d063"
+                "reference": "f837ccbbcba73a835da5ff434911889d2f5dd1e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/3cdcb3bbe16320e57d5df0f27d8a0fa47ea5d063",
-                "reference": "3cdcb3bbe16320e57d5df0f27d8a0fa47ea5d063",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/f837ccbbcba73a835da5ff434911889d2f5dd1e3",
+                "reference": "f837ccbbcba73a835da5ff434911889d2f5dd1e3",
                 "shasum": ""
             },
             "require": {
@@ -4727,6 +4727,9 @@
                     "drupal/content_lock": {
                         "[#UHF-4553] Fix unlock content button redirect": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/82081691e4a6d05b3716052d5fff46a04027bdc3/patches/content-lock-uhf-4553.patch"
                     },
+                    "drupal/search_api": {
+                        "[#UHF-10647] Patch for fixing install on update hook": "https://raw.githubusercontent.com/City-of-Helsinki/drupal-helfi-platform-config/f9d8086fb9926c7e6fb6a3d446f9644424f9d1f7/patches/UHF-10647-search-api.patch"
+                    },
                     "drupal/core": {
                         "[#UHF-181] Hide untranslated menu links (https://www.drupal.org/project/drupal/issues/3091246)": "https://www.drupal.org/files/issues/2023-12-18/3091246--allow-menu-tree-manipulators-alter--24.patch",
                         "[#UHF-3812] Ajax exposed filters not working for multiple instances of the same Views block placed on one page (https://www.drupal.org/project/drupal/issues/3163299)": "https://www.drupal.org/files/issues/2023-05-07/3163299-104-D10.patch",
@@ -4763,10 +4766,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.13.10",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.14.3",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-05-13T06:07:38+00:00"
+            "time": "2025-05-16T04:47:09+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -5954,17 +5957,17 @@
         },
         {
             "name": "drupal/monolog",
-            "version": "3.0.4",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/monolog.git",
-                "reference": "3.0.4"
+                "reference": "3.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/monolog-3.0.4.zip",
-                "reference": "3.0.4",
-                "shasum": "5e86b3598b826dca767c52bc7e63cb2c049212d3"
+                "url": "https://ftp.drupal.org/files/projects/monolog-3.0.5.zip",
+                "reference": "3.0.5",
+                "shasum": "c151d8ca5a006e0250ef0aaaca44cc1c3359cc33"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
@@ -5982,8 +5985,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.4",
-                    "datestamp": "1723450250",
+                    "version": "3.0.5",
+                    "datestamp": "1747324419",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
