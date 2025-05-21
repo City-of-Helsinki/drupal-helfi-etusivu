@@ -18,8 +18,8 @@ display:
           tags:
             next: Next
             previous: Previous
-            first: First
-            last: Last
+            first: '« First'
+            last: 'Last »'
       fields:
         node_bulk_form:
           action_title: عملکرد
