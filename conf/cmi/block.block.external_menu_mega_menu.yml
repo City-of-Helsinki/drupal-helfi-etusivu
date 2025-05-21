@@ -13,7 +13,7 @@ weight: -12
 provider: null
 plugin: external_menu_block_main_navigation
 settings:
-  id: external_menu_block_main_navigation
+  id: external_menu_mega_menu
   label: 'External - Mega menu'
   label_display: '0'
   provider: helfi_navigation
