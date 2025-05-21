@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\config_ignore\ConfigIgnoreConfig;
 use Drupal\Core\Url;
 
 /**
@@ -42,6 +43,30 @@ function helfi_global_navigation_preprocess_menu__external_menu(&$variables) : v
     foreach ($variables['items'] as &$menu_link) {
       $menu_link['next_url'] = clone $menu_link['url'];
       $menu_link['next_url']->setOption('fragment', 'menu');
+    }
+  }
+}
+
+/**
+ * Implements hook_config_ignore_ignored_alter().
+ */
+function helfi_global_navigation_config_ignore_ignored_alter(ConfigIgnoreConfig $ignored): void {
+  $settings_to_ignore = [
+    'block.block.external_header_top_navigation',
+    'block.block.external_footer_top_navigation_2',
+    'block.block.external_footer_top_navigation',
+    'block.block.external_footer_bottom_navigation',
+    'block.block.external_fallback_menu',
+  ];
+
+  // Add the menu blocks to the ignore list.
+  foreach (['create', 'update', 'delete'] as $operation) {
+    foreach (['import', 'export'] as $direction) {
+      $list = array_merge(
+        $ignored->getList($direction, $operation),
+        $settings_to_ignore,
+      );
+      $ignored->setList($direction, $operation, $list);
     }
   }
 }
