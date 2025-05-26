@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+
+msgctxt "Front page top news paragraph title"
+msgid "Top stories"
+msgstr "Sheekooyinka ugu sarreeya"
+
+msgctxt "Front page learn more paragraph title"
+msgid "Learn more"
+msgstr "Wax badan baro"
+
+msgctxt "Front page latest news paragraph title"
+msgid "Latest news"
+msgstr "Wararkii ugu dambeeyay"

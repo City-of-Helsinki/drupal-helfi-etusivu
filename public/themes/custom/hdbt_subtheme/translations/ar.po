@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+
+msgctxt "Front page top news paragraph title"
+msgid "Top stories"
+msgstr "الأخبار أهم"
+
+msgctxt "Front page learn more paragraph title"
+msgid "Learn more"
+msgstr "Дізнатися більше"
+
+msgctxt "Front page latest news paragraph title"
+msgid "Latest news"
+msgstr "الأخبار آخر"
