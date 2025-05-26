@@ -2,8 +2,6 @@ uuid: 5c98b4ba-23b1-4420-9d72-0b61ed38ba9b
 langcode: en
 status: true
 dependencies:
-  config:
-    - system.menu.header-top-navigation
   module:
     - menu_block_current_language
   theme:
