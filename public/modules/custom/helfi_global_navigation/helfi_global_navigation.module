@@ -59,8 +59,10 @@ function helfi_global_navigation_config_ignore_ignored_alter(ConfigIgnoreConfig 
     'block.block.external_fallback_menu',
   ];
 
-  // Add the menu blocks to the ignore list.
-  foreach (['create', 'update', 'delete'] as $operation) {
+  // Add the menu blocks to the ignore list, but let the
+  // external blocks to be deleted. Etusivu-instance
+  // uses Drupal menus to render the block content.
+  foreach (['create', 'update'] as $operation) {
     foreach (['import', 'export'] as $direction) {
       $list = array_merge(
         $ignored->getList($direction, $operation),
