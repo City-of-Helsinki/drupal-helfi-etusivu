@@ -1,0 +1,6 @@
+display:
+  latest_news_minimal:
+    display_options:
+      title: 'Последние новости'
+      use_more_text: 'Что нового'
+    display_title: 'Последние новости'
