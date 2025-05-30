@@ -49,12 +49,44 @@ msgstr "تم النشر بتاريخ"
 
 msgctxt "News archive fallback count singular"
 msgid "item"
-msgstr "عنصر"
+msgstr "خبر أو مقال"
 
 msgctxt "News archive fallback count plural"
 msgid "items"
-msgstr "عناصر"
+msgstr "الأخبار أو المقالات"
 
 msgctxt "News RSS feed subscribe link"
 msgid "Subscribe to all news as RSS feed"
 msgstr "اشترك لتحصل على جميع الأخبار عبر خدمة مقتطفات الآخبار (RSS)"
+
+msgctxt "Front page news of interest title"
+msgid "You might be interested in"
+msgstr "قد تكون مهتمًا بـ"
+
+msgctxt "Image caption and photographer"
+msgid "@caption Photo: @photographer"
+msgstr "@caption صورة: @photographer"
+
+msgctxt "Image photographer"
+msgid "Photo: @photographer"
+msgstr "صورة: @photographer"
+
+msgctxt "Helfi Paragraphs Hero"
+msgid "Image: @image_author"
+msgstr "صورة: @image_author"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated"
+msgstr "تم التحديث"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated over a year ago"
+msgstr "تم التحديث منذ أكثر من عام"
+
+msgctxt "The helper text before the node published timestamp"
+msgid "Published over a year ago"
+msgstr "نُشرت منذ أكثر من عام"
+
+msgctxt "The helper text before the social media share buttons"
+msgid "Share"
+msgstr "يشارك"
