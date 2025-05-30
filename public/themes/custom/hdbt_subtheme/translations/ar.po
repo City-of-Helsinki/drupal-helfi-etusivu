@@ -3,12 +3,58 @@ msgstr ""
 
 msgctxt "Front page top news paragraph title"
 msgid "Top stories"
-msgstr "الأخبار أهم"
+msgstr "أهم الأخبار"
 
 msgctxt "Front page learn more paragraph title"
 msgid "Learn more"
-msgstr "Дізнатися більше"
+msgstr "اعرف المزيد"
 
 msgctxt "Front page latest news paragraph title"
 msgid "Latest news"
-msgstr "الأخبار آخر"
+msgstr "آخر الأخبار"
+
+msgctxt "News archive topics label"
+msgid "Topics"
+msgstr "المواضيع"
+
+msgctxt "News archive neighbourhoods label"
+msgid "City districts"
+msgstr "أحياء المدينة"
+
+msgctxt "News archive groups label"
+msgid "Target groups"
+msgstr "المجموعات المستهدفة"
+
+msgctxt "React search: submit button label"
+msgid "Search"
+msgstr "البحث"
+
+msgctxt "News archive"
+msgid "1 search result"
+msgid_plural "@count search results"
+msgstr[0] "1 نتائج البحث"
+msgstr[1] "@count نتائج البحث"
+
+msgctxt "News search"
+msgid "Published"
+msgstr "تم النشر بتاريخ"
+
+msgctxt "The helper text before the node published timestamp"
+msgid "Published"
+msgstr "تم النشر بتاريخ"
+
+msgctxt "Label for news card published time"
+msgid "Published"
+msgstr "تم النشر بتاريخ"
+
+msgctxt "News archive fallback count singular"
+msgid "item"
+msgstr "عنصر"
+
+msgctxt "News archive fallback count plural"
+msgid "items"
+msgstr "عناصر"
+
+msgctxt "News RSS feed subscribe link"
+msgid "Subscribe to all news as RSS feed"
+msgstr "اشترك لتحصل على جميع الأخبار عبر خدمة مقتطفات الآخبار (RSS)"
