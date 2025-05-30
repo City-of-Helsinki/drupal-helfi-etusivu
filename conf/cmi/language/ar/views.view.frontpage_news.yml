@@ -2,5 +2,5 @@ display:
   latest_news_minimal:
     display_options:
       title: 'الأخبار آخر'
-      use_more_text: 'الجديد ما'
+      use_more_text: 'ما الجديد'
     display_title: 'الأخبار آخر'
