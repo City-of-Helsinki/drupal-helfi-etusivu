@@ -20,3 +20,7 @@ display:
         nid:
           exception:
             title: Все
+  latest_news:
+    display_title: 'Последние новости'
+    display_options:
+      use_more_text: 'Посмотреть все новости'
