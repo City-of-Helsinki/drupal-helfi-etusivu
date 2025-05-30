@@ -1,0 +1,4 @@
+display:
+  default:
+    display_options:
+      title: 'Viimase 7 päeva jooksul enimloetud uudised'
