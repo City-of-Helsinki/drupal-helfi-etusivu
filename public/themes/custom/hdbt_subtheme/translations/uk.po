@@ -12,3 +12,77 @@ msgstr "Дізнатися більше"
 msgctxt "Front page latest news paragraph title"
 msgid "Latest news"
 msgstr "Останні новини"
+
+msgctxt "News archive topics label"
+msgid "Topics"
+msgstr "Теми"
+
+msgctxt "News archive neighbourhoods label"
+msgid "City districts"
+msgstr "Райони міста"
+
+msgctxt "News archive groups label"
+msgid "Target groups"
+msgstr "Цільові групи"
+
+msgctxt "React search: submit button label"
+msgid "Search"
+msgstr "Пошук"
+
+msgctxt "News archive"
+msgid "1 search result"
+msgid_plural "@count search results"
+msgstr[0] "1 pезультати пошуку"
+msgstr[1] "@count pезультати пошуку"
+
+msgctxt "News search"
+msgid "Published"
+msgstr "Опубліковано"
+
+msgctxt "The helper text before the node published timestamp"
+msgid "Published"
+msgstr "Опубліковано"
+
+msgctxt "Label for news card published time"
+msgid "Published"
+msgstr "Опубліковано"
+
+msgctxt "News archive fallback count singular"
+msgid "item"
+msgstr "новина або стаття"
+
+msgctxt "News archive fallback count plural"
+msgid "items"
+msgstr "новини чи статті"
+
+msgctxt "News RSS feed subscribe link"
+msgid "Subscribe to all news as RSS feed"
+msgstr "Підписатися на всі новини через RSS-стрічку"
+
+msgctxt "Front page news of interest title"
+msgid "You might be interested in"
+msgstr "Вас може зацікавити"
+
+msgctxt "Image caption and photographer"
+msgid "@caption Photo: @photographer"
+msgstr "@caption Фото: @photographer"
+
+msgctxt "Image photographer"
+msgid "Photo: @photographer"
+msgstr "Фото: @photographer"
+
+msgctxt "Helfi Paragraphs Hero"
+msgid "Image: @image_author"
+msgstr "Фото: @image_author"
+
+msgctxt "The helper text before the node changed timestamp"
+msgid "Updated over a year ago"
+msgstr "Оновлено понад рік тому"
+
+msgctxt "The helper text before the node published timestamp"
+msgid "Published over a year ago"
+msgstr "Опубліковано понад рік тому"
+
+msgctxt "The helper text before the social media share buttons"
+msgid "Share"
+msgstr "Поділитися"
