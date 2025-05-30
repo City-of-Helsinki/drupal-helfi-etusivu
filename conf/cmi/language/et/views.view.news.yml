@@ -20,3 +20,7 @@ display:
         nid:
           exception:
             title: Kõik
+  latest_news:
+    display_title: 'Viimased uudised'
+    display_options:
+      use_more_text: 'Vaata kõiki uudiseid'
