@@ -90,3 +90,11 @@ msgstr "نُشرت منذ أكثر من عام"
 msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "يشارك"
+
+msgctxt "No search results"
+msgid "No results"
+msgstr "لا توجد نتائج"
+
+msgctxt "React search: no search results"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "لم يتم العثور على نتائج للمعايير التي أدخلتها. حاول تغيير معايير البحث."

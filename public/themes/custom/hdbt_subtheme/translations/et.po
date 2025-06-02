@@ -86,3 +86,11 @@ msgstr "Avaldatud üle aasta tagasi"
 msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "Jaga"
+
+msgctxt "No search results"
+msgid "No results"
+msgstr "Tulemusi pole"
+
+msgctxt "React search: no search results"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "Sisestatud kriteeriumidele ei leitud tulemusi. Proovige otsingukriteeriume muuta."

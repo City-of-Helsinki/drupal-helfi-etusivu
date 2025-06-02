@@ -86,3 +86,11 @@ msgstr "Опубликовано более года назад"
 msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "Делиться"
+
+msgctxt "No search results"
+msgid "No results"
+msgstr "Нет результатов"
+
+msgctxt "React search: no search results"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "По введенным вами критериям ничего не найдено. Попробуйте изменить критерии поиска."
