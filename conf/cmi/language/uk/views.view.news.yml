@@ -1,5 +1,25 @@
 display:
   latest_news:
     display_title: 'Останні новини'
+  default:
+    display_title: Default
     display_options:
-      use_more_text: 'Дивитися всі новини'
+      title: 'Останні новини'
+      fields:
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
+        view_node:
+          text: view
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      arguments:
+        nid:
+          exception:
+            title: All

@@ -1,7 +1,7 @@
 label: 'المستخدمون الجدد'
 display:
   default:
-    display_title: الافتراضي
+    display_title: Default
     display_options:
       title: 'المستخدمون الجدد'
       exposed_form:

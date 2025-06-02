@@ -1,7 +1,7 @@
 label: 'مصطلح تصنيف'
 display:
   default:
-    display_title: الافتراضي
+    display_title: Default
     display_options:
       pager:
         options:
