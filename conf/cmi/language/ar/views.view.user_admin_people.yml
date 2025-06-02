@@ -2,7 +2,7 @@ label: الأشخاص
 description: 'بحث وإدارة الأشخاص المتفاعلين مع موقعك.'
 display:
   default:
-    display_title: الافتراضي
+    display_title: Default
     display_options:
       title: الأشخاص
       fields:

@@ -1,5 +1,6 @@
 display:
   latest_news:
     display_title: 'Wararkii ugu dambeeyay'
+  default:
     display_options:
-      use_more_text: 'Daawo warkoo dhan'
+      title: 'Wararkii ugu dambeeyay'

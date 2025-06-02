@@ -1,7 +1,7 @@
 label: ميديا
 display:
   default:
-    display_title: الافتراضي
+    display_title: Default
     display_options:
       title: ميديا
       fields:

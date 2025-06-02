@@ -2,7 +2,7 @@ label: المحتوى
 description: 'إيجاد وإدارة المحتوى'
 display:
   default:
-    display_title: الافتراضي
+    display_title: Default
     display_options:
       title: المحتوى
       fields:

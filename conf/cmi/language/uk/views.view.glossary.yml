@@ -2,7 +2,7 @@ label: Глосарій
 description: 'Всі матеріали, за літерою.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       fields:
         title:
@@ -23,10 +23,10 @@ display:
       exposed_form:
         options:
           submit_button: Apply
-          reset_button_label: Скинути
-          exposed_sorts_label: 'Впорядкувати за'
-          sort_asc_label: Зрост
-          sort_desc_label: Спад
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
   attachment_1:
     display_title: Долучення
   page_1:
