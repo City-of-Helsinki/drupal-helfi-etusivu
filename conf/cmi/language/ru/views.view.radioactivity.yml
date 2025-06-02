@@ -1,0 +1,5 @@
+display:
+  default:
+    display_options:
+      title: 'Самые читаемые новости за последние 7 дней'
+      use_more_text: 'Посмотреть все новости'

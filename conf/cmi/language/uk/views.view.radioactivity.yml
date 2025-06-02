@@ -1,0 +1,5 @@
+display:
+  default:
+    display_options:
+      title: 'Найчитаніші новини за останні 7 днів'
+      use_more_text: 'Дивитися всі новини'
