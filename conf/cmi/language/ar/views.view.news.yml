@@ -1,7 +1,7 @@
 display:
   default:
-    display_title: الافتراضي
     display_options:
+      title: 'آخر الأخبار'
       fields:
         published_at:
           separator: ', '
@@ -20,3 +20,7 @@ display:
         nid:
           exception:
             title: الكل
+  latest_news:
+    display_title: 'آخر الأخبار'
+    display_options:
+      use_more_text: 'شاهد كل الأخبار'

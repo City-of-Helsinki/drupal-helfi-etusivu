@@ -1,0 +1,5 @@
+display:
+  default:
+    display_options:
+      title: 'أكثر الأخبار قراءة في الأيام السبعة الماضية'
+      use_more_text: 'شاهد كل الأخبار'
