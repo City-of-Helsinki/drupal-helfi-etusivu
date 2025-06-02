@@ -86,3 +86,11 @@ msgstr "La daabacay sanad ka hor"
 msgctxt "The helper text before the social media share buttons"
 msgid "Share"
 msgstr "La wadaag"
+
+msgctxt "No search results"
+msgid "No results"
+msgstr "Wax natiijooyin ah ma jiraan"
+
+msgctxt "React search: no search results"
+msgid "No results were found for the criteria you entered. Try changing your search criteria."
+msgstr "Wax natiijooyin ah lagama helin shuruudaha aad gashay. Isku day inaad beddesho shuruudaha raadinta."
