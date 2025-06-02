@@ -1,7 +1,7 @@
 label: القاموس
 display:
   default:
-    display_title: Default
+    display_title: الافتراضي
     display_options:
       fields:
         title:

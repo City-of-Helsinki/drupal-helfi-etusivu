@@ -20,6 +20,7 @@ display:
         nid:
           exception:
             title: الكل
-    display_title: Default
   latest_news:
     display_title: 'آخر الأخبار'
+    display_options:
+      use_more_text: 'شاهد كل الأخبار'

@@ -2,7 +2,7 @@ label: Медіатека
 description: 'Пошук медіа та керування ними.'
 display:
   default:
-    display_title: Default
+    display_title: Базово
     display_options:
       title: Медіа
       fields:
@@ -20,10 +20,10 @@ display:
       exposed_form:
         options:
           submit_button: 'Застосувати фільтри'
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
       empty:
         area_text_custom:
           content: 'Мультимедійних файлів не знайдено.'
@@ -83,7 +83,7 @@ display:
       arguments:
         bundle:
           exception:
-            title: All
+            title: Все
       filters:
         name:
           expose:
@@ -108,7 +108,7 @@ display:
       arguments:
         bundle:
           exception:
-            title: All
+            title: Все
       filters:
         name:
           expose:
