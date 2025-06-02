@@ -91,6 +91,13 @@ msgctxt "No search results"
 msgid "No results"
 msgstr "Wax natiijooyin ah ma jiraan"
 
+msgctxt "Unit search no results title"
+msgid "No results"
+msgstr "Wax natiijooyin ah ma jiraan"
+
+msgid "No results"
+msgstr "Wax natiijooyin ah ma jiraan"
+
 msgctxt "React search: no search results"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "Wax natiijooyin ah lagama helin shuruudaha aad gashay. Isku day inaad beddesho shuruudaha raadinta."
