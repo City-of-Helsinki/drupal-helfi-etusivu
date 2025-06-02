@@ -95,6 +95,13 @@ msgctxt "No search results"
 msgid "No results"
 msgstr "لا توجد نتائج"
 
+msgctxt "Unit search no results title"
+msgid "No results"
+msgstr "لا توجد نتائج"
+
+msgid "No results"
+msgstr "لا توجد نتائج"
+
 msgctxt "React search: no search results"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "لم يتم العثور على نتائج للمعايير التي أدخلتها. حاول تغيير معايير البحث."
