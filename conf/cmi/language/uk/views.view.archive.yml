@@ -2,7 +2,7 @@ label: Архів
 description: 'Всі матеріали, за місяцем.'
 display:
   default:
-    display_title: Default
+    display_title: Базово
     display_options:
       title: 'Щомісячний архів'
       pager:
@@ -17,10 +17,10 @@ display:
       exposed_form:
         options:
           submit_button: Apply
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
       arguments:
         created_year_month:
           title: '{{ arguments.created_year_month }}'
