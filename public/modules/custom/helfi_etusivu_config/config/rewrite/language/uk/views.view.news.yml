@@ -1,0 +1,5 @@
+display:
+  latest_news:
+    display_title: 'Останні новини'
+    display_options:
+      use_more_text: 'Дивитися всі новини'

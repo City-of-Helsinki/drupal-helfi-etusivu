@@ -1,0 +1,6 @@
+display:
+  latest_news_minimal:
+    display_options:
+      title: 'Viimased uudised'
+      use_more_text: 'Mis uudist?'
+    display_title: 'Viimased uudised'
