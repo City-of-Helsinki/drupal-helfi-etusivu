@@ -1,0 +1,5 @@
+display:
+  default:
+    display_options:
+      title: 'Viimase 7 päeva jooksul enimloetud uudised'
+      use_more_text: 'Vaata kõiki uudiseid'
