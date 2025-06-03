@@ -3,3 +3,6 @@ display:
     display_title: 'Wararkii ugu dambeeyay'
     display_options:
       use_more_text: 'Daawo warkoo dhan'
+  default:
+    display_options:
+      title: 'Wararkii ugu dambeeyay'
