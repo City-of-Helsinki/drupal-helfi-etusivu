@@ -1,0 +1,26 @@
+display:
+  default:
+    display_options:
+      title: 'آخر الأخبار'
+      fields:
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
+        view_node:
+          text: view
+      exposed_form:
+        options:
+          submit_button: تطبيق
+          reset_button_label: 'إعادة الضبط'
+          exposed_sorts_label: 'الترتيب حسب'
+          sort_asc_label: تصاعدي
+          sort_desc_label: تنازلي
+      arguments:
+        nid:
+          exception:
+            title: الكل
+  latest_news:
+    display_title: 'آخر الأخبار'
+    display_options:
+      use_more_text: 'شاهد كل الأخبار'

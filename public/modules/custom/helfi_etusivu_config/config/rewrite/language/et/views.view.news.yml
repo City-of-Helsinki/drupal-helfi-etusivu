@@ -1,0 +1,26 @@
+display:
+  default:
+    display_title: Vaikimisi
+    display_options:
+      fields:
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
+        view_node:
+          text: view
+      exposed_form:
+        options:
+          submit_button: Rakenda
+          reset_button_label: Tühista
+          exposed_sorts_label: 'Sorteerimise alus'
+          sort_asc_label: Kasvav
+          sort_desc_label: Kahanev
+      arguments:
+        nid:
+          exception:
+            title: Kõik
+  latest_news:
+    display_title: 'Viimased uudised'
+    display_options:
+      use_more_text: 'Vaata kõiki uudiseid'
