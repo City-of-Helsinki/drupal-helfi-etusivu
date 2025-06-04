@@ -29,8 +29,16 @@ class HelfiEtusivuAutocomplete extends Textfield {
    * Preprocess callback.
    */
   public static function processHelfiEtusivuAutocomplete(array $element): array {
-    $element['#attached']['library'] = 'hdbt_subtheme/helfi_etusivu_autocomplete';
+    $element['#attached']['library'][] = 'hdbt_subtheme/helfi_etusivu_autocomplete';
     $element['#attributes']['data-helfi-etusivu-autocomplete'] = TRUE;
+
+    // Remove "form-autocomplete" class.
+    // This prevents Drupal autocomplete from hijacking the element.
+    $element['#attributes']['class'] = array_filter(
+      $element['#attributes']['class'] ?? [],
+      fn ($class) => $class !== 'form-autocomplete'
+    );
+
     return $element;
   }
 
