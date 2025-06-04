@@ -29,7 +29,7 @@ class HelfiEtusivuAutocomplete extends Textfield {
    * Preprocess callback.
    */
   public static function processHelfiEtusivuAutocomplete(array $element): array {
-    $element['#attached']['library'] = 'hdbt_subtheme/helfi_etusivu_autocomplete';
+    $element['#attached']['library'][] = 'hdbt_subtheme/helfi_etusivu_autocomplete';
     $element['#attributes']['data-helfi-etusivu-autocomplete'] = TRUE;
     return $element;
   }
