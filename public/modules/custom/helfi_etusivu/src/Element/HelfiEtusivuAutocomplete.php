@@ -35,7 +35,7 @@ class HelfiEtusivuAutocomplete extends Textfield {
     // Remove "form-autocomplete" class.
     // This prevents Drupal autocomplete from hijacking the element.
     $element['#attributes']['class'] = array_filter(
-      $element['#attributes']['class'],
+      $element['#attributes']['class'] ?? [],
       fn ($class) => $class !== 'form-autocomplete'
     );
 
