@@ -13,7 +13,7 @@ use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController;
 use Drupal\helfi_etusivu\Servicemap;
 use Drupal\helfi_etusivu\ServiceMapInterface;
-use Drupal\helfi_react_search\LinkedEvents;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\HttpFoundation\InputBag;
