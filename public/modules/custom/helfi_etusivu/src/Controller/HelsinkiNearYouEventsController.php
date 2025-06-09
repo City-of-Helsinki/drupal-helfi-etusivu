@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\helfi_react_search\LinkedEvents;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 
 /**
  * Events near you landing page controller.
@@ -37,7 +37,7 @@ class HelsinkiNearYouEventsController extends ControllerBase {
                 'field_event_time' => TRUE,
                 'field_free_events' => TRUE,
                 'field_remote_events' => TRUE,
-                'places' => $this->linkedEvents->getPlacesList($events_url),
+                'places' => [],
                 'hideHeading' => TRUE,
                 'useFullLocationFilter' => TRUE,
                 'useFullTopicsFilter' => TRUE,
