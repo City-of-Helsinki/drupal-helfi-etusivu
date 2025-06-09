@@ -90,10 +90,12 @@ class HelsinkiNearYouResultsController extends ControllerBase {
             'baseUrl' => LinkedEvents::BASE_URL,
             'data' => [
               'helfi-coordinates-based-event-list' => [
-                'events_api_url' => $this->linkedEvents->getEventsRequest([
-                  'dwithin_origin' => implode(',', $addressData['coordinates']),
-                  'dwithin_metres' => 2000,
-                ]),
+                'events_api_url' => Url::fromUri('https://api.hel.fi/linkedevents/v1/event/', [
+                  'query' => [
+                    'dwithin_origin' => implode(',', $addressData['coordinates']),
+                    'dwithin_metres' => 2000,
+                  ],
+                ])->toString(),
                 'field_event_count' => 3,
                 'hidePagination' => TRUE,
               ],
