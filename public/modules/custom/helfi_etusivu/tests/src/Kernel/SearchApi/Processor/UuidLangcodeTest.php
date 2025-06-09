@@ -23,6 +23,7 @@ class UuidLangcodeTest extends ProcessorTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'serialization',
     'helfi_etusivu',
     'helfi_api_base',
     'helfi_react_search',
