@@ -232,3 +232,42 @@ msgstr "Använd aktuell plats"
 msgctxt "Helsinki near you"
 msgid "We couldn\'t retrieve your current location. Try entering an address."
 msgstr "Kunde inte använda din position. Prova att skriva in en adress."
+
+msgid "Arabic"
+msgstr "Arabiska"
+
+msgid "German"
+msgstr "Tyska"
+
+msgid "English"
+msgstr "Engelska"
+
+msgid "Spanish"
+msgstr "Spanska"
+
+msgid "Estonian"
+msgstr "Estniska"
+
+msgid "Persian, Farsi"
+msgstr "Persiska, farsi"
+
+msgid "Finnish"
+msgstr "Finska"
+
+msgid "French"
+msgstr "Franska"
+
+msgid "Russian"
+msgstr "Ryska"
+
+msgid "Northern Sam"
+msgstr "Nordsamiska"
+
+msgid "Somali"
+msgstr "Somaliska"
+
+msgid "Chinese, Simplified"
+msgstr "Kinesiska"
+
+msgid "Ukrainian"
+msgstr "Ukrainska"
