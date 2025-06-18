@@ -42,6 +42,7 @@ class HelsinkiNearYouEventsController extends ControllerBase {
                 'useFullLocationFilter' => TRUE,
                 'useFullTopicsFilter' => TRUE,
                 'useLocationSearch' => TRUE,
+                'useTargetGroupFilter' => TRUE,
               ],
             ],
             'seeAllButtonOverride' => $this->t(
