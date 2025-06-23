@@ -335,3 +335,24 @@ function helfi_etusivu_update_9014(): void {
     PathAlias::create($path)->save();
   }
 }
+
+/**
+ * UHF-11890: Add roadworks landing page to helsinki-near-you.
+ */
+function helfi_etusivu_update_9015(): void {
+  $paths = [
+    [
+      'path' => '/helsinki-near-you/roadworks',
+      'alias' => '/helsinki-lahellasi/tietyot',
+      'langcode' => 'fi',
+    ],
+    [
+      'path' => '/helsinki-near-you/roadworks',
+      'alias' => '/helsingfors-nara-dig/vagarbeten',
+      'langcode' => 'sv',
+    ],
+  ];
+  foreach ($paths as $path) {
+    PathAlias::create($path)->save();
+  }
+}

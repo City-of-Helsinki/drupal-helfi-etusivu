@@ -1,0 +1,81 @@
+<article>
+  <div class="components components--computed components--helsinki-near-you-roadworks">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--react-search',
+          'component--event-list',
+          'component--coordinates-based-list',
+        ],
+        component_content_class: 'event-list'
+      }
+    %}
+      {% block component_content %}
+        {{ attach_library('hdbt/event-list') }}
+        
+        <div id="helfi-roadworks-list" class="roadworks-list">
+          {% if roadworks_data.projects is not empty %}
+            <div class="event-list__items">
+              {% for project in roadworks_data.projects %}
+                <div class="event-list__item">
+                  <h3 class="event-list__item-title">
+                    <a href="{{ project.url }}" target="_blank" rel="noopener" class="hds-link hds-link--external">
+                      {{ project.title }}
+                      <span class="hds-icon hds-icon--link-external" aria-hidden="true"></span>
+                      <span class="visually-hidden">{{ 'Opens in a new tab'|t }}</span>
+                    </a>
+                  </h3>
+                  <div class="event-list__item-details">
+                    {% if project.location is defined and project.location is not empty %}
+                      <div class="event-list__item-detail">
+                        <span class="hds-icon hds-icon--location" aria-hidden="true"></span>
+                        <span><strong>{{ 'Location:'|t }}</strong> {{ project.location }}</span>
+                      </div>
+                    {% endif %}
+                    
+                    {% if project.distance is defined and project.distance is not empty %}
+                      <div class="event-list__item-detail">
+                        <span class="hds-icon hds-icon--map" aria-hidden="true"></span>
+                        <span><strong>{{ 'Distance:'|t }}</strong> {{ project.distance }}</span>
+                      </div>
+                    {% endif %}
+                    
+                    {% if project.schedule is defined and project.schedule is not empty %}
+                      <div class="event-list__item-detail">
+                        <span class="hds-icon hds-icon--clock" aria-hidden="true"></span>
+                        <span><strong>{{ 'Estimated schedule:'|t }}</strong> {{ project.schedule }}</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            
+            {% if roadworks_data.pagination %}
+              <div class="event-list__pagination">
+                <p>{{ 'Showing @start - @end of @total results'|t({
+                  '@start': roadworks_data.pagination.current_page * roadworks_data.pagination.per_page - roadworks_data.pagination.per_page + 1,
+                  '@end': min(roadworks_data.pagination.current_page * roadworks_data.pagination.per_page, roadworks_data.pagination.total),
+                  '@total': roadworks_data.pagination.total
+                }) }}</p>
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="event-list__empty">
+              <p>{{ 'No roadwork projects found in this area.'|t }}</p>
+              <p>{{ 'Try searching with a different address.'|t }}</p>
+            </div>
+          {% endif %}
+        </div>
+        
+        <noscript>
+          <div class="event-list__javascript-disabled">
+            {{ 'Please enable JavaScript to see roadwork projects'|t }}
+          </div>
+        </noscript>
+      {% endblock component_content %}
+    {% endembed %}
+
+    {% include '@hdbt_subtheme/module/helfi-etusivu/helsinki-near-you-feedback-block.html.twig' %}
+  </div>
+</article>

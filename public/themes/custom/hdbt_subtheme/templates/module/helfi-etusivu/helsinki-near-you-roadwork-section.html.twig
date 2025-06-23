@@ -1,0 +1,47 @@
+{% if roadwork_section is not empty %}
+  <section class="roadwork-section">
+    <h2 class="h2">{{ roadwork_section.title }}</h2>
+    
+    {% if roadwork_section.projects is not empty %}
+      <div class="roadwork-projects">
+        {% for project in roadwork_section.projects %}
+          <article class="roadwork-project">
+            <h3 class="h3">
+              <a href="{{ project.url }}" target="_blank" rel="noopener" class="hds-link hds-link--external">
+                {{ project.title }}
+                <span class="hds-icon hds-icon--link-external" aria-hidden="true"></span>
+                <span class="visually-hidden">{{ 'Opens in a new tab'|t }}</span>
+              </a>
+            </h3>
+            
+            <div class="roadwork-project__details">
+              {% if project.location is defined and project.location is not empty %}
+                <div class="roadwork-project__detail">
+                  <span class="hds-icon hds-icon--location" aria-hidden="true"></span>
+                  {{ project.location }}
+                </div>
+              {% endif %}
+              
+              {% if project.schedule is defined and project.schedule is not empty %}
+                <div class="roadwork-project__detail">
+                  <span class="hds-icon hds-icon--clock" aria-hidden="true"></span>
+                  {{ project.schedule }}
+                </div>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      
+      {% if roadwork_section.see_all_url %}
+        <div class="roadwork-section__footer">
+          <a href="{{ roadwork_section.see_all_url }}" class="hds-button hds-button--primary">
+            {{ 'Katso kaikki katu- ja puistohankkeet läheltäsi'|t }}
+          </a>
+        </div>
+      {% endif %}
+    {% else %}
+      <p>{{ 'Alueeltasi ei löytynyt katu- ja puistohankkeita.'|t }}</p>
+    {% endif %}
+  </section>
+{% endif %}

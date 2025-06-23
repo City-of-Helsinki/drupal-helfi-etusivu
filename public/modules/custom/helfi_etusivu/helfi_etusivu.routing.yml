@@ -9,7 +9,7 @@ helfi_etusivu.helsinki_near_you:
 helfi_etusivu.helsinki_near_you_results:
   path: '/helsinki-near-you/results'
   defaults:
-    _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController::content'
+    _controller: 'helfi_etusivu.helsinki_near_you_results_controller:content'
     _title: 'Services, events and news near your address'
   requirements:
     _permission: 'access content'
@@ -17,7 +17,7 @@ helfi_etusivu.helsinki_near_you_results:
 helfi_etusivu.helsinki_near_you_autocomplete:
   path: '/helsinki-near-you/results/autocomplete'
   defaults:
-    _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController::addressSuggestions'
+    _controller: 'helfi_etusivu.helsinki_near_you_results_controller:addressSuggestions'
   requirements:
     _permission: 'access content'
 
@@ -26,5 +26,13 @@ helfi_etusivu.helsinki_near_you_events:
   defaults:
     _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouEventsController::content'
     _title: 'Events near you'
+  requirements:
+    _permission: 'access content'
+
+helfi_etusivu.helsinki_near_you_roadworks:
+  path: '/helsinki-near-you/roadworks'
+  defaults:
+    _controller: 'helfi_etusivu.helsinki_near_you_roadworks_controller:content'
+    _title: 'Katu- ja puistohankkeet lähelläsi'
   requirements:
     _permission: 'access content'

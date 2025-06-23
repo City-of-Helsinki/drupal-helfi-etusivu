@@ -30,5 +30,70 @@
         </div>
       {% endblock component_content %}
     {% endembed %}
+    
+    {# Roadwork Section #}
+    {% if roadwork_section is defined and roadwork_section is not empty %}
+      {% set title = roadwork_section.title is iterable ? roadwork_section.title|render : roadwork_section.title %}
+      {% set has_projects = roadwork_section.projects is defined and roadwork_section.projects is not empty %}
+      
+      <div class="roadwork-section-wrapper">
+        {% embed "@hdbt/misc/component.twig" with {
+          component_classes: [
+            'component--roadwork-projects',
+            'component--coordinates-based-list',
+          ],
+          component_title: title,
+          component_description: 'Browse ongoing roadwork projects in Helsinki.'|t({}, {'context': 'Helsinki near you roadworks'}),
+          component_content_class: 'roadwork-projects',
+        } %}
+          {% block component_content %}
+            {% if has_projects %}
+              <div class="roadwork-projects__list">
+                {% for project in roadwork_section.projects|slice(0, 3) %}
+                  <article class="roadwork-project">
+                    <h3 class="h3 roadwork-project__title">
+                      {% if project.url is defined and project.url is not empty %}
+                        <a href="{{ project.url }}" target="_blank" rel="noopener" class="hds-link hds-link--external">
+                          {{ project.title }}
+                          <span class="hds-icon hds-icon--link-external" aria-hidden="true"></span>
+                          <span class="visually-hidden">{{ 'Opens in a new tab'|t }}</span>
+                        </a>
+                      {% else %}
+                        {{ project.title }}
+                      {% endif %}
+                    </h3>
+                    {% if project.location is defined and project.location is not empty %}
+                      <div class="roadwork-project__detail">
+                        <span class="hds-icon hds-icon--location" aria-hidden="true"></span>
+                        {{ project.location }}
+                      </div>
+                    {% endif %}
+                    {% if project.schedule is defined and project.schedule is not empty %}
+                      <div class="roadwork-project__detail">
+                        <span class="hds-icon hds-icon--clock" aria-hidden="true"></span>
+                        {{ project.schedule }}
+                      </div>
+                    {% endif %}
+                  </article>
+                {% endfor %}
+              </div>
+            {% else %}
+              <p>{{ 'No roadwork projects found.'|t }}</p>
+            {% endif %}
+            
+            {% if roadwork_section.see_all_url is defined and roadwork_section.see_all_url %}
+              <div class="roadwork-projects__link-wrapper">
+                {% set see_all_title = 'Katso kaikki katu- ja puistohankkeet läheltäsi'|t({}, {'context': 'Helsinki near you roadworks'}) %}
+                {% include '@hdbt/navigation/link-button.html.twig' with {
+                  type: 'primary',
+                  label: see_all_title,
+                  url: roadwork_section.see_all_url,
+                } %}
+              </div>
+            {% endif %}
+          {% endblock %}
+        {% endembed %}
+      </div>
+    {% endif %}
   </div>
 </article>
