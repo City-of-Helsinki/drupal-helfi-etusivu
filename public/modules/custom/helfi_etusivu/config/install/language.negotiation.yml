@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies: {  }
+id: url
+paths:
+  en:
+    helsinki-near-you: 'helsinki-near-you'
+    helsinki-near-you/results: 'helsinki-near-you/results'
+    helsinki-near-you/events: 'helsinki-near-you/events'
+    helsinki-near-you/roadworks: 'helsinki-near-you/roadworks'
+  fi:
+    helsinki-near-you: 'helsinki-lahellasi'
+    helsinki-near-you/results: 'helsinki-lahellasi/tulokset'
+    helsinki-near-you/events: 'helsinki-lahellasi/tapahtumat'
+    helsinki-near-you/roadworks: 'helsinki-lahellasi/tietyot'
+  sv:
+    helsinki-near-you: 'helsingfors-nara-dig'
+    helsinki-near-you/results: 'helsingfors-nara-dig/resultat'
+    helsinki-near-you/events: 'helsingfors-nara-dig/evenemang'
+    helsinki-near-you/roadworks: 'helsingfors-nara-dig/vagarbeten'

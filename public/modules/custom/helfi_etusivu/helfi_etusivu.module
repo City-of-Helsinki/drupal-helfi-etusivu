@@ -362,6 +362,21 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-landing-page',
     ],
+    'helsinki_near_you_roadwork_section' => [
+      'variables' => [
+        'title' => NULL,
+        'projects' => [],
+      ],
+      'template' => 'helsinki-near-you-roadwork-section',
+    ],
+    'helsinki_near_you_roadworks' => [
+      'variables' => [
+        'title' => NULL,
+        'roadworks_data' => NULL,
+        'address' => NULL,
+      ],
+      'template' => 'helsinki-near-you-roadworks',
+    ],
     'helsinki_near_you_results_page' => [
       'variables' => [
         'back_link_label' => NULL,
@@ -371,6 +386,7 @@ function helfi_etusivu_theme() : array {
         'service_groups' => NULL,
         'nearby_neighbourhoods' => NULL,
         'news_archive_url' => NULL,
+        'roadwork_section' => NULL,
       ],
       'template' => 'helsinki-near-you-results-page',
     ],

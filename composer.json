@@ -34,7 +34,8 @@
         "drupal/views_rss": "^2.0@RC",
         "drush/drush": "^12",
         "josdejong/jsoneditor": "^5.29",
-        "justinrainbow/json-schema": "^5.2"
+        "justinrainbow/json-schema": "^5.2",
+        "proj4php/proj4php": "^2.0"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",

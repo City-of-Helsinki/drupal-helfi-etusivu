@@ -6,22 +6,61 @@ namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
 use Drupal\helfi_etusivu\ServiceMapInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
+use Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface;
+use Drupal\helfi_etusivu\Service\CoordinateConversionService;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Helsinki near you controller.
  */
-class HelsinkiNearYouResultsController extends ControllerBase {
+class HelsinkiNearYouResultsController extends ControllerBase implements ContainerInjectionInterface {
+  /**
+   * The servicemap service.
+   *
+   * @var \Drupal\helfi_etusivu\ServiceMapInterface
+   */
+  protected $servicemap;
+
+  /**
+   * The linked events service.
+   *
+   * @var \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents
+   */
+  protected $linkedEvents;
+
+  /**
+   * The roadwork data service.
+   *
+   * @var \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface
+   */
+  protected $roadworkDataService;
+
+  /**
+   * The coordinate conversion service.
+   *
+   * @var \Drupal\helfi_etusivu\Service\CoordinateConversionService
+   */
+  protected $coordinateConversionService;
+
+  /**
+   * The request stack.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
 
   /**
    * Constructs a new instance.
@@ -30,12 +69,50 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   The servicemap service.
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents $linkedEvents
    *   The linked events service.
+   * @param \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface $roadworkDataService
+   *   The roadwork data service.
+   * @param \Drupal\helfi_etusivu\Service\CoordinateConversionService $coordinateConversionService
+   *   The coordinate conversion service.
+   */
+  /**
+   * Constructs a new instance.
+   *
+   * @param \Drupal\helfi_etusivu\ServiceMapInterface $servicemap
+   *   The servicemap service.
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents $linkedEvents
+   *   The linked events service.
+   * @param \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface $roadworkDataService
+   *   The roadwork data service.
+   * @param \Drupal\helfi_etusivu\Service\CoordinateConversionService $coordinateConversionService
+   *   The coordinate conversion service.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
+   *   The request stack.
    */
   public function __construct(
-    #[Autowire(service: 'Drupal\helfi_etusivu\Servicemap')]
-    protected readonly ServiceMapInterface $servicemap,
-    protected readonly LinkedEvents $linkedEvents,
+    ServiceMapInterface $servicemap,
+    LinkedEvents $linkedEvents,
+    RoadworkDataServiceInterface $roadworkDataService,
+    CoordinateConversionService $coordinateConversionService,
+    RequestStack $requestStack
   ) {
+    $this->servicemap = $servicemap;
+    $this->linkedEvents = $linkedEvents;
+    $this->roadworkDataService = $roadworkDataService;
+    $this->coordinateConversionService = $coordinateConversionService;
+    $this->requestStack = $requestStack;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('Drupal\helfi_etusivu\Servicemap'),
+      $container->get('helfi_etusivu.helsinki_near_you.linked_events'),
+      $container->get('helfi_etusivu.roadwork_data_service'),
+      $container->get('Drupal\helfi_etusivu\Service\CoordinateConversionService'),
+      $container->get('request_stack')
+    );
   }
 
   /**
@@ -44,10 +121,12 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
    *
-   * @return array
-   *   A renderable array.
+   * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+   *   A renderable array or redirect response.
    */
-  public function content(Request $request) : array|RedirectResponse {
+  public function content(Request $request = NULL): array|RedirectResponse {
+    // Use the provided request or fall back to the current request.
+    $request = $request ?: $this->requestStack->getCurrentRequest();
     $address = $request->query->get('q');
     $return_url = Url::fromRoute('helfi_etusivu.helsinki_near_you');
 
@@ -83,7 +162,16 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ],
     ]);
 
-    return [
+    // Extract coordinates for roadwork section.
+    // Array format: [longitude, latitude] per GeoJSON specification.
+    $lat = $addressData['coordinates'][1]; // Latitude at index 1
+    $lon = $addressData['coordinates'][0]; // Longitude at index 0
+
+    $roadworkSection = $this->buildRoadworkSection($lat, $lon);
+
+    $build = [
+    // Set the theme for the results page.
+      '#theme' => 'helsinki_near_you_results_page',
       '#attached' => [
         'drupalSettings' => [
           'helfi_events' => [
@@ -110,14 +198,10 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           ],
         ],
       ],
-      '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
+      '#back_link_label' => $this->t('Back to search'),
       '#back_link_url' => $return_url,
       '#news_archive_url' => $newsArchiveUrl,
-      '#cache' => [
-        'contexts' => ['url.query_args:q'],
-      ],
       '#coordinates' => $addressData['coordinates'],
-      '#theme' => 'helsinki_near_you_results_page',
       '#title' => $this->t(
         'Services, events and news for @address',
         ['@address' => $addressName],
@@ -125,7 +209,104 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ),
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName),
+    // Include roadwork section in the build array.
+      '#roadwork_section' => $roadworkSection,
+      '#cache' => [
+        'contexts' => ['url.query_args:q'],
+        'tags' => ['roadwork_section'],
+      ],
     ];
+
+    return $build;
+  }
+
+  /**
+   * Lazy builder for the roadwork section.
+   *
+   * @param float $lat
+   *   The latitude.
+   * @param float $lon
+   *   The longitude.
+   *
+   * @return array
+   *   A render array for the roadwork section.
+   */
+  public static function lazyBuildRoadworkSection(float $lat, float $lon): array {
+    try {
+      /** @var \Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController $controller */
+      $controller = \Drupal::getContainer()->get('helfi_etusivu.helsinki_near_you_results_controller');
+      return $controller->buildRoadworkSection($lat, $lon);
+    }
+    catch (\Exception $e) {
+      return [];
+    }
+  }
+
+  /**
+   * Builds the roadwork section.
+   *
+   * @param float $lat
+   *   The latitude in WGS84.
+   * @param float $lon
+   *   The longitude in WGS84.
+   *
+   * @return array
+   *   The roadwork project data array.
+   */
+  public function buildRoadworkSection(float $lat, float $lon): array {
+    try {
+      // Validate coordinate types to ensure they are floats.
+      if (!is_float($lat) || !is_float($lon)) {
+        throw new \InvalidArgumentException('Latitude and longitude must be float values');
+      }
+
+      if (!$this->roadworkDataService) {
+        throw new \RuntimeException('Roadwork data service is not available');
+      }
+
+      // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
+      // which is required by the roadwork data service.
+      $convertedCoords = $this->coordinateConversionService->wgs84ToEtrsGk25($lat, $lon);
+
+      if (!$convertedCoords) {
+        throw new \RuntimeException('Failed to convert coordinates to ETRS-GK25');
+      }
+
+      // Fetch roadwork projects within 1km radius of the converted coordinates.
+      // Note: Parameters are in ETRS-GK25 projection (EPSG:3879) where:
+      // - First parameter is northing (y-coordinate)
+      // - Second parameter is easting (x-coordinate)
+      // - Third parameter is search radius in meters
+      $projects = $this->roadworkDataService->getFormattedProjectsByCoordinates(
+        $convertedCoords['y'], // Northing (y-coordinate)
+        $convertedCoords['x'], // Easting (x-coordinate)
+        1000 // 1000 meters = 1km radius
+      ) ?? [];
+
+      $projectCount = count($projects);
+
+      $title = $this->roadworkDataService->getSectionTitle();
+
+      // Get the search address from the current request for the 'See all' link
+      $request = $this->requestStack->getCurrentRequest();
+      $address = $request ? $request->query->get('q', '') : '';
+      $seeAllUrl = $this->roadworkDataService->getSeeAllUrl($address);
+
+      return [
+        'title' => $title,
+        'see_all_url' => $seeAllUrl,
+        'projects' => $projects,
+      ];
+
+    }
+    catch (\Exception $e) {
+      // Return empty results structure on error to prevent page breakage
+      return [
+        'title' => $this->roadworkDataService->getSectionTitle(),
+        'see_all_url' => $this->roadworkDataService->getSeeAllUrl(),
+        'projects' => [],
+      ];
+    }
   }
 
   /**
@@ -297,8 +478,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       [
         'unit' => 'km',
         'order' => 'asc',
-        // 'arc' is more accurate, but within
-        // a city it should not matter.
+        // 'arc' is more accurate but for city-scale distances,
+        // the performance benefit of 'plane' is preferred.
         'distance_type' => 'plane',
         // What to do in case a field has several geo points.
         'mode' => 'min',

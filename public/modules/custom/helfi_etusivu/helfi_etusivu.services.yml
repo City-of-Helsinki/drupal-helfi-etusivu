@@ -5,9 +5,46 @@ services:
   logger.channel.helfi_etusivu:
     parent: logger.channel_base
     arguments: ['helfi_etusivu']
+    tags:
+      - { name: logger.channel }
   Drupal\helfi_etusivu\Token\NewsNodeImageBuilder:
     class: Drupal\helfi_etusivu\Token\NewsNodeImageBuilder
     tags:
       - { name: helfi_platform_config.og_image_builder }
   Drupal\helfi_etusivu\Servicemap: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents: ~
+  # Roadwork data services
+  Drupal\helfi_etusivu\Service\CoordinateConversionService: ~
+  
+  # Roadwork data client service.
+  # Handles communication with the external roadwork data API.
+  Drupal\helfi_etusivu\RoadworkData\RoadworkDataClient:
+    class: Drupal\helfi_etusivu\RoadworkData\RoadworkDataClient
+    arguments:
+      - '@http_client'
+      - '@logger.factory'
+      - '@Drupal\helfi_etusivu\Servicemap'
+  
+  # Alias for RoadworkDataClient to support dependency injection by interface.
+  Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface: '@Drupal\helfi_etusivu\RoadworkData\RoadworkDataClient'
+  
+  # Service for processing and formatting roadwork data.
+  Drupal\helfi_etusivu\RoadworkData\RoadworkDataService: ~
+  
+  # Alias for RoadworkDataService to support dependency injection by interface.
+  Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface: '@Drupal\helfi_etusivu\RoadworkData\RoadworkDataService'
+  
+  # Controllers
+  helfi_etusivu.helsinki_near_you_results_controller:
+    class: Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController
+    arguments:
+      - '@Drupal\helfi_etusivu\Servicemap'
+      - '@Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents'
+      - '@Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface'
+      - '@Drupal\helfi_etusivu\Service\CoordinateConversionService'
+      - '@request_stack'
+      
+  helfi_etusivu.helsinki_near_you_roadworks_controller:
+    class: Drupal\helfi_etusivu\Controller\HelsinkiNearYouRoadworksController
+    arguments:
+      - '@Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface'
