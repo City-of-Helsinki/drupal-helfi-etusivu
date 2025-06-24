@@ -77,7 +77,7 @@ const getTranslation = (fullName) => {
      */
     const removeLocationError = () => {
       parent.classList.remove('hds-text-input--invalid');
-      parent.querySelector('.hds-text-input__error-text').remove();
+      parent.querySelector('.hds-text-input__error-text')?.remove();
     };
 
     const {
