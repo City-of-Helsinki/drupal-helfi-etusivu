@@ -138,12 +138,6 @@ global announcements. Code related to the global announcements can be found in `
 `helfi_platform_config` and the configuration for the `Publish on external site` is in the conf/cmi folder of this
 instance and the configuration rewrite is [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/e2643195b8fc2989da835313c052ae533b8e0143/public/modules/custom/helfi_etusivu_config/config/rewrite/core.entity_form_display.node.announcement.default.yml).
 
-### Helfi Annif integration
-
-This feature, currently specific to the Etusivu instance, provides automatic tagging to news items and articles using
-artificial intelligence.  Based on these tags, users receive recommendations for further reading on the subject at the
-end of the news item or article. For more information, see the `helfi_annfi` custom module [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/tree/dev/public/modules/custom/helfi_annif).
-
 ## Customizations
 
 ### Enabled languages
