@@ -1,8 +1,0 @@
-uuid: 705bad79-435b-4e77-8c81-94a5e3840791
-langcode: en
-status: true
-dependencies: {  }
-name: 'Annif keywords'
-vid: annif_keywords
-description: 'AI Generated keywords'
-weight: 0
