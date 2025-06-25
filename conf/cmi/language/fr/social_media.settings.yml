@@ -1,30 +1,9 @@
 social_media:
   facebook_share:
-    text: Facebook
-    api_url: 'http://www.facebook.com/share.php?u=[current-page:url]&title=[current-page:title]'
-    api_event: href
-    attributes: "target|_blank\r\nclass|facebook-share"
-  pinterest:
-    text: Pinterest
-    api_event: href
-    attributes: "target|_blank\r\nclass|pinterest\r\nrel|noopener noreferrer"
-  email:
-    text: Courriel
-    api_event: href
-  print:
-    text: Imprimer
-  facebook_msg:
-    attributes: "target|_blank\r\nclass|facebook-msg\r\nrel|noopener noreferrer"
+    text: 'Partager sur Facebook'
   linkedin:
-    api_url: 'https://www.linkedin.com/sharing/share-offsite/?url=[current-page:url]'
-    api_event: href
-    text: 'Share in Linkedin'
-    attributes: "target|_blank\r\nclass|linkedin"
+    text: 'Partager sur LinkedIn'
   twitter:
-    api_url: 'https://twitter.com/intent/tweet?url=[current-page:url]&status=[current-page:title]+[current-page:url]'
-    api_event: href
-    text: 'Share in Twitter'
-    attributes: "target|_blank\r\nclass|twitter"
-  whatsapp:
-    api_event: href
-    attributes: "class|whatsapp show-for-small-only\r\ndata-action|share/whatsapp/share"
+    text: 'Partager sur X'
+  email:
+    text: 'Envoyer la page par e‑mail'
