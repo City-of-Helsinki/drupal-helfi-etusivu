@@ -52,7 +52,7 @@ module:
   helfi_azure_fs: 0
   helfi_base_content: 0
   helfi_ckeditor: 0
-  helfi_etusivu: 0
+  helfi_etusivu: 1
   helfi_etusivu_config: 0
   helfi_etusivu_entities: 0
   helfi_global_navigation: 0
