@@ -65,6 +65,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: field_lead_in
     type: text
+    boost: 1.5
     dependencies:
       config:
         - field.storage.node.field_lead_in
@@ -229,6 +230,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: title
     type: text
+    boost: 2.0
     dependencies:
       module:
         - node
