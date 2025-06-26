@@ -41,7 +41,6 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      front_page_latest_news: front_page_latest_news
       list_of_links: list_of_links
       content_cards: content_cards
       text: text
@@ -59,6 +58,7 @@ settings:
       news_list: news_list
       image_gallery: image_gallery
       number_highlights: number_highlights
+      front_page_latest_news: front_page_latest_news
     negate: 0
     target_bundles_drag_drop:
       accordion:
