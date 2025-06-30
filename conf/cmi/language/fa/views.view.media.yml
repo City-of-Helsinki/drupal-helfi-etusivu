@@ -29,6 +29,7 @@ display:
           label: عملیات
         name:
           separator: ', '
+          label: 'Media name'
       pager:
         options:
           expose:
@@ -64,6 +65,9 @@ display:
         langcode:
           expose:
             label: زبان
+        name:
+          expose:
+            label: 'Media name'
       empty:
         area_text_custom:
           content: 'رسانه‌ای در دسترس نیست'
