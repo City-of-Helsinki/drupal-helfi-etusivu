@@ -10,7 +10,7 @@ dependencies:
     - search_api
     - views_rss
 id: elastic_rss_feed
-label: 'Elastic test'
+label: 'Elastic news RSS feed'
 module: views
 description: 'Elastic-based RSS feed for news.'
 tag: ''
@@ -23,7 +23,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Elastic test'
+      title: 'Elastic news RSS feed'
       fields:
         title:
           id: title

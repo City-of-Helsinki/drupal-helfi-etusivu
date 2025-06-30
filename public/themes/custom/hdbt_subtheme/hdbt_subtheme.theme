@@ -141,7 +141,7 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
       $variables['#attached']['drupalSettings']['helfi_react_search']['sentry_dsn_react'] = $sentry_dsn_react;
     }
 
-    $feed_base_url = Url::fromRoute('view.news_archive.news_archive_feed')->toString();
+    $feed_base_url = Url::fromRoute('view.elastic_rss_feed.feed_1')->toString();
 
     if ($feed_base_url) {
       $feed_link = [
