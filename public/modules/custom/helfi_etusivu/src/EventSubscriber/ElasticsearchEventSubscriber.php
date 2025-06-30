@@ -53,7 +53,7 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
 
   /**
    * Modify query to match the one we use in react app.
-   * 
+   *
    * @param \Drupal\elasticsearch_connector\Event\QueryParamsEvent $event
    *   The QueryParams event.
    */
@@ -82,4 +82,5 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
       'body' => $body,
     ]);
   }
+
 }

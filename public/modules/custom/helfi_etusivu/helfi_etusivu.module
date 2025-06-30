@@ -133,19 +133,27 @@ function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $
     }
   }
 
-  // Support multiple parameters for some news archive RSS feed fields.
   if ($view->id() === 'elastic_rss_feed') {
     $query = _helfi_etusivu_handle_rss_params($query);
   }
 }
 
-function _helfi_etusivu_handle_rss_params(SearchApiQuery $query) {
+/**
+ * Support multiple topics, groups and neighbourhoods in RSS feed.
+ *
+ * @param \Drupal\search_api\Plugin\views\query\SearchApiQuery $query
+ *   The initial query.
+ *
+ * @return \Drupal\search_api\Plugin\views\query\SearchApiQuery
+ *   The resulting query.
+ */
+function _helfi_etusivu_handle_rss_params(SearchApiQuery $query) : SearchApiQuery {
   $params = Drupal::request()->query->all();
 
-  foreach([
+  foreach ([
     'topic' => 'news_tags',
     'groups' => 'news_groups',
-    'neighbourhoods' => 'neighbourhoods'
+    'neighbourhoods' => 'neighbourhoods',
   ] as $param => $indexKey) {
     if (isset($params[$param]) && is_array($params[$param])) {
       $query->addWhere('AND', $indexKey, $params[$param], 'IN');
