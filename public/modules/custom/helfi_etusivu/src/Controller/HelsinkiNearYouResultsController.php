@@ -102,7 +102,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     $lat = $addressData['coordinates'][1]; // Latitude at index 1
     $lon = $addressData['coordinates'][0]; // Longitude at index 0
 
-    $roadworkSection = $this->buildRoadworkSection($lat, $lon);
+    $roadworkSection = $this->buildRoadworkSection($lat, $lon, $address);
 
     $build = [
     // Set the theme for the results page.
@@ -137,6 +137,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
                 'roadworks_api_url' => '/' . $this->languageManager()->getCurrentLanguage()->getId() . '/api/helsinki-near-you/roadworks?' . http_build_query([
                   'lat' => $lat,
                   'lon' => $lon,
+                  'q' => $address,
                 ]),
                 'field_roadwork_count' => 3,
                 'hidePagination' => TRUE,
@@ -198,22 +199,23 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   public function roadworksApi(): JsonResponse {
     $request = $this->requestStack->getCurrentRequest();
     
-    // Get coordinates from query parameters
+    // Get coordinates and address from query parameters
     $lat = $request ? (float) $request->query->get('lat') : 0.0;
     $lon = $request ? (float) $request->query->get('lon') : 0.0;
+    $address = $request ? $request->query->get('q', '') : '';
     
     if (!$lat || !$lon) {
       return new JsonResponse([
         'data' => [],
         'meta' => [
           'count' => 0,
-          'error' => 'Invalid coordinates provided'
+          'error' => 'No coordinates provided'
         ]
       ], 400);
     }
     
     try {
-      $roadworkData = $this->buildRoadworkSection($lat, $lon);
+      $roadworkData = $this->buildRoadworkSection($lat, $lon, $address);
       
       return new JsonResponse([
         'data' => $roadworkData['projects'] ?? [],
@@ -245,7 +247,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    * @return array
    *   The roadwork project data array.
    */
-  public function buildRoadworkSection(float $lat, float $lon): array {
+  public function buildRoadworkSection(float $lat, float $lon, string $address = ''): array {
     try {
       // Validate coordinate types to ensure they are floats.
       if (!is_float($lat) || !is_float($lon)) {
@@ -279,9 +281,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
 
       $title = $this->roadworkDataService->getSectionTitle();
 
-      // Get the search address from the current request for the 'See all' link
-      $request = $this->requestStack->getCurrentRequest();
-      $address = $request ? $request->query->get('q', '') : '';
+      // Use provided address for 'See all' link, or get from request if not provided
+      if (empty($address)) {
+        $request = $this->requestStack->getCurrentRequest();
+        $address = $request ? $request->query->get('q', '') : '';
+      }
       $seeAllUrl = $this->roadworkDataService->getSeeAllUrl($address)->toString();
 
       return [
@@ -293,9 +297,15 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     }
     catch (\Exception $e) {
       // Return empty results structure on error to prevent page breakage
+      // Use provided address for 'See all' link, or get from request if not provided
+      if (empty($address)) {
+        $request = $this->requestStack->getCurrentRequest();
+        $address = $request ? $request->query->get('q', '') : '';
+      }
+      
       return [
         'title' => $this->roadworkDataService->getSectionTitle(),
-        'see_all_url' => $this->roadworkDataService->getSeeAllUrl()->toString(),
+        'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)->toString(),
         'projects' => [],
       ];
     }

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\helfi_etusivu\ServiceMapInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Controller for the Helsinki Near You Roadworks page.
@@ -23,6 +25,16 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 class HelsinkiNearYouRoadworksController extends ControllerBase {
 
   /**
+   * Constructs a new instance.
+   */
+  public function __construct(
+    #[Autowire(service: 'Drupal\helfi_etusivu\Servicemap')]
+    protected readonly ServiceMapInterface $servicemap,
+    protected readonly RequestStack $requestStack,
+  ) {
+  }
+
+  /**
    * Returns the roadworks listing page.
    *
    * @return array
@@ -32,14 +44,28 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
     $language = $this->languageManager()->getCurrentLanguage()->getId();
     
     // Get address from query parameter
-    $request = \Drupal::request();
-    $address = $request->query->get('q', '');
+    $request = $this->requestStack->getCurrentRequest();
+    $address = $request ? $request->query->get('q', '') : '';
     
-    // Build API URL - include coordinates if address is provided
+    // Build API URL with coordinates if address is provided
     $apiUrl = '/' . $language . '/api/helsinki-near-you/roadworks';
     if (!empty($address)) {
-      // Add address as parameter - the API endpoint will handle coordinate conversion
-      $apiUrl .= '?q=' . urlencode($address);
+      try {
+        // Convert address to coordinates server-side
+        $addressData = $this->servicemap->getAddressData(urldecode($address));
+        
+        if (!empty($addressData) && !empty($addressData['coordinates'])) {
+          // Extract coordinates from GeoJSON format [longitude, latitude]
+          $lat = $addressData['coordinates'][1]; // Latitude
+          $lon = $addressData['coordinates'][0]; // Longitude
+          
+          // Add coordinates and original address to API URL
+          $apiUrl .= '?lat=' . $lat . '&lon=' . $lon . '&q=' . urlencode($address);
+        }
+      } catch (\Exception $e) {
+        // If address conversion fails, API URL will have no coordinates
+        // React app will handle empty state
+      }
     }
     
     return [
