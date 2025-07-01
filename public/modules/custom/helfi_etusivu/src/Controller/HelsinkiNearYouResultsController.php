@@ -6,13 +6,11 @@ namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
 use Drupal\helfi_etusivu\ServiceMapInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 use Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface;
@@ -26,54 +24,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * Helsinki near you controller.
  */
-class HelsinkiNearYouResultsController extends ControllerBase implements ContainerInjectionInterface {
-  /**
-   * The servicemap service.
-   *
-   * @var \Drupal\helfi_etusivu\ServiceMapInterface
-   */
-  protected $servicemap;
+class HelsinkiNearYouResultsController extends ControllerBase {
 
-  /**
-   * The linked events service.
-   *
-   * @var \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents
-   */
-  protected $linkedEvents;
-
-  /**
-   * The roadwork data service.
-   *
-   * @var \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface
-   */
-  protected $roadworkDataService;
-
-  /**
-   * The coordinate conversion service.
-   *
-   * @var \Drupal\helfi_etusivu\Service\CoordinateConversionService
-   */
-  protected $coordinateConversionService;
-
-  /**
-   * The request stack.
-   *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
-   */
-  protected $requestStack;
-
-  /**
-   * Constructs a new instance.
-   *
-   * @param \Drupal\helfi_etusivu\ServiceMapInterface $servicemap
-   *   The servicemap service.
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents $linkedEvents
-   *   The linked events service.
-   * @param \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface $roadworkDataService
-   *   The roadwork data service.
-   * @param \Drupal\helfi_etusivu\Service\CoordinateConversionService $coordinateConversionService
-   *   The coordinate conversion service.
-   */
   /**
    * Constructs a new instance.
    *
@@ -89,30 +41,13 @@ class HelsinkiNearYouResultsController extends ControllerBase implements Contain
    *   The request stack.
    */
   public function __construct(
-    ServiceMapInterface $servicemap,
-    LinkedEvents $linkedEvents,
-    RoadworkDataServiceInterface $roadworkDataService,
-    CoordinateConversionService $coordinateConversionService,
-    RequestStack $requestStack
+    #[Autowire(service: 'Drupal\helfi_etusivu\Servicemap')]
+    protected readonly ServiceMapInterface $servicemap,
+    protected readonly LinkedEvents $linkedEvents,
+    protected readonly RoadworkDataServiceInterface $roadworkDataService,
+    protected readonly CoordinateConversionService $coordinateConversionService,
+    protected readonly RequestStack $requestStack,
   ) {
-    $this->servicemap = $servicemap;
-    $this->linkedEvents = $linkedEvents;
-    $this->roadworkDataService = $roadworkDataService;
-    $this->coordinateConversionService = $coordinateConversionService;
-    $this->requestStack = $requestStack;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('Drupal\helfi_etusivu\Servicemap'),
-      $container->get('helfi_etusivu.helsinki_near_you.linked_events'),
-      $container->get('helfi_etusivu.roadwork_data_service'),
-      $container->get('Drupal\helfi_etusivu\Service\CoordinateConversionService'),
-      $container->get('request_stack')
-    );
   }
 
   /**
@@ -195,6 +130,14 @@ class HelsinkiNearYouResultsController extends ControllerBase implements Contain
             'hide_form' => TRUE,
             'max_results' => 3,
             'cardsWithBorders' => TRUE,
+          ],
+          'helfi_roadworks' => [
+            'data' => [
+              'helfi-coordinates-based-roadwork-list' => [
+                'coordinates' => $addressData['coordinates'],
+                'langcode' => \Drupal::languageManager()->getCurrentLanguage()->getId(),
+              ],
+            ],
           ],
         ],
       ],
