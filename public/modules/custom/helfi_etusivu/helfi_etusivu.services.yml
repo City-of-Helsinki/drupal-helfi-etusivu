@@ -47,4 +47,4 @@ services:
   helfi_etusivu.helsinki_near_you_roadworks_controller:
     class: Drupal\helfi_etusivu\Controller\HelsinkiNearYouRoadworksController
     arguments:
-      - '@Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface'
+      - '@Drupal\helfi_etusivu\Servicemap'
