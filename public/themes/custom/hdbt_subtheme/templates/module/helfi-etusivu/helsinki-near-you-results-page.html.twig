@@ -128,7 +128,34 @@
     -->
     
     {# React Roadwork Section #}
-    {% include '@hdbt_subtheme/module/helfi-etusivu/helsinki-near-you-roadwork-section.html.twig' %}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--react-search',
+        'component--roadwork-list',
+        'component--coordinates-based-list',
+        ],
+        component_title: 'Roadworks near you'|trans({}, {'context': 'Helsinki near you'}),
+        component_description: 'Browse roadworks near you.'|trans({}, {'context': 'Helsinki near you'}),
+        component_content_class: 'roadwork-list',
+      }
+    %}
+      {% block component_content %}
+        {# Hook React app to this div #}
+        {{ attach_library('hdbt/roadwork-list') }}
+        <div
+          id="helfi-roadworks-search"
+          data-paragraph-id="helfi-coordinates-based-roadwork-list"
+        >
+        </div>
+        {# Indicate JS not enabled #}
+        <noscript>
+          <div class="roadwork-list__javascript-disabled">
+            {{ 'You must enable JavaScript in your browser for roadwork list to work'|t }}
+          </div>
+        </noscript>
+      {% endblock component_content %}
+    {% endembed %}
     
     {% include '@hdbt_subtheme/module/helfi-etusivu/helsinki-near-you-feedback-block.html.twig' %}
   </div>
