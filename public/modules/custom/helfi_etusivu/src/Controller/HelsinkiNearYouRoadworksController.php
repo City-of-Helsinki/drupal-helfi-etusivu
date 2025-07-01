@@ -8,7 +8,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface;
 use Drupal\helfi_etusivu\Servicemap;
 use Drupal\helfi_etusivu\Service\CoordinateConversionService;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -41,22 +41,11 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
    */
   public function __construct(
     protected readonly RoadworkDataServiceInterface $roadworkDataService,
+    #[Autowire(service: 'Drupal\helfi_etusivu\Servicemap')]
     protected readonly Servicemap $servicemap,
     protected readonly CoordinateConversionService $coordinateConversionService,
     protected readonly RequestStack $requestStack,
   ) {
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('helfi_etusivu.roadwork_data_service'),
-      $container->get('helfi_etusivu.servicemap'),
-      $container->get('Drupal\helfi_etusivu\Service\CoordinateConversionService'),
-      $container->get('request_stack')
-    );
   }
 
   /**

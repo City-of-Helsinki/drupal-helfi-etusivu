@@ -134,7 +134,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'helfi_roadworks' => [
             'data' => [
               'helfi-coordinates-based-roadwork-list' => [
-                'roadworks_api_url' => '/' . \Drupal::languageManager()->getCurrentLanguage()->getId() . '/api/helsinki-near-you/roadworks?' . http_build_query([
+                'roadworks_api_url' => '/' . $this->languageManager()->getCurrentLanguage()->getId() . '/api/helsinki-near-you/roadworks?' . http_build_query([
                   'lat' => $lat,
                   'lon' => $lon,
                 ]),
