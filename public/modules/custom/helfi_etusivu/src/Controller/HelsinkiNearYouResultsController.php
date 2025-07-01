@@ -134,8 +134,12 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'helfi_roadworks' => [
             'data' => [
               'helfi-coordinates-based-roadwork-list' => [
-                'coordinates' => $addressData['coordinates'],
-                'langcode' => \Drupal::languageManager()->getCurrentLanguage()->getId(),
+                'roadworks_api_url' => '/' . \Drupal::languageManager()->getCurrentLanguage()->getId() . '/api/helsinki-near-you/roadworks?' . http_build_query([
+                  'lat' => $lat,
+                  'lon' => $lon,
+                ]),
+                'field_roadwork_count' => 3,
+                'hidePagination' => TRUE,
               ],
             ],
           ],
@@ -182,6 +186,51 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     }
     catch (\Exception $e) {
       return [];
+    }
+  }
+
+  /**
+   * JSON API endpoint for roadworks data.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   JSON response with roadworks data.
+   */
+  public function roadworksApi(): JsonResponse {
+    $request = $this->requestStack->getCurrentRequest();
+    
+    // Get coordinates from query parameters
+    $lat = $request ? (float) $request->query->get('lat') : 0.0;
+    $lon = $request ? (float) $request->query->get('lon') : 0.0;
+    
+    if (!$lat || !$lon) {
+      return new JsonResponse([
+        'data' => [],
+        'meta' => [
+          'count' => 0,
+          'error' => 'Invalid coordinates provided'
+        ]
+      ], 400);
+    }
+    
+    try {
+      $roadworkData = $this->buildRoadworkSection($lat, $lon);
+      
+      return new JsonResponse([
+        'data' => $roadworkData['projects'] ?? [],
+        'meta' => [
+          'count' => count($roadworkData['projects'] ?? []),
+          'title' => $roadworkData['title'] ?? '',
+          'see_all_url' => $roadworkData['see_all_url'] ?? ''
+        ]
+      ]);
+    } catch (\Exception $e) {
+      return new JsonResponse([
+        'data' => [],
+        'meta' => [
+          'count' => 0,
+          'error' => 'Failed to fetch roadworks data: ' . $e->getMessage()
+        ]
+      ], 500);
     }
   }
 

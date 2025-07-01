@@ -36,3 +36,11 @@ helfi_etusivu.helsinki_near_you_roadworks:
     _title: 'Katu- ja puistohankkeet lähelläsi'
   requirements:
     _permission: 'access content'
+
+helfi_etusivu.helsinki_near_you_roadworks_api:
+  path: '/api/helsinki-near-you/roadworks'
+  defaults:
+    _controller: 'helfi_etusivu.helsinki_near_you_results_controller:roadworksApi'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]
