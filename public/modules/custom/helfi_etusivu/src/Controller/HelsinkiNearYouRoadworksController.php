@@ -80,6 +80,7 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
                 'field_roadwork_schedule' => TRUE,
                 'hideHeading' => TRUE,
                 'useLocationSearch' => TRUE,
+                'hidePagination' => FALSE,
               ],
             ],
             'seeAllButtonOverride' => $this->t(
@@ -87,6 +88,7 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
               [],
               ['context' => 'Helsinki near you roadworks search']
             ),
+            'cardsWithBorders' => TRUE,
             'useExperimentalGhosts' => TRUE,
           ],
         ],
