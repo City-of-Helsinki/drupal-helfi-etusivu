@@ -232,3 +232,27 @@ msgstr "Använd aktuell plats"
 msgctxt "Helsinki near you"
 msgid "We couldn\'t retrieve your current location. Try entering an address."
 msgstr "Kunde inte använda din position. Prova att skriva in en adress."
+
+msgctxt "Helsinki near you"
+msgid "Roadworks near you"
+msgstr "Gatuarbeten nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Browse roadworks near you or search for roadworks by location or date."
+msgstr "Bläddra gatuarbeten nära dig eller sök gatuarbeten efter plats eller datum."
+
+msgctxt "Helsinki near you roadworks search"
+msgid "See all roadworks near you"
+msgstr "Se alla gatuarbeten nära dig"
+
+msgctxt "Roadworks search: result count"
+msgid "1 result"
+msgstr "1 resultat"
+
+msgctxt "Roadworks search: result count"
+msgid "@count results"
+msgstr "@count resultat"
+
+msgctxt "Roadworks search: Fetch failed message"
+msgid "Failed to fetch roadworks. You can reload the page or try again later."
+msgstr "Misslyckades att hämta gatuarbeten. Du kan ladda om sidan eller försöka igen senare."
