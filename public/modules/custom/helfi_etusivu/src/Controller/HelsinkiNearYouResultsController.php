@@ -282,7 +282,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       // Get the search address from the current request for the 'See all' link
       $request = $this->requestStack->getCurrentRequest();
       $address = $request ? $request->query->get('q', '') : '';
-      $seeAllUrl = $this->roadworkDataService->getSeeAllUrl($address);
+      $seeAllUrl = $this->roadworkDataService->getSeeAllUrl($address)->toString();
 
       return [
         'title' => $title,
@@ -295,7 +295,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       // Return empty results structure on error to prevent page breakage
       return [
         'title' => $this->roadworkDataService->getSectionTitle(),
-        'see_all_url' => $this->roadworkDataService->getSeeAllUrl(),
+        'see_all_url' => $this->roadworkDataService->getSeeAllUrl()->toString(),
         'projects' => [],
       ];
     }
