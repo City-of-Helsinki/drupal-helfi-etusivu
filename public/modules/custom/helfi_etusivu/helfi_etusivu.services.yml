@@ -34,17 +34,4 @@ services:
   # Alias for RoadworkDataService to support dependency injection by interface.
   Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface: '@Drupal\helfi_etusivu\RoadworkData\RoadworkDataService'
   
-  # Controllers
-  helfi_etusivu.helsinki_near_you_results_controller:
-    class: Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController
-    arguments:
-      - '@Drupal\helfi_etusivu\Servicemap'
-      - '@Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents'
-      - '@Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface'
-      - '@Drupal\helfi_etusivu\Service\CoordinateConversionService'
-      - '@request_stack'
-      
-  helfi_etusivu.helsinki_near_you_roadworks_controller:
-    class: Drupal\helfi_etusivu\Controller\HelsinkiNearYouRoadworksController
-    arguments:
-      - '@Drupal\helfi_etusivu\Servicemap'
+

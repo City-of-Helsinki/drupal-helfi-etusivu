@@ -99,8 +99,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
 
     // Extract coordinates for roadwork section.
     // Array format: [longitude, latitude] per GeoJSON specification.
-    $lat = $addressData['coordinates'][1]; // Latitude at index 1
-    $lon = $addressData['coordinates'][0]; // Longitude at index 0
+    [$lon, $lat] = $addressData['coordinates'];
 
     $roadworkSection = $this->buildRoadworkSection($lat, $lon, $address);
 
@@ -168,28 +167,6 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     ];
 
     return $build;
-  }
-
-  /**
-   * Lazy builder for the roadwork section.
-   *
-   * @param float $lat
-   *   The latitude.
-   * @param float $lon
-   *   The longitude.
-   *
-   * @return array
-   *   A render array for the roadwork section.
-   */
-  public static function lazyBuildRoadworkSection(float $lat, float $lon): array {
-    try {
-      /** @var \Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController $controller */
-      $controller = \Drupal::getContainer()->get('helfi_etusivu.helsinki_near_you_results_controller');
-      return $controller->buildRoadworkSection($lat, $lon);
-    }
-    catch (\Exception $e) {
-      return [];
-    }
   }
 
   /**
