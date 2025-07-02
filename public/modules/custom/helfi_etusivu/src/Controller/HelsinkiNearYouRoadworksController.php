@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\helfi_etusivu\ServiceMapInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Drupal\Core\DependencyInjection\AutowireTrait;
+use Drupal\helfi_etusivu\Servicemap;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -24,12 +24,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class HelsinkiNearYouRoadworksController extends ControllerBase {
 
+  use AutowireTrait;
+
   /**
    * Constructs a new instance.
    */
   public function __construct(
-    #[Autowire(service: 'Drupal\helfi_etusivu\Servicemap')]
-    protected readonly ServiceMapInterface $servicemap,
+    protected readonly Servicemap $servicemap,
     protected readonly RequestStack $requestStack,
   ) {
   }
