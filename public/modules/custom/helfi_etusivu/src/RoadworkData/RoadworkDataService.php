@@ -12,7 +12,8 @@ use Drupal\Core\Url;
  *
  * This service is responsible for transforming raw roadwork data from the API
  * into a format suitable for display in the Helsinki Design System components.
- * It handles date formatting, URL generation, and data structure transformation.
+ * It handles date formatting, URL generation, and data structure
+ * transformation.
  *
  * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface
  * @see \Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController
@@ -117,7 +118,6 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
       // Extract relevant data from the GeoJSON feature.
       // Use address as the main title.
       $title = $props['osoite'] ?? $this->t('Työmaa');
-      $description = $props['tyon_kuvaus'] ?? '';
       $location = $props['osoite'] ?? $this->t('Sijainti ei tiedossa');
 
       // Use the text date fields for display.
@@ -165,7 +165,8 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
         'location' => $location,
       // Pass the translated label separately.
         'location_label' => $this->t('Sijainti'),
-        // Convert schedule to a string to prevent Drupal from treating it as a render array.
+        // Convert schedule to a string to prevent Drupal from treating it as
+        // a render array.
         'schedule' => $formattedStart . ($formattedEnd ? ' - ' . $formattedEnd : ''),
       // Pass the translated label separately.
         'schedule_label' => $this->t('Aikataulu'),

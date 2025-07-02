@@ -52,11 +52,13 @@ interface RoadworkDataClientInterface {
    *   (optional) The search radius in meters. Defaults to 1000 meters.
    *
    * @return array
-   *   An array of roadwork projects in the same format as getProjectsByCoordinates().
+   *   An array of roadwork projects in the same format as
+   *   getProjectsByCoordinates().
    *   Returns an empty array if the address cannot be geocoded.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
-   *   Thrown when there is an error communicating with the geocoding service or API.
+   *   Thrown when there is an error communicating with the geocoding service
+   *   or API.
    * @throws \InvalidArgumentException
    *   Thrown when the address is empty.
    */

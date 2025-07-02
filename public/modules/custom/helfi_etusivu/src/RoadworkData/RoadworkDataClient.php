@@ -12,7 +12,8 @@ use GuzzleHttp\ClientInterface;
  * Fetches and processes roadwork data from the Helsinki Open Data API.
  *
  * This service handles communication with the external roadwork data API,
- * including making HTTP requests, error handling, and basic data transformation.
+ * including making HTTP requests, error handling, and basic data
+ * transformation.
  * It implements RoadworkDataClientInterface to ensure consistent API.
  *
  * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface
@@ -88,7 +89,8 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
       $currentDate = (new \DateTime())->format('Y-m-d');
 
       // The API expects coordinates in EPSG:3879 (ETRS-GK25)
-      // We assume the coordinates are already converted to EPSG:3879 before being passed to this method.
+      // We assume the coordinates are already converted to EPSG:3879 before
+      // being passed to this method.
       // In EPSG:3879, this is the easting (x-coordinate)
       $x = $lon;
       // In EPSG:3879, this is the northing (y-coordinate)

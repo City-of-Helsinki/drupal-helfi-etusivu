@@ -50,11 +50,13 @@ interface RoadworkDataServiceInterface {
    *
    * @return array
    *   An array of formatted roadwork projects in the same format as
-   *   getFormattedProjectsByCoordinates(). Returns an empty array if the address
+   *   getFormattedProjectsByCoordinates(). Returns an empty array if the
+   *   address
    *   cannot be geocoded.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
-   *   Thrown when there is an error communicating with the geocoding service or API.
+   *   Thrown when there is an error communicating with the geocoding service
+   *   or API.
    * @throws \InvalidArgumentException
    *   Thrown when the address is empty.
    */
@@ -68,8 +70,9 @@ interface RoadworkDataServiceInterface {
    *   used to pre-fill the search field on the target page.
    *
    * @return \Drupal\Core\Url
-   *   A URL object for the roadworks overview page with optional address parameter.
-   *   The URL will point to the route 'helfi_etusivu.helsinki_near_you_roadworks'.
+   *   A URL object for the roadworks overview page with optional address
+   *   parameter. The URL will point to the route
+   *   'helfi_etusivu.helsinki_near_you_roadworks'.
    */
   public function getSeeAllUrl(string $address = ''): Url;
 

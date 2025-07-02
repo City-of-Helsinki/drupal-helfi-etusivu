@@ -223,6 +223,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   The latitude in WGS84.
    * @param float $lon
    *   The longitude in WGS84.
+   * @param string $address
+   *   The address string for 'See all' link.
    *
    * @return array
    *   The roadwork project data array.
@@ -260,27 +262,27 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         1000
       ) ?? [];
 
-      $projectCount = count($projects);
-
       $title = $this->roadworkDataService->getSectionTitle();
 
-      // Use provided address for 'See all' link, or get from request if not provided.
+      // Use provided address for 'See all' link, or get from request if not
+      // provided.
       if (empty($address)) {
         $request = $this->requestStack->getCurrentRequest();
         $address = $request ? $request->query->get('q', '') : '';
       }
-      $seeAllUrl = $this->roadworkDataService->getSeeAllUrl($address)->toString();
 
       return [
         'title' => $title,
-        'see_all_url' => $seeAllUrl,
+        'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)
+          ->toString(),
         'projects' => $projects,
       ];
 
     }
     catch (\Exception $e) {
       // Return empty results structure on error to prevent page breakage
-      // Use provided address for 'See all' link, or get from request if not provided.
+      // Use provided address for 'See all' link, or get from request if not
+      // provided.
       if (empty($address)) {
         $request = $this->requestStack->getCurrentRequest();
         $address = $request ? $request->query->get('q', '') : '';
@@ -288,7 +290,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
 
       return [
         'title' => $this->roadworkDataService->getSectionTitle(),
-        'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)->toString(),
+        'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)
+          ->toString(),
         'projects' => [],
       ];
     }
