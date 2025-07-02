@@ -143,7 +143,7 @@ msgstr "Aurausaikataulu"
 
 msgctxt "Helsinki near you"
 msgid "Roadworks on the map"
-msgstr "Katutyöt kartalla"
+msgstr "Katu- ja puistohankkeet kartalla"
 
 msgctxt "Helsinki near you"
 msgid "City bike stations and bikeracks on the map"
@@ -191,7 +191,7 @@ msgstr "Vaihtoehto numero @position: @selectedItem korostettu. Vaihtoehtojen mä
 
 msgctxt "Helsinki near you address label"
 msgid "Street works and events near the address @address"
-msgstr "Katutyöt ja tapahtumat lähellä osoitetta @address"
+msgstr "Katu- ja puistohankkeet sekä tapahtumat lähellä osoitetta @address"
 
 msgctxt "Helsinki near you address label"
 msgid "City bike stations and bicycle racks near the address @address"
@@ -246,9 +246,9 @@ msgstr "Nykyisen sijainnin käyttö ei onnistunut. Kokeile kirjoittaa osoite."
 
 msgctxt "Helsinki near you"
 msgid "Roadworks near you"
-msgstr "Katutyöt lähelläsi"
+msgstr "Katu- ja puistohankkeet lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "Browse roadworks near you or search for roadworks by location or date."
-msgstr "Selaa katutyöt läheltäsi tai hae katutöitä sijainnin tai päivämäärän perusteella."
+msgstr "Selaa katu- ja puistohankkeita läheltäsi tai hae hankkeita sijainnin tai päivämäärän perusteella."
 
