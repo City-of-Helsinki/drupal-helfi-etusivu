@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * Controller for the Helsinki Near You Roadworks page.
  *
- * This controller handles the display of roadwork projects near a given location.
+ * This controller handles the display of roadwork projects near a given
+ * location.
  * It provides methods for:
  * - Displaying roadwork projects near a user-specified address
  * - Handling address-based searches

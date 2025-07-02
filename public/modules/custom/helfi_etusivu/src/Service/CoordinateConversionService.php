@@ -39,7 +39,8 @@ class CoordinateConversionService {
    */
   public function __construct() {
     // Use Composer's autoloader to load the proj4php classes
-    // The vendor directory is in the project root, one level up from DRUPAL_ROOT.
+    // The vendor directory is in the project root, one level up from
+    // DRUPAL_ROOT.
     $autoloader = dirname(DRUPAL_ROOT) . '/vendor/autoload.php';
 
     if (!file_exists($autoloader)) {
@@ -67,7 +68,8 @@ class CoordinateConversionService {
    *   The longitude in WGS84 (EPSG:4326).
    *
    * @return array|null
-   *   An array with 'x' and 'y' keys for the converted coordinates in ETRS-GK25,
+   *   An array with 'x' and 'y' keys for the converted coordinates in
+   *   ETRS-GK25,
    *   or NULL if conversion failed.
    */
   public function wgs84ToEtrsGk25(float $latitude, float $longitude): ?array {
