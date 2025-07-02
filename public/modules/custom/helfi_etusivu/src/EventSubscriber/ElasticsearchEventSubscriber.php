@@ -58,28 +58,28 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
    *   The QueryParams event.
    */
   public function prepareQueryParams(QueryParamsEvent $event): void {
-    [$index, $body] = array_values($event->getParams());
+    $params = $event->getParams();
 
-    if ($index !== 'news' || empty($body['query']['bool']['must']['query_string'])) {
+    if ($event->getIndexName() !== 'news' || empty($params['body']['query']['bool']['must']['query_string'])) {
       return;
     }
 
-    $must = $body['query']['bool']['must'];
+    $must = $params['body']['query']['bool']['must'];
     $query = $must['query_string']['query'];
     $keyword = str_split($query, strlen($query) - 1)[0];
 
-    $body['query']['bool']['should'] = [$must];
-    unset($body['query']['bool']['must']);
-    $body['query']['bool']['minimum_should_match'] = 1;
-    $body['query']['bool']['should'][] = [
+    $params['body']['query']['bool']['should'] = [$must];
+    unset($params['body']['query']['bool']['must']);
+    $params['body']['query']['bool']['minimum_should_match'] = 1;
+    $params['body']['query']['bool']['should'][] = [
       'wildcard' => [
         'title.keyword' => '*' . $keyword . '*',
       ],
     ];
 
     $event->setParams([
-      'index' => $index,
-      'body' => $body,
+      'index' => $event->getIndexName(),
+      'body' => $params['body'],
     ]);
   }
 
