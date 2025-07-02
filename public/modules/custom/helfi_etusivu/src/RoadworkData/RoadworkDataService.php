@@ -98,7 +98,7 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
    *   An array of GeoJSON features from the roadwork API, where each feature
    *   contains properties like:
    *   - properties: Array containing project metadata
-   *   - geometry: GeoJSON geometry object with coordinates
+   *   - geometry: GeoJSON geometry object with coordinates.
    *
    * @return array
    *   An array of formatted project data, sorted by start date (newest first).

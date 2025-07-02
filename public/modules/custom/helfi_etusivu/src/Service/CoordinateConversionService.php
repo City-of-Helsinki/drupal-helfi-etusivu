@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Service;
 
-
 use proj4php\Point;
 use proj4php\Proj;
 use proj4php\Proj4php;
@@ -37,7 +36,6 @@ class CoordinateConversionService {
 
   /**
    * Constructs a new CoordinateConversionService object.
-   *
    */
   public function __construct() {
     // Use Composer's autoloader to load the proj4php classes
