@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Plugin\Field\FieldWidget;
 
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\Attribute\FieldWidget;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\linkit\Plugin\Field\FieldWidget\LinkitWidget;
 use Drupal\linkit\Utility\LinkitHelper;
@@ -37,8 +35,6 @@ final class HelfiLinkitWidget extends LinkitWidget {
       $configuration['field_definition'],
       $configuration['settings'],
       $configuration['third_party_settings'],
-      $container->get('current_user'),
-      $container->get('entity_type.manager'),
       $container->get('request_stack'),
     );
   }
