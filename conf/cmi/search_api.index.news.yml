@@ -215,7 +215,7 @@ field_settings:
       module:
         - publication_date
   text_content:
-    label: 'Sisältöalue » Lohko » Teksti (tuettu muilla kielillä) » Läpikäyty teksti'
+    label: 'Text content'
     datasource_id: 'entity:node'
     property_path: 'field_content:entity:field_text:processed'
     type: text
