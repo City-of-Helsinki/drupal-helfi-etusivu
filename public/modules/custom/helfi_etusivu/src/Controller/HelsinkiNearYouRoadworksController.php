@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * - Displaying roadwork projects near a user-specified address
  * - Handling address-based searches
  * - Formatting project data for display in the Helsinki Design System
- * - Managing error states and user feedback
+ * - Managing error states and user feedback.
  *
  * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface
  * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface
@@ -43,32 +43,35 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
    */
   public function content(): array {
     $language = $this->languageManager()->getCurrentLanguage()->getId();
-    
-    // Get address from query parameter
+
+    // Get address from query parameter.
     $request = $this->requestStack->getCurrentRequest();
     $address = $request ? $request->query->get('q', '') : '';
-    
-    // Build API URL with coordinates if address is provided
+
+    // Build API URL with coordinates if address is provided.
     $apiUrl = '/' . $language . '/api/helsinki-near-you/roadworks';
     if (!empty($address)) {
       try {
-        // Convert address to coordinates server-side
+        // Convert address to coordinates server-side.
         $addressData = $this->servicemap->getAddressData(urldecode($address));
-        
+
         if (!empty($addressData) && !empty($addressData['coordinates'])) {
-          // Extract coordinates from GeoJSON format [longitude, latitude]
-          $lat = $addressData['coordinates'][1]; // Latitude
-          $lon = $addressData['coordinates'][0]; // Longitude
-          
-          // Add coordinates and original address to API URL
+          // Extract coordinates from GeoJSON format [longitude, latitude].
+          // Latitude.
+          $lat = $addressData['coordinates'][1];
+          // Longitude.
+          $lon = $addressData['coordinates'][0];
+
+          // Add coordinates and original address to API URL.
           $apiUrl .= '?lat=' . $lat . '&lon=' . $lon . '&q=' . urlencode($address);
         }
-      } catch (\Exception $e) {
+      }
+      catch (\Exception $e) {
         // If address conversion fails, API URL will have no coordinates
-        // React app will handle empty state
+        // React app will handle empty state.
       }
     }
-    
+
     return [
       '#attached' => [
         'drupalSettings' => [

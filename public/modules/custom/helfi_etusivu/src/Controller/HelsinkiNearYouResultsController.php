@@ -59,7 +59,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
    *   A renderable array or redirect response.
    */
-  public function content(Request $request = NULL): array|RedirectResponse {
+  public function content(?Request $request = NULL): array|RedirectResponse {
     // Use the provided request or fall back to the current request.
     $request = $request ?: $this->requestStack->getCurrentRequest();
     $address = $request->query->get('q');
@@ -177,40 +177,41 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    */
   public function roadworksApi(): JsonResponse {
     $request = $this->requestStack->getCurrentRequest();
-    
-    // Get coordinates and address from query parameters
+
+    // Get coordinates and address from query parameters.
     $lat = $request ? (float) $request->query->get('lat') : 0.0;
     $lon = $request ? (float) $request->query->get('lon') : 0.0;
     $address = $request ? $request->query->get('q', '') : '';
-    
+
     if (!$lat || !$lon) {
       return new JsonResponse([
         'data' => [],
         'meta' => [
           'count' => 0,
-          'error' => 'No coordinates provided'
-        ]
+          'error' => 'No coordinates provided',
+        ],
       ], 400);
     }
-    
+
     try {
       $roadworkData = $this->buildRoadworkSection($lat, $lon, $address);
-      
+
       return new JsonResponse([
         'data' => $roadworkData['projects'] ?? [],
         'meta' => [
           'count' => count($roadworkData['projects'] ?? []),
           'title' => $roadworkData['title'] ?? '',
-          'see_all_url' => $roadworkData['see_all_url'] ?? ''
-        ]
+          'see_all_url' => $roadworkData['see_all_url'] ?? '',
+        ],
       ]);
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       return new JsonResponse([
         'data' => [],
         'meta' => [
           'count' => 0,
-          'error' => 'Failed to fetch roadworks data: ' . $e->getMessage()
-        ]
+          'error' => 'Failed to fetch roadworks data: ' . $e->getMessage(),
+        ],
       ], 500);
     }
   }
@@ -249,18 +250,21 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       // Note: Parameters are in ETRS-GK25 projection (EPSG:3879) where:
       // - First parameter is northing (y-coordinate)
       // - Second parameter is easting (x-coordinate)
-      // - Third parameter is search radius in meters
+      // - Third parameter is search radius in meters.
       $projects = $this->roadworkDataService->getFormattedProjectsByCoordinates(
-        $convertedCoords['y'], // Northing (y-coordinate)
-        $convertedCoords['x'], // Easting (x-coordinate)
-        1000 // 1000 meters = 1km radius
+      // Northing (y-coordinate)
+        $convertedCoords['y'],
+      // Easting (x-coordinate)
+        $convertedCoords['x'],
+      // 1000 meters = 1km radius.
+        1000
       ) ?? [];
 
       $projectCount = count($projects);
 
       $title = $this->roadworkDataService->getSectionTitle();
 
-      // Use provided address for 'See all' link, or get from request if not provided
+      // Use provided address for 'See all' link, or get from request if not provided.
       if (empty($address)) {
         $request = $this->requestStack->getCurrentRequest();
         $address = $request ? $request->query->get('q', '') : '';
@@ -276,12 +280,12 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     }
     catch (\Exception $e) {
       // Return empty results structure on error to prevent page breakage
-      // Use provided address for 'See all' link, or get from request if not provided
+      // Use provided address for 'See all' link, or get from request if not provided.
       if (empty($address)) {
         $request = $this->requestStack->getCurrentRequest();
         $address = $request ? $request->query->get('q', '') : '';
       }
-      
+
       return [
         'title' => $this->roadworkDataService->getSectionTitle(),
         'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)->toString(),
