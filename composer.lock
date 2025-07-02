@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7311393754b63bfd2d54ad58ccfa3d70",
+    "content-hash": "f5628ce9fe24531261415b64036d8426",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2420,20 +2420,20 @@
         },
         {
             "name": "drupal/core",
-            "version": "10.4.8",
+            "version": "10.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "18b5bd895531f95c8c537e2445a27d64415c3846"
+                "reference": "551442fec1db69cf6eedb1601a348d8a6268060f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/18b5bd895531f95c8c537e2445a27d64415c3846",
-                "reference": "18b5bd895531f95c8c537e2445a27d64415c3846",
+                "url": "https://api.github.com/repos/drupal/core/zipball/551442fec1db69cf6eedb1601a348d8a6268060f",
+                "reference": "551442fec1db69cf6eedb1601a348d8a6268060f",
                 "shasum": ""
             },
             "require": {
-                "asm89/stack-cors": "^2.1",
+                "asm89/stack-cors": "^2.3",
                 "composer-runtime-api": "^2.1",
                 "composer/semver": "^3.3",
                 "doctrine/annotations": "^1.14",
@@ -2578,13 +2578,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/10.4.8"
+                "source": "https://github.com/drupal/core/tree/10.5.1"
             },
-            "time": "2025-06-05T23:40:40+00:00"
+            "time": "2025-06-26T14:05:15+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "10.4.8",
+            "version": "10.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2628,7 +2628,7 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/10.5.0-beta1"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/10.5.1"
             },
             "time": "2024-08-22T14:31:30+00:00"
         },
@@ -4314,16 +4314,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.11.27",
+            "version": "6.11.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "7594c84c99a605392514e33017f46e5a8918c91b"
+                "reference": "9ab12820a14a67e76a6de9f9350671bb4e84d5c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/7594c84c99a605392514e33017f46e5a8918c91b",
-                "reference": "7594c84c99a605392514e33017f46e5a8918c91b",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/9ab12820a14a67e76a6de9f9350671bb4e84d5c1",
+                "reference": "9ab12820a14a67e76a6de9f9350671bb4e84d5c1",
                 "shasum": ""
             },
             "require": {
@@ -4342,10 +4342,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.11.27",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.11.28",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-06-30T05:56:32+00:00"
+            "time": "2025-06-30T12:38:59+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4649,16 +4649,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.14.42",
+            "version": "4.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "b8009a37c4f6f66b2820fb6482ecd6abd0dc31a6"
+                "reference": "869cd58145d062d58cca3e9089b1d949b517c78b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/b8009a37c4f6f66b2820fb6482ecd6abd0dc31a6",
-                "reference": "b8009a37c4f6f66b2820fb6482ecd6abd0dc31a6",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/869cd58145d062d58cca3e9089b1d949b517c78b",
+                "reference": "869cd58145d062d58cca3e9089b1d949b517c78b",
                 "shasum": ""
             },
             "require": {
@@ -4668,8 +4668,8 @@
                 "drupal/config_ignore": "^3.0",
                 "drupal/config_rewrite": "^1.4",
                 "drupal/content_lock": "^2.2",
-                "drupal/core": "10.4.8",
-                "drupal/core-composer-scaffold": "10.4.8",
+                "drupal/core": "^10",
+                "drupal/core-composer-scaffold": "^10",
                 "drupal/crop": "^2.1",
                 "drupal/default_content": "^2.0.0-alpha2",
                 "drupal/diff": "^1.0",
@@ -4682,7 +4682,7 @@
                 "drupal/external_entities": "^2.0@beta",
                 "drupal/field_group": "^3.1",
                 "drupal/focal_point": "^2.0",
-                "drupal/gin_toolbar": "^2.0",
+                "drupal/gin_toolbar": "^2.1",
                 "drupal/hal": "^2.0",
                 "drupal/helfi_api_base": "*",
                 "drupal/helfi_tpr": "*",
@@ -4691,7 +4691,7 @@
                 "drupal/imagemagick": "^3.4",
                 "drupal/jquery_ui": "^1.6",
                 "drupal/jquery_ui_draggable": "^2.0",
-                "drupal/linkit": "^6.0",
+                "drupal/linkit": "^7.0",
                 "drupal/media_entity_file_replace": "^1.0",
                 "drupal/menu_block_current_language": "^2.0",
                 "drupal/menu_link_attributes": "^1.2",
@@ -4727,8 +4727,8 @@
                 "symfony/property-access": "^7.3"
             },
             "conflict": {
-                "drupal/core": "<10.4",
-                "drupal/core-composer-scaffold": "<10.4",
+                "drupal/core": "<10.5",
+                "drupal/core-composer-scaffold": "<10.5",
                 "drupal/ctools": "<3.11 || ^4.0.1",
                 "drupal/default_content": ">2.0.0-alpha2",
                 "drupal/helfi_media_map": "*",
@@ -4780,10 +4780,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.14.42",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.15.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-06-30T07:41:51+00:00"
+            "time": "2025-07-02T09:03:56+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -5619,20 +5619,20 @@
         },
         {
             "name": "drupal/linkit",
-            "version": "6.1.6",
+            "version": "7.0.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/linkit.git",
-                "reference": "6.1.6"
+                "reference": "7.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/linkit-6.1.6.zip",
-                "reference": "6.1.6",
-                "shasum": "113d8e569cfb92f8d7feb0a2f7713953c0715e92"
+                "url": "https://ftp.drupal.org/files/projects/linkit-7.0.5.zip",
+                "reference": "7.0.5",
+                "shasum": "58baf9f76c46c73e02639ac79857889c52c46113"
             },
             "require": {
-                "drupal/core": "^10.1"
+                "drupal/core": "^10.1 || ^11"
             },
             "require-dev": {
                 "drupal/ckeditor": "*",
@@ -5641,8 +5641,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.1.6",
-                    "datestamp": "1729189029",
+                    "version": "7.0.5",
+                    "datestamp": "1750458295",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10668,16 +10668,16 @@
         },
         {
             "name": "mck89/peast",
-            "version": "v1.17.1",
+            "version": "v1.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mck89/peast.git",
-                "reference": "90e01c0da3a5a1c2c06d94a56fa2e0594769d525"
+                "reference": "465810689c477fbba17f4f949b75e4d0bdab13ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mck89/peast/zipball/90e01c0da3a5a1c2c06d94a56fa2e0594769d525",
-                "reference": "90e01c0da3a5a1c2c06d94a56fa2e0594769d525",
+                "url": "https://api.github.com/repos/mck89/peast/zipball/465810689c477fbba17f4f949b75e4d0bdab13ea",
+                "reference": "465810689c477fbba17f4f949b75e4d0bdab13ea",
                 "shasum": ""
             },
             "require": {
@@ -10690,7 +10690,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17.1-dev"
+                    "dev-master": "1.17.2-dev"
                 }
             },
             "autoload": {
@@ -10711,9 +10711,9 @@
             "description": "Peast is PHP library that generates AST for JavaScript code",
             "support": {
                 "issues": "https://github.com/mck89/peast/issues",
-                "source": "https://github.com/mck89/peast/tree/v1.17.1"
+                "source": "https://github.com/mck89/peast/tree/v1.17.2"
             },
-            "time": "2025-06-27T14:33:03+00:00"
+            "time": "2025-07-01T09:30:45+00:00"
         },
         {
             "name": "microsoft/azure-storage-blob",
