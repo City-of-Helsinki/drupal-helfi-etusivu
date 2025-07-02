@@ -219,7 +219,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: 'field_content:entity:field_text:processed'
     type: text
-    boost: 1.1
+    boost: 0.1
     dependencies:
       config:
         - field.storage.node.field_content
