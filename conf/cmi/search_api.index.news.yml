@@ -126,6 +126,15 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_short_title
+  fulltext_title:
+    label: 'Title (fulltext)'
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: 2.0
+    dependencies:
+      module:
+        - node
   main_image_url:
     label: 'Main Image'
     property_path: main_image_url
@@ -198,14 +207,6 @@ field_settings:
         - field.storage.node.field_news_item_tags
       module:
         - taxonomy
-  original_title:
-    label: Otsikko
-    datasource_id: 'entity:node'
-    property_path: title
-    type: string
-    dependencies:
-      module:
-        - node
   published_at:
     label: 'Published at'
     datasource_id: 'entity:node'
@@ -235,11 +236,10 @@ field_settings:
       module:
         - taxonomy
   title:
-    label: Title
+    label: Otsikko
     datasource_id: 'entity:node'
     property_path: title
-    type: text
-    boost: 2.0
+    type: string
     dependencies:
       module:
         - node
@@ -307,8 +307,8 @@ processor_settings:
     all_fields: false
     fields:
       - field_lead_in
+      - fulltext_title
       - text_content
-      - title
   language_with_fallback: {  }
   main_image_url: {  }
   project_execution_schedule: {  }
