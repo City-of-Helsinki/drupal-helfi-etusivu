@@ -38,17 +38,6 @@ class CoordinateConversionService {
    * Constructs a new CoordinateConversionService object.
    */
   public function __construct() {
-    // Use Composer's autoloader to load the proj4php classes
-    // The vendor directory is in the project root, one level up from
-    // DRUPAL_ROOT.
-    $autoloader = dirname(DRUPAL_ROOT) . '/vendor/autoload.php';
-
-    if (!file_exists($autoloader)) {
-      throw new \RuntimeException('Composer autoloader not found. Please run `composer install`.');
-    }
-
-    require_once $autoloader;
-
     // Initialize proj4php.
     $this->proj4 = new Proj4php();
 
