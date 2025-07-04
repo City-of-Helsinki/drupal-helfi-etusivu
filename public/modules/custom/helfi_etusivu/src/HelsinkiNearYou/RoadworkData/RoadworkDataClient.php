@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\RoadworkData;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\helfi_etusivu\ServiceMapInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use GuzzleHttp\ClientInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * Fetches and processes roadwork data from the Helsinki Open Data API.
@@ -16,50 +17,26 @@ use GuzzleHttp\ClientInterface;
  * transformation.
  * It implements RoadworkDataClientInterface to ensure consistent API.
  *
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataService
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService
  */
 class RoadworkDataClient implements RoadworkDataClientInterface {
 
   /**
-   * The HTTP client.
-   *
-   * @var \GuzzleHttp\ClientInterface
-   */
-  protected $httpClient;
-
-  /**
-   * The logger factory.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
-   */
-  protected $logger;
-
-  /**
-   * The Servicemap service.
-   *
-   * @var \Drupal\helfi_etusivu\ServiceMapInterface
-   */
-  protected $servicemap;
-
-  /**
    * Constructs a new RoadworkDataClient instance.
    *
-   * @param \GuzzleHttp\ClientInterface $http_client
+   * @param \GuzzleHttp\ClientInterface $httpClient
    *   The HTTP client.
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
-   *   The logger factory.
-   * @param \Drupal\helfi_etusivu\ServiceMapInterface $servicemap
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
+   *   The logger.
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface $serviceMap
    *   The Servicemap service.
    */
   public function __construct(
-    ClientInterface $http_client,
-    LoggerChannelFactoryInterface $logger_factory,
-    ServiceMapInterface $servicemap,
+    protected ClientInterface $httpClient,
+    #[Autowire(service: 'logger.channel.helfi_etusivu')] protected LoggerChannelInterface $logger,
+    protected ServiceMapInterface $serviceMap,
   ) {
-    $this->httpClient = $http_client;
-    $this->logger = $logger_factory->get('helfi_etusivu');
-    $this->servicemap = $servicemap;
   }
 
   /**
@@ -113,12 +90,6 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
         'outputFormat' => 'application/json',
       ];
 
-      // Build the full URL with query string for debugging.
-      $fullUrl = $baseUrl . '?' . http_build_query($query);
-
-      // Log the full URL for debugging.
-      error_log('Roadworks API Request URL: ' . $fullUrl);
-
       $this->logger->debug('Making roadworks API request to @url with params: @params', [
         '@url' => $baseUrl,
         '@params' => print_r($query, TRUE),
@@ -126,15 +97,11 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
 
       $response = $this->httpClient->request('GET', $baseUrl, [
         'query' => $query,
-      // 5 second timeout
-        'timeout' => 5,
+        'timeout' => 30,
       ]);
 
       $responseBody = (string) $response->getBody();
       $data = json_decode($responseBody, TRUE);
-
-      // Log the raw response for debugging.
-      error_log('Roadworks API Response: ' . substr($responseBody, 0, 1000) . (strlen($responseBody) > 1000 ? '...' : ''));
 
       if (!isset($data['features']) || !is_array($data['features'])) {
         $errorMsg = 'Invalid response format from roadworks API';
@@ -145,7 +112,7 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
           $errorMsg .= ': ' . $data['message'];
         }
         $this->logger->error($errorMsg);
-        error_log($errorMsg);
+
         return [];
       }
 
@@ -155,7 +122,7 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
     catch (\Exception $e) {
       $errorMsg = 'Error fetching roadworks data: ' . $e->getMessage();
       $this->logger->error($errorMsg);
-      error_log($errorMsg . '\n' . $e->getTraceAsString());
+
       return [];
     }
   }
@@ -225,7 +192,7 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
       $this->logger->debug('Geocoding address: @address', ['@address' => $address]);
 
       // Use Servicemap to geocode the address.
-      $geocoded = $this->servicemap->getAddressData($address);
+      $geocoded = $this->serviceMap->getAddressData($address);
 
       if (!$geocoded || !isset($geocoded['x']) || !isset($geocoded['y'])) {
         $this->logger->warning('Could not geocode address: @address', ['@address' => $address]);

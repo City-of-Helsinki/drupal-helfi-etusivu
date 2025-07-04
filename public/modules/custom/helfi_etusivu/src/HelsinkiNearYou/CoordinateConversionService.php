@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Service;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou;
 
 use proj4php\Point;
 use proj4php\Proj;
