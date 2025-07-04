@@ -1,0 +1,11 @@
+label: 'Elastic-pohjainen RSS-uutissyöte'
+description: 'Elastic-indeksiä käyttävä uutisten RSS-syöte.'
+display:
+  default:
+    display_options:
+      title: Uutiset
+  feed_1:
+    display_options:
+      style:
+        options:
+          description: syöte

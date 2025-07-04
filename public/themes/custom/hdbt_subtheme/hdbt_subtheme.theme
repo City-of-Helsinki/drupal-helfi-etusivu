@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 
 /**
@@ -141,7 +142,7 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
       $variables['#attached']['drupalSettings']['helfi_react_search']['sentry_dsn_react'] = $sentry_dsn_react;
     }
 
-    $feed_base_url = Url::fromRoute('view.news_archive.news_archive_feed')->toString();
+    $feed_base_url = Url::fromRoute('view.elastic_rss_feed.feed_1')->toString();
 
     if ($feed_base_url) {
       $feed_link = [
@@ -180,6 +181,14 @@ function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) : void {
     }
   }
 
+  if (!$enclosure_attributes && $variables['view']->id() === 'elastic_rss_feed') {
+    $variables['item_elements'][] = [
+      'key' => 'enclosure',
+      'attributes' => new Attribute(),
+    ];
+    $enclosure_attributes = $variables['item_elements'][count($variables['item_elements']) - 1]['attributes'];
+  }
+
   if (!$node || !$enclosure_attributes) {
     return;
   }
@@ -195,7 +204,7 @@ function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) : void {
     $file = $node->get('field_main_image')->entity->field_media_image->entity;
 
     $values = [
-      'url' => $enclosure_attributes['url'],
+      'url' => $enclosure_attributes['url'] ? $enclosure_attributes['url'] : \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri()),
       'type' => $file ? $file->getMimeType() : '',
       'size' => $file ? $file->getSize() : '',
       'alt' => $image ? $image->alt : ' ',
