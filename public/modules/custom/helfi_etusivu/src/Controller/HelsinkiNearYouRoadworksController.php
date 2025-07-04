@@ -99,7 +99,7 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
         ],
       ],
       '#theme' => 'helsinki_near_you_roadworks',
-      '#title' => $this->t('Roadworks near you', [], ['context' => 'Helsinki near you']),
+
     ];
   }
 
