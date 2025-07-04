@@ -377,6 +377,13 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-roadworks',
     ],
+    'helsinki_near_you_roadworks_hero_block' => [
+      'variables' => [
+        'hero_title' => NULL,
+        'hero_description' => NULL,
+      ],
+      'template' => 'helsinki-near-you-roadworks-hero-block',
+    ],
     'helsinki_near_you_results_page' => [
       'variables' => [
         'back_link_label' => NULL,

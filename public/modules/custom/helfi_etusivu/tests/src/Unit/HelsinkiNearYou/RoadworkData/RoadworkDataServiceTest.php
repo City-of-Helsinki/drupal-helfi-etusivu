@@ -115,12 +115,12 @@ class RoadworkDataServiceTest extends UnitTestCase {
     // Test with address.
     $title = $this->roadworkDataService->getSectionTitle('Testikatu 1');
     $this->assertInstanceOf(TranslatableMarkup::class, $title);
-    $this->assertEquals('Katu- ja puistohankkeet', $title->getUntranslatedString());
+    $this->assertEquals('Street and park projects', $title->getUntranslatedString());
 
     // Test without address (should be the same as with address)
     $title = $this->roadworkDataService->getSectionTitle();
     $this->assertInstanceOf(TranslatableMarkup::class, $title);
-    $this->assertEquals('Katu- ja puistohankkeet', $title->getUntranslatedString());
+    $this->assertEquals('Street and park projects', $title->getUntranslatedString());
   }
 
   /**

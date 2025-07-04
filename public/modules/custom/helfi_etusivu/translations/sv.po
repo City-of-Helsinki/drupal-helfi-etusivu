@@ -256,3 +256,15 @@ msgstr "@count resultat"
 msgctxt "Roadworks search: Fetch failed message"
 msgid "Failed to fetch roadworks. You can reload the page or try again later."
 msgstr "Misslyckades att hämta gatuarbeten. Du kan ladda om sidan eller försöka igen senare."
+
+msgctxt "Helsinki near you roadworks search"
+msgid "Find street and park projects in your neighbourhood."
+msgstr "Hitta gatu- och parkprojekt i ditt närområde."
+
+msgctxt "Helsinki near you roadworks search"
+msgid "Find roadworks near you"
+msgstr "Hitta gatuarbeten nära dig"
+
+msgctxt "Helsinki near you roadworks search"
+msgid "Browse roadworks near you or search for roadworks by location. The search shows results within 1 kilometer of the address."
+msgstr "Bläddra bland gatuarbeten nära dig eller sök efter gatuarbeten per plats. Sökningen visar resultat inom 1 kilometer från adressen."

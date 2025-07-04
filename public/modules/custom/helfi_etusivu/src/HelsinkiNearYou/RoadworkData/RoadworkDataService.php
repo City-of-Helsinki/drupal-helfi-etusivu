@@ -281,7 +281,7 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
    *   This is typically used as a heading above roadwork project lists.
    */
   public function getSectionTitle() {
-    return $this->t('Katu- ja puistohankkeet');
+    return $this->t('Street and park projects');
   }
 
 }
