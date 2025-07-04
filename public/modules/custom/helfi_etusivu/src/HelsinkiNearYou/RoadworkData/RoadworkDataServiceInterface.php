@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\RoadworkData;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Url;
 
@@ -13,8 +13,8 @@ use Drupal\Core\Url;
  * for display in the Helsinki Design System components. It handles data
  * transformation, date formatting, and URL generation.
  *
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataService
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
  */
 interface RoadworkDataServiceInterface {
 

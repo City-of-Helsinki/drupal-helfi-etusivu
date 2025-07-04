@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Unit\RoadworkData;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
-use Drupal\helfi_etusivu\RoadworkData\RoadworkDataClient;
-use Drupal\helfi_etusivu\ServiceMapInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Response;
@@ -18,7 +17,7 @@ use Prophecy\Prophecy\ObjectProphecy;
 /**
  * Tests the RoadworkDataClient class.
  *
- * @coversDefaultClass \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClient
+ * @coversDefaultClass \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient
  * @group helfi_etusivu
  * @group helfi_etusivu_unit
  */
@@ -29,14 +28,14 @@ class RoadworkDataClientTest extends UnitTestCase {
    *
    * @var \Prophecy\Prophecy\ObjectProphecy<\GuzzleHttp\ClientInterface>
    */
-  protected ObjectProphecy $httpClient;
+  protected $httpClient;
 
   /**
    * The logger channel prophecy.
    *
    * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\Core\Logger\LoggerChannelInterface>
    */
-  protected ObjectProphecy $logger;
+  protected $logger;
 
   /**
    * The logger factory prophecy.
@@ -48,14 +47,14 @@ class RoadworkDataClientTest extends UnitTestCase {
   /**
    * The Servicemap service prophecy.
    *
-   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\helfi_etusivu\ServiceMapInterface>
+   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface>
    */
-  protected ObjectProphecy $servicemap;
+  protected $servicemap;
 
   /**
    * The RoadworkDataClient instance.
    *
-   * @var \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClient
+   * @var \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient
    */
   protected RoadworkDataClient $roadworkDataClient;
 
@@ -79,11 +78,6 @@ class RoadworkDataClientTest extends UnitTestCase {
         return $string->getUntranslatedString();
       });
 
-    // Set up the logger factory mock.
-    $this->loggerFactory = $this->createMock(LoggerChannelFactoryInterface::class);
-    $this->loggerFactory->method('get')
-      ->willReturn($this->createMock(LoggerChannelInterface::class));
-
     // Set up the HTTP client mock.
     $this->httpClient = $this->createMock(ClientInterface::class);
 
@@ -93,7 +87,7 @@ class RoadworkDataClientTest extends UnitTestCase {
     // Create the RoadworkDataClient instance.
     $this->roadworkDataClient = new RoadworkDataClient(
       $this->httpClient,
-      $this->loggerFactory,
+      $this->prophesize(LoggerChannelInterface::class)->reveal(),
       $this->servicemap
     );
 
