@@ -10,12 +10,11 @@ use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
-use Drupal\helfi_etusivu\ServiceMapInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
-use Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface;
-use Drupal\helfi_etusivu\Service\CoordinateConversionService;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,19 +28,18 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   /**
    * Constructs a new instance.
    *
-   * @param \Drupal\helfi_etusivu\ServiceMapInterface $servicemap
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface $servicemap
    *   The servicemap service.
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents $linkedEvents
    *   The linked events service.
-   * @param \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface $roadworkDataService
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface $roadworkDataService
    *   The roadwork data service.
-   * @param \Drupal\helfi_etusivu\Service\CoordinateConversionService $coordinateConversionService
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService $coordinateConversionService
    *   The coordinate conversion service.
    * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
    *   The request stack.
    */
   public function __construct(
-    #[Autowire(service: 'Drupal\helfi_etusivu\Servicemap')]
     protected readonly ServiceMapInterface $servicemap,
     protected readonly LinkedEvents $linkedEvents,
     protected readonly RoadworkDataServiceInterface $roadworkDataService,

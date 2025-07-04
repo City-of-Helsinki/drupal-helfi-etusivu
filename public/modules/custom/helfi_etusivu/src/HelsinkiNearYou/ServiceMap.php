@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 /**
  * Class for interacting with Servicemap API.
  */
-final class Servicemap implements ServiceMapInterface {
+final class ServiceMap implements ServiceMapInterface {
 
   use StringTranslationTrait;
 

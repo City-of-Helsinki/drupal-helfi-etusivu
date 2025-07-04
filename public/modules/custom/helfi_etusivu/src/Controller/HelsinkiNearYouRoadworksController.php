@@ -6,7 +6,7 @@ namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
-use Drupal\helfi_etusivu\Servicemap;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -20,8 +20,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * - Formatting project data for display in the Helsinki Design System
  * - Managing error states and user feedback.
  *
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
  */
 class HelsinkiNearYouRoadworksController extends ControllerBase {
 
@@ -31,7 +31,7 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
    * Constructs a new instance.
    */
   public function __construct(
-    protected readonly Servicemap $servicemap,
+    protected readonly ServiceMapInterface $serviceMap,
     protected readonly RequestStack $requestStack,
   ) {
   }
@@ -54,7 +54,7 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
     if (!empty($address)) {
       try {
         // Convert address to coordinates server-side.
-        $addressData = $this->servicemap->getAddressData(urldecode($address));
+        $addressData = $this->serviceMap->getAddressData(urldecode($address));
 
         if (!empty($addressData) && !empty($addressData['coordinates'])) {
           // Extract coordinates from GeoJSON format [longitude, latitude].

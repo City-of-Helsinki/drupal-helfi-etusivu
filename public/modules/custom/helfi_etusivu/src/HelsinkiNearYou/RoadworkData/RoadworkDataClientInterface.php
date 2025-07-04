@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\RoadworkData;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 /**
  * Defines the interface for roadwork data clients.
@@ -11,8 +11,8 @@ namespace Drupal\helfi_etusivu\RoadworkData;
  * Implementations should handle communication, error handling, and basic
  * data transformation.
  *
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClient
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataService
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService
  */
 interface RoadworkDataClientInterface {
 

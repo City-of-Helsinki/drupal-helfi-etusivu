@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\RoadworkData;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
@@ -15,7 +15,7 @@ use Drupal\Core\Url;
  * It handles date formatting, URL generation, and data structure
  * transformation.
  *
- * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
  * @see \Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController
  */
 class RoadworkDataService implements RoadworkDataServiceInterface {
@@ -23,20 +23,12 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
   use StringTranslationTrait;
 
   /**
-   * The roadwork data client.
-   *
-   * @var \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface
-   */
-  protected RoadworkDataClientInterface $roadworkDataClient;
-
-  /**
    * Constructs a new RoadworkDataService instance.
    *
-   * @param \Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface $roadwork_data_client
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface $roadworkDataClient
    *   The roadwork data client.
    */
-  public function __construct(RoadworkDataClientInterface $roadwork_data_client) {
-    $this->roadworkDataClient = $roadwork_data_client;
+  public function __construct(protected RoadworkDataClientInterface $roadworkDataClient) {
   }
 
   /**
@@ -82,7 +74,7 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
    *   getFormattedProjectsByCoordinates(). Returns an empty array if the
    *   address cannot be geocoded.
    *
-   * @see \Drupal\helfi_etusivu\RoadworkData\RoadworkDataServiceInterface::getFormattedProjectsByAddress()
+   * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface::getFormattedProjectsByAddress()
    */
   public function getFormattedProjectsByAddress(string $address, int $distance = 1000): array {
     $projects = $this->roadworkDataClient->getProjectsByAddress($address, $distance);
