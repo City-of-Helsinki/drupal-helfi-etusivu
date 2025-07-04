@@ -2,7 +2,9 @@
 
 namespace Drupal\Tests\helfi_etusivu\Unit\RoadworkData;
 
-use Drupal\helfi_etusivu\RoadworkData\RoadworkDataService;
+use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -14,7 +16,7 @@ use Prophecy\Prophecy\ObjectProphecy;
 /**
  * Tests the RoadworkDataService class.
  *
- * @coversDefaultClass \Drupal\helfi_etusivu\RoadworkData\RoadworkDataService
+ * @coversDefaultClass \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService
  * @group helfi_etusivu
  * @group helfi_etusivu_unit
  */
@@ -23,21 +25,14 @@ class RoadworkDataServiceTest extends UnitTestCase {
   /**
    * The roadwork data client prophecy.
    *
-   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\helfi_etusivu\RoadworkData\RoadworkDataClientInterface>
+   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface>
    */
-  protected ObjectProphecy $roadworkDataClient;
-
-  /**
-   * The logger factory prophecy.
-   *
-   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\Core\Logger\LoggerChannelFactoryInterface>
-   */
-  protected ObjectProphecy $loggerFactory;
+  protected $roadworkDataClient;
 
   /**
    * The roadwork data service.
    *
-   * @var \Drupal\helfi_etusivu\RoadworkData\RoadworkDataService
+   * @var \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService
    */
   protected $roadworkDataService;
 
@@ -48,12 +43,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
     parent::setUp();
 
     // Mock the logger factory.
-    $logger = $this->createMock('Psr\Log\LoggerInterface');
-    $logger_factory = $this->createMock('Drupal\Core\Logger\LoggerChannelFactoryInterface');
-    $logger_factory->expects($this->any())
-      ->method('get')
-      ->willReturn($logger);
-
+    $logger = $this->createMock(LoggerChannelInterface::class);
     $this->roadworkDataClient = $this->createMock(RoadworkDataClient::class);
     $this->languageManager = $this->createMock(LanguageManagerInterface::class);
 
@@ -65,7 +55,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $container = new ContainerBuilder();
     $container->set('language_manager', $this->languageManager);
     $container->set('string_translation', $this->getStringTranslationStub());
-    $container->set('logger.factory', $logger_factory);
+    $container->set('logger.channel.helfi_etusivu', $logger);
     \Drupal::setContainer($container);
 
     $this->roadworkDataService = new RoadworkDataService(
@@ -98,7 +88,8 @@ class RoadworkDataServiceTest extends UnitTestCase {
       ],
     ];
 
-    // Since formatProjects is protected, we need to test it through a public method.
+    // Since formatProjects is protected, we need to test it through a public
+    // method.
     $this->roadworkDataClient->expects($this->once())
       ->method('getProjectsByAddress')
       ->with('Test Address')
@@ -108,11 +99,11 @@ class RoadworkDataServiceTest extends UnitTestCase {
 
     $this->assertCount(1, $result);
     // Should use tyon_kuvaus as title.
-    $this->assertEquals('Test Description', $result[0]['title']);
+    $this->assertEquals('Test Street 1', $result[0]['title']);
     $this->assertStringContainsString('Test Street 1', $result[0]['location']);
     $this->assertStringContainsString('01.01.2025', $result[0]['schedule']);
     $this->assertStringContainsString('01.01.2026', $result[0]['schedule']);
-    $this->assertEquals('http://example.com/test', $result[0]['url']);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
   }
 
   /**
@@ -179,15 +170,15 @@ class RoadworkDataServiceTest extends UnitTestCase {
       ->with(60.192059, 24.945831, 2000)
       ->willReturn($sampleFeatures);
 
-    $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(60.192059, 24.945831);
+    $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(60.192059, 24.945831, 2000);
 
     $this->assertCount(1, $result);
-    $this->assertEquals('Test Description', $result[0]['title']);
+    $this->assertEquals('Test Street 1', $result[0]['title']);
     $this->assertStringContainsString('Test Street 1', $result[0]['location']);
     // Check that the schedule contains both start and end dates.
     $this->assertStringContainsString('01.01.2025', $result[0]['schedule']);
     $this->assertStringContainsString('01.01.2026', $result[0]['schedule']);
-    $this->assertEquals('http://example.com/test', $result[0]['url']);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
   }
 
   /**
@@ -200,7 +191,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
       [
         'id' => 'test.2',
         'properties' => [
-          'tyon_tyyppi' => 'Test Type 2',
+          'tyyppi' => 'Test Type 2',
           'osoite' => 'Test Street 2',
           'tyo_alkaa' => '2025-02-01T00:00:00Z',
           'tyo_paattyy' => '2025-02-28T23:59:59Z',
@@ -221,11 +212,11 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $result = $this->roadworkDataService->getFormattedProjectsByAddress('Test Address 123');
 
     $this->assertCount(1, $result);
-    $this->assertEquals('Test Type 2', $result[0]['title']);
+    $this->assertEquals('Test Type 2', $result[0]['type']);
     // Check that the schedule contains both start and end dates.
     $this->assertStringContainsString('01.02.2025', $result[0]['schedule']);
     $this->assertStringContainsString('01.03.2025', $result[0]['schedule']);
-    $this->assertEquals('http://example.com/test2', $result[0]['url']);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
   }
 
   /**
@@ -239,7 +230,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
       ->with(0, 0, 2000)
       ->willReturn([]);
 
-    $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(0, 0);
+    $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(0, 0, 2000);
     $this->assertIsArray($result);
     $this->assertEmpty($result);
   }
@@ -253,7 +244,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $features = [
       [
         'properties' => [
-          'tyon_tyyppi' => 'Minimal Type',
+          'tyyppi' => 'Minimal Type',
           'osoite' => 'Minimal Street',
         ],
       ],
@@ -267,10 +258,10 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $result = $this->roadworkDataService->getFormattedProjectsByAddress('Test Address');
 
     $this->assertCount(1, $result);
-    $this->assertEquals('Minimal Type', $result[0]['title']);
+    $this->assertEquals('Minimal Type', $result[0]['type']);
     $this->assertStringContainsString('Minimal Street', $result[0]['location']);
     $this->assertStringContainsString('Ei tiedossa', $result[0]['schedule']);
-    $this->assertEquals('https://www.hel.fi', $result[0]['url']);
+    $this->assertEquals('https://kartta.hel.fi', $result[0]['url']);
   }
 
   /**
@@ -305,7 +296,8 @@ class RoadworkDataServiceTest extends UnitTestCase {
       $this->assertStringContainsString($input, $result[0]['schedule']);
     }
     else {
-      // For valid dates, just check that the schedule contains the formatted date.
+      // For valid dates, just check that the schedule contains the formatted
+      // date.
       $this->assertStringContainsString(date('d.m.Y', strtotime($input)), $result[0]['schedule']);
     }
   }
