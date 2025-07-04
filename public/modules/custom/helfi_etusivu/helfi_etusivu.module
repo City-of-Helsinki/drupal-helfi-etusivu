@@ -275,6 +275,7 @@ function helfi_etusivu_preprocess_html(&$variables): void {
     'helfi_etusivu.helsinki_near_you',
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_results',
+    'helfi_etusivu.helsinki_near_you_roadworks',
   ];
 
   if (in_array($route, $near_you_pages)) {
@@ -291,6 +292,7 @@ function helfi_etusivu_preprocess_page(&$variables): void {
   $near_you_pages = [
     'helfi_etusivu.helsinki_near_you',
     'helfi_etusivu.helsinki_near_you_events',
+    'helfi_etusivu.helsinki_near_you_roadworks',
   ];
 
   // There is hero block on Helsinki near you landing page but
