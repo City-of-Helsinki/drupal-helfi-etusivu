@@ -292,3 +292,41 @@ msgctxt "Roadworks field label"
 msgid "Schedule"
 msgstr "Aikataulu"
 
+msgid "Arabic"
+msgstr "Arabia"
+
+msgid "German"
+msgstr "Saksa"
+
+msgid "English"
+msgstr "Englanti"
+
+msgid "Spanish"
+msgstr "Espanja"
+
+msgid "Estonian"
+msgstr "Viro"
+
+msgid "Persian, Farsi"
+msgstr "Persia, farsi"
+
+msgid "Finnish"
+msgstr "Suomi"
+
+msgid "French"
+msgstr "Ranska"
+
+msgid "Russian"
+msgstr "Venäjä"
+
+msgid "Northern Sam"
+msgstr "Pohjoissaame"
+
+msgid "Somali"
+msgstr "Somali"
+
+msgid "Chinese, Simplified"
+msgstr "Kiina"
+
+msgid "Ukrainian"
+msgstr "Ukraina"

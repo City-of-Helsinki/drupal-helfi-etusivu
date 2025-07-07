@@ -30,4 +30,4 @@ services:
   # Alias for RoadworkDataService to support dependency injection by interface.
   Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService'
 
-
+  Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber: ~

@@ -108,6 +108,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         'drupalSettings' => [
           'helfi_events' => [
             'baseUrl' => LinkedEvents::BASE_URL,
+            'cardsWithBorders' => TRUE,
             'data' => [
               'helfi-coordinates-based-event-list' => [
                 'events_api_url' => $this->linkedEvents->getEventsRequest([
@@ -116,10 +117,10 @@ class HelsinkiNearYouResultsController extends ControllerBase {
                 ]),
                 'field_event_count' => 3,
                 'hidePagination' => TRUE,
+                'removeBloatingEvents' => TRUE,
               ],
             ],
             'seeAllNearYouLink' => $eventsNearYouRoute->toString(),
-            'cardsWithBorders' => TRUE,
           ],
           'helfi_news_archive' => [
             'elastic_proxy_url' => $this->config('elastic_proxy.settings')->get('elastic_proxy_url'),
