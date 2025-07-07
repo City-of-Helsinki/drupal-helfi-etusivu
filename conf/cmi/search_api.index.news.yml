@@ -236,7 +236,7 @@ field_settings:
       module:
         - taxonomy
   title:
-    label: Otsikko
+    label: Title
     datasource_id: 'entity:node'
     property_path: title
     type: string
