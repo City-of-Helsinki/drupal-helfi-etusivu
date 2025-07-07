@@ -7,7 +7,7 @@ namespace Drupal\helfi_etusivu\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller for the Helsinki Near You Roadworks page.
@@ -32,22 +32,23 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
    */
   public function __construct(
     protected readonly ServiceMapInterface $serviceMap,
-    protected readonly RequestStack $requestStack,
   ) {
   }
 
   /**
    * Returns the roadworks listing page.
    *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
    * @return array
    *   A renderable array.
    */
-  public function content(): array {
+  public function content(Request $request): array {
     $language = $this->languageManager()->getCurrentLanguage()->getId();
 
     // Get address from query parameter.
-    $request = $this->requestStack->getCurrentRequest();
-    $address = $request ? $request->query->get('q', '') : '';
+    $address = $request->query->get('q', '');
 
     // Build API URL with coordinates if address is provided.
     $apiUrl = '/' . $language . '/api/helsinki-near-you/roadworks';

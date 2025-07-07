@@ -165,6 +165,9 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   /**
    * JSON API endpoint for roadworks data.
    *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   JSON response with roadworks data.
    */
@@ -210,6 +213,8 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   /**
    * Builds the roadwork section.
    *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
    * @param float $lat
    *   The latitude in WGS84.
    * @param float $lon
