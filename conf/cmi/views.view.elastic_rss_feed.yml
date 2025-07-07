@@ -1063,8 +1063,8 @@ display:
           min_length: null
           fields:
             - field_lead_in
+            - fulltext_title
             - text_content
-            - title
         entity_type:
           id: entity_type
           table: search_api_index_news
