@@ -66,7 +66,7 @@ class RoadworkDataClientTest extends UnitTestCase {
   protected $container;
 
   /**
-   *
+   * {@inheritdoc}
    */
   protected function setUp(): void {
     parent::setUp();
