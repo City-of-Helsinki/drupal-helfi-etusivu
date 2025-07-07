@@ -12,6 +12,7 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Prophecy\ObjectProphecy;
 
 /**
@@ -26,30 +27,30 @@ class RoadworkDataClientTest extends UnitTestCase {
   /**
    * The HTTP client prophecy.
    *
-   * @var \Prophecy\Prophecy\ObjectProphecy<\GuzzleHttp\ClientInterface>
+   * @var \PHPUnit\Framework\MockObject\MockObject
    */
-  protected $httpClient;
+  protected MockObject $httpClient;
 
   /**
    * The logger channel prophecy.
    *
-   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\Core\Logger\LoggerChannelInterface>
+   * @var \PHPUnit\Framework\MockObject\MockObject
    */
   protected $logger;
 
   /**
    * The logger factory prophecy.
    *
-   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\Core\Logger\LoggerChannelFactoryInterface>
+   * @var \PHPUnit\Framework\MockObject\MockObject
    */
-  protected ObjectProphecy $loggerFactory;
+  protected MockObject $loggerFactory;
 
   /**
    * The Servicemap service prophecy.
    *
-   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface>
+   * @var \PHPUnit\Framework\MockObject\MockObject
    */
-  protected $servicemap;
+  protected MockObject $servicemap;
 
   /**
    * The RoadworkDataClient instance.
@@ -63,7 +64,7 @@ class RoadworkDataClientTest extends UnitTestCase {
    *
    * @var \Drupal\Core\DependencyInjection\ContainerBuilder
    */
-  protected $container;
+  protected ContainerBuilder $container;
 
   /**
    * {@inheritdoc}
