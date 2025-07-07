@@ -18,7 +18,6 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Helsinki near you controller.
@@ -36,15 +35,12 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   The roadwork data service.
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService $coordinateConversionService
    *   The coordinate conversion service.
-   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-   *   The request stack.
    */
   public function __construct(
     protected readonly ServiceMapInterface $servicemap,
     protected readonly LinkedEvents $linkedEvents,
     protected readonly RoadworkDataServiceInterface $roadworkDataService,
     protected readonly CoordinateConversionService $coordinateConversionService,
-    protected readonly RequestStack $requestStack,
   ) {
   }
 
@@ -57,9 +53,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
    *   A renderable array or redirect response.
    */
-  public function content(?Request $request = NULL): array|RedirectResponse {
-    // Use the provided request or fall back to the current request.
-    $request = $request ?: $this->requestStack->getCurrentRequest();
+  public function content(Request $request): array|RedirectResponse {
     $address = $request->query->get('q');
     $return_url = Url::fromRoute('helfi_etusivu.helsinki_near_you');
 
@@ -99,7 +93,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     // Array format: [longitude, latitude] per GeoJSON specification.
     [$lon, $lat] = $addressData['coordinates'];
 
-    $roadworkSection = $this->buildRoadworkSection($lat, $lon, $address);
+    $roadworkSection = $this->buildRoadworkSection($request, $lat, $lon, $address);
 
     $build = [
     // Set the theme for the results page.
@@ -174,13 +168,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   JSON response with roadworks data.
    */
-  public function roadworksApi(): JsonResponse {
-    $request = $this->requestStack->getCurrentRequest();
-
+  public function roadworksApi(Request $request): JsonResponse {
     // Get coordinates and address from query parameters.
-    $lat = $request ? (float) $request->query->get('lat') : 0.0;
-    $lon = $request ? (float) $request->query->get('lon') : 0.0;
-    $address = $request ? $request->query->get('q', '') : '';
+    $lat = (float) $request->query->get('lat', 0.0);
+    $lon = (float) $request->query->get('lon', 0.0);
+    $address = $request->query->get('q', '');
 
     if (!$lat || !$lon) {
       return new JsonResponse([
@@ -193,7 +185,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     }
 
     try {
-      $roadworkData = $this->buildRoadworkSection($lat, $lon, $address);
+      $roadworkData = $this->buildRoadworkSection($request, $lat, $lon, $address);
 
       return new JsonResponse([
         'data' => $roadworkData['projects'] ?? [],
@@ -228,7 +220,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    * @return array
    *   The roadwork project data array.
    */
-  public function buildRoadworkSection(float $lat, float $lon, string $address = ''): array {
+  public function buildRoadworkSection(Request $request, float $lat, float $lon, string $address = ''): array {
     try {
       // Validate coordinate types to ensure they are floats.
       if (!is_float($lat) || !is_float($lon)) {
@@ -266,8 +258,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       // Use provided address for 'See all' link, or get from request if not
       // provided.
       if (empty($address)) {
-        $request = $this->requestStack->getCurrentRequest();
-        $address = $request ? $request->query->get('q', '') : '';
+        $address = $request->query->get('q', '');
       }
 
       return [
@@ -283,8 +274,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       // Use provided address for 'See all' link, or get from request if not
       // provided.
       if (empty($address)) {
-        $request = $this->requestStack->getCurrentRequest();
-        $address = $request ? $request->query->get('q', '') : '';
+        $address = $request->query->get('q', '');
       }
 
       return [

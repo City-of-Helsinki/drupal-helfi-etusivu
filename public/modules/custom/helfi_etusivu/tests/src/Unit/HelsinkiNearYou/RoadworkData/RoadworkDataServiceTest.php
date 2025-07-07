@@ -26,7 +26,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
   /**
    * The roadwork data client prophecy.
    *
-   * @var \Prophecy\Prophecy\ObjectProphecy<\Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface>
+   * @var \PHPUnit\Framework\MockObject\MockObject
    */
   protected $roadworkDataClient;
 
@@ -36,6 +36,13 @@ class RoadworkDataServiceTest extends UnitTestCase {
    * @var \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService
    */
   protected $roadworkDataService;
+
+  /**
+   * The language manager.
+   *
+   * @var \PHPUnit\Framework\MockObject\MockObject
+   */
+  protected $languageManager;
 
   /**
    * {@inheritdoc}
@@ -61,7 +68,6 @@ class RoadworkDataServiceTest extends UnitTestCase {
 
     $this->roadworkDataService = new RoadworkDataService(
       $this->roadworkDataClient,
-      $this->languageManager
     );
   }
 
@@ -113,12 +119,6 @@ class RoadworkDataServiceTest extends UnitTestCase {
    * @covers ::getSectionTitle
    */
   public function testGetSectionTitle() {
-    // Test with address.
-    $title = $this->roadworkDataService->getSectionTitle('Testikatu 1');
-    $this->assertInstanceOf(TranslatableMarkup::class, $title);
-    $this->assertEquals('Street and park projects', $title->getUntranslatedString());
-
-    // Test without address (should be the same as with address)
     $title = $this->roadworkDataService->getSectionTitle();
     $this->assertInstanceOf(TranslatableMarkup::class, $title);
     $this->assertEquals('Street and park projects', $title->getUntranslatedString());

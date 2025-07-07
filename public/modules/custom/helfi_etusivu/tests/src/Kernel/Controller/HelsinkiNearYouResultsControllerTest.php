@@ -11,8 +11,10 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController;
-use Drupal\helfi_etusivu\Servicemap;
-use Drupal\helfi_etusivu\ServiceMapInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -48,28 +50,19 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
   protected ServiceMap|MockObject $serviceMap;
 
   /**
-   * Mocked LinkedEvents.
-   */
-  protected LinkedEvents|MockObject $linkedEvents;
-
-  /**
-   * Mocked EntityTypeManager.
-   */
-  protected EntityTypeManagerInterface|MockObject $entityTypeManager;
-
-  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
     parent::setUp();
 
     $this->serviceMap = $this->createMock(ServiceMapInterface::class);
-    $this->linkedEvents = $this->createMock(LinkedEvents::class);
-    $this->entityTypeManager = $this->createMock(EntityTypeManager::class);
+    $entityTypeManager = $this->createMock(EntityTypeManager::class);
 
     $this->controller = new HelsinkiNearYouResultsController(
       $this->serviceMap,
-      $this->linkedEvents,
+      $this->createMock(LinkedEvents::class),
+      $this->createMock(RoadworkDataServiceInterface::class),
+      new CoordinateConversionService(),
     );
 
     $mockEntityQuery = $this->createMock(Query::class);
@@ -94,15 +87,15 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
       ->method('loadMultiple')
       ->willReturn([]);
 
-    $this->entityTypeManager
+    $entityTypeManager
       ->method('getStorage')
       ->willReturn($mockEntityStorage);
-    $this->entityTypeManager
+    $entityTypeManager
       ->method('getDefinitions')
       ->willReturn([]);
 
     $container = \Drupal::getContainer();
-    $container->set('entity_type.manager', $this->entityTypeManager);
+    $container->set('entity_type.manager', $entityTypeManager);
     \Drupal::setContainer($container);
   }
 
