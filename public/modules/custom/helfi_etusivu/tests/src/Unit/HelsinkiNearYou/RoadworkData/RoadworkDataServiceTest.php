@@ -291,18 +291,6 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $result = $this->roadworkDataService->getFormattedProjectsByAddress('Test Address');
 
     $this->assertEquals($expected, $result[0]['schedule']);
-
-    #if ($input === '') {
-    #  $this->assertStringContainsString('Unknown - Ongoing', $result[0]['schedule']);
-    #}
-    #elseif ($input === 'not-a-date') {
-    #  $this->assertStringContainsString($input, $result[0]['schedule']);
-    #}
-    #else {
-    #  // For valid dates, just check that the schedule contains the formatted
-    #  // date.
-    #  $this->assertStringContainsString(date('d.m.Y', strtotime($input)), $result[0]['schedule']);
-    #}
   }
 
   /**
