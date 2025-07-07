@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\helfi_etusivu\Unit\RoadworkData;
 
 use Drupal\Core\Logger\LoggerChannelInterface;
