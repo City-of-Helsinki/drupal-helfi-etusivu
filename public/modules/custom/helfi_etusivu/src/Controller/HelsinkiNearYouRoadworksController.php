@@ -51,6 +51,7 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
 
     // Build API URL with coordinates if address is provided.
     $apiUrl = '/' . $language . '/api/helsinki-near-you/roadworks';
+
     if (!empty($address)) {
       try {
         // Convert address to coordinates server-side.
@@ -58,10 +59,7 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
 
         if (!empty($addressData) && !empty($addressData['coordinates'])) {
           // Extract coordinates from GeoJSON format [longitude, latitude].
-          // Latitude.
-          $lat = $addressData['coordinates'][1];
-          // Longitude.
-          $lon = $addressData['coordinates'][0];
+          [$lon, $lat] = $addressData['coordinates'];
 
           // Add coordinates and original address to API URL.
           $apiUrl .= '?lat=' . $lat . '&lon=' . $lon . '&q=' . urlencode($address);
