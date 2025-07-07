@@ -296,3 +296,42 @@ msgstr "Plats"
 msgctxt "Roadworks field label"
 msgid "Schedule"
 msgstr "Schema"
+
+msgid "Arabic"
+msgstr "Arabiska"
+
+msgid "German"
+msgstr "Tyska"
+
+msgid "English"
+msgstr "Engelska"
+
+msgid "Spanish"
+msgstr "Spanska"
+
+msgid "Estonian"
+msgstr "Estniska"
+
+msgid "Persian, Farsi"
+msgstr "Persiska, farsi"
+
+msgid "Finnish"
+msgstr "Finska"
+
+msgid "French"
+msgstr "Franska"
+
+msgid "Russian"
+msgstr "Ryska"
+
+msgid "Northern Sam"
+msgstr "Nordsamiska"
+
+msgid "Somali"
+msgstr "Somaliska"
+
+msgid "Chinese, Simplified"
+msgstr "Kinesiska"
+
+msgid "Ukrainian"
+msgstr "Ukrainska"
