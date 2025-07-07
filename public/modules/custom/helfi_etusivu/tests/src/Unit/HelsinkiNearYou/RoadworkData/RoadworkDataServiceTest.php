@@ -261,7 +261,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $this->assertCount(1, $result);
     $this->assertEquals('Minimal Type', $result[0]['type']);
     $this->assertStringContainsString('Minimal Street', $result[0]['location']);
-    $this->assertStringContainsString('Ei tiedossa', $result[0]['schedule']);
+    $this->assertStringContainsString('Unknown - Ongoing', $result[0]['schedule']);
     $this->assertEquals('https://kartta.hel.fi', $result[0]['url']);
   }
 
@@ -290,17 +290,19 @@ class RoadworkDataServiceTest extends UnitTestCase {
 
     $result = $this->roadworkDataService->getFormattedProjectsByAddress('Test Address');
 
-    if ($input === '') {
-      $this->assertStringContainsString('Ei tiedossa', $result[0]['schedule']);
-    }
-    elseif ($input === 'not-a-date') {
-      $this->assertStringContainsString($input, $result[0]['schedule']);
-    }
-    else {
-      // For valid dates, just check that the schedule contains the formatted
-      // date.
-      $this->assertStringContainsString(date('d.m.Y', strtotime($input)), $result[0]['schedule']);
-    }
+    $this->assertEquals($expected, $result[0]['schedule']);
+
+    #if ($input === '') {
+    #  $this->assertStringContainsString('Unknown - Ongoing', $result[0]['schedule']);
+    #}
+    #elseif ($input === 'not-a-date') {
+    #  $this->assertStringContainsString($input, $result[0]['schedule']);
+    #}
+    #else {
+    #  // For valid dates, just check that the schedule contains the formatted
+    #  // date.
+    #  $this->assertStringContainsString(date('d.m.Y', strtotime($input)), $result[0]['schedule']);
+    #}
   }
 
   /**
@@ -308,10 +310,10 @@ class RoadworkDataServiceTest extends UnitTestCase {
    */
   public function dateFormatProvider(): array {
     return [
-      'ISO date' => ['2025-12-31T23:59:59Z', '31.12.2025'],
-      'Date only' => ['2025-01-01', '01.01.2025'],
-      'Invalid date' => ['not-a-date', 'not-a-date'],
-      'Empty string' => ['', ''],
+      'ISO date' => ['2025-12-31T23:59:59', '31.12.2025 - 31.12.2025'],
+      'Date only' => ['2025-01-01', '01.01.2025 - 01.01.2025'],
+      'Invalid date' => ['not-a-date', 'not-a-date - not-a-date'],
+      'Empty string' => ['', 'Unknown - Ongoing'],
     ];
   }
 
