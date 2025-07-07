@@ -13,7 +13,6 @@ use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\MockObject\MockObject;
-use Prophecy\Prophecy\ObjectProphecy;
 
 /**
  * Tests the RoadworkDataClient class.
