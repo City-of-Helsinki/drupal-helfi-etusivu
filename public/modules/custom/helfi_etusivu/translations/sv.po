@@ -268,3 +268,31 @@ msgstr "Hitta gatuarbeten nära dig"
 msgctxt "Helsinki near you roadworks search"
 msgid "Browse roadworks near you or search for roadworks by location. The search shows results within 1 kilometer of the address."
 msgstr "Bläddra bland gatuarbeten nära dig eller sök efter gatuarbeten per plats. Sökningen visar resultat inom 1 kilometer från adressen."
+
+msgctxt "Roadworks default title"
+msgid "Work site"
+msgstr "Arbetsplats"
+
+msgctxt "Roadworks location fallback"
+msgid "Location unknown"
+msgstr "Plats okänd"
+
+msgctxt "Roadworks date fallback"
+msgid "Unknown"
+msgstr "Okänd"
+
+msgctxt "Roadworks date fallback"
+msgid "Ongoing"
+msgstr "Pågående"
+
+msgctxt "Roadworks type fallback"
+msgid "Work"
+msgstr "Arbete"
+
+msgctxt "Roadworks field label"
+msgid "Location"
+msgstr "Plats"
+
+msgctxt "Roadworks field label"
+msgid "Schedule"
+msgstr "Schema"

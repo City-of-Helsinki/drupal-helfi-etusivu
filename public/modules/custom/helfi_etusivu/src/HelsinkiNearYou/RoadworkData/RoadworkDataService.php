@@ -109,8 +109,8 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
 
       // Extract relevant data from the GeoJSON feature.
       // Use address as the main title.
-      $title = $props['osoite'] ?? $this->t('Työmaa');
-      $location = $props['osoite'] ?? $this->t('Sijainti ei tiedossa');
+      $title = $props['osoite'] ?? $this->t('Work site', [], ['context' => 'Roadworks default title']);
+      $location = $props['osoite'] ?? $this->t('Location unknown', [], ['context' => 'Roadworks location fallback']);
 
       // Use the text date fields for display.
       $startDateTxt = $props['tyo_alkaa_txt'] ?? '';
@@ -121,11 +121,11 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
       $endDate = $endDateTxt ?: ($props['tyo_paattyy'] ?? '');
 
       // Format the dates.
-      $formattedStart = $startDate ? $this->formatDate($startDate) : $this->t('Ei tiedossa');
-      $formattedEnd = $endDate ? $this->formatDate($endDate) : $this->t('Avoinna');
+      $formattedStart = $startDate ? $this->formatDate($startDate) : $this->t('Unknown', [], ['context' => 'Roadworks date fallback']);
+      $formattedEnd = $endDate ? $this->formatDate($endDate) : $this->t('Ongoing', [], ['context' => 'Roadworks date fallback']);
 
       // Get the work type (Kaivuilmoitus or Aluevuokraus)
-      $workType = $props['tyyppi'] ?? $this->t('Työ');
+      $workType = $props['tyyppi'] ?? $this->t('Work', [], ['context' => 'Roadworks type fallback']);
 
       // Default to the Helsinki map URL.
       $url = 'https://kartta.hel.fi';
@@ -156,12 +156,12 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
       // Just pass the location string, let the template handle the label.
         'location' => $location,
       // Pass the translated label separately.
-        'location_label' => $this->t('Sijainti'),
+        'location_label' => $this->t('Location', [], ['context' => 'Roadworks field label']),
         // Convert schedule to a string to prevent Drupal from treating it as
         // a render array.
         'schedule' => $formattedStart . ($formattedEnd ? ' - ' . $formattedEnd : ''),
       // Pass the translated label separately.
-        'schedule_label' => $this->t('Aikataulu'),
+        'schedule_label' => $this->t('Schedule', [], ['context' => 'Roadworks field label']),
       // Keep raw data for debugging/templates.
         'raw_data' => $props,
       ];
