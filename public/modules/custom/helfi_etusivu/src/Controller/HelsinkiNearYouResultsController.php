@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
@@ -27,7 +28,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
   /**
    * Constructs a new instance.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface $servicemap
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface $serviceMap
    *   The servicemap service.
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents $linkedEvents
    *   The linked events service.
@@ -35,13 +36,17 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   The roadwork data service.
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService $coordinateConversionService
    *   The coordinate conversion service.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
+   *   The language manager.
    */
   public function __construct(
-    protected readonly ServiceMapInterface $servicemap,
+    protected readonly ServiceMapInterface $serviceMap,
     protected readonly LinkedEvents $linkedEvents,
     protected readonly RoadworkDataServiceInterface $roadworkDataService,
     protected readonly CoordinateConversionService $coordinateConversionService,
+    LanguageManagerInterface $languageManager,
   ) {
+    $this->languageManager = $languageManager;
   }
 
   /**
@@ -62,7 +67,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
     $address = Xss::filter($address);
-    $addressData = $this->servicemap->getAddressData(urldecode($address));
+    $addressData = $this->serviceMap->getAddressData(urldecode($address));
 
     if (!$addressData) {
       $this->messenger()->addError(
@@ -126,7 +131,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'helfi_roadworks' => [
             'data' => [
               'helfi-coordinates-based-roadwork-list' => [
-                'roadworks_api_url' => '/' . $this->languageManager()->getCurrentLanguage()->getId() . '/api/helsinki-near-you/roadworks?' . http_build_query([
+                'roadworks_api_url' => '/' . $this->languageManager->getCurrentLanguage()->getId() . '/api/helsinki-near-you/roadworks?' . http_build_query([
                   'lat' => $lat,
                   'lon' => $lon,
                   'q' => $address,
@@ -187,27 +192,16 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ], 400);
     }
 
-    try {
-      $roadworkData = $this->buildRoadworkSection($request, $lat, $lon, $address);
+    $roadworkData = $this->buildRoadworkSection($request, $lat, $lon, $address);
 
-      return new JsonResponse([
-        'data' => $roadworkData['projects'] ?? [],
-        'meta' => [
-          'count' => count($roadworkData['projects'] ?? []),
-          'title' => $roadworkData['title'] ?? '',
-          'see_all_url' => $roadworkData['see_all_url'] ?? '',
-        ],
-      ]);
-    }
-    catch (\Exception $e) {
-      return new JsonResponse([
-        'data' => [],
-        'meta' => [
-          'count' => 0,
-          'error' => 'Failed to fetch roadworks data: ' . $e->getMessage(),
-        ],
-      ], 500);
-    }
+    return new JsonResponse([
+      'data' => $roadworkData['projects'] ?? [],
+      'meta' => [
+        'count' => count($roadworkData['projects'] ?? []),
+        'title' => $roadworkData['title'] ?? '',
+        'see_all_url' => $roadworkData['see_all_url'] ?? '',
+      ],
+    ]);
   }
 
   /**
@@ -227,15 +221,6 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    */
   public function buildRoadworkSection(Request $request, float $lat, float $lon, string $address = ''): array {
     try {
-      // Validate coordinate types to ensure they are floats.
-      if (!is_float($lat) || !is_float($lon)) {
-        throw new \InvalidArgumentException('Latitude and longitude must be float values');
-      }
-
-      if (!$this->roadworkDataService) {
-        throw new \RuntimeException('Roadwork data service is not available');
-      }
-
       // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
       // which is required by the roadwork data service.
       $convertedCoords = $this->coordinateConversionService->wgs84ToEtrsGk25($lat, $lon);
@@ -274,7 +259,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ];
 
     }
-    catch (\Exception $e) {
+    catch (\Exception) {
       // Return empty results structure on error to prevent page breakage
       // Use provided address for 'See all' link, or get from request if not
       // provided.
@@ -344,11 +329,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           ],
           [
             'link_label' => $this->t('Roadworks on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->servicemap->getLink(ServiceMapLink::ROADWORK_EVENTS, $addressName),
+            'link_url' => $this->serviceMap->getLink(ServiceMapLink::ROADWORK_EVENTS, $addressName),
           ],
           [
             'link_label' => $this->t('City bike stations and bikeracks on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->servicemap->getLink(ServiceMapLink::CITYBIKE_STATIONS_STANDS, $addressName),
+            'link_url' => $this->serviceMap->getLink(ServiceMapLink::CITYBIKE_STATIONS_STANDS, $addressName),
           ],
         ],
       ],
@@ -357,11 +342,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         'service_links' => [
           [
             'link_label' => $this->t('Street and park projects on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->servicemap->getLink(ServiceMapLink::STREET_PARK_PROJECTS, $addressName),
+            'link_url' => $this->serviceMap->getLink(ServiceMapLink::STREET_PARK_PROJECTS, $addressName),
           ],
           [
             'link_label' => $this->t('Plans under preparation on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->servicemap->getLink(ServiceMapLink::PLANS_IN_PROCESS, $addressName),
+            'link_url' => $this->serviceMap->getLink(ServiceMapLink::PLANS_IN_PROCESS, $addressName),
           ],
         ],
       ],
@@ -381,7 +366,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     $q = $request->query->get('q');
     $suggestions = [];
 
-    $results = $this->servicemap->query($q, 10);
+    $results = $this->serviceMap->query($q, 10);
 
     foreach ($results as $result) {
       $name = $this->resolveTranslation($result->name);
@@ -408,7 +393,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
    *   The translated string.
    */
   protected function resolveTranslation(\stdClass $translations) : string {
-    $langcode = $this->languageManager()->getCurrentLanguage()->getId();
+    $langcode = $this->languageManager->getCurrentLanguage()->getId();
     return $translations->{"$langcode"} ?? $translations->fi;
   }
 
@@ -430,7 +415,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
     array $query,
     ?string $anchor = NULL,
   ) : string {
-    $langcode = $this->languageManager()->getCurrentLanguage()->getId();
+    $langcode = $this->languageManager->getCurrentLanguage()->getId();
     $url = Url::fromUri(
       $link->getLinkTranslations()[$langcode],
       ['query' => $query],
@@ -472,7 +457,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
 
     $ids = $query
       ->range(length: 3)
-      ->condition('search_api_language', $this->languageManager()->getCurrentLanguage()->getId())
+      ->condition('search_api_language', $this->languageManager->getCurrentLanguage()->getId())
       ->accessCheck(FALSE)
       ->execute();
 
