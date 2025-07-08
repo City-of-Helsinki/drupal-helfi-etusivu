@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -32,7 +33,9 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
    */
   public function __construct(
     protected readonly ServiceMapInterface $serviceMap,
+    LanguageManagerInterface $languageManager,
   ) {
+    $this->languageManager = $languageManager;
   }
 
   /**
@@ -45,7 +48,7 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
    *   A renderable array.
    */
   public function content(Request $request): array {
-    $language = $this->languageManager()->getCurrentLanguage()->getId();
+    $language = $this->languageManager->getCurrentLanguage()->getId();
 
     // Get address from query parameter.
     $address = $request->query->get('q', '');

@@ -7,6 +7,7 @@ namespace Drupal\Tests\helfi_etusivu\Kernel;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController;
@@ -49,6 +50,13 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
   protected ServiceMap|MockObject $serviceMap;
 
   /**
+   * The roadwork data service.
+   *
+   * @var \PHPUnit\Framework\MockObject\MockObject
+   */
+  protected MockObject $roadworkDataService;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -56,12 +64,14 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
 
     $this->serviceMap = $this->createMock(ServiceMapInterface::class);
     $entityTypeManager = $this->createMock(EntityTypeManager::class);
+    $this->roadworkDataService = $this->createMock(RoadworkDataServiceInterface::class);
 
     $this->controller = new HelsinkiNearYouResultsController(
       $this->serviceMap,
       $this->createMock(LinkedEvents::class),
-      $this->createMock(RoadworkDataServiceInterface::class),
+      $this->roadworkDataService,
       new CoordinateConversionService(),
+      $this->container->get(LanguageManagerInterface::class),
     );
 
     $mockEntityQuery = $this->createMock(Query::class);
@@ -207,6 +217,34 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
 
     $addressSuggestions = $this->controller->addressSuggestions($mockRequest);
     $this->assertInstanceOf(JsonResponse::class, $addressSuggestions);
+  }
+
+  /**
+   * Tests the roadworks api.
+   */
+  public function testRoadworksApi() : void {
+    $mockRequest = $this->createMock(Request::class);
+    $query = new InputBag([]);
+    $mockRequest->query = $query;
+
+    $response = $this->controller->roadworksApi($mockRequest);
+    $data = json_decode($response->getContent(), TRUE);
+    $this->assertInstanceOf(JsonResponse::class, $response);
+    $this->assertEquals(400, $response->getStatusCode());
+    $this->assertEquals('No coordinates provided', $data['meta']['error']);
+
+    // Make sure exception is caught and fallback data is provided.
+    $this->roadworkDataService
+      ->expects(self::once())
+      ->method('getFormattedProjectsByCoordinates')
+      ->willThrowException(new \Exception('Message'));
+
+    $mockRequest->query->set('lat', 1.0);
+    $mockRequest->query->set('lon', 1.0);
+
+    $response = $this->controller->roadworksApi($mockRequest);
+    $this->assertInstanceOf(JsonResponse::class, $response);
+    $this->assertEquals(200, $response->getStatusCode());
   }
 
 }
