@@ -52,7 +52,6 @@ module:
   helfi_azure_fs: 0
   helfi_base_content: 0
   helfi_ckeditor: 0
-  helfi_etusivu: 1
   helfi_etusivu_config: 0
   helfi_etusivu_entities: 0
   helfi_global_navigation: 0
@@ -188,6 +187,7 @@ module:
   views_rss: 0
   views_rss_core: 0
   views_ui: 0
+  helfi_etusivu: 1
   helfi_navigation: 1
   pathauto: 1
   content_translation: 10

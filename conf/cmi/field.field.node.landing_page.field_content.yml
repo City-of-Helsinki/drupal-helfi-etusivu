@@ -45,11 +45,6 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      current: current
-      front_page_top_news: front_page_top_news
-      front_page_latest_news: front_page_latest_news
-      event_list: event_list
-      news_archive: news_archive
       list_of_links: list_of_links
       content_cards: content_cards
       banner: banner
@@ -62,11 +57,16 @@ settings:
       remote_video: remote_video
       chart: chart
       target_group_links: target_group_links
+      event_list: event_list
       news_list: news_list
       image_gallery: image_gallery
       number_highlights: number_highlights
       curated_event_list: curated_event_list
       hearings: hearings
+      current: current
+      front_page_top_news: front_page_top_news
+      front_page_latest_news: front_page_latest_news
+      news_archive: news_archive
     negate: 0
     target_bundles_drag_drop:
       banner:
@@ -88,7 +88,7 @@ settings:
         weight: 15
         enabled: true
       event_list:
-        weight: 13
+        weight: 18
         enabled: true
       from_library:
         weight: 5
