@@ -56,7 +56,6 @@
       }
     %}
       {% block component_content %}
-        {# Hook React app to this div #}
         {{ attach_library('hdbt/event-list') }}
         <div
           id="helfi-events-search"
@@ -86,7 +85,6 @@
         }
       %}
         {% block component_content %}
-          {# Hook React app to this div #}
           {{ attach_library('hdbt/news-archive') }}
           <div
             id="helfi-etusivu-news-search"
@@ -111,28 +109,12 @@
       {% endembed %}
     {% endif %}
 
-    {# Roadwork Section - Debugging #}
-    {% set debug_roadwork = {
-      'roadwork_section_defined': roadwork_section is defined,
-      'roadwork_section_not_empty': roadwork_section is defined and roadwork_section is not empty,
-      'projects_defined': roadwork_section is defined and roadwork_section.projects is defined,
-      'projects_count': roadwork_section is defined and roadwork_section.projects is defined ? roadwork_section.projects|length : 0,
-      'title': roadwork_section is defined and roadwork_section.title is defined ? roadwork_section.title : 'No title',
-      'see_all_url': roadwork_section is defined and roadwork_section.see_all_url is defined ? roadwork_section.see_all_url : 'No URL'
-    } %}
-
-    {# Debug output - will be visible in the HTML source #}
-    <!--
-    Roadwork Section Debug Info:
-    {{ debug_roadwork|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}
-    -->
-
     {# React Roadwork Section #}
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [
         'component--react-search',
-        'component--event-list',
+        'component--roadworks',
         'component--coordinates-based-list',
         ],
         component_title: 'Street and park projects near you'|trans({}, {'context': 'Helsinki near you'}),
@@ -141,7 +123,6 @@
       }
     %}
       {% block component_content %}
-        {# Hook React app to this div #}
         {{ attach_library('hdbt/roadwork-list') }}
         <div
           id="helfi-roadworks-search"
