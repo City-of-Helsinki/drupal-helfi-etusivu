@@ -79,24 +79,13 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
       '#attached' => [
         'drupalSettings' => [
           'helfi_roadworks' => [
-            'data' => [
-              'helfi-coordinates-based-roadwork-list' => [
-                'roadworks_api_url' => $apiUrl,
-                'field_roadwork_count' => 10,
-                'field_roadwork_location' => TRUE,
-                'field_roadwork_schedule' => TRUE,
-                'hideHeading' => TRUE,
-                'useLocationSearch' => TRUE,
-                'hidePagination' => FALSE,
-              ],
+            'helfi-coordinates-based-roadwork-list' => [
+              'roadworksApiUrl' => $apiUrl,
+              'roadworkCount' => 10,
+              'hidePagination' => FALSE,
+              'cardsWithBorders' => FALSE,
+              'scrollToTarget' => TRUE,
             ],
-            'seeAllButtonOverride' => $this->t(
-              'View all roadworks',
-              [],
-              ['context' => 'Helsinki near you roadworks search']
-            ),
-            'cardsWithBorders' => TRUE,
-            'useExperimentalGhosts' => TRUE,
           ],
         ],
       ],
