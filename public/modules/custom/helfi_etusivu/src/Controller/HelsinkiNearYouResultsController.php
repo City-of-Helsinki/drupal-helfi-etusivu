@@ -145,7 +145,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           ],
         ],
       ],
-      '#back_link_label' => $this->t('Back to search'),
+      '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
       '#back_link_url' => $return_url,
       '#news_archive_url' => $newsArchiveUrl,
       '#coordinates' => $addressData['coordinates'],
