@@ -4594,16 +4594,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.15.5",
+            "version": "4.15.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "8eeb3613e0fafa37d0e97ac704d2bf3c4548b487"
+                "reference": "e3d8e5e239a5f8a9fd6478641499fb804e743aca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/8eeb3613e0fafa37d0e97ac704d2bf3c4548b487",
-                "reference": "8eeb3613e0fafa37d0e97ac704d2bf3c4548b487",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/e3d8e5e239a5f8a9fd6478641499fb804e743aca",
+                "reference": "e3d8e5e239a5f8a9fd6478641499fb804e743aca",
                 "shasum": ""
             },
             "require": {
@@ -4715,8 +4715,8 @@
                         "[#UHF-2059] Enhancements for the Admin UI": "./public/modules/contrib/helfi_platform_config/patches/helfi_customizations_for_paragraphs_widget_8.x-1.12.patch",
                         "[#UHF-10840] https://www.drupal.org/i/3510842: Duplicating nested paragraph overwriting paragraph references": "./public/modules/contrib/helfi_platform_config/patches/paragraphs-3510842-duplicate_paragraph_overwrite.patch"
                     },
-                    "drupal/translatable_menu_link_uri": {
-                        "Translatable menu link URI type error (https://www.drupal.org/i/3534555)": "./public/modules/contrib/helfi_platform_config/patches/translatable_menu_link_uri-3534555-type-error.patch"
+                    "drupal/stage_file_proxy": {
+                        "Passing null to a parameter (https://www.drupal.org/i/3520313)": "https://www.drupal.org/files/issues/2025-05-29/stage_file_proxy-passing-null-to-parameter-fix-3520313-13.patch"
                     },
                     "drupal/view_unpublished": {
                         "[#UHF-9256] Fix missing dynamic permission dependencies.": "./public/modules/contrib/helfi_platform_config/patches/view_unpublished_permissions_missing_dependencies.patch"
@@ -4728,10 +4728,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.15.5",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.15.6",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-07-08T06:40:10+00:00"
+            "time": "2025-07-09T10:40:51+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -5567,17 +5567,17 @@
         },
         {
             "name": "drupal/linkit",
-            "version": "7.0.5",
+            "version": "7.0.6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/linkit.git",
-                "reference": "7.0.5"
+                "reference": "7.0.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/linkit-7.0.5.zip",
-                "reference": "7.0.5",
-                "shasum": "58baf9f76c46c73e02639ac79857889c52c46113"
+                "url": "https://ftp.drupal.org/files/projects/linkit-7.0.6.zip",
+                "reference": "7.0.6",
+                "shasum": "72a809e45a5f2cbc8919af3e9e854ae95f324200"
             },
             "require": {
                 "drupal/core": "^10.1 || ^11"
@@ -5589,8 +5589,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "7.0.5",
-                    "datestamp": "1750458295",
+                    "version": "7.0.6",
+                    "datestamp": "1751987441",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8098,17 +8098,17 @@
         },
         {
             "name": "drupal/translatable_menu_link_uri",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/translatable_menu_link_uri.git",
-                "reference": "2.1.2"
+                "reference": "2.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/translatable_menu_link_uri-2.1.2.zip",
-                "reference": "2.1.2",
-                "shasum": "e439b0f60cedf63583aa0fd28ed4454049831e6e"
+                "url": "https://ftp.drupal.org/files/projects/translatable_menu_link_uri-2.1.3.zip",
+                "reference": "2.1.3",
+                "shasum": "702e5787f45056147d2231fd78c311a029038273"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10 || ^11"
@@ -8116,8 +8116,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.1.2",
-                    "datestamp": "1751878444",
+                    "version": "2.1.3",
+                    "datestamp": "1751967121",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9984,16 +9984,16 @@
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.3.5",
+            "version": "v0.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "57b8f7efe40333cdb925700891c7d7465325d3b1"
+                "reference": "86a8b692e8661d0fb308cec64f3d176821323077"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/57b8f7efe40333cdb925700891c7d7465325d3b1",
-                "reference": "57b8f7efe40333cdb925700891c7d7465325d3b1",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/86a8b692e8661d0fb308cec64f3d176821323077",
+                "reference": "86a8b692e8661d0fb308cec64f3d176821323077",
                 "shasum": ""
             },
             "require": {
@@ -10037,9 +10037,9 @@
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.3.5"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.6"
             },
-            "time": "2025-02-11T13:34:40+00:00"
+            "time": "2025-07-07T14:17:42+00:00"
         },
         {
             "name": "league/container",
