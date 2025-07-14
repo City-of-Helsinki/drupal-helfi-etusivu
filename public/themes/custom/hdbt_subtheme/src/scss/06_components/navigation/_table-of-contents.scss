@@ -1,7 +1,8 @@
 // This implementation is very close to phasing component but not totally the same.
 .table-of-contents--news-update {
-  @include component-side-padding;
   --item-title-lineheight: #{1.5 * get-font-size('h4')};
+
+  @include component-side-padding;
 
   .table-of-contents__container {
     // Hide the border that the default TOC has on the left.
@@ -13,12 +14,13 @@
   }
 
   .table-of-contents__item {
-    @include font('special.large_link');
     display: flex;
     flex-direction: column;
     padding-block: $spacing;
     padding-inline: $spacing;
     position: relative;
+
+    @include font('special.large_link');
 
     @include breakpoint($breakpoint-m) {
       flex-direction: row;
