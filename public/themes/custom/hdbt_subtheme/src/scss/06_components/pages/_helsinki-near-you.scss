@@ -31,9 +31,8 @@
 }
 
 .graphics__illustration {
-  max-width: 100%;
-
   @include image-defaults;
+  max-width: 100%;
 }
 
 .page-title + article > .components--helsinki-near-you-results:first-child {

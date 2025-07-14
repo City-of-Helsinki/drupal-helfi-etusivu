@@ -1,12 +1,9 @@
 .block--main-news {
-  margin: auto;
-  width: 100%;
-
   @include component-side-padding();
   @include components-container-max-width();
   @include component-margin-top();
-
-
+  margin: auto;
+  width: 100%;
 
   h2 {
     margin-bottom: $spacing-triple;
@@ -15,12 +12,11 @@
 }
 
 .component--news-of-interest {
+  @include component-margin-top();
   background-color:  $color-black-5;
   margin-left: $spacing;
   margin-right: $spacing;
   padding: $spacing-double $spacing $spacing-double;
-
-  @include component-margin-top();
 
   @include breakpoint($breakpoint-m) {
     padding: $spacing-triple $spacing-double $spacing-triple;
