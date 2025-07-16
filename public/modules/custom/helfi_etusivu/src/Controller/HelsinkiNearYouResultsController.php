@@ -130,14 +130,14 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           ],
           'helfi_roadworks' => [
             'helfi-coordinates-based-roadwork-list' => [
+              'cardsWithBorders' => TRUE,
+              'isShortList' => TRUE,
+              'roadworkCount' => 3,
               'roadworksApiUrl' => '/' . $this->languageManager->getCurrentLanguage()->getId() . '/api/helsinki-near-you/roadworks?' . http_build_query([
                 'lat' => $lat,
                 'lon' => $lon,
                 'q' => $address,
               ]),
-              'roadworkCount' => 3,
-              'hidePagination' => TRUE,
-              'cardsWithBorders' => TRUE,
               'scrollToTarget' => FALSE,
             ],
           ],
