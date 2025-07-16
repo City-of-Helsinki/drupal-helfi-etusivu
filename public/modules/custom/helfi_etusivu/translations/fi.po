@@ -82,14 +82,6 @@ msgid "For example, Kotikatu 1"
 msgstr "Esim. Kotikatu 1"
 
 msgctxt "Helsinki near you"
-msgid "No results for the address entered"
-msgstr "Antamallasi osoitteella ei löytynyt tuloksia"
-
-msgctxt "Helsinki near you"
-msgid "Make sure the address is written correctly. You can also search using a nearby street number."
-msgstr "Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esimerkiksi viereisellä katunumerolla."
-
-msgctxt "Helsinki near you"
 msgid "Search"
 msgstr "Hae"
 
@@ -228,10 +220,6 @@ msgstr "Etsi lisää tapahtumia Tapahtumat-sivustolta"
 msgctxt "Helsinki near you events search"
 msgid "See all events near you"
 msgstr "Katso kaikki tapahtumat lähelläsi"
-
-msgctxt "Helsinki near you events search"
-msgid "Start by searching with your address."
-msgstr "Aloita kirjoittamalla osoitteesi."
 
 msgid "Events near you"
 msgstr "Tapahtumat lähelläsi"
