@@ -74,7 +74,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         $this->t(
           'Make sure the address is written correctly. You can also search using a nearby street number.',
           [],
-          ['context' => 'Helsinki near you']
+          ['context' => 'React search: Address not found hint']
         )
       );
       return $this->redirect('helfi_etusivu.helsinki_near_you');
@@ -131,13 +131,13 @@ class HelsinkiNearYouResultsController extends ControllerBase {
           'helfi_roadworks' => [
             'helfi-coordinates-based-roadwork-list' => [
               'cardsWithBorders' => TRUE,
-              'isShortList' => TRUE,
-              'roadworkCount' => 3,
-              'roadworksApiUrl' => '/' . $this->languageManager->getCurrentLanguage()->getId() . '/api/helsinki-near-you/roadworks?' . http_build_query([
+              'initialData' => [
                 'lat' => $lat,
                 'lon' => $lon,
                 'q' => $address,
-              ]),
+              ],
+              'isShortList' => TRUE,
+              'roadworkCount' => 3,
               'scrollToTarget' => FALSE,
             ],
           ],
@@ -240,6 +240,27 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       // 1000 meters = 1km radius.
         1000
       ) ?? [];
+
+      foreach ($projects as &$project) {
+        if (!isset($project['coordinates'])) {
+          continue;
+        }
+
+        $convertedProjectCoords = $this->coordinateConversionService->etrsGk25ToWgs84(
+          $project['coordinates'][0],
+          $project['coordinates'][1],
+        );
+
+        if ($convertedProjectCoords) {
+          $project['coordinates'] = [
+            'lat' => $convertedProjectCoords['y'],
+            'lon' => $convertedProjectCoords['x'],
+          ];
+        }
+        else {
+          unset($project['coordinates']);
+        }
+      }
 
       $title = $this->roadworkDataService->getSectionTitle();
 
