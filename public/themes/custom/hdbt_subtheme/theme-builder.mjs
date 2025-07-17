@@ -8,12 +8,17 @@ const isWatch = process.argv.includes('--watch');
 const watchPaths = ['src/js', 'src/scss'];
 const outDir = path.resolve(__dirname, 'dist');
 
+// React apps.
+const reactApps = {
+  // 'app-name': './src/js/react/apps/app-nem/index.tsx',
+};
+
 // Vanilla JS files.
-const jsFiles = globSync('./src/js/**/*.js')
-  .reduce((acc, file) => ({
-    ...acc, [path.parse(file).name]: file
-  }),
-{});
+const jsFiles = globSync('./src/js/**/*.js', {
+  // ignore: [],
+}).reduce((acc, file) => ({
+  ...acc, [path.parse(file).name]: file
+}), {});
 
 // SCSS files.
 const styles = [
@@ -26,10 +31,10 @@ const staticFiles = [
 ];
 
 // Builder configurations.
-const entries = { ...jsFiles };
-const jsConfig = { entries, isDev, outDir };
-const cssConfig   = { styles, isDev, outDir };
-const buildArguments   = { outDir, staticFiles, jsConfig, cssConfig };
+const reactConfig = { reactApps, isDev, outDir };
+const jsConfig = { jsFiles, isDev, outDir };
+const cssConfig = { styles, isDev, outDir };
+const buildArguments = { outDir, staticFiles, jsConfig, reactConfig, cssConfig };
 
 if (isWatch) {
   watchAndBuild({
