@@ -132,7 +132,7 @@
         {# Indicate JS not enabled #}
         <noscript>
           <div class="roadwork-list__javascript-disabled">
-            {{ 'You must enable JavaScript in your browser for roadwork list to work'|t }}
+            {{ 'You must enable JavaScript in your browser to view the street and park project list.'|t({}, {'context': 'Helsinki near you'}) }}
           </div>
         </noscript>
       {% endblock component_content %}
