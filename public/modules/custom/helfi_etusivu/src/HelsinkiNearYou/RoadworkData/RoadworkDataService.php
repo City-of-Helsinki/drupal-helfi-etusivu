@@ -147,7 +147,7 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
       }
 
       // Format the project data for display.
-      $formatted[] = [
+      $item = [
       // This is now the address from osoite.
         'title' => $title,
       // This now links to the map with coordinates.
@@ -165,6 +165,12 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
       // Keep raw data for debugging/templates.
         'raw_data' => $props,
       ];
+
+      if (isset($coords)) {
+        $item['coordinates'] = [$coords[1], $coords[0]];
+      }
+
+      $formatted[] = $item;
     }
 
     // Sort by start date (newest first)

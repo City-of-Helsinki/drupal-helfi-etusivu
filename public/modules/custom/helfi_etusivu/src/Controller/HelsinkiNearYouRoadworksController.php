@@ -48,25 +48,28 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
    *   A renderable array.
    */
   public function content(Request $request): array {
-    $language = $this->languageManager->getCurrentLanguage()->getId();
-
-    // Get address from query parameter.
     $address = $request->query->get('q', '');
 
-    // Build API URL with coordinates if address is provided.
-    $apiUrl = '/' . $language . '/api/helsinki-near-you/roadworks';
+    $build = [
+      'roadworkCount' => 10,
+      'hidePagination' => FALSE,
+      'cardsWithBorders' => FALSE,
+      'scrollToTarget' => TRUE,
+    ];
 
     if (!empty($address)) {
       try {
-        // Convert address to coordinates server-side.
         $addressData = $this->serviceMap->getAddressData(urldecode($address));
 
         if (!empty($addressData) && !empty($addressData['coordinates'])) {
           // Extract coordinates from GeoJSON format [longitude, latitude].
           [$lon, $lat] = $addressData['coordinates'];
 
-          // Add coordinates and original address to API URL.
-          $apiUrl .= '?lat=' . $lat . '&lon=' . $lon . '&q=' . urlencode($address);
+          $build['initialData'] = [
+            'lat' => $lat,
+            'lon' => $lon,
+            'q' => $address,
+          ];
         }
       }
       catch (\Exception $e) {
@@ -79,18 +82,11 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
       '#attached' => [
         'drupalSettings' => [
           'helfi_roadworks' => [
-            'helfi-coordinates-based-roadwork-list' => [
-              'roadworksApiUrl' => $apiUrl,
-              'roadworkCount' => 10,
-              'hidePagination' => FALSE,
-              'cardsWithBorders' => FALSE,
-              'scrollToTarget' => TRUE,
-            ],
+            'helfi-coordinates-based-roadwork-list' => $build,
           ],
         ],
       ],
       '#theme' => 'helsinki_near_you_roadworks',
-
     ];
   }
 
