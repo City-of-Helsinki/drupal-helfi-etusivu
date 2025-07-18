@@ -6,7 +6,7 @@ display:
       exposed_form:
         options:
           submit_button: Suodata
-          rreset_button_label: Palauta
+          reset_button_label: Palauta
           exposed_sorts_label: Lajittele
           sort_asc_label: Nousevasti
           sort_desc_label: Laskevasti
