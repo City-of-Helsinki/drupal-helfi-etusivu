@@ -56,3 +56,15 @@ msgstr "Mitä mieltä olet tästä uudesta sivustosta? Kehitämme tätä parhail
 msgctxt "Helsinki near you"
 msgid "Send feedback"
 msgstr "Anna palautetta"
+
+msgctxt "Helsinki near you"
+msgid "Street and park projects near you"
+msgstr "Katu- ja puistohankkeet lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "Browse street and park projects near you."
+msgstr "Selaa katu- ja puistohankkeita lähelläsi."
+
+msgctxt "Helsinki near you"
+msgid "You must enable JavaScript in your browser to view the street and park project list."
+msgstr "Katu- ja puistohankelistan toimimiseksi sinun tulee sallia JavaScript selaimessasi"

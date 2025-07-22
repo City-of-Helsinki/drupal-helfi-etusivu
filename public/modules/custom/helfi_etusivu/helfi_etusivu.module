@@ -305,6 +305,7 @@ function helfi_etusivu_preprocess_html(&$variables): void {
     'helfi_etusivu.helsinki_near_you',
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_results',
+    'helfi_etusivu.helsinki_near_you_roadworks',
   ];
 
   if (in_array($route, $near_you_pages)) {
@@ -321,6 +322,7 @@ function helfi_etusivu_preprocess_page(&$variables): void {
   $near_you_pages = [
     'helfi_etusivu.helsinki_near_you',
     'helfi_etusivu.helsinki_near_you_events',
+    'helfi_etusivu.helsinki_near_you_roadworks',
   ];
 
   // There is hero block on Helsinki near you landing page but
@@ -392,6 +394,28 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-landing-page',
     ],
+    'helsinki_near_you_roadwork_section' => [
+      'variables' => [
+        'title' => NULL,
+        'projects' => [],
+      ],
+      'template' => 'helsinki-near-you-roadwork-section',
+    ],
+    'helsinki_near_you_roadworks' => [
+      'variables' => [
+        'title' => NULL,
+        'roadworks_data' => NULL,
+        'address' => NULL,
+      ],
+      'template' => 'helsinki-near-you-roadworks',
+    ],
+    'helsinki_near_you_roadworks_hero_block' => [
+      'variables' => [
+        'hero_title' => NULL,
+        'hero_description' => NULL,
+      ],
+      'template' => 'helsinki-near-you-roadworks-hero-block',
+    ],
     'helsinki_near_you_results_page' => [
       'variables' => [
         'back_link_label' => NULL,
@@ -401,6 +425,7 @@ function helfi_etusivu_theme() : array {
         'service_groups' => NULL,
         'nearby_neighbourhoods' => NULL,
         'news_archive_url' => NULL,
+        'roadwork_section' => NULL,
       ],
       'template' => 'helsinki-near-you-results-page',
     ],
