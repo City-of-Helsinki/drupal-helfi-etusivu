@@ -222,6 +222,26 @@ function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) : void {
 function hdbt_subtheme_preprocess_node__news_item(array &$variables): void {
   // Attach the updating news table of contents library to the news item page.
   $variables['#attached']['library'][] = 'hdbt_subtheme/updating-news-table-of-contents';
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  // If node has "field_news_item_tags" field, set its ids to Matomo.
+  if (
+    $node->hasField('field_news_item_tags') &&
+    $node->isPublished() &&
+    !$node->get('field_news_item_tags')->isEmpty()
+  ) {
+    $tags = $node->get('field_news_item_tags')->getValue();
+    $tag_list = [];
+
+    foreach ($tags as $tag) {
+      $tag_list[] = $tag['target_id'];
+    }
+
+    // Pass the values as comma separated list.
+    $variables['#attached']['drupalSettings']['news_taxonomy_term_ids'] = implode(',', $tag_list);
+  }
 }
 
 /**
