@@ -7,12 +7,14 @@ namespace Drupal\Tests\helfi_etusivu\Kernel;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController;
-use Drupal\helfi_etusivu\Servicemap;
-use Drupal\helfi_etusivu\ServiceMapInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -48,14 +50,11 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
   protected ServiceMap|MockObject $serviceMap;
 
   /**
-   * Mocked LinkedEvents.
+   * The roadwork data service.
+   *
+   * @var \PHPUnit\Framework\MockObject\MockObject
    */
-  protected LinkedEvents|MockObject $linkedEvents;
-
-  /**
-   * Mocked EntityTypeManager.
-   */
-  protected EntityTypeManagerInterface|MockObject $entityTypeManager;
+  protected MockObject $roadworkDataService;
 
   /**
    * {@inheritdoc}
@@ -64,12 +63,15 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
     parent::setUp();
 
     $this->serviceMap = $this->createMock(ServiceMapInterface::class);
-    $this->linkedEvents = $this->createMock(LinkedEvents::class);
-    $this->entityTypeManager = $this->createMock(EntityTypeManager::class);
+    $entityTypeManager = $this->createMock(EntityTypeManager::class);
+    $this->roadworkDataService = $this->createMock(RoadworkDataServiceInterface::class);
 
     $this->controller = new HelsinkiNearYouResultsController(
       $this->serviceMap,
-      $this->linkedEvents,
+      $this->createMock(LinkedEvents::class),
+      $this->roadworkDataService,
+      new CoordinateConversionService(),
+      $this->container->get(LanguageManagerInterface::class),
     );
 
     $mockEntityQuery = $this->createMock(Query::class);
@@ -94,15 +96,15 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
       ->method('loadMultiple')
       ->willReturn([]);
 
-    $this->entityTypeManager
+    $entityTypeManager
       ->method('getStorage')
       ->willReturn($mockEntityStorage);
-    $this->entityTypeManager
+    $entityTypeManager
       ->method('getDefinitions')
       ->willReturn([]);
 
     $container = \Drupal::getContainer();
-    $container->set('entity_type.manager', $this->entityTypeManager);
+    $container->set('entity_type.manager', $entityTypeManager);
     \Drupal::setContainer($container);
   }
 
@@ -215,6 +217,34 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
 
     $addressSuggestions = $this->controller->addressSuggestions($mockRequest);
     $this->assertInstanceOf(JsonResponse::class, $addressSuggestions);
+  }
+
+  /**
+   * Tests the roadworks api.
+   */
+  public function testRoadworksApi() : void {
+    $mockRequest = $this->createMock(Request::class);
+    $query = new InputBag([]);
+    $mockRequest->query = $query;
+
+    $response = $this->controller->roadworksApi($mockRequest);
+    $data = json_decode($response->getContent(), TRUE);
+    $this->assertInstanceOf(JsonResponse::class, $response);
+    $this->assertEquals(400, $response->getStatusCode());
+    $this->assertEquals('No coordinates provided', $data['meta']['error']);
+
+    // Make sure exception is caught and fallback data is provided.
+    $this->roadworkDataService
+      ->expects(self::once())
+      ->method('getFormattedProjectsByCoordinates')
+      ->willThrowException(new \Exception('Message'));
+
+    $mockRequest->query->set('lat', 1.0);
+    $mockRequest->query->set('lon', 1.0);
+
+    $response = $this->controller->roadworksApi($mockRequest);
+    $this->assertInstanceOf(JsonResponse::class, $response);
+    $this->assertEquals(200, $response->getStatusCode());
   }
 
 }
