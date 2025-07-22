@@ -82,14 +82,6 @@ msgid "For example, Kotikatu 1"
 msgstr "Esim. Kotikatu 1"
 
 msgctxt "Helsinki near you"
-msgid "No results for the address entered"
-msgstr "Antamallasi osoitteella ei löytynyt tuloksia"
-
-msgctxt "Helsinki near you"
-msgid "Make sure the address is written correctly. You can also search using a nearby street number."
-msgstr "Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esimerkiksi viereisellä katunumerolla."
-
-msgctxt "Helsinki near you"
 msgid "Search"
 msgstr "Hae"
 
@@ -143,7 +135,7 @@ msgstr "Aurausaikataulu"
 
 msgctxt "Helsinki near you"
 msgid "Roadworks on the map"
-msgstr "Katutyöt kartalla"
+msgstr "Katu- ja puistohankkeet kartalla"
 
 msgctxt "Helsinki near you"
 msgid "City bike stations and bikeracks on the map"
@@ -191,7 +183,7 @@ msgstr "Vaihtoehto numero @position: @selectedItem korostettu. Vaihtoehtojen mä
 
 msgctxt "Helsinki near you address label"
 msgid "Street works and events near the address @address"
-msgstr "Katutyöt ja tapahtumat lähellä osoitetta @address"
+msgstr "Katu- ja puistohankkeet sekä tapahtumat lähellä osoitetta @address"
 
 msgctxt "Helsinki near you address label"
 msgid "City bike stations and bicycle racks near the address @address"
@@ -229,10 +221,6 @@ msgctxt "Helsinki near you events search"
 msgid "See all events near you"
 msgstr "Katso kaikki tapahtumat lähelläsi"
 
-msgctxt "Helsinki near you events search"
-msgid "Start by searching with your address."
-msgstr "Aloita kirjoittamalla osoitteesi."
-
 msgid "Events near you"
 msgstr "Tapahtumat lähelläsi"
 
@@ -243,6 +231,54 @@ msgstr "Käytä nykyistä sijaintia"
 msgctxt "Helsinki near you"
 msgid "We couldn\'t retrieve your current location. Try entering an address."
 msgstr "Nykyisen sijainnin käyttö ei onnistunut. Kokeile kirjoittaa osoite."
+
+msgctxt "Helsinki near you"
+msgid "Roadworks near you"
+msgstr "Katu- ja puistohankkeet lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "Browse roadworks near you or search for roadworks by location or date."
+msgstr "Selaa katu- ja puistohankkeita läheltäsi tai hae hankkeita sijainnin tai päivämäärän perusteella."
+
+msgctxt "Helsinki near you roadworks search"
+msgid "Find street and park projects in your neighbourhood."
+msgstr "Löydä katu- ja puistohankkeet lähialueeltasi."
+
+msgctxt "Helsinki near you roadworks search"
+msgid "Find roadworks near you"
+msgstr "Löydä tietyöt lähelläsi"
+
+msgctxt "Helsinki near you roadworks search"
+msgid "Browse roadworks near you or search for roadworks by location. The search shows results within 1 kilometer of the address."
+msgstr "Selaa tietöitä lähelläsi tai hae tietöitä sijainnin perusteella. Haku näyttää tulokset yhden kilometrin säteellä osoitteesta."
+
+msgctxt "Roadworks default title"
+msgid "Work site"
+msgstr "Työmaa"
+
+msgctxt "Roadworks location fallback"
+msgid "Location unknown"
+msgstr "Sijainti ei tiedossa"
+
+msgctxt "Roadworks date fallback"
+msgid "Unknown"
+msgstr "Ei tiedossa"
+
+msgctxt "Roadworks date fallback"
+msgid "Ongoing"
+msgstr "Avoinna"
+
+msgctxt "Roadworks type fallback"
+msgid "Work"
+msgstr "Työ"
+
+msgctxt "Roadworks field label"
+msgid "Location"
+msgstr "Sijainti"
+
+msgctxt "Roadworks field label"
+msgid "Schedule"
+msgstr "Aikataulu"
 
 msgid "Arabic"
 msgstr "Arabia"
