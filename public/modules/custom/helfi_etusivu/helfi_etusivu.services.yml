@@ -5,10 +5,29 @@ services:
   logger.channel.helfi_etusivu:
     parent: logger.channel_base
     arguments: ['helfi_etusivu']
+    tags:
+      - { name: logger.channel }
   Drupal\helfi_etusivu\Token\NewsNodeImageBuilder:
     class: Drupal\helfi_etusivu\Token\NewsNodeImageBuilder
     tags:
       - { name: helfi_platform_config.og_image_builder }
-  Drupal\helfi_etusivu\Servicemap: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap'
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents: ~
+  # Roadwork data services
+  Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService: ~
+
+  # Roadwork data client service.
+  # Handles communication with the external roadwork data API.
+  Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient: ~
+
+  # Alias for RoadworkDataClient to support dependency injection by interface.
+  Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient'
+
+  # Service for processing and formatting roadwork data.
+  Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService: ~
+
+  # Alias for RoadworkDataService to support dependency injection by interface.
+  Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService'
+
   Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber: ~

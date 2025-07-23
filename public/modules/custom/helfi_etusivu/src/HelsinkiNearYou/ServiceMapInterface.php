@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou;
 
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
 

@@ -88,7 +88,7 @@ class NearYouForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $form_state->setRedirect('helfi_etusivu.helsinki_near_you_results', ['q' => urlencode($form_state->getValue('q'))]);
+    $form_state->setRedirect('helfi_etusivu.helsinki_near_you_results', ['q' => $form_state->getValue('q')]);
   }
 
 }
