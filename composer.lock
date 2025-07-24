@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5628ce9fe24531261415b64036d8426",
+    "content-hash": "5c049df92876bd90706f2ce5c0a21279",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3088,17 +3088,17 @@
         },
         {
             "name": "drupal/editoria11y",
-            "version": "2.2.12",
+            "version": "2.2.13",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/editoria11y.git",
-                "reference": "2.2.12"
+                "reference": "2.2.13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/editoria11y-2.2.12.zip",
-                "reference": "2.2.12",
-                "shasum": "9e18168b1f02b622b591646f5b4ef574e9b195bb"
+                "url": "https://ftp.drupal.org/files/projects/editoria11y-2.2.13.zip",
+                "reference": "2.2.13",
+                "shasum": "75c337db893c935d60935bcdf03ae40c186fbba6"
             },
             "require": {
                 "drupal/core": "^9 || ^10 || ^11"
@@ -3109,8 +3109,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.2.12",
-                    "datestamp": "1752763995",
+                    "version": "2.2.13",
+                    "datestamp": "1752844518",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4259,16 +4259,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.11.34",
+            "version": "6.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "221b39e98ee317ae0dedbfbb8091f3183c765266"
+                "reference": "af4e84bb4ffc9a8fdd54bd926ee82a56a442861f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/221b39e98ee317ae0dedbfbb8091f3183c765266",
-                "reference": "221b39e98ee317ae0dedbfbb8091f3183c765266",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/af4e84bb4ffc9a8fdd54bd926ee82a56a442861f",
+                "reference": "af4e84bb4ffc9a8fdd54bd926ee82a56a442861f",
                 "shasum": ""
             },
             "require": {
@@ -4287,10 +4287,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.11.34",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.12.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-07-17T11:52:36+00:00"
+            "time": "2025-07-22T10:16:19+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4594,16 +4594,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.15.6",
+            "version": "4.15.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "e3d8e5e239a5f8a9fd6478641499fb804e743aca"
+                "reference": "162d4daf6fa1277e36213b181ecb9bacdf0668e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/e3d8e5e239a5f8a9fd6478641499fb804e743aca",
-                "reference": "e3d8e5e239a5f8a9fd6478641499fb804e743aca",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/162d4daf6fa1277e36213b181ecb9bacdf0668e0",
+                "reference": "162d4daf6fa1277e36213b181ecb9bacdf0668e0",
                 "shasum": ""
             },
             "require": {
@@ -4728,10 +4728,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.15.6",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.15.8",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-07-09T10:40:51+00:00"
+            "time": "2025-07-22T12:25:09+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -5590,7 +5590,7 @@
             "extra": {
                 "drupal": {
                     "version": "7.0.7",
-                    "datestamp": "1752264962",
+                    "datestamp": "1753116879",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11212,21 +11212,21 @@
         },
         {
             "name": "pear/archive_tar",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Archive_Tar.git",
-                "reference": "b439c859564f5cbb0f64ad6002d0afe84a889602"
+                "reference": "dc3285537f1832da8ddbbe45f5a007248b6cc00e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/b439c859564f5cbb0f64ad6002d0afe84a889602",
-                "reference": "b439c859564f5cbb0f64ad6002d0afe84a889602",
+                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/dc3285537f1832da8ddbbe45f5a007248b6cc00e",
+                "reference": "dc3285537f1832da8ddbbe45f5a007248b6cc00e",
                 "shasum": ""
             },
             "require": {
                 "pear/pear-core-minimal": "^1.10.0alpha2",
-                "php": ">=5.2.0"
+                "php": ">=5.4.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "*"
@@ -11278,7 +11278,7 @@
                 "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Archive_Tar",
                 "source": "https://github.com/pear/Archive_Tar"
             },
-            "time": "2024-03-16T16:21:40+00:00"
+            "time": "2025-07-19T14:49:16+00:00"
         },
         {
             "name": "pear/console_getopt",
@@ -11889,6 +11889,70 @@
                 "source": "https://github.com/sirn-se/phrity-util-errorhandler/tree/1.2.0"
             },
             "time": "2025-05-26T18:26:51+00:00"
+        },
+        {
+            "name": "proj4php/proj4php",
+            "version": "v2.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/proj4php/proj4php.git",
+                "reference": "7be0e5c813d80251154eb1d72384e7cac873737c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/proj4php/proj4php/zipball/7be0e5c813d80251154eb1d72384e7cac873737c",
+                "reference": "7be0e5c813d80251154eb1d72384e7cac873737c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "9.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "proj4php\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "julien2512",
+                    "email": "moquet.julien@gmail.com",
+                    "homepage": "https://github.com/julien2512",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jason Judge",
+                    "email": "jason.judge@academe.co.uk",
+                    "homepage": "http://academe.co.uk",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Nick Blackwell",
+                    "email": "nickblackwell82@gmail.com",
+                    "homepage": "https://people.ok.ubc.ca/nblackwe",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP-Class for geographic coordinates transformation using proj4 definitions, thanks to a translation from Proj4JS",
+            "homepage": "https://github.com/proj4php/proj4php",
+            "keywords": [
+                "coordinates",
+                "geographic",
+                "proj4",
+                "proj4js"
+            ],
+            "support": {
+                "issues": "https://github.com/proj4php/proj4php/issues",
+                "source": "https://github.com/proj4php/proj4php/tree/v2.0.18"
+            },
+            "time": "2025-02-11T19:01:16+00:00"
         },
         {
             "name": "psr/cache",
@@ -12506,16 +12570,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.14.1",
+            "version": "4.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "a28c4a6f5fda2bf730789a638501d7a737a64eda"
+                "reference": "bfeec74303d60d3f8bc33701ab3e86f8a8729f17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/a28c4a6f5fda2bf730789a638501d7a737a64eda",
-                "reference": "a28c4a6f5fda2bf730789a638501d7a737a64eda",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/bfeec74303d60d3f8bc33701ab3e86f8a8729f17",
+                "reference": "bfeec74303d60d3f8bc33701ab3e86f8a8729f17",
                 "shasum": ""
             },
             "require": {
@@ -12579,7 +12643,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.14.1"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.14.2"
             },
             "funding": [
                 {
@@ -12591,7 +12655,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-06-23T15:25:52+00:00"
+            "time": "2025-07-21T08:28:29+00:00"
         },
         {
             "name": "stomp-php/stomp-php",
