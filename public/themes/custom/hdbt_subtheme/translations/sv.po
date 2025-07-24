@@ -56,3 +56,15 @@ msgstr "Vad tycker du om denna nya webbplats? Vi utvecklar den och vill därför
 msgctxt "Helsinki near you"
 msgid "Send feedback"
 msgstr "Ge respons"
+
+msgctxt "Helsinki near you"
+msgid "Street and park projects near you"
+msgstr "Gatu- och parkprojekt nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Browse street and park projects near you."
+msgstr "Bläddra bland gatu- och parkprojekt nära dig"
+
+msgctxt "Helsinki near you"
+msgid "You must enable JavaScript in your browser to view the street and park project list."
+msgstr "Du måste aktivera JavaScript i din webbläsare för att gatu- och parkprojekt listan ska fungera."

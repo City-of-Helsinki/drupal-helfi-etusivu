@@ -28,3 +28,19 @@ helfi_etusivu.helsinki_near_you_events:
     _title: 'Events near you'
   requirements:
     _permission: 'access content'
+
+helfi_etusivu.helsinki_near_you_roadworks:
+  path: '/helsinki-near-you/roadworks'
+  defaults:
+    _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouRoadworksController::content'
+
+  requirements:
+    _permission: 'access content'
+
+helfi_etusivu.helsinki_near_you_roadworks_api:
+  path: '/api/helsinki-near-you/roadworks'
+  defaults:
+    _controller: '\Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController::roadworksApi'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]

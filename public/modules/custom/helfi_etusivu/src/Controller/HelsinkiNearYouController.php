@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\File\FileUrlGeneratorInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Helsinki near you controller.
  */
 final class HelsinkiNearYouController extends ControllerBase implements ContainerInjectionInterface {
+
+  use AutowireTrait;
 
   /**
    * Constructs a new instance.
@@ -22,16 +24,6 @@ final class HelsinkiNearYouController extends ControllerBase implements Containe
     protected readonly FileUrlGeneratorInterface $fileUrlGenerator,
     protected readonly ThemeHandlerInterface $themeHandler,
   ) {
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('file_url_generator'),
-      $container->get('theme_handler'),
-    );
   }
 
   /**
