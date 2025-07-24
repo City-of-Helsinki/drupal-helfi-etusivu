@@ -14,5 +14,6 @@ dependencies:
   - publication_date:publication_date
   - social_media:social_media
   - helfi_platform_config:helfi_paragraphs_number_highlights
+  - helfi_etusivu:helfi_etusivu
 'interface translation project': helfi_node_news_article
 'interface translation server pattern': modules/custom/helfi_node_news_article/translations/%language.po

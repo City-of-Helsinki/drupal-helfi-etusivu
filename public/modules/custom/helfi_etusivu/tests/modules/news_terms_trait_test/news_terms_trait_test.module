@@ -1,0 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\news_terms_trait_test\Entity\NewsTermsTestNode;
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function news_terms_trait_test_entity_type_build(array &$entity_types) {
+  if (isset($entity_types['node'])) {
+    $entity_types['node']->setClass(NewsTermsTestNode::class);
+  }
+}
