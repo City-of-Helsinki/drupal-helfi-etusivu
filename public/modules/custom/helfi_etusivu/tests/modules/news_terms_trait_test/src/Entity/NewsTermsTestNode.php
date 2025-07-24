@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\news_terms_trait_test\Entity;
 
 use Drupal\helfi_etusivu\NewsTermsTrait;
@@ -10,4 +12,5 @@ use Drupal\node\Entity\Node as BaseNode;
  */
 class NewsTermsTestNode extends BaseNode {
   use NewsTermsTrait;
+
 }

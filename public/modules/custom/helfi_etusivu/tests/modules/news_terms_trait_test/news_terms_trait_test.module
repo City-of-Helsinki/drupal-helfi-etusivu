@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @file
+ * This module is used for NewsTermsTraitTest only.
+ */
+
+
 declare(strict_types=1);
 
 use Drupal\news_terms_trait_test\Entity\NewsTermsTestNode;
