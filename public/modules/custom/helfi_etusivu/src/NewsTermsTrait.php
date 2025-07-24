@@ -8,6 +8,7 @@ namespace Drupal\helfi_etusivu;
  * Retrieve news terms from entity.
  */
 trait NewsTermsTrait {
+
   /**
    * Retrieve news terms from entity.
    *
