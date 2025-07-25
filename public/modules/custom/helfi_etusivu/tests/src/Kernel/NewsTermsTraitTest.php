@@ -118,14 +118,19 @@ class NewsTermsTraitTest extends KernelTestBase {
     $term_ids = [$term1->id(), $term2->id()];
     $node = $this->getTestNode($term_ids);
 
+    /** @var \Drupal\news_terms_trait_test\Entity\NewsTermsTestNode $node */
     $this->assertEquals(implode(',', $term_ids), $node->getNewsTerms());
 
     // Test unpublished node returns empty string.
     $unpublished_node = $this->getTestNode($term_ids, FALSE);
+
+    /** @var \Drupal\news_terms_trait_test\Entity\NewsTermsTestNode $unpublished_node */
     $this->assertSame('', $unpublished_node->getNewsTerms());
 
     $node = Node::create(['title' => 'No tags node', 'type' => 'no_tags']);
     $node->save();
+
+    /** @var \Drupal\news_terms_trait_test\Entity\NewsTermsTestNode $node */
     $this->assertSame('', $node->getNewsTerms());
   }
 
