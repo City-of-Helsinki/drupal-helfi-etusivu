@@ -1,0 +1,6 @@
+type: module
+name: New Terms Trait Test
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - helfi_etusivu
