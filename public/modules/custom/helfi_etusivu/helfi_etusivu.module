@@ -477,3 +477,15 @@ function helfi_etusivu_metatags_alter(array &$metatags, array &$context): void {
     $metatags['article_published_time'] = '[updating-news:changed:html_datetime]';
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  if ($node instanceof NewsItem) {
+    $variables['#attached']['drupalSettings']['news_taxonomy_term_ids'] = $node->getNewsTerms();
+  }
+}
