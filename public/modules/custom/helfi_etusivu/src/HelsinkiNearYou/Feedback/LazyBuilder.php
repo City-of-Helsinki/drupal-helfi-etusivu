@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
 
@@ -12,6 +13,12 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
  */
 final readonly class LazyBuilder implements TrustedCallbackInterface {
 
+  /**
+   * Constructs a new instance.
+   *
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\Client $httpClient
+   *   The http client.
+   */
   public function __construct(
     private Client $httpClient,
   ) {
@@ -19,24 +26,51 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
 
   /**
    * A lazy-builder callback.
+   *
+   * @param float $lon
+   *   The lon.
+   * @param float $lat
+   *   The lat.
+   * @param \Drupal\Core\Datetime\DrupalDateTime|null $start_date
+   *   The start date or null.
+   * @param int|null $limit
+   *   The number of items to fetch or null.
+   *
+   * @return array
+   *   The render array.
    */
   public function build(
     float $lon,
     float $lat,
+    ?DrupalDateTime $start_date,
+    ?int $limit,
   ): array {
-    $data = $this->httpClient->get(new Request(
-      lat: $lat,
-      lon: $lon,
-      radius: 0.5,
-      locale: 'fi',
-    ));
+    $data = $this->httpClient
+      ->get(new Request(
+        lat: $lat,
+        lon: $lon,
+        radius: 0.5,
+        limit: $limit,
+        start_date: $start_date,
+      ));
+
     $build = [
       '#cache' => [
         'max-age' => 0,
       ],
-      '#type' => 'markup',
-      '#markup' => '123',
     ];
+
+    foreach ($data as $item) {
+      $build['items'][] = [
+        '#theme' => 'helsinki_near_you_feedback',
+        '#status' => $item->status->label(),
+        '#description' => $item->description,
+        '#uri' => $item->uri,
+        '#title' => $item->title,
+        '#address' => $item->address,
+        '#requested_datetime' => $item->requested_datetime,
+      ];
+    }
     return $build;
   }
 

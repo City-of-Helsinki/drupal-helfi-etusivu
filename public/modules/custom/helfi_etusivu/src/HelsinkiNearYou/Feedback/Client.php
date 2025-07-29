@@ -5,38 +5,37 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback;
 
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Feedback;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
-use Drupal\views\Plugin\views\display\Feed;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
-use Psr\Http\Client\RequestExceptionInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
- * Fetches and processes Feedback data from the Helsinki Open Data API.
- *
- * This service handles communication with the external Feedback data API,
- * including making HTTP requests, error handling, and basic data
- * transformation.
+ * Fetches and processes Feedback data from the Open311 API.
  */
 final readonly class Client {
 
   /**
-   * Constructs a new RoadworkDataClient instance.
+   * Constructs a new instance.
    *
    * @param \GuzzleHttp\ClientInterface $httpClient
    *   The HTTP client.
-   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
-   *   The logger.
    */
   public function __construct(
     private ClientInterface $httpClient,
-    #[Autowire(service: 'logger.channel.helfi_etusivu')] private LoggerChannelInterface $logger,
   ) {
   }
 
+  /**
+   * Constructs a URI for given request object.
+   *
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request $request
+   *   The request object.
+   *
+   * @return string
+   *   The constructed URI.
+   */
   private function getUri(Request $request) : string {
     $uri = 'https://palautteet.hel.fi/public-api/open311-public-service/v1/requests.json';
 
@@ -46,11 +45,30 @@ final readonly class Client {
       'long' => $request->lon,
       // Radius in kilometers.
       'radius' => $request->radius,
-      'locale' => $request->locale,
     ];
+    if ($request->limit) {
+      $query['limit'] = $request->limit;
+    }
+
+    if ($request->start_date) {
+      // The date must be exactly in 2024-05-01T12:00:00Z format.
+      $query['start_date'] = vsprintf('%sT%sZ', [
+        $request->start_date->format('Y-m-d'),
+        $request->start_date->format('H:i:s'),
+      ]);
+    }
     return sprintf('%s?%s', $uri, UrlHelper::buildQuery($query));
   }
 
+  /**
+   * Fetches results from the API.
+   *
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request $request
+   *   The request object.
+   *
+   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Feedback[]
+   *   An array of feedback items.
+   */
   public function get(Request $request) : array {
     try {
       $data = $this->httpClient->request('GET', $this->getUri($request), [
@@ -58,11 +76,18 @@ final readonly class Client {
       ]);
       $json = json_decode($data->getBody()->getContents(), TRUE);
 
-      return array_map(function (array $item) : Feedback {
-        return Feedback::createFromArray($item);
-      }, $json);
+      $map = [];
+      foreach ($json as $item) {
+        try {
+          $map[] = Feedback::createFromArray($item);
+        }
+        catch (\InvalidArgumentException) {
+          continue;
+        }
+      }
+      return $map;
     }
-    catch (RequestExceptionInterface) {
+    catch (GuzzleException) {
     }
     return [];
   }
