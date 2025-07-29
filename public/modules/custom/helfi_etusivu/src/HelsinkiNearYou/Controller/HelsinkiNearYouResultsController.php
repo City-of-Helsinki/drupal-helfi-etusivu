@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Controller;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
@@ -11,6 +11,7 @@ use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
@@ -154,11 +155,23 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ),
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName),
-    // Include roadwork section in the build array.
+      // Include roadwork section in the build array.
       '#roadwork_section' => $roadworkSection,
       '#cache' => [
         'contexts' => ['url.query_args:q'],
         'tags' => ['roadwork_section'],
+      ],
+      '#feedback_section' => [
+        '#create_placeholder' => TRUE,
+        '#lazy_builder_preview' => ['#markup' => ''],
+        '#lazy_builder' => [
+          LazyBuilder::class . ':build',
+          [
+            $lon,
+            $lat,
+            $this->languageManager->getCurrentLanguage()->getId(),
+          ],
+        ],
       ],
     ];
 

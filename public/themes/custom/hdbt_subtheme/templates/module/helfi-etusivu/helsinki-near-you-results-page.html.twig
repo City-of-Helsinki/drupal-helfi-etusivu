@@ -138,6 +138,19 @@
       {% endblock component_content %}
     {% endembed %}
 
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [ 'component--feedback' ],
+        component_title: 'Feedback'|t,
+        component_description: 'Go from the links to the search results for your address.'|t({}, {'context': 'Services near you block'}),
+        component_content_class: 'feedback',
+      }
+    %}
+      {% block component_content %}
+      {{ feedback_section }}
+      {% endblock component_content %}
+    {% endembed %}
+
     {% include '@hdbt_subtheme/module/helfi-etusivu/helsinki-near-you-feedback-block.html.twig' %}
   </div>
 </article>
