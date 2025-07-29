@@ -11,7 +11,6 @@ use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
@@ -25,6 +24,8 @@ use Symfony\Component\HttpFoundation\Request;
  * Helsinki near you controller.
  */
 class HelsinkiNearYouResultsController extends ControllerBase {
+
+  use FeedbackTrait;
 
   /**
    * Constructs a new instance.
@@ -161,20 +162,11 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         'contexts' => ['url.query_args:q'],
         'tags' => ['roadwork_section'],
       ],
-      '#feedback_section' => [
-        '#create_placeholder' => TRUE,
-        '#lazy_builder_preview' => ['#markup' => ''],
-        '#lazy_builder' => [
-          LazyBuilder::class . ':build',
-          [
-            $lon,
-            $lat,
-            $this->languageManager->getCurrentLanguage()->getId(),
-          ],
-        ],
-      ],
+      '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedback', options: [
+        'query' => ['lat' => $lat, 'lon' => $lon, 'q' => $address],
+      ]),
+      '#feedback_section' => $this->buildFeedback($lon, $lat, 3),
     ];
-
     return $build;
   }
 

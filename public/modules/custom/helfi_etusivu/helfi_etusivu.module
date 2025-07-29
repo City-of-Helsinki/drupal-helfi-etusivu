@@ -427,6 +427,7 @@ function helfi_etusivu_theme() : array {
         'news_archive_url' => NULL,
         'roadwork_section' => NULL,
         'feedback_section' => NULL,
+        'feedback_archive_url' => NULL,
       ],
       'template' => 'helsinki-near-you-results-page',
     ],
@@ -447,6 +448,17 @@ function helfi_etusivu_theme() : array {
         'attributes' => [],
         'children' => NULL,
       ],
+    ],
+    'helsinki_near_you_feedback' => [
+      'variables' => [
+        'status' => NULL,
+        'description' => NULL,
+        'uri' => NULL,
+        'title' => NULL,
+        'address' => NULL,
+        'requested_datetime' => NULL,
+      ],
+      'template' => 'helsinki-near-you-feedback',
     ],
     'helsinki_near_you_events' => [
       'variables' => [],
