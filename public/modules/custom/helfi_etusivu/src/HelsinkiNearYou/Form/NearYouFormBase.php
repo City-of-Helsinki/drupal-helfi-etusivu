@@ -11,7 +11,7 @@ use Drupal\Core\Url;
 /**
  * Search form for near you page.
  */
-class NearYouForm extends FormBase {
+abstract class NearYouFormBase extends FormBase {
 
   /**
    * {@inheritdoc}
@@ -21,13 +21,19 @@ class NearYouForm extends FormBase {
   }
 
   /**
+   * Gets the redirect route.
+   *
+   * @return string
+   *   The route.
+   */
+  abstract protected function getRedirectRoute() : string;
+
+  /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, ?string $route = 'helfi_etusivu.helsinki_near_you_results') {
+  public function buildForm(array $form, FormStateInterface $form_state) : array {
     $form['#attributes']['class'][] = 'helfi-etusivu-near-you-form';
     $translation_context = 'Helsinki near you form';
-
-    $form_state->setTemporaryValue('redirect_route', $route);
 
     $form['q'] = [
       '#attached' => [
@@ -91,7 +97,7 @@ class NearYouForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $form_state->setRedirect($form_state->getTemporaryValue('redirect_route'), ['q' => $form_state->getValue('q')]);
+    $form_state->setRedirect($this->getRedirectRoute(), ['q' => $form_state->getValue('q')]);
   }
 
 }

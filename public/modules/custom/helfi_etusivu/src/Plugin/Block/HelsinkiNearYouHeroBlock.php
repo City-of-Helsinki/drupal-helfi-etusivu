@@ -12,7 +12,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Form\NearYouForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageSearchForm;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -108,7 +108,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    */
   private function buildHeroForm() : array {
     $build['helsinki_near_you_hero_block'] = [
-      '#autosuggest_form' => $this->formBuilder->getForm(NearYouForm::class),
+      '#autosuggest_form' => $this->formBuilder->getForm(LandingPageSearchForm::class),
       '#theme' => 'helsinki_near_you_hero_form_block',
       '#result_page_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_results'),
       '#form_item_label' => $this->t('Address', [], ['context' => 'Helsinki near you']),
