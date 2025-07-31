@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Form;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -16,16 +16,18 @@ class NearYouForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function getFormId() {
+  public function getFormId() : string {
     return 'helfi_etusivu_near_you';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state, ?string $route = 'helfi_etusivu.helsinki_near_you_results') {
     $form['#attributes']['class'][] = 'helfi-etusivu-near-you-form';
     $translation_context = 'Helsinki near you form';
+
+    $form_state->setTemporaryValue('redirect_route', $route);
 
     $form['q'] = [
       '#attached' => [
@@ -53,6 +55,7 @@ class NearYouForm extends FormBase {
       '#placeholder' => $this->t('For example, Kotikatu 1', [], ['context' => 'Helsinki near you']),
       '#required' => TRUE,
       '#title' => $this->t('Address'),
+      '#default_value' => $this->getRequest()?->query->get('q', ''),
       '#label_attributes' => [
         'class' => [
           'hds-text-input__label',
@@ -88,7 +91,7 @@ class NearYouForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $form_state->setRedirect('helfi_etusivu.helsinki_near_you_results', ['q' => $form_state->getValue('q')]);
+    $form_state->setRedirect($form_state->getTemporaryValue('redirect_route'), ['q' => $form_state->getValue('q')]);
   }
 
 }

@@ -12,7 +12,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
-use Drupal\helfi_etusivu\Form\NearYouForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Form\NearYouForm;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

@@ -41,7 +41,7 @@ helfi_etusivu.helsinki_near_you_feedbacks:
   path: '/helsinki-near-you/feedbacks'
   defaults:
     _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbacksController::content'
-    _title: 'Feedback near you'
+    _title: 'Search feedbacks near you'
   requirements:
     _permission: 'access content'
 

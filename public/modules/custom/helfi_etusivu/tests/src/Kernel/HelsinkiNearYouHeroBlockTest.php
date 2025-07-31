@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Kernel;
 
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\helfi_etusivu\Plugin\Block\HelsinkiNearYouHeroBlock;
+use Symfony\Component\DependencyInjection\Loader\Configurator\Traits\PropertyTrait;
 
 /**
  * Kernel tests for HelsinkiNearYouHeroBlock.
@@ -14,6 +16,8 @@ use Drupal\helfi_etusivu\Plugin\Block\HelsinkiNearYouHeroBlock;
  * @group helfi_etusivu
  */
 class HelsinkiNearYouHeroBlockTest extends KernelTestBase {
+
+  use PropertyTrait;
 
   /**
    * {@inheritdoc}
@@ -43,6 +47,9 @@ class HelsinkiNearYouHeroBlockTest extends KernelTestBase {
       'provider' => 'helfi_etusivu',
     ];
 
+    $routeMatch = $this->prophesize(RouteMatchInterface::class);
+    $routeMatch->getRouteName()->willReturn('helfi_etusivu.helsinki_near_you');
+    $this->container->set(RouteMatchInterface::class, $routeMatch->reveal());
     /** @var \Drupal\helfi_etusivu\Plugin\Block\HelsinkiNearYouHeroBlock $block */
     $block = HelsinkiNearYouHeroBlock::create($this->container, [], 'helsinki_near_you_hero_block', $plugin_definition);
 
@@ -54,7 +61,7 @@ class HelsinkiNearYouHeroBlockTest extends KernelTestBase {
     $content = $build['helsinki_near_you_hero_block'];
     $this->assertArrayHasKey('#autosuggest_form', $content);
     $this->assertArrayHasKey('#theme', $content);
-    $this->assertEquals('helsinki_near_you_hero_block', $content['#theme']);
+    $this->assertEquals('helsinki_near_you_hero_form_block', $content['#theme']);
 
     $this->assertEquals(Url::fromRoute('helfi_etusivu.helsinki_near_you_results')->toString(), $content['#result_page_url']->toString());
     $this->assertEquals('Address', (string) $content['#form_item_label']);
