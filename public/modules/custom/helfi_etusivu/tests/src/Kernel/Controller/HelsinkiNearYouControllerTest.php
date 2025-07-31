@@ -9,7 +9,7 @@ use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
-use Drupal\helfi_etusivu\Controller\HelsinkiNearYouController;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\HelsinkiNearYouController;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -34,7 +34,7 @@ class HelsinkiNearYouControllerTest extends KernelTestBase {
   /**
    * The controller under test.
    *
-   * @var \Drupal\helfi_etusivu\Controller\HelsinkiNearYouController
+   * @var \Drupal\helfi_etusivu\HelsinkiNearYou\Controller\HelsinkiNearYouController
    */
   protected HelsinkiNearYouController $controller;
 
