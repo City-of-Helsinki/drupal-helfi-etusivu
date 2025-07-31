@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\LazyBuilder;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
 
 /**
  * A trait to manage feedback items.

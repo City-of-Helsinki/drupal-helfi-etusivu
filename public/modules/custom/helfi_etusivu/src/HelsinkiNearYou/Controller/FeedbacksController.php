@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * A controller to list feedback for given coordinates.
  */
-final class FeedbackController extends ControllerBase {
+final class FeedbacksController extends ControllerBase {
 
   use FeedbackTrait;
 
@@ -28,13 +28,24 @@ final class FeedbackController extends ControllerBase {
       // @todo Add back button.
       '#cache' => [
         'contexts' => ['url.query_args:lat', 'url.query_args:lon', 'url.query_args:q'],
-        'tags' => ['feedback_section'],
+        'tags' => ['feedbacks_section'],
       ],
     ];
-    return $build + $this->buildFeedback(
-      (float) $request->get('lon', 0.0),
-      (float) $request->get('lat', 0.0)
-    );
+
+    $lat = $request->query->get('lat');
+    $lon = $request->query->get('lon');
+
+    if ($lat && $lon) {
+      return $build + $this->buildFeedback(
+          (float) $lon,
+          (float) $lat,
+        );
+    }
+    return $build + [
+      '#theme' => 'helsinki_near_you_landing_page',
+      '#title' => $this->t('Search feedbacks by entering your street address', [], ['context' => 'Helsinki near you']),
+    ];
+
   }
 
 }

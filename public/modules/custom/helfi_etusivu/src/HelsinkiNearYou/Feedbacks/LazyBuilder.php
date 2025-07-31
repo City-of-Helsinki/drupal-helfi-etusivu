@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Security\TrustedCallbackInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
 
 /**
  * A lazy builder for Feedback block.
@@ -16,7 +16,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   /**
    * Constructs a new instance.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\Client $httpClient
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\Client $httpClient
    *   The http client.
    */
   public function __construct(
@@ -62,7 +62,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
 
     foreach ($data as $item) {
       $build['items'][] = [
-        '#theme' => 'helsinki_near_you_feedback',
+        '#theme' => 'helsinki_near_you_feedback_item',
         '#status' => $item->status->label(),
         '#description' => $item->description,
         '#uri' => $item->uri,
