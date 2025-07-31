@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Form\NearYouForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -13,6 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
 final class FeedbacksController extends ControllerBase {
 
   use FeedbackTrait;
+
+  public function __construct(private ServiceMapInterface $serviceMap, FormBuilderInterface $formBuilder) {
+    $this->formBuilder = $formBuilder;
+  }
 
   /**
    * A controller callback for feedback route.
@@ -25,27 +32,39 @@ final class FeedbacksController extends ControllerBase {
    */
   public function content(Request $request) : array {
     $build = [
-      // @todo Add back button.
       '#cache' => [
-        'contexts' => ['url.query_args:lat', 'url.query_args:lon', 'url.query_args:q'],
+        'contexts' => ['url.query_args:q'],
         'tags' => ['feedbacks_section'],
       ],
+      'autosuggest_form' => $this->formBuilder()
+        ->getForm(NearYouForm::class, 'helfi_etusivu.helsinki_near_you_feedbacks'),
     ];
 
-    $lat = $request->query->get('lat');
-    $lon = $request->query->get('lon');
+    $address = $request->query->get('q', '');
+    $addressData = $this->serviceMap->getAddressData(urldecode($address));
+
+    if (!$addressData) {
+      $this->messenger()->addError(
+        $this->t(
+          'Make sure the address is written correctly. You can also search using a nearby street number.',
+          [],
+          ['context' => 'React search: Address not found hint']
+        )
+      );
+
+      return $build;
+    }
+    [$lon, $lat] = $addressData['coordinates'];
 
     if ($lat && $lon) {
-      return $build + $this->buildFeedback(
+      $build['feedback'] = $this->buildFeedback(
           (float) $lon,
           (float) $lat,
         );
+      return $build;
     }
-    return $build + [
-      '#theme' => 'helsinki_near_you_landing_page',
-      '#title' => $this->t('Search feedbacks by entering your street address', [], ['context' => 'Helsinki near you']),
-    ];
 
+    return $build;
   }
 
 }
