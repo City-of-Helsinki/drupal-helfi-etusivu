@@ -6,7 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Form\FormBuilderInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Form\NearYouForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Form\FeedbacksSearchForm;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -36,8 +36,8 @@ final class FeedbacksController extends ControllerBase {
         'contexts' => ['url.query_args:q'],
         'tags' => ['feedbacks_section'],
       ],
-      'autosuggest_form' => $this->formBuilder()
-        ->getForm(NearYouForm::class, 'helfi_etusivu.helsinki_near_you_feedbacks'),
+      'autosuggest_form' => $this->formBuilder
+        ->getForm(FeedbacksSearchForm::class),
     ];
 
     $address = $request->query->get('q', '');
