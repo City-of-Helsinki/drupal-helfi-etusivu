@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO;
 
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -15,7 +15,7 @@ final readonly class Feedback {
   /**
    * Constructs a new instance.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Status $status
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Status $status
    *   The status.
    * @param string $description
    *   The description.

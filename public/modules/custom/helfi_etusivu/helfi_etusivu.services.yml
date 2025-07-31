@@ -32,5 +32,5 @@ services:
 
   Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber: ~
 
-  Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\Client: ~
-  Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\LazyBuilder: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\Client: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder: ~

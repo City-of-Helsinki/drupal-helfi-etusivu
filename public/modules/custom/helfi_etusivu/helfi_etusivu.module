@@ -409,13 +409,6 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-roadworks',
     ],
-    'helsinki_near_you_roadworks_hero_block' => [
-      'variables' => [
-        'hero_title' => NULL,
-        'hero_description' => NULL,
-      ],
-      'template' => 'helsinki-near-you-roadworks-hero-block',
-    ],
     'helsinki_near_you_results_page' => [
       'variables' => [
         'back_link_label' => NULL,
@@ -431,7 +424,7 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-results-page',
     ],
-    'helsinki_near_you_hero_block' => [
+    'helsinki_near_you_hero_form_block' => [
       'variables' => [
         'result_page_url' => NULL,
         'form_item_label' => NULL,
@@ -441,7 +434,7 @@ function helfi_etusivu_theme() : array {
         'hero_description' => NULL,
         'autosuggest_form' => NULL,
       ],
-      'template' => 'helsinki-near-you-hero-block',
+      'template' => 'helsinki-near-you-hero-form-block',
     ],
     'helfi_etusivu_autocomplete' => [
       'variables' => [
@@ -449,7 +442,7 @@ function helfi_etusivu_theme() : array {
         'children' => NULL,
       ],
     ],
-    'helsinki_near_you_feedback' => [
+    'helsinki_near_you_feedback_item' => [
       'variables' => [
         'status' => NULL,
         'description' => NULL,
@@ -458,18 +451,18 @@ function helfi_etusivu_theme() : array {
         'address' => NULL,
         'requested_datetime' => NULL,
       ],
-      'template' => 'helsinki-near-you-feedback',
+      'template' => 'helsinki-near-you-feedback-item',
     ],
     'helsinki_near_you_events' => [
       'variables' => [],
       'template' => 'helsinki-near-you-events',
     ],
-    'helsinki_near_you_events_hero_block' => [
+    'helsinki_near_you_hero_block' => [
       'variables' => [
         'hero_title' => NULL,
         'hero_description' => NULL,
       ],
-      'template' => 'helsinki-near-you-events-hero-block',
+      'template' => 'helsinki-near-you-hero-block',
     ],
   ];
 }

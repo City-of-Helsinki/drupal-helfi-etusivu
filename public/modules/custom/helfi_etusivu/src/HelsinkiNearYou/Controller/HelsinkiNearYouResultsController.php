@@ -162,7 +162,7 @@ class HelsinkiNearYouResultsController extends ControllerBase {
         'contexts' => ['url.query_args:q'],
         'tags' => ['roadwork_section'],
       ],
-      '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedback', options: [
+      '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
         'query' => ['lat' => $lat, 'lon' => $lon, 'q' => $address],
       ]),
       '#feedback_section' => $this->buildFeedback($lon, $lat, 3),

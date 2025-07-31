@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks;
 
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Feedback;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Feedback;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
@@ -30,7 +30,7 @@ final readonly class Client {
   /**
    * Constructs a URI for given request object.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request $request
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request $request
    *   The request object.
    *
    * @return string
@@ -63,10 +63,10 @@ final readonly class Client {
   /**
    * Fetches results from the API.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request $request
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request $request
    *   The request object.
    *
-   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Feedback[]
+   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Feedback[]
    *   An array of feedback items.
    */
   public function get(Request $request) : array {

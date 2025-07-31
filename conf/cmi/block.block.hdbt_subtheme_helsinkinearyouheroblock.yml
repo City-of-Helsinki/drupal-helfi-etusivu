@@ -22,4 +22,4 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    pages: "/helsinki-near-you\r\n/helsinki-lahellasi\r\n/helsingfors-nara-dig"
+    pages: "/helsinki-near-you\r\n/helsinki-near-you/*"

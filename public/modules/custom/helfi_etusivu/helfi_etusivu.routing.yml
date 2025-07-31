@@ -33,13 +33,15 @@ helfi_etusivu.helsinki_near_you_roadworks:
   path: '/helsinki-near-you/roadworks'
   defaults:
     _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\RoadworksController::content'
+    _title: 'Street and park projects near you'
   requirements:
     _permission: 'access content'
 
-helfi_etusivu.helsinki_near_you_feedback:
-  path: '/helsinki-near-you/feedback'
+helfi_etusivu.helsinki_near_you_feedbacks:
+  path: '/helsinki-near-you/feedbacks'
   defaults:
-    _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbackController::content'
+    _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbacksController::content'
+    _title: 'Feedback near you'
   requirements:
     _permission: 'access content'
 
