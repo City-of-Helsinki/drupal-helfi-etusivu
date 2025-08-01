@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_node_news_article\Entity\Node;
 
+use Drupal\helfi_etusivu\NewsTermsTrait;
 use Drupal\node\Entity\Node;
 
 /**
  * A bundle class for News article -node.
  */
 final class NewsArticle extends Node {
+
+  use NewsTermsTrait;
 
   /**
    * Get human-readable "published at" time of the News article.

@@ -251,3 +251,15 @@ function helfi_node_news_article_block_access(Block $block, $operation, AccountI
 
   return AccessResult::neutral();
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_node_news_article_preprocess_node__news_article(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  if ($node instanceof NewsArticle) {
+    $variables['#attached']['drupalSettings']['news_taxonomy_term_ids'] = $node->getNewsTerms();
+  }
+}

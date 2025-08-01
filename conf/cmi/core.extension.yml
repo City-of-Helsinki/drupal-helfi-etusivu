@@ -18,8 +18,8 @@ module:
   consumer_image_styles: 0
   consumers: 0
   content_lock: 0
-  content_lock_timeout: 0
   crop: 0
+  csp: 0
   datetime: 0
   diff: 0
   draggableviews: 0

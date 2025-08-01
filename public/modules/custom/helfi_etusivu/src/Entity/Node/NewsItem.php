@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\Entity\Node;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
+use Drupal\helfi_etusivu\NewsTermsTrait;
 use Drupal\radioactivity\RadioactivityInterface;
 use Drupal\node\Entity\Node;
 
@@ -14,6 +15,8 @@ use Drupal\node\Entity\Node;
  * A bundle class for NewsItem -node.
  */
 final class NewsItem extends Node {
+
+  use NewsTermsTrait;
 
   /**
    * {@inheritdoc}
