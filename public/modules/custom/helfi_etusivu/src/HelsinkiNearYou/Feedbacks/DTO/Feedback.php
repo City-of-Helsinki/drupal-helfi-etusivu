@@ -56,11 +56,23 @@ final readonly class Feedback {
   public static function createFromArray(array $data) : self {
     $item = [];
 
-    foreach (['description', 'lat', 'long', 'address'] as $key) {
+    $required = [
+      'description',
+      'lat',
+      'long',
+      'address',
+      'requested_datetime',
+      'service_request_id',
+      'status',
+    ];
+    foreach ($required as $key) {
       if (!isset($data[$key])) {
         throw new \InvalidArgumentException(sprintf('Missing %s', $key));
       }
-      $item[$key] = $data[$key];
+    }
+
+    foreach (['description', 'lat', 'long', 'address'] as $key) {
+      $item[$key] = (string) $data[$key];
     }
 
     $item['uri'] = sprintf('https://palautteet.hel.fi/kartalla-julkaistu-palaute#/published/%s', $data['service_request_id']);
@@ -70,13 +82,10 @@ final readonly class Feedback {
     if ($item['status'] === NULL) {
       $item['status'] = Status::Unknown;
     }
-
-    if (isset($data['requested_datetime'])) {
-      $item['requested_datetime'] = new DrupalDateTime($data['requested_datetime']);
-    }
-
-    // Use description as a fallback title.
-    $item['title'] = Unicode::truncate($item['description'], 255, add_ellipsis: TRUE);
+    // Override requested_datetime with proper datetime.
+    $item['requested_datetime'] = new DrupalDateTime($data['requested_datetime']);
+    // Use description as a fallback title and truncate it to 255 characters.
+    $item['title'] = Unicode::truncate($item['description'], 253, add_ellipsis: TRUE);
 
     if (isset($data['extended_attributes']['title'])) {
       $item['title'] = $data['extended_attributes']['title'];

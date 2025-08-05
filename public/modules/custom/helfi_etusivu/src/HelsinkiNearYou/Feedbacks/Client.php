@@ -77,7 +77,7 @@ final readonly class Client {
       $json = json_decode($data->getBody()->getContents(), TRUE);
 
       $map = [];
-      foreach ($json as $item) {
+      foreach ($json ?? [] as $item) {
         try {
           $map[] = Feedback::createFromArray($item);
         }

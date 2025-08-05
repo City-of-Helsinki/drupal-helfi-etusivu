@@ -29,7 +29,7 @@ final readonly class Request {
     public float $lat,
     public float $lon,
     public float $radius,
-    public ?int $limit,
+    public ?int $limit = NULL,
     public ?DrupalDateTime $start_date = NULL,
   ) {
   }
