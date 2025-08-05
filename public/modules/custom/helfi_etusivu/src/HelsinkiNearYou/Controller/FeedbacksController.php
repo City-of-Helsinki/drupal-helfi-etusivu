@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\FeedbacksSearchForm;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,8 +18,13 @@ final class FeedbacksController extends ControllerBase {
 
   use FeedbackTrait;
 
-  public function __construct(private ServiceMapInterface $serviceMap, FormBuilderInterface $formBuilder) {
+  public function __construct(
+    private ServiceMapInterface $serviceMap,
+    FormBuilderInterface $formBuilder,
+    MessengerInterface $messenger,
+  ) {
     $this->formBuilder = $formBuilder;
+    $this->messenger = $messenger;
   }
 
   /**
