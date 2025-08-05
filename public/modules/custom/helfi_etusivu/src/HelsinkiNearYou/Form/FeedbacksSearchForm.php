@@ -7,7 +7,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Form;
 /**
  * Search form for Feedbacks page.
  */
-class FeedbacksSearchForm extends NearYouFormBase {
+class FeedbacksSearchForm extends SearchFormBase {
 
   /**
    * {@inheritdoc}

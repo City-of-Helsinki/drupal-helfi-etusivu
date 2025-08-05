@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Helsinki near you controller.
  */
-class HelsinkiNearYouResultsController extends ControllerBase {
+class ResultsController extends ControllerBase {
 
   use FeedbackTrait;
 

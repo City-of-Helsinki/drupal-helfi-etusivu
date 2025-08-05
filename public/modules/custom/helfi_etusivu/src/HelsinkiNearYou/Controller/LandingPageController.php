@@ -13,7 +13,7 @@ use Drupal\Core\File\FileUrlGeneratorInterface;
 /**
  * Helsinki near you controller.
  */
-final class HelsinkiNearYouController extends ControllerBase implements ContainerInjectionInterface {
+final class LandingPageController extends ControllerBase implements ContainerInjectionInterface {
 
   use AutowireTrait;
 

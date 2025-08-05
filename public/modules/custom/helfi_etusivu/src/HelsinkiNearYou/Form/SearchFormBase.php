@@ -11,7 +11,7 @@ use Drupal\Core\Url;
 /**
  * Search form for near you page.
  */
-abstract class NearYouFormBase extends FormBase {
+abstract class SearchFormBase extends FormBase {
 
   /**
    * {@inheritdoc}

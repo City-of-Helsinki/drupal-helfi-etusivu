@@ -7,7 +7,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Form;
 /**
  * Search form for near you page.
  */
-class LandingPageSearchForm extends NearYouFormBase {
+class LandingPageSearchForm extends SearchFormBase {
 
   /**
    * {@inheritdoc}
