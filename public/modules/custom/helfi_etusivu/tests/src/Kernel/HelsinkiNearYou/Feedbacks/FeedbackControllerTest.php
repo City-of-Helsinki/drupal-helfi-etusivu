@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedback;
+namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedbacks;
 
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbacksController;

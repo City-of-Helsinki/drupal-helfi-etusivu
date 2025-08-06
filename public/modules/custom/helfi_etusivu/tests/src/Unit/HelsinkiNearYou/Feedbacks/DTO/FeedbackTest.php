@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Unit\HelsinkiNearYou\Feedbacks;
+namespace Drupal\Tests\helfi_etusivu\Unit\HelsinkiNearYou\Feedbacks\DTO;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Language\Language;
