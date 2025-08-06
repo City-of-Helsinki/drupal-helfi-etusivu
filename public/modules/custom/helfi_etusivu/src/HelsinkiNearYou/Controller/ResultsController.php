@@ -163,7 +163,7 @@ class ResultsController extends ControllerBase {
         'tags' => ['roadwork_section'],
       ],
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
-        'query' => ['lat' => $lat, 'lon' => $lon, 'q' => $address],
+        'query' => ['q' => $address],
       ]),
       '#feedback_section' => $this->buildFeedback($lon, $lat, 3),
     ];

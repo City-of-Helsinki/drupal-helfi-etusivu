@@ -50,6 +50,7 @@ final readonly class Client {
       $query['limit'] = $request->limit;
     }
 
+    // @todo Start date filter is broken at the moment.
     if ($request->start_date) {
       // The date must be exactly in 2024-05-01T12:00:00Z format.
       $query['start_date'] = vsprintf('%sT%sZ', [

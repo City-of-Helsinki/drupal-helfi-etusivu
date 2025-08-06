@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
 
 /**
@@ -34,8 +33,8 @@ trait FeedbackTrait {
         [
           $lon,
           $lat,
-          // Don't show feedback older than 6 months.
-          new DrupalDateTime('-6 months'),
+          // @todo Add date filter back once it works.
+          NULL,
           $limit,
         ],
       ],
