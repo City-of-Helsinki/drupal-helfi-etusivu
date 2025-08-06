@@ -138,6 +138,28 @@
       {% endblock component_content %}
     {% endembed %}
 
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [ 'component--feedback' ],
+        component_title: 'Feedback'|t,
+        component_description: '',
+        component_content_class: 'feedback',
+      }
+    %}
+      {% block component_content %}
+      {{ feedback_section }}
+
+        <div class="see-all-button see-all-button--feedback-results">
+          {% set feedback_archive_title = 'See all feedback near you'|t({}, {'context': 'Feedback close to you block'}) %}
+          {% include '@hdbt/navigation/link-button.html.twig' with {
+            type: 'primary',
+            label: feedback_archive_title,
+            url: feedback_archive_url,
+          } %}
+        </div>
+      {% endblock component_content %}
+    {% endembed %}
+
     {% include '@hdbt_subtheme/module/helfi-etusivu/helsinki-near-you-feedback-block.html.twig' %}
   </div>
 </article>

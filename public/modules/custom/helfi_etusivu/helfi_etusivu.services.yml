@@ -31,3 +31,6 @@ services:
   Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService'
 
   Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber: ~
+
+  Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\Client: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder: ~

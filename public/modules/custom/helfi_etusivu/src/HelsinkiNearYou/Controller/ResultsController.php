@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Controller;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
@@ -23,7 +23,9 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Helsinki near you controller.
  */
-class HelsinkiNearYouResultsController extends ControllerBase {
+class ResultsController extends ControllerBase {
+
+  use FeedbackTrait;
 
   /**
    * Constructs a new instance.
@@ -154,14 +156,17 @@ class HelsinkiNearYouResultsController extends ControllerBase {
       ),
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName),
-    // Include roadwork section in the build array.
+      // Include roadwork section in the build array.
       '#roadwork_section' => $roadworkSection,
       '#cache' => [
         'contexts' => ['url.query_args:q'],
         'tags' => ['roadwork_section'],
       ],
+      '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
+        'query' => ['q' => $address],
+      ]),
+      '#feedback_section' => $this->buildFeedback($lon, $lat, 3),
     ];
-
     return $build;
   }
 

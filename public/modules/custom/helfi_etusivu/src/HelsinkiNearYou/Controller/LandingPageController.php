@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Controller;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
@@ -13,7 +13,7 @@ use Drupal\Core\File\FileUrlGeneratorInterface;
 /**
  * Helsinki near you controller.
  */
-final class HelsinkiNearYouController extends ControllerBase implements ContainerInjectionInterface {
+final class LandingPageController extends ControllerBase implements ContainerInjectionInterface {
 
   use AutowireTrait;
 

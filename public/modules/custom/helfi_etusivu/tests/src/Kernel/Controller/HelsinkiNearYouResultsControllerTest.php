@@ -10,7 +10,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\external_entities\Entity\Query\External\Query;
-use Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap;
@@ -42,7 +42,7 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
   /**
    * The controller to test.
    */
-  protected HelsinkiNearYouResultsController $controller;
+  protected ResultsController $controller;
 
   /**
    * Mocked ServiceMap.
@@ -66,7 +66,7 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
     $entityTypeManager = $this->createMock(EntityTypeManager::class);
     $this->roadworkDataService = $this->createMock(RoadworkDataServiceInterface::class);
 
-    $this->controller = new HelsinkiNearYouResultsController(
+    $this->controller = new ResultsController(
       $this->serviceMap,
       $this->createMock(LinkedEvents::class),
       $this->roadworkDataService,
