@@ -66,6 +66,7 @@ final class FeedbacksController extends ControllerBase {
       $build['feedback'] = $this->buildFeedback(
           (float) $lon,
           (float) $lat,
+          50,
         );
       return $build;
     }
