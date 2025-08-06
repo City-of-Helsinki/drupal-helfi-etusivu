@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Controller;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
@@ -10,7 +10,7 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 /**
  * Events near you landing page controller.
  */
-class HelsinkiNearYouEventsController extends ControllerBase {
+class EventsController extends ControllerBase {
 
   /**
    * Constructs a new instance.
