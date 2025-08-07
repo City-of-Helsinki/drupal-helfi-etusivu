@@ -90,6 +90,8 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
         'outputFormat' => 'application/json',
       ];
 
+      $url = $baseUrl . '?' . http_build_query($query);
+
       $response = $this->httpClient->request('GET', $baseUrl, [
         'query' => $query,
         'timeout' => 30,
