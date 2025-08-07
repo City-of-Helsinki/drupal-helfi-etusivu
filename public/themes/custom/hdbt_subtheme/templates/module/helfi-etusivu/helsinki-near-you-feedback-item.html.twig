@@ -4,8 +4,8 @@
   card_url: uri,
   card_url_external: true,
   card_category_tag: {
-    tag: status,
-    color: status_ready ? 'success' : '',
+    tag: status.label,
+    color: status.value == 'READY' ? 'success' : '',
   },
   card_metas: [
     {
