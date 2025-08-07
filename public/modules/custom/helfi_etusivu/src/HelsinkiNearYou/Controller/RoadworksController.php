@@ -7,7 +7,9 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -24,7 +26,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface
  * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
  */
-class RoadworksController extends ControllerBase {
+final class RoadworksController extends ControllerBase {
 
   use AutowireTrait;
 
@@ -32,10 +34,9 @@ class RoadworksController extends ControllerBase {
    * Constructs a new instance.
    */
   public function __construct(
-    protected readonly ServiceMapInterface $serviceMap,
-    LanguageManagerInterface $languageManager,
+    private readonly ServiceMapInterface $serviceMap,
+    private readonly LazyBuilder $lazyBuilder,
   ) {
-    $this->languageManager = $languageManager;
   }
 
   /**
@@ -88,6 +89,43 @@ class RoadworksController extends ControllerBase {
       ],
       '#theme' => 'helsinki_near_you_roadworks',
     ];
+  }
+
+  /**
+   * JSON API endpoint for roadworks data.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   JSON response with roadworks data.
+   */
+  public function api(Request $request): JsonResponse {
+    // Get coordinates and address from query parameters.
+    $lat = (float) $request->query->get('lat', 0.0);
+    $lon = (float) $request->query->get('lon', 0.0);
+    $address = $request->query->get('q', '');
+
+    if (!$lat || !$lon) {
+      return new JsonResponse([
+        'data' => [],
+        'meta' => [
+          'count' => 0,
+          'error' => 'No coordinates provided',
+        ],
+      ], 400);
+    }
+
+    $roadworkData = $this->lazyBuilder->build($lat, $lon, urldecode($address));
+
+    return new JsonResponse([
+      'data' => $roadworkData['projects'] ?? [],
+      'meta' => [
+        'count' => count($roadworkData['projects'] ?? []),
+        'title' => $roadworkData['title'] ?? '',
+        'see_all_url' => $roadworkData['see_all_url'] ?? '',
+      ],
+    ]);
   }
 
 }

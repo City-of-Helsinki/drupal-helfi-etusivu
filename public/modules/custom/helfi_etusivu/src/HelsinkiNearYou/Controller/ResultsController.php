@@ -11,6 +11,7 @@ use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder as RoadworkLazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
@@ -100,9 +101,7 @@ class ResultsController extends ControllerBase {
     // Array format: [longitude, latitude] per GeoJSON specification.
     [$lon, $lat] = $addressData['coordinates'];
 
-    $roadworkSection = $this->buildRoadworkSection($request, $lat, $lon, $address);
-
-    $build = [
+    return [
     // Set the theme for the results page.
       '#theme' => 'helsinki_near_you_results_page',
       '#attached' => [
@@ -156,8 +155,18 @@ class ResultsController extends ControllerBase {
       ),
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName),
-      // Include roadwork section in the build array.
-      '#roadwork_section' => $roadworkSection,
+      '#roadwork_section' => [
+        '#create_placeholder' => TRUE,
+        '#lazy_builder_preview' => ['#markup' => ''],
+        '#lazy_builder' => [
+          RoadworkLazyBuilder::class . ':build',
+          [
+            $lon,
+            $lat,
+            $address,
+          ],
+        ],
+      ],
       '#cache' => [
         'contexts' => ['url.query_args:q'],
         'tags' => ['roadwork_section'],
@@ -167,137 +176,6 @@ class ResultsController extends ControllerBase {
       ]),
       '#feedback_section' => $this->buildFeedback($lon, $lat, 3),
     ];
-    return $build;
-  }
-
-  /**
-   * JSON API endpoint for roadworks data.
-   *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The request.
-   *
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
-   *   JSON response with roadworks data.
-   */
-  public function roadworksApi(Request $request): JsonResponse {
-    // Get coordinates and address from query parameters.
-    $lat = (float) $request->query->get('lat', 0.0);
-    $lon = (float) $request->query->get('lon', 0.0);
-    $address = $request->query->get('q', '');
-
-    if (!$lat || !$lon) {
-      return new JsonResponse([
-        'data' => [],
-        'meta' => [
-          'count' => 0,
-          'error' => 'No coordinates provided',
-        ],
-      ], 400);
-    }
-
-    $roadworkData = $this->buildRoadworkSection($request, $lat, $lon, $address);
-
-    return new JsonResponse([
-      'data' => $roadworkData['projects'] ?? [],
-      'meta' => [
-        'count' => count($roadworkData['projects'] ?? []),
-        'title' => $roadworkData['title'] ?? '',
-        'see_all_url' => $roadworkData['see_all_url'] ?? '',
-      ],
-    ]);
-  }
-
-  /**
-   * Builds the roadwork section.
-   *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The request.
-   * @param float $lat
-   *   The latitude in WGS84.
-   * @param float $lon
-   *   The longitude in WGS84.
-   * @param string $address
-   *   The address string for 'See all' link.
-   *
-   * @return array
-   *   The roadwork project data array.
-   */
-  public function buildRoadworkSection(Request $request, float $lat, float $lon, string $address = ''): array {
-    try {
-      // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
-      // which is required by the roadwork data service.
-      $convertedCoords = $this->coordinateConversionService->wgs84ToEtrsGk25($lat, $lon);
-
-      if (!$convertedCoords) {
-        throw new \RuntimeException('Failed to convert coordinates to ETRS-GK25');
-      }
-
-      // Fetch roadwork projects within 1km radius of the converted coordinates.
-      // Note: Parameters are in ETRS-GK25 projection (EPSG:3879) where:
-      // - First parameter is northing (y-coordinate)
-      // - Second parameter is easting (x-coordinate)
-      // - Third parameter is search radius in meters.
-      $projects = $this->roadworkDataService->getFormattedProjectsByCoordinates(
-      // Northing (y-coordinate)
-        $convertedCoords['y'],
-      // Easting (x-coordinate)
-        $convertedCoords['x'],
-      // 1000 meters = 1km radius.
-        1000
-      ) ?? [];
-
-      foreach ($projects as &$project) {
-        if (!isset($project['coordinates'])) {
-          continue;
-        }
-
-        $convertedProjectCoords = $this->coordinateConversionService->etrsGk25ToWgs84(
-          $project['coordinates'][0],
-          $project['coordinates'][1],
-        );
-
-        if ($convertedProjectCoords) {
-          $project['coordinates'] = [
-            'lat' => $convertedProjectCoords['y'],
-            'lon' => $convertedProjectCoords['x'],
-          ];
-        }
-        else {
-          unset($project['coordinates']);
-        }
-      }
-
-      $title = $this->roadworkDataService->getSectionTitle();
-
-      // Use provided address for 'See all' link, or get from request if not
-      // provided.
-      if (empty($address)) {
-        $address = $request->query->get('q', '');
-      }
-
-      return [
-        'title' => $title,
-        'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)
-          ->toString(),
-        'projects' => $projects,
-      ];
-
-    }
-    catch (\Exception) {
-      // Return empty results structure on error to prevent page breakage
-      // Use provided address for 'See all' link, or get from request if not
-      // provided.
-      if (empty($address)) {
-        $address = $request->query->get('q', '');
-      }
-
-      return [
-        'title' => $this->roadworkDataService->getSectionTitle(),
-        'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)
-          ->toString(),
-        'projects' => [],
-      ];
-    }
   }
 
   /**

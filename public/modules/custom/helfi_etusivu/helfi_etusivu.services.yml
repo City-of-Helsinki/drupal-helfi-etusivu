@@ -17,6 +17,7 @@ services:
   # Roadwork data services
   Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService: ~
 
+  Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder: ~
   # Roadwork data client service.
   # Handles communication with the external roadwork data API.
   Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient: ~
