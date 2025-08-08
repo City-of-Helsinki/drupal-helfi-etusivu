@@ -460,8 +460,8 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'autosuggest_form' => NULL,
         'feedback' => NULL,
-      ]
-    ]
+      ],
+    ],
   ];
 }
 
