@@ -41,7 +41,7 @@ class FeedbackControllerTest extends KernelTestBase {
     $messenger = $this->container->get(MessengerInterface::class);
     $response = FeedbacksController::create($this->container)->content($mockRequest);
 
-    $this->assertIsArray($response['autosuggest_form']);
+    $this->assertIsArray($response['#autosuggest_form']);
     $this->assertArrayNotHasKey('feedback', $response);
     $messages = $messenger->messagesByType(MessengerInterface::TYPE_ERROR);
     $this->assertCount(1, $messages);
@@ -67,8 +67,8 @@ class FeedbackControllerTest extends KernelTestBase {
     $this->container->set(ServiceMapInterface::class, $serviceMapMock->reveal());
     $response = FeedbacksController::create($this->container)->content($mockRequest);
 
-    $this->assertIsArray($response['autosuggest_form']);
-    $this->assertArrayHasKey('feedback', $response);
+    $this->assertIsArray($response['#autosuggest_form']);
+    $this->assertArrayHasKey('#feedback', $response);
   }
 
 }
