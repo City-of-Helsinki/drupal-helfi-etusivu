@@ -1,0 +1,19 @@
+<article>
+  <div class="components components--computed components--helsinki-near-you-feedback-page">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--react-search',
+        'component--full-width',
+      ],
+        component_title: 'Roadworks near you'|t({}, {'context': 'Helsinki near you'}),
+        component_description: 'Browse roadworks near you or search for roadworks by location.'|t({}, {'context': 'Helsinki near you'}),
+      }
+    %}
+      {% block component_content %}
+        {{ autosuggest_form }}
+        {{ feedback }}
+      {% endblock %}
+    {% endembed %}
+  </div>
+</article>
