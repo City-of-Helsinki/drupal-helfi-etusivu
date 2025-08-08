@@ -94,8 +94,8 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    *   The hero title.
    * @param \Drupal\Core\StringTranslation\TranslatableMarkup $description
    *   The hero description.
-   * @param boolean $first_paragrap_gray
-   *    Tells template if the first paragraph has gray bg.
+   * @param bool $first_paragrap_gray
+   *   Tells template if the first paragraph has gray bg.
    * @param array $form
    *   The hero form.
    *
