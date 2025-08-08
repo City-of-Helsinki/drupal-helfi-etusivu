@@ -32,7 +32,7 @@ abstract class SearchFormBase extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) : array {
-    $form['#attributes']['class'][] = 'helfi-etusivu-near-you-form';
+    $form['#attributes']['class'][] = 'helfi-etusivu-near-you-form hdbt-search__form-container';
     $translation_context = 'Helsinki near you form';
 
     $form['q'] = [
@@ -60,7 +60,7 @@ abstract class SearchFormBase extends FormBase {
       '#autocomplete_route_name' => 'helfi_etusivu.helsinki_near_you_autocomplete',
       '#placeholder' => $this->t('For example, Kotikatu 1', [], ['context' => 'Helsinki near you']),
       '#required' => TRUE,
-      '#title' => $this->t('Address'),
+      '#title' => $this->t('Home address', [], ['context' => 'Helsinki near you']),
       '#default_value' => $this->getRequest()?->query->get('q', ''),
       '#label_attributes' => [
         'class' => [
@@ -72,6 +72,7 @@ abstract class SearchFormBase extends FormBase {
       '#wrapper_attributes' => [
         'class' => [
           'hds-text-input',
+          'hdbt-search__filter',
           'helfi-etusivu-near-you-form__address-input',
         ],
       ],
@@ -83,7 +84,7 @@ abstract class SearchFormBase extends FormBase {
         'class' => [
           'hds-button',
           'hds-button--primary',
-          'helfi-search__submit-button',
+          'hdbt__form-submit',
         ],
       ],
       '#type' => 'submit',

@@ -297,6 +297,26 @@ msgctxt "Helsinki near you status label"
 msgid "Unknown"
 msgstr "Okänd"
 
+msgctxt "Helsinki near you"
+msgid "Home address"
+msgstr "Hemadress"
+
+msgctxt "Helsinki near you"
+msgid "Search feedback near you"
+msgstr "Sök feedback nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Browse feedback near you or search for feedback by location."
+msgstr "Bläddra bland feedback nära dig eller sök efter feedback baserat på plats."
+
+msgctxt "Helsinki near you"
+msgid "Feedback near you"
+msgstr "Feedback nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Find feedback in your neighbourhood."
+msgstr "Hitta feedback i ditt närområde."
+
 msgid "Arabic"
 msgstr "Arabiska"
 

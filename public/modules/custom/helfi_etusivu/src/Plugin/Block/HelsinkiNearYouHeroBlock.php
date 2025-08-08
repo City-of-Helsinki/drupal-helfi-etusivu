@@ -73,8 +73,8 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
         true,
       ),
       'helfi_etusivu.helsinki_near_you_feedbacks' => $this->buildHero(
-        $this->t('Feedbacks near you', [], ['context' => 'Helsinki near you']),
-        $this->t('Find feedbacks in your neighbourhood.', [], ['context' => 'Helsinki near you feedbacks search']),
+        $this->t('Feedback near you', [], ['context' => 'Helsinki near you']),
+        $this->t('Find feedback in your neighbourhood.', [], ['context' => 'Helsinki near you']),
         true,
       ),
       'helfi_etusivu.helsinki_near_you' => $this->buildHero(
