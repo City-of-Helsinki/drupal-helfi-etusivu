@@ -38,11 +38,12 @@ final class FeedbacksController extends ControllerBase {
    */
   public function content(Request $request) : array {
     $build = [
+      '#theme' => 'helsinki_near_you_feedback_page',
       '#cache' => [
         'contexts' => ['url.query_args:q'],
         'tags' => ['feedbacks_section'],
       ],
-      'autosuggest_form' => $this->formBuilder
+      '#autosuggest_form' => $this->formBuilder
         ->getForm(FeedbacksSearchForm::class),
     ];
 
@@ -63,7 +64,7 @@ final class FeedbacksController extends ControllerBase {
     [$lon, $lat] = $addressData['coordinates'];
 
     if ($lat && $lon) {
-      $build['feedback'] = $this->buildFeedback(
+      $build['#feedback'] = $this->buildFeedback(
           (float) $lon,
           (float) $lat,
           50,

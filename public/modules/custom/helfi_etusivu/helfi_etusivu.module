@@ -306,6 +306,7 @@ function helfi_etusivu_preprocess_html(&$variables): void {
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_results',
     'helfi_etusivu.helsinki_near_you_roadworks',
+    'helfi_etusivu.helsinki_near_you_feedbacks',
   ];
 
   if (in_array($route, $near_you_pages)) {
@@ -323,6 +324,7 @@ function helfi_etusivu_preprocess_page(&$variables): void {
     'helfi_etusivu.helsinki_near_you',
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_roadworks',
+    'helfi_etusivu.helsinki_near_you_feedbacks',
   ];
 
   // There is hero block on Helsinki near you landing page but
@@ -449,10 +451,17 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'hero_title' => NULL,
         'hero_description' => NULL,
+        'first_paragraph_grey' => NULL,
         'form' => [],
       ],
       'template' => 'helsinki-near-you-hero-block',
     ],
+    'helsinki_near_you_feedback_page' => [
+      'variables' => [
+        'autosuggest_form' => NULL,
+        'feedback' => NULL,
+      ]
+    ]
   ];
 }
 

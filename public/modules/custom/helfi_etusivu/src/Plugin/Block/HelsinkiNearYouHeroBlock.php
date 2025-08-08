@@ -65,18 +65,22 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
       'helfi_etusivu.helsinki_near_you_roadworks' => $this->buildHero(
         $this->t('Street and park projects near you', [], ['context' => 'Helsinki near you']),
         $this->t('Find street and park projects in your neighbourhood.', [], ['context' => 'Helsinki near you roadworks search']),
+        true,
       ),
       'helfi_etusivu.helsinki_near_you_events' => $this->buildHero(
         $this->t('Events near you', [], ['context' => 'Helsinki near you']),
         $this->t('Find events in your neighbourhood that interest you.', [], ['context' => 'Helsinki near you events search']),
+        true,
       ),
       'helfi_etusivu.helsinki_near_you_feedbacks' => $this->buildHero(
         $this->t('Feedbacks near you', [], ['context' => 'Helsinki near you']),
         $this->t('Find feedbacks in your neighbourhood.', [], ['context' => 'Helsinki near you feedbacks search']),
+        true,
       ),
       'helfi_etusivu.helsinki_near_you' => $this->buildHero(
         $this->t('Helsinki near you', [], ['context' => 'Helsinki near you']),
         $this->t('Discover city services, events and news near you. Start by entering your street address.', [], ['context' => 'Helsinki near you']),
+        false,
         $this->formBuilder->getForm(LandingPageSearchForm::class),
       ),
       default => [],
@@ -96,11 +100,12 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    * @return array
    *   The render array.
    */
-  private function buildHero(TranslatableMarkup $title, TranslatableMarkup $description, array $form = []) : array {
+  private function buildHero(TranslatableMarkup $title, TranslatableMarkup $description, bool $first_paragrap_gray, array $form = []) : array {
     $build['helsinki_near_you_hero_block'] = [
       '#theme' => 'helsinki_near_you_hero_block',
       '#hero_title' => $title,
       '#hero_description' => $description,
+      '#first_paragraph_grey' => $first_paragrap_gray,
       '#form' => $form,
     ];
     return $build;
