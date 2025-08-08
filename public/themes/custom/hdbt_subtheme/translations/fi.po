@@ -68,3 +68,23 @@ msgstr "Selaa katu- ja puistohankkeita lähelläsi."
 msgctxt "Helsinki near you"
 msgid "You must enable JavaScript in your browser to view the street and park project list."
 msgstr "Katu- ja puistohankelistan toimimiseksi sinun tulee sallia JavaScript selaimessasi"
+
+msgctxt "Feedback close to you block"
+msgid "Feedback near you"
+msgstr "Palautteet lähelläsi"
+
+msgctxt "Feedback close to you block"
+msgid "Browse feedback near you."
+msgstr "Selaa palautteita lähelläsi."
+
+msgctxt "Feedback close to you block"
+msgid "See all feedback near you"
+msgstr "Katso kaikki palautteet lähelläsi"
+
+msgctxt "Label for feedback requested date"
+msgid "Requested"
+msgstr "Saapunut"
+
+msgctxt "Label for feedback location"
+msgid "Location"
+msgstr "Sijainti"

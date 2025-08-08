@@ -280,6 +280,18 @@ msgctxt "Roadworks field label"
 msgid "Schedule"
 msgstr "Aikataulu"
 
+msgctxt "Helsinki near you status label"
+msgid "Ready"
+msgstr "Käsitelty"
+
+msgctxt "Helsinki near you status label"
+msgid "Processing"
+msgstr "Käsittelyssä"
+
+msgctxt "Helsinki near you status label"
+msgid "Unknown"
+msgstr "Tuntematon"
+
 msgid "Arabic"
 msgstr "Arabia"
 

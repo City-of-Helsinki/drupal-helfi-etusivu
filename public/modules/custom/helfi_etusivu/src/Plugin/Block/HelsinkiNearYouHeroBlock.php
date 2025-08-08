@@ -9,8 +9,9 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Url;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageSearchForm;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -23,6 +24,20 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
+   * The form builder.
+   *
+   * @var \Drupal\Core\Form\FormBuilderInterface
+   */
+  private FormBuilderInterface $formBuilder;
+
+  /**
+   * The route match.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  private RouteMatchInterface $routeMatch;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(
@@ -30,51 +45,63 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
     $configuration,
     $plugin_id,
     $plugin_definition,
-  ) {
-    return new static(
+  ) : self {
+    $instance = new self(
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('form_builder'),
     );
-  }
+    $instance->formBuilder = $container->get(FormBuilderInterface::class);
+    $instance->routeMatch = $container->get(RouteMatchInterface::class);
 
-  /**
-   * Constructs a new HelsinkiNearYouHeroBlock object.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param array $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Form\FormBuilderInterface $formBuilder
-   *   The form builder.
-   */
-  public function __construct(
-    array $configuration,
-    string $plugin_id,
-    array $plugin_definition,
-    private readonly FormBuilderInterface $formBuilder,
-  ) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    return $instance;
   }
 
   /**
    * {@inheritdoc}
    */
   public function build() : array {
-    $autosuggest_form = $this->formBuilder->getForm('Drupal\helfi_etusivu\Form\NearYouForm');
+    return match($this->routeMatch->getRouteName()) {
+      'helfi_etusivu.helsinki_near_you_roadworks' => $this->buildHero(
+        $this->t('Street and park projects near you', [], ['context' => 'Helsinki near you']),
+        $this->t('Find street and park projects in your neighbourhood.', [], ['context' => 'Helsinki near you roadworks search']),
+      ),
+      'helfi_etusivu.helsinki_near_you_events' => $this->buildHero(
+        $this->t('Events near you', [], ['context' => 'Helsinki near you']),
+        $this->t('Find events in your neighbourhood that interest you.', [], ['context' => 'Helsinki near you events search']),
+      ),
+      'helfi_etusivu.helsinki_near_you_feedbacks' => $this->buildHero(
+        $this->t('Feedbacks near you', [], ['context' => 'Helsinki near you']),
+        $this->t('Find feedbacks in your neighbourhood.', [], ['context' => 'Helsinki near you feedbacks search']),
+      ),
+      'helfi_etusivu.helsinki_near_you' => $this->buildHero(
+        $this->t('Helsinki near you', [], ['context' => 'Helsinki near you']),
+        $this->t('Discover city services, events and news near you. Start by entering your street address.', [], ['context' => 'Helsinki near you']),
+        $this->formBuilder->getForm(LandingPageSearchForm::class),
+      ),
+      default => [],
+    };
+  }
 
+  /**
+   * Builds a hero block.
+   *
+   * @param \Drupal\Core\StringTranslation\TranslatableMarkup $title
+   *   The hero title.
+   * @param \Drupal\Core\StringTranslation\TranslatableMarkup $description
+   *   The hero description.
+   * @param array $form
+   *   The hero form.
+   *
+   * @return array
+   *   The render array.
+   */
+  private function buildHero(TranslatableMarkup $title, TranslatableMarkup $description, array $form = []) : array {
     $build['helsinki_near_you_hero_block'] = [
-      '#autosuggest_form' => $autosuggest_form,
       '#theme' => 'helsinki_near_you_hero_block',
-      '#result_page_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_results'),
-      '#form_item_label' => $this->t('Address', [], ['context' => 'Helsinki near you']),
-      '#form_item_placeholder' => $this->t('For example, Mannerheimintie 1', [], ['context' => 'Helsinki near you']),
-      '#form_item_submit' => $this->t('Search', [], ['context' => 'Helsinki near you']),
-      '#hero_title' => $this->t('Helsinki near you', [], ['context' => 'Helsinki near you']),
-      '#hero_description' => $this->t('Discover city services, events and news near you. Start by entering your street address.', [], ['context' => 'Helsinki near you']),
+      '#hero_title' => $title,
+      '#hero_description' => $description,
+      '#form' => $form,
     ];
     return $build;
   }

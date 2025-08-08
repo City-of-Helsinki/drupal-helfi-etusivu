@@ -9,7 +9,7 @@ use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\GeneratedUrl;
 use Drupal\Core\Url;
-use Drupal\helfi_etusivu\Controller\HelsinkiNearYouController;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\LandingPageController;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -34,9 +34,9 @@ class HelsinkiNearYouControllerTest extends KernelTestBase {
   /**
    * The controller under test.
    *
-   * @var \Drupal\helfi_etusivu\Controller\HelsinkiNearYouController
+   * @var \Drupal\helfi_etusivu\HelsinkiNearYou\Controller\LandingPageController
    */
-  protected HelsinkiNearYouController $controller;
+  protected LandingPageController $controller;
 
   /**
    * The mocked file URL generator.
@@ -68,7 +68,7 @@ class HelsinkiNearYouControllerTest extends KernelTestBase {
     $this->container->set('file_url_generator', $this->fileUrlGenerator);
     $this->container->set('theme_handler', $this->themeHandler);
 
-    $this->controller = new HelsinkiNearYouController(
+    $this->controller = new LandingPageController(
       $this->fileUrlGenerator,
       $this->themeHandler,
     );
