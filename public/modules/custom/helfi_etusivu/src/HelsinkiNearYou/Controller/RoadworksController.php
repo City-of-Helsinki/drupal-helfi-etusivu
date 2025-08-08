@@ -39,7 +39,7 @@ class RoadworksController extends ControllerBase {
   }
 
   /**
-   *  A controller callback for roadworks route that provides the route title.
+   * A controller callback for roadworks route that provides the route title.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
    *   The translated route title.

@@ -19,7 +19,7 @@ class EventsController extends ControllerBase {
   }
 
   /**
-   *  A controller callback for events route that provides the route title.
+   * A controller callback for events route that provides the route title.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
    *   The translated route title.

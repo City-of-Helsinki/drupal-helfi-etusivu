@@ -28,7 +28,7 @@ final class FeedbacksController extends ControllerBase {
   }
 
   /**
-   *  A controller callback for feedback route that provides the route title.
+   * A controller callback for feedback route that provides the route title.
    *
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
    *   The translated route title.
