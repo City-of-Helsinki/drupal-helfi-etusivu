@@ -28,6 +28,16 @@ final class FeedbacksController extends ControllerBase {
   }
 
   /**
+   *  A controller callback for feedback route that provides the route title.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The translated route title.
+   */
+  public function getTitle() {
+    return $this->t('Search feedback near you', [], ['context' => 'Helsinki near you title']);
+  }
+
+  /**
    * A controller callback for feedback route.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request

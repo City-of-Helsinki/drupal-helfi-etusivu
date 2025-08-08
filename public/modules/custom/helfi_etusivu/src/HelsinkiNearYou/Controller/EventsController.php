@@ -19,6 +19,16 @@ class EventsController extends ControllerBase {
   }
 
   /**
+   *  A controller callback for events route that provides the route title.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The translated route title.
+   */
+  public function getTitle() {
+    return $this->t('Events near you', [], ['context' => 'Helsinki near you']);
+  }
+
+  /**
    * Returns a renderable array.
    */
   public function content() : array {
@@ -55,7 +65,6 @@ class EventsController extends ControllerBase {
         ],
       ],
       '#theme' => 'helsinki_near_you_events',
-      '#title' => $this->t('Events near you', [], ['context' => 'Helsinki near you']),
     ];
   }
 

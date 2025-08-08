@@ -210,9 +210,6 @@ msgctxt "Helsinki near you events search"
 msgid "See all events near you"
 msgstr "Se alla evenemang nära dig"
 
-msgid "Events near you"
-msgstr "Evenemang nära dig"
-
 msgctxt "Helsinki near you"
 msgid "Use current Location"
 msgstr "Använd aktuell plats"
@@ -224,6 +221,10 @@ msgstr "Kunde inte använda din position. Prova att skriva in en adress."
 msgctxt "Helsinki near you"
 msgid "Roadworks near you"
 msgstr "Gatuarbeten nära dig"
+
+msgctxt "Helsinki near you title"
+msgid "Street and park projects near you"
+msgstr "Gatu- och parkprojekt nära dig"
 
 msgctxt "Helsinki near you"
 msgid "Browse roadworks near you or search for roadworks by location or date."
@@ -301,7 +302,7 @@ msgctxt "Helsinki near you"
 msgid "Home address"
 msgstr "Hemadress"
 
-msgctxt "Helsinki near you"
+msgctxt "Helsinki near you title"
 msgid "Search feedback near you"
 msgstr "Sök feedback nära dig"
 
