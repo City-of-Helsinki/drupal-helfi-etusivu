@@ -4259,16 +4259,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.13.2",
+            "version": "6.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "c3fdd15b1af55719ef0c5acbb6e8ad72d2c37301"
+                "reference": "7934fa8b8b6a48aefce03e62a42c1fd6d0297a8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/c3fdd15b1af55719ef0c5acbb6e8ad72d2c37301",
-                "reference": "c3fdd15b1af55719ef0c5acbb6e8ad72d2c37301",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/7934fa8b8b6a48aefce03e62a42c1fd6d0297a8c",
+                "reference": "7934fa8b8b6a48aefce03e62a42c1fd6d0297a8c",
                 "shasum": ""
             },
             "require": {
@@ -4287,10 +4287,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.13.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.13.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-08-07T10:54:57+00:00"
+            "time": "2025-08-11T11:41:17+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -11837,16 +11837,16 @@
         },
         {
             "name": "phrity/util-errorhandler",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sirn-se/phrity-util-errorhandler.git",
-                "reference": "61813189e4525fde4aecad3df849829d526d6f76"
+                "reference": "9825f15ef9b4a93252ce53ca8962278832d834da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sirn-se/phrity-util-errorhandler/zipball/61813189e4525fde4aecad3df849829d526d6f76",
-                "reference": "61813189e4525fde4aecad3df849829d526d6f76",
+                "url": "https://api.github.com/repos/sirn-se/phrity-util-errorhandler/zipball/9825f15ef9b4a93252ce53ca8962278832d834da",
+                "reference": "9825f15ef9b4a93252ce53ca8962278832d834da",
                 "shasum": ""
             },
             "require": {
@@ -11883,9 +11883,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sirn-se/phrity-util-errorhandler/issues",
-                "source": "https://github.com/sirn-se/phrity-util-errorhandler/tree/1.2.0"
+                "source": "https://github.com/sirn-se/phrity-util-errorhandler/tree/1.2.1"
             },
-            "time": "2025-05-26T18:26:51+00:00"
+            "time": "2025-08-08T09:48:45+00:00"
         },
         {
             "name": "proj4php/proj4php",
