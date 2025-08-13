@@ -302,6 +302,10 @@ msgid "Search feedback near you"
 msgstr "Etsi palautteita osoitteellasi"
 
 msgctxt "Helsinki near you"
+msgid "Search feedback near you"
+msgstr "Etsi palautteita osoitteellasi"
+
+msgctxt "Helsinki near you"
 msgid "Browse feedback near you or search for feedback by location."
 msgstr "Selaa palautteita lähelläsi tai etsi palauttita osoitteella."
 
