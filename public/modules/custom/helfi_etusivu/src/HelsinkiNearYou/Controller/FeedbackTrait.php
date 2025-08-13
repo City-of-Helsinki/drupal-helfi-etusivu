@@ -26,7 +26,7 @@ trait FeedbackTrait {
    * @return array
    *   The render array.
    */
-  protected function buildFeedback(float $lon, float $lat, ?int $limit = NULL, ?array $attributes) : array {
+  protected function buildFeedback(float $lon, float $lat, ?int $limit = NULL, ?array $attributes = []) : array {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => ['#markup' => ''],

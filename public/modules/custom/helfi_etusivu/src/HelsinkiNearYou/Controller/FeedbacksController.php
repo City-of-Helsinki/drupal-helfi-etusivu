@@ -78,7 +78,6 @@ final class FeedbacksController extends ControllerBase {
           (float) $lon,
           (float) $lat,
           50,
-          [],
         );
       return $build;
     }
