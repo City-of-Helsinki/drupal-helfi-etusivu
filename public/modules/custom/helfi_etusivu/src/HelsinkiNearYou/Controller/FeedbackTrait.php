@@ -20,13 +20,13 @@ trait FeedbackTrait {
    *   The latitude.
    * @param int|null $limit
    *   The item limit.
-   * @param array|null $feedback_attributes
+   * @param array|null $attributes
    *   Array of attributes to pass to template.
    *
    * @return array
    *   The render array.
    */
-  protected function buildFeedback(float $lon, float $lat, ?int $limit = NULL, ?array $feedback_attributes) : array {
+  protected function buildFeedback(float $lon, float $lat, ?int $limit = NULL, ?array $attributes) : array {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => ['#markup' => ''],
@@ -38,7 +38,7 @@ trait FeedbackTrait {
           // @todo Add date filter back once it works.
           NULL,
           $limit,
-          $feedback_attributes,
+          $attributes,
         ],
       ],
     ];
