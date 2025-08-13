@@ -1,0 +1,23 @@
+{% embed '@hdbt/component/card.twig' with {
+  card_modifier_class: 'card--border',
+  card_title: title,
+  card_url: uri,
+  card_url_external: true,
+  card_category_tag: {
+    tag: status.label,
+    color: status.value == 'READY' ? 'success' : '',
+  },
+  card_metas: [
+    {
+      icon: 'clock',
+      label: 'Requested'|t({}, {'context': 'Label for feedback requested date'}),
+      content: requested_datetime|date('d.m.Y'),
+    },
+    {
+      icon: 'map',
+      label: 'Location'|t({}, {'context': 'Label for feedback location'}),
+      content: address,
+    },
+  ]
+} %}
+{% endembed %}
