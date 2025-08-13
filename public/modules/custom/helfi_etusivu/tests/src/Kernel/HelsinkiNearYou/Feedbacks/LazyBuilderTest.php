@@ -47,7 +47,7 @@ class LazyBuilderTest extends KernelTestBase {
     ]);
     $this->container->set('http_client', $client);
     $sut = $this->container->get(LazyBuilder::class);
-    $build = $sut->build(1, 1, NULL, NULL);
+    $build = $sut->build(1, 1, NULL, NULL, NULL);
 
     $this->assertEquals(['max-age' => 0], $build['#cache']);
     $this->assertEquals('123', $build['items'][0]['#title']);
