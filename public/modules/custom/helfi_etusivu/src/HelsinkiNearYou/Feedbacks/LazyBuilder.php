@@ -44,6 +44,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     float $lat,
     ?DrupalDateTime $start_date,
     ?int $limit,
+    ?array $modifiers,
   ): array {
     $data = $this->httpClient
       ->get(new Request(
@@ -69,6 +70,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         '#title' => $item->title,
         '#address' => $item->address,
         '#requested_datetime' => $item->requested_datetime,
+        '#modifiers' => $modifiers,
       ];
     }
     return $build;
