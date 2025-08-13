@@ -369,7 +369,7 @@ function helfi_etusivu_update_9016(): void {
     ],
     [
       'path' => '/helsinki-near-you/feedback',
-      'alias' => '/helsingfors-nara-dig/respons',
+      'alias' => '/helsingfors-nara-dig/feedback',
       'langcode' => 'sv',
     ],
   ];
