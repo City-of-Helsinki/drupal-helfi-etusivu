@@ -6,6 +6,8 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * A lazy builder for Feedback block.
@@ -32,15 +34,16 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *   The render array.
    */
   public function build(
-    float $lon,
-    float $lat,
-    string $address = '',
+    Address $address
   ): array {
+
+    $items = [];
 
     try {
       // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
       // which is required by the roadwork data service.
-      $convertedCoords = $this->coordinateConversionService->wgs84ToEtrsGk25($lat, $lon);
+      $convertedCoords = $this->coordinateConversionService
+        ->wgs84ToEtrsGk25($address->location->lat, $address->location->lon);
 
       if (!$convertedCoords) {
         throw new \RuntimeException('Failed to convert coordinates to ETRS-GK25');
@@ -60,25 +63,31 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         1000
       ) ?? [];
 
-      foreach ($projects as &$project) {
-        if (!isset($project['coordinates'])) {
-          continue;
-        }
+      foreach ($projects as $project) {
+        $lat = $project->lat;
+        $lon = $project->lon;
 
         $convertedProjectCoords = $this->coordinateConversionService->etrsGk25ToWgs84(
-          $project['coordinates'][0],
-          $project['coordinates'][1],
+          $lat,
+          $lon,
         );
 
         if ($convertedProjectCoords) {
-          $project['coordinates'] = [
-            'lat' => $convertedProjectCoords['y'],
-            'lon' => $convertedProjectCoords['x'],
-          ];
+          $lat = $convertedProjectCoords['y'];
+          $lon = $convertedProjectCoords['x'];
         }
-        else {
-          unset($project['coordinates']);
-        }
+
+        $items[] = [
+          '#theme' => 'helsinki_near_you_roadwork_item',
+          '#title' => $project->title,
+          '#uri' => $project->uri,
+          '#work_type' => $project->type,
+          '#location' => $project->location,
+          '#schedule' => $project->schedule,
+          '#lat' => $lat,
+          '#lon' => $lon,
+        ];
+
       }
 
       $title = $this->roadworkDataService->getSectionTitle();
@@ -87,14 +96,11 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         'title' => $title,
         'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)
           ->toString(),
-        'projects' => $projects,
+        'projects' => $items,
       ];
 
     }
     catch (\Exception) {
-      // Return empty results structure on error to prevent page breakage
-      // Use provided address for 'See all' link, or get from request if not
-      // provided.
       return [
         'title' => $this->roadworkDataService->getSectionTitle(),
         'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)

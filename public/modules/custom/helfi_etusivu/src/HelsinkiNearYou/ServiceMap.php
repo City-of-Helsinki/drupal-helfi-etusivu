@@ -9,6 +9,9 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
@@ -55,17 +58,11 @@ final class ServiceMap implements ServiceMapInterface {
   /**
    * {@inheritdoc}
    */
-  public function getAddressData(string $address) : ?array {
+  public function getAddressData(string $address) : ?Address {
     $results = $this->query($address);
 
-    if (
-      isset($results['0']->name) &&
-      isset($results['0']->location->coordinates)
-    ) {
-      return [
-        'address_translations' => $results['0']->name,
-        'coordinates' => $results['0']->location->coordinates,
-      ];
+    if ($item = reset($results)) {
+      return $item;
     }
 
     return NULL;
@@ -94,14 +91,18 @@ final class ServiceMap implements ServiceMapInterface {
       return [];
     }
 
-    $result = json_decode($response->getBody()->getContents());
+    $result = json_decode($response->getBody()->getContents(), TRUE);
 
-    if (!isset($result->results)) {
-      $this->logger->error('Servicemap query failed: Unexpected response. Results not present.');
+    if (!isset($result['results'])) {
       return [];
     }
 
-    return $result->results;
+    return array_map(function (array $result) {
+      return new Address(
+        StreetName::createFromArray($result['name']),
+        Location::createFromArray($result['location']),
+      );
+    }, $result['results']);
   }
 
   /**
