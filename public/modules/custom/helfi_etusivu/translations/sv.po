@@ -307,6 +307,10 @@ msgid "Search feedback near you"
 msgstr "Sök feedback nära dig"
 
 msgctxt "Helsinki near you"
+msgid "Search feedback near you"
+msgstr "Sök feedback nära dig"
+
+msgctxt "Helsinki near you"
 msgid "Browse feedback near you or search for feedback by location."
 msgstr "Bläddra bland feedback nära dig eller sök efter feedback baserat på plats."
 
