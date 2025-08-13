@@ -23,9 +23,9 @@ enum Status : string {
    */
   public function label() : TranslatableMarkup {
     return match($this) {
-      self::Ready => new TranslatableMarkup('Ready'),
-      self::Processing => new TranslatableMarkup('Processing'),
-      self::Unknown => new TranslatableMarkup('Unknown'),
+      self::Ready => new TranslatableMarkup('Ready', [], ['context' => 'Helsinki near you status label']),
+      self::Processing => new TranslatableMarkup('Processing', [], ['context' => 'Helsinki near you status label']),
+      self::Unknown => new TranslatableMarkup('Unknown', [], ['context' => 'Helsinki near you status label']),
     };
   }
 

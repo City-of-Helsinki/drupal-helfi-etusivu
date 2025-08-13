@@ -61,7 +61,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     foreach ($data as $item) {
       $build['items'][] = [
         '#theme' => 'helsinki_near_you_feedback_item',
-        '#status' => $item->status->label(),
+        '#status' => $item->status,
         '#description' => $item->description,
         '#uri' => $item->uri,
         '#title' => $item->title,

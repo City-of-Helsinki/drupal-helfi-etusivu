@@ -129,8 +129,8 @@
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [ 'component--feedback' ],
-        component_title: 'Feedback'|t,
-        component_description: '',
+        component_title: 'Feedback near you'|trans({}, {'context': 'Feedback close to you block'}),
+        component_description: 'Browse feedback near you.'|trans({}, {'context': 'Feedback close to you block'}),
         component_content_class: 'feedback',
       }
     %}
