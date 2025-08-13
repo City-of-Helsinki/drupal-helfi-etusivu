@@ -28,6 +28,16 @@ final class FeedbacksController extends ControllerBase {
   }
 
   /**
+   * A controller callback for feedback route that provides the route title.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The translated route title.
+   */
+  public function getTitle() {
+    return $this->t('Search feedback near you', [], ['context' => 'Helsinki near you title']);
+  }
+
+  /**
    * A controller callback for feedback route.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
@@ -38,11 +48,12 @@ final class FeedbacksController extends ControllerBase {
    */
   public function content(Request $request) : array {
     $build = [
+      '#theme' => 'helsinki_near_you_feedback_page',
       '#cache' => [
         'contexts' => ['url.query_args:q'],
         'tags' => ['feedbacks_section'],
       ],
-      'autosuggest_form' => $this->formBuilder
+      '#autosuggest_form' => $this->formBuilder
         ->getForm(FeedbacksSearchForm::class),
     ];
 
@@ -63,7 +74,7 @@ final class FeedbacksController extends ControllerBase {
     [$lon, $lat] = $addressData['coordinates'];
 
     if ($lat && $lon) {
-      $build['feedback'] = $this->buildFeedback(
+      $build['#feedback'] = $this->buildFeedback(
           (float) $lon,
           (float) $lat,
           50,
