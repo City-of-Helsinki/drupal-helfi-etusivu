@@ -165,7 +165,7 @@ class ResultsController extends ControllerBase {
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
         'query' => ['q' => $address],
       ]),
-      '#feedback_section' => $this->buildFeedback($lon, $lat, 3),
+      '#feedback_section' => $this->buildFeedback($lon, $lat, 3, ['card--border']),
     ];
     return $build;
   }

@@ -24,7 +24,7 @@ trait FeedbackTrait {
    * @return array
    *   The render array.
    */
-  protected function buildFeedback(float $lon, float $lat, ?int $limit = NULL) : array {
+  protected function buildFeedback(float $lon, float $lat, ?int $limit = NULL, ?array $modifiers) : array {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => ['#markup' => ''],
@@ -36,6 +36,7 @@ trait FeedbackTrait {
           // @todo Add date filter back once it works.
           NULL,
           $limit,
+          $modifiers,
         ],
       ],
     ];
