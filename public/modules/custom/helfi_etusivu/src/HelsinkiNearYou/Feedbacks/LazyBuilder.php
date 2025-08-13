@@ -36,7 +36,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    * @param int|null $limit
    *   The number of items to fetch or null.
    * @param array|null $attributes
-   *    Array of attributes to pass to template.
+   *   Array of attributes to pass to template.
    *
    * @return array
    *   The render array.
