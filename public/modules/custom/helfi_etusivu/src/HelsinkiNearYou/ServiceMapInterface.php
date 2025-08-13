@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou;
 
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 
 /**
  * Interface for ServiceMap implementations.
@@ -17,10 +18,10 @@ interface ServiceMapInterface {
    * @param string $address
    *   The address.
    *
-   * @return ?array
+   * @return ?\Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address
    *   The coordinates.
    */
-  public function getAddressData(string $address): ?array;
+  public function getAddressData(string $address): ?Address;
 
   /**
    * Queries location data based on address.
@@ -30,7 +31,7 @@ interface ServiceMapInterface {
    * @param int $page_size
    *   Maximum number of results.
    *
-   * @return array
+   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address[]
    *   Array of results.
    */
   public function query(string $address, int $page_size = 1): array;

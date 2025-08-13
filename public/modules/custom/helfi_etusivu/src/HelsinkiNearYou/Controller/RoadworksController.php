@@ -116,7 +116,7 @@ final class RoadworksController extends ControllerBase {
       ], 400);
     }
 
-    $roadworkData = $this->lazyBuilder->build($lat, $lon, urldecode($address));
+    $roadworkData = $this->lazyBuilder->build($lon, $lat, urldecode($address));
 
     return new JsonResponse([
       'data' => $roadworkData['projects'] ?? [],

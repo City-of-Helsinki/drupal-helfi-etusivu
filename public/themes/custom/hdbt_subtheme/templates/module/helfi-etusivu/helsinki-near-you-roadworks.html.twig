@@ -12,19 +12,7 @@
       }
     %}
       {% block component_content %}
-        {# Hook React app to this div #}
-        {{ attach_library('hdbt/roadwork-list') }}
-        <div
-          id="helfi-roadworks-search"
-          data-paragraph-id="helfi-coordinates-based-roadwork-list"
-        >
-        </div>
-        {# Indicate JS not enabled #}
-        <noscript>
-          <div class="roadwork-list__javascript-disabled">
-            {{ 'You must enable JavaScript in your browser to view the street and park project list.'|t({}, {'context': 'Helsinki near you'}) }}
-          </div>
-        </noscript>
+        {{ roadwork_section }}
       {% endblock %}
     {% endembed %}
 

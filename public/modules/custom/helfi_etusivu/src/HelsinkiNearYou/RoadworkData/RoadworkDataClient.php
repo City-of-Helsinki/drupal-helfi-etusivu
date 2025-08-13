@@ -90,8 +90,6 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
         'outputFormat' => 'application/json',
       ];
 
-      $url = $baseUrl . '?' . http_build_query($query);
-
       $response = $this->httpClient->request('GET', $baseUrl, [
         'query' => $query,
         'timeout' => 30,
@@ -157,8 +155,8 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
 
       // Get roadwork data for the geocoded coordinates.
       return $this->getProjectsByCoordinates(
-        (float) $geocoded['y'],
-        (float) $geocoded['x'],
+        $geocoded['y'],
+        $geocoded['x'],
         $distance
       );
 
@@ -197,8 +195,8 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
       }
 
       return [
-        'x' => (float) $geocoded['x'],
-        'y' => (float) $geocoded['y'],
+        'x' => $geocoded['x'],
+        'y' => $geocoded['y'],
       ];
 
     }

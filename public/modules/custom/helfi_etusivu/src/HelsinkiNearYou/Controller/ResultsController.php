@@ -11,6 +11,7 @@ use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder as RoadworkLazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
@@ -64,15 +65,16 @@ class ResultsController extends ControllerBase {
   public function content(Request $request): array|RedirectResponse {
     $address = $request->query->get('q');
     $return_url = Url::fromRoute('helfi_etusivu.helsinki_near_you');
+    $langcode = $this->languageManager->getCurrentLanguage()->getId();
 
     if (!$address) {
       $this->messenger()->addError($this->t('Please enter an address', [], ['context' => 'Helsinki near you']));
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
     $address = Xss::filter($address);
-    $addressData = $this->serviceMap->getAddressData(urldecode($address));
+    $address = $this->serviceMap->getAddressData(urldecode($address));
 
-    if (!$addressData) {
+    if (!$address) {
       $this->messenger()->addError(
         $this->t(
           'Make sure the address is written correctly. You can also search using a nearby street number.',
@@ -82,10 +84,9 @@ class ResultsController extends ControllerBase {
       );
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
+    $addressName = $address->streetName->getName($langcode);
 
-    $addressName = $this->resolveTranslation($addressData['address_translations']);
-
-    $neighborhoods = $this->getNearbyNewsNeighbourhoods($addressData['coordinates']);
+    $neighborhoods = $this->getNearbyNewsNeighbourhoods($address->location);
     $newsQuery = [
       'neighbourhoods' => array_values(array_map(static fn (Term $term) => $term->getTid(), $neighborhoods)),
     ];
@@ -96,11 +97,6 @@ class ResultsController extends ControllerBase {
         'address' => $addressName,
       ],
     ]);
-
-    // Extract coordinates for roadwork section.
-    // Array format: [longitude, latitude] per GeoJSON specification.
-    [$lon, $lat] = $addressData['coordinates'];
-
     return [
     // Set the theme for the results page.
       '#theme' => 'helsinki_near_you_results_page',
@@ -112,7 +108,7 @@ class ResultsController extends ControllerBase {
             'data' => [
               'helfi-coordinates-based-event-list' => [
                 'events_api_url' => $this->linkedEvents->getEventsRequest([
-                  'dwithin_origin' => implode(',', $addressData['coordinates']),
+                  'dwithin_origin' => sprintf('%d,%d', $address->location->lat, $address->location->lon),
                   'dwithin_metres' => 2000,
                 ]),
                 'field_event_count' => 3,
@@ -133,9 +129,9 @@ class ResultsController extends ControllerBase {
             'helfi-coordinates-based-roadwork-list' => [
               'cardsWithBorders' => TRUE,
               'initialData' => [
-                'lat' => $lat,
-                'lon' => $lon,
-                'q' => $address,
+                'lat' => $address->location->lat,
+                'lon' => $address->location->lon,
+                'q' => $address->streetName->getName($langcode),
               ],
               'isShortList' => TRUE,
               'roadworkCount' => 3,
@@ -147,7 +143,7 @@ class ResultsController extends ControllerBase {
       '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
       '#back_link_url' => $return_url,
       '#news_archive_url' => $newsArchiveUrl,
-      '#coordinates' => $addressData['coordinates'],
+      '#coordinates' => $address->location,
       '#title' => $this->t(
         'Services, events and news for @address',
         ['@address' => $addressName],
@@ -161,8 +157,6 @@ class ResultsController extends ControllerBase {
         '#lazy_builder' => [
           RoadworkLazyBuilder::class . ':build',
           [
-            $lon,
-            $lat,
             $address,
           ],
         ],
@@ -174,7 +168,7 @@ class ResultsController extends ControllerBase {
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
         'query' => ['q' => $address],
       ]),
-      '#feedback_section' => $this->buildFeedback($lon, $lat, 3),
+      '#feedback_section' => $this->buildFeedback($address, 3),
     ];
   }
 
@@ -271,7 +265,7 @@ class ResultsController extends ControllerBase {
     $results = $this->serviceMap->query($q, 10);
 
     foreach ($results as $result) {
-      $name = $this->resolveTranslation($result->name);
+      $name = $result->streetName->getName($this->languageManager->getCurrentLanguage()->getId());
 
       $suggestions[] = [
         'label' => $name,
@@ -280,23 +274,6 @@ class ResultsController extends ControllerBase {
     }
 
     return new JsonResponse($suggestions);
-  }
-
-  /**
-   * Resolves the translation string for given translation object.
-   *
-   * Returns the translation for the current language if it exists, otherwise
-   * returns the Finnish translation.
-   *
-   * @param \stdClass $translations
-   *   The translations object.
-   *
-   * @return string
-   *   The translated string.
-   */
-  protected function resolveTranslation(\stdClass $translations) : string {
-    $langcode = $this->languageManager->getCurrentLanguage()->getId();
-    return $translations->{"$langcode"} ?? $translations->fi;
   }
 
   /**
@@ -335,7 +312,7 @@ class ResultsController extends ControllerBase {
    * @return \Drupal\Core\Entity\EntityInterface[]
    *   Helfi: news Neighbourhoods entities.
    */
-  protected function getNearbyNewsNeighbourhoods(array $coordinates): array {
+  protected function getNearbyNewsNeighbourhoods(Location $geometry): array {
     $storage = $this->entityTypeManager()
       ->getStorage('helfi_news_neighbourhoods');
     $query = $storage
@@ -343,7 +320,7 @@ class ResultsController extends ControllerBase {
 
     assert($query instanceof Query);
     $query->setParameter('location', [
-      $coordinates,
+      [$geometry->lat, $geometry->lon],
       [
         'unit' => 'km',
         'order' => 'asc',
