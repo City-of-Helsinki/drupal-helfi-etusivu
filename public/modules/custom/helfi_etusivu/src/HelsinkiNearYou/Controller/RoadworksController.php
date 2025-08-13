@@ -39,6 +39,16 @@ class RoadworksController extends ControllerBase {
   }
 
   /**
+   * A controller callback for roadworks route that provides the route title.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The translated route title.
+   */
+  public function getTitle() {
+    return $this->t('Street and park projects near you', [], ['context' => 'Helsinki near you title']);
+  }
+
+  /**
    * Returns the roadworks listing page.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
