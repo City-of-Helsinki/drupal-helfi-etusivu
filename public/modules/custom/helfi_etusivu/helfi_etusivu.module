@@ -440,7 +440,7 @@ function helfi_etusivu_theme() : array {
         'title' => NULL,
         'address' => NULL,
         'requested_datetime' => NULL,
-        'modifiers'=> [],
+        'feedback_attributes' => [],
       ],
       'template' => 'helsinki-near-you-feedback-item',
     ],

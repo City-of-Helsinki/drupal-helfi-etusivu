@@ -1,5 +1,5 @@
 {% embed '@hdbt/component/card.twig' with {
-  card_modifier_class: modifiers|join(' '),
+  card_modifier_class: feedback_attributes['classes']|join(' '),
   card_title: title,
   card_url: uri,
   card_url_external: true,
