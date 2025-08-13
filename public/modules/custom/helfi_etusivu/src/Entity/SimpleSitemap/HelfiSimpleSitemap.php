@@ -29,7 +29,8 @@ class HelfiSimpleSitemap extends SimpleSitemap {
       $options['base_url'] = $settings->get('base_url') ?: $GLOBALS['base_url'];
     }
 
-    // #UHF-11522: Use fi as default language when generating the sitemap main and paged urls.
+    // #UHF-11522: Use fi as default language when generating the sitemap
+    // main and paged urls.
     if (empty($options['language'])) {
       $options['language'] = $this->languageManager()->getLanguage('fi');
     }
