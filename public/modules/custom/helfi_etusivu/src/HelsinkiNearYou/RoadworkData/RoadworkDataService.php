@@ -124,19 +124,19 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
       // Default to the Helsinki map URL.
       $url = 'https://kartta.hel.fi';
 
-      $geometry = new Location('0', '0', 'Point');
+      $location = new Location('0', '0', 'Point');
 
       // If we have geometry, create a deep link to the map with coordinates.
       if (!empty($feature['geometry']['coordinates'])) {
-        $geometry = $this->extractFirstCoordinate($feature['geometry']);
+        $location = $this->extractFirstCoordinate($feature['geometry']);
 
-        if ($geometry) {
+        if ($location) {
           $url = sprintf(
             'https://kartta.hel.fi/?setlanguage=fi&e=%.2f&n=%.2f&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(%.2f%20%.2f)',
-            $geometry->lon,
-            $geometry->lat,
-            $geometry->lon,
-            $geometry->lat
+            $location->lon,
+            $location->lat,
+            $location->lon,
+            $location->lat
           );
         }
       }
@@ -149,14 +149,14 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
         // Get the work type (Kaivuilmoitus or Aluevuokraus)
         type: $props['tyyppi'] ?? $this->t('Work', [], ['context' => 'Roadworks type fallback']),
         // Just pass the location string, let the template handle the label.
-        location: $props['osoite'] ?? $this->t('Location unknown', [], ['context' => 'Roadworks location fallback']),
-        location_label: $this->t('Location', [], ['context' => 'Roadworks field label']),
+        address: $props['osoite'] ?? $this->t('Location unknown', [], ['context' => 'Roadworks location fallback']),
+        address_label: $this->t('Location', [], ['context' => 'Roadworks field label']),
         // Convert schedule to a string to prevent Drupal from treating it as
         // a render array.
         schedule: $formattedStart . ($formattedEnd ? ' - ' . $formattedEnd : ''),
         // Pass the translated label separately.
         schedule_label: $this->t('Schedule', [], ['context' => 'Roadworks field label']),
-        geometry: $geometry,
+        location: $location,
       );
       $formatted[] = $item;
     }
@@ -205,7 +205,7 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
     if (!$points) {
       return NULL;
     }
-    return new Location($points[1], $points[0], $type);
+    return new Location((string) $points[1], (string) $points[0], $type);
   }
 
   /**

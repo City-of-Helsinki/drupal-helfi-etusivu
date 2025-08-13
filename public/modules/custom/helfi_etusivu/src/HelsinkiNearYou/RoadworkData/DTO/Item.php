@@ -10,14 +10,14 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 final readonly class Item {
 
   public function __construct(
-    public string             $title,
-    public string             $url,
+    public string $title,
+    public string $url,
     public TranslatableMarkup $type,
-    public string             $location,
-    public TranslatableMarkup $location_label,
-    public string             $schedule,
+    public string $address,
+    public TranslatableMarkup $address_label,
+    public string $schedule,
     public TranslatableMarkup $schedule_label,
-    public Location           $geometry,
+    public Location $location,
   ) {
   }
 

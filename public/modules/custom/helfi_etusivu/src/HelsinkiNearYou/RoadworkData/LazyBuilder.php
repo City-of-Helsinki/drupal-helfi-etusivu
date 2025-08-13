@@ -33,9 +33,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    * @return array
    *   The render array.
    */
-  public function build(
-    Address $address
-  ): array {
+  public function build(Address $address): array {
 
     $items = [];
 
@@ -64,8 +62,8 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       ) ?? [];
 
       foreach ($projects as $project) {
-        $lat = $project->lat;
-        $lon = $project->lon;
+        $lat = $project->location->lat;
+        $lon = $project->location->lon;
 
         $convertedProjectCoords = $this->coordinateConversionService->etrsGk25ToWgs84(
           $lat,
@@ -80,9 +78,9 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         $items[] = [
           '#theme' => 'helsinki_near_you_roadwork_item',
           '#title' => $project->title,
-          '#uri' => $project->uri,
+          '#uri' => $project->url,
           '#work_type' => $project->type,
-          '#location' => $project->location,
+          '#location' => $project->address,
           '#schedule' => $project->schedule,
           '#lat' => $lat,
           '#lon' => $lon,
@@ -90,24 +88,11 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
 
       }
 
-      $title = $this->roadworkDataService->getSectionTitle();
-
-      return [
-        'title' => $title,
-        'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)
-          ->toString(),
-        'projects' => $items,
-      ];
-
     }
     catch (\Exception) {
-      return [
-        'title' => $this->roadworkDataService->getSectionTitle(),
-        'see_all_url' => $this->roadworkDataService->getSeeAllUrl($address)
-          ->toString(),
-        'projects' => [],
-      ];
     }
+
+    return $items;
   }
 
   /**
