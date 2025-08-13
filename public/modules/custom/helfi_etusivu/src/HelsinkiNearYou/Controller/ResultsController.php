@@ -151,6 +151,7 @@ class ResultsController extends ControllerBase {
       ),
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName),
+      '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address),
       '#roadwork_section' => [
         '#create_placeholder' => TRUE,
         '#lazy_builder_preview' => ['#markup' => ''],
@@ -168,7 +169,7 @@ class ResultsController extends ControllerBase {
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
         'query' => ['q' => $address],
       ]),
-      '#feedback_section' => $this->buildFeedback($address, 3),
+      '#feedback_section' => $this->buildFeedback($address->location, 3),
     ];
   }
 
