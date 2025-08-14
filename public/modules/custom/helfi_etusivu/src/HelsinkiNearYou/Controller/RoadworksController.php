@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\DependencyInjection\AutowireTrait;
-use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder;
-use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Form\RoadworkSearchForm;
 
 /**
  * Controller for the Helsinki Near You Roadworks page.
@@ -24,18 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface
  * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
  */
-final class RoadworksController extends ControllerBase {
-
-  use AutowireTrait;
-
-  /**
-   * Constructs a new instance.
-   */
-  public function __construct(
-    private readonly ServiceMapInterface $serviceMap,
-    private readonly LazyBuilder $lazyBuilder,
-  ) {
-  }
+final class RoadworksController extends SearchPageControllerBase {
 
   /**
    * A controller callback for roadworks route that provides the route title.
@@ -43,59 +30,31 @@ final class RoadworksController extends ControllerBase {
    * @return \Drupal\Core\StringTranslation\TranslatableMarkup
    *   The translated route title.
    */
-  public function getTitle() {
+  public function getTitle() : TranslatableMarkup {
     return $this->t('Street and park projects near you', [], ['context' => 'Helsinki near you title']);
   }
 
   /**
-   * Returns the roadworks listing page.
-   *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The request.
-   *
-   * @return array
-   *   A renderable array.
+   * {@inheritdoc}
    */
-  public function content(Request $request): array {
-    $address = $request->query->get('q', '');
+  protected function getDescription(): TranslatableMarkup {
+    return $this->t('Browse roadworks near you or search for roadwork by location.', [], ['context' => 'Helsinki near you']);
+  }
 
-    $build = [
-      'roadworkCount' => 10,
-      'hidePagination' => FALSE,
-      'cardsWithBorders' => FALSE,
-      'scrollToTarget' => TRUE,
-    ];
+  /**
+   * {@inheritdoc}
+   */
+  protected function getSearchForm(): string {
+    return RoadworkSearchForm::class;
+  }
 
-    if (!empty($address)) {
-      try {
-        $address = $this->serviceMap->getAddressData($address);
-
-        if (!empty($addressData) && !empty($addressData['coordinates'])) {
-          // Extract coordinates from GeoJSON format [longitude, latitude].
-          [$lon, $lat] = $addressData['coordinates'];
-
-          $build['initialData'] = [
-            'lat' => $lat,
-            'lon' => $lon,
-            'q' => $address,
-          ];
-        }
-      }
-      catch (\Exception $e) {
-        // If address conversion fails, API URL will have no coordinates
-        // React app will handle empty state.
-      }
-    }
-
+  /**
+   * {@inheritdoc}
+   */
+  protected function build(Address $address): array {
     return [
-      '#attached' => [
-        'drupalSettings' => [
-          'helfi_roadworks' => [
-            'helfi-coordinates-based-roadwork-list' => $build,
-          ],
-        ],
-      ],
-      '#theme' => 'helsinki_near_you_roadworks',
+      '#content' => $this->buildRoadworks($address),
+      '#content_attributes' => ['classes' => ['components--helsinki-near-you-roadwork-page']],
     ];
   }
 

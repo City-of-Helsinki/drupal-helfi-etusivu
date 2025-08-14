@@ -109,7 +109,7 @@ final class ResultsController extends ControllerBase {
               'query' => [
                 'address' => $addressName,
               ],
-            ]),
+            ])->toString(),
           ],
           'helfi_news_archive' => [
             'elastic_proxy_url' => $this->config('elastic_proxy.settings')->get('elastic_proxy_url'),
@@ -117,19 +117,6 @@ final class ResultsController extends ControllerBase {
             'hide_form' => TRUE,
             'max_results' => 3,
             'cardsWithBorders' => TRUE,
-          ],
-          'helfi_roadworks' => [
-            'helfi-coordinates-based-roadwork-list' => [
-              'cardsWithBorders' => TRUE,
-              'initialData' => [
-                'lat' => $address->location->lat,
-                'lon' => $address->location->lon,
-                'q' => $address->streetName->getName($langcode),
-              ],
-              'isShortList' => TRUE,
-              'roadworkCount' => 3,
-              'scrollToTarget' => FALSE,
-            ],
           ],
         ],
       ],
