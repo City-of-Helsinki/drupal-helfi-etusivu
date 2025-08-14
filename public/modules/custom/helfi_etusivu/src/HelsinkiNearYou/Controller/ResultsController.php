@@ -97,7 +97,7 @@ final class ResultsController extends ControllerBase {
             'data' => [
               'helfi-coordinates-based-event-list' => [
                 'events_api_url' => $this->linkedEvents->getEventsRequest([
-                  'dwithin_origin' => sprintf('%d,%d', $address->location->lat, $address->location->lon),
+                  'dwithin_origin' => sprintf('%f,%f', $address->location->lon, $address->location->lat),
                   'dwithin_metres' => 2000,
                 ]),
                 'field_event_count' => 3,
