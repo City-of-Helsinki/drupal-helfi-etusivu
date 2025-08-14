@@ -10,9 +10,21 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder as RoadWorkLazyBuilder;
 
 /**
- * A trait to manage feedback items.
+ * A trait to manage lazy builder items.
  */
 trait LazyBuilderTrait {
+
+  /**
+   * Constructs a lazy builder preview render array.
+   *
+   * @return array
+   *   The render array.
+   */
+  private function getLazyBuilderPreview() : array {
+    return [
+      '#theme' => 'helsinki_near_you_lazy_builder_preview',
+    ];
+  }
 
   /**
    * Constructs a render array for feedback items.
@@ -30,7 +42,7 @@ trait LazyBuilderTrait {
   protected function buildFeedback(Location $location, ?int $limit = NULL, array $attributes = []) : array {
     return [
       '#create_placeholder' => TRUE,
-      '#lazy_builder_preview' => ['#markup' => ''],
+      '#lazy_builder_preview' => $this->getLazyBuilderPreview(),
       '#lazy_builder' => [
         LazyBuilder::class . ':build',
         [
@@ -56,7 +68,7 @@ trait LazyBuilderTrait {
   protected function buildRoadworks(Address $address) : array {
     return [
       '#create_placeholder' => TRUE,
-      '#lazy_builder_preview' => ['#markup' => ''],
+      '#lazy_builder_preview' => $this->getLazyBuilderPreview(),
       '#lazy_builder' => [
         RoadWorkLazyBuilder::class . ':build',
         [

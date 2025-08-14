@@ -1,0 +1,19 @@
+<article>
+  <div class="components components--computed {{ content_attributes['classes']|join(' ') }}">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--gray-bg',
+        'component--full-width',
+      ],
+        component_title: component_title,
+        component_description: component_description,
+      }
+    %}
+      {% block component_content %}
+        {{ autosuggest_form }}
+        {{ content }}
+      {% endblock %}
+    {% endembed %}
+  </div>
+</article>
