@@ -100,8 +100,6 @@ class ResultsController extends ControllerBase {
     // Array format: [longitude, latitude] per GeoJSON specification.
     [$lon, $lat] = $addressData['coordinates'];
 
-    $roadworkSection = $this->buildRoadworkSection($request, $lat, $lon, $address);
-
     $build = [
     // Set the theme for the results page.
       '#theme' => 'helsinki_near_you_results_page',
@@ -156,10 +154,8 @@ class ResultsController extends ControllerBase {
       ),
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName),
-      // Include roadwork section in the build array.
-      '#roadwork_section' => $roadworkSection,
       '#cache' => [
-        'contexts' => ['url.query_args:q'],
+        'contexts' => ['url.query_args:q', 'user.roles:anonymous'],
         'tags' => ['roadwork_section'],
       ],
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [

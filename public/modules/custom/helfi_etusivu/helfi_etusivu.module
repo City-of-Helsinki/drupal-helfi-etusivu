@@ -420,7 +420,6 @@ function helfi_etusivu_theme() : array {
         'service_groups' => NULL,
         'nearby_neighbourhoods' => NULL,
         'news_archive_url' => NULL,
-        'roadwork_section' => NULL,
         'feedback_section' => NULL,
         'feedback_archive_url' => NULL,
       ],
