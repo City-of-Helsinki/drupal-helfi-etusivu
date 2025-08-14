@@ -7,8 +7,8 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\DTO;
 final readonly class Location {
 
   public function __construct(
-    public string $lat,
-    public string $lon,
+    public float $lat,
+    public float $lon,
     public string $type,
   ) {
   }
@@ -32,7 +32,7 @@ final readonly class Location {
     }
     [$lon, $lat] = $data['coordinates'];
 
-    return new self((string) $lat, (string) $lon, $data['type']);
+    return new self((float) $lat, (float) $lon, $data['type']);
   }
 
 }

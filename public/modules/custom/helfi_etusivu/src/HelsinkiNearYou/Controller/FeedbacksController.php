@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 final class FeedbacksController extends ControllerBase {
 
-  use FeedbackTrait;
+  use LazyBuilderTrait;
 
   public function __construct(
     private ServiceMapInterface $serviceMap,
@@ -60,17 +60,11 @@ final class FeedbacksController extends ControllerBase {
 
       return $build;
     }
-    [$lon, $lat] = $addressData['coordinates'];
 
-    if ($lat && $lon) {
-      $build['feedback'] = $this->buildFeedback(
-          (float) $lon,
-          (float) $lat,
-          50,
-        );
-      return $build;
-    }
-
+    $build['feedback'] = $this->buildFeedback(
+      $addressData->location,
+      50,
+    );
     return $build;
   }
 

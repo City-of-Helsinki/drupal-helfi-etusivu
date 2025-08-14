@@ -6,11 +6,11 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
- * A lazy builder for Feedback block.
+ * A lazy builder for Roadwork data block.
  */
 final readonly class LazyBuilder implements TrustedCallbackInterface {
 
@@ -23,19 +23,20 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   /**
    * A lazy-builder callback.
    *
-   * @param float $lon
-   *   The lon.
-   * @param float $lat
-   *   The lat.
-   * @param string $address
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
    *   The address.
    *
    * @return array
    *   The render array.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function build(Address $address): array {
-
-    $items = [];
+    $build = [
+      '#cache' => [
+        'max-age' => 0,
+      ],
+    ];
 
     try {
       // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
@@ -44,7 +45,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         ->wgs84ToEtrsGk25($address->location->lat, $address->location->lon);
 
       if (!$convertedCoords) {
-        throw new \RuntimeException('Failed to convert coordinates to ETRS-GK25');
+        throw new \InvalidArgumentException('Failed to convert coordinates to ETRS-GK25');
       }
 
       // Fetch roadwork projects within 1km radius of the converted coordinates.
@@ -65,34 +66,36 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         $lat = $project->location->lat;
         $lon = $project->location->lon;
 
-        $convertedProjectCoords = $this->coordinateConversionService->etrsGk25ToWgs84(
-          $lat,
-          $lon,
-        );
+        $convertedProjectCoords = $this->coordinateConversionService
+          ->etrsGk25ToWgs84($lat, $lon);
 
         if ($convertedProjectCoords) {
           $lat = $convertedProjectCoords['y'];
           $lon = $convertedProjectCoords['x'];
         }
 
-        $items[] = [
+        $build['items'][] = [
           '#theme' => 'helsinki_near_you_roadwork_item',
           '#title' => $project->title,
           '#uri' => $project->url,
           '#work_type' => $project->type,
-          '#location' => $project->address,
+          '#address' => $project->address,
           '#schedule' => $project->schedule,
           '#lat' => $lat,
           '#lon' => $lon,
+          '#distance_label' => Distance::label(
+            $address->location->lat,
+            $address->location->lon,
+            $lat,
+            $lon,
+          ),
         ];
-
       }
-
     }
     catch (\Exception) {
     }
 
-    return $items;
+    return $build;
   }
 
   /**

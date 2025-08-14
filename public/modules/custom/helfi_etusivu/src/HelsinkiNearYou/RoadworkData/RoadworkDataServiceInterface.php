@@ -42,48 +42,19 @@ interface RoadworkDataServiceInterface {
   public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 2000): array;
 
   /**
-   * Gets formatted roadwork projects for display by address.
-   *
-   * @param string $address
-   *   The address to search near (e.g., 'Mannerheimintie 5, Helsinki').
-   * @param int $distance
-   *   (optional) The search radius in meters. Defaults to 2000 meters.
-   *
-   * @return array
-   *   An array of formatted roadwork projects in the same format as
-   *   getFormattedProjectsByCoordinates(). Returns an empty array if the
-   *   address
-   *   cannot be geocoded.
-   *
-   * @throws \GuzzleHttp\Exception\GuzzleException
-   *   Thrown when there is an error communicating with the geocoding service
-   *   or API.
-   * @throws \InvalidArgumentException
-   *   Thrown when the address is empty.
-   */
-  public function getFormattedProjectsByAddress(string $address, int $distance = 2000): array;
-
-  /**
    * Gets the URL for the "See all roadworks" page.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address|null $address
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
    *   (optional) The address to include in the URL. If provided, it will be
    *   used to pre-fill the search field on the target page.
+   * @param string $langcode
+   *   The langcode to get address for.
    *
    * @return \Drupal\Core\Url
    *   A URL object for the roadworks overview page with optional address
    *   parameter. The URL will point to the route
    *   'helfi_etusivu.helsinki_near_you_roadworks'.
    */
-  public function getSeeAllUrl(?Address $address = NULL): Url;
-
-  /**
-   * Gets the section title for roadworks.
-   *
-   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
-   *   A translatable string representing the section title for roadworks.
-   *   This is typically used as a heading above the roadwork listings.
-   */
-  public function getSectionTitle();
+  public function getSeeAllUrl(Address $address, string $langcode): Url;
 
 }

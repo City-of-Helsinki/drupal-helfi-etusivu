@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Enum;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Enum;
 
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
 
 /**
  * Enum class for service map links.
@@ -28,6 +30,33 @@ enum ServiceMapLink {
       ServiceMapLink::STREET_PARK_PROJECTS => 'eDBTcc',
       ServiceMapLink::PLANS_IN_PROCESS => 'eDB7Rk',
     };
+  }
+
+  /**
+   * Gets the link for given service map type.
+   *
+   * @param string $address
+   *   The address to get link for.
+   * @param string $langcode
+   *   The language to get link for.
+   *
+   * @return string
+   *   The link.
+   */
+  public function getLink(string $address, string $langcode) :string {
+    $query = [
+      'addresslabel' => $this->getAddressLabel($address),
+      'addresslocation' => Xss::filter($address),
+      'link' => $this->link(),
+      'setlanguage' => $langcode,
+    ];
+
+    return Url::fromUri(
+      'https://kartta.hel.fi/',
+      [
+        'query' => $query,
+      ],
+    )->toString();
   }
 
   /**
