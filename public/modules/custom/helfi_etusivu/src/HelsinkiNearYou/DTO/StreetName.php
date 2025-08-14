@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\DTO;
 
+/**
+ * Data transfer object representing a street name.
+ *
+ *  Stores street name in three languages.
+ */
 final readonly class StreetName {
 
   public function __construct(
@@ -13,6 +18,25 @@ final readonly class StreetName {
   ) {
   }
 
+  /**
+   * Creates an instance from an associative array of property values.
+   *
+   * The input array must contain at least a 'fi' key, which serves as the
+   * default value for any missing properties. Each property of the class
+   * will be populated using a corresponding key from the input array, or
+   * fallback to the 'fi' value if the key is not present.
+   *
+   * @param array $data
+   *   An associative array containing:
+   *   - fi: The default value to use for any property not explicitly set.
+   *   - <property_name>: (optional) Values for specific class properties.
+   *
+   * @return self
+   *   A new instance of this class with properties populated from the array.
+   *
+   * @throws \InvalidArgumentException
+   *   Thrown when the 'fi' key is missing from the input array.
+   */
   public static function createFromArray(array $data): self {
     $item = [];
 
