@@ -25,13 +25,17 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
    *   The address.
+   * @param int|null $limit
+   *   The number of items to show.
+   * @param array $attributes
+   * *   Array of attributes to pass to template.
    *
    * @return array
    *   The render array.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function build(Address $address): array {
+  public function build(Address $address, ?int $limit = NULL, array $attributes): array {
     $build = [
       '#cache' => [
         'max-age' => 0,
@@ -89,6 +93,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
             $lat,
             $lon,
           ),
+          '#roadwork_attributes' => $attributes,
         ];
       }
     }

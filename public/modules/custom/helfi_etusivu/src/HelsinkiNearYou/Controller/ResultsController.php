@@ -132,7 +132,7 @@ final class ResultsController extends ControllerBase {
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName, $langcode),
       '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address, $langcode),
-      '#roadwork_section' => $this->buildRoadworks($address),
+      '#roadwork_section' => $this->buildRoadworks($address, 3, ['classes' => ['card--border']]),
       '#cache' => [
         'contexts' => ['url.query_args:q'],
         'tags' => ['roadwork_section'],
