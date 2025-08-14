@@ -6,10 +6,8 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -60,7 +58,7 @@ final class RoadworksController extends ControllerBase {
 
     if (!empty($address)) {
       try {
-        $addressData = $this->serviceMap->getAddressData(urldecode($address));
+        $address = $this->serviceMap->getAddressData($address);
 
         if (!empty($addressData) && !empty($addressData['coordinates'])) {
           // Extract coordinates from GeoJSON format [longitude, latitude].
@@ -89,43 +87,6 @@ final class RoadworksController extends ControllerBase {
       ],
       '#theme' => 'helsinki_near_you_roadworks',
     ];
-  }
-
-  /**
-   * JSON API endpoint for roadworks data.
-   *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The request.
-   *
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
-   *   JSON response with roadworks data.
-   */
-  public function api(Request $request): JsonResponse {
-    // Get coordinates and address from query parameters.
-    $lat = (float) $request->query->get('lat', 0.0);
-    $lon = (float) $request->query->get('lon', 0.0);
-    $address = $request->query->get('q', '');
-
-    if (!$lat || !$lon) {
-      return new JsonResponse([
-        'data' => [],
-        'meta' => [
-          'count' => 0,
-          'error' => 'No coordinates provided',
-        ],
-      ], 400);
-    }
-
-    $roadworkData = $this->lazyBuilder->build($lon, $lat, urldecode($address));
-
-    return new JsonResponse([
-      'data' => $roadworkData['projects'] ?? [],
-      'meta' => [
-        'count' => count($roadworkData['projects'] ?? []),
-        'title' => $roadworkData['title'] ?? '',
-        'see_all_url' => $roadworkData['see_all_url'] ?? '',
-      ],
-    ]);
   }
 
 }

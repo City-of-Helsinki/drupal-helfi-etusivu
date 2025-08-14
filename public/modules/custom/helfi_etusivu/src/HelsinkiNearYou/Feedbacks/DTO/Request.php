@@ -14,9 +14,9 @@ final readonly class Request {
   /**
    * Constructs a new instance.
    *
-   * @param string $lat
+   * @param float $lat
    *   The latitude.
-   * @param string $lon
+   * @param float $lon
    *   The longitude.
    * @param float $radius
    *   The radius.
@@ -26,8 +26,8 @@ final readonly class Request {
    *   The start date.
    */
   public function __construct(
-    public string $lat,
-    public string $lon,
+    public float $lat,
+    public float $lon,
     public float $radius,
     public ?int $limit = NULL,
     public ?DrupalDateTime $start_date = NULL,

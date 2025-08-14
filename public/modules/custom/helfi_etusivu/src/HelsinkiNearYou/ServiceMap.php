@@ -7,8 +7,6 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Url;
-use Drupal\helfi_etusivu\Enum\ServiceMapLink;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
@@ -30,12 +28,6 @@ final class ServiceMap implements ServiceMapInterface {
    * @var string
    */
   private const API_URL = 'https://api.hel.fi/servicemap/v2/search/';
-  /**
-   * Site url for redirecting users.
-   *
-   * @var string
-   */
-  private const SITE_URL = 'https://kartta.hel.fi/';
 
   /**
    * Constructs a new instance.
@@ -103,28 +95,6 @@ final class ServiceMap implements ServiceMapInterface {
         Location::createFromArray($result['location']),
       );
     }, $result['results']);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getLink(ServiceMapLink $link, string $address) : string {
-    $langcode = $this->languageManager->getCurrentLanguage()->getId();
-    $query = [
-      'addresslabel' => $link->getAddressLabel($address),
-      'addresslocation' => Xss::filter($address),
-      'link' => $link->link(),
-      'setlanguage' => $langcode,
-    ];
-
-    $url = Url::fromUri(
-      self::SITE_URL,
-      [
-        'query' => $query,
-      ],
-    );
-
-    return $url->toString();
   }
 
 }
