@@ -6,6 +6,12 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO;
 
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 
+/**
+ * Data transfer object representing a roadwork item.
+ *
+ * Contains metadata about a specific roadwork entry, including title, type,
+ * address, schedule, and location information.
+ */
 final readonly class Item {
 
   public function __construct(
