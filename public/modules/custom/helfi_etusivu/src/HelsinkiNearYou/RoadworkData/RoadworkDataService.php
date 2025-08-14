@@ -29,52 +29,14 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
   }
 
   /**
-   * Retrieves and formats roadwork projects near the given coordinates.
-   *
-   * Fetches raw roadwork data for the specified location and transforms it into
-   * a display-ready format with translated strings and formatted dates.
-   *
-   * @param float $lat
-   *   The latitude in WGS84 decimal degrees.
-   * @param float $lon
-   *   The longitude in WGS84 decimal degrees.
-   * @param int $distance
-   *   (optional) Search radius in meters. Defaults to 1000m.
-   *
-   * @return array
-   *   An array of formatted roadwork projects, each containing:
-   *   - title: (string) The project title/description
-   *   - location: (string) The project location/address
-   *   - schedule: (string) Formatted date range
-   *   - url: (string) URL for more information
-   *   - type: (string) Type of work
-   *   - raw_data: (array) Original project data
+   * {@inheritdoc}
    */
-  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 1000): array {
-    $projects = $this->roadworkDataClient->getProjectsByCoordinates($lat, $lon, $distance);
-    return $this->formatProjects($projects);
-  }
+  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL): array {
+    $projects = $this->roadworkDataClient->getProjectsByCoordinates($lat, $lon, $distance, $limit);
 
-  /**
-   * Transforms raw GeoJSON features into display-ready project data.
-   *
-   * Processes each feature to extract relevant information, format dates,
-   * and create map URLs. Handles both single and multi-geometry features.
-   *
-   * @param array $features
-   *   An array of GeoJSON features from the roadwork API, where each feature
-   *   contains properties like:
-   *   - properties: Array containing project metadata
-   *   - geometry: GeoJSON geometry object with coordinates.
-   *
-   * @return array
-   *   An array of formatted project data, sorted by start date (newest first).
-   *   Each project includes translated labels and properly formatted dates.
-   */
-  protected function formatProjects(array $features): array {
     $formatted = [];
 
-    foreach ($features as $feature) {
+    foreach ($projects as $feature) {
       if (!isset($feature['properties'])) {
         continue;
       }
@@ -121,15 +83,6 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
       );
       $formatted[] = $item;
     }
-
-    // Sort by start date (newest first)
-    usort($formatted, function (Item $a, Item $b) {
-      if ($a->date_string === $b->date_string) {
-        return 0;
-      }
-      return ($a->date_string > $b->date_string) ? -1 : 1;
-    });
-
     return $formatted;
   }
 
@@ -199,22 +152,19 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
    * including the current search address as a query parameter.
    *
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
-   *   (optional) The address to include in the URL. If provided, it will be
+   *   The address to include in the URL. It will be
    *   used to pre-fill the search field on the target page.
+   * @param string $langcode
+   *   The langcode.
    *
    * @return \Drupal\Core\Url
    *   A URL object pointing to the roadworks overview page with optional
    *   address parameter.
    */
   public function getSeeAllUrl(Address $address, string $langcode): Url {
-    // Create options array for the URL.
-    $options = [];
-
-    // Add query parameter if address is provided.
-    if (!empty($address)) {
-      $options['query'] = ['q' => $address->streetName->getName($langcode)];
-    }
-
+    $options = [
+      'query' => ['q' => $address->streetName->getName($langcode)],
+    ];
     return Url::fromRoute('helfi_etusivu.helsinki_near_you_roadworks', [], $options);
   }
 
