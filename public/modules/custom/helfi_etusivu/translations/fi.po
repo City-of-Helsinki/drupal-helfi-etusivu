@@ -273,14 +273,6 @@ msgctxt "Roadworks type fallback"
 msgid "Work"
 msgstr "Työ"
 
-msgctxt "Roadworks field label"
-msgid "Location"
-msgstr "Sijainti"
-
-msgctxt "Roadworks field label"
-msgid "Schedule"
-msgstr "Aikataulu"
-
 msgctxt "Helsinki near you status label"
 msgid "Ready"
 msgstr "Käsitelty"
