@@ -135,7 +135,7 @@ msgstr "Aurausaikataulu"
 
 msgctxt "Helsinki near you"
 msgid "Roadworks on the map"
-msgstr "Katu- ja puistohankkeet kartalla"
+msgstr "Katutyöt kartalla"
 
 msgctxt "Helsinki near you"
 msgid "City bike stations and bikeracks on the map"
