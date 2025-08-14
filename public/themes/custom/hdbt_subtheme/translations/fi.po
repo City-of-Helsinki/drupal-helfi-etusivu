@@ -88,3 +88,15 @@ msgstr "Saapunut"
 msgctxt "Label for feedback location"
 msgid "Location"
 msgstr "Sijainti"
+
+msgctxt "Label for roadwork location"
+msgid "Location"
+msgstr "Sijainti"
+
+msgctxt "Label for roadwork planned schedule"
+msgid "Planned schedule"
+msgstr "Arvioitu aikataulu"
+
+msgctxt "Label for roadwork distance"
+msgid "Distance"
+msgstr "Etäisyys"
