@@ -11,6 +11,8 @@ const locationOptionLabel = `
   </div>
 `;
 
+let abortController = new AbortController();
+
 /**
  * Get the most appropriate translation for address.
  * 
@@ -109,11 +111,21 @@ const getTranslation = (fullName) => {
         }
 
         try {
-          const response = await fetch(`${autocompleteRoute}?q=${searchTerm}`);
+          abortController.abort();
+          abortController = new AbortController();
+
+          const response = await fetch(`${autocompleteRoute}?q=${searchTerm}`, {
+            signal: abortController.signal,
+          });
+
           const data = await response.json();
           results(defaultOptions.concat(data));
         }
         catch (e) {
+          if (e.name === 'AbortError') {
+            return;
+          }
+
           // eslint-disable-next-line no-console
           console.error(e);
           results(defaultOptions);
