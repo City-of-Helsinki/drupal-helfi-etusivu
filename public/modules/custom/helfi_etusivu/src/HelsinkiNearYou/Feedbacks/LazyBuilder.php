@@ -35,6 +35,8 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *   The start date or null.
    * @param int|null $limit
    *   The number of items to fetch or null.
+   * @param array|null $attributes
+   *   Array of attributes to pass to template.
    *
    * @return array
    *   The render array.
@@ -43,6 +45,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     Location $location,
     ?DrupalDateTime $start_date,
     ?int $limit,
+    ?array $attributes,
   ): array {
     $data = $this->httpClient
       ->get(new Request(
@@ -68,6 +71,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         '#title' => $item->title,
         '#address' => $item->address,
         '#requested_datetime' => $item->requested_datetime,
+        '#feedback_attributes' => $attributes,
       ];
     }
     return $build;
