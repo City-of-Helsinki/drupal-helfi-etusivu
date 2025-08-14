@@ -88,3 +88,15 @@ msgstr "Begärt"
 msgctxt "Label for feedback location"
 msgid "Location"
 msgstr "Plats"
+
+msgctxt "Label for roadwork location"
+msgid "Location"
+msgstr "Plats"
+
+msgctxt "Label for roadwork planned schedule"
+msgid "Planned schedule"
+msgstr "Tidsplan"
+
+msgctxt "Label for roadwork distance"
+msgid "Distance"
+msgstr "Avstånd"
