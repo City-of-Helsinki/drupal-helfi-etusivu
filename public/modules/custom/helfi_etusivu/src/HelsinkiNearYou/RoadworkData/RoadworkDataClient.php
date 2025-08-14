@@ -60,7 +60,7 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
    * @throws \GuzzleHttp\Exception\GuzzleException
    *   If there is an error communicating with the API.
    */
-  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000): array {
+  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL): array {
     try {
       // Format the current date in YYYY-MM-DD format for the API filter.
       $currentDate = (new \DateTime())->format('Y-m-d');
@@ -87,9 +87,13 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
           $y,
           $distance
         ),
+        'sortBy' => 'tyo_alkaa D',
         'outputFormat' => 'application/json',
       ];
 
+      if ($limit) {
+        $query['count'] = $limit;
+      }
       $response = $this->httpClient->request('GET', $baseUrl, [
         'query' => $query,
         'timeout' => 30,
@@ -112,7 +116,6 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
       }
 
       return $data['features'];
-
     }
     catch (\Exception $e) {
       $errorMsg = 'Error fetching roadworks data: ' . $e->getMessage();

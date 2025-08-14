@@ -25,6 +25,8 @@ interface RoadworkDataClientInterface {
    *   The longitude in WGS84 decimal degrees.
    * @param int $distance
    *   (optional) The search radius in meters. Defaults to 1000 meters.
+   * @param int|null $limit
+   *   The number of items to fetch.
    *
    * @return array
    *   An array of roadwork projects, each containing:
@@ -39,8 +41,8 @@ interface RoadworkDataClientInterface {
    *   - geometry: (array) Geographic data
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
-   *   Thrown when there is an error communicating with the API.
+   *    Thrown when there is an error communicating with the API.
    */
-  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000): array;
+  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL): array;
 
 }

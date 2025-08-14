@@ -28,6 +28,8 @@ interface RoadworkDataServiceInterface {
    *   The longitude in WGS84 decimal degrees.
    * @param int $distance
    *   (optional) The search radius in meters. Defaults to 2000 meters.
+   * @param int|null $limit
+   *   The number of items to fetch.
    *
    * @return \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Item[]
    *   An array of formatted roadwork projects, each containing:
@@ -37,9 +39,9 @@ interface RoadworkDataServiceInterface {
    *   - url: (string) URL for more information
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
-   *   Thrown when there is an error communicating with the API.
+   *    Thrown when there is an error communicating with the API.
    */
-  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 2000): array;
+  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 2000, ?int $limit = NULL): array;
 
   /**
    * Gets the URL for the "See all roadworks" page.

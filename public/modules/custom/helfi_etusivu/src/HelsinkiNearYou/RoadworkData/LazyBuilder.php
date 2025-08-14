@@ -28,14 +28,14 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    * @param int|null $limit
    *   The number of items to show.
    * @param array $attributes
-   * *   Array of attributes to pass to template.
+   *   Array of attributes to pass to template.
    *
    * @return array
    *   The render array.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function build(Address $address, ?int $limit = NULL, array $attributes): array {
+  public function build(Address $address, ?int $limit = NULL, array $attributes = []): array {
     $build = [
       '#cache' => [
         'max-age' => 0,
@@ -63,7 +63,8 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         // Easting (x-coordinate)
         $convertedCoords['x'],
         // 1000 meters = 1km radius.
-        1000
+        1000,
+        $limit
       ) ?? [];
 
       foreach ($projects as $project) {
