@@ -113,7 +113,6 @@
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [
-        'component--react-search',
         'component--roadworks',
         'component--coordinates-based-list',
         ],
@@ -123,18 +122,15 @@
       }
     %}
       {% block component_content %}
-        {{ attach_library('hdbt/roadwork-list') }}
-        <div
-          id="helfi-roadworks-search"
-          data-paragraph-id="helfi-coordinates-based-roadwork-list"
-        >
+        {{ roadwork_section }}
+
+        <div class="see-all-button see-all-button--roadwork-results">
+          {% include '@hdbt/navigation/link-button.html.twig' with {
+            type: 'primary',
+            label: 'See all roadworks near you'|t({}, {'context': 'Helsinki near you roadworks search'}),
+            url: roadwork_archive_url,
+          } %}
         </div>
-        {# Indicate JS not enabled #}
-        <noscript>
-          <div class="roadwork-list__javascript-disabled">
-            {{ 'You must enable JavaScript in your browser to view the street and park project list.'|t({}, {'context': 'Helsinki near you'}) }}
-          </div>
-        </noscript>
       {% endblock component_content %}
     {% endembed %}
 

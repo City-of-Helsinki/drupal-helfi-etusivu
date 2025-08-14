@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Security\TrustedCallbackInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
 
 /**
@@ -27,31 +28,28 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   /**
    * A lazy-builder callback.
    *
-   * @param float $lon
-   *   The lon.
-   * @param float $lat
-   *   The lat.
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location $location
+   *   The location.
    * @param \Drupal\Core\Datetime\DrupalDateTime|null $start_date
    *   The start date or null.
    * @param int|null $limit
    *   The number of items to fetch or null.
-   * @param array|null $attributes
+   * @param array $attributes
    *   Array of attributes to pass to template.
    *
    * @return array
    *   The render array.
    */
   public function build(
-    float $lon,
-    float $lat,
+    Location $location,
     ?DrupalDateTime $start_date,
     ?int $limit,
-    ?array $attributes,
+    array $attributes = [],
   ): array {
     $data = $this->httpClient
       ->get(new Request(
-        lat: $lat,
-        lon: $lon,
+        lat: $location->lat,
+        lon: $location->lon,
         radius: 0.5,
         limit: $limit,
         start_date: $start_date,

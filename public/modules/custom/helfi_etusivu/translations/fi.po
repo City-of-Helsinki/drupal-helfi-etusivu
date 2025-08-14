@@ -135,7 +135,7 @@ msgstr "Aurausaikataulu"
 
 msgctxt "Helsinki near you"
 msgid "Roadworks on the map"
-msgstr "Katu- ja puistohankkeet kartalla"
+msgstr "Katutyöt kartalla"
 
 msgctxt "Helsinki near you"
 msgid "City bike stations and bikeracks on the map"
@@ -272,14 +272,6 @@ msgstr "Avoinna"
 msgctxt "Roadworks type fallback"
 msgid "Work"
 msgstr "Työ"
-
-msgctxt "Roadworks field label"
-msgid "Location"
-msgstr "Sijainti"
-
-msgctxt "Roadworks field label"
-msgid "Schedule"
-msgstr "Aikataulu"
 
 msgctxt "Helsinki near you status label"
 msgid "Ready"
