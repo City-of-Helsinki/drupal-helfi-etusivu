@@ -356,3 +356,24 @@ function helfi_etusivu_update_9015(): void {
     PathAlias::create($path)->save();
   }
 }
+
+/**
+ * UHF-11959: Add feedback landing page to helsinki-near-you.
+ */
+function helfi_etusivu_update_9016(): void {
+  $paths = [
+    [
+      'path' => '/helsinki-near-you/feedback',
+      'alias' => '/helsinki-lahellasi/palautteet',
+      'langcode' => 'fi',
+    ],
+    [
+      'path' => '/helsinki-near-you/feedback',
+      'alias' => '/helsingfors-nara-dig/feedback',
+      'langcode' => 'sv',
+    ],
+  ];
+  foreach ($paths as $path) {
+    PathAlias::create($path)->save();
+  }
+}
