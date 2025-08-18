@@ -1,0 +1,3 @@
+parameters:
+  helfi_api_base.restricted_roles:
+    - 'menu_api'
