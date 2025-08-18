@@ -1,1 +1,3 @@
 asset_path: etusivu-assets
+prefixes:
+  zxx: etusivu
