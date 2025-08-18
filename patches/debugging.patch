@@ -1,0 +1,16 @@
+diff --git i/src/EventSubscriber/UserLoginSubscriber.php w/src/EventSubscriber/UserLoginSubscriber.php
+index bffbc9b..2f41d39 100644
+--- i/src/EventSubscriber/UserLoginSubscriber.php
++++ w/src/EventSubscriber/UserLoginSubscriber.php
+@@ -55,6 +55,11 @@ class UserLoginSubscriber implements EventSubscriberInterface {
+     $request = $this->requestStack->getCurrentRequest();
+     $clientIp = $request->getClientIp();
+ 
++    $this->logger->debug('Login attempt from @ip for @user.', [
++      '@user' => $account->getAccountName(),
++      '@ip' => $clientIp,
++    ]);
++
+     if (!$clientIp || !IpUtils::checkIp($clientIp, IpUtils::PRIVATE_SUBNETS)) {
+       $this->logger->warning('Login attempt denied for @user from @ip.', [
+         '@user' => $account->getAccountName(),
