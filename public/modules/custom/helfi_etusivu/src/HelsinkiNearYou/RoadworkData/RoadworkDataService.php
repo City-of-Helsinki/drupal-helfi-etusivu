@@ -137,11 +137,9 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
           $easting = $coords[0];
           $northing = $coords[1];
           $url = sprintf(
-            'https://kartta.hel.fi/?setlanguage=fi&e=%.2f&n=%.2f&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(%.2f%20%.2f)',
+            'https://kartta.hel.fi/?setlanguage=fi&e=%.2f&n=%.2f&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100',
             $easting,
             $northing,
-            $easting,
-            $northing
           );
         }
       }
