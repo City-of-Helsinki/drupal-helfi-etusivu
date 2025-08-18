@@ -70,6 +70,9 @@
         "patches": {
             "drupal/draggableviews": {
                 "Save langcode as part of draggableviews data in order to sort by by weight and language": "patches/draggableviews_language.patch"
+            },
+            "drupal/helfi_api_base": {
+                "Debugging, do not merge": "patches/debugging.patch"
             }
         },
         "composer-exit-on-patch-failure": true,
