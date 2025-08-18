@@ -377,3 +377,12 @@ function helfi_etusivu_update_9016(): void {
     PathAlias::create($path)->save();
   }
 }
+
+/**
+ * UHF-11522: Rebuild sitemap.
+ */
+function helfi_etusivu_update_9017(): void {
+  /** @var \Drupal\simple_sitemap\Manager\Generator $generator */
+  $generator = \Drupal::service('simple_sitemap.generator');
+  $generator->rebuildQueue();
+}
