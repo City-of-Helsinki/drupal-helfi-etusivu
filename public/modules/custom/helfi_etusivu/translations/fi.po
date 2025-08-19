@@ -221,9 +221,6 @@ msgctxt "Helsinki near you events search"
 msgid "See all events near you"
 msgstr "Katso kaikki tapahtumat lähelläsi"
 
-msgid "Events near you"
-msgstr "Tapahtumat lähelläsi"
-
 msgctxt "Helsinki near you"
 msgid "Use current Location"
 msgstr "Käytä nykyistä sijaintia"
@@ -234,6 +231,10 @@ msgstr "Nykyisen sijainnin käyttö ei onnistunut. Kokeile kirjoittaa osoite."
 
 msgctxt "Helsinki near you"
 msgid "Roadworks near you"
+msgstr "Katu- ja puistohankkeet lähelläsi"
+
+msgctxt "Helsinki near you title"
+msgid "Street and park projects near you"
 msgstr "Katu- ja puistohankkeet lähelläsi"
 
 msgctxt "Helsinki near you"
@@ -279,6 +280,42 @@ msgstr "Sijainti"
 msgctxt "Roadworks field label"
 msgid "Schedule"
 msgstr "Aikataulu"
+
+msgctxt "Helsinki near you status label"
+msgid "Ready"
+msgstr "Käsitelty"
+
+msgctxt "Helsinki near you status label"
+msgid "Processing"
+msgstr "Käsittelyssä"
+
+msgctxt "Helsinki near you status label"
+msgid "Unknown"
+msgstr "Tuntematon"
+
+msgctxt "Helsinki near you"
+msgid "Home address"
+msgstr "Kotiosoite"
+
+msgctxt "Helsinki near you title"
+msgid "Search feedback near you"
+msgstr "Etsi palautteita osoitteellasi"
+
+msgctxt "Helsinki near you"
+msgid "Search feedback near you"
+msgstr "Etsi palautteita osoitteellasi"
+
+msgctxt "Helsinki near you"
+msgid "Browse feedback near you or search for feedback by location."
+msgstr "Selaa palautteita lähelläsi tai etsi palauttita osoitteella."
+
+msgctxt "Helsinki near you"
+msgid "Feedback near you"
+msgstr "Palautteet lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "Find feedback in your neighbourhood."
+msgstr "Etsi palautteita lähialueeltasi."
 
 msgid "Arabic"
 msgstr "Arabia"
