@@ -12,6 +12,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\HelsinkiNearYouTextProvider;
 use Drupal\helfi_recommendations\TextConverter\Document;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
@@ -491,5 +492,31 @@ function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
 
   if ($node instanceof NewsItem) {
     $variables['#attached']['drupalSettings']['news_taxonomy_term_ids'] = $node->getNewsTerms();
+  }
+}
+
+function helfi_etusivu_page_attachments(array &$page) {
+  // Check if the current route matches the desired route.
+  $route = \Drupal::routeMatch();
+  $descriptionValue = \Drupal::service(HelsinkiNearYouTextProvider::class)
+    ->getDescription($route);
+
+  $routesToMatch = [
+    'helfi_etusivu.helsinki_near_you_roadworks',
+    'helfi_etusivu.helsinki_near_you_events',
+    'helfi_etusivu.helsinki_near_you_feedbacks',
+    'helfi_etusivu.helsinki_near_you_results',
+    'helfi_etusivu.helsinki_near_you',
+  ];
+
+  if (in_array($route->getRouteName(), $routesToMatch)) {
+    $description = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'description',
+        'content' => $descriptionValue,
+      ],
+    ];
+    $page['#attached']['html_head'][] = [$description, 'description'];
   }
 }

@@ -11,6 +11,10 @@ services:
     class: Drupal\helfi_etusivu\Token\NewsNodeImageBuilder
     tags:
       - { name: helfi_platform_config.og_image_builder }
+  Drupal\helfi_etusivu\HelsinkiNearYou\HelsinkiNearYouTextProvider:
+    class: Drupal\helfi_etusivu\HelsinkiNearYou\HelsinkiNearYouTextProvider
+    tags:
+      - { name: helfi_platform_config.helsinki_near_you_text_provider }
   Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap'
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents: ~
