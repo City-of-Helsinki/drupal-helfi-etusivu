@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Controller;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
@@ -10,12 +10,22 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 /**
  * Events near you landing page controller.
  */
-class HelsinkiNearYouEventsController extends ControllerBase {
+class EventsController extends ControllerBase {
 
   /**
    * Constructs a new instance.
    */
   public function __construct(protected readonly LinkedEvents $linkedEvents) {
+  }
+
+  /**
+   * A controller callback for events route that provides the route title.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The translated route title.
+   */
+  public function getTitle() {
+    return $this->t('Events near you', [], ['context' => 'Helsinki near you']);
   }
 
   /**
@@ -55,7 +65,6 @@ class HelsinkiNearYouEventsController extends ControllerBase {
         ],
       ],
       '#theme' => 'helsinki_near_you_events',
-      '#title' => $this->t('Events near you', [], ['context' => 'Helsinki near you']),
     ];
   }
 

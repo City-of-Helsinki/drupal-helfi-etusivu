@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Controller;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface
  * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
  */
-class HelsinkiNearYouRoadworksController extends ControllerBase {
+class RoadworksController extends ControllerBase {
 
   use AutowireTrait;
 
@@ -36,6 +36,16 @@ class HelsinkiNearYouRoadworksController extends ControllerBase {
     LanguageManagerInterface $languageManager,
   ) {
     $this->languageManager = $languageManager;
+  }
+
+  /**
+   * A controller callback for roadworks route that provides the route title.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The translated route title.
+   */
+  public function getTitle() {
+    return $this->t('Street and park projects near you', [], ['context' => 'Helsinki near you title']);
   }
 
   /**
