@@ -12,6 +12,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageSearchForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\HelsinkiNearYouTextProvider;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -37,6 +38,8 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    */
   private RouteMatchInterface $routeMatch;
 
+  private HelsinkiNearYouTextProvider $textProvider;
+
   /**
    * {@inheritdoc}
    */
@@ -53,6 +56,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
     );
     $instance->formBuilder = $container->get(FormBuilderInterface::class);
     $instance->routeMatch = $container->get(RouteMatchInterface::class);
+    $instance->textProvider = $container->get(HelsinkiNearYouTextProvider::class);
 
     return $instance;
   }
@@ -61,30 +65,29 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    * {@inheritdoc}
    */
   public function build() : array {
-    return match($this->routeMatch->getRouteName()) {
-      'helfi_etusivu.helsinki_near_you_roadworks' => $this->buildHero(
-        $this->t('Street and park projects near you', [], ['context' => 'Helsinki near you']),
-        $this->t('Find street and park projects in your neighbourhood.', [], ['context' => 'Helsinki near you roadworks search']),
-        TRUE,
-      ),
-      'helfi_etusivu.helsinki_near_you_events' => $this->buildHero(
-        $this->t('Events near you', [], ['context' => 'Helsinki near you']),
-        $this->t('Find events in your neighbourhood that interest you.', [], ['context' => 'Helsinki near you events search']),
-        TRUE,
-      ),
-      'helfi_etusivu.helsinki_near_you_feedbacks' => $this->buildHero(
-        $this->t('Feedback near you', [], ['context' => 'Helsinki near you']),
-        $this->t('Find feedback in your neighbourhood.', [], ['context' => 'Helsinki near you']),
-        TRUE,
-      ),
-      'helfi_etusivu.helsinki_near_you' => $this->buildHero(
-        $this->t('Helsinki near you', [], ['context' => 'Helsinki near you']),
-        $this->t('Discover city services, events and news near you. Start by entering your street address.', [], ['context' => 'Helsinki near you']),
-        FALSE,
-        $this->formBuilder->getForm(LandingPageSearchForm::class),
-      ),
-      default => [],
-    };
+    $route = $this->routeMatch->getRouteName();
+
+    // Routes with their options.
+    $routeOptions = [
+      'helfi_etusivu.helsinki_near_you_roadworks' => ['gray' => TRUE],
+      'helfi_etusivu.helsinki_near_you_events' => ['gray' => TRUE],
+      'helfi_etusivu.helsinki_near_you_feedbacks' => ['gray' => TRUE],
+      'helfi_etusivu.helsinki_near_you' => [
+        'gray' => FALSE,
+        'form' => $this->formBuilder->getForm(LandingPageSearchForm::class),
+      ],
+    ];
+
+    if (!isset($routeOptions[$route])) {
+      return [];
+    }
+
+    return $this->buildHero(
+      $this->textProvider->getTitle($this->routeMatch),
+      $this->textProvider->getDescription($this->routeMatch),
+      $routeOptions[$route]['gray'],
+      $routeOptions[$route]['form'] ?? [],
+    );
   }
 
   /**
