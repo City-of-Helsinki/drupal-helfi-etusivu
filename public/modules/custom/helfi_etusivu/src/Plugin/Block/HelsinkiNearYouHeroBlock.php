@@ -12,7 +12,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageSearchForm;
-use Drupal\helfi_etusivu\HelsinkiNearYou\HelsinkiNearYouTextProvider;
+use Drupal\helfi_etusivu\Enum\HelsinkiNearYouRouteInformation;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -39,13 +39,6 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
   private RouteMatchInterface $routeMatch;
 
   /**
-   * The text provider.
-   *
-   * @var \Drupal\helfi_etusivu\HelsinkiNearYou\HelsinkiNearYouTextProvider
-   */
-  private HelsinkiNearYouTextProvider $textProvider;
-
-  /**
    * {@inheritdoc}
    */
   public static function create(
@@ -61,7 +54,6 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
     );
     $instance->formBuilder = $container->get(FormBuilderInterface::class);
     $instance->routeMatch = $container->get(RouteMatchInterface::class);
-    $instance->textProvider = $container->get(HelsinkiNearYouTextProvider::class);
 
     return $instance;
   }
@@ -71,14 +63,15 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    */
   public function build() : array {
     $route = $this->routeMatch->getRouteName();
+    $routeInformation = HelsinkiNearYouRouteInformation::fromRoute($route);
 
     // Routes with their options.
     $routeOptions = [
-      'helfi_etusivu.helsinki_near_you_roadworks' => ['gray' => TRUE],
-      'helfi_etusivu.helsinki_near_you_events' => ['gray' => TRUE],
-      'helfi_etusivu.helsinki_near_you_feedbacks' => ['gray' => TRUE],
+      'helfi_etusivu.helsinki_near_you_roadworks' => ['first_paragraph_bg' => TRUE],
+      'helfi_etusivu.helsinki_near_you_events' => ['first_paragraph_bg' => TRUE],
+      'helfi_etusivu.helsinki_near_you_feedbacks' => ['first_paragraph_bg' => TRUE],
       'helfi_etusivu.helsinki_near_you' => [
-        'gray' => FALSE,
+        'first_paragraph_bg' => FALSE,
         'form' => $this->formBuilder->getForm(LandingPageSearchForm::class),
       ],
     ];
@@ -88,9 +81,9 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
     }
 
     return $this->buildHero(
-      $this->textProvider->getTitle($this->routeMatch),
-      $this->textProvider->getDescription($this->routeMatch),
-      $routeOptions[$route]['gray'],
+      $routeInformation->getTitle(),
+      $routeInformation->getDescription(),
+      $routeOptions[$route]['first_paragraph_bg'],
       $routeOptions[$route]['form'] ?? [],
     );
   }
@@ -102,20 +95,20 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    *   The hero title.
    * @param \Drupal\Core\StringTranslation\TranslatableMarkup $description
    *   The hero description.
-   * @param bool $first_paragrap_gray
-   *   Tells template if the first paragraph has gray bg.
+   * @param bool $first_paragraph_bg
+   *   Tells template if the first paragraph has colored bg.
    * @param array $form
    *   The hero form.
    *
    * @return array
    *   The render array.
    */
-  private function buildHero(TranslatableMarkup $title, TranslatableMarkup $description, bool $first_paragrap_gray, array $form = []) : array {
+  private function buildHero(TranslatableMarkup $title, TranslatableMarkup $description, bool $first_paragraph_bg, array $form = []) : array {
     $build['helsinki_near_you_hero_block'] = [
       '#theme' => 'helsinki_near_you_hero_block',
       '#hero_title' => $title,
       '#hero_description' => $description,
-      '#first_paragraph_grey' => $first_paragrap_gray,
+      '#first_paragraph_bg' => $first_paragraph_bg,
       '#form' => $form,
     ];
     return $build;
