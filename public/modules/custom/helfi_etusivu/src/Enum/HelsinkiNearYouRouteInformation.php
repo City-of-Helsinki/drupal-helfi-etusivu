@@ -50,6 +50,17 @@ enum HelsinkiNearYouRouteInformation {
     };
   }
 
+  /**
+   * Returns the case that corresponds to a given route name.
+   *
+   * If the provided route does not have a matching enum case, `null` is returned.
+   *
+   * @param string $route
+   *   The route name.
+   *
+   * @return static|null
+   *   The corresponding enum case if a match exists, or NULL if no match was found.
+   */
   public static function fromRoute(string $route): ?self {
     return match($route) {
       'helfi_etusivu.helsinki_near_you' => self::LANDING_PAGE,
@@ -57,7 +68,7 @@ enum HelsinkiNearYouRouteInformation {
       'helfi_etusivu.helsinki_near_you_feedbacks' => self::FEEDBACK,
       'helfi_etusivu.helsinki_near_you_events' => self::EVENTS,
       'helfi_etusivu.helsinki_near_you_roadworks' => self::ROADWORKS,
-      default => null,
+      default => NULL,
     };
   }
 
