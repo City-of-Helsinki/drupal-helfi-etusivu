@@ -38,6 +38,11 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    */
   private RouteMatchInterface $routeMatch;
 
+  /**
+   * The text provider.
+   *
+   * @var \Drupal\helfi_etusivu\HelsinkiNearYou\HelsinkiNearYouTextProvider
+   */
   private HelsinkiNearYouTextProvider $textProvider;
 
   /**

@@ -8,11 +8,22 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
+/**
+ * Provides translated titles and descriptions for specific routes.
+ *
+ * Uses StringTranslationTrait to return translatable markup.
+ */
 final class HelsinkiNearYouTextProvider {
   use StringTranslationTrait;
 
   /**
-   * Get the hero title based on the route.
+   * Returns the hero title based on the route.
+   *
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The current route match object.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
+   *   The translated title if the route matches or an empty string if not.
    */
   public function getTitle(RouteMatchInterface $route_match) : TranslatableMarkup {
     return match($route_match->getRouteName()) {
@@ -25,7 +36,14 @@ final class HelsinkiNearYouTextProvider {
   }
 
   /**
-   * Get the hero description based on the route.
+   * Returns the hero description based on the route.
+   *
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The current route match object.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
+   *   The translated description if the route matches
+   *   or an empty string if not.
    */
   public function getDescription(RouteMatchInterface $route_match) : TranslatableMarkup {
     return match($route_match->getRouteName()) {
@@ -37,4 +55,5 @@ final class HelsinkiNearYouTextProvider {
       default => '',
     };
   }
+
 }

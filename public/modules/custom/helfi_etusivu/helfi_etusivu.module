@@ -495,6 +495,9 @@ function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
   }
 }
 
+/**
+ * Implements hook_page_attachments_HOOK().
+ */
 function helfi_etusivu_page_attachments(array &$page) {
   // Check if the current route matches the desired route.
   $route = \Drupal::routeMatch();
