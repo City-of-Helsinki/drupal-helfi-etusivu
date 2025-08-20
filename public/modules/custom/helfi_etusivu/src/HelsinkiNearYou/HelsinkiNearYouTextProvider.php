@@ -22,8 +22,8 @@ final class HelsinkiNearYouTextProvider {
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match object.
    *
-   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
-   *   The translated title if the route matches or an empty string if not.
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The translated title if the route matches or an empty markup object if not.
    */
   public function getTitle(RouteMatchInterface $route_match) : TranslatableMarkup {
     return match($route_match->getRouteName()) {
@@ -31,7 +31,7 @@ final class HelsinkiNearYouTextProvider {
       'helfi_etusivu.helsinki_near_you_feedbacks' => $this->t('Feedback near you', [], ['context' => 'Helsinki near you']),
       'helfi_etusivu.helsinki_near_you_events' => $this->t('Events near you', [], ['context' => 'Helsinki near you']),
       'helfi_etusivu.helsinki_near_you_roadworks' => $this->t('Street and park projects near you', [], ['context' => 'Helsinki near you']),
-      default => '',
+      default => $this->t(''),
     };
   }
 
@@ -41,9 +41,9 @@ final class HelsinkiNearYouTextProvider {
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match object.
    *
-   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
    *   The translated description if the route matches
-   *   or an empty string if not.
+   *   or an empty markup object if not.
    */
   public function getDescription(RouteMatchInterface $route_match) : TranslatableMarkup {
     return match($route_match->getRouteName()) {
@@ -52,7 +52,7 @@ final class HelsinkiNearYouTextProvider {
       'helfi_etusivu.helsinki_near_you_feedbacks' => $this->t('Find feedback in your neighbourhood.', [], ['context' => 'Helsinki near you']),
       'helfi_etusivu.helsinki_near_you_events' => $this->t('Find events in your neighbourhood that interest you.', [], ['context' => 'Helsinki near you events search']),
       'helfi_etusivu.helsinki_near_you_roadworks' => $this->t('Find street and park projects in your neighbourhood.', [], ['context' => 'Helsinki near you roadworks search']),
-      default => '',
+      default => $this->t(''),
     };
   }
 
