@@ -53,13 +53,15 @@ enum HelsinkiNearYouRouteInformation {
   /**
    * Returns the case that corresponds to a given route name.
    *
-   * If the provided route does not have a matching enum case, `null` is returned.
+   * If the provided route does not have a matching enum
+   * case, `null` is returned.
    *
    * @param string $route
    *   The route name.
    *
    * @return static|null
-   *   The corresponding enum case if a match exists, or NULL if no match was found.
+   *   The corresponding enum case if a match exists, or
+   *   NULL if no match was found.
    */
   public static function fromRoute(string $route): ?self {
     return match($route) {
