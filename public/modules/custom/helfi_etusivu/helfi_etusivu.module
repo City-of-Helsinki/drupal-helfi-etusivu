@@ -12,7 +12,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\HelsinkiNearYouTextProvider;
+use Drupal\helfi_etusivu\Enum\HelsinkiNearYouRouteInformation;
 use Drupal\helfi_recommendations\TextConverter\Document;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
@@ -452,7 +452,7 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'hero_title' => NULL,
         'hero_description' => NULL,
-        'first_paragraph_grey' => NULL,
+        'first_paragraph_bg' => NULL,
         'form' => [],
       ],
       'template' => 'helsinki-near-you-hero-block',
@@ -500,24 +500,15 @@ function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
  */
 function helfi_etusivu_page_attachments(array &$page) {
   // Check if the current route matches the desired route.
-  $route = \Drupal::routeMatch();
-  $descriptionValue = \Drupal::service(HelsinkiNearYouTextProvider::class)
-    ->getDescription($route);
+  $route = \Drupal::routeMatch()->getRouteName();
+  $routeInformation = HelsinkiNearYouRouteInformation::fromRoute($route);
 
-  $routesToMatch = [
-    'helfi_etusivu.helsinki_near_you_roadworks',
-    'helfi_etusivu.helsinki_near_you_events',
-    'helfi_etusivu.helsinki_near_you_feedbacks',
-    'helfi_etusivu.helsinki_near_you_results',
-    'helfi_etusivu.helsinki_near_you',
-  ];
-
-  if (in_array($route->getRouteName(), $routesToMatch)) {
+  if ($routeInformation) {
     $description = [
       '#tag' => 'meta',
       '#attributes' => [
         'name' => 'description',
-        'content' => $descriptionValue,
+        'content' => $routeInformation->getDescription(),
       ],
     ];
     $page['#attached']['html_head'][] = [$description, 'description'];
