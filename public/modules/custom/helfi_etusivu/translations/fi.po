@@ -37,7 +37,11 @@ msgstr "Helsinki lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "Discover city services, events and news near you. Start by entering your street address."
-msgstr "Löydä kaupungin palvelut, tapahtumat ja uutiset läheltäsi. Aloita kirjoittamalla osoitteesi."
+msgstr "Etsi kaupungin palveluita, tapahtumia ja uutisia osoitteesi perusteella. Aloita kirjoittamalla osoitteesi."
+
+msgctxt "Helsinki near you"
+msgid "Discover city services, events and news near you."
+msgstr "Etsi kaupungin palveluita, tapahtumia ja uutisia osoitteesi perusteella."
 
 msgctxt "Helsinki near you"
 msgid "Address"
@@ -103,7 +107,7 @@ msgstr "Hoida terveyttä"
 
 msgctxt "Helsinki near you"
 msgid "Your health station"
-msgstr "Oma terveysasema"
+msgstr "Lähin terveysasema"
 
 msgctxt "Helsinki near you"
 msgid "The maternity and child health clinic near you"
