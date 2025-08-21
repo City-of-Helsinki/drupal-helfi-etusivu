@@ -20,9 +20,10 @@ trait LazyBuilderTrait {
    * @return array
    *   The render array.
    */
-  private function getLazyBuilderPreview() : array {
+  private function getLazyBuilderPreview(?int $limit = NULL) : array {
     return [
       '#theme' => 'helsinki_near_you_lazy_builder_preview',
+      '#num_items' => $limit,
     ];
   }
 
@@ -42,7 +43,7 @@ trait LazyBuilderTrait {
   protected function buildFeedback(Location $location, ?int $limit = NULL, array $attributes = []) : array {
     return [
       '#create_placeholder' => TRUE,
-      '#lazy_builder_preview' => $this->getLazyBuilderPreview(),
+      '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
       '#lazy_builder' => [
         LazyBuilder::class . ':build',
         [
@@ -72,7 +73,7 @@ trait LazyBuilderTrait {
   protected function buildRoadworks(Address $address, ?int $limit = NULL, array $attributes = []) : array {
     return [
       '#create_placeholder' => TRUE,
-      '#lazy_builder_preview' => $this->getLazyBuilderPreview(),
+      '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
       '#lazy_builder' => [
         RoadWorkLazyBuilder::class . ':build',
         [

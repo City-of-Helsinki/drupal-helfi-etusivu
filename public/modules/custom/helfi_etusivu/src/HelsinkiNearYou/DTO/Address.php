@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\DTO;
 
+/**
+ * Data transfer object representing an address.
+ *
+ *  Stores street name and location data.
+ */
 final readonly class Address {
 
   public function __construct(
@@ -12,6 +17,12 @@ final readonly class Address {
   ) {
   }
 
+  /**
+   * Returns the street name in Finnish as a string.
+   *
+   * @return string
+   *   The Finnish street name.
+   */
   public function __toString() : string {
     return $this->streetName->fi;
   }

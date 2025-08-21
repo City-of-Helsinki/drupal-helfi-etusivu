@@ -65,10 +65,6 @@ msgctxt "Helsinki near you"
 msgid "Browse street and park projects near you."
 msgstr "Selaa katu- ja puistohankkeita lähelläsi."
 
-msgctxt "Helsinki near you"
-msgid "You must enable JavaScript in your browser to view the street and park project list."
-msgstr "Katu- ja puistohankelistan toimimiseksi sinun tulee sallia JavaScript selaimessasi"
-
 msgctxt "Feedback close to you block"
 msgid "Feedback near you"
 msgstr "Palautteet lähelläsi"
