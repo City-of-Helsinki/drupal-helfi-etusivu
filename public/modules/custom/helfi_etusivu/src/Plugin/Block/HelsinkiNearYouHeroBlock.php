@@ -12,7 +12,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageSearchForm;
-use Drupal\helfi_etusivu\Enum\HelsinkiNearYouRouteInformation;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -63,7 +63,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    */
   public function build() : array {
     $route = $this->routeMatch->getRouteName();
-    $routeInformation = HelsinkiNearYouRouteInformation::fromRoute($route);
+    $routeInformation = RouteInformationEnum::fromRoute($route);
 
     // Routes with their options.
     $routeOptions = [

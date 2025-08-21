@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Enum;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Enum;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
@@ -11,7 +11,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *
  * Uses StringTranslationTrait to return translatable markup.
  */
-enum HelsinkiNearYouRouteInformation {
+enum RouteInformationEnum {
 
   case LANDING_PAGE;
   case RESULTS;
