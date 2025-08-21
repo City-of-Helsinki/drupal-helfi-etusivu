@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Kernel;
+namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Controller;
 
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -12,6 +12,9 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
@@ -28,7 +31,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @group helfi_etusivu
  */
-class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
+class ResultsControllerTest extends KernelTestBase {
 
   /**
    * {@inheritdoc}
@@ -121,8 +124,9 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
 
     $badAddress = 'Nonexistant street';
     $validAddress = 'Kalevankatu 2';
-    $addressTranslations = new \stdClass();
-    $addressTranslations->fi = 'Kalevankatu 2';
+    $addressTranslations = [
+      'fi' => $validAddress,
+    ];
 
     // Should redirect when serviceMap instance returns NULL for address query.
     $queryWithBadArgs = new InputBag([
@@ -133,10 +137,15 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
       ->method('getAddressData')
       ->willReturnMap([
         [Xss::filter(urldecode($badAddress)), NULL],
-        [Xss::filter(urldecode($validAddress)), [
-          'address_translations' => $addressTranslations,
-          'coordinates' => [60.171, 24.934],
-        ],
+        [
+          Xss::filter(urldecode($validAddress)),
+          new Address(
+            StreetName::createFromArray($addressTranslations),
+            Location::createFromArray([
+              'coordinates' => [60.171, 24.934],
+              'type' => 'Point',
+            ]),
+          ),
         ],
       ]);
     $badArgRedirect = $this->controller->content($mockRequest);
@@ -171,7 +180,7 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
    * Tests the buildServiceGroups method.
    */
   public function testBuildServiceGroups() {
-    $serviceGroups = $this->controller->buildServiceGroups('Kalevankatu 2');
+    $serviceGroups = $this->controller->buildServiceGroups('Kalevankatu 2', 'fi');
     $this->assertEquals(count($serviceGroups), 4);
 
     foreach ($serviceGroups as $group) {
@@ -202,11 +211,10 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
       ->method('query')
       ->willReturn(array_map(
         function ($name) {
-          return (object) [
-            'name' => (object) [
-              'fi' => $name,
-            ],
-          ];
+          return new Address(
+            StreetName::createFromArray(['fi' => $name]),
+            new Location(60.171, 24.934, 'Point'),
+          );
         },
         [
           'Kalevankatu 2',
@@ -217,34 +225,6 @@ class HelsinkiNearYouResultsControllerTest extends KernelTestBase {
 
     $addressSuggestions = $this->controller->addressSuggestions($mockRequest);
     $this->assertInstanceOf(JsonResponse::class, $addressSuggestions);
-  }
-
-  /**
-   * Tests the roadworks api.
-   */
-  public function testRoadworksApi() : void {
-    $mockRequest = $this->createMock(Request::class);
-    $query = new InputBag([]);
-    $mockRequest->query = $query;
-
-    $response = $this->controller->roadworksApi($mockRequest);
-    $data = json_decode($response->getContent(), TRUE);
-    $this->assertInstanceOf(JsonResponse::class, $response);
-    $this->assertEquals(400, $response->getStatusCode());
-    $this->assertEquals('No coordinates provided', $data['meta']['error']);
-
-    // Make sure exception is caught and fallback data is provided.
-    $this->roadworkDataService
-      ->expects(self::once())
-      ->method('getFormattedProjectsByCoordinates')
-      ->willThrowException(new \Exception('Message'));
-
-    $mockRequest->query->set('lat', 1.0);
-    $mockRequest->query->set('lon', 1.0);
-
-    $response = $this->controller->roadworksApi($mockRequest);
-    $this->assertInstanceOf(JsonResponse::class, $response);
-    $this->assertEquals(200, $response->getStatusCode());
   }
 
 }

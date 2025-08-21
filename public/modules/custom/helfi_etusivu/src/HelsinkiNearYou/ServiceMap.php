@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Utility\Error;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
@@ -79,17 +80,18 @@ final class ServiceMap implements ServiceMapInterface {
       ]);
     }
     catch (GuzzleException $e) {
-      $this->logger->error('Servicemap query failed: ' . $e->getMessage());
+      Error::logException($this->logger, $e);
+
       return [];
     }
 
     $result = json_decode($response->getBody()->getContents(), TRUE);
 
-    if (!isset($result['results'])) {
+    if (empty($result['results'])) {
       return [];
     }
 
-    return array_map(function (array $result) {
+    return array_map(function (array $result) : Address {
       return new Address(
         StreetName::createFromArray($result['name']),
         Location::createFromArray($result['location']),

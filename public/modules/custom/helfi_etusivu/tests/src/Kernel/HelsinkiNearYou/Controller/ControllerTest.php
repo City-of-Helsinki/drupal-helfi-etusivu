@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Kernel;
+namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Extension\Extension;
 use Drupal\Core\Extension\ThemeHandlerInterface;
@@ -19,7 +19,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  *
  * @group helfi_etusivu
  */
-class HelsinkiNearYouControllerTest extends KernelTestBase {
+class ControllerTest extends KernelTestBase {
 
   use ProphecyTrait;
 
