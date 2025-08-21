@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedbacks;
 
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
@@ -47,7 +48,7 @@ class LazyBuilderTest extends KernelTestBase {
     ]);
     $this->container->set('http_client', $client);
     $sut = $this->container->get(LazyBuilder::class);
-    $build = $sut->build(1, 1, NULL, NULL, NULL);
+    $build = $sut->build(new Location(1, 1, 'Point'), NULL, NULL);
 
     $this->assertEquals(['max-age' => 0], $build['#cache']);
     $this->assertEquals('123', $build['items'][0]['#title']);

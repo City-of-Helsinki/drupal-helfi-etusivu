@@ -52,6 +52,8 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
    *   The longitude in WGS84 decimal degrees.
    * @param int $distance
    *   (optional) Search radius in meters. Defaults to 1000m.
+   * @param int $limit
+   *   (optional) Limit how many cards are shown. Defaults to NULL.
    *
    * @return array
    *   An array of GeoJSON features containing roadwork project data.
@@ -60,7 +62,7 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
    * @throws \GuzzleHttp\Exception\GuzzleException
    *   If there is an error communicating with the API.
    */
-  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000): array {
+  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL): array {
     try {
       // Format the current date in YYYY-MM-DD format for the API filter.
       $currentDate = (new \DateTime())->format('Y-m-d');
@@ -87,9 +89,13 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
           $y,
           $distance
         ),
+        'sortBy' => 'tyo_alkaa D',
         'outputFormat' => 'application/json',
       ];
 
+      if ($limit) {
+        $query['count'] = $limit;
+      }
       $response = $this->httpClient->request('GET', $baseUrl, [
         'query' => $query,
         'timeout' => 30,
@@ -112,100 +118,12 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
       }
 
       return $data['features'];
-
     }
     catch (\Exception $e) {
       $errorMsg = 'Error fetching roadworks data: ' . $e->getMessage();
       $this->logger->error($errorMsg);
 
       return [];
-    }
-  }
-
-  /**
-   * Fetches roadwork projects near the given address.
-   *
-   * First geocodes the address to coordinates, then retrieves nearby
-   * roadwork projects using those coordinates.
-   *
-   * @param string $address
-   *   The address to search near (e.g., 'Mannerheimintie 5, Helsinki').
-   * @param int $distance
-   *   (optional) Search radius in meters. Defaults to 1000m.
-   *
-   * @return array
-   *   An array of GeoJSON features containing roadwork project data.
-   *   Returns an empty array if the address cannot be geocoded or no
-   *   projects are found.
-   *
-   * @throws \GuzzleHttp\Exception\GuzzleException
-   *   If there is an error communicating with the geocoding service or API.
-   * @throws \InvalidArgumentException
-   *   If the address parameter is empty.
-   */
-  public function getProjectsByAddress(string $address, int $distance = 1000): array {
-    try {
-      // First, geocode the address to get coordinates.
-      $geocoded = $this->geocodeAddress($address);
-
-      if (!$geocoded) {
-        $this->logger->warning('Could not geocode address: @address', ['@address' => $address]);
-        return [];
-      }
-
-      // Get roadwork data for the geocoded coordinates.
-      return $this->getProjectsByCoordinates(
-        (float) $geocoded['y'],
-        (float) $geocoded['x'],
-        $distance
-      );
-
-    }
-    catch (\Exception $e) {
-      $this->logger->error('Error in getProjectsByAddress: @error', [
-        '@error' => $e->getMessage(),
-      ]);
-      return [];
-    }
-  }
-
-  /**
-   * Converts an address to geographic coordinates using the Servicemap service.
-   *
-   * @param string $address
-   *   The address to geocode (e.g., 'Mannerheimintie 5, Helsinki').
-   *
-   * @return array|null
-   *   An associative array with 'x' (longitude) and 'y' (latitude) keys,
-   *   or NULL if the address could not be geocoded.
-   *
-   * @throws \InvalidArgumentException
-   *   If the address parameter is empty.
-   */
-  protected function geocodeAddress(string $address): ?array {
-    try {
-      $this->logger->debug('Geocoding address: @address', ['@address' => $address]);
-
-      // Use Servicemap to geocode the address.
-      $geocoded = $this->serviceMap->getAddressData($address);
-
-      if (!$geocoded || !isset($geocoded['x']) || !isset($geocoded['y'])) {
-        $this->logger->warning('Could not geocode address: @address', ['@address' => $address]);
-        return NULL;
-      }
-
-      return [
-        'x' => (float) $geocoded['x'],
-        'y' => (float) $geocoded['y'],
-      ];
-
-    }
-    catch (\Exception $e) {
-      $this->logger->error('Error geocoding address @address: @error', [
-        '@address' => $address,
-        '@error' => $e->getMessage(),
-      ]);
-      return NULL;
     }
   }
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Enum;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Enum;
 
 /**
  * Enum class for internal search links.
@@ -18,6 +18,21 @@ enum InternalSearchLink {
   case DAYCARES;
   case PLOWING_SCHEDULES;
   case NEWS_ARCHIVE;
+
+  /**
+   * Gets the translated link for given language.
+   *
+   * @param string $langcode
+   *   The langcode to get link for.
+   *
+   * @return string
+   *   The translated link.
+   */
+  public function getLinkTranslation(string $langcode): string {
+    $translations = $this->getLinkTranslations();
+
+    return $translations[$langcode] ?? $translations['en'];
+  }
 
   /**
    * Return array of link translations.
