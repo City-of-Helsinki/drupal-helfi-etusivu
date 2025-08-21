@@ -52,6 +52,8 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
    *   The longitude in WGS84 decimal degrees.
    * @param int $distance
    *   (optional) Search radius in meters. Defaults to 1000m.
+   * @param int $limit
+   *   (optional) Limit how many cards are shown. Defaults to NULL.
    *
    * @return array
    *   An array of GeoJSON features containing roadwork project data.
