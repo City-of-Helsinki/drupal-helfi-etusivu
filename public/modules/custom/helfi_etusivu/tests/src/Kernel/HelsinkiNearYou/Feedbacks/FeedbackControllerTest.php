@@ -6,6 +6,9 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedbacks;
 
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbacksController;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\KernelTests\KernelTestBase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -60,15 +63,17 @@ class FeedbackControllerTest extends KernelTestBase {
 
     $serviceMapMock = $this->prophesize(ServiceMapInterface::class);
     $serviceMapMock->getAddressData('Kotikatu 1')
-      ->willReturn([
-        'address_translations' => (object) ['fi' => 'Kotikatu 1'],
-        'coordinates' => [60.171, 24.934],
-      ]);
+      ->willReturn(
+        new Address(
+          StreetName::createFromArray(['fi' => 'Kotikatu 1']),
+          new Location(60.171, 24.934, 'Point'),
+        ),
+      );
     $this->container->set(ServiceMapInterface::class, $serviceMapMock->reveal());
     $response = FeedbacksController::create($this->container)->content($mockRequest);
 
     $this->assertIsArray($response['#autosuggest_form']);
-    $this->assertArrayHasKey('#feedback', $response);
+    $this->assertArrayHasKey('#content', $response);
   }
 
 }
