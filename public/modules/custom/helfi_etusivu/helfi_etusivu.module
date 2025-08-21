@@ -12,7 +12,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\helfi_etusivu\Enum\HelsinkiNearYouRouteInformation;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
 use Drupal\helfi_recommendations\TextConverter\Document;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
@@ -501,7 +501,7 @@ function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
 function helfi_etusivu_page_attachments(array &$page) {
   // Check if the current route matches the desired route.
   $route = \Drupal::routeMatch()->getRouteName();
-  $routeInformation = HelsinkiNearYouRouteInformation::fromRoute($route);
+  $routeInformation = RouteInformationEnum::fromRoute($route);
 
   if ($routeInformation) {
     $description = [
