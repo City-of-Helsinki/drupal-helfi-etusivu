@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\Core\Utility\Error;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -40,29 +41,9 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
   }
 
   /**
-   * Fetches roadwork projects near the given coordinates.
-   *
-   * Retrieves active roadwork projects from the Helsinki Open Data WFS service
-   * within the specified distance of the given coordinates. Coordinates should
-   * be in WGS84 (EPSG:4326) format.
-   *
-   * @param float $lat
-   *   The latitude in WGS84 decimal degrees.
-   * @param float $lon
-   *   The longitude in WGS84 decimal degrees.
-   * @param int $distance
-   *   (optional) Search radius in meters. Defaults to 1000m.
-   * @param int $limit
-   *   (optional) Limit how many cards are shown. Defaults to NULL.
-   *
-   * @return array
-   *   An array of GeoJSON features containing roadwork project data.
-   *   Returns an empty array on error or if no projects are found.
-   *
-   * @throws \GuzzleHttp\Exception\GuzzleException
-   *   If there is an error communicating with the API.
+   * {@inheritdoc}
    */
-  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL): array {
+  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL, int $page = 0): array {
     try {
       // Format the current date in YYYY-MM-DD format for the API filter.
       $currentDate = (new \DateTime())->format('Y-m-d');
@@ -95,6 +76,7 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
 
       if ($limit) {
         $query['count'] = $limit;
+        $query['startIndex'] = $page > 0 ? ($page * $limit) : 0;
       }
       $response = $this->httpClient->request('GET', $baseUrl, [
         'query' => $query,
@@ -114,17 +96,19 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
         }
         $this->logger->error($errorMsg);
 
-        return [];
+        return ['features' => [], 'totalFeatures' => 0];
       }
 
-      return $data['features'];
+      return [
+        'totalFeatures' => $data['totalFeatures'],
+        'features' => $data['features'],
+      ];
     }
     catch (\Exception $e) {
-      $errorMsg = 'Error fetching roadworks data: ' . $e->getMessage();
-      $this->logger->error($errorMsg);
-
-      return [];
+      Error::logException($this->logger, $e);
     }
+
+    return ['features' => [], 'totalFeatures' => 0];
   }
 
 }

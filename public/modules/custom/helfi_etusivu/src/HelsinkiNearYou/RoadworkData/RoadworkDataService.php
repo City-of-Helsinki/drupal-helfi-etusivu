@@ -8,6 +8,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Item;
 
 /**
@@ -31,8 +32,11 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
   /**
    * {@inheritdoc}
    */
-  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL): array {
-    $projects = $this->roadworkDataClient->getProjectsByCoordinates($lat, $lon, $distance, $limit);
+  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL, int $page = 0): Collection {
+    [
+      'features' => $projects,
+      'totalFeatures' => $numItems,
+    ] = $this->roadworkDataClient->getProjectsByCoordinates($lat, $lon, $distance, $limit, $page);
 
     $formatted = [];
 
@@ -83,7 +87,7 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
       );
       $formatted[] = $item;
     }
-    return $formatted;
+    return new Collection($numItems, $formatted);
   }
 
   /**

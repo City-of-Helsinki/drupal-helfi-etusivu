@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
+use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
@@ -17,6 +18,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   public function __construct(
     private RoadworkDataServiceInterface $roadworkDataService,
     private CoordinateConversionService $coordinateConversionService,
+    private PagerManagerInterface $pagerManager,
   ) {
   }
 
@@ -42,6 +44,13 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       ],
     ];
 
+    $showPager = $limit === NULL;
+
+    // Show 10 items per page if no limit is defined.
+    if ($showPager) {
+      $limit = 10;
+    }
+
     try {
       // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
       // which is required by the roadwork data service.
@@ -57,48 +66,58 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       // - First parameter is northing (y-coordinate)
       // - Second parameter is easting (x-coordinate)
       // - Third parameter is search radius in meters.
-      $projects = $this->roadworkDataService->getFormattedProjectsByCoordinates(
+      $data = $this->roadworkDataService->getFormattedProjectsByCoordinates(
       // Northing (y-coordinate)
         $convertedCoords['y'],
         // Easting (x-coordinate)
         $convertedCoords['x'],
         // 1000 meters = 1km radius.
         1000,
-        $limit
+        $limit,
+        $this->pagerManager->findPage(),
       ) ?? [];
-
-      foreach ($projects as $project) {
-        $lat = $project->location->lat;
-        $lon = $project->location->lon;
-
-        $convertedProjectCoords = $this->coordinateConversionService
-          ->etrsGk25ToWgs84($lat, $lon);
-
-        if ($convertedProjectCoords) {
-          $lat = $convertedProjectCoords['y'];
-          $lon = $convertedProjectCoords['x'];
-        }
-
-        $build['items'][] = [
-          '#theme' => 'helsinki_near_you_roadwork_item',
-          '#title' => $project->title,
-          '#uri' => $project->url,
-          '#work_type' => $project->type,
-          '#address' => $project->address,
-          '#schedule' => $project->schedule,
-          '#lat' => $lat,
-          '#lon' => $lon,
-          '#distance_label' => Distance::label(
-            $address->location->lat,
-            $address->location->lon,
-            $lat,
-            $lon,
-          ),
-          '#roadwork_attributes' => $attributes,
-        ];
-      }
     }
     catch (\Exception) {
+      return $build;
+    }
+
+    foreach ($data->items as $project) {
+      $lat = $project->location->lat;
+      $lon = $project->location->lon;
+
+      $convertedProjectCoords = $this->coordinateConversionService
+        ->etrsGk25ToWgs84($lat, $lon);
+
+      if ($convertedProjectCoords) {
+        $lat = $convertedProjectCoords['y'];
+        $lon = $convertedProjectCoords['x'];
+      }
+
+      $build['items'][] = [
+        '#theme' => 'helsinki_near_you_roadwork_item',
+        '#title' => $project->title,
+        '#uri' => $project->url,
+        '#work_type' => $project->type,
+        '#address' => $project->address,
+        '#schedule' => $project->schedule,
+        '#lat' => $lat,
+        '#lon' => $lon,
+        '#distance_label' => Distance::label(
+          $address->location->lat,
+          $address->location->lon,
+          $lat,
+          $lon,
+        ),
+        '#roadwork_attributes' => $attributes,
+      ];
+    }
+
+    if ($showPager) {
+      $this->pagerManager->createPager($data->numItems, $limit);
+
+      $build['pager'] = [
+        '#type' => 'pager',
+      ];
     }
 
     return $build;

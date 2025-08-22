@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection;
 
 /**
  * Defines the interface for roadwork data processing services.
@@ -30,9 +31,11 @@ interface RoadworkDataServiceInterface {
    *   (optional) The search radius in meters. Defaults to 2000 meters.
    * @param int|null $limit
    *   The number of items to fetch.
+   * @param int $page
+   *   The pager page.
    *
-   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Item[]
-   *   An array of formatted roadwork projects, each containing:
+   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection
+   *   A collection of formatted roadwork projects, each containing:
    *   - title: (string) The project title/description
    *   - location: (string) The project location/address
    *   - schedule: (string) Formatted date range
@@ -41,7 +44,7 @@ interface RoadworkDataServiceInterface {
    * @throws \GuzzleHttp\Exception\GuzzleException
    *    Thrown when there is an error communicating with the API.
    */
-  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 2000, ?int $limit = NULL): array;
+  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 2000, ?int $limit = NULL, int $page = 0): Collection;
 
   /**
    * Gets the URL for the "See all roadworks" page.
