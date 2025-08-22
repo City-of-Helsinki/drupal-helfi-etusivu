@@ -44,40 +44,41 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
    * {@inheritdoc}
    */
   public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL, int $page = 0): array {
+    // Format the current date in YYYY-MM-DD format for the API filter.
+    $currentDate = (new \DateTime())->format('Y-m-d');
+
+    // The API expects coordinates in EPSG:3879 (ETRS-GK25)
+    // We assume the coordinates are already converted to EPSG:3879 before
+    // being passed to this method.
+    // In EPSG:3879, this is the easting (x-coordinate)
+    $x = $lon;
+    // In EPSG:3879, this is the northing (y-coordinate)
+    $y = $lat;
+
+    // Build the WFS request URL.
+    $baseUrl = 'https://kartta.hel.fi/ws/geoserver/avoindata/wfs';
+    $query = [
+      'service' => 'wfs',
+      'version' => '2.0.0',
+      'request' => 'GetFeature',
+      'typeName' => 'avoindata:Kaivuilmoitus_alue',
+      'CQL_FILTER' => sprintf(
+        'tyo_paattyy>%s AND DWITHIN(singlegeom,SRID=3879;POINT(%f %f),%d,meters)',
+        $currentDate,
+        $x,
+        $y,
+        $distance
+      ),
+      'sortBy' => 'tyo_alkaa D',
+      'outputFormat' => 'application/json',
+    ];
+
+    if ($limit) {
+      $query['count'] = $limit;
+      $query['startIndex'] = $page > 0 ? ($page * $limit) : 0;
+    }
+
     try {
-      // Format the current date in YYYY-MM-DD format for the API filter.
-      $currentDate = (new \DateTime())->format('Y-m-d');
-
-      // The API expects coordinates in EPSG:3879 (ETRS-GK25)
-      // We assume the coordinates are already converted to EPSG:3879 before
-      // being passed to this method.
-      // In EPSG:3879, this is the easting (x-coordinate)
-      $x = $lon;
-      // In EPSG:3879, this is the northing (y-coordinate)
-      $y = $lat;
-
-      // Build the WFS request URL.
-      $baseUrl = 'https://kartta.hel.fi/ws/geoserver/avoindata/wfs';
-      $query = [
-        'service' => 'wfs',
-        'version' => '2.0.0',
-        'request' => 'GetFeature',
-        'typeName' => 'avoindata:Kaivuilmoitus_alue',
-        'CQL_FILTER' => sprintf(
-          'tyo_paattyy>%s AND DWITHIN(singlegeom,SRID=3879;POINT(%f %f),%d,meters)',
-          $currentDate,
-          $x,
-          $y,
-          $distance
-        ),
-        'sortBy' => 'tyo_alkaa D',
-        'outputFormat' => 'application/json',
-      ];
-
-      if ($limit) {
-        $query['count'] = $limit;
-        $query['startIndex'] = $page > 0 ? ($page * $limit) : 0;
-      }
       $response = $this->httpClient->request('GET', $baseUrl, [
         'query' => $query,
         'timeout' => 30,

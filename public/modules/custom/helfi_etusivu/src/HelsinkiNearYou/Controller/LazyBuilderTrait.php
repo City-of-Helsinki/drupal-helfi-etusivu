@@ -62,6 +62,8 @@ trait LazyBuilderTrait {
    *
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
    *   The address.
+   * @param string $langcode
+   *   The langcode.
    * @param int|null $limit
    *   The number of items to show.
    * @param array $attributes
@@ -70,7 +72,7 @@ trait LazyBuilderTrait {
    * @return array
    *   The render array.
    */
-  protected function buildRoadworks(Address $address, ?int $limit = NULL, array $attributes = []) : array {
+  protected function buildRoadworks(Address $address, string $langcode, ?int $limit = NULL, array $attributes = []) : array {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
@@ -78,6 +80,7 @@ trait LazyBuilderTrait {
         RoadWorkLazyBuilder::class . ':build',
         [
           $address,
+          $langcode,
           $limit,
           $attributes,
         ],
