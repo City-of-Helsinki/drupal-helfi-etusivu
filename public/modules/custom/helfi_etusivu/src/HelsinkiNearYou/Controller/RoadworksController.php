@@ -52,8 +52,12 @@ final class RoadworksController extends SearchPageControllerBase {
    * {@inheritdoc}
    */
   protected function build(Address $address): array {
+    $langcode = $this->languageManager
+      ->getCurrentLanguage()
+      ->getId();
+
     return [
-      '#content' => $this->buildRoadworks($address),
+      '#content' => $this->buildRoadworks($address, $langcode),
       '#content_attributes' => ['classes' => ['components--helsinki-near-you-roadwork-page']],
     ];
   }

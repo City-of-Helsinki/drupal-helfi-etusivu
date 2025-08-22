@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
@@ -25,9 +26,11 @@ abstract class SearchPageControllerBase extends ControllerBase {
     protected readonly ServiceMapInterface $serviceMap,
     FormBuilderInterface $formBuilder,
     MessengerInterface $messenger,
+    LanguageManagerInterface $languageManager,
   ) {
     $this->formBuilder = $formBuilder;
     $this->messenger = $messenger;
+    $this->languageManager = $languageManager;
   }
 
   /**

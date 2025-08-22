@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
@@ -27,6 +28,8 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
    *   The address.
+   * @param string $langcode
+   *   The language code.
    * @param int|null $limit
    *   The number of items to show.
    * @param array $attributes
@@ -37,11 +40,12 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function build(Address $address, ?int $limit = NULL, array $attributes = []): array {
+  public function build(Address $address, string $langcode, ?int $limit = NULL, array $attributes = []): array {
     $build = [
       '#cache' => [
         'max-age' => 0,
       ],
+      '#theme' => 'helsinki_near_you_lazy_builder_content',
     ];
 
     $showPager = $limit === NULL;
@@ -93,7 +97,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         $lon = $convertedProjectCoords['x'];
       }
 
-      $build['items'][] = [
+      $build['#content'][] = [
         '#theme' => 'helsinki_near_you_roadwork_item',
         '#title' => $project->title,
         '#uri' => $project->url,
@@ -113,9 +117,13 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     }
 
     if ($showPager) {
+      $build['#title'] = new TranslatableMarkup('@num results using address @address', [
+        '@num' => $data->numItems,
+        '@address' => $address->streetName->getName($langcode),
+      ]);
       $this->pagerManager->createPager($data->numItems, $limit);
 
-      $build['pager'] = [
+      $build['#content']['pager'] = [
         '#type' => 'pager',
       ];
     }

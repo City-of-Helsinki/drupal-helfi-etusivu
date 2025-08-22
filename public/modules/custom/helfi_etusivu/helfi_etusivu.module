@@ -479,6 +479,12 @@ function helfi_etusivu_theme() : array {
         'component_description' => NULL,
       ],
     ],
+    'helsinki_near_you_lazy_builder_content' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+    ],
     'helsinki_near_you_lazy_builder_preview' => [
       'variables' => [
         'num_items' => NULL,
