@@ -302,6 +302,10 @@ msgctxt "Helsinki near you"
 msgid "Find feedback in your neighbourhood."
 msgstr "Hitta feedback i ditt närområde."
 
+msgctxt "Helsinki near you"
+msgid "@num roadworks using address @address"
+msgstr "@num gatu- och parkprojekt på adressen @address"
+
 msgid "Arabic"
 msgstr "Arabiska"
 
