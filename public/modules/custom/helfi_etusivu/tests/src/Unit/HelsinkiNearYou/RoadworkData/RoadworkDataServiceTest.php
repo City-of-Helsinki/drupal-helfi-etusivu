@@ -100,19 +100,22 @@ class RoadworkDataServiceTest extends UnitTestCase {
    */
   public function testGetFormattedProjectsByCoordinates() {
     $sampleFeatures = [
-      [
-        'id' => 'test.1',
-        'properties' => [
-          'tyon_tyyppi' => 'Test Type',
-          'tyon_kuvaus' => 'Test Description',
-          'osoite' => 'Test Street 1',
-          'tyo_alkaa' => '2025-01-01T00:00:00Z',
-          'tyo_paattyy' => '2025-12-31T23:59:59Z',
-          'www' => 'http://example.com/test',
-        ],
-        'geometry' => [
-          'type' => 'Point',
-          'coordinates' => [25496190, 6673588],
+      'totalFeatures' => 1,
+      'features' => [
+        [
+          'id' => 'test.1',
+          'properties' => [
+            'tyon_tyyppi' => 'Test Type',
+            'tyon_kuvaus' => 'Test Description',
+            'osoite' => 'Test Street 1',
+            'tyo_alkaa' => '2025-01-01T00:00:00Z',
+            'tyo_paattyy' => '2025-12-31T23:59:59Z',
+            'www' => 'http://example.com/test',
+          ],
+          'geometry' => [
+            'type' => 'Point',
+            'coordinates' => [25496190, 6673588],
+          ],
         ],
       ],
     ];
@@ -124,13 +127,13 @@ class RoadworkDataServiceTest extends UnitTestCase {
 
     $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(60.192059, 24.945831, 2000);
 
-    $this->assertCount(1, $result);
-    $this->assertEquals('Test Street 1', $result[0]->title);
-    $this->assertStringContainsString('Test Street 1', $result[0]->address);
+    $this->assertCount(1, $result->items);
+    $this->assertEquals('Test Street 1', $result->items[0]->title);
+    $this->assertStringContainsString('Test Street 1', $result->items[0]->address);
     // Check that the schedule contains both start and end dates.
-    $this->assertStringContainsString('01.01.2025', $result[0]->schedule);
-    $this->assertStringContainsString('01.01.2026', $result[0]->schedule);
-    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]->url);
+    $this->assertStringContainsString('01.01.2025', $result->items[0]->schedule);
+    $this->assertStringContainsString('01.01.2026', $result->items[0]->schedule);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result->items[0]->url);
   }
 
   /**
@@ -142,11 +145,11 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $this->roadworkDataClient->expects($this->once())
       ->method('getProjectsByCoordinates')
       ->with(0, 0, 2000)
-      ->willReturn([]);
+      ->willReturn(['features' => [], 'totalFeatures' => 0]);
 
     $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(0, 0, 2000);
-    $this->assertIsArray($result);
-    $this->assertEmpty($result);
+    $this->assertIsArray($result->items);
+    $this->assertEmpty($result->items);
   }
 
   /**
@@ -157,15 +160,18 @@ class RoadworkDataServiceTest extends UnitTestCase {
    */
   public function testDateFormatting($input, $expected) {
     $features = [
-      [
-        'properties' => [
-          'tyon_tyyppi' => 'Date Test',
-          'osoite' => 'Test Street',
-          'tyo_alkaa' => $input,
-          'tyo_paattyy' => $input,
+      'features' => [
+        [
+          'properties' => [
+            'tyon_tyyppi' => 'Date Test',
+            'osoite' => 'Test Street',
+            'tyo_alkaa' => $input,
+            'tyo_paattyy' => $input,
+          ],
+          'geometry' => ['coordinates' => [123, 123], 'type' => 'Point'],
         ],
-        'geometry' => ['coordinates' => [123, 123], 'type' => 'Point'],
       ],
+      'totalFeatures' => 1,
     ];
 
     $this->roadworkDataClient->expects($this->once())
@@ -174,7 +180,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
 
     $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(123, 123);
 
-    $this->assertEquals($expected, $result[0]->schedule);
+    $this->assertEquals($expected, $result->items[0]->schedule);
   }
 
   /**

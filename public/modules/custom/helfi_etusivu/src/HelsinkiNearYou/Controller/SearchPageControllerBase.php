@@ -78,7 +78,8 @@ abstract class SearchPageControllerBase extends ControllerBase {
     $build = [
       '#theme' => 'helsinki_near_you_search_page',
       '#cache' => [
-        'contexts' => ['url.query_args:q'],
+        'contexts' => ['url.query_args:q', 'url.query_args:page'],
+        'max-age' => 0,
       ],
       '#component_title' => $this->getTitle(),
       '#component_description' => $this->getDescription(),

@@ -106,6 +106,7 @@ class RoadworkDataClientTest extends UnitTestCase {
     // Mock successful API response.
     $response = new Response(200, [], json_encode([
       'type' => 'FeatureCollection',
+      'totalFeatures' => 1,
       'features' => [
         [
           'id' => 'test.1',
@@ -129,9 +130,9 @@ class RoadworkDataClientTest extends UnitTestCase {
       ->willReturn($response);
 
     $result = $this->roadworkDataClient->getProjectsByCoordinates(24.945831, 60.192059);
-    $this->assertIsArray($result);
-    $this->assertCount(1, $result);
-    $this->assertEquals('test.1', $result[0]['id']);
+    $this->assertIsArray($result['features']);
+    $this->assertCount(1, $result['features']);
+    $this->assertEquals('test.1', $result['features'][0]['id']);
   }
 
   /**
@@ -145,7 +146,7 @@ class RoadworkDataClientTest extends UnitTestCase {
       ->willThrowException(new \Exception('API Error'));
 
     $result = $this->roadworkDataClient->getProjectsByCoordinates(60.192059, 24.945831);
-    $this->assertEmpty($result);
+    $this->assertEmpty($result['features']);
   }
 
   /**
@@ -159,7 +160,7 @@ class RoadworkDataClientTest extends UnitTestCase {
       ->willReturn(new Response(200, [], '{"invalid": "response"}'));
 
     $result = $this->roadworkDataClient->getProjectsByCoordinates(60.192059, 24.945831);
-    $this->assertEmpty($result);
+    $this->assertEmpty($result['features']);
   }
 
 }
