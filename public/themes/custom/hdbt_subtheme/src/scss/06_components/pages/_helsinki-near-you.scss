@@ -88,7 +88,7 @@
 }
 
 .helfi-etusivu-autocomplete [data-autocomplete-live-region] {
-  @include visually-hidden();
+  @include visually-hidden;
 }
 
 .helfi-etusivu-near-you-form__address-input [data-autocomplete-item-list] {
@@ -112,7 +112,9 @@
 .helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:hover,
 .helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:focus,
 .helfi-etusivu-near-you-form__address-input [data-autocomplete-item]:active {
-  background-color: $color-bus-light;
+  background-color: var(--hdbt-color-black);
+  color: var(--color-white);
+  outline: none;
 }
 
 .event-list__see-all-button--near-you {
