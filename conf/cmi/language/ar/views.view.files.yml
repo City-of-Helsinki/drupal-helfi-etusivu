@@ -14,9 +14,16 @@ display:
           label: الحجم
         status:
           label: الحالة
+          settings:
+            format_custom_false: مؤقت
+            format_custom_true: دائم
         count:
           label: 'مستخدمة في'
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
+        fid:
+          label: Fid
+        created:
+          label: 'Upload date'
       pager:
         options:
           tags:
@@ -42,6 +49,9 @@ display:
         status:
           expose:
             label: الحالة
+      empty:
+        area_text_custom:
+          content: 'لا تتوفر ملفّات.'
   page_1:
     display_options:
       menu:
