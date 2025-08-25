@@ -23,16 +23,6 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
  */
 class RoadworkDataClient implements RoadworkDataClientInterface {
 
-  /**
-   * Constructs a new RoadworkDataClient instance.
-   *
-   * @param \GuzzleHttp\ClientInterface $httpClient
-   *   The HTTP client.
-   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
-   *   The logger.
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface $serviceMap
-   *   The Servicemap service.
-   */
   public function __construct(
     protected ClientInterface $httpClient,
     #[Autowire(service: 'logger.channel.helfi_etusivu')] protected LoggerChannelInterface $logger,

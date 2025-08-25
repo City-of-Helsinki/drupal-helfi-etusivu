@@ -58,10 +58,10 @@ class ClientTest extends UnitTestCase {
     );
     // Test empty JSON response.
     $response = $sut->get($request);
-    $this->assertEmpty($response);
+    $this->assertEmpty($response->items);
     // Test 400 error.
     $response = $sut->get($request);
-    $this->assertEmpty($response);
+    $this->assertEmpty($response->items);
   }
 
   /**
@@ -93,7 +93,7 @@ class ClientTest extends UnitTestCase {
       ],
       [
         new Request(lat: 1, lon: 1, radius: 0.5, limit: 10, start_date: new DrupalDateTime('2025-01-31 23:59:59', settings: ['langcode' => 'en'])),
-        'https://palautteet.hel.fi/public-api/open311-public-service/v1/requests.json?extensions=1&lat=1&long=1&radius=0.5&limit=10&start_date=2025-01-31T23%3A59%3A59Z',
+        'https://palautteet.hel.fi/public-api/open311-public-service/v1/requests.json?extensions=1&lat=1&long=1&radius=0.5&start_date=2025-01-31T23%3A59%3A59Z',
       ],
     ];
   }
@@ -126,8 +126,8 @@ class ClientTest extends UnitTestCase {
       radius: 0.5,
     );
     $response = $sut->get($request);
-    $this->assertCount(1, $response);
-    $this->assertInstanceOf(Feedback::class, $response[0]);
+    $this->assertCount(1, $response->items);
+    $this->assertInstanceOf(Feedback::class, $response->items[0]);
   }
 
 }

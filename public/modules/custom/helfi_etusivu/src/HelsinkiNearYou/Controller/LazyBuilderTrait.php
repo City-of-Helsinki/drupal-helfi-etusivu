@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder as RoadWorkLazyBuilder;
 
@@ -30,8 +29,10 @@ trait LazyBuilderTrait {
   /**
    * Constructs a render array for feedback items.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location $location
-   *   The location object.
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   *   The address.
+   * @param string $langcode
+   *   The langcode.
    * @param int|null $limit
    *   The item limit.
    * @param array $attributes
@@ -40,16 +41,15 @@ trait LazyBuilderTrait {
    * @return array
    *   The render array.
    */
-  protected function buildFeedback(Location $location, ?int $limit = NULL, array $attributes = []) : array {
+  protected function buildFeedback(Address $address, string $langcode, ?int $limit = NULL, array $attributes = []) : array {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
       '#lazy_builder' => [
         LazyBuilder::class . ':build',
         [
-          $location,
-          // @todo Add date filter back once it works.
-          NULL,
+          $address,
+          $langcode,
           $limit,
           $attributes,
         ],

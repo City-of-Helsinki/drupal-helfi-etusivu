@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks;
 
-use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
 
 /**
@@ -14,24 +15,19 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
  */
 final readonly class LazyBuilder implements TrustedCallbackInterface {
 
-  /**
-   * Constructs a new instance.
-   *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\Client $httpClient
-   *   The http client.
-   */
   public function __construct(
     private Client $httpClient,
+    private PagerManagerInterface $pagerManager,
   ) {
   }
 
   /**
    * A lazy-builder callback.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location $location
-   *   The location.
-   * @param \Drupal\Core\Datetime\DrupalDateTime|null $start_date
-   *   The start date or null.
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   *   The address.
+   * @param string $langcode
+   *   The langcode.
    * @param int|null $limit
    *   The number of items to fetch or null.
    * @param array $attributes
@@ -41,28 +37,36 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *   The render array.
    */
   public function build(
-    Location $location,
-    ?DrupalDateTime $start_date,
+    Address $address,
+    string $langcode,
     ?int $limit,
     array $attributes = [],
   ): array {
-    $data = $this->httpClient
-      ->get(new Request(
-        lat: $location->lat,
-        lon: $location->lon,
-        radius: 0.5,
-        limit: $limit,
-        start_date: $start_date,
-      ));
-
     $build = [
       '#cache' => [
         'max-age' => 0,
       ],
+      '#theme' => 'helsinki_near_you_lazy_builder_content',
     ];
 
-    foreach ($data as $item) {
-      $build['items'][] = [
+    $showPager = $limit === NULL;
+
+    // Show 10 items per page if no limit is defined.
+    if ($showPager) {
+      $limit = 10;
+    }
+
+    $data = $this->httpClient
+      ->get(new Request(
+        lat: $address->location->lat,
+        lon: $address->location->lon,
+        radius: 0.5,
+        limit: $limit,
+        offset: ($this->pagerManager->findPage() * $limit),
+      ));
+
+    foreach ($data->items as $item) {
+      $build['#content'][] = [
         '#theme' => 'helsinki_near_you_feedback_item',
         '#status' => $item->status,
         '#description' => $item->description,
@@ -73,6 +77,20 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         '#feedback_attributes' => $attributes,
       ];
     }
+
+    $build['#title'] = new TranslatableMarkup('@num feedback using address @address', [
+      '@num' => $data->numItems,
+      '@address' => $address->streetName->getName($langcode),
+    ], ['context' => 'Helsinki near you']);
+
+    if ($showPager) {
+      $this->pagerManager->createPager($data->numItems, $limit);
+
+      $build['#content']['pager'] = [
+        '#type' => 'pager',
+      ];
+    }
+
     return $build;
   }
 

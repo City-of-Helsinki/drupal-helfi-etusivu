@@ -11,25 +11,12 @@ use Drupal\Core\Datetime\DrupalDateTime;
  */
 final readonly class Request {
 
-  /**
-   * Constructs a new instance.
-   *
-   * @param float $lat
-   *   The latitude.
-   * @param float $lon
-   *   The longitude.
-   * @param float $radius
-   *   The radius.
-   * @param int|null $limit
-   *   The item limit.
-   * @param \Drupal\Core\Datetime\DrupalDateTime|null $start_date
-   *   The start date.
-   */
   public function __construct(
     public float $lat,
     public float $lon,
     public float $radius,
     public ?int $limit = NULL,
+    public int $offset = 0,
     public ?DrupalDateTime $start_date = NULL,
   ) {
   }

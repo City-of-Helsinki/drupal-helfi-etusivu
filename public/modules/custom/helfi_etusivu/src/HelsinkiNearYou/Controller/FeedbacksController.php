@@ -38,8 +38,12 @@ final class FeedbacksController extends SearchPageControllerBase {
    * {@inheritdoc}
    */
   protected function build(Address $address): array {
+    $langcode = $this->languageManager
+      ->getCurrentLanguage()
+      ->getId();
+
     return [
-      '#content' => $this->buildFeedback($address->location, 50),
+      '#content' => $this->buildFeedback($address, $langcode),
       '#content_attributes' => ['classes' => ['components--helsinki-near-you-feedback-page']],
     ];
   }
