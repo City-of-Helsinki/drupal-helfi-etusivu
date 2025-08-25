@@ -110,7 +110,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $this->assertStringContainsString('Test Street 1', $result[0]['location']);
     $this->assertStringContainsString('01.01.2025', $result[0]['schedule']);
     $this->assertStringContainsString('01.01.2026', $result[0]['schedule']);
-    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100', $result[0]['url']);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
   }
 
   /**
@@ -179,7 +179,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
     // Check that the schedule contains both start and end dates.
     $this->assertStringContainsString('01.01.2025', $result[0]['schedule']);
     $this->assertStringContainsString('01.01.2026', $result[0]['schedule']);
-    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100', $result[0]['url']);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
   }
 
   /**
@@ -217,7 +217,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
     // Check that the schedule contains both start and end dates.
     $this->assertStringContainsString('01.02.2025', $result[0]['schedule']);
     $this->assertStringContainsString('01.03.2025', $result[0]['schedule']);
-    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100', $result[0]['url']);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
   }
 
   /**
