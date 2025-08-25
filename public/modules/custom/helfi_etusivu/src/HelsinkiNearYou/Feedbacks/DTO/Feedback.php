@@ -12,26 +12,6 @@ use Drupal\Core\Datetime\DrupalDateTime;
  */
 final readonly class Feedback {
 
-  /**
-   * Constructs a new instance.
-   *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Status $status
-   *   The status.
-   * @param string $description
-   *   The description.
-   * @param \Drupal\Core\Datetime\DrupalDateTime $requested_datetime
-   *   The requested datetime.
-   * @param string $lat
-   *   The latitude.
-   * @param string $long
-   *   The longitude.
-   * @param string $uri
-   *   The uri.
-   * @param string|null $title
-   *   The title.
-   * @param string|null $address
-   *   The address.
-   */
   public function __construct(
     public Status $status,
     public string $description,

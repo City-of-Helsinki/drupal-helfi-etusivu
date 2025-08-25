@@ -27,20 +27,6 @@ final class ResultsController extends ControllerBase {
 
   use LazyBuilderTrait;
 
-  /**
-   * Constructs a new instance.
-   *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface $serviceMap
-   *   The servicemap service.
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents $linkedEvents
-   *   The linked events service.
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface $roadworkDataService
-   *   The roadwork data service.
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService $coordinateConversionService
-   *   The coordinate conversion service.
-   * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
-   *   The language manager.
-   */
   public function __construct(
     private readonly ServiceMapInterface $serviceMap,
     private readonly LinkedEvents $linkedEvents,
@@ -142,7 +128,7 @@ final class ResultsController extends ControllerBase {
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
         'query' => ['q' => $addressName],
       ]),
-      '#feedback_section' => $this->buildFeedback($address->location, 3, ['classes' => ['card--border']]),
+      '#feedback_section' => $this->buildFeedback($address, $langcode, 3, ['classes' => ['card--border']]),
     ];
   }
 

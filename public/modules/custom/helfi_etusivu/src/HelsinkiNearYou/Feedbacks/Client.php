@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks;
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Feedback;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
 use GuzzleHttp\ClientInterface;
@@ -46,9 +47,6 @@ final readonly class Client {
       // Radius in kilometers.
       'radius' => $request->radius,
     ];
-    if ($request->limit) {
-      $query['limit'] = $request->limit;
-    }
 
     // @todo Start date filter is broken at the moment.
     if ($request->start_date) {
@@ -67,17 +65,27 @@ final readonly class Client {
    * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request $request
    *   The request object.
    *
-   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Feedback[]
+   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Collection
    *   An array of feedback items.
    */
-  public function get(Request $request) : array {
+  public function get(Request $request) : Collection {
+    $numItems = 0;
+    $map = [];
+
     try {
       $data = $this->httpClient->request('GET', $this->getUri($request), [
         RequestOptions::TIMEOUT => 10,
       ]);
       $json = json_decode($data->getBody()->getContents(), TRUE);
 
-      $map = [];
+      if ($json) {
+        $numItems = count($json);
+
+        if ($request->limit) {
+          $json = array_slice($json, $request->offset, $request->limit);
+        }
+      }
+
       foreach ($json ?? [] as $item) {
         try {
           $map[] = Feedback::createFromArray($item);
@@ -86,11 +94,11 @@ final readonly class Client {
           continue;
         }
       }
-      return $map;
     }
     catch (GuzzleException) {
     }
-    return [];
+
+    return new Collection($numItems, $map);
   }
 
 }
