@@ -2,3 +2,5 @@ cancel_confirm:
   subject: 'طلب إلغاء الحساب لـ [user:display-name] على [site:name]'
 register_admin_created:
   subject: 'أنشأ مدير حساب لك في [site:name]'
+register_pending_approval:
+  body: "[user:display-name]،\r\n\r\nشكرًا لتسجيلك في [site:name]. طلبك للحصول على حساب ما زال بانتظار الموافقة. بعد الموافقة، ستتلقى رسالة إلكترونية أخرى تحتوي على معلومات حول كيفية تسجيل الدخول، وتعيين كلمة المرور، وتفاصيل أخرى.\r\n\r\n-- فريق [site:name]"
