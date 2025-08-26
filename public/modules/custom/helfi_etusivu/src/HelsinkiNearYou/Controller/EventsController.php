@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 
 /**
@@ -15,7 +16,11 @@ class EventsController extends ControllerBase {
   /**
    * Constructs a new instance.
    */
-  public function __construct(protected readonly LinkedEvents $linkedEvents) {
+  public function __construct(
+    protected readonly LinkedEvents $linkedEvents,
+    LanguageManagerInterface $languageManager,
+  ) {
+    $this->languageManager = $languageManager;
   }
 
   /**
@@ -32,7 +37,11 @@ class EventsController extends ControllerBase {
    * Returns a renderable array.
    */
   public function content() : array {
-    $events_url = $this->linkedEvents->getEventsRequest();
+    $langcode = $this->languageManager
+      ->getCurrentLanguage()
+      ->getId();
+
+    $events_url = $this->linkedEvents->getEventsRequest($langcode);
 
     return [
       '#attached' => [

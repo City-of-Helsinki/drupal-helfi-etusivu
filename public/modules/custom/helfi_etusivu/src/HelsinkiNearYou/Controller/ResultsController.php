@@ -79,26 +79,6 @@ final class ResultsController extends ControllerBase {
       '#theme' => 'helsinki_near_you_results_page',
       '#attached' => [
         'drupalSettings' => [
-          'helfi_events' => [
-            'baseUrl' => LinkedEvents::BASE_URL,
-            'cardsWithBorders' => TRUE,
-            'data' => [
-              'helfi-coordinates-based-event-list' => [
-                'events_api_url' => $this->linkedEvents->getEventsRequest([
-                  'dwithin_origin' => sprintf('%f,%f', $address->location->lon, $address->location->lat),
-                  'dwithin_metres' => 2000,
-                ]),
-                'field_event_count' => 3,
-                'hidePagination' => TRUE,
-                'removeBloatingEvents' => TRUE,
-              ],
-            ],
-            'seeAllNearYouLink' => Url::fromRoute('helfi_etusivu.helsinki_near_you_events', [], [
-              'query' => [
-                'address' => $addressName,
-              ],
-            ])->toString(),
-          ],
           'helfi_news_archive' => [
             'elastic_proxy_url' => $this->config('elastic_proxy.settings')->get('elastic_proxy_url'),
             'default_query' => http_build_query($newsQuery),
@@ -108,6 +88,12 @@ final class ResultsController extends ControllerBase {
           ],
         ],
       ],
+      '#events_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_events', options: [
+        'query' => [
+          'address' => $addressName,
+        ],
+      ]),
+      '#events_section' => $this->buildEvents($address, $langcode, 3),
       '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
       '#back_link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
       '#news_archive_url' => $this->getInternalSearchLink(InternalSearchLink::NEWS_ARCHIVE, $newsQuery, $langcode),

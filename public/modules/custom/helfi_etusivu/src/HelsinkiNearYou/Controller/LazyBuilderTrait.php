@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder as EventsLazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder as RoadWorkLazyBuilder;
 
 /**
@@ -23,6 +24,37 @@ trait LazyBuilderTrait {
     return [
       '#theme' => 'helsinki_near_you_lazy_builder_preview',
       '#num_items' => $limit,
+    ];
+  }
+
+  /**
+   * Constructs a render array for events.
+   *
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   *   The address.
+   * @param string $langcode
+   *   The language code.
+   * @param int|null $limit
+   *   The number of items to show.
+   * @param array $attributes
+   *   The attributes.
+   *
+   * @return array
+   *   The events render array.
+   */
+  protected function buildEvents(Address $address, string $langcode, ?int $limit = NULL, array $attributes = []) {
+    return [
+      '#create_placeholder' => TRUE,
+      '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
+      '#lazy_builder' => [
+        EventsLazyBuilder::class . ':build',
+        [
+          $address,
+          $langcode,
+          $limit,
+          $attributes,
+        ],
+      ],
     ];
   }
 

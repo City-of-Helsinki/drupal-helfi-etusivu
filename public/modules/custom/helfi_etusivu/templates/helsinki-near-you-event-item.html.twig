@@ -1,0 +1,78 @@
+{% set at_string = 'at'|t({}, {'context': 'Indication that events take place in a certain timeframe'}) %}
+
+<div class="card card--external">
+  <div class="card__image">
+    {{ external_image }}
+  </div>
+  <div class="card__text">
+    <h4 class="card__title">{{ title }}</h4>
+
+    <div class="card__category">
+      <div class="content-tags content-tags--card" aria-label="Tags" role="group">
+        <ul class="content-tags__tags content-tags__tags--static">
+          <li class="content-tags__tags__tag">
+            <div class=" content-tags__tags__tag--{{ object.category.value }} }}">
+              <span>{{ object.category.text }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card__metas">
+      {%if object.location %}
+        <div class="card__meta">
+          <span class="card__meta__icon"><span class="hel-icon hel-icon--location " aria-hidden="false"></span></span>
+          <span class="card__meta__label">
+        {{ 'Location'|t({}, {'context': 'React search'} ) }}:
+      </span>
+          <span class="card__meta__content">
+        {{ object.location }}
+      </span>
+        </div>
+      {% endif %}
+
+      <div class="card__meta">
+        <span class="card__meta__icon"><span class="hel-icon hel-icon--calendar " aria-hidden="false"></span></span>
+        <span class="card__meta__label">
+        {{ 'Time'|t({}, {'context': 'Time of event'}) }}:
+      </span>
+        <span class="card__meta__content">
+      {% if not object.isMultiDate %}
+        {{ object.startDate | date('d.m.Y') }} - {{ object.endDate|date('d.m.Y') }}
+      {% else %}
+        {{ object.startDate|date('d.m.y') }}, {{ 'at'|t({}, {'context': 'Indication that events take place in a certain timeframe'}) }} {{ object.startDate|date('H:i') }} - {{ object.endDate|date('H:i') }}
+      {% endif %}
+      </span>
+      </div>
+      {% if object.enrolmentStartDate %}
+        <div class="card__meta">
+          <span class="card__meta__icon"><span class="hel-icon hel-icon--bell " aria-hidden="false"></span></span>
+          <span class="card__meta__label">
+      {{ 'Registration time'|t({}, {'context': 'Event signup period'}) }}:
+      </span>
+          <span class="card__meta__content">
+        {{ object.enrolmentStartDate|date('d.m.Y') }} {{ at_string }} {{ object.enrolmentStartDate|date('H:i') }}
+
+            {% if object.enrolmentEndDate %}
+              - {{ object.endDate|date('d.m.Y') }} {{ at_string }} {{ object.endDate|date('H:i') }}
+            {% endif %}
+      </span>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="card__tags">
+      <div class="content-tags content-tags--card" aria-label="Tags" role="group">
+        <ul class="content-tags__tags content-tags__tags--static">
+          {% for tag in object.tags %}
+            <li class="content-tags__tags__tag">
+              <div class=" content-tags__tags__tag--{{ tag.value }} }}">
+                <span>{{ tag.text }}</span>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,3 +35,7 @@ services:
 
   Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\Client: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder: ~
+
+  Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder: ~
+
