@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\DTO;
 
 /**
- * A DTO to store Feedback items.
+ * A DTO to store LinkedEvents items.
  */
 final readonly class Collection {
 
@@ -14,8 +14,8 @@ final readonly class Collection {
    *
    * @param int $numItems
    *   The total number of items.
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Feedback[] $items
-   *   The feedback items.
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\DTO\Event[] $items
+   *   An array of events.
    */
   public function __construct(
     public int $numItems,

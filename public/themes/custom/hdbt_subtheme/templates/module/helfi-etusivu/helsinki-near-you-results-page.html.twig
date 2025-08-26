@@ -56,19 +56,16 @@
       }
     %}
       {% block component_content %}
-        {{ attach_library('hdbt/event-list') }}
-        <div
-          id="helfi-events-search"
-          data-paragraph-id="helfi-coordinates-based-event-list"
-        >
+        {{ events_section }}
+
+        <div class="see-all-button see-all-button--events-results">
+          {% include '@hdbt/navigation/link-button.html.twig' with {
+            type: 'primary',
+            label: 'See all events near you'|t({}, {'context': 'Helsinki near you events search'}),
+            url: events_archive_url,
+          } %}
         </div>
-        {# Indicate JS not enabled #}
-        <noscript>
-          <div class="event-list__javascript-disabled">
-            {{ 'You must enable JavaScript in your browser for event list to work'|t }}
-          </div>
-        </noscript>
-      {% endblock %}
+      {% endblock component_content %}
     {% endembed %}
     {% if nearby_neighbourhoods is not empty %}
       {% set neighbourhood_names = nearby_neighbourhoods | map(n => n.title.value) | join(', ', ' and ' | t({}, {'context': 'News close to you block'})) %}
@@ -109,7 +106,7 @@
       {% endembed %}
     {% endif %}
 
-    {# React Roadwork Section #}
+    {# Roadwork Section #}
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [

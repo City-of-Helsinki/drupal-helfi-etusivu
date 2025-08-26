@@ -35,8 +35,8 @@ class LinkedEventsTest extends KernelTestBase {
     $languageManager = $this->prophesize(LanguageManagerInterface::class);
     $languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->willReturn($language);
 
-    $linkedEvents = new LinkedEvents($languageManager->reveal());
-    $url = $linkedEvents->getEventsRequest();
+    $linkedEvents = new LinkedEvents();
+    $url = $linkedEvents->getEventsRequest('en');
 
     $this->assertEquals('https://api.hel.fi/linkedevents/v1/event/?event_type=General&format=json&include=keywords%2Clocation&page=1&page_size=3&sort=end_time&start=now&super_event_type=umbrella%2Cnone&language=en&all_ongoing=true', $url);
   }

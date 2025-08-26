@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou;
 
-use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Url;
 
 /**
@@ -16,20 +14,20 @@ class LinkedEvents {
   public const BASE_URL = 'https://tapahtumat.hel.fi';
   protected const API_URL = 'https://api.hel.fi/linkedevents/v1/';
 
-  public function __construct(private readonly LanguageManagerInterface $languageManager) {}
-
   /**
    * Form url for getting events from api.
    *
+   * @param string $langcode
+   *   The language code.
    * @param array $options
    *   Filters as key = value array.
-   * @param string $pageSize
+   * @param int $pageSize
    *   How many events to load in a page.
    *
    * @return string
    *   Resulting api url with params a query string
    */
-  public function getEventsRequest(array $options = [], string $pageSize = '3') : string {
+  public function getEventsRequest(string $langcode, array $options = [], int $pageSize = 3) : string {
     $defaultOptions = [
       'event_type' => 'General',
       'format' => 'json',
@@ -39,9 +37,7 @@ class LinkedEvents {
       'sort' => 'end_time',
       'start' => 'now',
       'super_event_type' => 'umbrella,none',
-      'language' => $this->languageManager
-        ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-        ->getId(),
+      'language' => $langcode,
     ];
 
     $options = array_merge($defaultOptions, $options);
