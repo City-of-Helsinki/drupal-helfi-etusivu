@@ -70,11 +70,6 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       ];
     }
 
-    $build['#title'] = new TranslatableMarkup('@num results using address @address', [
-      '@num' => $data->numItems,
-      '@address' => $address->streetName->getName($langcode),
-    ], ['context' => 'Helsinki near you']);
-
     return $build;
   }
 

@@ -313,6 +313,10 @@ msgctxt "Helsinki near you"
 msgid "@num roadworks using address @address"
 msgstr "@num katu- ja puistohanketta osoitteella @address"
 
+msgctxt "Helsinki near you"
+msgid "@num feedback using address @address"
+msgstr "@num palautetta osoitteella @address"
+
 msgid "Arabic"
 msgstr "Arabia"
 
