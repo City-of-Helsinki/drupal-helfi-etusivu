@@ -306,6 +306,10 @@ msgctxt "Helsinki near you"
 msgid "@num roadworks using address @address"
 msgstr "@num gatu- och parkprojekt på adressen @address"
 
+msgctxt "Helsinki near you"
+msgid "@num feedback using address @address"
+msgstr "@num feedback på adressen @address"
+
 msgid "Arabic"
 msgstr "Arabiska"
 
