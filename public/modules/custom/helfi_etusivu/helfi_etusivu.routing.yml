@@ -11,6 +11,8 @@ helfi_etusivu.helsinki_near_you_results:
   defaults:
     _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController::content'
     _title: 'Services, events and news near your address'
+  options:
+    _big_pipe_force_placeholders: 'TRUE'
   requirements:
     _permission: 'access content'
 
@@ -34,6 +36,8 @@ helfi_etusivu.helsinki_near_you_roadworks:
   defaults:
     _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\RoadworksController::content'
     _title_callback: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\RoadworksController::getTitle'
+  options:
+    _big_pipe_force_placeholders: 'TRUE'
   requirements:
     _permission: 'access content'
 
@@ -42,5 +46,7 @@ helfi_etusivu.helsinki_near_you_feedbacks:
   defaults:
     _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbacksController::content'
     _title_callback: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbacksController::getTitle'
+  options:
+    _big_pipe_force_placeholders: 'TRUE'
   requirements:
     _permission: 'access content'
