@@ -78,14 +78,13 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       ];
     }
 
-    $build['#title'] = new TranslatableMarkup('@num feedback using address @address', [
-      '@num' => $data->numItems,
-      '@address' => $address->streetName->getName($langcode),
-    ], ['context' => 'Helsinki near you']);
-
     if ($showPager) {
-      $this->pagerManager->createPager($data->numItems, $limit);
+      $build['#title'] = new TranslatableMarkup('@num feedback using address @address', [
+        '@num' => $data->numItems,
+        '@address' => $address->streetName->getName($langcode),
+      ], ['context' => 'Helsinki near you']);
 
+      $this->pagerManager->createPager($data->numItems, $limit);
       $build['#content']['pager'] = [
         '#type' => 'pager',
       ];
