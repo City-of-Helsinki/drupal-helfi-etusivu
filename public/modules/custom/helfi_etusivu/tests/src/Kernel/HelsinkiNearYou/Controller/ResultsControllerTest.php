@@ -18,7 +18,6 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\HttpFoundation\InputBag;
