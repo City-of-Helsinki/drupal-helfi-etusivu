@@ -11,7 +11,6 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController;
-use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
