@@ -54,7 +54,7 @@ display:
                 title: ممنوع
         roles_target_id:
           expose:
-            label: الدور
+            label: دور
         permission:
           expose:
             label: الصلاحية

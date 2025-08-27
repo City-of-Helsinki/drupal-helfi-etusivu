@@ -32,5 +32,8 @@ display:
         redirect_redirect__uri:
           expose:
             label: To
+        language:
+          expose:
+            label: 'Original language'
   page_1:
     display_title: Page
