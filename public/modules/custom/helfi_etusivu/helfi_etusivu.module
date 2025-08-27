@@ -453,7 +453,6 @@ function helfi_etusivu_theme() : array {
         'title' => NULL,
         'object' => NULL,
         'external_image' => NULL,
-        'event_attributes' => [],
       ],
       'template' => 'helsinki-near-you-event-item',
     ],

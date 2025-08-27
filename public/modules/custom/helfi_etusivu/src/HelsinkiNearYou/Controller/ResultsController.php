@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\InternalSearchLink;
@@ -106,7 +107,7 @@ final class ResultsController extends ControllerBase {
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName, $langcode),
       '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address, $langcode),
-      '#roadwork_section' => $this->buildRoadworks($address, $langcode, 3, ['classes' => ['card--border']]),
+      '#roadwork_section' => $this->buildRoadworks($address, $langcode, 3, new Attribute(['class' => ['card--border']])),
       '#cache' => [
         'contexts' => ['url.query_args:q'],
         'tags' => ['roadwork_section'],
@@ -114,7 +115,7 @@ final class ResultsController extends ControllerBase {
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
         'query' => ['q' => $addressName],
       ]),
-      '#feedback_section' => $this->buildFeedback($address, $langcode, 3, ['classes' => ['card--border']]),
+      '#feedback_section' => $this->buildFeedback($address, $langcode, 3, new Attribute(['class' => ['card--border']])),
     ];
   }
 

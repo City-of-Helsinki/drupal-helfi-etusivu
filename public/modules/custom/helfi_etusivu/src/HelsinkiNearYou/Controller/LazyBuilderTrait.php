@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
+use Drupal\Core\Template\Attribute;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder as EventsLazyBuilder;
@@ -36,13 +37,11 @@ trait LazyBuilderTrait {
    *   The language code.
    * @param int|null $limit
    *   The number of items to show.
-   * @param array $attributes
-   *   The attributes.
    *
    * @return array
    *   The events render array.
    */
-  protected function buildEvents(Address $address, string $langcode, ?int $limit = NULL, array $attributes = []) {
+  protected function buildEvents(Address $address, string $langcode, ?int $limit = NULL) {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
@@ -52,7 +51,6 @@ trait LazyBuilderTrait {
           $address,
           $langcode,
           $limit,
-          $attributes,
         ],
       ],
     ];
@@ -67,13 +65,13 @@ trait LazyBuilderTrait {
    *   The langcode.
    * @param int|null $limit
    *   The item limit.
-   * @param array $attributes
+   * @param \Drupal\Core\Template\Attribute|null $attributes
    *   The attributes.
    *
    * @return array
    *   The render array.
    */
-  protected function buildFeedback(Address $address, string $langcode, ?int $limit = NULL, array $attributes = []) : array {
+  protected function buildFeedback(Address $address, string $langcode, ?int $limit = NULL, ?Attribute $attributes = NULL) : array {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
@@ -98,13 +96,13 @@ trait LazyBuilderTrait {
    *   The langcode.
    * @param int|null $limit
    *   The number of items to show.
-   * @param array $attributes
+   * @param \Drupal\Core\Template\Attribute|null $attributes
    *   Array of attributes to pass to template.
    *
    * @return array
    *   The render array.
    */
-  protected function buildRoadworks(Address $address, string $langcode, ?int $limit = NULL, array $attributes = []) : array {
+  protected function buildRoadworks(Address $address, string $langcode, ?int $limit = NULL, ?Attribute $attributes = NULL) : array {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),

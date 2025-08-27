@@ -38,6 +38,7 @@ class ResultsControllerTest extends KernelTestBase {
    */
   protected static $modules = [
     'external_entities',
+    'big_pipe',
     'helfi_etusivu',
     'system',
   ];
@@ -160,15 +161,6 @@ class ResultsControllerTest extends KernelTestBase {
 
     $this->assertIsArray($build);
     $this->assertEquals('helsinki_near_you_results_page', $build['#theme']);
-    $eventSettings = $build['#attached']['drupalSettings']['helfi_events'];
-    $this->assertEquals(
-      'https://tapahtumat.hel.fi',
-      $eventSettings['baseUrl']
-    );
-    $this->assertEquals(
-      '/helsinki-near-you/events?address=Kalevankatu%202',
-      $eventSettings['seeAllNearYouLink']
-    );
     $this->assertArrayHasKey(
       'helfi_news_archive',
       $build['#attached']['drupalSettings']

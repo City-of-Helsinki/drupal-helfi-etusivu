@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Template\Attribute;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
@@ -32,7 +33,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *   The language code.
    * @param int|null $limit
    *   The number of items to show.
-   * @param array $attributes
+   * @param \Drupal\Core\Template\Attribute|null $attributes
    *   Array of attributes to pass to template.
    *
    * @return array
@@ -40,7 +41,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function build(Address $address, string $langcode, ?int $limit = NULL, array $attributes = []): array {
+  public function build(Address $address, string $langcode, ?int $limit = NULL, ?Attribute $attributes = NULL): array {
     $build = [
       '#cache' => [
         'max-age' => 0,
