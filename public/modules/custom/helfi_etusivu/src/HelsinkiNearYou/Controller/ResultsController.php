@@ -15,7 +15,6 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +29,6 @@ final class ResultsController extends ControllerBase {
   public function __construct(
     private readonly ServiceMapInterface $serviceMap,
     private readonly RoadworkDataServiceInterface $roadworkDataService,
-    private readonly CoordinateConversionService $coordinateConversionService,
     LanguageManagerInterface $languageManager,
   ) {
     $this->languageManager = $languageManager;

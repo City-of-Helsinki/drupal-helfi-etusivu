@@ -133,7 +133,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
     // Check that the schedule contains both start and end dates.
     $this->assertStringContainsString('01.01.2025', $result->items[0]->schedule);
     $this->assertStringContainsString('01.01.2026', $result->items[0]->schedule);
-    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result->items[0]->url);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%206673588.00)', $result->items[0]->url);
   }
 
   /**
