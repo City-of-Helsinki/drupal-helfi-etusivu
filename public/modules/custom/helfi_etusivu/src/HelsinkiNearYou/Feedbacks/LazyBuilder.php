@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks;
 use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Template\Attribute;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
 
@@ -30,7 +31,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *   The langcode.
    * @param int|null $limit
    *   The number of items to fetch or null.
-   * @param array $attributes
+   * @param \Drupal\Core\Template\Attribute|null $attributes
    *   Array of attributes to pass to template.
    *
    * @return array
@@ -40,7 +41,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     Address $address,
     string $langcode,
     ?int $limit,
-    array $attributes = [],
+    ?Attribute $attributes = NULL,
   ): array {
     $build = [
       '#cache' => [

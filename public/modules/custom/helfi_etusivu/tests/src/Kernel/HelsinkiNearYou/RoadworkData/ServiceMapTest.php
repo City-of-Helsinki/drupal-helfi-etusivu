@@ -32,6 +32,7 @@ class ServiceMapTest extends KernelTestBase {
    */
   protected static $modules = [
     'system',
+    'big_pipe',
     'helfi_etusivu',
   ];
 

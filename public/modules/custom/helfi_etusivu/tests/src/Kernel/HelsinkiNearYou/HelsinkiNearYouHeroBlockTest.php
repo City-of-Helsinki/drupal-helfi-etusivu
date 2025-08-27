@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Kernel;
+namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou;
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\KernelTests\KernelTestBase;
@@ -25,6 +25,7 @@ class HelsinkiNearYouHeroBlockTest extends KernelTestBase {
     'system',
     'user',
     'block',
+    'big_pipe',
     'helfi_etusivu',
   ];
 
