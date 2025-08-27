@@ -6,11 +6,6 @@
   {% set time = object.startDate|date('d.m.y') ~ ', ' ~ at_string ~ ' ' ~ object.startDate|date('H:i') ~ ' - ' ~ object.endDate|date('H:i') %}
 {% endif %}
 
-{#{% set enrolment_time = object.enrolmentStartDate|date('d.m.Y') ~ ' ' ~ at_string ~ ' ' ~ object.enrolmentStartDate|date('H:i') %}#}
-{#{% if object.enrolmentEndDate %}#}
-{#  {% set enrolment_time = enrolment_time ~ ' - ' ~ object.endDate|date('d.m.Y') ~ ' ' ~ at_string ~ ' ' ~ object.endDate|date('H:i') %}#}
-{#{% endif %}#}
-
 {% if object.tags %}
   {% set all_tags = [] %}
   {% for tag in object.tags %}
@@ -31,7 +26,7 @@
   },
   card_metas: [
     object.location ? {
-      icon: 'map',
+      icon: 'location',
       label: 'Location'|t({}, {'context': 'React search'}),
       content: object.location,
     },
@@ -39,11 +34,6 @@
       icon: 'calendar',
       label: 'Time'|t({}, {'context': 'Time of event'}),
       content: time,
-    },
-    enrolment_time ? {
-      icon: 'bell',
-      label: 'Registration time'|t({}, {'context': 'Event signup period'}),
-      content: enrolment_time,
     },
     object.registrationRequired ? {
       icon: 'info-circle',
