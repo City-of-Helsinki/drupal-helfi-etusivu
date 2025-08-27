@@ -12,6 +12,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
 use Drupal\helfi_recommendations\TextConverter\Document;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
@@ -476,7 +477,7 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'hero_title' => NULL,
         'hero_description' => NULL,
-        'first_paragraph_grey' => NULL,
+        'first_paragraph_bg' => NULL,
         'form' => [],
       ],
       'template' => 'helsinki-near-you-hero-block',
@@ -530,5 +531,25 @@ function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
 
   if ($node instanceof NewsItem) {
     $variables['#attached']['drupalSettings']['news_taxonomy_term_ids'] = $node->getNewsTerms();
+  }
+}
+
+/**
+ * Implements hook_page_attachments_HOOK().
+ */
+function helfi_etusivu_page_attachments(array &$page) {
+  // Check if the current route matches the desired route.
+  $route = \Drupal::routeMatch()->getRouteName();
+  $routeInformation = RouteInformationEnum::fromRoute($route);
+
+  if ($routeInformation) {
+    $description = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'description',
+        'content' => $routeInformation->getDescription(),
+      ],
+    ];
+    $page['#attached']['html_head'][] = [$description, 'description'];
   }
 }

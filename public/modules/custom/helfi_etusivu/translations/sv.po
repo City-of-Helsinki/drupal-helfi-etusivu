@@ -29,6 +29,10 @@ msgid "Discover city services, events and news near you. Start by entering your 
 msgstr "Hitta stadens tjänster, evenemang och nyheter nära dig. Börja med att söka med din adress."
 
 msgctxt "Helsinki near you"
+msgid "Discover city services, events and news near you."
+msgstr "Hitta stadens tjänster, evenemang och nyheter nära dig."
+
+msgctxt "Helsinki near you"
 msgid "Address"
 msgstr "Adress"
 
