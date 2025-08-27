@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 
 use Drupal\Core\Security\TrustedCallbackInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 
 /**
