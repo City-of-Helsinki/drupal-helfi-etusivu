@@ -72,8 +72,8 @@ msgid "Edit address"
 msgstr "Muokkaa osoitetta"
 
 msgctxt "Helsinki near you"
-msgid "Services, events and news for @address"
-msgstr "Palvelut, tapahtumat ja uutiset osoitteella @address"
+msgid "Helsinki near you: @address"
+msgstr "Helsinki lähelläsi: @address"
 
 msgid "Helsinki near you"
 msgstr "Helsinki lähelläsi"
