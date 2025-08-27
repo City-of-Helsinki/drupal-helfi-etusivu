@@ -44,5 +44,8 @@ display:
         status:
           expose:
             label: منشور
+        language:
+          expose:
+            label: 'Original language'
   page_1:
     display_title: Page
