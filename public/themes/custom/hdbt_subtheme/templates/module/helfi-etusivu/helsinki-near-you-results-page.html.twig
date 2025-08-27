@@ -121,7 +121,7 @@
       {% block component_content %}
         {{ roadwork_section }}
 
-        <div class="see-all-button see-all-button--roadwork-results">
+        <div class="see-all-button see-all-button--near-results">
           {% include '@hdbt/navigation/link-button.html.twig' with {
             type: 'primary',
             label: 'See all roadworks near you'|t({}, {'context': 'Helsinki near you roadworks search'}),
@@ -142,7 +142,7 @@
       {% block component_content %}
       {{ feedback_section }}
 
-        <div class="see-all-button see-all-button--feedback-results">
+        <div class="see-all-button see-all-button--near-results">
           {% set feedback_archive_title = 'See all feedback near you'|t({}, {'context': 'Feedback close to you block'}) %}
           {% include '@hdbt/navigation/link-button.html.twig' with {
             type: 'primary',

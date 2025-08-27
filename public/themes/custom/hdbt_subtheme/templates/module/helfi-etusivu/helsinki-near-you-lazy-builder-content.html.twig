@@ -1,6 +1,12 @@
-<div class="hdbt-search__results__header">
-  <h3 class="hdbt-search__results__title">{{ title }}</h3>
-</div>
-<div class="hdbt-search__results__content">
+{% if title %}
+  <div class="hdbt-search__results__header">
+    <h3 class="hdbt-search__results__title">{{ title }}</h3>
+  </div>
+{% endif %}
+{% if content.pager %}
+  <div class="hdbt-search__results__content">
+    {{ content }}
+  </div>
+{% else %}
   {{ content }}
-</div>
+{% endif %}
