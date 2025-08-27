@@ -24,7 +24,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *   The address.
    * @param string $langcode
    *   The langcode.
-   * @param int|null $limit
+   * @param int $limit
    *   The number of items to fetch or null.
    *
    * @return array
@@ -33,7 +33,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   public function build(
     Address $address,
     string $langcode,
-    ?int $limit,
+    int $limit,
   ): array {
     $build = [
       '#cache' => [

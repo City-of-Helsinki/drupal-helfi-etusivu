@@ -14,7 +14,6 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\ServiceMapLink;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
-use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,7 +29,6 @@ final class ResultsController extends ControllerBase {
 
   public function __construct(
     private readonly ServiceMapInterface $serviceMap,
-    private readonly LinkedEvents $linkedEvents,
     private readonly RoadworkDataServiceInterface $roadworkDataService,
     private readonly CoordinateConversionService $coordinateConversionService,
     LanguageManagerInterface $languageManager,

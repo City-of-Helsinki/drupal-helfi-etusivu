@@ -6,7 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\DTO;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
-use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client;
 
 /**
  * A DTO to store Event item.
@@ -18,7 +18,7 @@ final readonly class Event {
     public bool $isFree,
     public bool $isRemote,
     public bool $registrationRequired,
-    public Tag $category,
+    public ?Tag $category,
     public ?Image $image,
     public Url $uri,
     public string $location,
@@ -101,7 +101,7 @@ final readonly class Event {
     $item = [
       'title' => $data['name'][$langcode] ?? $data['name']['fi'],
       'category' => self::getCategory($data),
-      'isFree' => array_any($data['offers'], function (array $offer) : bool {
+      'isFree' => array_any($data['offers'] ?? [], function (array $offer) : bool {
         return !empty($offer['is_free']);
       }),
       'tags' => [],
@@ -112,7 +112,7 @@ final readonly class Event {
       'endDate' => NULL,
       'isMultiDate' => FALSE,
       'image' => NULL,
-      'registrationRequired' => array_any($data['offers'], function (array $offer) use ($langcode) : bool {
+      'registrationRequired' => array_any($data['offers'] ?? [], function (array $offer) use ($langcode) : bool {
         return !empty($offer['info_url'][$langcode]);
       }),
     ];
@@ -123,11 +123,11 @@ final readonly class Event {
 
     $item += [
       'location' => $item['isRemote'] ? 'Internet' : self::getLocationString($langcode, $data['location']),
-      'uri' => Url::fromUri(sprintf('%s/%s/%s', LinkedEvents::BASE_URL, $langcode, $data['id'])),
+      'uri' => Url::fromUri(sprintf('%s/%s/%s', Client::BASE_URL, $langcode, $data['id'])),
     ];
 
     if ($data['type_id'] === 'Course') {
-      $item['uri'] = Url::fromUri(sprintf('https://harrastukset.hel.fi/%s/%d', $langcode, $data['id']));
+      $item['uri'] = Url::fromUri(sprintf('%s/%s/%s', Client::HOBBIES_BASE_URL, $langcode, $data['id']));
     }
 
     if ($item['isRemote']) {
@@ -161,7 +161,7 @@ final readonly class Event {
     }
 
     if ($item['endDate']) {
-      $item['isMultiDate'] = $item['endDate']->format('d.m.Y') === $item['startDate']->format('d.m.Y');
+      $item['isMultiDate'] = $item['endDate']->format('d.m.Y') !== $item['startDate']->format('d.m.Y');
     }
 
     return new self(...$item);

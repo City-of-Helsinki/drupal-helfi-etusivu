@@ -6,18 +6,18 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client;
 
 /**
  * Events near you landing page controller.
  */
-class EventsController extends ControllerBase {
+final class EventsController extends ControllerBase {
 
   /**
    * Constructs a new instance.
    */
   public function __construct(
-    protected readonly LinkedEvents $linkedEvents,
+    private readonly Client $client,
     LanguageManagerInterface $languageManager,
   ) {
     $this->languageManager = $languageManager;
@@ -41,16 +41,14 @@ class EventsController extends ControllerBase {
       ->getCurrentLanguage()
       ->getId();
 
-    $events_url = $this->linkedEvents->getEventsRequest($langcode);
-
     return [
       '#attached' => [
         'drupalSettings' => [
           'helfi_events' => [
-            'baseUrl' => LinkedEvents::BASE_URL,
+            'baseUrl' => $this->client::BASE_URL,
             'data' => [
               'helfi-coordinates-based-event-list' => [
-                'events_api_url' => $events_url,
+                'events_api_url' => $this->client->getUri($langcode, [], 3),
                 'field_event_count' => 10,
                 'field_event_location' => TRUE,
                 'field_event_time' => TRUE,
