@@ -28,8 +28,6 @@ helfi_etusivu.helsinki_near_you_events:
   defaults:
     _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\EventsController::content'
     _title_callback: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\EventsController::getTitle'
-  options:
-    _big_pipe_force_placeholders: 'TRUE'
   requirements:
     _permission: 'access content'
 
