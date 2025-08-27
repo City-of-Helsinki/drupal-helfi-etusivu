@@ -272,7 +272,7 @@ final class ResultsController extends ControllerBase {
 
     assert($query instanceof Query);
     $query->setParameter('location', [
-      [$location->lat, $location->lon],
+      [$location->lon, $location->lat],
       [
         'unit' => 'km',
         'order' => 'asc',
