@@ -1,6 +1,6 @@
 {% set at_string = 'at'|t({}, {'context': 'Indication that events take place in a certain timeframe'}) %}
 
-{% if not object.isMultiDate %}
+{% if object.isMultiDate %}
   {% set time = object.startDate | date('d.m.Y') ~ ' - ' ~ object.endDate|date('d.m.Y') %}
 {% else %}
   {% set time = object.startDate|date('d.m.y') ~ ', ' ~ at_string ~ ' ' ~ object.startDate|date('H:i') ~ ' - ' ~ object.endDate|date('H:i') %}

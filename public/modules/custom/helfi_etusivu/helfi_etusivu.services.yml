@@ -13,7 +13,6 @@ services:
       - { name: helfi_platform_config.og_image_builder }
   Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap'
-  Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents: ~
   # Roadwork data services
   Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService: ~
 

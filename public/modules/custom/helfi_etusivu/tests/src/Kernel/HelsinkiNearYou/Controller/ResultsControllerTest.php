@@ -72,7 +72,6 @@ class ResultsControllerTest extends KernelTestBase {
 
     $this->controller = new ResultsController(
       $this->serviceMap,
-      $this->createMock(LinkedEvents::class),
       $this->roadworkDataService,
       new CoordinateConversionService(),
       $this->container->get(LanguageManagerInterface::class),

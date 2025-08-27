@@ -35,13 +35,13 @@ trait LazyBuilderTrait {
    *   The address.
    * @param string $langcode
    *   The language code.
-   * @param int|null $limit
+   * @param int $limit
    *   The number of items to show.
    *
    * @return array
    *   The events render array.
    */
-  protected function buildEvents(Address $address, string $langcode, ?int $limit = NULL) {
+  protected function buildEvents(Address $address, string $langcode, int $limit) : array {
     return [
       '#create_placeholder' => TRUE,
       '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
