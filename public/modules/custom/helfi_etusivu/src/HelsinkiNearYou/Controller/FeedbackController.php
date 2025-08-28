@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Template\Attribute;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\FeedbackSearchForm;
 
@@ -43,7 +44,7 @@ final class FeedbackController extends SearchPageControllerBase {
       ->getId();
 
     return [
-      '#content' => $this->buildFeedback($address, $langcode),
+      '#content' => $this->buildFeedback($address, $langcode,NULL, new Attribute(['title_level' => ['h4']])),
       '#content_attributes' => ['classes' => ['components--helsinki-near-you-feedback-page']],
     ];
   }
