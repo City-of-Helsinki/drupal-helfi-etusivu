@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Unit;
 
-use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\ServiceMapLink;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Drupal\helfi_etusivu\Enum\ServiceMapLink
+ * @coversDefaultClass \Drupal\helfi_etusivu\HelsinkiNearYou\Enum\ServiceMapLink
  *
  * @group helfi_etusivu
  */

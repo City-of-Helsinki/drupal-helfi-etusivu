@@ -1,0 +1,14 @@
+{% set cardAmount = num_items ? num_items : 10 %}
+{% set cardModifierClass = num_items == 3 ? 'card--border' : '' %}
+
+<div class="hdbt-search__results__content">
+  {% for i in range(1, cardAmount)%}
+    <div class="card card--ghost {{ cardModifierClass }} {{ preview_attributes.class|join(' ') }}">
+      <div class="card__image"></div>
+      <div class="card__text">
+        <div class="card__title"></div>
+        <div class="card__description"></div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

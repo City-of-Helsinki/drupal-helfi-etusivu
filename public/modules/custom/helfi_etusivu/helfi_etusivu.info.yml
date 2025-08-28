@@ -5,6 +5,7 @@ package: Custom
 core_version_requirement: ^9 || ^10
 dependencies:
   - drupal:rest
+  - drupal:big_pipe
   - draggableviews:draggableviews
   - search_api:search_api
   - elasticsearch_connector:elasticsearch_connector

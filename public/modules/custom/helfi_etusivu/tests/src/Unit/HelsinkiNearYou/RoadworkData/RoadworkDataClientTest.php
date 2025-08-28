@@ -106,6 +106,7 @@ class RoadworkDataClientTest extends UnitTestCase {
     // Mock successful API response.
     $response = new Response(200, [], json_encode([
       'type' => 'FeatureCollection',
+      'totalFeatures' => 1,
       'features' => [
         [
           'id' => 'test.1',
@@ -129,9 +130,9 @@ class RoadworkDataClientTest extends UnitTestCase {
       ->willReturn($response);
 
     $result = $this->roadworkDataClient->getProjectsByCoordinates(24.945831, 60.192059);
-    $this->assertIsArray($result);
-    $this->assertCount(1, $result);
-    $this->assertEquals('test.1', $result[0]['id']);
+    $this->assertIsArray($result['features']);
+    $this->assertCount(1, $result['features']);
+    $this->assertEquals('test.1', $result['features'][0]['id']);
   }
 
   /**
@@ -145,7 +146,7 @@ class RoadworkDataClientTest extends UnitTestCase {
       ->willThrowException(new \Exception('API Error'));
 
     $result = $this->roadworkDataClient->getProjectsByCoordinates(60.192059, 24.945831);
-    $this->assertEmpty($result);
+    $this->assertEmpty($result['features']);
   }
 
   /**
@@ -159,73 +160,7 @@ class RoadworkDataClientTest extends UnitTestCase {
       ->willReturn(new Response(200, [], '{"invalid": "response"}'));
 
     $result = $this->roadworkDataClient->getProjectsByCoordinates(60.192059, 24.945831);
-    $this->assertEmpty($result);
-  }
-
-  /**
-   * Tests getProjectsByAddress with successful geocoding.
-   *
-   * @covers ::getProjectsByAddress
-   */
-  public function testGetProjectsByAddressSuccess() {
-    // Mock geocoding response.
-    $this->servicemap->expects($this->once())
-      ->method('getAddressData')
-      ->with('Testikatu 1, 00100 Helsinki')
-      ->willReturn([
-        'x' => 24.945831,
-        'y' => 60.192059,
-      ]);
-
-    // Mock successful API response for coordinates.
-    $response = new Response(200, [], json_encode([
-      'type' => 'FeatureCollection',
-      'features' => [
-        [
-          'id' => 'test.1',
-          'properties' => [
-            'tyon_tyyppi' => 'Test Type',
-            'osoite' => 'Test Address',
-            'tyo_alkaa' => date('Y-m-d\TH:i:s\Z', strtotime('+1 day')),
-            'tyo_paattyy' => date('Y-m-d\TH:i:s\Z', strtotime('+2 days')),
-            'linkki' => 'http://example.com/test',
-          ],
-          'geometry' => [
-            'coordinates' => [24.945831, 60.192059],
-          ],
-        ],
-      ],
-    ]));
-
-    $this->httpClient->expects($this->once())
-      ->method('request')
-      ->with('GET', $this->stringContains('https://kartta.hel.fi/ws/geoserver/avoindata/wfs'))
-      ->willReturn($response);
-
-    $result = $this->roadworkDataClient->getProjectsByAddress('Testikatu 1, 00100 Helsinki');
-    $this->assertIsArray($result);
-    $this->assertCount(1, $result);
-    $this->assertEquals('test.1', $result[0]['id']);
-  }
-
-  /**
-   * Tests getProjectsByAddress with geocoding failure.
-   *
-   * @covers ::getProjectsByAddress
-   */
-  public function testGetProjectsByAddressGeocodingFailure() {
-    // Mock geocoding failure.
-    $this->servicemap->expects($this->once())
-      ->method('getAddressData')
-      ->with('Nonexistent Address')
-      ->willReturn(NULL);
-
-    // Should not make any HTTP requests if geocoding fails.
-    $this->httpClient->expects($this->never())
-      ->method('request');
-
-    $result = $this->roadworkDataClient->getProjectsByAddress('Nonexistent Address');
-    $this->assertEmpty($result);
+    $this->assertEmpty($result['features']);
   }
 
 }

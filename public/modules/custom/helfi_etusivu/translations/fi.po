@@ -72,8 +72,8 @@ msgid "Edit address"
 msgstr "Muokkaa osoitetta"
 
 msgctxt "Helsinki near you"
-msgid "Services, events and news for @address"
-msgstr "Palvelut, tapahtumat ja uutiset osoitteella @address"
+msgid "Helsinki near you: @address"
+msgstr "Helsinki lähelläsi: @address"
 
 msgid "Helsinki near you"
 msgstr "Helsinki lähelläsi"
@@ -277,14 +277,6 @@ msgctxt "Roadworks type fallback"
 msgid "Work"
 msgstr "Työ"
 
-msgctxt "Roadworks field label"
-msgid "Location"
-msgstr "Sijainti"
-
-msgctxt "Roadworks field label"
-msgid "Schedule"
-msgstr "Aikataulu"
-
 msgctxt "Helsinki near you status label"
 msgid "Ready"
 msgstr "Käsitelty"
@@ -320,6 +312,14 @@ msgstr "Palautteet lähelläsi"
 msgctxt "Helsinki near you"
 msgid "Find feedback in your neighbourhood."
 msgstr "Etsi palautteita lähialueeltasi."
+
+msgctxt "Helsinki near you"
+msgid "@num roadworks using address @address"
+msgstr "@num katu- ja puistohanketta osoitteella @address"
+
+msgctxt "Helsinki near you"
+msgid "@num feedback using address @address"
+msgstr "@num palautetta osoitteella @address"
 
 msgid "Arabic"
 msgstr "Arabia"

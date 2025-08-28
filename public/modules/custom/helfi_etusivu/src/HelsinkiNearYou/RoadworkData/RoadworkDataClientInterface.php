@@ -25,6 +25,10 @@ interface RoadworkDataClientInterface {
    *   The longitude in WGS84 decimal degrees.
    * @param int $distance
    *   (optional) The search radius in meters. Defaults to 1000 meters.
+   * @param int|null $limit
+   *   The number of items to fetch.
+   * @param int $page
+   *   The pager page.
    *
    * @return array
    *   An array of roadwork projects, each containing:
@@ -39,29 +43,8 @@ interface RoadworkDataClientInterface {
    *   - geometry: (array) Geographic data
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
-   *   Thrown when there is an error communicating with the API.
+   *    Thrown when there is an error communicating with the API.
    */
-  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000): array;
-
-  /**
-   * Gets roadwork projects near the given address.
-   *
-   * @param string $address
-   *   The address to search near (e.g., 'Mannerheimintie 5, Helsinki').
-   * @param int $distance
-   *   (optional) The search radius in meters. Defaults to 1000 meters.
-   *
-   * @return array
-   *   An array of roadwork projects in the same format as
-   *   getProjectsByCoordinates().
-   *   Returns an empty array if the address cannot be geocoded.
-   *
-   * @throws \GuzzleHttp\Exception\GuzzleException
-   *   Thrown when there is an error communicating with the geocoding service
-   *   or API.
-   * @throws \InvalidArgumentException
-   *   Thrown when the address is empty.
-   */
-  public function getProjectsByAddress(string $address, int $distance = 1000): array;
+  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL, int $page = 0): array;
 
 }
