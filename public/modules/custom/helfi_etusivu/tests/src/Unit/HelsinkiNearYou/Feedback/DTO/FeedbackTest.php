@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Unit\HelsinkiNearYou\Feedbacks\DTO;
+namespace Drupal\Tests\helfi_etusivu\Unit\HelsinkiNearYou\Feedback\DTO;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Feedback;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Feedback;
 use Drupal\Tests\UnitTestCase;
 
 /**

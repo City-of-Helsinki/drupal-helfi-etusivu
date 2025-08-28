@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedbacks;
+namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedback;
 
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\LazyBuilder;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use GuzzleHttp\Psr7\Response;

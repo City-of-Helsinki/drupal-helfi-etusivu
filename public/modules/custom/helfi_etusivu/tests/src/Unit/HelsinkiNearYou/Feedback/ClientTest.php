@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Unit\HelsinkiNearYou\Feedbacks;
+namespace Drupal\Tests\helfi_etusivu\Unit\HelsinkiNearYou\Feedback;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\Client;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Feedback;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\Client;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Feedback;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
@@ -18,7 +18,7 @@ use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 
 /**
- * Tests the Feedbacks client.
+ * Tests the Feedback client.
  *
  * @group helfi_etusivu
  */

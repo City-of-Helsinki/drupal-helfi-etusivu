@@ -6,7 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Template\Attribute;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder as EventsLazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder as RoadWorkLazyBuilder;
 

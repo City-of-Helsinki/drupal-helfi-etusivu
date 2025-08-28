@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO;
 
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Datetime\DrupalDateTime;

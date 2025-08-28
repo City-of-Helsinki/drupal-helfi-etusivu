@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedbacks;
+namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedback;
 
 use Drupal\Core\Messenger\MessengerInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbacksController;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbackController;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
@@ -43,7 +43,7 @@ class FeedbackControllerTest extends KernelTestBase {
 
     /** @var \Drupal\Core\Messenger\MessengerInterface $messenger */
     $messenger = $this->container->get(MessengerInterface::class);
-    $response = FeedbacksController::create($this->container)->content($mockRequest);
+    $response = FeedbackController::create($this->container)->content($mockRequest);
 
     $this->assertIsArray($response['#autosuggest_form']);
     $this->assertArrayNotHasKey('feedback', $response);
@@ -71,7 +71,7 @@ class FeedbackControllerTest extends KernelTestBase {
         ),
       );
     $this->container->set(ServiceMapInterface::class, $serviceMapMock->reveal());
-    $response = FeedbacksController::create($this->container)->content($mockRequest);
+    $response = FeedbackController::create($this->container)->content($mockRequest);
 
     $this->assertIsArray($response['#autosuggest_form']);
     $this->assertArrayHasKey('#content', $response);

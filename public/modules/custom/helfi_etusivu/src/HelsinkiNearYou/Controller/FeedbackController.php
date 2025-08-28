@@ -6,12 +6,12 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Form\FeedbacksSearchForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Form\FeedbackSearchForm;
 
 /**
  * A controller to list feedback for given coordinates.
  */
-final class FeedbacksController extends SearchPageControllerBase {
+final class FeedbackController extends SearchPageControllerBase {
 
   /**
    * {@inheritdoc}
@@ -31,7 +31,7 @@ final class FeedbacksController extends SearchPageControllerBase {
    * {@inheritdoc}
    */
   protected function getSearchForm(): string {
-    return FeedbacksSearchForm::class;
+    return FeedbackSearchForm::class;
   }
 
   /**

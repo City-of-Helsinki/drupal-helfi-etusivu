@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
