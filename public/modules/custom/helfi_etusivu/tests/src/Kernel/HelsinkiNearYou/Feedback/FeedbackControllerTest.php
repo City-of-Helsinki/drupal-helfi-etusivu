@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedback;
 
-use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbackController;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
@@ -40,16 +40,14 @@ class FeedbackControllerTest extends KernelTestBase {
     $mockRequest = $this->createMock(Request::class);
     $queryWithoutArgs = new InputBag([]);
     $mockRequest->query = $queryWithoutArgs;
-
-    /** @var \Drupal\Core\Messenger\MessengerInterface $messenger */
-    $messenger = $this->container->get(MessengerInterface::class);
     $response = FeedbackController::create($this->container)->content($mockRequest);
 
     $this->assertIsArray($response['#autosuggest_form']);
     $this->assertArrayNotHasKey('feedback', $response);
-    $messages = $messenger->messagesByType(MessengerInterface::TYPE_ERROR);
-    $this->assertCount(1, $messages);
-    $this->assertStringStartsWith('Make sure the address is written correctly.', (string) $messages[0]);
+    $this->assertArrayHasKey('#address_missing_message', $response);
+    $message = $response["#address_missing_message"];
+    $this->assertInstanceOf(TranslatableMarkup::class, $message);
+    $this->assertIsString('Start by searching with your address.', (string) $message);
   }
 
   /**
