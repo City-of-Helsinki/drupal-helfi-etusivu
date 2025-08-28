@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Template\Attribute;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\RoadworkSearchForm;
 
@@ -57,7 +58,7 @@ final class RoadworksController extends SearchPageControllerBase {
       ->getId();
 
     return [
-      '#content' => $this->buildRoadworks($address, $langcode),
+      '#content' => $this->buildRoadworks($address, $langcode, NULL, new Attribute(['title_level' => ['h4']])),
       '#content_attributes' => ['classes' => ['components--helsinki-near-you-roadwork-page']],
     ];
   }
