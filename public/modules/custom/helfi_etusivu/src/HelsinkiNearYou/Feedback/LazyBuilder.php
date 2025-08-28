@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks;
+namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback;
 
 use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\DTO\Request;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
 
 /**
  * A lazy builder for Feedback block.

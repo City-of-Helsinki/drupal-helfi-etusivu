@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Form;
 
 /**
- * Search form for Feedbacks page.
+ * Search form for Feedback page.
  */
-class FeedbacksSearchForm extends SearchFormBase {
+class FeedbackSearchForm extends SearchFormBase {
 
   /**
    * {@inheritdoc}
