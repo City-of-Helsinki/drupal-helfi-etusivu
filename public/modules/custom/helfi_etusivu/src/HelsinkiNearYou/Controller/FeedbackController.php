@@ -44,7 +44,7 @@ final class FeedbackController extends SearchPageControllerBase {
       ->getId();
 
     return [
-      '#content' => $this->buildFeedback($address, $langcode,NULL, new Attribute(['title_level' => ['h4']])),
+      '#content' => $this->buildFeedback($address, $langcode, NULL, new Attribute(['title_level' => ['h4']])),
       '#content_attributes' => ['classes' => ['components--helsinki-near-you-feedback-page']],
     ];
   }
