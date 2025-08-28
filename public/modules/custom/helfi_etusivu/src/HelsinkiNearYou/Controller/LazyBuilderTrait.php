@@ -21,10 +21,11 @@ trait LazyBuilderTrait {
    * @return array
    *   The render array.
    */
-  private function getLazyBuilderPreview(?int $limit = NULL) : array {
+  private function getLazyBuilderPreview(?int $limit = NULL, ?Attribute $attributes = NULL) : array {
     return [
       '#theme' => 'helsinki_near_you_lazy_builder_preview',
       '#num_items' => $limit,
+      '#preview_attributes' => $attributes,
     ];
   }
 
@@ -74,7 +75,9 @@ trait LazyBuilderTrait {
   protected function buildFeedback(Address $address, string $langcode, ?int $limit = NULL, ?Attribute $attributes = NULL) : array {
     return [
       '#create_placeholder' => TRUE,
-      '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
+      '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit, new Attribute([
+        'class' => ['card--ghost--no-image'],
+      ])),
       '#lazy_builder' => [
         LazyBuilder::class . ':build',
         [
@@ -105,7 +108,9 @@ trait LazyBuilderTrait {
   protected function buildRoadworks(Address $address, string $langcode, ?int $limit = NULL, ?Attribute $attributes = NULL) : array {
     return [
       '#create_placeholder' => TRUE,
-      '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit),
+      '#lazy_builder_preview' => $this->getLazyBuilderPreview($limit, new Attribute([
+        'class' => ['card--ghost--no-image'],
+      ])),
       '#lazy_builder' => [
         RoadWorkLazyBuilder::class . ':build',
         [
