@@ -96,7 +96,7 @@ final class ResultsController extends ControllerBase {
       '#news_archive_url' => $this->getInternalSearchLink(InternalSearchLink::NEWS_ARCHIVE, $newsQuery, $langcode),
       '#coordinates' => $address->location,
       '#title' => $this->t(
-        'Services, events and news for @address',
+        'Helsinki near you: @address',
         ['@address' => $addressName],
         ['context' => 'Helsinki near you']
       ),
