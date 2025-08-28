@@ -8,7 +8,6 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
@@ -25,11 +24,9 @@ abstract class SearchPageControllerBase extends ControllerBase {
   public function __construct(
     protected readonly ServiceMapInterface $serviceMap,
     FormBuilderInterface $formBuilder,
-    MessengerInterface $messenger,
     LanguageManagerInterface $languageManager,
   ) {
     $this->formBuilder = $formBuilder;
-    $this->messenger = $messenger;
     $this->languageManager = $languageManager;
   }
 
@@ -90,16 +87,24 @@ abstract class SearchPageControllerBase extends ControllerBase {
         ->getForm($this->getSearchForm()),
     ];
 
-    $address = $request->query->get('q', '');
+    $address = $request->query->get('q');
+    if (!$address) {
+      $build['#address_missing_message'] = $this->t(
+        'Start by searching with your address.',
+        [],
+        ['context' => 'React search: Address required hint']
+      );
+
+      return $build;
+    }
+
     $addressData = $this->serviceMap->getAddressData(urldecode($address));
 
     if (!$addressData) {
-      $this->messenger()->addError(
-        $this->t(
-          'Make sure the address is written correctly. You can also search using a nearby street number.',
-          [],
-          ['context' => 'React search: Address not found hint']
-        )
+      $build['#address_error_message'] = $this->t(
+        'Make sure the address is written correctly. You can also search using a nearby street number.',
+        [],
+        ['context' => 'React search: Address not found hint']
       );
 
       return $build;
