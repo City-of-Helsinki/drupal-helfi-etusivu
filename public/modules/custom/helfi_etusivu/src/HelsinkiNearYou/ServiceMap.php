@@ -7,8 +7,10 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Url;
-use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\Core\Utility\Error;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Log\LoggerInterface;
@@ -27,12 +29,6 @@ final class ServiceMap implements ServiceMapInterface {
    * @var string
    */
   private const API_URL = 'https://api.hel.fi/servicemap/v2/search/';
-  /**
-   * Site url for redirecting users.
-   *
-   * @var string
-   */
-  private const SITE_URL = 'https://kartta.hel.fi/';
 
   /**
    * Constructs a new instance.
@@ -55,17 +51,11 @@ final class ServiceMap implements ServiceMapInterface {
   /**
    * {@inheritdoc}
    */
-  public function getAddressData(string $address) : ?array {
+  public function getAddressData(string $address) : ?Address {
     $results = $this->query($address);
 
-    if (
-      isset($results['0']->name) &&
-      isset($results['0']->location->coordinates)
-    ) {
-      return [
-        'address_translations' => $results['0']->name,
-        'coordinates' => $results['0']->location->coordinates,
-      ];
+    if ($item = reset($results)) {
+      return $item;
     }
 
     return NULL;
@@ -90,40 +80,23 @@ final class ServiceMap implements ServiceMapInterface {
       ]);
     }
     catch (GuzzleException $e) {
-      $this->logger->error('Servicemap query failed: ' . $e->getMessage());
+      Error::logException($this->logger, $e);
+
       return [];
     }
 
-    $result = json_decode($response->getBody()->getContents());
+    $result = json_decode($response->getBody()->getContents(), TRUE);
 
-    if (!isset($result->results)) {
-      $this->logger->error('Servicemap query failed: Unexpected response. Results not present.');
+    if (empty($result['results'])) {
       return [];
     }
 
-    return $result->results;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getLink(ServiceMapLink $link, string $address) : string {
-    $langcode = $this->languageManager->getCurrentLanguage()->getId();
-    $query = [
-      'addresslabel' => $link->getAddressLabel($address),
-      'addresslocation' => Xss::filter($address),
-      'link' => $link->link(),
-      'setlanguage' => $langcode,
-    ];
-
-    $url = Url::fromUri(
-      self::SITE_URL,
-      [
-        'query' => $query,
-      ],
-    );
-
-    return $url->toString();
+    return array_map(function (array $result) : Address {
+      return new Address(
+        StreetName::createFromArray($result['name']),
+        Location::createFromArray($result['location']),
+      );
+    }, $result['results']);
   }
 
 }

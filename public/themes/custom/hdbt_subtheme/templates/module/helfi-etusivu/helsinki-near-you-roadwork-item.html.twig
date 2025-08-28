@@ -1,0 +1,25 @@
+{% embed '@hdbt/component/card.twig' with {
+  card_modifier_class: roadwork_attributes['class']|join(' '),
+  card_title: title,
+  card_title_level: roadwork_attributes['title_level'] ? roadwork_attributes['title_level'] : 'h3',
+  card_url: uri,
+  card_url_external: true,
+  card_metas: [
+    {
+      icon: 'location',
+      label: 'Location'|t({}, {'context': 'Label for roadwork location'}),
+      content: address,
+    },
+    {
+      icon: 'map',
+      label: 'Distance'|t({}, {'context': 'Label for roadwork distance'}),
+      content: distance_label,
+    },
+    {
+      icon: 'clock',
+      label: 'Planned schedule'|t({}, {'context': 'Label for roadwork planned schedule'}),
+      content: schedule,
+    },
+  ]
+} %}
+{% endembed %}
