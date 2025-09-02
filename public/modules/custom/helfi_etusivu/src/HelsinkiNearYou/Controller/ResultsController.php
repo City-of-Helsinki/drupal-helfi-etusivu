@@ -105,7 +105,7 @@ final class ResultsController extends ControllerBase {
       '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address, $langcode),
       '#roadwork_section' => $this->buildRoadworks($address, $langcode, 3, new Attribute(['class' => ['card--border']])),
       '#cache' => [
-        'contexts' => ['url.query_args:q'],
+        'contexts' => ['url.query_args:q', 'user.roles:authenticated'],
         'tags' => ['roadwork_section'],
       ],
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
