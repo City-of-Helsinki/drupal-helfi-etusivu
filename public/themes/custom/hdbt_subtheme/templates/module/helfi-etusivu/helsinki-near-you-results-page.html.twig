@@ -107,29 +107,31 @@
     {% endif %}
 
     {# Roadwork Section #}
-    {% embed "@hdbt/misc/component.twig" with
-      {
-        component_classes: [
-        'component--roadworks',
-        'component--coordinates-based-list',
-        ],
-        component_title: 'Street and park projects near you'|trans({}, {'context': 'Helsinki near you'}),
-        component_description: 'Browse street and park projects near you.'|trans({}, {'context': 'Helsinki near you'}),
-        component_content_class: 'roadwork-list',
-      }
-    %}
-      {% block component_content %}
-        {{ roadwork_section }}
+    {% if logged_in %}
+      {% embed "@hdbt/misc/component.twig" with
+        {
+          component_classes: [
+          'component--roadworks',
+          'component--coordinates-based-list',
+          ],
+          component_title: 'Street and park projects near you'|trans({}, {'context': 'Helsinki near you'}),
+          component_description: 'Browse street and park projects near you.'|trans({}, {'context': 'Helsinki near you'}),
+          component_content_class: 'roadwork-list',
+        }
+      %}
+        {% block component_content %}
+          {{ roadwork_section }}
 
-        <div class="see-all-button see-all-button--near-results">
-          {% include '@hdbt/navigation/link-button.html.twig' with {
-            type: 'primary',
-            label: 'See all roadworks near you'|t({}, {'context': 'Helsinki near you roadworks search'}),
-            url: roadwork_archive_url,
-          } %}
-        </div>
-      {% endblock component_content %}
-    {% endembed %}
+          <div class="see-all-button see-all-button--near-results">
+            {% include '@hdbt/navigation/link-button.html.twig' with {
+              type: 'primary',
+              label: 'See all roadworks near you'|t({}, {'context': 'Helsinki near you roadworks search'}),
+              url: roadwork_archive_url,
+            } %}
+          </div>
+        {% endblock component_content %}
+      {% endembed %}
+    {% endif %}
 
     {% embed "@hdbt/misc/component.twig" with
       {
