@@ -9,7 +9,7 @@ dependencies:
     - redirect
     - user
 _core:
-  default_config_hash: tH9tiLAhaR2LdCQkjUf5FTsU-8Adc_4pBxrNJPtBKL4
+  default_config_hash: 1CbLD9QFcMW8RMqrfii0XE_N8HuFeAsBSaLv0t-zeDo
 id: helfi_redirect
 label: Redirect
 module: views
@@ -227,12 +227,12 @@ display:
         status:
           id: status
           table: redirect
-          field: status
+          field: enabled
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: redirect
-          entity_field: status
+          entity_field: enabled
           plugin_id: field
           label: Published
           exclude: false
