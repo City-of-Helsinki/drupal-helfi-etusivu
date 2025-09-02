@@ -16,9 +16,6 @@ display:
           separator: ', '
         created:
           label: Creado
-        status:
-          label: Publicado
-          separator: ', '
       pager:
         options:
           tags:
@@ -73,9 +70,6 @@ display:
         is_custom:
           expose:
             label: Custom
-        status:
-          expose:
-            label: Publicado
   page_1:
     display_title: Página
     display_options:
