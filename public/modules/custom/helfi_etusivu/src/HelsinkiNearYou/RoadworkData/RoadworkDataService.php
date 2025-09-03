@@ -6,6 +6,10 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Item;
 
 /**
  * Processes and formats roadwork data for display.
@@ -16,101 +20,31 @@ use Drupal\Core\Url;
  * transformation.
  *
  * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
- * @see \Drupal\helfi_etusivu\Controller\HelsinkiNearYouResultsController
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController
  */
-class RoadworkDataService implements RoadworkDataServiceInterface {
+final class RoadworkDataService implements RoadworkDataServiceInterface {
 
   use StringTranslationTrait;
 
-  /**
-   * Constructs a new RoadworkDataService instance.
-   *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface $roadworkDataClient
-   *   The roadwork data client.
-   */
-  public function __construct(protected RoadworkDataClientInterface $roadworkDataClient) {
+  public function __construct(private RoadworkDataClientInterface $roadworkDataClient) {
   }
 
   /**
-   * Retrieves and formats roadwork projects near the given coordinates.
-   *
-   * Fetches raw roadwork data for the specified location and transforms it into
-   * a display-ready format with translated strings and formatted dates.
-   *
-   * @param float $lat
-   *   The latitude in WGS84 decimal degrees.
-   * @param float $lon
-   *   The longitude in WGS84 decimal degrees.
-   * @param int $distance
-   *   (optional) Search radius in meters. Defaults to 1000m.
-   *
-   * @return array
-   *   An array of formatted roadwork projects, each containing:
-   *   - title: (string) The project title/description
-   *   - location: (string) The project location/address
-   *   - schedule: (string) Formatted date range
-   *   - url: (string) URL for more information
-   *   - type: (string) Type of work
-   *   - raw_data: (array) Original project data
+   * {@inheritdoc}
    */
-  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 1000): array {
-    $projects = $this->roadworkDataClient->getProjectsByCoordinates($lat, $lon, $distance);
-    return $this->formatProjects($projects);
-  }
+  public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL, int $page = 0): Collection {
+    [
+      'features' => $projects,
+      'totalFeatures' => $numItems,
+    ] = $this->roadworkDataClient->getProjectsByCoordinates($lat, $lon, $distance, $limit, $page);
 
-  /**
-   * Retrieves and formats roadwork projects near the given address.
-   *
-   * First geocodes the address to coordinates, then fetches and formats
-   * nearby roadwork projects.
-   *
-   * @param string $address
-   *   The address to search near (e.g., 'Mannerheimintie 5, Helsinki').
-   * @param int $distance
-   *   (optional) Search radius in meters. Defaults to 1000m.
-   *
-   * @return array
-   *   An array of formatted roadwork projects in the same format as
-   *   getFormattedProjectsByCoordinates(). Returns an empty array if the
-   *   address cannot be geocoded.
-   *
-   * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface::getFormattedProjectsByAddress()
-   */
-  public function getFormattedProjectsByAddress(string $address, int $distance = 1000): array {
-    $projects = $this->roadworkDataClient->getProjectsByAddress($address, $distance);
-    return $this->formatProjects($projects);
-  }
-
-  /**
-   * Transforms raw GeoJSON features into display-ready project data.
-   *
-   * Processes each feature to extract relevant information, format dates,
-   * and create map URLs. Handles both single and multi-geometry features.
-   *
-   * @param array $features
-   *   An array of GeoJSON features from the roadwork API, where each feature
-   *   contains properties like:
-   *   - properties: Array containing project metadata
-   *   - geometry: GeoJSON geometry object with coordinates.
-   *
-   * @return array
-   *   An array of formatted project data, sorted by start date (newest first).
-   *   Each project includes translated labels and properly formatted dates.
-   */
-  protected function formatProjects(array $features): array {
     $formatted = [];
 
-    foreach ($features as $feature) {
+    foreach ($projects as $feature) {
       if (!isset($feature['properties'])) {
         continue;
       }
-
       $props = $feature['properties'];
-
-      // Extract relevant data from the GeoJSON feature.
-      // Use address as the main title.
-      $title = $props['osoite'] ?? $this->t('Work site', [], ['context' => 'Roadworks default title']);
-      $location = $props['osoite'] ?? $this->t('Location unknown', [], ['context' => 'Roadworks location fallback']);
 
       // Use the text date fields for display.
       $startDateTxt = $props['tyo_alkaa_txt'] ?? '';
@@ -124,67 +58,36 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
       $formattedStart = $startDate ? $this->formatDate($startDate) : $this->t('Unknown', [], ['context' => 'Roadworks date fallback']);
       $formattedEnd = $endDate ? $this->formatDate($endDate) : $this->t('Ongoing', [], ['context' => 'Roadworks date fallback']);
 
-      // Get the work type (Kaivuilmoitus or Aluevuokraus)
-      $workType = $props['tyyppi'] ?? $this->t('Work', [], ['context' => 'Roadworks type fallback']);
-
-      // Default to the Helsinki map URL.
-      $url = 'https://kartta.hel.fi';
-
-      // If we have geometry, create a deep link to the map with coordinates.
-      if (!empty($feature['geometry']['coordinates'])) {
-        $coords = $this->extractFirstCoordinate($feature['geometry']);
-        if ($coords) {
-          $easting = $coords[0];
-          $northing = $coords[1];
-          $url = sprintf(
-            'https://kartta.hel.fi/?setlanguage=fi&e=%.2f&n=%.2f&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(%.2f%20%.2f)',
-            $easting,
-            $northing,
-            $easting,
-            $northing
-          );
-        }
+      if (empty($feature['geometry']['coordinates'])) {
+        continue;
       }
 
-      // Format the project data for display.
-      $item = [
-      // This is now the address from osoite.
-        'title' => $title,
-      // This now links to the map with coordinates.
-        'url' => $url,
-        'type' => $workType,
-      // Just pass the location string, let the template handle the label.
-        'location' => $location,
-      // Pass the translated label separately.
-        'location_label' => $this->t('Location', [], ['context' => 'Roadworks field label']),
+      if (!$location = $this->extractFirstCoordinate($feature['geometry'])) {
+        continue;
+      }
+
+      $item = new Item(
+        title: $props['osoite'] ?? (string) $this->t('Work site', [], ['context' => 'Roadworks default title']),
+        date_string: $props['tyo_alkaa'],
+        url: sprintf(
+          'https://kartta.hel.fi/?setlanguage=fi&e=%.2f&n=%.2f&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet,allu_kaivuilmoitukset_kaynnissa,allu_kaivuilmoitukset_tuleva&o=100,100&geom=POINT(%.2f%%20%.2f)',
+          $location->lon,
+          $location->lat,
+          $location->lon,
+          $location->lat
+        ),
+        // Get the work type (Kaivuilmoitus or Aluevuokraus)
+        type: $props['tyyppi'] ?? (string) $this->t('Work', [], ['context' => 'Roadworks type fallback']),
+        // Just pass the location string, let the template handle the label.
+        address: $props['osoite'] ?? (string) $this->t('Location unknown', [], ['context' => 'Roadworks location fallback']),
         // Convert schedule to a string to prevent Drupal from treating it as
         // a render array.
-        'schedule' => $formattedStart . ($formattedEnd ? ' - ' . $formattedEnd : ''),
-      // Pass the translated label separately.
-        'schedule_label' => $this->t('Schedule', [], ['context' => 'Roadworks field label']),
-      // Keep raw data for debugging/templates.
-        'raw_data' => $props,
-      ];
-
-      if (isset($coords)) {
-        $item['coordinates'] = [$coords[1], $coords[0]];
-      }
-
+        schedule: $formattedStart . ($formattedEnd ? ' - ' . $formattedEnd : ''),
+        location: $location,
+      );
       $formatted[] = $item;
     }
-
-    // Sort by start date (newest first)
-    usort($formatted, function ($a, $b) {
-      $aDate = $a['raw_data']['tyo_alkaa'] ?? '';
-      $bDate = $b['raw_data']['tyo_alkaa'] ?? '';
-
-      if ($aDate === $bDate) {
-        return 0;
-      }
-      return ($aDate > $bDate) ? -1 : 1;
-    });
-
-    return $formatted;
+    return new Collection($numItems, $formatted);
   }
 
   /**
@@ -196,35 +99,28 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
    * @param array $geometry
    *   The GeoJSON geometry array.
    *
-   * @return array|null
+   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location|null
    *   The first [x, y] coordinate pair or null if not found.
    */
-  protected function extractFirstCoordinate(array $geometry): ?array {
+  protected function extractFirstCoordinate(array $geometry): ?Location {
     if (empty($geometry['coordinates'])) {
       return NULL;
     }
-
     $coords = $geometry['coordinates'];
     $type = $geometry['type'] ?? 'Point';
 
-    switch (strtoupper($type)) {
-      case 'POINT':
-        return $coords;
+    $points = match (strtoupper($type)) {
+      'POINT' => $coords,
+      'MULTIPOINT', 'LINESTRING' => $coords[0] ?? NULL,
+      'MULTILINESTRING', 'POLYGON' => $coords[0][0] ?? NULL,
+      'MULTIPOLYGON' => $coords[0][0][0] ?? NULL,
+      default => NULL,
+    };
 
-      case 'MULTIPOINT':
-      case 'LINESTRING':
-        return $coords[0] ?? NULL;
-
-      case 'MULTILINESTRING':
-      case 'POLYGON':
-        return $coords[0][0] ?? NULL;
-
-      case 'MULTIPOLYGON':
-        return $coords[0][0][0] ?? NULL;
-
-      default:
-        return NULL;
+    if (!$points) {
+      return NULL;
     }
+    return new Location((float) $points[1], (float) $points[0], $type);
   }
 
   /**
@@ -259,35 +155,21 @@ class RoadworkDataService implements RoadworkDataServiceInterface {
    * Creates a pre-filtered URL to the roadworks overview page, optionally
    * including the current search address as a query parameter.
    *
-   * @param string $address
-   *   (optional) The address to include in the URL. If provided, it will be
+   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   *   The address to include in the URL. It will be
    *   used to pre-fill the search field on the target page.
+   * @param string $langcode
+   *   The langcode.
    *
    * @return \Drupal\Core\Url
    *   A URL object pointing to the roadworks overview page with optional
    *   address parameter.
    */
-  public function getSeeAllUrl(string $address = ''): Url {
-    // Create options array for the URL.
-    $options = [];
-
-    // Add query parameter if address is provided.
-    if (!empty($address)) {
-      $options['query'] = ['q' => $address];
-    }
-
+  public function getSeeAllUrl(Address $address, string $langcode): Url {
+    $options = [
+      'query' => ['q' => $address->streetName->getName($langcode)],
+    ];
     return Url::fromRoute('helfi_etusivu.helsinki_near_you_roadworks', [], $options);
-  }
-
-  /**
-   * Returns the translated section title for roadwork listings.
-   *
-   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
-   *   A translated string representing the section title for roadwork listings.
-   *   This is typically used as a heading above roadwork project lists.
-   */
-  public function getSectionTitle() {
-    return $this->t('Street and park projects');
   }
 
 }

@@ -1,0 +1,33 @@
+<article>
+  <div class="components components--computed {{ content_attributes['classes']|join(' ') }}">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--gray-bg',
+        'component--full-width',
+      ],
+        component_title: component_title,
+        component_description: component_description,
+      }
+    %}
+      {% block component_content %}
+        <div class="hdbt-search__form-container">
+          {{ autosuggest_form }}
+        </div>
+        <div class="hdbt-search__results">
+          {% if address_missing_message or address_error_message %}
+            <div class="hdbt-search__results__header">
+              {% if address_missing_message %}
+                <h3 class="hdbt-search__results__title">{{ address_missing_message }}</h3>
+              {% else %}
+                {{ attach_library('hdbt/search-helper') }}
+                <h3 class="hdbt-search__results__title">{{ address_error_message }}</h3>
+              {% endif %}
+            </div>
+          {% endif %}
+          {{ content }}
+        </div>
+      {% endblock %}
+    {% endembed %}
+  </div>
+</article>

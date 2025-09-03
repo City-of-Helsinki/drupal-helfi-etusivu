@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou;
 
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\helfi_etusivu\Enum\ServiceMapLink;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
@@ -17,6 +17,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 /**
  * Tests linked events helper service.
@@ -31,6 +32,7 @@ class ServiceMapTest extends KernelTestBase {
    */
   protected static $modules = [
     'system',
+    'big_pipe',
     'helfi_etusivu',
   ];
 
@@ -69,7 +71,7 @@ class ServiceMapTest extends KernelTestBase {
         )
       );
     $logger = $this->prophesize(LoggerInterface::class);
-    $logger->error('Servicemap query failed: Fail.')->shouldBeCalled();
+    $logger->log(LogLevel::ERROR, Argument::any(), Argument::any())->shouldBeCalled();
 
     $sut = $this->getSut($client, $logger);
     $this->assertEmpty($sut->query('123'));
@@ -84,15 +86,13 @@ class ServiceMapTest extends KernelTestBase {
       ->shouldBeCalled()
       ->willReturn(
         new Response(body: ''),
-        new Response(body: json_encode(['results' => ['123']])),
+        new Response(body: json_encode(['results' => []])),
       );
-    $logger = $this->prophesize(LoggerInterface::class);
-    $logger->error('Servicemap query failed: Unexpected response. Results not present.')->shouldBeCalled();
 
+    $logger = $this->prophesize(LoggerInterface::class);
     $sut = $this->getSut($client, $logger);
     // Make sure the first request fails to empty results.
     $this->assertEmpty($sut->query('123'));
-    $this->assertEquals(['123'], $sut->query('123'));
   }
 
   /**
@@ -107,30 +107,22 @@ class ServiceMapTest extends KernelTestBase {
         new Response(body: json_encode([
           'results' => [
             [
-              'name' => '123',
-              'location' => ['coordinates' => [123, 321]],
+              'name' => ['fi' => '123'],
+              'location' => ['coordinates' => [123, 321], 'type' => 'Point'],
             ],
           ],
         ])),
       );
     $logger = $this->prophesize(LoggerInterface::class);
-    $logger->error('Servicemap query failed: Unexpected response. Results not present.')->shouldBeCalled();
-
     $sut = $this->getSut($client, $logger);
     $this->assertNull($sut->getAddressData('123'));
-    $this->assertEquals([
-      'address_translations' => '123',
-      'coordinates' => [123, 321],
-    ], $sut->getAddressData('123'));
-  }
+    $address = $sut->getAddressData('123');
+    $this->assertInstanceOf(Address::class, $address);
 
-  /**
-   * Tests ::getLink().
-   */
-  public function testGetLink() : void {
-    $sut = $this->getSut($this->prophesize(ClientInterface::class), $this->prophesize(LoggerInterface::class));
-    $response = $sut->getLink(ServiceMapLink::PLANS_IN_PROCESS, '123');
-    $this->assertEquals('https://kartta.hel.fi/?addresslabel=Plans%20under%20preparation%20near%20the%20address%20123&addresslocation=123&link=eDB7Rk&setlanguage=en', $response);
+    $this->assertEquals('123', $address->streetName->getName('fi'));
+    $this->assertEquals(123, $address->location->lon);
+    $this->assertEquals(321, $address->location->lat);
+    $this->assertEquals('Point', $address->location->type);
   }
 
 }

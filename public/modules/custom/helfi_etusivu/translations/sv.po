@@ -29,6 +29,10 @@ msgid "Discover city services, events and news near you. Start by entering your 
 msgstr "Hitta stadens tjänster, evenemang och nyheter nära dig. Börja med att söka med din adress."
 
 msgctxt "Helsinki near you"
+msgid "Discover city services, events and news near you."
+msgstr "Hitta stadens tjänster, evenemang och nyheter nära dig."
+
+msgctxt "Helsinki near you"
 msgid "Address"
 msgstr "Adress"
 
@@ -57,8 +61,8 @@ msgid "Edit address"
 msgstr "Redigera adressen"
 
 msgctxt "Helsinki near you"
-msgid "Services, events and news for @address"
-msgstr "Tjänster, evenemang och nyheter med adressen @address"
+msgid "Helsinki near you: @address"
+msgstr "Helsingfors nära dig: @address"
 
 msgid "Helsinki near you"
 msgstr "Helsingfors nära dig"
@@ -234,18 +238,6 @@ msgctxt "Helsinki near you roadworks search"
 msgid "See all roadworks near you"
 msgstr "Se alla gatuarbeten nära dig"
 
-msgctxt "Roadworks search: result count"
-msgid "1 result"
-msgstr "1 resultat"
-
-msgctxt "Roadworks search: result count"
-msgid "@count results"
-msgstr "@count resultat"
-
-msgctxt "Roadworks search: Fetch failed message"
-msgid "Failed to fetch roadworks. You can reload the page or try again later."
-msgstr "Misslyckades att hämta gatuarbeten. Du kan ladda om sidan eller försöka igen senare."
-
 msgctxt "Helsinki near you roadworks search"
 msgid "Find street and park projects in your neighbourhood."
 msgstr "Hitta gatu- och parkprojekt i ditt närområde."
@@ -277,14 +269,6 @@ msgstr "Pågående"
 msgctxt "Roadworks type fallback"
 msgid "Work"
 msgstr "Arbete"
-
-msgctxt "Roadworks field label"
-msgid "Location"
-msgstr "Plats"
-
-msgctxt "Roadworks field label"
-msgid "Schedule"
-msgstr "Schema"
 
 msgctxt "Helsinki near you status label"
 msgid "Ready"
@@ -321,6 +305,14 @@ msgstr "Feedback nära dig"
 msgctxt "Helsinki near you"
 msgid "Find feedback in your neighbourhood."
 msgstr "Hitta feedback i ditt närområde."
+
+msgctxt "Helsinki near you"
+msgid "@num roadworks using address @address"
+msgstr "@num gatu- och parkprojekt på adressen @address"
+
+msgctxt "Helsinki near you"
+msgid "@num feedback using address @address"
+msgstr "@num feedback på adressen @address"
 
 msgid "Arabic"
 msgstr "Arabiska"

@@ -32,7 +32,7 @@ abstract class SearchFormBase extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) : array {
-    $form['#attributes']['class'][] = 'helfi-etusivu-near-you-form hdbt-search__form-container';
+    $form['#attributes']['class'][] = 'hdbt-search__form helfi-etusivu-near-you-form';
     $translation_context = 'Helsinki near you form';
 
     $form['q'] = [

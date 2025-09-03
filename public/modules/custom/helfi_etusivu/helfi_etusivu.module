@@ -12,6 +12,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
 use Drupal\helfi_recommendations\TextConverter\Document;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
@@ -411,6 +412,18 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-roadworks',
     ],
+    'helsinki_near_you_roadwork_item' => [
+      'variables' => [
+        'title' => NULL,
+        'uri' => NULL,
+        'work_type' => NULL,
+        'address' => NULL,
+        'schedule' => NULL,
+        'distance_label' => NULL,
+        'roadwork_attributes' => [],
+      ],
+      'template' => 'helsinki-near-you-roadwork-item',
+    ],
     'helsinki_near_you_results_page' => [
       'variables' => [
         'back_link_label' => NULL,
@@ -420,8 +433,12 @@ function helfi_etusivu_theme() : array {
         'service_groups' => NULL,
         'nearby_neighbourhoods' => NULL,
         'news_archive_url' => NULL,
+        'roadwork_section' => NULL,
+        'roadwork_archive_url' => NULL,
         'feedback_section' => NULL,
         'feedback_archive_url' => NULL,
+        'events_section' => NULL,
+        'events_archive_url' => NULL,
       ],
       'template' => 'helsinki-near-you-results-page',
     ],
@@ -430,6 +447,14 @@ function helfi_etusivu_theme() : array {
         'attributes' => [],
         'children' => NULL,
       ],
+    ],
+    'helsinki_near_you_event_item' => [
+      'variables' => [
+        'title' => NULL,
+        'object' => NULL,
+        'external_image' => NULL,
+      ],
+      'template' => 'helsinki-near-you-event-item',
     ],
     'helsinki_near_you_feedback_item' => [
       'variables' => [
@@ -451,15 +476,32 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'hero_title' => NULL,
         'hero_description' => NULL,
-        'first_paragraph_grey' => NULL,
+        'first_paragraph_bg' => NULL,
         'form' => [],
       ],
       'template' => 'helsinki-near-you-hero-block',
     ],
-    'helsinki_near_you_feedback_page' => [
+    'helsinki_near_you_search_page' => [
       'variables' => [
         'autosuggest_form' => NULL,
-        'feedback' => NULL,
+        'content' => NULL,
+        'content_attributes' => ['classes' => []],
+        'component_title' => NULL,
+        'component_description' => NULL,
+        'address_missing_message' => NULL,
+        'address_error_message' => NULL,
+      ],
+    ],
+    'helsinki_near_you_lazy_builder_content' => [
+      'variables' => [
+        'title' => NULL,
+        'content' => NULL,
+      ],
+    ],
+    'helsinki_near_you_lazy_builder_preview' => [
+      'variables' => [
+        'num_items' => NULL,
+        'preview_attributes' => NULL,
       ],
     ],
   ];
@@ -491,5 +533,25 @@ function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
 
   if ($node instanceof NewsItem) {
     $variables['#attached']['drupalSettings']['news_taxonomy_term_ids'] = $node->getNewsTerms();
+  }
+}
+
+/**
+ * Implements hook_page_attachments_HOOK().
+ */
+function helfi_etusivu_page_attachments(array &$page) {
+  // Check if the current route matches the desired route.
+  $route = \Drupal::routeMatch()->getRouteName();
+  $routeInformation = RouteInformationEnum::fromRoute($route);
+
+  if ($routeInformation) {
+    $description = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'description',
+        'content' => $routeInformation->getDescription(),
+      ],
+    ];
+    $page['#attached']['html_head'][] = [$description, 'description'];
   }
 }

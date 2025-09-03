@@ -36,6 +36,16 @@ display:
         langcode:
           expose:
             label: اللغة
+      sorts:
+        created:
+          expose:
+            label: 'Newest first'
+        name:
+          expose:
+            label: 'الاسم (أ-ي)'
+        name_1:
+          expose:
+            label: 'الاسم (ي-أ)'
   page:
     display_title: Page
     display_options:
@@ -46,10 +56,16 @@ display:
           separator: ', '
         edit_media:
           text: تحرير
+          alter:
+            text: 'تحرير {{ name }}'
+            alt: 'تحرير {{ name }}'
         delete_media:
           text: حذف
+          alter:
+            text: 'Delete {{ name }}'
+            alt: 'Delete {{ name }}'
   widget:
-    display_title: ودجة
+    display_title: 'عنصر إدخال'
     display_options:
       arguments:
         bundle:
