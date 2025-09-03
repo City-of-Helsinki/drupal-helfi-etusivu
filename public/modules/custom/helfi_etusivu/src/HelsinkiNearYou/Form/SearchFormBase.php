@@ -67,8 +67,8 @@ abstract class SearchFormBase extends FormBase {
           'hds-text-input__label',
         ],
       ],
-      '#theme' => 'helfi_etusivu_autocomplete',
-      '#type' => 'helfi_etusivu_autocomplete',
+      '#theme' => 'helfi_location_autocomplete',
+      '#type' => 'helfi_location_autocomplete',
       '#wrapper_attributes' => [
         'class' => [
           'hds-text-input',
