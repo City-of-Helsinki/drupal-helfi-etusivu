@@ -6,7 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\FeedbackSearchForm;
 
 /**

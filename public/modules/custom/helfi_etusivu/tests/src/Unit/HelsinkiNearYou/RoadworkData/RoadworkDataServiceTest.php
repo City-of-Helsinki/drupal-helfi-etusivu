@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Unit\RoadworkData;
 
 use Drupal\Core\Logger\LoggerChannelInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\DTO\Location;
+use Drupal\helfi_api_base\ServiceMap\DTO\StreetName;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService;
 use Drupal\Core\DependencyInjection\ContainerBuilder;

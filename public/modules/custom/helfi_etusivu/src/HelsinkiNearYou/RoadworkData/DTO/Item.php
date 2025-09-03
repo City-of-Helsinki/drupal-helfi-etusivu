@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO;
 
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 
 /**
  * Data transfer object representing a roadwork item.

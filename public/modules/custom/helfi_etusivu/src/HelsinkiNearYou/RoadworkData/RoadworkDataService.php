@@ -6,8 +6,8 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Item;
 
@@ -99,7 +99,7 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
    * @param array $geometry
    *   The GeoJSON geometry array.
    *
-   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location|null
+   * @return \Drupal\helfi_api_base\ServiceMap\DTO\Location|null
    *   The first [x, y] coordinate pair or null if not found.
    */
   protected function extractFirstCoordinate(array $geometry): ?Location {
@@ -155,7 +155,7 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
    * Creates a pre-filtered URL to the roadworks overview page, optionally
    * including the current search address as a query parameter.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address to include in the URL. It will be
    *   used to pre-fill the search field on the target page.
    * @param string $langcode

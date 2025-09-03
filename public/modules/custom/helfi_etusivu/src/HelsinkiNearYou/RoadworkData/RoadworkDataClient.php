@@ -6,7 +6,6 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Utility\Error;
-use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
@@ -26,7 +25,6 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
   public function __construct(
     protected ClientInterface $httpClient,
     #[Autowire(service: 'logger.channel.helfi_etusivu')] protected LoggerChannelInterface $logger,
-    protected ServiceMapInterface $serviceMap,
   ) {
   }
 

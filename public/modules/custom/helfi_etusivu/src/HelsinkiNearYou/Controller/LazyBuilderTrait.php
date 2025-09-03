@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Template\Attribute;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\LazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder as EventsLazyBuilder;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder as RoadWorkLazyBuilder;
@@ -32,7 +32,7 @@ trait LazyBuilderTrait {
   /**
    * Constructs a render array for events.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
    * @param string $langcode
    *   The language code.
@@ -60,7 +60,7 @@ trait LazyBuilderTrait {
   /**
    * Constructs a render array for feedback items.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
    * @param string $langcode
    *   The langcode.
@@ -93,7 +93,7 @@ trait LazyBuilderTrait {
   /**
    * Constructs a render array for roadwork items.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
    * @param string $langcode
    *   The langcode.
