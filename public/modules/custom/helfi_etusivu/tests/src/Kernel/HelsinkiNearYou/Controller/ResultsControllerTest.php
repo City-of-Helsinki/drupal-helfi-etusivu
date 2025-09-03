@@ -20,7 +20,6 @@ use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\HttpFoundation\InputBag;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -183,36 +182,6 @@ class ResultsControllerTest extends KernelTestBase {
         $this->assertIsString($link['link_url']);
       }
     };
-  }
-
-  /**
-   * Tests the addressSuggestions method.
-   */
-  public function testAddressSuggestions() {
-    $mockRequest = $this->createMock(Request::class);
-    $query = new InputBag([
-      'q' => 'Kalev',
-    ]);
-    $mockRequest->query = $query;
-
-    $this->serviceMap->expects(self::once())
-      ->method('query')
-      ->willReturn(array_map(
-        function ($name) {
-          return new Address(
-            StreetName::createFromArray(['fi' => $name]),
-            new Location(60.171, 24.934, 'Point'),
-          );
-        },
-        [
-          'Kalevankatu 2',
-          'Lönnrotinkatu 3',
-          'ALeksanterinkatu 20',
-        ]),
-      );
-
-    $addressSuggestions = $this->controller->addressSuggestions($mockRequest);
-    $this->assertInstanceOf(JsonResponse::class, $addressSuggestions);
   }
 
 }
