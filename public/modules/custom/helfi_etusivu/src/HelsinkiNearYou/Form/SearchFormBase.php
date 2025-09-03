@@ -32,29 +32,7 @@ abstract class SearchFormBase extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) : array {
     $form['#attributes']['class'][] = 'hdbt-search__form helfi-etusivu-near-you-form';
-    $translation_context = 'Helsinki near you form';
-
     $form['q'] = [
-      '#attached' => [
-        'drupalSettings' => [
-          'helsinki_near_you_form' => [
-            'minCharAssistiveHint' => $this->t('Type @count or more characters for results', [], ['context' => $translation_context]),
-            'inputAssistiveHint' => $this->t(
-              'When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.',
-              [],
-              ['context' => $translation_context]
-            ),
-            'noResultsAssistiveHint' => $this->t('No address suggestions were found', [], ['context' => $translation_context]),
-            'someResultsAssistiveHint' => $this->t('There are @count results available.', [], ['context' => $translation_context]),
-            'oneResultAssistiveHint' => $this->t('There is one result available.', [], ['context' => $translation_context]),
-            'highlightedAssistiveHint' => $this->t(
-              '@selectedItem @position of @count is highlighted',
-              [],
-              ['context' => $translation_context]
-            ),
-          ],
-        ],
-      ],
       '#placeholder' => $this->t('For example, Kotikatu 1', [], ['context' => 'Helsinki near you']),
       '#required' => TRUE,
       '#title' => $this->t('Home address', [], ['context' => 'Helsinki near you']),
