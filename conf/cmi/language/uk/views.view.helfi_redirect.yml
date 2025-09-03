@@ -15,9 +15,6 @@ display:
           separator: ', '
         created:
           label: Created
-        status:
-          label: Опубліковано
-          separator: ', '
       pager:
         options:
           tags:
@@ -69,9 +66,6 @@ display:
         is_custom:
           expose:
             label: Custom
-        status:
-          expose:
-            label: Опубліковано
   page_1:
     display_title: Сторінка
     display_options:

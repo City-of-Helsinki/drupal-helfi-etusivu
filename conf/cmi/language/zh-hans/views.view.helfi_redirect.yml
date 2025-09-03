@@ -15,9 +15,6 @@ display:
           separator: ', '
         created:
           label: Created
-        status:
-          label: 已发布
-          separator: ', '
       pager:
         options:
           tags:
@@ -66,9 +63,6 @@ display:
         is_custom:
           expose:
             label: Custom
-        status:
-          expose:
-            label: 已发布
   page_1:
     display_title: 页面
     display_options:
