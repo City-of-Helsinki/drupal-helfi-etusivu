@@ -37,17 +37,10 @@ abstract class SearchFormBase extends FormBase {
       '#required' => TRUE,
       '#title' => $this->t('Home address', [], ['context' => 'Helsinki near you']),
       '#default_value' => $this->getRequest()?->query->get('q', ''),
-      '#label_attributes' => [
-        'class' => [
-          'hds-text-input__label',
-        ],
-      ],
       '#type' => 'helfi_location_autocomplete',
       '#autocomplete_route_name' => 'helfi_api_base.location_autocomplete',
       '#wrapper_attributes' => [
         'class' => [
-          'hds-text-input',
-          'hdbt-search__filter',
           'helfi-etusivu-near-you-form__address-input',
         ],
       ],
