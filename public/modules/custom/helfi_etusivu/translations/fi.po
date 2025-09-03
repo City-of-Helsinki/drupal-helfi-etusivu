@@ -37,7 +37,11 @@ msgstr "Helsinki lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "Discover city services, events and news near you. Start by entering your street address."
-msgstr "Löydä kaupungin palvelut, tapahtumat ja uutiset läheltäsi. Aloita kirjoittamalla osoitteesi."
+msgstr "Etsi kaupungin palveluita, tapahtumia ja uutisia osoitteesi perusteella. Aloita kirjoittamalla osoitteesi."
+
+msgctxt "Helsinki near you"
+msgid "Discover city services, events and news near you."
+msgstr "Etsi kaupungin palveluita, tapahtumia ja uutisia osoitteesi perusteella."
 
 msgctxt "Helsinki near you"
 msgid "Address"
@@ -68,8 +72,8 @@ msgid "Edit address"
 msgstr "Muokkaa osoitetta"
 
 msgctxt "Helsinki near you"
-msgid "Services, events and news for @address"
-msgstr "Palvelut, tapahtumat ja uutiset osoitteella @address"
+msgid "Helsinki near you: @address"
+msgstr "Helsinki lähelläsi: @address"
 
 msgid "Helsinki near you"
 msgstr "Helsinki lähelläsi"
@@ -103,7 +107,7 @@ msgstr "Hoida terveyttä"
 
 msgctxt "Helsinki near you"
 msgid "Your health station"
-msgstr "Oma terveysasema"
+msgstr "Lähin terveysasema"
 
 msgctxt "Helsinki near you"
 msgid "The maternity and child health clinic near you"
@@ -135,7 +139,7 @@ msgstr "Aurausaikataulu"
 
 msgctxt "Helsinki near you"
 msgid "Roadworks on the map"
-msgstr "Katu- ja puistohankkeet kartalla"
+msgstr "Katutyöt kartalla"
 
 msgctxt "Helsinki near you"
 msgid "City bike stations and bikeracks on the map"
@@ -273,14 +277,6 @@ msgctxt "Roadworks type fallback"
 msgid "Work"
 msgstr "Työ"
 
-msgctxt "Roadworks field label"
-msgid "Location"
-msgstr "Sijainti"
-
-msgctxt "Roadworks field label"
-msgid "Schedule"
-msgstr "Aikataulu"
-
 msgctxt "Helsinki near you status label"
 msgid "Ready"
 msgstr "Käsitelty"
@@ -316,6 +312,14 @@ msgstr "Palautteet lähelläsi"
 msgctxt "Helsinki near you"
 msgid "Find feedback in your neighbourhood."
 msgstr "Etsi palautteita lähialueeltasi."
+
+msgctxt "Helsinki near you"
+msgid "@num roadworks using address @address"
+msgstr "@num katu- ja puistohanketta osoitteella @address"
+
+msgctxt "Helsinki near you"
+msgid "@num feedback using address @address"
+msgstr "@num palautetta osoitteella @address"
 
 msgid "Arabic"
 msgstr "Arabia"

@@ -1,6 +1,7 @@
 {% embed '@hdbt/component/card.twig' with {
-  card_modifier_class: feedback_attributes['classes']|join(' '),
+  card_modifier_class: feedback_attributes['class']|join(' '),
   card_title: title,
+  card_title_level: feedback_attributes['title_level'] ? feedback_attributes['title_level'] : 'h3',
   card_url: uri,
   card_url_external: true,
   card_category_tag: {
@@ -14,7 +15,7 @@
       content: requested_datetime|date('d.m.Y'),
     },
     {
-      icon: 'map',
+      icon: 'location',
       label: 'Location'|t({}, {'context': 'Label for feedback location'}),
       content: address,
     },

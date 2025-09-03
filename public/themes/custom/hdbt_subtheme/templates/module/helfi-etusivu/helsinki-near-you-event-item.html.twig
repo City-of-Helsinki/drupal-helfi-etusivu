@@ -1,0 +1,47 @@
+{% set at_string = 'at'|t({}, {'context': 'Indication that events take place in a certain timeframe'}) %}
+
+{% if object.isMultiDate %}
+  {% set time = object.startDate | date('d.m.Y') ~ ' - ' ~ object.endDate|date('d.m.Y') %}
+{% else %}
+  {% set time = object.startDate|date('d.m.y') ~ ', ' ~ at_string ~ ' ' ~ object.startDate|date('H:i') ~ ' - ' ~ object.endDate|date('H:i') %}
+{% endif %}
+
+{% if object.tags %}
+  {% set all_tags = [] %}
+  {% for tag in object.tags %}
+    {% set all_tags = all_tags|merge([{ tag: tag.text, color: tag.value }]) %}
+  {% endfor %}
+{% endif %}
+
+{% embed '@hdbt/component/card.twig' with {
+  card_modifier_class: 'card--external card--border',
+  card_image: external_image,
+  card_title: title['#title'],
+  card_title_level: 'h3',
+  card_url: title['#url'],
+  card_url_external: true,
+  card_category_tag: {
+    tag: object.category.text,
+    color: object.category.value,
+  },
+  card_metas: [
+    object.location ? {
+      icon: 'location',
+      label: 'Location'|t({}, {'context': 'React search'}),
+      content: object.location,
+    },
+    time ? {
+      icon: 'calendar',
+      label: 'Time'|t({}, {'context': 'Time of event'}),
+      content: time,
+    },
+    object.registrationRequired ? {
+      icon: 'info-circle',
+      label: 'Additional information'|t({}, {'context': 'Event additional information label'}),
+      content: 'The event requires registration or a ticket.'|t({}, {'context': 'Event additional information value'}),
+    },
+  ],
+  card_tags: all_tags
+} %}
+{% endembed %}
+

@@ -13,10 +13,10 @@ services:
       - { name: helfi_platform_config.og_image_builder }
   Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMap'
-  Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents: ~
   # Roadwork data services
   Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService: ~
 
+  Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder: ~
   # Roadwork data client service.
   # Handles communication with the external roadwork data API.
   Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient: ~
@@ -32,5 +32,18 @@ services:
 
   Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber: ~
 
-  Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\Client: ~
-  Drupal\helfi_etusivu\HelsinkiNearYou\Feedbacks\LazyBuilder: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\Client: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\LazyBuilder: ~
+
+  Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder: ~
+
+  Drupal\helfi_etusivu\Render\Placeholder\BigPipeStrategy:
+    parent: placeholder_strategy.big_pipe
+    class: Drupal\helfi_etusivu\Render\Placeholder\BigPipeStrategy
+    tags:
+      # Priority higher than placeholder_strategy.big_pipe (priority 0), so that
+      # our placeholder strategy is used by default. We only act on requests
+      # with '_big_pipe_force_placeholders' route option set to true.
+      - { name: placeholder_strategy, priority: 1 }
+

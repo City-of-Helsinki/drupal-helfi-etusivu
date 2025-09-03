@@ -1,0 +1,13 @@
+{% if title %}
+  {{ attach_library('hdbt/search-helper') }}
+  <div class="hdbt-search__results__header">
+    <h3 class="hdbt-search__results__title">{{ title }}</h3>
+  </div>
+{% endif %}
+{% if content.pager %}
+  <div class="hdbt-search__results__content">
+    {{ content }}
+  </div>
+{% else %}
+  {{ content }}
+{% endif %}

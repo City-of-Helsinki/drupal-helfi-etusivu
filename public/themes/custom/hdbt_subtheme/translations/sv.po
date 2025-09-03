@@ -65,10 +65,6 @@ msgctxt "Helsinki near you"
 msgid "Browse street and park projects near you."
 msgstr "Bläddra bland gatu- och parkprojekt nära dig"
 
-msgctxt "Helsinki near you"
-msgid "You must enable JavaScript in your browser to view the street and park project list."
-msgstr "Du måste aktivera JavaScript i din webbläsare för att gatu- och parkprojekt listan ska fungera."
-
 msgctxt "Feedback close to you block"
 msgid "Feedback near you"
 msgstr "Respons nära dig"
@@ -88,3 +84,15 @@ msgstr "Begärt"
 msgctxt "Label for feedback location"
 msgid "Location"
 msgstr "Plats"
+
+msgctxt "Label for roadwork location"
+msgid "Location"
+msgstr "Plats"
+
+msgctxt "Label for roadwork planned schedule"
+msgid "Planned schedule"
+msgstr "Tidsplan"
+
+msgctxt "Label for roadwork distance"
+msgid "Distance"
+msgstr "Avstånd"

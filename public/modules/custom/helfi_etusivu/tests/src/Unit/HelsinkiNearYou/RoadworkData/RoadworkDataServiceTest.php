@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Unit\RoadworkData;
 
 use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\Tests\UnitTestCase;
 
@@ -72,73 +74,22 @@ class RoadworkDataServiceTest extends UnitTestCase {
   }
 
   /**
-   * Tests formatting of projects.
-   *
-   * @covers ::formatProjects
-   */
-  public function testFormatProjects() {
-    $sampleFeatures = [
-      [
-        'id' => 'test.1',
-        'properties' => [
-          'tyon_tyyppi' => 'Test Type',
-          'tyon_kuvaus' => 'Test Description',
-          'osoite' => 'Test Street 1',
-          'tyo_alkaa' => '2025-01-01T00:00:00Z',
-          'tyo_paattyy' => '2025-12-31T23:59:59Z',
-          'www' => 'http://example.com/test',
-        ],
-        'geometry' => [
-          'type' => 'Point',
-          'coordinates' => [25496190, 6673588],
-        ],
-      ],
-    ];
-
-    // Since formatProjects is protected, we need to test it through a public
-    // method.
-    $this->roadworkDataClient->expects($this->once())
-      ->method('getProjectsByAddress')
-      ->with('Test Address')
-      ->willReturn($sampleFeatures);
-
-    $result = $this->roadworkDataService->getFormattedProjectsByAddress('Test Address');
-
-    $this->assertCount(1, $result);
-    // Should use tyon_kuvaus as title.
-    $this->assertEquals('Test Street 1', $result[0]['title']);
-    $this->assertStringContainsString('Test Street 1', $result[0]['location']);
-    $this->assertStringContainsString('01.01.2025', $result[0]['schedule']);
-    $this->assertStringContainsString('01.01.2026', $result[0]['schedule']);
-    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
-  }
-
-  /**
-   * Tests section title generation.
-   *
-   * @covers ::getSectionTitle
-   */
-  public function testGetSectionTitle() {
-    $title = $this->roadworkDataService->getSectionTitle();
-    $this->assertInstanceOf(TranslatableMarkup::class, $title);
-    $this->assertEquals('Street and park projects', $title->getUntranslatedString());
-  }
-
-  /**
    * Tests "See all" URL generation.
    *
    * @covers ::getSeeAllUrl
    */
   public function testGetSeeAllUrl() {
-    $url = $this->roadworkDataService->getSeeAllUrl('Testikatu 1');
+    $url = $this->roadworkDataService->getSeeAllUrl(
+      new Address(
+        StreetName::createFromArray(['fi' => 'Testikatu 1']),
+        new Location(123, 123, 'Point'),
+      ),
+      'fi',
+    );
     $this->assertInstanceOf(Url::class, $url);
     $this->assertEquals('helfi_etusivu.helsinki_near_you_roadworks', $url->getRouteName());
 
     // Check that the query parameter is set correctly.
-    $this->assertEquals([], $url->getRouteParameters());
-
-    // Test with empty address - should be the same as with address.
-    $url = $this->roadworkDataService->getSeeAllUrl('');
     $this->assertEquals([], $url->getRouteParameters());
   }
 
@@ -149,19 +100,22 @@ class RoadworkDataServiceTest extends UnitTestCase {
    */
   public function testGetFormattedProjectsByCoordinates() {
     $sampleFeatures = [
-      [
-        'id' => 'test.1',
-        'properties' => [
-          'tyon_tyyppi' => 'Test Type',
-          'tyon_kuvaus' => 'Test Description',
-          'osoite' => 'Test Street 1',
-          'tyo_alkaa' => '2025-01-01T00:00:00Z',
-          'tyo_paattyy' => '2025-12-31T23:59:59Z',
-          'www' => 'http://example.com/test',
-        ],
-        'geometry' => [
-          'type' => 'Point',
-          'coordinates' => [25496190, 6673588],
+      'totalFeatures' => 1,
+      'features' => [
+        [
+          'id' => 'test.1',
+          'properties' => [
+            'tyon_tyyppi' => 'Test Type',
+            'tyon_kuvaus' => 'Test Description',
+            'osoite' => 'Test Street 1',
+            'tyo_alkaa' => '2025-01-01T00:00:00Z',
+            'tyo_paattyy' => '2025-12-31T23:59:59Z',
+            'www' => 'http://example.com/test',
+          ],
+          'geometry' => [
+            'type' => 'Point',
+            'coordinates' => [25496190, 6673588],
+          ],
         ],
       ],
     ];
@@ -173,51 +127,13 @@ class RoadworkDataServiceTest extends UnitTestCase {
 
     $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(60.192059, 24.945831, 2000);
 
-    $this->assertCount(1, $result);
-    $this->assertEquals('Test Street 1', $result[0]['title']);
-    $this->assertStringContainsString('Test Street 1', $result[0]['location']);
+    $this->assertCount(1, $result->items);
+    $this->assertEquals('Test Street 1', $result->items[0]->title);
+    $this->assertStringContainsString('Test Street 1', $result->items[0]->address);
     // Check that the schedule contains both start and end dates.
-    $this->assertStringContainsString('01.01.2025', $result[0]['schedule']);
-    $this->assertStringContainsString('01.01.2026', $result[0]['schedule']);
-    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
-  }
-
-  /**
-   * Tests getFormattedProjectsByAddress with valid address.
-   *
-   * @covers ::getFormattedProjectsByAddress
-   */
-  public function testGetFormattedProjectsByAddress() {
-    $sampleFeatures = [
-      [
-        'id' => 'test.2',
-        'properties' => [
-          'tyyppi' => 'Test Type 2',
-          'osoite' => 'Test Street 2',
-          'tyo_alkaa' => '2025-02-01T00:00:00Z',
-          'tyo_paattyy' => '2025-02-28T23:59:59Z',
-          'lisatietolinkki' => 'http://example.com/test2',
-        ],
-        'geometry' => [
-          'type' => 'Point',
-          'coordinates' => [25496190, 6673588],
-        ],
-      ],
-    ];
-
-    $this->roadworkDataClient->expects($this->once())
-      ->method('getProjectsByAddress')
-      ->with('Test Address 123')
-      ->willReturn($sampleFeatures);
-
-    $result = $this->roadworkDataService->getFormattedProjectsByAddress('Test Address 123');
-
-    $this->assertCount(1, $result);
-    $this->assertEquals('Test Type 2', $result[0]['type']);
-    // Check that the schedule contains both start and end dates.
-    $this->assertStringContainsString('01.02.2025', $result[0]['schedule']);
-    $this->assertStringContainsString('01.03.2025', $result[0]['schedule']);
-    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet&o=100,100&geom=POINT(25496190.00%.2f)', $result[0]['url']);
+    $this->assertStringContainsString('01.01.2025', $result->items[0]->schedule);
+    $this->assertStringContainsString('01.01.2026', $result->items[0]->schedule);
+    $this->assertEquals('https://kartta.hel.fi/?setlanguage=fi&e=25496190.00&n=6673588.00&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet,allu_kaivuilmoitukset_kaynnissa,allu_kaivuilmoitukset_tuleva&o=100,100&geom=POINT(25496190.00%206673588.00)', $result->items[0]->url);
   }
 
   /**
@@ -229,68 +145,42 @@ class RoadworkDataServiceTest extends UnitTestCase {
     $this->roadworkDataClient->expects($this->once())
       ->method('getProjectsByCoordinates')
       ->with(0, 0, 2000)
-      ->willReturn([]);
+      ->willReturn(['features' => [], 'totalFeatures' => 0]);
 
     $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(0, 0, 2000);
-    $this->assertIsArray($result);
-    $this->assertEmpty($result);
-  }
-
-  /**
-   * Tests formatProjects with minimal feature data.
-   *
-   * @covers ::getFormattedProjectsByAddress
-   */
-  public function testFormatProjectsMinimal() {
-    $features = [
-      [
-        'properties' => [
-          'tyyppi' => 'Minimal Type',
-          'osoite' => 'Minimal Street',
-        ],
-      ],
-    ];
-
-    $this->roadworkDataClient->expects($this->once())
-      ->method('getProjectsByAddress')
-      ->with('Test Address')
-      ->willReturn($features);
-
-    $result = $this->roadworkDataService->getFormattedProjectsByAddress('Test Address');
-
-    $this->assertCount(1, $result);
-    $this->assertEquals('Minimal Type', $result[0]['type']);
-    $this->assertStringContainsString('Minimal Street', $result[0]['location']);
-    $this->assertStringContainsString('Unknown - Ongoing', $result[0]['schedule']);
-    $this->assertEquals('https://kartta.hel.fi', $result[0]['url']);
+    $this->assertIsArray($result->items);
+    $this->assertEmpty($result->items);
   }
 
   /**
    * Tests date formatting through the public API.
    *
-   * @covers ::getFormattedProjectsByAddress
+   * @covers ::getFormattedProjectsByCoordinates
    * @dataProvider dateFormatProvider
    */
   public function testDateFormatting($input, $expected) {
     $features = [
-      [
-        'properties' => [
-          'tyon_tyyppi' => 'Date Test',
-          'osoite' => 'Test Street',
-          'tyo_alkaa' => $input,
-          'tyo_paattyy' => $input,
+      'features' => [
+        [
+          'properties' => [
+            'tyon_tyyppi' => 'Date Test',
+            'osoite' => 'Test Street',
+            'tyo_alkaa' => $input,
+            'tyo_paattyy' => $input,
+          ],
+          'geometry' => ['coordinates' => [123, 123], 'type' => 'Point'],
         ],
       ],
+      'totalFeatures' => 1,
     ];
 
     $this->roadworkDataClient->expects($this->once())
-      ->method('getProjectsByAddress')
-      ->with('Test Address')
+      ->method('getProjectsByCoordinates')
       ->willReturn($features);
 
-    $result = $this->roadworkDataService->getFormattedProjectsByAddress('Test Address');
+    $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(123, 123);
 
-    $this->assertEquals($expected, $result[0]['schedule']);
+    $this->assertEquals($expected, $result->items[0]->schedule);
   }
 
   /**
