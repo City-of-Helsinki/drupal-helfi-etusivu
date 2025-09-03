@@ -6,10 +6,10 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Feedback;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbackController;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\StreetName;
-use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\DTO\Location;
+use Drupal\helfi_api_base\ServiceMap\DTO\StreetName;
+use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\KernelTests\KernelTestBase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\HttpFoundation\InputBag;

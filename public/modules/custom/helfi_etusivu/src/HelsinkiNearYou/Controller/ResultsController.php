@@ -11,8 +11,8 @@ use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\ServiceMapLink;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
-use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
+use Drupal\helfi_api_base\ServiceMap\DTO\Location;
+use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -254,7 +254,7 @@ final class ResultsController extends ControllerBase {
   /**
    * Get nearby news neighbourhoods.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location $location
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Location $location
    *   The location.
    * @param string $langcode
    *   The language.

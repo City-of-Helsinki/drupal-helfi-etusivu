@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Url;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection;
 
 /**
@@ -49,7 +49,7 @@ interface RoadworkDataServiceInterface {
   /**
    * Gets the URL for the "See all roadworks" page.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   (optional) The address to include in the URL. If provided, it will be
    *   used to pre-fill the search field on the target page.
    * @param string $langcode
