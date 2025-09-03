@@ -13,9 +13,6 @@ display:
           separator: ', '
         created:
           label: Created
-        status:
-          label: Avaldatud
-          separator: ', '
       pager:
         options:
           tags:
@@ -47,9 +44,6 @@ display:
         is_custom:
           expose:
             label: Custom
-        status:
-          expose:
-            label: Avaldatud
   page_1:
     display_title: Lehekülg
     display_options:

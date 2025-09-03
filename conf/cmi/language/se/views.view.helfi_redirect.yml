@@ -5,8 +5,6 @@ display:
       fields:
         created:
           label: Almmuhuvvon
-        status:
-          label: Almmuhuvvon
       pager:
         options:
           tags:
@@ -17,9 +15,5 @@ display:
       exposed_form:
         options:
           exposed_sorts_label: Sirre
-      filters:
-        status:
-          expose:
-            label: Almmuhuvvon
   page_1:
     display_title: Siidu
