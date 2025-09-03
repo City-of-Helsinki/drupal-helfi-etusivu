@@ -161,30 +161,6 @@ msgctxt "Helsinki near you"
 msgid "Please enter an address"
 msgstr "Syötä osoite"
 
-msgctxt "Helsinki near you form"
-msgid "Type @count or more characters for results"
-msgstr "Kirjoita @count tai enemmän kirjainta nähdäksesi tuloksia"
-
-msgctxt "Helsinki near you form"
-msgid "When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures."
-msgstr "Kun osoite-ehdotustuloksia tarjotaan, käytä nuolinäppäimiä ylä- ja alasuuntaan liikkumiseen. Paina enter-painiketta käyttääksesi valittua ehdotusta. Kosketuslaitteiden käyttäjät voivat selata listaa pyyhkäisyeleillä."
-
-msgctxt "Helsinki near you form"
-msgid "No address suggestions were found"
-msgstr "Osoite-ehdotuksia ei löytynyt"
-
-msgctxt "Helsinki near you form"
-msgid "There are @count results available."
-msgstr "Osoite-ehdotuksia löytyi @count kappaletta."
-
-msgctxt "Helsinki near you form"
-msgid "There is one result available."
-msgstr "Yksi osoite-ehdotus löytyi."
-
-msgctxt "Helsinki near you form"
-msgid "@selectedItem @position of @count is highlighted"
-msgstr "Vaihtoehto numero @position: @selectedItem korostettu. Vaihtoehtojen määrä: @count."
-
 msgctxt "Helsinki near you address label"
 msgid "Street works and events near the address @address"
 msgstr "Katu- ja puistohankkeet sekä tapahtumat lähellä osoitetta @address"
@@ -224,14 +200,6 @@ msgstr "Etsi lisää tapahtumia Tapahtumat-sivustolta"
 msgctxt "Helsinki near you events search"
 msgid "See all events near you"
 msgstr "Katso kaikki tapahtumat lähelläsi"
-
-msgctxt "Helsinki near you"
-msgid "Use current Location"
-msgstr "Käytä nykyistä sijaintia"
-
-msgctxt "Helsinki near you"
-msgid "We couldn\'t retrieve your current location. Try entering an address."
-msgstr "Nykyisen sijainnin käyttö ei onnistunut. Kokeile kirjoittaa osoite."
 
 msgctxt "Helsinki near you"
 msgid "Roadworks near you"
