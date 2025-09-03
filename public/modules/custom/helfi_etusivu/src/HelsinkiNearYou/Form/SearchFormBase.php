@@ -55,7 +55,6 @@ abstract class SearchFormBase extends FormBase {
           ],
         ],
       ],
-      '#autocomplete_route_name' => 'helfi_etusivu.helsinki_near_you_autocomplete',
       '#placeholder' => $this->t('For example, Kotikatu 1', [], ['context' => 'Helsinki near you']),
       '#required' => TRUE,
       '#title' => $this->t('Home address', [], ['context' => 'Helsinki near you']),
@@ -66,6 +65,7 @@ abstract class SearchFormBase extends FormBase {
         ],
       ],
       '#type' => 'helfi_location_autocomplete',
+      '#autocomplete_route_name' => 'helfi_api_base.location_autocomplete',
       '#wrapper_attributes' => [
         'class' => [
           'hds-text-input',

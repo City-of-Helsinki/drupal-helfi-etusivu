@@ -15,7 +15,6 @@ use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -192,33 +191,6 @@ final class ResultsController extends ControllerBase {
         ],
       ],
     ];
-  }
-
-  /**
-   * Serves autocomplete suggestions for the search form.
-   *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The request.
-   *
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
-   *   The result as JSON.
-   */
-  public function addressSuggestions(Request $request) : JsonResponse {
-    $q = $request->query->get('q');
-    $suggestions = [];
-
-    $results = $this->serviceMap->query($q, 10);
-
-    foreach ($results as $result) {
-      $name = $result->streetName->getName($this->languageManager->getCurrentLanguage()->getId());
-
-      $suggestions[] = [
-        'label' => $name,
-        'value' => $name,
-      ];
-    }
-
-    return new JsonResponse($suggestions);
   }
 
   /**
