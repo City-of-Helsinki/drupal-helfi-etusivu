@@ -16,6 +16,9 @@ display:
           separator: ', '
         created:
           label: Creado
+        enabled:
+          label: Enabled
+          separator: ', '
       pager:
         options:
           tags:
@@ -70,6 +73,9 @@ display:
         is_custom:
           expose:
             label: Custom
+        enabled:
+          expose:
+            label: Enabled
   page_1:
     display_title: Página
     display_options:
