@@ -106,10 +106,41 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
     // ETRS-GK25 is a projected coordinate system. Euclidean
     // distance can be used to calculate a distance between two points.
     $distance = fn (Item $item) => sqrt(($x - $item->x) ** 2 + ($y - $item->y) ** 2);
-
     usort($formatted, fn (Item $a, Item $b) => $distance($a) <=> $distance($b));
 
     return new Collection($numItems, $formatted);
+  }
+
+  /**
+   * The centroid of a set of points.
+   *
+   * This point minimizes the sum of squared Euclidean
+   * distances between itself and each point in the set.
+   *
+   * @link https://en.wikipedia.org/wiki/Centroid#Of_a_finite_set_of_points
+   *
+   * @param array $coordinates
+   *   GeoJSON coordinates array.
+   *
+   * @return array{float, float}|null
+   *   Centroid coordinates in a tuple or null if no points.
+   */
+  private function centroidOfPoints(array $coordinates): ?array {
+    if (empty($coordinates)) {
+      return NULL;
+    }
+
+    $x = $y = 0.0;
+
+    foreach ($coordinates as $point) {
+      $x += $point[0];
+      $y += $point[1];
+    }
+
+    return [
+      $x / count($coordinates),
+      $y / count($coordinates),
+    ];
   }
 
   /**
@@ -131,28 +162,28 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
     $coords = $geometry['coordinates'];
     $type = $geometry['type'] ?? 'Point';
 
-    $points = match (strtoupper($type)) {
+    $point = match (strtoupper($type)) {
       'POINT' => $coords,
-      'MULTIPOINT', 'LINESTRING' => $coords[0] ?? NULL,
-      'MULTILINESTRING', 'POLYGON' => $coords[0][0] ?? NULL,
-      'MULTIPOLYGON' => $coords[0][0][0] ?? NULL,
+      'MULTIPOINT', 'LINESTRING' => $this->centroidOfPoints($coords) ?? NULL,
+      'MULTILINESTRING', 'POLYGON' => $this->centroidOfPoints($coords[0]) ?? NULL,
+      'MULTIPOLYGON' => $this->centroidOfPoints($coords[0][0]) ?? NULL,
       default => NULL,
     };
 
-    if (!$points) {
+    if (!$point) {
       return NULL;
     }
 
     $convertedCoords = $this->coordinateConversionService
-      ->etrsGk25ToWgs84((float) $points[0], (float) $points[1]);
+      ->etrsGk25ToWgs84((float) $point[0], (float) $point[1]);
 
     if (!$convertedCoords) {
       return NULL;
     }
 
     return [
-      (float) $points[0],
-      (float) $points[1],
+      (float) $point[0],
+      (float) $point[1],
       new Location($convertedCoords['lat'], $convertedCoords['lon'], $type),
     ];
   }
