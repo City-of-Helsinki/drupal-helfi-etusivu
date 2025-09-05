@@ -99,6 +99,8 @@ class RoadworkDataServiceTest extends UnitTestCase {
    * Tests getFormattedProjectsByCoordinates with valid coordinates.
    *
    * @covers ::getFormattedProjectsByCoordinates
+   * @covers ::formatDate
+   * @covers \Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService::wgs84ToEtrsGk25
    */
   public function testGetFormattedProjectsByCoordinates() {
     $sampleFeatures = [
@@ -144,9 +146,94 @@ class RoadworkDataServiceTest extends UnitTestCase {
   }
 
   /**
+   * Tests pagination in getFormattedProjectsByCoordinates.
+   *
+   * @covers ::getFormattedProjectsByCoordinates
+   * @covers ::extractFirstCoordinate
+   * @covers \Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService::wgs84ToEtrsGk25
+   */
+  public function testPagination() {
+    $sampleFeatures = [
+      'totalFeatures' => 3,
+      'features' => [
+        [
+          'id' => 'test.1',
+          'properties' => [
+            'tyon_tyyppi' => 'Test Type',
+            'tyon_kuvaus' => 'Test Description',
+            'osoite' => 'Kansallismuseo',
+            'tyo_alkaa' => '2025-01-01T00:00:00Z',
+            'tyo_paattyy' => '2025-12-31T23:59:59Z',
+            'www' => 'http://example.com/test',
+          ],
+          'geometry' => [
+            'type' => 'Point',
+            'coordinates' => [25496190, 6673588],
+          ],
+        ],
+        [
+          'id' => 'test.2',
+          'properties' => [
+            'tyon_tyyppi' => 'Test Type',
+            'tyon_kuvaus' => 'Test Description',
+            'osoite' => 'Kallion kirkko',
+            'tyo_alkaa' => '2025-01-01T00:00:00Z',
+            'tyo_paattyy' => '2025-12-31T23:59:59Z',
+            'www' => 'http://example.com/test',
+          ],
+          'geometry' => [
+            'type' => 'Point',
+            'coordinates' => [25497188, 6674587],
+          ],
+        ],
+        [
+          'id' => 'test.3',
+          'properties' => [
+            'tyon_tyyppi' => 'Test Type',
+            'tyon_kuvaus' => 'Test Description',
+            'osoite' => 'Päärautatieasema',
+            'tyo_alkaa' => '2025-01-01T00:00:00Z',
+            'tyo_paattyy' => '2025-12-31T23:59:59Z',
+            'www' => 'http://example.com/test',
+          ],
+          'geometry' => [
+            'type' => 'Point',
+            'coordinates' => [25496750, 6673114],
+          ],
+        ],
+      ],
+    ];
+
+    // Test should pass regardless of the shuffle, since
+    // getFormattedProjectsByCoordinates should sort the
+    // array by distance to the given point.
+    shuffle($sampleFeatures['features']);
+
+    $this->roadworkDataClient->expects($this->once())
+      ->method('getProjectsByCoordinates')
+      ->with(
+      // Precomputed conversion from WGS84 to EPSG:3879.
+        $this->callback(static fn($x) => abs($x - 25496994.90) < 0.1),
+        $this->callback(static fn($y) => abs($y - 6675472.09) < 0.1),
+        2000
+      )
+      ->willReturn($sampleFeatures);
+
+    // Aleksis kiven katu.
+    $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(60.192059, 24.945831, 2000, 2, 1);
+
+    // Returns the furthest point, since we are
+    // skipping the first two elements (page 2).
+    $this->assertCount(1, $result->items);
+    $this->assertEquals(3, $result->numItems);
+    $this->assertEquals('Päärautatieasema', $result->items[0]->title);
+  }
+
+  /**
    * Tests formatProjects with empty features array.
    *
    * @covers ::getFormattedProjectsByCoordinates
+   * @covers \Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService::wgs84ToEtrsGk25
    */
   public function testFormatProjectsEmpty() {
     $this->roadworkDataClient->expects($this->once())
