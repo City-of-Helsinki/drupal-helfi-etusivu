@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO;
 
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
-
 /**
  * Data transfer object representing a roadwork item.
  *
@@ -21,7 +19,8 @@ final readonly class Item {
     public string $type,
     public string $address,
     public string $schedule,
-    public Location $location,
+    public float $x,
+    public float $y,
   ) {
   }
 
