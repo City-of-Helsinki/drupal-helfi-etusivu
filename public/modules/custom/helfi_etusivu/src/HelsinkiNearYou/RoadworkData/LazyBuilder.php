@@ -8,6 +8,7 @@ use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
+use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 
@@ -19,6 +20,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   public function __construct(
     private RoadworkDataServiceInterface $roadworkDataService,
     private PagerManagerInterface $pagerManager,
+    private readonly CoordinateConversionService $coordinateConversionService,
   ) {
   }
 
@@ -70,8 +72,14 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     }
 
     foreach ($data->items as $project) {
-      $lat = $project->location->lat;
-      $lon = $project->location->lon;
+      $convertedCoords = $this->coordinateConversionService
+        ->etrsGk25ToWgs84($project->x, $project->y);
+
+      if (!$convertedCoords) {
+        continue;
+      }
+
+      ['lat' => $lat, 'lon' => $lon] = $convertedCoords;
 
       $build['#content'][] = [
         '#theme' => 'helsinki_near_you_roadwork_item',

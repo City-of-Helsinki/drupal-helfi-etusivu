@@ -25,10 +25,6 @@ interface RoadworkDataClientInterface {
    *   Y coordinate in EPSG:3879.
    * @param int $distance
    *   (optional) The search radius in meters. Defaults to 1000 meters.
-   * @param int|null $limit
-   *   The number of items to fetch.
-   * @param int $page
-   *   The pager page.
    *
    * @return array
    *   An array of roadwork projects, each containing:
@@ -45,6 +41,6 @@ interface RoadworkDataClientInterface {
    * @throws \GuzzleHttp\Exception\GuzzleException
    *    Thrown when there is an error communicating with the API.
    */
-  public function getProjectsByCoordinates(float $x, float $y, int $distance = 1000, ?int $limit = NULL, int $page = 0): array;
+  public function getProjectsByCoordinates(float $x, float $y, int $distance = 1000): array;
 
 }

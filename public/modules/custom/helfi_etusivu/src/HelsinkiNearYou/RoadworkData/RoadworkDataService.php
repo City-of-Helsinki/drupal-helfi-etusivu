@@ -7,7 +7,6 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
-use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Item;
@@ -51,7 +50,7 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
     [
       'features' => $projects,
       'totalFeatures' => $numItems,
-    ] = $this->roadworkDataClient->getProjectsByCoordinates($x, $y, $distance, $limit, $page);
+    ] = $this->roadworkDataClient->getProjectsByCoordinates($x, $y, $distance);
 
     $formatted = [];
 
@@ -77,7 +76,7 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
         continue;
       }
 
-      [$featureX, $featureY, $location] = $coordinate;
+      [$featureX, $featureY] = $coordinate;
 
       $item = new Item(
         title: $props['osoite'] ?? (string) $this->t('Work site', [], ['context' => 'Roadworks default title']),
@@ -96,7 +95,6 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
         // Convert schedule to a string to prevent Drupal from treating it as
         // a render array.
         schedule: $formattedStart . ($formattedEnd ? ' - ' . $formattedEnd : ''),
-        location: $location,
         x: $featureX,
         y: $featureY,
       );
@@ -104,43 +102,20 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
     }
 
     // ETRS-GK25 is a projected coordinate system. Euclidean
-    // distance can be used to calculate a distance between two points.
-    $distance = fn (Item $item) => sqrt(($x - $item->x) ** 2 + ($y - $item->y) ** 2);
-    usort($formatted, fn (Item $a, Item $b) => $distance($a) <=> $distance($b));
+    // distance can be used to calculate distance between two points.
+    usort($formatted, static function (Item $a, Item $b) use ($x, $y) {
+      $distanceA = sqrt(($x - $a->x) ** 2 + ($y - $a->y) ** 2);
+      $distanceB = sqrt(($x - $b->x) ** 2 + ($y - $b->y) ** 2);
+
+      return $distanceA <=> $distanceB;
+    });
+
+    if ($limit) {
+      // Do pagination in PHP so that we can sort by distance.
+      $formatted = array_slice($formatted, $page > 0 ? ($page * $limit) : 0, $limit);
+    }
 
     return new Collection($numItems, $formatted);
-  }
-
-  /**
-   * The centroid of a set of points.
-   *
-   * This point minimizes the sum of squared Euclidean
-   * distances between itself and each point in the set.
-   *
-   * @link https://en.wikipedia.org/wiki/Centroid#Of_a_finite_set_of_points
-   *
-   * @param array $coordinates
-   *   GeoJSON coordinates array.
-   *
-   * @return array{float, float}|null
-   *   Centroid coordinates in a tuple or null if no points.
-   */
-  private function centroidOfPoints(array $coordinates): ?array {
-    if (empty($coordinates)) {
-      return NULL;
-    }
-
-    $x = $y = 0.0;
-
-    foreach ($coordinates as $point) {
-      $x += $point[0];
-      $y += $point[1];
-    }
-
-    return [
-      $x / count($coordinates),
-      $y / count($coordinates),
-    ];
   }
 
   /**
@@ -152,8 +127,8 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
    * @param array $geometry
    *   The GeoJSON geometry array.
    *
-   * @return array{float, float, \Drupal\helfi_api_base\ServiceMap\DTO\Location}|null
-   *   The first [x, y, Location] tuple or null if not found.
+   * @return array{float, float}|null
+   *   The first [x, y] tuple or null if not found.
    */
   protected function extractFirstCoordinate(array $geometry): ?array {
     if (empty($geometry['coordinates'])) {
@@ -164,9 +139,9 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
 
     $point = match (strtoupper($type)) {
       'POINT' => $coords,
-      'MULTIPOINT', 'LINESTRING' => $this->centroidOfPoints($coords) ?? NULL,
-      'MULTILINESTRING', 'POLYGON' => $this->centroidOfPoints($coords[0]) ?? NULL,
-      'MULTIPOLYGON' => $this->centroidOfPoints($coords[0][0]) ?? NULL,
+      'MULTIPOINT', 'LINESTRING' => $coords[0] ?? NULL,
+      'MULTILINESTRING', 'POLYGON' => $coords[0][0] ?? NULL,
+      'MULTIPOLYGON' => $coords[0][0][0] ?? NULL,
       default => NULL,
     };
 
@@ -174,17 +149,9 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
       return NULL;
     }
 
-    $convertedCoords = $this->coordinateConversionService
-      ->etrsGk25ToWgs84((float) $point[0], (float) $point[1]);
-
-    if (!$convertedCoords) {
-      return NULL;
-    }
-
     return [
       (float) $point[0],
       (float) $point[1],
-      new Location($convertedCoords['lat'], $convertedCoords['lon'], $type),
     ];
   }
 
