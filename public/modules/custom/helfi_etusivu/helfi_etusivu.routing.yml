@@ -16,13 +16,6 @@ helfi_etusivu.helsinki_near_you_results:
   requirements:
     _permission: 'access content'
 
-helfi_etusivu.helsinki_near_you_autocomplete:
-  path: '/helsinki-near-you/results/autocomplete'
-  defaults:
-    _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController::addressSuggestions'
-  requirements:
-    _permission: 'access content'
-
 helfi_etusivu.helsinki_near_you_events:
   path: '/helsinki-near-you/events'
   defaults:

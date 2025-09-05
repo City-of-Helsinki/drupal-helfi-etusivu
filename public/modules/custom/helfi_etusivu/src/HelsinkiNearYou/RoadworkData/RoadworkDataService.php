@@ -6,8 +6,8 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Item;
 
@@ -26,17 +26,31 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
 
   use StringTranslationTrait;
 
-  public function __construct(private RoadworkDataClientInterface $roadworkDataClient) {
+  public function __construct(
+    private readonly RoadworkDataClientInterface $roadworkDataClient,
+    private readonly CoordinateConversionService $coordinateConversionService,
+  ) {
   }
 
   /**
    * {@inheritdoc}
    */
   public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL, int $page = 0): Collection {
+    // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
+    // which is required by the roadwork data service.
+    $convertedCoords = $this->coordinateConversionService
+      ->wgs84ToEtrsGk25($lat, $lon);
+
+    if (!$convertedCoords) {
+      throw new \InvalidArgumentException('Failed to convert coordinates to ETRS-GK25');
+    }
+
+    ['x' => $x, 'y' => $y] = $convertedCoords;
+
     [
       'features' => $projects,
       'totalFeatures' => $numItems,
-    ] = $this->roadworkDataClient->getProjectsByCoordinates($lat, $lon, $distance, $limit, $page);
+    ] = $this->roadworkDataClient->getProjectsByCoordinates($x, $y, $distance);
 
     $formatted = [];
 
@@ -58,23 +72,21 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
       $formattedStart = $startDate ? $this->formatDate($startDate) : $this->t('Unknown', [], ['context' => 'Roadworks date fallback']);
       $formattedEnd = $endDate ? $this->formatDate($endDate) : $this->t('Ongoing', [], ['context' => 'Roadworks date fallback']);
 
-      if (empty($feature['geometry']['coordinates'])) {
+      if (!($coordinate = $this->extractFirstCoordinate($feature['geometry']))) {
         continue;
       }
 
-      if (!$location = $this->extractFirstCoordinate($feature['geometry'])) {
-        continue;
-      }
+      [$featureX, $featureY] = $coordinate;
 
       $item = new Item(
         title: $props['osoite'] ?? (string) $this->t('Work site', [], ['context' => 'Roadworks default title']),
         date_string: $props['tyo_alkaa'],
         url: sprintf(
           'https://kartta.hel.fi/?setlanguage=fi&e=%.2f&n=%.2f&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet,allu_kaivuilmoitukset_kaynnissa,allu_kaivuilmoitukset_tuleva&o=100,100&geom=POINT(%.2f%%20%.2f)',
-          $location->lon,
-          $location->lat,
-          $location->lon,
-          $location->lat
+          $featureX,
+          $featureY,
+          $featureX,
+          $featureY
         ),
         // Get the work type (Kaivuilmoitus or Aluevuokraus)
         type: $props['tyyppi'] ?? (string) $this->t('Work', [], ['context' => 'Roadworks type fallback']),
@@ -83,10 +95,26 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
         // Convert schedule to a string to prevent Drupal from treating it as
         // a render array.
         schedule: $formattedStart . ($formattedEnd ? ' - ' . $formattedEnd : ''),
-        location: $location,
+        x: $featureX,
+        y: $featureY,
       );
       $formatted[] = $item;
     }
+
+    // ETRS-GK25 is a projected coordinate system. Euclidean
+    // distance can be used to calculate distance between two points.
+    usort($formatted, static function (Item $a, Item $b) use ($x, $y) {
+      $distanceA = sqrt(($x - $a->x) ** 2 + ($y - $a->y) ** 2);
+      $distanceB = sqrt(($x - $b->x) ** 2 + ($y - $b->y) ** 2);
+
+      return $distanceA <=> $distanceB;
+    });
+
+    if ($limit) {
+      // Do pagination in PHP so that we can sort by distance.
+      $formatted = array_slice($formatted, $page > 0 ? ($page * $limit) : 0, $limit);
+    }
+
     return new Collection($numItems, $formatted);
   }
 
@@ -99,17 +127,17 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
    * @param array $geometry
    *   The GeoJSON geometry array.
    *
-   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Location|null
-   *   The first [x, y] coordinate pair or null if not found.
+   * @return array{float, float}|null
+   *   The first [x, y] tuple or null if not found.
    */
-  protected function extractFirstCoordinate(array $geometry): ?Location {
+  protected function extractFirstCoordinate(array $geometry): ?array {
     if (empty($geometry['coordinates'])) {
       return NULL;
     }
     $coords = $geometry['coordinates'];
     $type = $geometry['type'] ?? 'Point';
 
-    $points = match (strtoupper($type)) {
+    $point = match (strtoupper($type)) {
       'POINT' => $coords,
       'MULTIPOINT', 'LINESTRING' => $coords[0] ?? NULL,
       'MULTILINESTRING', 'POLYGON' => $coords[0][0] ?? NULL,
@@ -117,10 +145,14 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
       default => NULL,
     };
 
-    if (!$points) {
+    if (!$point) {
       return NULL;
     }
-    return new Location((float) $points[1], (float) $points[0], $type);
+
+    return [
+      (float) $point[0],
+      (float) $point[1],
+    ];
   }
 
   /**
@@ -155,7 +187,7 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
    * Creates a pre-filtered URL to the roadworks overview page, optionally
    * including the current search address as a query parameter.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address to include in the URL. It will be
    *   used to pre-fill the search field on the target page.
    * @param string $langcode

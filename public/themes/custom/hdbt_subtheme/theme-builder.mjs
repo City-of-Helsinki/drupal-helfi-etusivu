@@ -27,7 +27,6 @@ const styles = [
 
 // Static files.
 const staticFiles = [
-  ['node_modules/@drupal/autocomplete/dist/a11y.autocomplete.min.js', `${outDir}/js/a11y-autocomplete.min.js`],
 ];
 
 // Builder configurations.

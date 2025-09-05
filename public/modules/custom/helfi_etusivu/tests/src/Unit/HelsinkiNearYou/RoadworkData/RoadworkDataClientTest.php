@@ -8,7 +8,6 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient;
-use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
 use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Response;
@@ -81,14 +80,10 @@ class RoadworkDataClientTest extends UnitTestCase {
     // Set up the HTTP client mock.
     $this->httpClient = $this->createMock(ClientInterface::class);
 
-    // Set up the Servicemap mock.
-    $this->servicemap = $this->createMock(ServiceMapInterface::class);
-
     // Create the RoadworkDataClient instance.
     $this->roadworkDataClient = new RoadworkDataClient(
       $this->httpClient,
       $this->prophesize(LoggerChannelInterface::class)->reveal(),
-      $this->servicemap
     );
 
     // Set up container.
