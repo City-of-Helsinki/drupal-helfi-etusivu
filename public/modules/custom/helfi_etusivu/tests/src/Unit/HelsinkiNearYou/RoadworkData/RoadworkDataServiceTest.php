@@ -8,6 +8,7 @@ use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 use Drupal\helfi_api_base\ServiceMap\DTO\StreetName;
+use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
@@ -70,6 +71,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
 
     $this->roadworkDataService = new RoadworkDataService(
       $this->roadworkDataClient,
+      new CoordinateConversionService(),
     );
   }
 
@@ -122,7 +124,12 @@ class RoadworkDataServiceTest extends UnitTestCase {
 
     $this->roadworkDataClient->expects($this->once())
       ->method('getProjectsByCoordinates')
-      ->with(60.192059, 24.945831, 2000)
+      ->with(
+        // Precomputed conversion from WGS84 to EPSG:3879.
+        $this->callback(static fn($x) => abs($x - 25496994.90) < 0.1),
+        $this->callback(static fn($y) => abs($y - 6675472.09) < 0.1),
+        2000
+      )
       ->willReturn($sampleFeatures);
 
     $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(60.192059, 24.945831, 2000);
@@ -144,10 +151,15 @@ class RoadworkDataServiceTest extends UnitTestCase {
   public function testFormatProjectsEmpty() {
     $this->roadworkDataClient->expects($this->once())
       ->method('getProjectsByCoordinates')
-      ->with(0, 0, 2000)
+      ->with(
+        // Precomputed conversion from WGS84 to EPSG:3879.
+        $this->callback(static fn($x) => abs($x - 25496994.90) < 0.1),
+        $this->callback(static fn($y) => abs($y - 6675472.09) < 0.1),
+        2000
+      )
       ->willReturn(['features' => [], 'totalFeatures' => 0]);
 
-    $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(0, 0, 2000);
+    $result = $this->roadworkDataService->getFormattedProjectsByCoordinates(60.192059, 24.945831, 2000);
     $this->assertIsArray($result->items);
     $this->assertEmpty($result->items);
   }
