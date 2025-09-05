@@ -8,7 +8,7 @@ use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
 
 /**
@@ -25,7 +25,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   /**
    * A lazy-builder callback.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
    * @param string $langcode
    *   The langcode.

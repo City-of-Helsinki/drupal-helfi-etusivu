@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 
 use Drupal\Core\Security\TrustedCallbackInterface;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 
 /**
  * A lazy builder for Feedback block.
@@ -20,7 +20,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   /**
    * A lazy-builder callback.
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
    * @param string $langcode
    *   The langcode.
