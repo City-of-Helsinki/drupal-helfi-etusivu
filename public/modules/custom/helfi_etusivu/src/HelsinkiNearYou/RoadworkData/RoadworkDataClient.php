@@ -24,14 +24,15 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
 
   public function __construct(
     protected ClientInterface $httpClient,
-    #[Autowire(service: 'logger.channel.helfi_etusivu')] protected LoggerChannelInterface $logger,
+    #[Autowire(service: 'logger.channel.helfi_etusivu')]
+    protected LoggerChannelInterface $logger,
   ) {
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getProjectsByCoordinates(float $x, float $y, int $distance = 1000, ?int $limit = NULL, int $page = 0): array {
+  public function getProjectsByCoordinates(float $x, float $y, int $distance = 1000): array {
     // Format the current date in YYYY-MM-DD format for the API filter.
     $currentDate = (new \DateTime())->format('Y-m-d');
 
@@ -49,14 +50,8 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
         $y,
         $distance
       ),
-      'sortBy' => 'tyo_alkaa D',
       'outputFormat' => 'application/json',
     ];
-
-    if ($limit) {
-      $query['count'] = $limit;
-      $query['startIndex'] = $page > 0 ? ($page * $limit) : 0;
-    }
 
     try {
       $response = $this->httpClient->request('GET', $baseUrl, [
