@@ -8,7 +8,6 @@ use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
-use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 
@@ -19,7 +18,6 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
 
   public function __construct(
     private RoadworkDataServiceInterface $roadworkDataService,
-    private CoordinateConversionService $coordinateConversionService,
     private PagerManagerInterface $pagerManager,
   ) {
   }
@@ -57,25 +55,10 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     }
 
     try {
-      // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
-      // which is required by the roadwork data service.
-      $convertedCoords = $this->coordinateConversionService
-        ->wgs84ToEtrsGk25($address->location->lat, $address->location->lon);
-
-      if (!$convertedCoords) {
-        throw new \InvalidArgumentException('Failed to convert coordinates to ETRS-GK25');
-      }
-
       // Fetch roadwork projects within 1km radius of the converted coordinates.
-      // Note: Parameters are in ETRS-GK25 projection (EPSG:3879) where:
-      // - First parameter is northing (y-coordinate)
-      // - Second parameter is easting (x-coordinate)
-      // - Third parameter is search radius in meters.
       $data = $this->roadworkDataService->getFormattedProjectsByCoordinates(
-      // Northing (y-coordinate)
-        $convertedCoords['y'],
-        // Easting (x-coordinate)
-        $convertedCoords['x'],
+        $address->location->lat,
+        $address->location->lon,
         // 1000 meters = 1km radius.
         1000,
         $limit,
@@ -89,14 +72,6 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     foreach ($data->items as $project) {
       $lat = $project->location->lat;
       $lon = $project->location->lon;
-
-      $convertedProjectCoords = $this->coordinateConversionService
-        ->etrsGk25ToWgs84($lat, $lon);
-
-      if ($convertedProjectCoords) {
-        $lat = $convertedProjectCoords['y'];
-        $lon = $convertedProjectCoords['x'];
-      }
 
       $build['#content'][] = [
         '#theme' => 'helsinki_near_you_roadwork_item',

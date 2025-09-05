@@ -22,6 +22,8 @@ final readonly class Item {
     public string $address,
     public string $schedule,
     public Location $location,
+    public float $x,
+    public float $y,
   ) {
   }
 

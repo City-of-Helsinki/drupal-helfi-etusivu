@@ -31,17 +31,9 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
   /**
    * {@inheritdoc}
    */
-  public function getProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL, int $page = 0): array {
+  public function getProjectsByCoordinates(float $x, float $y, int $distance = 1000, ?int $limit = NULL, int $page = 0): array {
     // Format the current date in YYYY-MM-DD format for the API filter.
     $currentDate = (new \DateTime())->format('Y-m-d');
-
-    // The API expects coordinates in EPSG:3879 (ETRS-GK25)
-    // We assume the coordinates are already converted to EPSG:3879 before
-    // being passed to this method.
-    // In EPSG:3879, this is the easting (x-coordinate)
-    $x = $lon;
-    // In EPSG:3879, this is the northing (y-coordinate)
-    $y = $lat;
 
     // Build the WFS request URL.
     $baseUrl = 'https://kartta.hel.fi/ws/geoserver/avoindata/wfs';

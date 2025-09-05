@@ -8,6 +8,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
+use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\DTO\Item;
 
@@ -26,17 +27,31 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
 
   use StringTranslationTrait;
 
-  public function __construct(private RoadworkDataClientInterface $roadworkDataClient) {
+  public function __construct(
+    private readonly RoadworkDataClientInterface $roadworkDataClient,
+    private readonly CoordinateConversionService $coordinateConversionService,
+  ) {
   }
 
   /**
    * {@inheritdoc}
    */
   public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 1000, ?int $limit = NULL, int $page = 0): Collection {
+    // Convert WGS84 coordinates to ETRS-GK25 (EPSG:3879) projection
+    // which is required by the roadwork data service.
+    $convertedCoords = $this->coordinateConversionService
+      ->wgs84ToEtrsGk25($lat, $lon);
+
+    if (!$convertedCoords) {
+      throw new \InvalidArgumentException('Failed to convert coordinates to ETRS-GK25');
+    }
+
+    ['x' => $x, 'y' => $y] = $convertedCoords;
+
     [
       'features' => $projects,
       'totalFeatures' => $numItems,
-    ] = $this->roadworkDataClient->getProjectsByCoordinates($lat, $lon, $distance, $limit, $page);
+    ] = $this->roadworkDataClient->getProjectsByCoordinates($x, $y, $distance, $limit, $page);
 
     $formatted = [];
 
@@ -58,23 +73,21 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
       $formattedStart = $startDate ? $this->formatDate($startDate) : $this->t('Unknown', [], ['context' => 'Roadworks date fallback']);
       $formattedEnd = $endDate ? $this->formatDate($endDate) : $this->t('Ongoing', [], ['context' => 'Roadworks date fallback']);
 
-      if (empty($feature['geometry']['coordinates'])) {
+      if (!($coordinate = $this->extractFirstCoordinate($feature['geometry']))) {
         continue;
       }
 
-      if (!$location = $this->extractFirstCoordinate($feature['geometry'])) {
-        continue;
-      }
+      [$featureX, $featureY, $location] = $coordinate;
 
       $item = new Item(
         title: $props['osoite'] ?? (string) $this->t('Work site', [], ['context' => 'Roadworks default title']),
         date_string: $props['tyo_alkaa'],
         url: sprintf(
           'https://kartta.hel.fi/?setlanguage=fi&e=%.2f&n=%.2f&r=4&l=Karttasarja,HKRHankerek_Hanke_Rakkoht_tanavuonna_Internet,allu_kaivuilmoitukset_kaynnissa,allu_kaivuilmoitukset_tuleva&o=100,100&geom=POINT(%.2f%%20%.2f)',
-          $location->lon,
-          $location->lat,
-          $location->lon,
-          $location->lat
+          $featureX,
+          $featureY,
+          $featureX,
+          $featureY
         ),
         // Get the work type (Kaivuilmoitus or Aluevuokraus)
         type: $props['tyyppi'] ?? (string) $this->t('Work', [], ['context' => 'Roadworks type fallback']),
@@ -84,9 +97,18 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
         // a render array.
         schedule: $formattedStart . ($formattedEnd ? ' - ' . $formattedEnd : ''),
         location: $location,
+        x: $featureX,
+        y: $featureY,
       );
       $formatted[] = $item;
     }
+
+    // ETRS-GK25 is a projected coordinate system. Euclidean
+    // distance can be used to calculate a distance between two points.
+    $distance = fn (Item $item) => sqrt(($x - $item->x) ** 2 + ($y - $item->y) ** 2);
+
+    usort($formatted, fn (Item $a, Item $b) => $distance($a) <=> $distance($b));
+
     return new Collection($numItems, $formatted);
   }
 
@@ -99,10 +121,10 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
    * @param array $geometry
    *   The GeoJSON geometry array.
    *
-   * @return \Drupal\helfi_api_base\ServiceMap\DTO\Location|null
-   *   The first [x, y] coordinate pair or null if not found.
+   * @return array{float, float, \Drupal\helfi_api_base\ServiceMap\DTO\Location}|null
+   *   The first [x, y, Location] tuple or null if not found.
    */
-  protected function extractFirstCoordinate(array $geometry): ?Location {
+  protected function extractFirstCoordinate(array $geometry): ?array {
     if (empty($geometry['coordinates'])) {
       return NULL;
     }
@@ -120,7 +142,19 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
     if (!$points) {
       return NULL;
     }
-    return new Location((float) $points[1], (float) $points[0], $type);
+
+    $convertedCoords = $this->coordinateConversionService
+      ->etrsGk25ToWgs84((float) $points[0], (float) $points[1]);
+
+    if (!$convertedCoords) {
+      return NULL;
+    }
+
+    return [
+      (float) $points[0],
+      (float) $points[1],
+      new Location($convertedCoords['lat'], $convertedCoords['lon'], $type),
+    ];
   }
 
   /**
