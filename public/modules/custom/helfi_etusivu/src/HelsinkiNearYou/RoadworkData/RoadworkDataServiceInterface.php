@@ -23,6 +23,8 @@ interface RoadworkDataServiceInterface {
   /**
    * Gets formatted roadwork projects for display by coordinates.
    *
+   * The results are sorted by distance from the given coordinates.
+   *
    * @param float $lat
    *   The latitude in WGS84 decimal degrees.
    * @param float $lon
