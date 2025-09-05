@@ -13,8 +13,8 @@ display:
           separator: ', '
         created:
           label: Created
-        status:
-          label: Avaldatud
+        enabled:
+          label: Enabled
           separator: ', '
       pager:
         options:
@@ -47,9 +47,9 @@ display:
         is_custom:
           expose:
             label: Custom
-        status:
+        enabled:
           expose:
-            label: Avaldatud
+            label: Enabled
   page_1:
     display_title: Lehekülg
     display_options:

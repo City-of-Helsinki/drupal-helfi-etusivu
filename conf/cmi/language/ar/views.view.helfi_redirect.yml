@@ -11,8 +11,8 @@ display:
           separator: ', '
         created:
           label: Created
-        status:
-          label: منشور
+        enabled:
+          label: Enabled
           separator: ', '
       pager:
         options:
@@ -41,11 +41,11 @@ display:
         is_custom:
           expose:
             label: Custom
-        status:
-          expose:
-            label: منشور
         language:
           expose:
             label: 'Original language'
+        enabled:
+          expose:
+            label: Enabled
   page_1:
     display_title: Page

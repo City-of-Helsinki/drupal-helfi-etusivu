@@ -15,8 +15,8 @@ display:
           separator: ', '
         created:
           label: Created
-        status:
-          label: Опубликовано
+        enabled:
+          label: Enabled
           separator: ', '
       pager:
         options:
@@ -72,9 +72,9 @@ display:
         is_custom:
           expose:
             label: Custom
-        status:
+        enabled:
           expose:
-            label: Опубликовано
+            label: Enabled
   page_1:
     display_title: Страница
     display_options:
