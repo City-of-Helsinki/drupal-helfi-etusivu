@@ -55,7 +55,7 @@ display:
       filters:
         combine:
           expose:
-            label: "Ім'я чи електронна адреса містять"
+            label: "Ім'я або адреса електронної пошти містить"
         status:
           group_info:
             label: Стан

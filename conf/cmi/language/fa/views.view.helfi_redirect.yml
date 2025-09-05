@@ -13,8 +13,8 @@ display:
           separator: ', '
         created:
           label: Created
-        status:
-          label: 'منتشر شده'
+        enabled:
+          label: Enabled
           separator: ', '
       pager:
         options:
@@ -44,8 +44,8 @@ display:
         is_custom:
           expose:
             label: Custom
-        status:
+        enabled:
           expose:
-            label: 'منتشر شده'
+            label: Enabled
   page_1:
     display_title: صفحه
