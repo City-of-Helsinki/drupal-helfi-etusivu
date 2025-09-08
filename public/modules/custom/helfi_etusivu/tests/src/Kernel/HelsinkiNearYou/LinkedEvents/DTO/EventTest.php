@@ -56,7 +56,7 @@ class EventTest extends KernelTestBase {
     $this->assertFalse($sut->registrationRequired);
     $this->assertNull($sut->image);
     $this->assertEquals('', $sut->location);
-    $this->assertEquals('https://tapahtumat.hel.fi/sv/123', $sut->uri->toString());
+    $this->assertEquals('https://tapahtumat.hel.fi/sv/kurser/123', $sut->uri->toString());
     $this->assertFalse($sut->isMultiDate);
 
     $data = array_merge($data, [
@@ -77,7 +77,7 @@ class EventTest extends KernelTestBase {
 
     $sut = Event::createFromArray('sv', $data);
 
-    $this->assertEquals('https://harrastukset.hel.fi/sv/123', $sut->uri->toString());
+    $this->assertEquals('https://harrastukset.hel.fi/sv/kurser/123', $sut->uri->toString());
     $this->assertEquals('123', $sut->image->alt);
     $this->assertEquals('name', $sut->image->photographer);
     $this->assertEquals('https://localhost/kuva.jpg', $sut->image->url);

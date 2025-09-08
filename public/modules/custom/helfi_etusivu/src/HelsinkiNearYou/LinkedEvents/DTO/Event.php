@@ -121,13 +121,25 @@ final readonly class Event {
       $item['image'] = Image::createFromArray($image);
     }
 
+    $type = match ($langcode) {
+      'fi' => 'tapahtumat',
+      'sv' => 'kurser',
+      default => 'events',
+    };
+
     $item += [
       'location' => $item['isRemote'] ? 'Internet' : self::getLocationString($langcode, $data['location']),
-      'uri' => Url::fromUri(sprintf('%s/%s/%s', Client::BASE_URL, $langcode, $data['id'])),
+      'uri' => Url::fromUri(sprintf('%s/%s/%s/%s', Client::BASE_URL, $langcode, $type, $data['id'])),
     ];
 
     if ($data['type_id'] === 'Course') {
-      $item['uri'] = Url::fromUri(sprintf('%s/%s/%s', Client::HOBBIES_BASE_URL, $langcode, $data['id']));
+      $type = match ($langcode) {
+        'fi' => 'kurssit',
+        'sv' => 'kurser',
+        default => 'courses',
+      };
+
+      $item['uri'] = Url::fromUri(sprintf('%s/%s/%s/%s', Client::HOBBIES_BASE_URL, $langcode, $type, $data['id']));
     }
 
     if ($item['isRemote']) {
