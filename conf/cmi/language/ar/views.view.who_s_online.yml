@@ -15,6 +15,9 @@ display:
           expose:
             label: 'آخر وصول'
             description: 'تحسب فترة وجود المستخدم عالخط منذ آخر عرض لصفحة.'
+      empty:
+        area_text_custom:
+          content: 'لا يوجد مستخدم نشط'
   who_s_online_block:
     display_title: 'المتصلون الأن'
     display_options:
