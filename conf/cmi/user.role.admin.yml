@@ -30,6 +30,7 @@ dependencies:
     - filter
     - hdbt_cookie_banner
     - helfi_api_base
+    - helfi_recommendations
     - locale
     - media
     - menu_link_attributes
@@ -218,6 +219,7 @@ permissions:
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view page revisions'
+  - 'view recommendation score'
   - 'view remote entities'
   - 'view scheduled content'
   - 'view the administration theme'

@@ -16,3 +16,4 @@ display:
     display_options:
       block_description: 'المستخدمون الجدد'
       block_category: مستخدم
+      display_description: 'قائمة بالمستخدمين الجدد.'
