@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 use Drupal\config_ignore\ConfigIgnoreConfig;
 use Drupal\Core\Url;
-use Drupal\helfi_api_base\Language\DefaultLanguageResolver;
 
 /**
  * Implements hook_theme().
