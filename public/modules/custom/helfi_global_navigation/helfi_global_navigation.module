@@ -31,7 +31,7 @@ function helfi_global_navigation_preprocess_menu__external_menu(&$variables) : v
   // Create current parent link for mobile menu.
   $variables['menu_link_current'] = [
     'title' => t('Front page'),
-    'url' => Url::fromUri('base:/'),
+    'url' => Url::fromRoute('<front>'),
   ];
 
   // Construct urls for the menu items to help navigation via mobile menu.
