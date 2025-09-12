@@ -442,12 +442,6 @@ function helfi_etusivu_theme() : array {
       ],
       'template' => 'helsinki-near-you-results-page',
     ],
-    'helfi_etusivu_autocomplete' => [
-      'variables' => [
-        'attributes' => [],
-        'children' => NULL,
-      ],
-    ],
     'helsinki_near_you_event_item' => [
       'variables' => [
         'title' => NULL,
