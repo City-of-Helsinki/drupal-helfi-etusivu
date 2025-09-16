@@ -22,8 +22,8 @@ msgid "You might be interested in"
 msgstr "Du kanske är intresserad av"
 
 msgctxt "Services near you block"
-msgid "Services near you"
-msgstr "Tjänster nära dig"
+msgid "Services"
+msgstr "Tjänster"
 
 msgctxt "News close to you block"
 msgid "News related to your neighbourhood"
