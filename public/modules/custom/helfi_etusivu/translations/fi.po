@@ -78,8 +78,8 @@ msgstr "Helsinki lähelläsi: @address"
 msgid "Helsinki near you"
 msgstr "Helsinki lähelläsi"
 
-msgid "Services, events and news near your address"
-msgstr "Palvelut, tapahtumat ja uutiset osoitteesi lähellä"
+msgid "Results for your address"
+msgstr "Tulokset osoitteellasi"
 
 msgctxt "Helsinki near you"
 msgid "For example, Kotikatu 1"
