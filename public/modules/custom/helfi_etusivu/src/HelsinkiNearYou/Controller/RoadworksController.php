@@ -32,14 +32,14 @@ final class RoadworksController extends SearchPageControllerBase {
    *   The translated route title.
    */
   public function getTitle() : TranslatableMarkup {
-    return $this->t('Find roadworks near you', [], ['context' => 'Helsinki near you roadworks search']);
+    return $this->t('Search for street and park projects', [], ['context' => 'Helsinki near you roadworks search']);
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getDescription(): TranslatableMarkup {
-    return $this->t('Browse roadworks near you or search for roadworks by location. The search shows results within 1 kilometer of the address.', [], ['context' => 'Helsinki near you roadworks search']);
+    return $this->t('Search for street and park projects by entering an address. The search will show the project that are within one kilometre of the address you enter.', [], ['context' => 'Helsinki near you roadworks search']);
   }
 
   /**
