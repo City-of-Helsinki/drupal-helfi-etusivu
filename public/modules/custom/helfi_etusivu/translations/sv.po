@@ -175,16 +175,16 @@ msgid "For example, Kotikatu 1"
 msgstr "T.ex. Hemgatan 1"
 
 msgctxt "Helsinki near you events search"
-msgid "Find events near you"
-msgstr "Sök evenemang nära dig"
+msgid "Search for an event"
+msgstr "Sök evenemang"
 
 msgctxt "Helsinki near you events search"
-msgid "Browse events near you or search for events by theme, location or date. The search shows results at most two kilometers from the address."
-msgstr "Du kan bläddra i evenemang nära dig eller söka evenemang enligt ämne, plats eller tidpunkt. Sökningen visar resultat på högst två kilometer från adressen."
+msgid "You can search for events by entering an address, topic, target group, location or time. The search shows results within two kilometres of the address."
+msgstr "Du kan söka evenemang enligt adress, tema, målgrupp, plats eller tid. Sökningen visar resultat inom två kilometer från adressen."
 
 msgctxt "Helsinki near you events search"
-msgid "Find events in your neighbourhood that interest you."
-msgstr "Hitta intressanta evenemang nära dig."
+msgid "Find interesting events near you."
+msgstr "Hitta intressanta evenemang nära din adress."
 
 msgctxt "Helsinki near you events search"
 msgid "Search for more events on the Events website"

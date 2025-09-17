@@ -45,7 +45,7 @@ enum RouteInformationEnum {
       self::LANDING_PAGE => new TranslatableMarkup('Discover city services, events and news near you. Start by entering your street address.', [], ['context' => 'Helsinki near you']),
       self::RESULTS => new TranslatableMarkup('Discover city services, events and news near you.', [], ['context' => 'Helsinki near you']),
       self::FEEDBACK => new TranslatableMarkup('Browse feedback and fault reports that have been sent to the City of Helsinki from near you.', [], ['context' => 'Helsinki near you']),
-      self::EVENTS => new TranslatableMarkup('Find events in your neighbourhood that interest you.', [], ['context' => 'Helsinki near you events search']),
+      self::EVENTS => new TranslatableMarkup('Find interesting events near you.', [], ['context' => 'Helsinki near you events search']),
       self::ROADWORKS => new TranslatableMarkup('Find information on street and park projects near you.', [], ['context' => 'Helsinki near you roadworks search']),
     };
   }
