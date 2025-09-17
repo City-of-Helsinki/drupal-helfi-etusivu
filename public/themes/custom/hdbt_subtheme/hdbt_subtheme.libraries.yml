@@ -11,18 +11,3 @@ updating-news-table-of-contents:
   dependencies:
     - core/once
     - helfi_toc/table_of_contents
-
-a11y_autocomplete:
-  js:
-    dist/js/a11y-autocomplete.min.js: {}
-  version: 1.0.0
-
-helfi_etusivu_autocomplete:
-  js:
-    dist/js/autocomplete.min.js: {}
-  version: 1.0.3
-  dependencies:
-    - hdbt_subtheme/a11y_autocomplete
-    - core/drupal
-    - core/drupalSettings
-    - core/once

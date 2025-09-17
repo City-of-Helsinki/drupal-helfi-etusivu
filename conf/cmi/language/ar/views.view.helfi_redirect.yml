@@ -11,6 +11,9 @@ display:
           separator: ', '
         created:
           label: Created
+        enabled:
+          label: Enabled
+          separator: ', '
       pager:
         options:
           tags:
@@ -41,5 +44,8 @@ display:
         language:
           expose:
             label: 'Original language'
+        enabled:
+          expose:
+            label: Enabled
   page_1:
     display_title: Page
