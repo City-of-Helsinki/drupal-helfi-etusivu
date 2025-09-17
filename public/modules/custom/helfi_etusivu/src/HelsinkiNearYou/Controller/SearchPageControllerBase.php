@@ -9,8 +9,8 @@ use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address;
-use Drupal\helfi_etusivu\HelsinkiNearYou\ServiceMapInterface;
+use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -57,7 +57,7 @@ abstract class SearchPageControllerBase extends ControllerBase {
   /**
    * The render array callback for ::content().
    *
-   * @param \Drupal\helfi_etusivu\HelsinkiNearYou\DTO\Address $address
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
    *
    * @return array

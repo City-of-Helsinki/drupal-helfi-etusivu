@@ -82,27 +82,26 @@ class CoordinateConversionService {
   /**
    * Convert coordinates from ETRS-GK25 to WGS84.
    *
-   * @param float $latitude
-   *   The latitude in ETRS-GK25 (EPSG:3879).
-   * @param float $longitude
-   *   The longitude in ETRS-GK25 (EPSG:3879).
+   * @param float $x
+   *   X coordinate in ETRS-GK25 (EPSG:3879).
+   * @param float $y
+   *   Y coordinate in ETRS-GK25 (EPSG:3879).
    *
    * @return array|null
-   *   An array with 'x' and 'y' keys for the converted coordinates in
-   *   WGS84,
-   *   or NULL if conversion failed.
+   *   An array with 'lon' and 'lat' keys for the converted coordinates in
+   *   WGS84, or NULL if conversion failed.
    */
-  public function etrsGk25ToWgs84(float $latitude, float $longitude): ?array {
+  public function etrsGk25ToWgs84(float $x, float $y): ?array {
     try {
       // Create a point from the source coordinates with the source projection.
-      $pointSrc = new Point($longitude, $latitude, $this->etrsGk25Projection);
+      $pointSrc = new Point($x, $y, $this->etrsGk25Projection);
 
       // Transform the point to the target projection.
       $pointDest = $this->proj4->transform($this->wgs84Projection, $pointSrc);
 
       return [
-        'x' => $pointDest->x,
-        'y' => $pointDest->y,
+        'lon' => $pointDest->x,
+        'lat' => $pointDest->y,
       ];
     }
     catch (\Exception $e) {
