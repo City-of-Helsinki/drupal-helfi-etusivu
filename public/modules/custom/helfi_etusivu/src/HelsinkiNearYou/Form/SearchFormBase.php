@@ -35,7 +35,7 @@ abstract class SearchFormBase extends FormBase {
     $form['q'] = [
       '#placeholder' => $this->t('For example, Kotikatu 1', [], ['context' => 'Helsinki near you']),
       '#required' => TRUE,
-      '#title' => $this->t('Home address', [], ['context' => 'Helsinki near you']),
+      '#title' => $this->t('Address', [], ['context' => 'Helsinki near you']),
       '#default_value' => $this->getRequest()?->query->get('q', ''),
       '#type' => 'helfi_location_autocomplete',
       '#autocomplete_route_name' => 'helfi_api_base.location_autocomplete',

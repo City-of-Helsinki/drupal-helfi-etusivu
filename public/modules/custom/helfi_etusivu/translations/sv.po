@@ -83,6 +83,10 @@ msgid "See all events"
 msgstr "Se alla evenemang"
 
 msgctxt "Helsinki near you"
+msgid "Events"
+msgstr "Evenemang"
+
+msgctxt "Helsinki near you"
 msgid "Events near you"
 msgstr "Evenemang nära dig"
 
@@ -198,25 +202,29 @@ msgctxt "Helsinki near you title"
 msgid "Street and park projects near you"
 msgstr "Gatu- och parkprojekt nära dig"
 
+msgctxt "Helsinki near you title"
+msgid "Street and park projects"
+msgstr "Gatu- och parkprojekt"
+
 msgctxt "Helsinki near you"
 msgid "Browse roadworks near you or search for roadworks by location or date."
 msgstr "Bläddra gatuarbeten nära dig eller sök gatuarbeten efter plats eller datum."
 
 msgctxt "Helsinki near you roadworks search"
-msgid "See all roadworks near you"
-msgstr "Se alla gatuarbeten nära dig"
+msgid "See all street and park projects near you"
+msgstr "Se alla gatu- och parkprojekt nära dig"
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Find street and park projects in your neighbourhood."
-msgstr "Hitta gatu- och parkprojekt i ditt närområde."
+msgid "Find information on street and park projects near you."
+msgstr "Bekanta dig med gatu- och parkprojekt nära din adress."
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Find roadworks near you"
-msgstr "Hitta gatuarbeten nära dig"
+msgid "Search for street and park projects"
+msgstr "Sök gatu- och parkprojekt"
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Browse roadworks near you or search for roadworks by location. The search shows results within 1 kilometer of the address."
-msgstr "Bläddra bland gatuarbeten nära dig eller sök efter gatuarbeten per plats. Sökningen visar resultat inom 1 kilometer från adressen."
+msgid "Search for street and park projects by entering an address. The search will show the project that are within one kilometre of the address you enter."
+msgstr "Du kan söka gatu- och parkprojekt enligt adress. Sökningen visar projekt inom en kilometer från adressen."
 
 msgctxt "Roadworks default title"
 msgid "Work site"
@@ -251,8 +259,8 @@ msgid "Unknown"
 msgstr "Okänd"
 
 msgctxt "Helsinki near you"
-msgid "Home address"
-msgstr "Hemadress"
+msgid "Address"
+msgstr "Adress"
 
 msgctxt "Helsinki near you title"
 msgid "Search feedback near you"
@@ -275,8 +283,10 @@ msgid "Find feedback in your neighbourhood."
 msgstr "Hitta feedback i ditt närområde."
 
 msgctxt "Helsinki near you"
-msgid "@num roadworks using address @address"
-msgstr "@num gatu- och parkprojekt på adressen @address"
+msgid "@count street and park project near address @address"
+msgid_plural "@count street and park projects near address @address"
+msgstr[0] "@count gatu- och parkprojekt nära adressen @address"
+msgstr[1] "@count gatu- och parkprojekt nära adressen @address"
 
 msgctxt "Helsinki near you"
 msgid "@num feedback using address @address"
