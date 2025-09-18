@@ -75,10 +75,6 @@ msgid "For example, Kotikatu 1"
 msgstr "T.ex. Hemgatan 1"
 
 msgctxt "Helsinki near you"
-msgid "Search"
-msgstr "Sök"
-
-msgctxt "Helsinki near you"
 msgid "See all events"
 msgstr "Se alla evenemang"
 

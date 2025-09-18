@@ -58,8 +58,8 @@ msgid "Send feedback"
 msgstr "Anna palautetta"
 
 msgctxt "Helsinki near you"
-msgid "Street and park projects near you"
-msgstr "Katu- ja puistohankkeet lähelläsi"
+msgid "Street and park projects"
+msgstr "Katu- ja puistohankkeet"
 
 msgctxt "Helsinki near you roadworks search"
 msgid "See all street and park projects near you"
