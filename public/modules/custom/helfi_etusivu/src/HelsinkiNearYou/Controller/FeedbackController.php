@@ -18,14 +18,14 @@ final class FeedbackController extends SearchPageControllerBase {
    * {@inheritdoc}
    */
   public function getTitle() : TranslatableMarkup {
-    return $this->t('Search feedback near you', [], ['context' => 'Helsinki near you title']);
+    return $this->t('Find feedback', [], ['context' => 'Helsinki near you title']);
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getDescription(): TranslatableMarkup {
-    return $this->t('Browse feedback near you or search for feedback by location.', [], ['context' => 'Helsinki near you']);
+    return $this->t('You can search for feedback and fault reports  by entering an address.', [], ['context' => 'Helsinki near you']);
   }
 
   /**
