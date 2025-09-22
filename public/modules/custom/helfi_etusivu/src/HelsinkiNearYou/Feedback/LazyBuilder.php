@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback;
 use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
@@ -80,13 +81,19 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     }
 
     if ($showPager) {
-      $build['#title'] = new PluralTranslatableMarkup(
-        $data->numItems,
-        '@count feedback near address @address',
-        '@count feedback near address @address',
-        ['@address' => $address->streetName->getName($langcode)],
-        ['context' => 'Helsinki near you'],
-      );
+      if ($data->numItems != 0) {
+        $title = new PluralTranslatableMarkup(
+          $data->numItems,
+          '@count feedback near address @address',
+          '@count feedback near address @address',
+          ['@address' => $address->streetName->getName($langcode)],
+          ['context' => 'Helsinki near you'],
+        );
+      } else {
+        $title = new TranslatableMarkup('No feedback was found near address @address', ['@address' => $address->streetName->getName($langcode)], ['context' => 'Helsinki near you'],);
+      }
+
+      $build['#title'] = $title;
 
       $this->pagerManager->createPager($data->numItems, $limit);
       $build['#content']['pager'] = [
