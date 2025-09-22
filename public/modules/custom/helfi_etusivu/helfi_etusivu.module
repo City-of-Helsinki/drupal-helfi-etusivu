@@ -549,3 +549,16 @@ function helfi_etusivu_page_attachments(array &$page) {
     $page['#attached']['html_head'][] = [$description, 'description'];
   }
 }
+
+/**
+ * Implements hook_module_implements_alter().
+ *
+ * Prevent radioactivity from running on every cron run.
+ * Previously, ultimate cron -contrib module was used to run radioactivity
+ * once per 3 hours since it caused performance issues if run more frequently.
+ */
+function helfi_etusivu_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'cron' && isset($implementations['radioactivity'])) {
+    unset($implementations['radioactivity']);
+  }
+}
