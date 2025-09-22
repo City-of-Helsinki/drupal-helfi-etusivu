@@ -4265,16 +4265,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.14.12",
+            "version": "6.14.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "1b1d6293154433967e415483adfe87ad7309ec9d"
+                "reference": "7f747b5e4e69e805cf486680bf354458672d6069"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/1b1d6293154433967e415483adfe87ad7309ec9d",
-                "reference": "1b1d6293154433967e415483adfe87ad7309ec9d",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/7f747b5e4e69e805cf486680bf354458672d6069",
+                "reference": "7f747b5e4e69e805cf486680bf354458672d6069",
                 "shasum": ""
             },
             "require": {
@@ -4293,10 +4293,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.14.12",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.14.13",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-09-19T06:11:07+00:00"
+            "time": "2025-09-22T08:36:53+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -12337,16 +12337,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.12.10",
+            "version": "v0.12.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "6e80abe6f2257121f1eb9a4c55bf29d921025b22"
+                "reference": "cd23863404a40ccfaf733e3af4db2b459837f7e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/6e80abe6f2257121f1eb9a4c55bf29d921025b22",
-                "reference": "6e80abe6f2257121f1eb9a4c55bf29d921025b22",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/cd23863404a40ccfaf733e3af4db2b459837f7e7",
+                "reference": "cd23863404a40ccfaf733e3af4db2b459837f7e7",
                 "shasum": ""
             },
             "require": {
@@ -12409,9 +12409,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.12.10"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.12"
             },
-            "time": "2025-08-04T12:39:37+00:00"
+            "time": "2025-09-20T13:46:31+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
