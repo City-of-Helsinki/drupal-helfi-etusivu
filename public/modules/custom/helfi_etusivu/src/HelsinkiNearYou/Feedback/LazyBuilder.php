@@ -89,7 +89,8 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
           ['@address' => $address->streetName->getName($langcode)],
           ['context' => 'Helsinki near you'],
         );
-      } else {
+      }
+      else {
         $title = new TranslatableMarkup('No feedback was found near address @address', ['@address' => $address->streetName->getName($langcode)], ['context' => 'Helsinki near you'],);
       }
 
