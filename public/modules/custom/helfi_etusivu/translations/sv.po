@@ -285,10 +285,18 @@ msgstr[0] "@count gatu- och parkprojekt nära adressen @address"
 msgstr[1] "@count gatu- och parkprojekt nära adressen @address"
 
 msgctxt "Helsinki near you"
+msgid "No street and park projects were found near address @address"
+msgstr "Inga gatu- och parkprojekt hittades på adressen @address"
+
+msgctxt "Helsinki near you"
 msgid "@count feedback near address @address"
 msgid_plural "@count feedback near address @address"
 msgstr[0] "@count respons nära adressen @address"
 msgstr[1] "@count responser nära adressen @address"
+
+msgctxt "Helsinki near you"
+msgid "No feedback was found near address @address"
+msgstr "Inga responser hittades på adressen @address"
 
 msgid "Arabic"
 msgstr "Arabiska"
