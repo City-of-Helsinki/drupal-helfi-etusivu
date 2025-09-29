@@ -8,6 +8,7 @@ display:
           expose:
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
+            items_per_page_label: 'العناصر لكل صفحة'
           tags:
             next: ››
             previous: ‹‹
@@ -22,6 +23,7 @@ display:
         tid:
           exception:
             title: الكل
+          title: '{{ arguments.tid }}'
   feed_1:
     display_title: التلقيمة
   page_1:

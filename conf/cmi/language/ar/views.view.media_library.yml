@@ -11,6 +11,7 @@ display:
           expose:
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
+            items_per_page_label: 'العناصر لكل صفحة'
           tags:
             next: ››
             previous: ‹‹
@@ -30,6 +31,8 @@ display:
                 title: منشور
               2:
                 title: 'غير منشور'
+          expose:
+            label: 'حالة النشر'
         name:
           expose:
             label: الاسم
@@ -46,6 +49,9 @@ display:
         name_1:
           expose:
             label: 'الاسم (ي-أ)'
+      empty:
+        area_text_custom:
+          content: 'لا توجد وسائط متاحة.'
   page:
     display_title: Page
     display_options:
@@ -104,3 +110,4 @@ display:
           label: شبكة
         display_link_table:
           label: جدول
+label: 'مكتبة الوسائط'

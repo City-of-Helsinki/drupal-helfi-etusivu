@@ -8,6 +8,7 @@ display:
           expose:
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
+            items_per_page_label: 'العناصر لكل صفحة'
           tags:
             next: ››
             previous: ‹‹
@@ -18,7 +19,15 @@ display:
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي
           sort_desc_label: تنازلي
+      title: 'الأرشيف الشهري'
+      arguments:
+        created_year_month:
+          title: '{{ arguments.created_year_month }}'
   block_1:
     display_title: صندوق
+    display_options:
+      arguments:
+        created_year_month:
+          title: '{{ arguments.created_year_month }}'
   page_1:
     display_title: Page
