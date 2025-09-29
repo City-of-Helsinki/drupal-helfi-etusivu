@@ -14,11 +14,12 @@ display:
           expose:
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
+            items_per_page_label: 'العناصر لكل صفحة'
           tags:
             next: ››
             previous: ‹‹
-            first: '« First'
-            last: 'Last »'
+            first: '« الأولى'
+            last: 'الأخيرة »'
       fields:
         node_bulk_form:
           action_title: إجراء
@@ -38,6 +39,9 @@ display:
             group_items:
               1:
                 title: منشور
+            label: 'حالة النشر'
+          expose:
+            label: 'حالة النشر'
         type:
           expose:
             label: 'نوع المحتوى'
