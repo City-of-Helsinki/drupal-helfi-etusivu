@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
 use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
+use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
@@ -101,10 +102,20 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     }
 
     if ($showPager) {
-      $build['#title'] = new TranslatableMarkup('@num roadworks using address @address', [
-        '@num' => $data->numItems,
-        '@address' => $address->streetName->getName($langcode),
-      ], ['context' => 'Helsinki near you']);
+      if ($data->numItems != 0) {
+        $title = new PluralTranslatableMarkup(
+          $data->numItems,
+          '@count street and park project near address @address',
+          '@count street and park projects near address @address',
+          ['@address' => $address->streetName->getName($langcode)],
+          ['context' => 'Helsinki near you'],
+        );
+      }
+      else {
+        $title = new TranslatableMarkup('No street and park projects were found near address @address', ['@address' => $address->streetName->getName($langcode)], ['context' => 'Helsinki near you'],);
+      }
+
+      $build['#title'] = $title;
 
       $this->pagerManager->createPager($data->numItems, $limit);
       $build['#content']['pager'] = [

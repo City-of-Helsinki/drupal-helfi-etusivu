@@ -10,7 +10,7 @@ helfi_etusivu.helsinki_near_you_results:
   path: '/helsinki-near-you/results'
   defaults:
     _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController::content'
-    _title: 'Services, events and news near your address'
+    _title: 'Results for your address'
   options:
     _big_pipe_force_placeholders: 'TRUE'
   requirements:
