@@ -65,10 +65,7 @@ test('Externally published surveys are visible', async ({ request, page }) => {
 
   // Skip test if no matching surveys found
   if (items.length === 0) {
-    test().annotations.push({
-      type: 'info',
-      description: 'No externally published surveys in JSON:API; nothing to verify.',
-    });
+    logger('No externally published surveys in JSON:API; nothing to verify.')
     return;
   }
 
