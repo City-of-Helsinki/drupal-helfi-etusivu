@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { logger } from '@helfi-platform-config/e2e/utils/logger';
-import { cookieHandler } from '@helfi-platform-config/e2e/utils/handlers';
 import { fetchJsonApiRequest } from '@helfi-platform-config/e2e/utils/fetchJsonApiRequest';
 import { extractTextSegments } from '../utils/extractTextSegments';
 
@@ -12,9 +11,11 @@ type Survey = {
   attributes: {
     langcode: string;
     status: boolean;
-    title?: string | null;
+    title: string;
     body?: { processed?: string | null; value?: string | null } | null;
     field_survey_title?: string | null;
+    field_publish_externally?: boolean;
+    field_survey_link: { uri: string };
   };
 };
 
@@ -40,12 +41,7 @@ const pickAssertionText = (survey: Survey): string | undefined => {
 test('Externally published surveys are visible', async ({ request, page }) => {
 
   // Remove cookie helfi_no_survey.
-  const cookies = await page.context().cookies();
-  cookies.forEach((cookie) => {
-    if (cookie.name === 'helfi_no_survey') {
-      page.context().clearCookies([cookie]);
-    }
-  });
+  await page.context().clearCookies({ name: 'helfi_no_survey' });
 
   // Fetch survey data from Drupal's JSON:API
   const data = await fetchJsonApiRequest<any>(
@@ -98,7 +94,7 @@ test('Externally published surveys are visible', async ({ request, page }) => {
 
       // Verify survey link has the correct target URL
       const link = surveyDialog.locator('a.dialog__action-button');
-      await expect(link).toHaveAttribute('href', item.attributes.field_survey_link?.uri);
+      await expect(link).toHaveAttribute('href', item.attributes.field_survey_link.uri);
 
       // Check each text segment in the survey
       for (const segment of textSegments) {

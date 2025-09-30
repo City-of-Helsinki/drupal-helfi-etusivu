@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { logger } from '@helfi-platform-config/e2e/utils/logger';
-import { cookieHandler } from '@helfi-platform-config/e2e/utils/handlers';
 import { fetchJsonApiRequest } from '@helfi-platform-config/e2e/utils/fetchJsonApiRequest';
 import { extractTextSegments } from '../utils/extractTextSegments';
 
@@ -9,12 +8,14 @@ import { extractTextSegments } from '../utils/extractTextSegments';
  * Matches the structure of the announcement content type in Drupal
  */
 type Announcement = {
+  id: string;
   attributes: {
     langcode: string;
     status: boolean;
     title?: string | null;
     body?: { processed?: string | null; value?: string | null } | null;
     field_announcement_title?: string | null;
+    field_publish_externally?: boolean;
   };
 };
 
@@ -80,7 +81,7 @@ test('Externally published announcements are visible', async ({ request, page })
 
     // Extract and validate text segments for verification.
     const textSegments = extractTextSegments(html);
-    expect(textSegments.length, 'No valid text segments found in announcement').toBeGreaterThan(0);
+    expect(textSegments.length, `Found ${textSegments.length} text segments in announcement: ${item.attributes.title}`).toBeGreaterThan(0);
 
     // Construct path based on language.
     const path = `/${lang || ''}`.replace(/\/+$/, '') || '/';
@@ -88,22 +89,18 @@ test('Externally published announcements are visible', async ({ request, page })
     await test.step(`Verify announcement appears on ${path}`, async () => {
       // Navigate to the page and retrieve the announcement content.
       await page.goto(path, { waitUntil: 'domcontentloaded' });
-      const announcementContent = page.locator('.announcement__content');
+      const announcementContent = page.locator(`[data-uuid="${item.id}"]`);
 
       // Try to find each text segment in the announcement and verify
       // it is visible.
       for (const segment of textSegments) {
-        try {
-          await expect(
-            announcementContent.filter({ hasText: segment })
-          ).toBeVisible({
-            timeout: 3_000,
-          });
-          logger(`Found announcement on path ${path}, text: ${segment.slice(0, 50)}...`);
-          return;
-        } catch (e) {
-          logger(`Text segment not found: ${path}: ${segment.slice(0, 50)}...`);
-        }
+        await expect(
+          announcementContent.filter({ hasText: segment })
+        ).toBeVisible({
+          timeout: 3_000,
+        });
+        logger(`Found announcement on path ${path}, text: ${segment.slice(0, 50)}...`);
+        return;
       }
 
       // If no segments were found, fail the test.
