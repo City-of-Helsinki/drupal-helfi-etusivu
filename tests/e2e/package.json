@@ -8,6 +8,7 @@
   },
   "scripts": {
     "preinstall": "npm run install:e2e",
+    "postinstall": "npx playwright install",
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:headed:slow": "SLOWMO=true npx playwright test --headed",
@@ -17,6 +18,6 @@
     "update:e2e": "bash ./scripts/update-shared-e2e.sh"
   },
   "devDependencies": {
-    "@helfi-platform-config/e2e": "file:../../public/modules/contrib/helfi_platform_config/tests/e2e/helfi-platform-config-e2e-0.0.1.tgz"
+    "@helfi-platform-config/e2e": "file:../../public/modules/contrib/helfi_platform_config/tests/e2e/helfi-platform-config-e2e-0.0.2.tgz"
   }
 }
