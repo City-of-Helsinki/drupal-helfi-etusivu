@@ -59,12 +59,11 @@ test('Externally published announcements are visible', async ({ request, page })
 
   // Skip test if no matching announcements found.
   if (items.length === 0) {
-    test().annotations.push({
-      type: 'info',
-      description: 'No externally published announcements in JSON:API; nothing to verify.',
-    });
+    logger('No externally published announcements in JSON:API; nothing to verify.')
     return;
   }
+
+  logger(`Found ${items.length} externally published announcements in JSON:API; verifying visibility.`)
 
   await items.reduce(async (prev, item) => {
     await prev;

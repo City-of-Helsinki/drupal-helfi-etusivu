@@ -69,6 +69,8 @@ test('Externally published surveys are visible', async ({ request, page }) => {
     return;
   }
 
+  logger(`Found ${items.length} externally published surveys in JSON:API; verifying visibility.`)
+
   await items.reduce(async (prev, item) => {
     await prev;
 

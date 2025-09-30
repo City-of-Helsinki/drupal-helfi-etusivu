@@ -39,6 +39,7 @@ test('Verify language switcher links', async ({ page }) => {
       // Verify the language attribute is set correctly.
       const htmlLang = await page.getAttribute('html', 'lang');
       expect(htmlLang).toBe(lang.toLowerCase());
+      logger(`Language link ${lang} verified.`);
     });
   }
 
@@ -57,5 +58,6 @@ test('Verify language switcher links', async ({ page }) => {
     expect(finalUrl).toContain(initialPath);
     const htmlLang = await page.getAttribute('html', 'lang');
     expect(htmlLang).toBe(initialPath.substring(1, 3));
+    logger(`Returned to initial language successfully: ${initialPath}.`);
   });
 });
