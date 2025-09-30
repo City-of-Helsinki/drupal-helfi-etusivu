@@ -19,8 +19,8 @@ require('@dotenvx/dotenvx').config({ path: ['.env'] });
  * Extend the base Playwright configuration with project-specific settings.
  */
 export default makeConfig({
-  globalSetup: ['./utils/globalSetup.ts'],
-  globalTeardown: ['./utils/globalTeardown.ts'],
+  globalSetup: ['./utils/projectSetup.ts'],
+  globalTeardown: ['./utils/projectTeardown.ts'],
   use: {
     baseURL: process.env.BASE_URL ?? 'https://localhost',
     screenshot: 'only-on-failure',
