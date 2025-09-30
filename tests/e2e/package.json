@@ -7,11 +7,13 @@
     "test": "tests"
   },
   "scripts": {
+    "preinstall": "npm run install:e2e",
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:headed:slow": "SLOWMO=true npx playwright test --headed",
     "lint:js": "eslint --fix tests/ --no-error-on-unmatched-pattern",
     "lint": "npm-run-all --parallel lint:js -s",
+    "install:e2e": "bash ./scripts/install-shared-e2e.sh",
     "update:e2e": "bash ./scripts/update-shared-e2e.sh"
   },
   "devDependencies": {
