@@ -4,14 +4,10 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_news_archive_desc
+    - filter.format.minimal
     - paragraphs.paragraphs_type.news_archive
   module:
-    - allowed_formats
     - text
-third_party_settings:
-  allowed_formats:
-    allowed_formats:
-      - minimal
 id: paragraph.news_archive.field_news_archive_desc
 field_name: field_news_archive_desc
 entity_type: paragraph
@@ -23,5 +19,6 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  allowed_formats: {  }
+  allowed_formats:
+    - minimal
 field_type: text_long

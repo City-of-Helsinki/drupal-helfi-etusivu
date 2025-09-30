@@ -30,8 +30,8 @@ display:
           tags:
             next: 'التالي ›'
             previous: '‹ السابق'
-            first: '« First'
-            last: 'Last »'
+            first: '« الأولى'
+            last: 'الأخيرة »'
       exposed_form:
         options:
           submit_button: انتقاء
@@ -58,6 +58,7 @@ display:
                 title: منشور
               2:
                 title: 'غير منشور'
+            label: 'حالة النشر'
         langcode:
           expose:
             label: اللغة

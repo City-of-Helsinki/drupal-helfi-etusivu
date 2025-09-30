@@ -24,6 +24,7 @@ display:
           expose:
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
+            items_per_page_label: 'العناصر لكل صفحة'
       exposed_form:
         options:
           submit_button: انتقاء
