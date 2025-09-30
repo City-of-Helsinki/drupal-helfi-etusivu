@@ -14,13 +14,13 @@ This project uses [Playwright](https://playwright.dev/) for end-to-end testing, 
 
 ```
 e2e/
-├── .env                    # Environment variables
-├── playwright.config.ts    # Playwright configuration
-├── tests/                  # Test files
-├── utils/                  # Test utilities and helpers
-│   ├── globalSetup.ts      # Global setup script
-│   └── globalTeardown.ts   # Global teardown script
-└── scripts/                # Utility scripts
+├── .env                       # Environment variables
+├── playwright.config.ts       # Playwright configuration
+├── tests/                     # Test files
+├── utils/                     # Test utilities and helpers
+│   ├── projectSetup.ts        # Project setup script
+│   └── projectTeardown.ts     # Project teardown script
+└── scripts/                   # Utility scripts
     ├── install-shared-e2e.sh  # Installs shared E2E package
     └── update-shared-e2e.sh   # Updates shared E2E package
 ```
@@ -111,7 +111,7 @@ The shared E2E package provides a base global setup that handles:
 
 #### Extending Global Setup
 
-To add project-specific setup while preserving the base setup, create a `globalSetup.ts` in your project's `utils` directory. 
+To add project-specific setup while preserving the base setup, create a `projectSetup.ts` in your project's `utils` directory. 
 The shared configuration will automatically merge both setups by appending your custom setup after the base setup.
 
 ### Global Teardown (`globalTeardown.ts`)
@@ -120,7 +120,7 @@ The shared E2E package provides a base teardown that cleans up the browser stora
 
 #### Extending Global Teardown
 
-To add custom teardown logic, create a `globalTeardown.ts` in your project's `utils` directory:
+To add custom teardown logic, create a `projectTeardown.ts` in your project's `utils` directory:
 
 ### Storage State
 
