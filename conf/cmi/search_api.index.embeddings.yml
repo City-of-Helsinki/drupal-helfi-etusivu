@@ -1,5 +1,5 @@
 uuid: 56f074ce-8e2d-406f-91a3-7852ad88c97d
-langcode: fi
+langcode: en
 status: true
 dependencies:
   config:
@@ -18,11 +18,11 @@ field_settings:
     property_path: embeddings
     type: embeddings
   entity_type:
-    label: 'Entiteetin tyyppi'
+    label: 'Entity type'
     property_path: search_api_entity_type
     type: string
   title:
-    label: Otsikko
+    label: Title
     datasource_id: 'uuid_entity:node'
     property_path: title
     type: string
