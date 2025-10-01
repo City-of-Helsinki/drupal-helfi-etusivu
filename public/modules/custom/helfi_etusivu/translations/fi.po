@@ -226,8 +226,8 @@ msgid "Search for street and park projects"
 msgstr "Etsi katu- ja puistohankkeita"
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Search for street and park projects by entering an address. The search will show the project that are within one kilometre of the address you enter."
-msgstr "Voit etsiä katu- ja puistohankkeita osoitteen mukaan. Haku näyttää hankkeet enintään yhden kilometrin etäisyydeltä osoitteesta."
+msgid "Search for street and park projects by entering an address. The search will show the projects that are within two kilometres of the address you enter."
+msgstr "Voit etsiä katu- ja puistohankkeita osoitteen mukaan. Haku näyttää hankkeet enintään kahden kilometrin etäisyydeltä osoitteesta."
 
 msgctxt "Roadworks default title"
 msgid "Work site"
