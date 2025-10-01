@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback;
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Feedback;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
@@ -76,17 +77,34 @@ final readonly class Client {
       $data = $this->httpClient->request('GET', $this->getUri($request), [
         RequestOptions::TIMEOUT => 10,
       ]);
-      $json = json_decode($data->getBody()->getContents(), TRUE);
 
-      if ($json) {
-        $numItems = count($json);
+      // Calculate distance and sort by it.
+      $items = array_map(function (array $item) use ($request) {
+        $item['distance'] = 0;
+
+        if (isset($item['lat'], $item['long'])) {
+          $item['distance'] = Distance::calculateDistance(
+            $request->lat,
+            $request->lon,
+            (float) $item['lat'],
+            (float) $item['long'],
+          );
+        }
+        return $item;
+
+      }, json_decode($data->getBody()->getContents(), TRUE) ?? []);
+
+      usort($items, fn (array $a, array $b) => $a['distance'] <=> $b['distance']);
+
+      if ($items) {
+        $numItems = count($items);
 
         if ($request->limit) {
-          $json = array_slice($json, $request->offset, $request->limit);
+          $items = array_slice($items, $request->offset, $request->limit);
         }
       }
 
-      foreach ($json ?? [] as $item) {
+      foreach ($items as $item) {
         try {
           $map[] = Feedback::createFromArray($item);
         }
