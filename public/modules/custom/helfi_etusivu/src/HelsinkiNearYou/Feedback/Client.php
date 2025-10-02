@@ -96,12 +96,10 @@ final readonly class Client {
 
       usort($items, fn (array $a, array $b) => $a['distance'] <=> $b['distance']);
 
-      if ($items) {
-        $numItems = count($items);
+      $numItems = count($items);
 
-        if ($request->limit) {
-          $items = array_slice($items, $request->offset, $request->limit);
-        }
+      if ($request->limit) {
+        $items = array_slice($items, $request->offset, $request->limit);
       }
 
       foreach ($items as $item) {
