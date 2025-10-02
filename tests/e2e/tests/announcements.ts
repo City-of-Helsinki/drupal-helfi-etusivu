@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { fetchJsonApiRequest, type JsonApiResponse } from '@helfi-platform-config/e2e/utils/fetchJsonApiRequest';
 import { logger } from '@helfi-platform-config/e2e/utils/logger';
-import { fetchJsonApiRequest } from '@helfi-platform-config/e2e/utils/fetchJsonApiRequest';
+import { expect, test } from '@playwright/test';
 import { extractTextSegments } from '../utils/extractTextSegments';
 
 /**
@@ -20,30 +20,12 @@ type Announcement = {
 };
 
 /**
- * Extracts a meaningful text segment from announcement content for verification
- * @param announcement The announcement object
- * @returns A text segment suitable for verification, or undefined if none found
- */
-const pickAssertionText = (announcement: Announcement): string | undefined => {
-  // Get HTML content from either processed or raw value.
-  const { body } = announcement.attributes;
-  const html = body?.processed || body?.value;
-
-  if (!html) return undefined;
-
-  // Extract text segments and return the first meaningful one.
-  const segments = extractTextSegments(html);
-  return segments.find(segment => segment.length >= 10)?.slice(0, 120);
-};
-
-/**
  * Test to verify that announcements marked for external publishing are visible
  * on their respective language home pages
  */
-test('Externally published announcements are visible', async ({ request, page }) => {
-
+test('Externally published announcements are visible', async ({ page }) => {
   // Fetch announcements from Drupal's JSON:API.
-  const data = await fetchJsonApiRequest<any>(
+  const data = await fetchJsonApiRequest<JsonApiResponse<Announcement>>(
     process.env.BASE_URL ?? 'https://www.test.hel.ninja',
     '/fi/jsonapi/node/announcement',
   );
@@ -53,18 +35,16 @@ test('Externally published announcements are visible', async ({ request, page })
 
   // Filter for published announcements that are marked for external publishing.
   const items: Announcement[] = (data?.data ?? []).filter(
-    (n: Announcement) =>
-      n?.attributes?.status === true &&
-      n?.attributes?.field_publish_externally === true
+    (n: Announcement) => n?.attributes?.status === true && n?.attributes?.field_publish_externally === true,
   );
 
   // Skip test if no matching announcements found.
   if (items.length === 0) {
-    logger('No externally published announcements in JSON:API; nothing to verify.')
+    logger('No externally published announcements in JSON:API; nothing to verify.');
     return;
   }
 
-  logger(`Found ${items.length} externally published announcements in JSON:API; verifying visibility.`)
+  logger(`Found ${items.length} externally published announcements in JSON:API; verifying visibility.`);
 
   await items.reduce(async (prev, item) => {
     await prev;
@@ -81,7 +61,10 @@ test('Externally published announcements are visible', async ({ request, page })
 
     // Extract and validate text segments for verification.
     const textSegments = extractTextSegments(html);
-    expect(textSegments.length, `Found ${textSegments.length} text segments in announcement: ${item.attributes.title}`).toBeGreaterThan(0);
+    expect(
+      textSegments.length,
+      `Found ${textSegments.length} text segments in announcement: ${item.attributes.title}`,
+    ).toBeGreaterThan(0);
 
     // Construct path based on language.
     const path = `/${lang || ''}`.replace(/\/+$/, '') || '/';
@@ -92,18 +75,20 @@ test('Externally published announcements are visible', async ({ request, page })
       const announcementContent = page.locator(`[data-uuid="${item.id}"]`);
 
       // Try to find each text segment in the announcement and verify
-      // it is visible.
+      // it is visible. Return after first successful match.
       for (const segment of textSegments) {
-        await expect(
-          announcementContent.filter({ hasText: segment })
-        ).toBeVisible({
-          timeout: 3_000,
-        });
-        logger(`Found announcement on path ${path}, text: ${segment.slice(0, 50)}...`);
-        return;
+        try {
+          await expect(announcementContent.filter({ hasText: segment })).toBeVisible({
+            timeout: 3_000,
+          });
+          logger(`Found announcement on path ${path}, text: ${segment.slice(0, 50)}...`);
+          return;
+        } catch (_e) {
+          // Continue to next segment if this one isn't found
+        }
       }
 
-      // If no segments were found, fail the test.
+      // If we get here, no segments were found
       throw new Error(`None of the text segments were found in the announcement on ${path}`);
     });
   }, Promise.resolve());

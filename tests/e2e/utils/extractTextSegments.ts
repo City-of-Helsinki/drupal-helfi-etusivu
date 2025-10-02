@@ -29,10 +29,8 @@ const extractTextSegments = (html: string | null | undefined): string[] => {
   // Split by common sentence/segment terminators and filter out empty strings.
   return text
     .split(/(?<=[.!?])\s+|\n+/)
-    .map(s => s.trim())
-    .filter(s => s.length > 0);
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0);
 };
 
-export {
-  extractTextSegments,
-};
+export { extractTextSegments };
