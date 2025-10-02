@@ -12,10 +12,11 @@
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:headed:slow": "SLOWMO=true npx playwright test --headed",
-    "lint:js": "eslint --fix tests/ --no-error-on-unmatched-pattern",
-    "lint": "npm-run-all --parallel lint:js -s",
-    "install:e2e": "bash ./scripts/install-shared-e2e.sh",
-    "update:e2e": "bash ./scripts/update-shared-e2e.sh"
+    "lint:js": "biome lint --fix utils/ tests/",
+    "format:js": "biome format --fix utils/ tests/",
+    "install:shared": "bash ./scripts/install-shared-e2e.sh",
+    "update:shared": "bash ./scripts/update-shared-e2e.sh",
+    "lint": "biome check --fix utils/ tests/"
   },
   "devDependencies": {
     "@helfi-platform-config/e2e": "file:../../public/modules/contrib/helfi_platform_config/tests/e2e/helfi-platform-config-e2e-0.0.2.tgz"
