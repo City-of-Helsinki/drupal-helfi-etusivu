@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { fetchJsonApiRequest, type JsonApiResponse } from '@helfi-platform-config/e2e/utils/fetchJsonApiRequest';
 import { logger } from '@helfi-platform-config/e2e/utils/logger';
-import { fetchJsonApiRequest } from '@helfi-platform-config/e2e/utils/fetchJsonApiRequest';
+import { expect, test } from '@playwright/test';
 import { extractTextSegments } from '../utils/extractTextSegments';
 
 /**
@@ -20,52 +20,31 @@ type Survey = {
 };
 
 /**
- * Extracts a meaningful text segment from survey content for verification
- * @param survey The survey object containing content to extract text from
- * @returns A text segment suitable for verification, or undefined if none found
- */
-const pickAssertionText = (survey: Survey): string | undefined => {
-  const { body } = survey.attributes;
-  const html = body?.processed || body?.value;
-
-  if (!html) return undefined;
-
-  const segments = extractTextSegments(html);
-  return segments.find(segment => segment.length >= 10)?.slice(0, 120);
-};
-
-/**
  * Test to verify that surveys marked for external publishing are visible
  * and properly displayed in their respective language pages
  */
-test('Externally published surveys are visible', async ({ request, page }) => {
-
+test('Externally published surveys are visible', async ({ page }) => {
   // Remove cookie helfi_no_survey.
   await page.context().clearCookies({ name: 'helfi_no_survey' });
 
-  // Fetch survey data from Drupal's JSON:API
-  const data = await fetchJsonApiRequest<any>(
+  // Fetch survey data from Drupal's JSON:API.
+  const data = await fetchJsonApiRequest<JsonApiResponse<Survey>>(
     process.env.BASE_URL ?? 'https://www.test.hel.ninja',
-    '/fi/jsonapi/node/survey'
+    '/fi/jsonapi/node/survey',
   );
 
-  // Verify we received data from the API
-  expect(data).toHaveProperty('data');
+  // Filter for published surveys that are marked for external publishing.
+  const items = data.data.filter(
+    (n) => n?.attributes?.status === true && n?.attributes?.field_publish_externally === true,
+  ) as Survey[];
 
-  // Filter for published surveys that are marked for external publishing
-  const items: Survey[] = (data?.data ?? []).filter(
-    (n: Survey) =>
-      n?.attributes?.status === true &&
-      n?.attributes?.field_publish_externally === true
-  );
-
-  // Skip test if no matching surveys found
+  // Skip test if no matching surveys found.
   if (items.length === 0) {
-    logger('No externally published surveys in JSON:API; nothing to verify.')
+    logger('No externally published surveys in JSON:API; nothing to verify.');
     return;
   }
 
-  logger(`Found ${items.length} externally published surveys in JSON:API; verifying visibility.`)
+  logger(`Found ${items.length} externally published surveys in JSON:API; verifying visibility.`);
 
   await items.reduce(async (prev, item) => {
     await prev;
@@ -85,29 +64,29 @@ test('Externally published surveys are visible', async ({ request, page }) => {
     await test.step(`Verify survey appears on ${path}`, async () => {
       await page.goto(path, { waitUntil: 'domcontentloaded' });
 
-      // Verify survey dialog is visible and contains expected elements
+      // Verify survey dialog is visible and contains expected elements.
       const surveyDialog = page.locator('.dialog--survey');
       await expect(surveyDialog).toBeVisible({ timeout: 5000 });
 
-      // Verify survey title is visible in the dialog
+      // Verify survey title is visible in the dialog.
       await expect(surveyDialog.filter({ hasText: item.attributes.title })).toBeVisible();
 
-      // Verify survey link has the correct target URL
+      // Verify survey link has the correct target URL.
       const link = surveyDialog.locator('a.dialog__action-button');
       await expect(link).toHaveAttribute('href', item.attributes.field_survey_link.uri);
 
-      // Check each text segment in the survey
+      // Check each text segment in the survey.
       for (const segment of textSegments) {
         try {
           await expect(surveyDialog.filter({ hasText: segment })).toBeVisible();
           logger(`Found survey on path ${path}, text: ${segment.slice(0, 50)}...`);
           return;
-        } catch (e) {
+        } catch (_e) {
           logger(`Text segment not found: ${path}: ${segment.slice(0, 50)}...`);
         }
       }
 
-      // If we get here, none of the segments were found
+      // If we get here, none of the segments were found.
       throw new Error(`None of the text segments were found in the survey on ${path}`);
     });
   }, Promise.resolve());

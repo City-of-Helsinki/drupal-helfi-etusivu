@@ -1,8 +1,5 @@
-import { test, expect } from '@playwright/test';
 import { logger } from '@helfi-platform-config/e2e/utils/logger';
-import { cookieHandler } from '@helfi-platform-config/e2e/utils/handlers';
-import { fetchJsonApiRequest } from '@helfi-platform-config/e2e/utils/fetchJsonApiRequest';
-import { extractTextSegments } from '../utils/extractTextSegments';
+import { expect, test } from '@playwright/test';
 
 /**
  * Test to verify that the language switcher is functional.
@@ -32,7 +29,7 @@ test('Verify language switcher links', async ({ page }) => {
       // Click the language link and verify
       // the URL has changed to the expected path.
       await link.click();
-      await page.waitForURL(url => url.toString() !== initialUrl, { timeout: 5000 });
+      await page.waitForURL((url) => url.toString() !== initialUrl, { timeout: 5000 });
       const currentUrl = page.url();
       expect(currentUrl).toMatch(new RegExp(`/${lang.toLowerCase()}(/|$)`));
 
@@ -51,7 +48,7 @@ test('Verify language switcher links', async ({ page }) => {
     await initialLangLink.click();
 
     // Wait for navigation and verify we're back to the initial path.
-    await page.waitForURL(url => url.toString().includes(initialPath), { timeout: 5000 });
+    await page.waitForURL((url) => url.toString().includes(initialPath), { timeout: 5000 });
 
     // Verify the URL and language attribute.
     const finalUrl = page.url();
