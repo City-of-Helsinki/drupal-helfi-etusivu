@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "preinstall": "npm run install:e2e",
+    "preinstall": "npm run install:shared",
     "postinstall": "npx playwright install",
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
