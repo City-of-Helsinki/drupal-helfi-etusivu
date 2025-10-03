@@ -39,7 +39,7 @@ final class RoadworksController extends SearchPageControllerBase {
    * {@inheritdoc}
    */
   protected function getDescription(): TranslatableMarkup {
-    return $this->t('Search for street and park projects by entering an address. The search will show the project that are within one kilometre of the address you enter.', [], ['context' => 'Helsinki near you roadworks search']);
+    return $this->t('Search for street and park projects by entering an address. The search will show the projects that are within two kilometres of the address you enter.', [], ['context' => 'Helsinki near you roadworks search']);
   }
 
   /**

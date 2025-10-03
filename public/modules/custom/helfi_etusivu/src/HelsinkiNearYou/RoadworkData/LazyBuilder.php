@@ -62,8 +62,8 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       $data = $this->roadworkDataService->getFormattedProjectsByCoordinates(
         $address->location->lat,
         $address->location->lon,
-        // 1000 meters = 1km radius.
-        1000,
+        // 2000 meters = 2km radius.
+        2000,
         $limit,
         $this->pagerManager->findPage(),
       ) ?? [];
@@ -92,10 +92,12 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         '#lat' => $lat,
         '#lon' => $lon,
         '#distance_label' => Distance::label(
-          $address->location->lat,
-          $address->location->lon,
-          $lat,
-          $lon,
+          Distance::calculateDistance(
+            $address->location->lat,
+            $address->location->lon,
+            $lat,
+            $lon,
+          )
         ),
         '#roadwork_attributes' => $attributes,
       ];

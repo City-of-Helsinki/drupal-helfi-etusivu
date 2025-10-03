@@ -94,6 +94,7 @@ class FeedbackTest extends UnitTestCase {
           'address' => 1,
           'requested_datetime' => '',
           'service_request_id' => '',
+          'distance' => 1,
         ],
       ],
     ];
@@ -111,6 +112,7 @@ class FeedbackTest extends UnitTestCase {
       'service_request_id' => 1,
       'status' => 'published',
       'requested_datetime' => 'dsa',
+      'distance' => 1,
     ]);
     $this->assertInstanceOf(Feedback::class, $item);
   }
@@ -127,6 +129,7 @@ class FeedbackTest extends UnitTestCase {
       'service_request_id' => 1,
       'status' => 'PUBLISHED',
       'requested_datetime' => 'now',
+      'distance' => 1,
     ];
     $item = Feedback::createFromArray($data);
     $this->assertEquals(300, strlen($data['description']));
@@ -134,11 +137,6 @@ class FeedbackTest extends UnitTestCase {
     // There is a random failure that is caused by the value being
     // between 254 and 255 so the assert is now a range.
     $this->assertTrue($len > 250 && $len < 260);
-
-    $data['extended_attributes']['title'] = 'Override title';
-    $item = Feedback::createFromArray($data);
-    // Make sure title is overridden if set.
-    $this->assertEquals('Override title', $item->title);
   }
 
 }

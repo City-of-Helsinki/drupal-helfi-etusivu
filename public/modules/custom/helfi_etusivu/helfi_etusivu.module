@@ -457,6 +457,7 @@ function helfi_etusivu_theme() : array {
         'uri' => NULL,
         'title' => NULL,
         'address' => NULL,
+        'distance_label' => NULL,
         'requested_datetime' => NULL,
         'feedback_attributes' => [],
       ],
