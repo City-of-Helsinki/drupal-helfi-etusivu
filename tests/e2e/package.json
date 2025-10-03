@@ -1,0 +1,24 @@
+{
+  "name": "drupal-helfi-etusivu-e2e",
+  "description": "E2E tests for helfi-etusivu",
+  "license": "MIT",
+  "repository": "github:City-of-Helsinki/drupal-helfi-etusivu",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "preinstall": "npm run install:shared",
+    "postinstall": "npx playwright install",
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:headed:slow": "SLOWMO=true npx playwright test --headed",
+    "lint:js": "biome lint --fix utils/ tests/",
+    "format:js": "biome format --fix utils/ tests/",
+    "install:shared": "bash ./scripts/install-shared-e2e.sh",
+    "update:shared": "bash ./scripts/update-shared-e2e.sh",
+    "lint": "biome check --fix utils/ tests/"
+  },
+  "devDependencies": {
+    "@helfi-platform-config/e2e": "file:../../public/modules/contrib/helfi_platform_config/tests/e2e/helfi-platform-config-e2e-0.0.2.tgz"
+  }
+}
