@@ -269,6 +269,10 @@ msgctxt "Helsinki near you title"
 msgid "Find feedback"
 msgstr "Etsi palautteita"
 
+msgctxt "Label for feedback distance"
+msgid "Distance"
+msgstr "Etäisyys"
+
 msgctxt "Helsinki near you"
 msgid "Search feedback near you"
 msgstr "Etsi palautteita osoitteellasi"
