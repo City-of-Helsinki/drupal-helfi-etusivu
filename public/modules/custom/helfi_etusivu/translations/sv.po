@@ -219,8 +219,8 @@ msgid "Search for street and park projects"
 msgstr "Sök gatu- och parkprojekt"
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Search for street and park projects by entering an address. The search will show the project that are within one kilometre of the address you enter."
-msgstr "Du kan söka gatu- och parkprojekt enligt adress. Sökningen visar projekt inom en kilometer från adressen."
+msgid "Search for street and park projects by entering an address. The search will show the projects that are within two kilometres of the address you enter."
+msgstr "Du kan söka gatu- och parkprojekt enligt adress. Sökningen visar projekt inom två kilometer från adressen."
 
 msgctxt "Roadworks default title"
 msgid "Work site"
@@ -261,6 +261,10 @@ msgstr "Adress"
 msgctxt "Helsinki near you title"
 msgid "Find feedback"
 msgstr "Sök respons"
+
+msgctxt "Label for feedback distance"
+msgid "Distance"
+msgstr "Avstånd"
 
 msgctxt "Helsinki near you"
 msgid "Search feedback near you"

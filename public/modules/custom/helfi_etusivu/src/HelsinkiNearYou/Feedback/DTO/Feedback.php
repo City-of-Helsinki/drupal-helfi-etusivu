@@ -19,6 +19,7 @@ final readonly class Feedback {
     public string $lat,
     public string $long,
     public string $uri,
+    public int $distance,
     public ?string $title,
     public ?string $address = NULL,
   ) {
@@ -34,8 +35,6 @@ final readonly class Feedback {
    *   The self.
    */
   public static function createFromArray(array $data) : self {
-    $item = [];
-
     $required = [
       'description',
       'lat',
@@ -44,32 +43,24 @@ final readonly class Feedback {
       'requested_datetime',
       'service_request_id',
       'status',
+      'distance',
     ];
     foreach ($required as $key) {
       if (!isset($data[$key])) {
         throw new \InvalidArgumentException(sprintf('Missing %s', $key));
       }
     }
-
-    foreach (['description', 'lat', 'long', 'address'] as $key) {
-      $item[$key] = (string) $data[$key];
-    }
-
-    $item['uri'] = sprintf('https://palautteet.hel.fi/kartalla-julkaistu-palaute#/published/%s', $data['service_request_id']);
-
-    $item['status'] = Status::tryFrom($data['status']);
-
-    if ($item['status'] === NULL) {
-      $item['status'] = Status::Unknown;
-    }
-    // Override requested_datetime with proper datetime.
-    $item['requested_datetime'] = new DrupalDateTime($data['requested_datetime']);
-    // Use description as a fallback title and truncate it to 255 characters.
-    $item['title'] = Unicode::truncate($item['description'], 253, add_ellipsis: TRUE);
-
-    if (isset($data['extended_attributes']['title'])) {
-      $item['title'] = $data['extended_attributes']['title'];
-    }
+    $item = [
+      'distance' => $data['distance'],
+      'title' => Unicode::truncate((string) $data['description'], 253, add_ellipsis: TRUE),
+      'description' => (string) $data['description'],
+      'uri' => sprintf('https://palautteet.hel.fi/kartalla-julkaistu-palaute#/published/%s', $data['service_request_id']),
+      'requested_datetime' => new DrupalDateTime($data['requested_datetime']),
+      'lat' => (string) $data['lat'],
+      'long' => (string) $data['long'],
+      'address' => (string) $data['address'],
+      'status' => Status::tryFrom($data['status']) ?: Status::Unknown,
+    ];
 
     return new self(...$item);
   }
