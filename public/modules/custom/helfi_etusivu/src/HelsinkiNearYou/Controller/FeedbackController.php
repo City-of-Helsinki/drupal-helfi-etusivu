@@ -25,7 +25,7 @@ final class FeedbackController extends SearchPageControllerBase {
    * {@inheritdoc}
    */
   protected function getDescription(): TranslatableMarkup {
-    return $this->t('You can search for feedback and fault reports  by entering an address.', [], ['context' => 'Helsinki near you']);
+    return $this->t('The search shows results within two kilometers from the address and from the past 90 days.', [], ['context' => 'Helsinki near you']);
   }
 
   /**

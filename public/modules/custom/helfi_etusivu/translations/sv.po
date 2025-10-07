@@ -271,8 +271,8 @@ msgid "Search feedback near you"
 msgstr "Sök feedback nära dig"
 
 msgctxt "Helsinki near you"
-msgid "You can search for feedback and fault reports  by entering an address."
-msgstr "Du kan söka respons och felanmälningar enligt adress."
+msgid "The search shows results within two kilometers from the address and from the past 90 days."
+msgstr "Sökningen visar resultat inom två kilometer från adressen och från de senaste 90 dagarna."
 
 msgctxt "Helsinki near you"
 msgid "Feedback related to your neighbourhood"
