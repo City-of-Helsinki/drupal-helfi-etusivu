@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Feedback;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
 
 /**
@@ -62,9 +64,10 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       ->get(new Request(
         lat: $address->location->lat,
         lon: $address->location->lon,
-        radius: 0.5,
+        radius: 2,
         limit: $limit,
         offset: ($this->pagerManager->findPage() * $limit),
+        start_date: new DrupalDateTime('-90 days'),
       ));
 
     foreach ($data->items as $item) {
@@ -77,6 +80,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         '#address' => $item->address,
         '#requested_datetime' => $item->requested_datetime,
         '#feedback_attributes' => $attributes,
+        '#distance_label' => Distance::label($item->distance),
       ];
     }
 

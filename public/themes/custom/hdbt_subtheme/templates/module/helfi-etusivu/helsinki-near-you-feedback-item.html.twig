@@ -10,14 +10,19 @@
   },
   card_metas: [
     {
-      icon: 'clock',
-      label: 'Requested'|t({}, {'context': 'Label for feedback requested date'}),
-      content: requested_datetime|date('d.m.Y'),
-    },
-    {
       icon: 'location',
       label: 'Location'|t({}, {'context': 'Label for feedback location'}),
       content: address,
+    },
+    {
+      icon: 'map',
+      label: 'Distance'|t({}, {'context': 'Label for feedback distance'}),
+      content: distance_label,
+    },
+    {
+      icon: 'clock',
+      label: 'Requested'|t({}, {'context': 'Label for feedback requested date'}),
+      content: requested_datetime|date('d.m.Y'),
     },
   ]
 } %}
