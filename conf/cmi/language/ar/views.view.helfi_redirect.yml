@@ -44,7 +44,7 @@ display:
             label: Custom
         language:
           expose:
-            label: 'Original language'
+            label: 'اللغة الأصلية'
         enabled:
           expose:
             label: Enabled
