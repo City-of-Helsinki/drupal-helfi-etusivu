@@ -42,7 +42,7 @@ display:
       sorts:
         created:
           expose:
-            label: 'Newest first'
+            label: 'الأحدث أولاً'
         name:
           expose:
             label: 'الاسم (أ-ي)'
@@ -68,8 +68,8 @@ display:
         delete_media:
           text: حذف
           alter:
-            text: 'Delete {{ name }}'
-            alt: 'Delete {{ name }}'
+            text: 'حذف {{ اسم }}'
+            alt: 'حذف {{ اسم }}'
   widget:
     display_title: 'عنصر إدخال'
     display_options:
