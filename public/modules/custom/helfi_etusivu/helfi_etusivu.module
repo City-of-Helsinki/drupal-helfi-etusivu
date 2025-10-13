@@ -157,8 +157,8 @@ function _helfi_etusivu_set_unpublished_date_ajax(array &$form, FormStateInterfa
 function _helfi_etusivu_set_unpublished_date(array &$form, FormStateInterface $form_state): void {
   $input = $form_state->getUserInput() ?? [];
 
-  // Return if there is no user input.
-  if (empty($input)) {
+  // Return if there is no user input or the node is already published.
+  if (empty($input) || $form_state->getFormObject()?->getEntity()?->isPublished()) {
     return;
   }
 
