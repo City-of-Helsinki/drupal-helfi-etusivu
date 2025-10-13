@@ -263,27 +263,38 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
   }
 
   /**
-   * Tests that the function does not override an existing unpublish date.
+   * Tests that the unpublish date updates when published date changes.
    */
-  public function testNoOverrideIfUnpublishAlreadySet(): void {
+  public function testUpdatesUnpublishDateWhenPublishedDateChangesToEarlier(): void {
     $form = [
       '#form_id' => 'node_news_item_form',
       'unpublish_on' => [
         'widget' => [
           0 => [
-            'value' => [],
+            'value' => [
+              '#value' => '2030-01-01T00:00:00',
+              '#default_value' => '2030-01-01T00:00:00',
+            ],
           ],
         ],
       ],
     ];
+
     $form_state = new FormState();
     $form_state->setFormObject($this->formObject);
 
-    // Simulate the user providing an unpublish date.
+    // Set a published date that's earlier than the current unpublish date.
+    $publish_date = new \DateTimeImmutable('2025-01-01 12:00:00');
+
     $form_state->setUserInput([
-      'status' => ['value' => 1],
+      'status' => ['value' => 0],
       'publish_on' => [
-        0 => ['value' => ['date' => '', 'time' => '']],
+        0 => [
+          'value' => [
+            'date' => $publish_date->format('Y-m-d'),
+            'time' => $publish_date->format('H:i:s'),
+          ],
+        ],
       ],
       'unpublish_on' => [
         0 => [
@@ -297,9 +308,18 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
 
     _helfi_etusivu_set_unpublished_date($form, $form_state);
 
-    // The hint should not be added and unpublish date should not be changed.
-    $this->assertArrayNotHasKey('scheduler_unpublish_hint', $form);
-    $this->assertNull($form_state->getValue(['unpublish_on', 0, 'value']));
+    // The hint should be added since we're updating the unpublish date.
+    $this->assertArrayHasKey('scheduler_unpublish_hint', $form);
+
+    // The unpublish date should be updated to 11 months
+    // from the published date.
+    $unpublish_date = $form_state->getValue(['unpublish_on', 0, 'value']);
+    $this->assertNotNull($unpublish_date);
+
+    // Calculate expected unpublish date and check that it matches.
+    $expected_unpublish = $publish_date->add(new \DateInterval('P11M'));
+    $actual_unpublish = DrupalDateTime::createFromFormat(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, $unpublish_date);
+    $this->assertSame($expected_unpublish->format('Y-m-d'), $actual_unpublish->format('Y-m-d'));
   }
 
 }
