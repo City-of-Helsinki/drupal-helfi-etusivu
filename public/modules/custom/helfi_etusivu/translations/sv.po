@@ -302,6 +302,9 @@ msgctxt "Helsinki near you"
 msgid "No feedback was found near address @address"
 msgstr "Inga responser hittades på adressen @address"
 
+msgid "Hiding the page"
+msgstr "Schemalagd döljning"
+
 msgid "Arabic"
 msgstr "Arabiska"
 
@@ -340,3 +343,6 @@ msgstr "Kinesiska"
 
 msgid "Ukrainian"
 msgstr "Ukrainska"
+
+msgid "The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field."
+msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publiceringen. Vid behov kan du ändra tiden i fältet <strong>Schemalagd döljning</strong>."

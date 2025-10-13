@@ -2,3 +2,9 @@ views-styles:
   css:
     theme:
       assets/css/views.css: {}
+
+news-item-unpublish:
+  version: 1.0.0
+  css:
+    theme:
+      assets/css/news-item-unpublish.css: {}
