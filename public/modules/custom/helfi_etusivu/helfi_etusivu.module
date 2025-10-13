@@ -181,14 +181,6 @@ function _helfi_etusivu_set_unpublished_date(array &$form, FormStateInterface $f
     return;
   }
 
-  // Do not do anything if the unpublish date is already set.
-  if (
-    !empty($input['unpublish_on'][0]['value']['date']) &&
-    !empty($input['unpublish_on'][0]['value']['time'])
-  ) {
-    return;
-  }
-
   // Indicator if the node is going to be published now.
   $is_published = isset($input['status']) && $input['status']['value'];
 
@@ -217,10 +209,7 @@ function _helfi_etusivu_set_unpublished_date(array &$form, FormStateInterface $f
   // Add the hint about the unpublish date to the form.
   $form['scheduler_unpublish_hint'] = [
     '#theme' => 'news_item_unpublish_hint',
-    '#message' => t(
-      'The news item is scheduled to become non-public 11 months after its publication (@date). If necessary, you can change the time in the <strong>Hiding the page</strong> field.',
-      ['@date' => $datetime->format('d.m.Y')],
-    ),
+    '#message' => t('The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field.'),
   ];
 
   // Create DrupalDateTime object with proper timezone.
