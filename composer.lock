@@ -4314,16 +4314,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.14.26",
+            "version": "6.14.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "ed34df1561f162492b897f1b21626cea5e1980e8"
+                "reference": "44db6d39e373eca8ac82c849a3b91a9ad1a0fadd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/ed34df1561f162492b897f1b21626cea5e1980e8",
-                "reference": "ed34df1561f162492b897f1b21626cea5e1980e8",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/44db6d39e373eca8ac82c849a3b91a9ad1a0fadd",
+                "reference": "44db6d39e373eca8ac82c849a3b91a9ad1a0fadd",
                 "shasum": ""
             },
             "require": {
@@ -4342,23 +4342,23 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.14.26",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.14.27",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-10-09T12:43:01+00:00"
+            "time": "2025-10-10T13:56:10+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
-            "version": "3.4.0",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt-admin.git",
-                "reference": "4849f18f85339d635fa123d0614a9b667a23be86"
+                "reference": "5d04ae64bd4379f16cf75464e52ee949577f1b45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/4849f18f85339d635fa123d0614a9b667a23be86",
-                "reference": "4849f18f85339d635fa123d0614a9b667a23be86",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/5d04ae64bd4379f16cf75464e52ee949577f1b45",
+                "reference": "5d04ae64bd4379f16cf75464e52ee949577f1b45",
                 "shasum": ""
             },
             "require": {
@@ -4378,10 +4378,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/3.4.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/3.4.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/issues"
             },
-            "time": "2025-08-01T08:52:53+00:00"
+            "time": "2025-10-10T13:43:30+00:00"
         },
         {
             "name": "drupal/health_check",
@@ -4651,16 +4651,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "4.16.39",
+            "version": "4.16.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "2924e30ef5e221bffad2271df452ea4f77e573b9"
+                "reference": "64d5f2bd6e57261c471b9c9090e6f38183c477f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/2924e30ef5e221bffad2271df452ea4f77e573b9",
-                "reference": "2924e30ef5e221bffad2271df452ea4f77e573b9",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/64d5f2bd6e57261c471b9c9090e6f38183c477f1",
+                "reference": "64d5f2bd6e57261c471b9c9090e6f38183c477f1",
                 "shasum": ""
             },
             "require": {
@@ -4782,10 +4782,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.16.39",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/4.16.41",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-10-08T13:05:45+00:00"
+            "time": "2025-10-10T13:43:37+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -10689,16 +10689,16 @@
         },
         {
             "name": "mck89/peast",
-            "version": "v1.17.2",
+            "version": "v1.17.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mck89/peast.git",
-                "reference": "465810689c477fbba17f4f949b75e4d0bdab13ea"
+                "reference": "c6a63f32410d2e4ee2cd20fe94b35af147fb852d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mck89/peast/zipball/465810689c477fbba17f4f949b75e4d0bdab13ea",
-                "reference": "465810689c477fbba17f4f949b75e4d0bdab13ea",
+                "url": "https://api.github.com/repos/mck89/peast/zipball/c6a63f32410d2e4ee2cd20fe94b35af147fb852d",
+                "reference": "c6a63f32410d2e4ee2cd20fe94b35af147fb852d",
                 "shasum": ""
             },
             "require": {
@@ -10711,7 +10711,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17.2-dev"
+                    "dev-master": "1.17.4-dev"
                 }
             },
             "autoload": {
@@ -10732,9 +10732,9 @@
             "description": "Peast is PHP library that generates AST for JavaScript code",
             "support": {
                 "issues": "https://github.com/mck89/peast/issues",
-                "source": "https://github.com/mck89/peast/tree/v1.17.2"
+                "source": "https://github.com/mck89/peast/tree/v1.17.4"
             },
-            "time": "2025-07-01T09:30:45+00:00"
+            "time": "2025-10-10T12:53:17+00:00"
         },
         {
             "name": "mglaman/composer-drupal-lenient",

@@ -35,6 +35,6 @@ display:
             label: To
         language:
           expose:
-            label: 'Original language'
+            label: 'اللغة الأصلية'
   page_1:
     display_title: Page
