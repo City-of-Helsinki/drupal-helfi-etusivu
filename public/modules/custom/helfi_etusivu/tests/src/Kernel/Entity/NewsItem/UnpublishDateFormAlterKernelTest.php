@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Kernel\Entity\NewsItem;
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\node\Entity\Node;
 
 /**
  * Tests the unpublish date form alter functionalities.
@@ -26,6 +28,41 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
     'system',
     'user',
   ];
+
+  /**
+   * The mocked form object.
+   *
+   * @var \PHPUnit\Framework\MockObject\MockObject
+   */
+  protected $formObject;
+
+  /**
+   * The mocked node.
+   *
+   * @var \PHPUnit\Framework\MockObject\MockObject
+   */
+  protected $node;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+    $this->node = $this->getMockBuilder(Node::class)
+      ->disableOriginalConstructor()
+      ->getMock();
+    $this->node->expects($this->any())
+      ->method('isPublished')
+      ->willReturn(FALSE);
+
+    // Create a mock form object that returns our node.
+    $this->formObject = $this->getMockBuilder(EntityFormInterface::class)
+      ->disableOriginalConstructor()
+      ->getMock();
+    $this->formObject->expects($this->any())
+      ->method('getEntity')
+      ->willReturn($this->node);
+  }
 
   /**
    * Tests that the form alter function adds the necessary elements to the form.
@@ -120,6 +157,7 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
    */
   public function testSetsUnpublishFromImmediatePublish(): void {
     $form = [
+      '#form_id' => 'node_news_item_form',
       'unpublish_on' => [
         'widget' => [
           0 => [
@@ -129,6 +167,7 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
       ],
     ];
     $form_state = new FormState();
+    $form_state->setFormObject($this->formObject);
 
     // Simulate clicking the "Published" checkbox.
     $form_state->setUserInput([
@@ -177,6 +216,7 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
    */
   public function testSetsUnpublishFromScheduledPublishOn(): void {
     $form = [
+      '#form_id' => 'node_news_item_form',
       'unpublish_on' => [
         'widget' => [
           0 => [
@@ -186,6 +226,7 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
       ],
     ];
     $form_state = new FormState();
+    $form_state->setFormObject($this->formObject);
 
     // Set the "publish on" date to 5 days from now.
     $publish_on = new \DateTimeImmutable('+5 days');
@@ -226,6 +267,7 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
    */
   public function testNoOverrideIfUnpublishAlreadySet(): void {
     $form = [
+      '#form_id' => 'node_news_item_form',
       'unpublish_on' => [
         'widget' => [
           0 => [
@@ -235,6 +277,7 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
       ],
     ];
     $form_state = new FormState();
+    $form_state->setFormObject($this->formObject);
 
     // Simulate the user providing an unpublish date.
     $form_state->setUserInput([
