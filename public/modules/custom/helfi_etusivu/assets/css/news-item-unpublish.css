@@ -1,0 +1,4 @@
+.form-item--publish-on-0-value-date .ajax-progress--throbber,
+.form-item--publish-on-0-value-time .ajax-progress--throbber {
+  display: none;
+}

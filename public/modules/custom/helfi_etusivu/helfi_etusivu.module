@@ -291,6 +291,7 @@ function _helfi_etusivu_form_unpublish_date_alter(array &$form, FormStateInterfa
   if (isset($form['unpublish_on']['widget'][0]['value'])) {
     $form['unpublish_on']['widget'][0]['value']['#prefix'] = '<div id="scheduler-unpublish-widget">';
     $form['unpublish_on']['widget'][0]['value']['#suffix'] = '</div>';
+    $form['#attached']['library'][] = 'helfi_etusivu/news-item-unpublish';
   }
 }
 
