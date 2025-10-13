@@ -1,3 +1,6 @@
-<div class="messages messages--info">
-  {{ message }}
+<div class="form-notification form-notification--warning">
+  <div class="form-notification__icon">
+    {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'alert-circle-fill'} %}
+  </div>
+  <p class="form-notification__warning-text" data-warning-id="form-item--unpublish-hint">{{ message }}</p>
 </div>
