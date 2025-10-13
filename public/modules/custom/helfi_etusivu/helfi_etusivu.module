@@ -7,11 +7,16 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
@@ -103,11 +108,199 @@ function _helfi_etusivu_form_updating_news_field_alter(&$form, FormStateInterfac
 }
 
 /**
+ * AJAX callback to rebuild the unpublish hint and refresh the unpublish widget.
+ *
+ * @param array $form
+ *   Form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ */
+function _helfi_etusivu_set_unpublished_date_ajax(array &$form, FormStateInterface $form_state): AjaxResponse {
+  // Process the form to update the values.
+  _helfi_etusivu_set_unpublished_date($form, $form_state);
+
+  $response = new AjaxResponse();
+  $renderer = \Drupal::service('renderer');
+
+  // Update the hint container.
+  $response->addCommand(new ReplaceCommand(
+    '#scheduler-unpublish-hint',
+    $renderer->render($form['scheduler_unpublish_hint'])
+  ));
+
+  // Rebuild the form to ensure all elements are properly processed.
+  $form_state->setRebuild();
+  $form = \Drupal::formBuilder()->rebuildForm($form['#form_id'], $form_state, $form);
+
+  // Update the unpublish widget with the newly built form element.
+  if (isset($form['unpublish_on']['widget'][0])) {
+    $unpublish_widget = $form['unpublish_on']['widget'][0];
+    $unpublish_widget['#prefix'] = '<div id="scheduler-unpublish-widget">';
+    $unpublish_widget['#suffix'] = '</div>';
+
+    $response->addCommand(new ReplaceCommand(
+      '#scheduler-unpublish-widget',
+      $renderer->render($unpublish_widget)
+    ));
+  }
+
+  return $response;
+}
+
+/**
+ * Logic for computing the unpublish date.
+ *
+ * @param array $form
+ *   Form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ */
+function _helfi_etusivu_set_unpublished_date(array &$form, FormStateInterface $form_state): void {
+  $input = $form_state->getUserInput() ?? [];
+
+  // Return if there is no user input.
+  if (empty($input)) {
+    return;
+  }
+
+  // Return if the news item is already published.
+  $form_object = $form_state->getFormObject();
+  if ($form_object instanceof EntityFormInterface) {
+    $entity = $form_object->getEntity();
+    if ($entity instanceof NodeInterface && $entity->isPublished()) {
+      return;
+    }
+  }
+
+  // Do nothing if the node is not going to be published now or later.
+  if (
+    (empty($input['publish_on'][0]['value']['date']) ||
+    empty($input['publish_on'][0]['value']['time'])) &&
+    empty($input['status']['value'])
+  ) {
+    return;
+  }
+
+  // Indicator if the node is going to be published now.
+  $is_published = isset($input['status']) && $input['status']['value'];
+
+  // Indicator if the node is going to be published later.
+  $is_publish_on = (
+    isset($input['publish_on'][0]['value']) &&
+    !empty($input['publish_on'][0]['value']['date']) &&
+    !empty($input['publish_on'][0]['value']['time']));
+
+  // Do nothing if the node is not going to be published now or later.
+  if (!$is_published && !$is_publish_on) {
+    return;
+  }
+
+  // Create a DateTime object for the current time.
+  $datetime = new DateTime('now');
+
+  // If the node is going to be published later, use the publish_on date.
+  if ($is_publish_on) {
+    $datetime = new DateTime("{$input['publish_on'][0]['value']['date']} {$input['publish_on'][0]['value']['time']}");
+  }
+
+  // Add 11 months to the datetime.
+  $datetime->add(new DateInterval('P11M'));
+
+  // Add the hint about the unpublish date to the form.
+  $form['scheduler_unpublish_hint'] = [
+    '#theme' => 'news_item_unpublish_hint',
+    '#message' => t('The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field.'),
+  ];
+
+  // Create DrupalDateTime object with proper timezone.
+  $unpublish_datetime = DrupalDateTime::createFromDateTime($datetime);
+
+  // Format the date for the form element.
+  $formatted_date = $unpublish_datetime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
+
+  // Set the value in form state.
+  $form_state->setValue(['unpublish_on', 0, 'value'], $formatted_date);
+
+  // Also set it in the form for display.
+  if (isset($form['unpublish_on']['widget'][0]['value'])) {
+    // Set the value directly in the form element.
+    $form['unpublish_on']['widget'][0]['value']['#value'] = $unpublish_datetime;
+    $form['unpublish_on']['widget'][0]['value']['#default_value'] = $unpublish_datetime;
+
+    // Also set the value in the form state's user input.
+    $user_input = $form_state->getUserInput();
+    if (!isset($user_input['unpublish_on'])) {
+      $user_input['unpublish_on'] = [0 => ['value' => []]];
+    }
+    $user_input['unpublish_on'][0]['value']['date'] = $unpublish_datetime->format('Y-m-d');
+    $user_input['unpublish_on'][0]['value']['time'] = $unpublish_datetime->format('H:i:s');
+    $form_state->setUserInput($user_input);
+
+    // Force the form to process the input values.
+    $form_state->setValue('unpublish_on', [
+      ['value' => $formatted_date],
+    ]);
+  }
+}
+
+/**
+ * Alter the node form to react on publish status and publish on date changes.
+ *
+ * This is used to automatically calculate the unpublish date based on
+ * the published date. If content producer checks the published status, the
+ * unpublish date is set to 11 months from the published date. The same will
+ * be done if the "published on" date is set.
+ *
+ * @param array $form
+ *   Form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ * @param string $form_id
+ *   Form ID.
+ */
+function _helfi_etusivu_form_unpublish_date_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  if (!str_contains($form_id, 'news_item')) {
+    return;
+  }
+
+  // Add a container for displaying the hint of the unpublished date being set.
+  $form['scheduler_unpublish_hint'] = [
+    '#type' => 'container',
+    '#attributes' => ['id' => 'scheduler-unpublish-hint'],
+  ];
+
+  $callback = [
+    'callback' => '_helfi_etusivu_set_unpublished_date_ajax',
+    'event' => 'change',
+    'wrapper' => 'scheduler-unpublish-hint',
+    'progress' => ['type' => 'throbber'],
+    'disable-refocus' => TRUE,
+  ];
+
+  if (isset($form['status']['widget']['value'])) {
+    $form['status']['widget']['value']['#ajax'] = $callback;
+  }
+
+  if (isset($form['publish_on']['widget'][0]['value'])) {
+    $form['publish_on']['widget'][0]['value']['#ajax'] = $callback;
+  }
+
+  // Add a wrapper for the unpublish date widget, so that we can update it
+  // via AJAX.
+  if (isset($form['unpublish_on']['widget'][0]['value'])) {
+    $form['unpublish_on']['widget'][0]['value']['#prefix'] = '<div id="scheduler-unpublish-widget">';
+    $form['unpublish_on']['widget'][0]['value']['#suffix'] = '</div>';
+    $form['#attached']['library'][] = 'helfi_etusivu/news-item-unpublish';
+  }
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) : void {
   _helfi_etusivu_form_promote_field_alter($form, $form_state, $form_id);
   _helfi_etusivu_form_updating_news_field_alter($form, $form_state, $form_id);
+  _helfi_etusivu_form_unpublish_date_alter($form, $form_state, $form_id);
 }
 
 /**
@@ -497,6 +690,11 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'num_items' => NULL,
         'preview_attributes' => NULL,
+      ],
+    ],
+    'news_item_unpublish_hint' => [
+      'variables' => [
+        'message' => NULL,
       ],
     ],
   ];

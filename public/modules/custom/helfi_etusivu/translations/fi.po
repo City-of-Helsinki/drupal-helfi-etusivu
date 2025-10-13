@@ -347,3 +347,6 @@ msgstr "Kiina"
 
 msgid "Ukrainian"
 msgstr "Ukraina"
+
+msgid "The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field."
+msgstr "Uutinen ajastetaan ei-julkiseksi 11 kuukauden päähän julkaisuhetkestä. Tarvittaessa voit muuttaa aikaa kentästä <strong>Ajastettu piilottaminen.</strong>"
