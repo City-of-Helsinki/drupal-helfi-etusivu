@@ -26,7 +26,7 @@ final readonly class Distance {
    * @return int
    *   Returns the distance in meters.
    */
-  private static function calculateDistance(float $latA, float $lonA, float $latB, float $lonB): int {
+  public static function calculateDistance(float $latA, float $lonA, float $latB, float $lonB): int {
     $rad = M_PI / 180;
     $radius = 6371000;
 
@@ -46,20 +46,13 @@ final readonly class Distance {
   /**
    * Calculates the distance between two coordinate points.
    *
-   * @param float $latA
-   *   Point A latitude.
-   * @param float $lonA
-   *   Point A longitude.
-   * @param float $latB
-   *   Point B latitude.
-   * @param float $lonB
-   *   Point B longitude.
+   * @param int $distance
+   *   The distance.
    *
    * @return string
    *   Returns the distance in meters or kilometers.
    */
-  public static function label(float $latA, float $lonA, float $latB, float $lonB): string {
-    $distance = self::calculateDistance($latA, $lonA, $latB, $lonB);
+  public static function label(int $distance): string {
     $unit = 'm';
 
     if ($distance >= 1000) {
