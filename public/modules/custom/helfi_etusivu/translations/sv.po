@@ -219,8 +219,8 @@ msgid "Search for street and park projects"
 msgstr "Sök gatu- och parkprojekt"
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Search for street and park projects by entering an address. The search will show the project that are within one kilometre of the address you enter."
-msgstr "Du kan söka gatu- och parkprojekt enligt adress. Sökningen visar projekt inom en kilometer från adressen."
+msgid "Search for street and park projects by entering an address. The search will show the projects that are within two kilometres of the address you enter."
+msgstr "Du kan söka gatu- och parkprojekt enligt adress. Sökningen visar projekt inom två kilometer från adressen."
 
 msgctxt "Roadworks default title"
 msgid "Work site"
@@ -262,13 +262,17 @@ msgctxt "Helsinki near you title"
 msgid "Find feedback"
 msgstr "Sök respons"
 
+msgctxt "Label for feedback distance"
+msgid "Distance"
+msgstr "Avstånd"
+
 msgctxt "Helsinki near you"
 msgid "Search feedback near you"
 msgstr "Sök feedback nära dig"
 
 msgctxt "Helsinki near you"
-msgid "You can search for feedback and fault reports  by entering an address."
-msgstr "Du kan söka respons och felanmälningar enligt adress."
+msgid "The search shows results within two kilometers from the address and from the past 90 days."
+msgstr "Sökningen visar resultat inom två kilometer från adressen och från de senaste 90 dagarna."
 
 msgctxt "Helsinki near you"
 msgid "Feedback related to your neighbourhood"
@@ -297,6 +301,9 @@ msgstr[1] "@count responser nära adressen @address"
 msgctxt "Helsinki near you"
 msgid "No feedback was found near address @address"
 msgstr "Inga responser hittades på adressen @address"
+
+msgid "Hiding the page"
+msgstr "Schemalagd döljning"
 
 msgid "Arabic"
 msgstr "Arabiska"
@@ -336,3 +343,6 @@ msgstr "Kinesiska"
 
 msgid "Ukrainian"
 msgstr "Ukrainska"
+
+msgid "The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field."
+msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publiceringen. Vid behov kan du ändra tiden i fältet <strong>Schemalagd döljning</strong>."

@@ -23,7 +23,7 @@ display:
         fid:
           label: Fid
         created:
-          label: 'Upload date'
+          label: 'تاريخ التحميل'
       pager:
         options:
           tags:

@@ -51,6 +51,7 @@ module:
   helfi_azure_fs: 0
   helfi_base_content: 0
   helfi_ckeditor: 0
+  helfi_csp: 0
   helfi_etusivu_config: 0
   helfi_etusivu_entities: 0
   helfi_global_navigation: 0
@@ -92,6 +93,7 @@ module:
   helfi_proxy: 0
   helfi_react_search: 0
   helfi_recommendations: 0
+  helfi_search: 0
   helfi_tfa: 0
   helfi_toc: 0
   helfi_tunnistamo: 0
