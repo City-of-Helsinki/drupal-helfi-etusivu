@@ -8,7 +8,7 @@
     "prefer-stable": true,
     "require": {
         "ext-libxml": "*",
-        "composer/installers": "^1.9",
+        "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.6.7",
         "drupal/consumer_image_styles": "^4.0",
         "drupal/core-composer-scaffold": "^10|^11",
