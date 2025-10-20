@@ -148,7 +148,7 @@ module:
   purge_processor_cron: 0
   purge_queuer_coretags: 0
   purge_tokens: 0
-  radioactivity: 0
+  radioactivity: 2
   raven: 0
   readonly_field_widget: 0
   real_aes: 0
