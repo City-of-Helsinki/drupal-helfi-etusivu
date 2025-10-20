@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_recommendations\Drush\Commands;
+namespace Drupal\helfi_etusivu\Drush\Commands;
 
 use Drupal\radioactivity\Hook\RadioactivityCronHooks;
 use Drush\Attributes\Command;
