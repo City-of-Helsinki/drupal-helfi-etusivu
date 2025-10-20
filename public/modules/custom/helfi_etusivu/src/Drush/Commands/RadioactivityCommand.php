@@ -27,6 +27,7 @@ final class RadioactivityCommand extends DrushCommands {
    * This is a simpler implementation to get rid of ultimate cron -module.
    *
    * @return int
+   *   Success status.
    */
   #[Command(name: 'helfi:radioactivity')]
   public function radioactivity(): int {
