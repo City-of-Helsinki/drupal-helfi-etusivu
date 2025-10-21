@@ -27,7 +27,6 @@ class RadioactivityTest extends ExistingSiteTestBase {
 
     $cron = \Drupal::service('cron');
     $cron->run();
-
     $this->assertEquals(
       $previousRun,
       \Drupal::state()->get(RadioactivityProcessorInterface::LAST_PROCESSED_STATE_KEY),
@@ -35,7 +34,6 @@ class RadioactivityTest extends ExistingSiteTestBase {
     );
 
     $command->radioactivity();
-
     $this->assertNotEquals(
       $previousRun,
       \Drupal::state()->get(RadioactivityProcessorInterface::LAST_PROCESSED_STATE_KEY),
