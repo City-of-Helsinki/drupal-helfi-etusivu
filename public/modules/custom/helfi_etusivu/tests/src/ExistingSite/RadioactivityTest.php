@@ -23,7 +23,6 @@ class RadioactivityTest extends ExistingSiteTestBase {
    */
   public function testCustomRadioactivityCron(): void {
     $service = \Drupal::service(RadioactivityCommand::class);
-    /** @var \Drupal\helfi_etusivu\Drush\Commands\RadioactivityCommand $service */
     $previousRun = \Drupal::state()->get(RadioactivityProcessorInterface::LAST_PROCESSED_STATE_KEY);
 
     /** @var \Drupal\Core\Cron $cron */
