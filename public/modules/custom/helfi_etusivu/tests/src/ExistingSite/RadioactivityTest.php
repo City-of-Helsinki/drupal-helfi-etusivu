@@ -22,10 +22,9 @@ class RadioactivityTest extends ExistingSiteTestBase {
    * custom command should execute the original functionality.
    */
   public function testCustomRadioactivityCron(): void {
-    $service = \Drupal::service(RadioactivityCommand::class);
+    $command = RadioactivityCommand::create($this->container);
     $previousRun = \Drupal::state()->get(RadioactivityProcessorInterface::LAST_PROCESSED_STATE_KEY);
 
-    /** @var \Drupal\Core\Cron $cron */
     $cron = \Drupal::service('cron');
     $cron->run();
 
@@ -35,7 +34,7 @@ class RadioactivityTest extends ExistingSiteTestBase {
       'Assert that cron did not execute radioactivity'
     );
 
-    $service->radioactivity();
+    $command->radioactivity();
 
     $this->assertNotEquals(
       $previousRun,

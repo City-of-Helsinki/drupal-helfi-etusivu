@@ -45,5 +45,3 @@ services:
       # our placeholder strategy is used by default. We only act on requests
       # with '_big_pipe_force_placeholders' route option set to true.
       - { name: placeholder_strategy, priority: 1 }
-
-  Drupal\helfi_etusivu\Drush\Commands\RadioactivityCommand: ~
