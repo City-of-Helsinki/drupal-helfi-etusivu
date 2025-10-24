@@ -1,67 +1,83 @@
-((Drupal, once) => {
-  Drupal.behaviors.updating_news_table_of_contents = {
-    attach: function attach() {
-
-      const tableOfContentsNewsUpdates = document.getElementById('helfi-toc-table-of-contents-news-updates');
-
-      // Bail if table of contents is not enabled.
-      if (!tableOfContentsNewsUpdates) {
+((Drupal) => {
+  Drupal.behaviors.updatingNewsTableOfContents = {
+    attach: function attach(context) {
+      // Prevent running multiple times on the main document.
+      if (context !== document || window.updatingNewsTableOfContentsInitialized) {
         return;
       }
 
-      const tableOfContentsList = document.querySelector('#helfi-toc-table-of-contents-list > ul');
-      const mainContent = document.querySelector('main.layout-main-wrapper');
-      const reservedElems = document.querySelectorAll('[id]');
-      reservedElems.forEach((elem) => {
-        Drupal.tableOfContents.reservedIds.push(elem.id);
+      const tableOfContentsNewsUpdates = context.getElementById('helfi-toc-table-of-contents-news-updates');
+      const tableOfContentsList = context.querySelector('#helfi-toc-table-of-contents-list > ul');
+
+      // Bail if table of contents is not enabled or list is not found.
+      if (!tableOfContentsNewsUpdates || !tableOfContentsList) {
+        return;
+      }
+
+      // Bail if heading injector is missing.
+      if (!Drupal.HeadingIdInjector || !Drupal.HeadingIdInjector.injectedHeadings) {
+        return;
+      }
+
+      // The core table of contents functionality will create the list with
+      // all injected headings, so we need to clear it first.
+      tableOfContentsList.innerHTML = '';
+
+      // Get all news update headings that have a TIME element as next sibling
+      const newsHeadings = Array.from(Drupal.HeadingIdInjector.injectedHeadings)
+        .filter(({ content }) =>
+          content.matches('.component--news-update .component__title') &&
+          content.nextElementSibling?.tagName === 'TIME');
+
+      // Process each news heading with date
+      newsHeadings.forEach(({ content, anchorName }) => {
+
+        // On updating news there is published date under the title,
+        // which we want to display in the news item table of contents.
+        let contentPublishDate = '';
+
+        // Get the published date from the next sibling element.
+        if (content.nextElementSibling && content.nextElementSibling.tagName === 'TIME') {
+          const contentPublishDateStamp = new Date(content.nextElementSibling.dateTime);
+          contentPublishDate = `${contentPublishDateStamp.getDate()}.${contentPublishDateStamp.getMonth() + 1}.${contentPublishDateStamp.getFullYear()}`;
+        }
+
+        // Only process H2 headings for the TOC.
+        if (content.tagName === 'H2') {
+          const listItem = context.createElement('li');
+          listItem.classList.add('table-of-contents__item');
+
+          // Add content publish date and its wrapper
+          // to list items only if they exist.
+          if (contentPublishDate) {
+            const publishDate = context.createElement('time');
+            publishDate.dateTime = content.nextElementSibling.dateTime;
+            publishDate.textContent = contentPublishDate;
+            listItem.appendChild(publishDate);
+          }
+
+          // Create and append the link.
+          const link = context.createElement('a');
+          link.classList.add('table-of-contents__link');
+          link.href = `#${anchorName || content.id}`;
+          link.textContent = content.textContent.trim();
+          listItem.appendChild(link);
+
+          // Add to TOC.
+          tableOfContentsList.appendChild(listItem);
+        }
       });
 
-      // Instead of targeting all headings on page, lets focus on only news update headings.
-      // This will generate selector like: .component--news-update h2.component__title, .component--news-update h3.component__title...
-      const titleComponents = Drupal.tableOfContents.titleComponents('.component__title').map(el => `.component--news-update ${  el}`);
-
-      // Craft table of contents for news item.
-      once('updating-news-table-of-contents', titleComponents.join(','), mainContent)
-        .forEach((content) => {
-
-          const { nodeName, anchorName } = Drupal.tableOfContents.createTableOfContentElements(content, []);
-
-          // On updating news there is published date under the title that we want to display in the
-          // table of contents news update version. For normal table of contents this remains empty.
-          let contentPublishDate = '';
-
-          if (tableOfContentsNewsUpdates && content.nextSibling && content.nextElementSibling.nodeName === 'TIME') {
-            const contentPublishDateStamp = new Date(content.nextElementSibling.dateTime);
-            contentPublishDate = `${contentPublishDateStamp.getDate()}.${contentPublishDateStamp.getMonth() + 1}.${contentPublishDateStamp.getFullYear()}`;
-          }
-
-          // Create table of contents if component is enabled.
-          if (tableOfContentsList && nodeName === 'h2') {
-            const listItem = document.createElement('li');
-            listItem.classList.add('table-of-contents__item');
-
-            // Add content publish date and its wrapper to list items only if they exist.
-            if (contentPublishDate) {
-              const publishDate = document.createElement('time');
-              publishDate.dateTime = content.nextElementSibling.dateTime;
-              publishDate.textContent = contentPublishDate;
-              listItem.appendChild(publishDate);
-            }
-
-            const link = document.createElement('a');
-            link.classList.add('table-of-contents__link');
-            link.href = `#${anchorName}`;
-            link.textContent = content.textContent.trim();
-
-            listItem.appendChild(link);
-            tableOfContentsList.appendChild(listItem);
-          }
-        }
-      );
-
-      if (tableOfContentsNewsUpdates) {
-        Drupal.tableOfContents.updateTOC(tableOfContentsNewsUpdates);
+      // Bail if Drupal.tableOfContents is missing.
+      if (!Drupal.tableOfContents || !Drupal.tableOfContents.updateTOC) {
+        return;
       }
-    },
+
+      // Update the TOC visibility.
+      Drupal.tableOfContents.updateTOC(tableOfContentsNewsUpdates);
+
+      // Mark as initialized.
+      window.updatingNewsTableOfContentsInitialized = true;
+    }
   };
-})(Drupal, once);
+})(Drupal);
