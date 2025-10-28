@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -104,6 +105,47 @@ function _helfi_etusivu_form_updating_news_field_alter(&$form, FormStateInterfac
   // Hide the published_at field if the updating news field is set.
   if (!empty($storage['field_storage']) && !empty($storage['field_storage']['#parents']['field_news_item_updating_news'])) {
     $form['published_at']['widget']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_ajax_render_alter().
+ */
+function helfi_etusivu_ajax_render_alter(array &$commands): void {
+  // When user clicks on "Add new updating news" button, an ajax callback is
+  // triggered. We cannot edit or add another callback to the "add more" button,
+  // so we use this hook to set the unpublished date to 11 months from now when
+  // a new updating news paragraph is added.
+  $request = \Drupal::request();
+  $form_id = (string) $request->request->get('form_id', '');
+
+  // Return if the form ID does not contain news item.
+  if (empty($form_id) || !str_contains($form_id, 'news_item')) {
+    return;
+  }
+
+  // Return if the triggering item is not "status" or "add new updating news".
+  $triggering_element = (string) $request->request->get('_triggering_element_name');
+  if (!in_array($triggering_element, [
+    'field_news_item_updating_news_news_update_add_more',
+    'status[value]',
+  ])) {
+    return;
+  }
+
+  // Set the unpublished date to 11 months from now when a new updating news
+  // paragraph is added.
+  if ($triggering_element === 'field_news_item_updating_news_news_update_add_more') {
+    $datetime = new DateTime('now');
+    $datetime->add(new DateInterval('P11M'));
+    $commands[] = (new InvokeCommand('[name="unpublish_on[0][value][date]"]', 'val', [$datetime->format('Y-m-d')]))->render();
+    $commands[] = (new InvokeCommand('[name="unpublish_on[0][value][time]"]', 'val', ['01:00:00']))->render();
+  }
+
+  // Unset the published on date if user decides to publish the news item.
+  if ($triggering_element === 'status[value]') {
+    $commands[] = (new InvokeCommand('[name="publish_on[0][value][date]"]', 'val', ['']))->render();
+    $commands[] = (new InvokeCommand('[name="publish_on[0][value][time]"]', 'val', ['']))->render();
   }
 }
 
