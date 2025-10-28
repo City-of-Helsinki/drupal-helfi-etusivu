@@ -7,9 +7,14 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\Entity\NewsItem;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Form\FormState;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\Node;
+use PHPUnit\Framework\MockObject\MockObject;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Tests the unpublish date form alter functionalities.
@@ -30,38 +35,36 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
   ];
 
   /**
-   * The mocked form object.
+   * The form object.
    *
-   * @var \PHPUnit\Framework\MockObject\MockObject
+   * @var \Drupal\Core\Entity\EntityFormInterface|\PHPUnit\Framework\MockObject\MockObject
    */
-  protected $formObject;
+  protected EntityFormInterface|MockObject $formObject;
 
   /**
-   * The mocked node.
+   * The node.
    *
-   * @var \PHPUnit\Framework\MockObject\MockObject
+   * @var \Drupal\node\Entity\Node|\PHPUnit\Framework\MockObject\MockObject
    */
-  protected $node;
+  protected Node|MockObject $node;
 
   /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
     parent::setUp();
+
+    // Mock a node with isPublished() returning FALSE.
     $this->node = $this->getMockBuilder(Node::class)
       ->disableOriginalConstructor()
       ->getMock();
-    $this->node->expects($this->any())
-      ->method('isPublished')
-      ->willReturn(FALSE);
+    $this->node->method('isPublished')->willReturn(FALSE);
 
-    // Create a mock form object that returns our node.
+    // Form object will return the node.
     $this->formObject = $this->getMockBuilder(EntityFormInterface::class)
       ->disableOriginalConstructor()
       ->getMock();
-    $this->formObject->expects($this->any())
-      ->method('getEntity')
-      ->willReturn($this->node);
+    $this->formObject->method('getEntity')->willReturn($this->node);
   }
 
   /**
@@ -71,51 +74,25 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
     $form = [
       '#form_id' => 'node_news_item_form',
       // Mimic the structures used in the alter function.
-      'status' => [
-        'widget' => [
-          'value' => [
-            '#type' => 'checkbox',
-          ],
-        ],
-      ],
-      'publish_on' => [
-        'widget' => [
-          0 => [
-            'value' => [
-              '#type' => 'datetime',
-            ],
-          ],
-        ],
-      ],
-      'unpublish_on' => [
-        'widget' => [
-          0 => [
-            'value' => [
-              '#type' => 'datetime',
-            ],
-          ],
-        ],
-      ],
+      'status' => ['widget' => ['value' => ['#type' => 'checkbox']]],
+      'publish_on' => ['widget' => [0 => ['value' => ['#type' => 'datetime']]]],
+      'unpublish_on' => ['widget' => [0 => ['value' => ['#type' => 'datetime']]]],
     ];
 
     $form_state = new FormState();
-    $form_id = 'node_news_item_form';
+    _helfi_etusivu_form_unpublish_date_alter($form, $form_state, 'node_news_item_form');
 
-    _helfi_etusivu_form_unpublish_date_alter($form, $form_state, $form_id);
-
-    // Test that the hint container is found and has the correct attributes.
+    // Test that the hint for the editor exists and has correct attributes.
     $this->assertArrayHasKey('scheduler_unpublish_hint', $form);
     $this->assertSame('container', $form['scheduler_unpublish_hint']['#type']);
     $this->assertSame(['id' => 'scheduler-unpublish-hint'], $form['scheduler_unpublish_hint']['#attributes']);
 
-    // Check that the ajax settings are added
-    // to the status and publish_on widgets.
+    // AJAX settings should be added.
     $this->assertArrayHasKey('#ajax', $form['status']['widget']['value']);
     $this->assertArrayHasKey('#ajax', $form['publish_on']['widget'][0]['value']);
 
-    // Check that the unpublish widget is wrapped with
-    // scheduler-unpublish-widget div.
-    $this->assertSame('<div id="scheduler-unpublish-widget">', $form['unpublish_on']['widget'][0]['value']['#prefix']);
+    // Test that the unpublish widget is wrapped with div.
+    $this->assertSame('<div id="scheduler-unpublish-on-widget">', $form['unpublish_on']['widget'][0]['value']['#prefix']);
     $this->assertSame('</div>', $form['unpublish_on']['widget'][0]['value']['#suffix']);
   }
 
@@ -123,15 +100,11 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
    * Tests that the form alter function skips non-news item forms.
    */
   public function testFormAlterSkipsNonNewsItemForms(): void {
-    $form = [
-      '#form_id' => 'node_article_form',
-    ];
+    $form = ['#form_id' => 'node_article_form'];
     $form_state = new FormState();
-    $form_id = 'node_article_form';
 
-    _helfi_etusivu_form_unpublish_date_alter($form, $form_state, $form_id);
+    _helfi_etusivu_form_unpublish_date_alter($form, $form_state, 'node_article_form');
 
-    // Nothing added for other bundles.
     $this->assertArrayNotHasKey('scheduler_unpublish_hint', $form);
   }
 
@@ -144,7 +117,6 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
 
     _helfi_etusivu_set_unpublished_date($form, $form_state);
 
-    // Nothing should be added or changed.
     $this->assertArrayNotHasKey('scheduler_unpublish_hint', $form);
     $this->assertNull($form_state->getValue(['unpublish_on', 0, 'value']));
   }
@@ -158,13 +130,7 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
   public function testSetsUnpublishFromImmediatePublish(): void {
     $form = [
       '#form_id' => 'node_news_item_form',
-      'unpublish_on' => [
-        'widget' => [
-          0 => [
-            'value' => [],
-          ],
-        ],
-      ],
+      'unpublish_on' => ['widget' => [0 => ['value' => []]]],
     ];
     $form_state = new FormState();
     $form_state->setFormObject($this->formObject);
@@ -172,17 +138,11 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
     // Simulate clicking the "Published" checkbox.
     $form_state->setUserInput([
       'status' => ['value' => 1],
-      'publish_on' => [
-        0 => [
-          'value' => ['date' => '', 'time' => ''],
-        ],
-      ],
-      'unpublish_on' => [
-        0 => ['value' => ['date' => '', 'time' => '']],
-      ],
+      'publish_on' => [0 => ['value' => ['date' => '', 'time' => '']]],
+      'unpublish_on' => [0 => ['value' => ['date' => '', 'time' => '']]],
     ]);
 
-    _helfi_etusivu_set_unpublished_date($form, $form_state);
+    _helfi_etusivu_set_unpublished_date($form, $form_state, 'status_widget');
 
     // Check that the hint container is found and has the correct attributes.
     $this->assertArrayHasKey('scheduler_unpublish_hint', $form);
@@ -194,15 +154,14 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
     $this->assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/', (string) $storage_value);
 
     // Test that the unpublish date is set to 11 months from now.
-    $expected = (new \DateTimeImmutable('now'))->add(new \DateInterval('P11M'));
+    $expectedDate = (new \DateTimeImmutable('now'))->add(new \DateInterval('P11M'))->format('Y-m-d');
     $stored = DrupalDateTime::createFromFormat(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, $storage_value);
     $this->assertInstanceOf(DrupalDateTime::class, $stored);
-    $this->assertSame($expected->format('Y-m-d'), $stored->format('Y-m-d'));
+    $this->assertSame($expectedDate, $stored->format('Y-m-d'));
 
-    // Check that the unpublish date is set on the form element and that the
-    // unpublished date is set in user input.
-    $this->assertInstanceOf(DrupalDateTime::class, $form['unpublish_on']['widget'][0]['value']['#value']);
-    $this->assertInstanceOf(DrupalDateTime::class, $form['unpublish_on']['widget'][0]['value']['#default_value']);
+    // Test that the unpublish date is set on the form element and that the
+    // unpublished date is set in as a user input.
+    $this->assertArrayHasKey('#default_value', $form['unpublish_on']['widget'][0]['value']);
     $user_input = $form_state->getUserInput();
     $this->assertNotEmpty($user_input['unpublish_on'][0]['value']['date']);
     $this->assertNotEmpty($user_input['unpublish_on'][0]['value']['time']);
@@ -217,13 +176,7 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
   public function testSetsUnpublishFromScheduledPublishOn(): void {
     $form = [
       '#form_id' => 'node_news_item_form',
-      'unpublish_on' => [
-        'widget' => [
-          0 => [
-            'value' => [],
-          ],
-        ],
-      ],
+      'unpublish_on' => ['widget' => [0 => ['value' => []]]],
     ];
     $form_state = new FormState();
     $form_state->setFormObject($this->formObject);
@@ -240,12 +193,10 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
           ],
         ],
       ],
-      'unpublish_on' => [
-        0 => ['value' => ['date' => '', 'time' => '']],
-      ],
+      'unpublish_on' => [0 => ['value' => ['date' => '', 'time' => '']]],
     ]);
 
-    _helfi_etusivu_set_unpublished_date($form, $form_state);
+    _helfi_etusivu_set_unpublished_date($form, $form_state, 'publish_on_widget');
 
     // Check that the hint container exists.
     $this->assertArrayHasKey('scheduler_unpublish_hint', $form);
@@ -285,7 +236,6 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
 
     // Set a published date that's earlier than the current unpublish date.
     $publish_date = new \DateTimeImmutable('2025-01-01 12:00:00');
-
     $form_state->setUserInput([
       'status' => ['value' => 0],
       'publish_on' => [
@@ -306,20 +256,136 @@ final class UnpublishDateFormAlterKernelTest extends KernelTestBase {
       ],
     ]);
 
-    _helfi_etusivu_set_unpublished_date($form, $form_state);
+    _helfi_etusivu_set_unpublished_date($form, $form_state, 'publish_on_widget');
 
     // The hint should be added since we're updating the unpublish date.
     $this->assertArrayHasKey('scheduler_unpublish_hint', $form);
 
-    // The unpublish date should be updated to 11 months
-    // from the published date.
-    $unpublish_date = $form_state->getValue(['unpublish_on', 0, 'value']);
-    $this->assertNotNull($unpublish_date);
+    $unpublish_value = $form_state->getValue(['unpublish_on', 0, 'value']);
+    $this->assertNotNull($unpublish_value);
 
     // Calculate expected unpublish date and check that it matches.
     $expected_unpublish = $publish_date->add(new \DateInterval('P11M'));
-    $actual_unpublish = DrupalDateTime::createFromFormat(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, $unpublish_date);
+    $actual_unpublish = DrupalDateTime::createFromFormat(DateTimeItemInterface::DATETIME_STORAGE_FORMAT, $unpublish_value);
     $this->assertSame($expected_unpublish->format('Y-m-d'), $actual_unpublish->format('Y-m-d'));
+  }
+
+  /**
+   * Tests behavior with a published node.
+   */
+  public function testPublishedNodeBehavior(): void {
+    // Switch to a published node and ensure the form object returns it.
+    $this->node = $this->getMockBuilder(Node::class)
+      ->disableOriginalConstructor()
+      ->getMock();
+    $this->node->method('isPublished')->willReturn(TRUE);
+    $this->formObject->method('getEntity')->willReturn($this->node);
+
+    $form = [];
+    $form_state = new FormState();
+    $form_state->setFormObject($this->formObject);
+
+    _helfi_etusivu_set_unpublished_date($form, $form_state, 'status_widget');
+
+    // No changes for published nodes.
+    $this->assertEmpty($form_state->getValues());
+  }
+
+  /**
+   * Tests the AJAX response structure.
+   */
+  public function testAjaxResponseStructure(): void {
+    $this->mockAjaxRequest();
+    $form = [
+      '#form_id' => 'node_news_item_form',
+      'scheduler_unpublish_hint' => ['#markup' => 'Test hint'],
+      'unpublish_on' => [
+        'widget' => [
+          0 => [
+            'value' => [
+              '#type' => 'datetime',
+              '#name' => 'unpublish_on[0][value][date]',
+            ],
+          ],
+        ],
+      ],
+    ];
+
+    $form_state = new FormState();
+    $form_state->setFormObject($this->formObject);
+    $form_state->setRequestMethod('POST');
+    $form_state->disableCache();
+
+    // Test that the AJAX call returns the expected response.
+    $response = _helfi_etusivu_set_unpublished_date_ajax($form, $form_state);
+    $commands = $response->getCommands();
+    $this->assertCount(1, $commands);
+    $this->assertEquals('insert', $commands[0]['command']);
+    $this->assertEquals('#scheduler-unpublish-hint', $commands[0]['selector']);
+  }
+
+  /**
+   * Tests AJAX render alter functionality.
+   */
+  public function testAjaxRenderAlter(): void {
+    // Test the status widget.
+    $this->mockAjaxRequest('status[value]');
+
+    // Run the alter hook.
+    $commands = [];
+    helfi_etusivu_ajax_render_alter($commands);
+
+    // It should add 2 'invoke' commands that clear publish_on date & time.
+    $this->assertCount(2, $commands);
+    $this->assertEquals('invoke', $commands[0]['command']);
+    $this->assertEquals('[name="publish_on[0][value][date]"]', $commands[0]['selector']);
+    $this->assertEquals('invoke', $commands[1]['command']);
+    $this->assertEquals('[name="publish_on[0][value][time]"]', $commands[1]['selector']);
+
+    // Test the news update widget.
+    $this->mockAjaxRequest('field_news_item_updating_news_news_update_add_more');
+
+    // Run the alter hook.
+    $commands = [];
+    helfi_etusivu_ajax_render_alter($commands);
+
+    // It should add 2 'invoke' commands that clear publish_on date & time.
+    $this->assertCount(2, $commands);
+    $this->assertEquals('invoke', $commands[0]['command']);
+    $this->assertEquals('[name="unpublish_on[0][value][date]"]', $commands[0]['selector']);
+    $this->assertEquals('invoke', $commands[1]['command']);
+    $this->assertEquals('[name="unpublish_on[0][value][time]"]', $commands[1]['selector']);
+  }
+
+  /**
+   * Mocks an AJAX request.
+   *
+   * @param string $triggering_element_name
+   *   The name of the triggering element.
+   */
+  protected function mockAjaxRequest(string $triggering_element_name = ''): void {
+    $container = $this->container;
+    $renderer = $this->createMock(RendererInterface::class);
+    $route_match = $this->createMock(RouteMatchInterface::class);
+
+    // Build a request.
+    $request = new Request(
+      ['widget' => 'status_widget'],
+      [
+        'form_id' => 'node_news_item_form',
+        '_triggering_element_name' => $triggering_element_name,
+      ],
+    );
+    $request->setMethod('POST');
+
+    // Put it on a real RequestStack.
+    $request_stack = new RequestStack();
+    $request_stack->push($request);
+
+    // Set the services.
+    $container->set('request_stack', $request_stack);
+    $container->set('renderer', $renderer);
+    $container->set('current_route_match', $route_match);
   }
 
 }
