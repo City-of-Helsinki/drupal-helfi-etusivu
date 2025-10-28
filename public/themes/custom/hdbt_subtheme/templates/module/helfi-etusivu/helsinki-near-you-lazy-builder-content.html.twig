@@ -4,9 +4,6 @@
     <h3 class="hdbt-search__results__title">{{ title }}</h3>
   </div>
 {% endif %}
-{% if error %}
-  {{ "An error occurred while loading the content" | t({}, {'context': 'Helsinki near you'}) }}
-{% endif %}
 {% if content.pager %}
   <div class="hdbt-search__results__content">
     {{ content }}
