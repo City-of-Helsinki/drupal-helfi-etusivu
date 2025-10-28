@@ -158,8 +158,11 @@ function helfi_etusivu_ajax_render_alter(array &$commands): void {
  *   Form state.
  */
 function _helfi_etusivu_set_unpublished_date_ajax(array &$form, FormStateInterface $form_state): AjaxResponse {
+  // Get the widget name from the request.
+  $widget = \Drupal::request()->query->get('widget') ?? '';
+
   // Process the form to update the values.
-  _helfi_etusivu_set_unpublished_date($form, $form_state);
+  _helfi_etusivu_set_unpublished_date($form, $form_state, $widget);
 
   $response = new AjaxResponse();
   $renderer = \Drupal::service('renderer');
@@ -176,13 +179,9 @@ function _helfi_etusivu_set_unpublished_date_ajax(array &$form, FormStateInterfa
 
   // Update the unpublish widget with the newly built form element.
   if (isset($form['unpublish_on']['widget'][0])) {
-    $unpublish_widget = $form['unpublish_on']['widget'][0];
-    $unpublish_widget['#prefix'] = '<div id="scheduler-unpublish-widget">';
-    $unpublish_widget['#suffix'] = '</div>';
-
     $response->addCommand(new ReplaceCommand(
-      '#scheduler-unpublish-widget',
-      $renderer->render($unpublish_widget)
+      '#scheduler-' . str_replace('_', '-', 'unpublish_on') . '-widget',
+      $renderer->render($form['unpublish_on']['widget'][0])
     ));
   }
 
