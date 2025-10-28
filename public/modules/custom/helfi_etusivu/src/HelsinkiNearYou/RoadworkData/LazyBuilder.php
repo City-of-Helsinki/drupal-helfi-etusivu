@@ -77,7 +77,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       Error::logException($this->logger, $e);
 
       return $build + [
-        '#error' => TRUE,
+        '#title' => new TranslatableMarkup('Something went wrong while getting the results. You may try searching again.', [], ['context' => 'Helsinki near you']),
       ];
     }
 

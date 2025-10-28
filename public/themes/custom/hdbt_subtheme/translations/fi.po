@@ -108,5 +108,5 @@ msgid "Distance"
 msgstr "Etäisyys"
 
 msgctxt "Helsinki near you"
-msgid "An error occurred while loading the content"
-msgstr "Sisällön lataamisessa tapahtui virhe."
+msgid "Something went wrong while getting the results. You may try searching again."
+msgstr "Tuloksien hakemisessa tapahtui virhe. Voit kokeilla hakea uudelleen."

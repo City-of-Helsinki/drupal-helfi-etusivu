@@ -84,7 +84,7 @@ class LazyBuilderTest extends KernelTestBase {
 
     // Error variable is set if API request fails.
     $build = $sut->build($address, 'fi');
-    $this->assertTrue($build['#error']);
+    $this->assertNotEmpty($build['#title']);
   }
 
 }
