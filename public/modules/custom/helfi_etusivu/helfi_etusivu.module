@@ -311,28 +311,58 @@ function _helfi_etusivu_form_unpublish_date_alter(array &$form, FormStateInterfa
     '#attributes' => ['id' => 'scheduler-unpublish-hint'],
   ];
 
-  $callback = [
-    'callback' => '_helfi_etusivu_set_unpublished_date_ajax',
-    'event' => 'change',
-    'wrapper' => 'scheduler-unpublish-hint',
-    'progress' => ['type' => 'throbber'],
-    'disable-refocus' => TRUE,
-  ];
+  // Define which widgets should affect the unpublish date.
+  $widgets = [];
 
+  // Status widget.
   if (isset($form['status']['widget']['value'])) {
-    $form['status']['widget']['value']['#ajax'] = $callback;
+    $widgets['status_widget'] = &$form['status']['widget']['value'];
   }
 
+  // Published on widget.
   if (isset($form['publish_on']['widget'][0]['value'])) {
-    $form['publish_on']['widget'][0]['value']['#ajax'] = $callback;
+    $widgets['publish_on_widget'] = &$form['publish_on']['widget'][0]['value'];
   }
 
-  // Add a wrapper for the unpublish date widget, so that we can update it
-  // via AJAX.
+  // Updating news updated date widget.
+  if (isset($form['field_news_item_updating_news']['widget'])) {
+    $widget = &$form['field_news_item_updating_news']['widget'];
+    $deltas = Element::children($widget);
+    $numeric_deltas = array_filter($deltas, 'is_numeric');
+
+    // To calculate the unpublished date from "updating news item"'s updated
+    // date means that it is needed to add the AJAX callback only to the latest
+    // updating_news field's field_news_update_date widget.
+    if (!empty($numeric_deltas)) {
+      $last_delta = max($numeric_deltas);
+
+      if (isset($widget[$last_delta]['subform']['field_news_update_date']['widget'][0]['value'])) {
+        $widgets['updating_news_widget'] = &$widget[$last_delta]['subform']['field_news_update_date']['widget'][0]['value'];
+      }
+    }
+  }
+
+  // Apply AJAX callbacks to the widgets.
+  foreach ($widgets as $widget_name => &$widget) {
+    $widget['#ajax'] = [
+      'callback' => '_helfi_etusivu_set_unpublished_date_ajax',
+      'event' => $widget_name === 'status_widget' ? 'change' : 'blur',
+      'wrapper' => 'scheduler-unpublish-hint',
+      'progress' => ['type' => 'none'],
+      'disable-refocus' => TRUE,
+      'options' => [
+        'query' => [
+          'widget' => $widget_name,
+        ],
+      ],
+    ];
+  }
+
+  // Add a wrapper for the "unpublish on" date widget,
+  // so that it can be updated via AJAX.
   if (isset($form['unpublish_on']['widget'][0]['value'])) {
-    $form['unpublish_on']['widget'][0]['value']['#prefix'] = '<div id="scheduler-unpublish-widget">';
+    $form['unpublish_on']['widget'][0]['value']['#prefix'] = '<div id="scheduler-unpublish-on-widget">';
     $form['unpublish_on']['widget'][0]['value']['#suffix'] = '</div>';
-    $form['#attached']['library'][] = 'helfi_etusivu/news-item-unpublish';
   }
 }
 
