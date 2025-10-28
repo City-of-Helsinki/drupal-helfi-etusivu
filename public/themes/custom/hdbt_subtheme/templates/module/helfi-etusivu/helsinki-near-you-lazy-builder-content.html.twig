@@ -4,6 +4,9 @@
     <h3 class="hdbt-search__results__title">{{ title }}</h3>
   </div>
 {% endif %}
+{% if error %}
+  Jotain meni mönkään.
+{% endif %}
 {% if content.pager %}
   <div class="hdbt-search__results__content">
     {{ content }}

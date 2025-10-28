@@ -10,6 +10,8 @@ use Drupal\helfi_api_base\ServiceMap\DTO\StreetName;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -33,7 +35,7 @@ class LazyBuilderTest extends KernelTestBase {
   ];
 
   /**
-   * Tests :build.
+   * Tests build.
    */
   public function testBuild() : void {
     $client = $this->createMockHttpClient([
@@ -64,6 +66,7 @@ class LazyBuilderTest extends KernelTestBase {
           ],
         ],
       ])),
+      new ConnectException('Connection timed out', new Request('GET', 'http://example.com/')),
     ]);
     $this->container->set('http_client', $client);
 
@@ -78,6 +81,10 @@ class LazyBuilderTest extends KernelTestBase {
 
     $this->assertEquals(['max-age' => 0], $build['#cache']);
     $this->assertEquals('123', $build['#content'][0]['#title']);
+
+    // Error variable is set if API request fails.
+    $build = $sut->build($address, 'fi');
+    $this->assertTrue($build['#error']);
   }
 
 }

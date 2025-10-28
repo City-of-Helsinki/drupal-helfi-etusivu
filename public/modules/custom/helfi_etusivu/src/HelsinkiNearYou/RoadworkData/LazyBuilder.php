@@ -9,9 +9,12 @@ use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Utility\Error;
 use Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * A lazy builder for Roadwork data block.
@@ -21,7 +24,9 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
   public function __construct(
     private RoadworkDataServiceInterface $roadworkDataService,
     private PagerManagerInterface $pagerManager,
-    private readonly CoordinateConversionService $coordinateConversionService,
+    private CoordinateConversionService $coordinateConversionService,
+    #[Autowire(service: 'logger.channel.helfi_etusivu')]
+    private LoggerInterface $logger,
   ) {
   }
 
@@ -58,7 +63,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     }
 
     try {
-      // Fetch roadwork projects within 1km radius of the converted coordinates.
+      // Fetch roadwork projects within a radius of the converted coordinates.
       $data = $this->roadworkDataService->getFormattedProjectsByCoordinates(
         $address->location->lat,
         $address->location->lon,
@@ -68,8 +73,12 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         $this->pagerManager->findPage(),
       ) ?? [];
     }
-    catch (\Exception) {
-      return $build;
+    catch (\Exception $e) {
+      Error::logException($this->logger, $e);
+
+      return $build + [
+        '#error' => TRUE,
+      ];
     }
 
     foreach ($data->items as $project) {
