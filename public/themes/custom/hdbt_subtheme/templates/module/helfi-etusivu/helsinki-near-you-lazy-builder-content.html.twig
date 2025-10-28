@@ -5,7 +5,7 @@
   </div>
 {% endif %}
 {% if error %}
-  Jotain meni mönkään.
+  {{ "An error occurred while loading the content" | t({}, {'context': 'Helsinki near you'}) }}
 {% endif %}
 {% if content.pager %}
   <div class="hdbt-search__results__content">

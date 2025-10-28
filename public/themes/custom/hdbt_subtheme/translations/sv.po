@@ -106,3 +106,7 @@ msgstr "Tidsplan"
 msgctxt "Label for roadwork distance"
 msgid "Distance"
 msgstr "Avstånd"
+
+msgctxt "Helsinki near you"
+msgid "An error occurred while loading the content"
+msgstr "Det uppstod ett fel vid inläsningen av innehållet"

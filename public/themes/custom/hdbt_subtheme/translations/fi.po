@@ -106,3 +106,7 @@ msgstr "Arvioitu aikataulu"
 msgctxt "Label for roadwork distance"
 msgid "Distance"
 msgstr "Etäisyys"
+
+msgctxt "Helsinki near you"
+msgid "An error occurred while loading the content"
+msgstr "Sisällön lataamisessa tapahtui virhe."
