@@ -7,10 +7,7 @@
  * used in sub-instance main menu block.
  */
 #}
-{% embed "@hdbt_subtheme/block/block--mainnavigation.html.twig" with {
-  data_hdbt_selector: 'external-mega-menu',
-  nav_classes: 'mega-menu'
-} %}
+{% embed "@hdbt_subtheme/block/block--mainnavigation.html.twig" %}
   {# Do not show the site name container in front page instance. #}
   {% block content %}
     {{ content }}

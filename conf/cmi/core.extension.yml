@@ -148,7 +148,7 @@ module:
   purge_processor_cron: 0
   purge_queuer_coretags: 0
   purge_tokens: 0
-  radioactivity: 0
+  radioactivity: 2
   raven: 0
   readonly_field_widget: 0
   real_aes: 0
@@ -177,7 +177,6 @@ module:
   toolbar: 0
   translatable_menu_link_uri: 0
   twig_tweak: 0
-  ultimate_cron: 0
   update: 0
   user: 0
   varnish_purge_tags: 0
