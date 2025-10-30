@@ -54,12 +54,9 @@
       // of the target month.
       const addMonthsUtc = (inputDate, monthsToAdd) => {
         // Anchor the time at noon UTC to avoid DST surprises.
-        const base = new Date(Date.UTC(
-          inputDate.getUTCFullYear(),
-          inputDate.getUTCMonth(),
-          inputDate.getUTCDate(),
-          12, 0, 0
-        ));
+        const base = new Date(
+          Date.UTC(inputDate.getUTCFullYear(), inputDate.getUTCMonth(), inputDate.getUTCDate(), 12, 0, 0),
+        );
         // JavaScript will automatically clamp the day to the last valid day
         // of the target month.
         base.setUTCMonth(base.getUTCMonth() + monthsToAdd);
@@ -70,14 +67,17 @@
       const setUnpublishDate = (date, isInitialLoad = false) => {
         if (!(date instanceof Date)) return;
         const unpublishDate = addMonthsUtc(
-          new Date(Date.UTC(
-            date.getUTCFullYear(),
-            date.getUTCMonth(),
-            date.getUTCDate(),
-            date.getUTCHours(),
-            date.getUTCMinutes(),
-            date.getUTCSeconds()
-          )), 11
+          new Date(
+            Date.UTC(
+              date.getUTCFullYear(),
+              date.getUTCMonth(),
+              date.getUTCDate(),
+              date.getUTCHours(),
+              date.getUTCMinutes(),
+              date.getUTCSeconds(),
+            ),
+          ),
+          11,
         );
 
         // Format the date as YYYY-MM-DD.
@@ -175,31 +175,33 @@
       }
 
       // Handle "Add more" button for news updates.
-      once('news-update-handler', 'input[name*="field_news_item_updating_news_news_update_add_more"]', context).forEach((button) => {
-        // Use mousedown instead of click to ensure the event is triggered
-        // before the form is submitted.
-        button.addEventListener('mousedown', (e) => {
-          // Exit if the event is not trusted.
-          if (!e.isTrusted) return;
+      once('news-update-handler', 'input[name*="field_news_item_updating_news_news_update_add_more"]', context).forEach(
+        (button) => {
+          // Use mousedown instead of click to ensure the event is triggered
+          // before the form is submitted.
+          button.addEventListener('mousedown', (e) => {
+            // Exit if the event is not trusted.
+            if (!e.isTrusted) return;
 
-          // Create a new date 11 months from now.
-          const newDate = addMonthsUtc(new Date(), 11);
+            // Create a new date 11 months from now.
+            const newDate = addMonthsUtc(new Date(), 11);
 
-          // Only update if the new date is later than the existing one.
-          if (!shouldUpdateUnpublishDate(newDate)) return;
+            // Only update if the new date is later than the existing one.
+            if (!shouldUpdateUnpublishDate(newDate)) return;
 
-          // Update the unpublish date.
-          if (unpublishDateInput) {
-            unpublishDateInput.value = newDate.toISOString().split('T')[0];
-            unpublishDateInput.dispatchEvent(new Event('change', { bubbles: true }));
-            toggleUnpublishHint(true);
-          }
-          if (unpublishTimeInput) {
-            unpublishTimeInput.value = '01:00:00';
-            unpublishTimeInput.dispatchEvent(new Event('change', { bubbles: true }));
-          }
-        });
-      });
+            // Update the unpublish date.
+            if (unpublishDateInput) {
+              unpublishDateInput.value = newDate.toISOString().split('T')[0];
+              unpublishDateInput.dispatchEvent(new Event('change', { bubbles: true }));
+              toggleUnpublishHint(true);
+            }
+            if (unpublishTimeInput) {
+              unpublishTimeInput.value = '01:00:00';
+              unpublishTimeInput.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          });
+        },
+      );
 
       // Only set initial unpublish date if it's not already set and there's
       // a published date or if the content is already published.
@@ -225,6 +227,6 @@
           if (!e.programmatic) toggleUnpublishHint(false);
         });
       }
-    }
+    },
   };
 })(Drupal, once);
