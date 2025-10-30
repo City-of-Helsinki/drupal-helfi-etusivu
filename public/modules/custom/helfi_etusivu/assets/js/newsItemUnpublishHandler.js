@@ -1,3 +1,28 @@
+/**
+ * News item unpublish date handler.
+ *
+ * Automatically manages the "unpublish_on" field based on publish date/time,
+ * status changes, and news update interactions.
+ *
+ * Rules:
+ * - Default logic: unpublish = publish date + 11 months, at 01:00:00 UTC.
+ * - Updates only if the new value is later than the current unpublish date.
+ * - Anchors calculations in UTC to avoid DST issues; clamps day if month ends.
+ *
+ * Triggers:
+ * 1. Scheduled publish date/time change → recompute unpublish date.
+ * 2. Status checkbox (publish immediately) → unpublish = now + 11 months.
+ * 3. Updating news widget date change → unpublish = chosen date + 11 months.
+ * 4. "Add more" in news updates → propose today + 11 months if later.
+ * 5. Initial load:
+ *    - If unpublish date is empty and content is not published,
+ *      set unpublish = publish + 11 months.
+ *
+ * Hint:
+ * - A `.news-item-unpublish-hint` element is shown when the script sets
+ *   the unpublish date automatically, and hidden again if the user manually
+ *   edits the field.
+ */
 ((Drupal, once) => {
   Drupal.behaviors.newsItemUnpublishHandler = {
     attach(context) {
