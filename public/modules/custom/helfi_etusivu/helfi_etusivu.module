@@ -7,18 +7,12 @@
 
 declare(strict_types=1);
 
-use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\InvokeCommand;
-use Drupal\Core\Ajax\ReplaceCommand;
-use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Render\Element;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
 use Drupal\helfi_api_base\Cache\CacheTagInvalidator;
 use Drupal\helfi_etusivu\Entity\Node\Announcement;
@@ -110,225 +104,14 @@ function _helfi_etusivu_form_updating_news_field_alter(&$form, FormStateInterfac
 }
 
 /**
- * Implements hook_ajax_render_alter().
- */
-function helfi_etusivu_ajax_render_alter(array &$commands): void {
-  // When user clicks on "Add new updating news" button, an ajax callback is
-  // triggered. We cannot edit or add another callback to the "add more" button,
-  // so we use this hook to set the unpublished date to 11 months from now when
-  // a new updating news paragraph is added.
-  $request = \Drupal::request();
-  $form_id = (string) $request->request->get('form_id', '');
-
-  // Return if the form ID does not contain news item.
-  if (empty($form_id) || !str_contains($form_id, 'news_item')) {
-    return;
-  }
-
-  // Return if the triggering item is not "status" or "add new updating news".
-  $triggering_element = (string) $request->request->get('_triggering_element_name');
-  if (!in_array($triggering_element, [
-    'field_news_item_updating_news_news_update_add_more',
-    'status[value]',
-  ])) {
-    return;
-  }
-
-  // Set the unpublished date to 11 months from now when a new updating news
-  // paragraph is added.
-  if ($triggering_element === 'field_news_item_updating_news_news_update_add_more') {
-    $datetime = new DateTime('now');
-    $datetime->add(new DateInterval('P11M'));
-    $commands[] = (new InvokeCommand('[name="unpublish_on[0][value][date]"]', 'val', [$datetime->format('Y-m-d')]))->render();
-    $commands[] = (new InvokeCommand('[name="unpublish_on[0][value][time]"]', 'val', ['01:00:00']))->render();
-  }
-
-  // Unset the published on date if user decides to publish the news item.
-  if ($triggering_element === 'status[value]') {
-    $commands[] = (new InvokeCommand('[name="publish_on[0][value][date]"]', 'val', ['']))->render();
-    $commands[] = (new InvokeCommand('[name="publish_on[0][value][time]"]', 'val', ['']))->render();
-  }
-}
-
-/**
- * AJAX callback to rebuild the unpublish hint and refresh the unpublish widget.
- *
- * @param array $form
- *   Form.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   Form state.
- */
-function _helfi_etusivu_set_unpublished_date_ajax(array &$form, FormStateInterface $form_state): AjaxResponse {
-  // Get the widget name from the request.
-  $widget = \Drupal::request()->query->get('widget') ?? '';
-
-  // Process the form to update the values.
-  _helfi_etusivu_set_unpublished_date($form, $form_state, $widget);
-
-  $response = new AjaxResponse();
-  $renderer = \Drupal::service('renderer');
-
-  // Update the hint container.
-  $response->addCommand(new ReplaceCommand(
-    '#scheduler-unpublish-hint',
-    $renderer->render($form['scheduler_unpublish_hint'])
-  ));
-
-  // Rebuild the form to ensure all elements are properly processed.
-  $form_state->setRebuild();
-  $form = \Drupal::formBuilder()->rebuildForm($form['#form_id'], $form_state, $form);
-
-  // Update the unpublish widget with the newly built form element.
-  if (isset($form['unpublish_on']['widget'][0])) {
-    $response->addCommand(new ReplaceCommand(
-      '#scheduler-' . str_replace('_', '-', 'unpublish_on') . '-widget',
-      $renderer->render($form['unpublish_on']['widget'][0])
-    ));
-  }
-
-  return $response;
-}
-
-/**
- * Logic for computing the unpublish date.
- *
- * @param array $form
- *   Form.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   Form state.
- * @param string $widget_name
- *   The widget name which triggered the AJAX callback.
- */
-function _helfi_etusivu_set_unpublished_date(array &$form, FormStateInterface $form_state, string $widget_name = ''): void {
-  $input = $form_state->getUserInput() ?? [];
-
-  // Return if there is no user input or widget name is empty.
-  if (empty($input) || empty($widget_name)) {
-    return;
-  }
-
-  // Create a DateTime object for the current time.
-  $datetime = new DateTime('now');
-
-  switch ($widget_name) {
-    // Handle status and publish on widgets' logic.
-    case 'status_widget':
-    case 'publish_on_widget':
-      // Return if the news item is already published.
-      $form_object = $form_state->getFormObject();
-      if ($form_object instanceof EntityFormInterface) {
-        $entity = $form_object->getEntity();
-        if ($entity instanceof NodeInterface && $entity->isPublished()) {
-          return;
-        }
-      }
-
-      // Return if the news item is not going to be published now or later.
-      if (
-        empty($input['publish_on'][0]['value']['date']) &&
-        empty($input['status']['value'])
-      ) {
-        return;
-      }
-
-      // Indicator if the node is going to be published now.
-      $is_published = isset($input['status']) && $input['status']['value'];
-
-      // Indicator if the node is going to be published later.
-      $is_publish_on = (
-        isset($input['publish_on'][0]['value']) &&
-        !empty($input['publish_on'][0]['value']['date'])
-      );
-
-      // Do nothing if the node is not going to be published now or later.
-      if (!$is_published && !$is_publish_on) {
-        return;
-      }
-
-      // If the node is going to be published later, use its publish_on date.
-      // Otherwise, keep the current date.
-      if (!$is_published && $is_publish_on) {
-        $datetime = new DateTime("{$input['publish_on'][0]['value']['date']} 01:00:00");
-      }
-
-      // Clear the publish_on date values if the user decided to publish
-      // the node immediately.
-      if ($is_published && $is_publish_on) {
-        $user_input = $form_state->getUserInput();
-        $user_input['publish_on'] = [0 => ['value' => []]];
-        $form_state->setUserInput($user_input);
-        $form_state->setValue(['publish_on', 0, 'value'], '');
-      }
-      break;
-
-    // Handle the updating news widget logic.
-    case 'updating_news_widget':
-      $widget = &$input['field_news_item_updating_news'];
-      $deltas = Element::children($widget);
-      $numeric_deltas = array_filter($deltas, 'is_numeric');
-
-      // Get the latest delta and use its date and time values
-      // to create a DateTime object.
-      if (!empty($numeric_deltas)) {
-        $last_delta = max($numeric_deltas);
-        if (isset($widget[$last_delta]['subform']['field_news_update_date'][0]['value'])) {
-          $date_widget = $widget[$last_delta]['subform']['field_news_update_date'][0]['value'];
-          $datetime = new DateTime("{$date_widget['date']} 01:00:00");
-        }
-      }
-      break;
-
-    default:
-      return;
-  }
-
-  // Add 11 months to the datetime.
-  $datetime->add(new DateInterval('P11M'));
-
-  // Add the hint about the unpublish date to the form.
-  $form['scheduler_unpublish_hint'] = [
-    '#theme' => 'news_item_unpublish_hint',
-    '#message' => t('The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field.'),
-  ];
-
-  // Create DrupalDateTime object with proper timezone.
-  $unpublish_datetime = DrupalDateTime::createFromDateTime($datetime);
-
-  // Format the date for the form element.
-  $formatted_date = $unpublish_datetime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
-
-  // Set the value in form state.
-  $form_state->setValue(['unpublish_on', 0, 'value'], $formatted_date);
-
-  // Also set it in the form for display.
-  if (isset($form['unpublish_on']['widget'][0]['value'])) {
-    // Set the value directly in the form element.
-    $form['unpublish_on']['widget'][0]['value']['#default_value'] = [
-      'date' => $unpublish_datetime->format('Y-m-d'),
-      'time' => '01:00:00',
-    ];
-
-    // Also set the value in the form state's user input.
-    $user_input = $form_state->getUserInput();
-    if (!isset($user_input['unpublish_on'])) {
-      $user_input['unpublish_on'] = [0 => ['value' => []]];
-    }
-    $user_input['unpublish_on'][0]['value']['date'] = $unpublish_datetime->format('Y-m-d');
-    $user_input['unpublish_on'][0]['value']['time'] = '01:00:00';
-    $form_state->setUserInput($user_input);
-
-    // Force the form to process the input values.
-    $form_state->setValue('unpublish_on', [['value' => $formatted_date]]);
-  }
-}
-
-/**
  * Alter the node form to react on publish status and publish on date changes.
  *
  * This is used to automatically calculate the unpublish date based on
  * the published date. If content producer checks the published status, the
  * unpublish date is set to 11 months from the published date. The same will
  * be done if the "published on" date is set.
+ * These date manipulations are handled
+ * in helfi_etusivu/news-item-unpublish-handler JavaScript library.
  *
  * @param array $form
  *   Form.
@@ -342,64 +125,35 @@ function _helfi_etusivu_form_unpublish_date_alter(array &$form, FormStateInterfa
     return;
   }
 
-  // Add a container for displaying the hint of the unpublished date being set.
+  // Add the news item unpublish date handler library and class.
+  $form['#attached']['library'][] = 'helfi_etusivu/news-item-unpublish-handler';
+  $form['#attributes']['class'][] = 'news-item-form';
+
+  // Add the unpublish hint render array.
   $form['scheduler_unpublish_hint'] = [
-    '#type' => 'container',
-    '#attributes' => ['id' => 'scheduler-unpublish-hint'],
+    '#theme' => 'news_item_unpublish_hint',
+    '#message' => t('The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field.'),
+    '#weight' => -100,
   ];
 
-  // Define which widgets should affect the unpublish date.
-  $widgets = [];
-
-  // Status widget.
-  if (isset($form['status']['widget']['value'])) {
-    $widgets['status_widget'] = &$form['status']['widget']['value'];
-  }
-
-  // Published on widget.
-  if (isset($form['publish_on']['widget'][0]['value'])) {
-    $widgets['publish_on_widget'] = &$form['publish_on']['widget'][0]['value'];
-  }
-
-  // Updating news updated date widget.
+  // Add the updating news widget wrapper.
   if (isset($form['field_news_item_updating_news']['widget'])) {
     $widget = &$form['field_news_item_updating_news']['widget'];
     $deltas = Element::children($widget);
     $numeric_deltas = array_filter($deltas, 'is_numeric');
 
     // To calculate the unpublished date from "updating news item"'s updated
-    // date means that it is needed to add the AJAX callback only to the latest
-    // updating_news field's field_news_update_date widget.
+    // date means that it is needed to calculate which delta is the latest
+    // and add a wrapper to it.
     if (!empty($numeric_deltas)) {
       $last_delta = max($numeric_deltas);
 
       if (isset($widget[$last_delta]['subform']['field_news_update_date']['widget'][0]['value'])) {
-        $widgets['updating_news_widget'] = &$widget[$last_delta]['subform']['field_news_update_date']['widget'][0]['value'];
+        $widget = &$widget[$last_delta]['subform']['field_news_update_date']['widget'][0]['value'];
+        $widget['#prefix'] = '<div id="news-item-updating-news-widget">';
+        $widget['#suffix'] = '</div>';
       }
     }
-  }
-
-  // Apply AJAX callbacks to the widgets.
-  foreach ($widgets as $widget_name => &$widget) {
-    $widget['#ajax'] = [
-      'callback' => '_helfi_etusivu_set_unpublished_date_ajax',
-      'event' => $widget_name === 'status_widget' ? 'change' : 'blur',
-      'wrapper' => 'scheduler-unpublish-hint',
-      'progress' => ['type' => 'none'],
-      'disable-refocus' => TRUE,
-      'options' => [
-        'query' => [
-          'widget' => $widget_name,
-        ],
-      ],
-    ];
-  }
-
-  // Add a wrapper for the "unpublish on" date widget,
-  // so that it can be updated via AJAX.
-  if (isset($form['unpublish_on']['widget'][0]['value'])) {
-    $form['unpublish_on']['widget'][0]['value']['#prefix'] = '<div id="scheduler-unpublish-on-widget">';
-    $form['unpublish_on']['widget'][0]['value']['#suffix'] = '</div>';
   }
 }
 
