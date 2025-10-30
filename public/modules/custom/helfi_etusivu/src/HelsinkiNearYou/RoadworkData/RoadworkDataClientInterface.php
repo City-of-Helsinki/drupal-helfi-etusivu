@@ -38,7 +38,7 @@ interface RoadworkDataClientInterface {
    *     - www: (string) URL for more information
    *   - geometry: (array) Geographic data
    *
-   * @throws \GuzzleHttp\Exception\GuzzleException
+   * @throws \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkException
    *    Thrown when there is an error communicating with the API.
    */
   public function getProjectsByCoordinates(float $x, float $y, int $distance = 1000): array;

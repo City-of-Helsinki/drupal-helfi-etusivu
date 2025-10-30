@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Unit\RoadworkData;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
-use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClient;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkException;
 use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -81,10 +83,7 @@ class RoadworkDataClientTest extends UnitTestCase {
     $this->httpClient = $this->createMock(ClientInterface::class);
 
     // Create the RoadworkDataClient instance.
-    $this->roadworkDataClient = new RoadworkDataClient(
-      $this->httpClient,
-      $this->prophesize(LoggerChannelInterface::class)->reveal(),
-    );
+    $this->roadworkDataClient = new RoadworkDataClient($this->httpClient);
 
     // Set up container.
     $this->container = new ContainerBuilder();
@@ -138,10 +137,14 @@ class RoadworkDataClientTest extends UnitTestCase {
   public function testGetProjectsByCoordinatesApiError() {
     $this->httpClient->expects($this->once())
       ->method('request')
-      ->willThrowException(new \Exception('API Error'));
+      ->willThrowException(new BadResponseException(
+        'API Error',
+        new Request('GET', 'https://example.com'),
+        new Response(500, [], 'Internal Server Error'),
+      ));
 
-    $result = $this->roadworkDataClient->getProjectsByCoordinates(60.192059, 24.945831);
-    $this->assertEmpty($result['features']);
+    $this->expectException(RoadworkException::class);
+    $this->roadworkDataClient->getProjectsByCoordinates(60.192059, 24.945831);
   }
 
   /**
@@ -154,8 +157,8 @@ class RoadworkDataClientTest extends UnitTestCase {
       ->method('request')
       ->willReturn(new Response(200, [], '{"invalid": "response"}'));
 
-    $result = $this->roadworkDataClient->getProjectsByCoordinates(60.192059, 24.945831);
-    $this->assertEmpty($result['features']);
+    $this->expectException(RoadworkException::class);
+    $this->roadworkDataClient->getProjectsByCoordinates(60.192059, 24.945831);
   }
 
 }

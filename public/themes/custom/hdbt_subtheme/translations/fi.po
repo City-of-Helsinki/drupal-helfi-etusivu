@@ -106,3 +106,7 @@ msgstr "Arvioitu aikataulu"
 msgctxt "Label for roadwork distance"
 msgid "Distance"
 msgstr "Etäisyys"
+
+msgctxt "Helsinki near you"
+msgid "Something went wrong while getting the results. You may try searching again."
+msgstr "Tuloksien hakemisessa tapahtui virhe. Voit kokeilla hakea uudelleen."

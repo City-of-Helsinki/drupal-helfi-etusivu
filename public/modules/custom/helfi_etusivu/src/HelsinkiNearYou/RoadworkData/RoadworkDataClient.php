@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData;
 
-use Drupal\Core\Logger\LoggerChannelInterface;
-use Drupal\Core\Utility\Error;
 use GuzzleHttp\ClientInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Fetches and processes roadwork data from the Helsinki Open Data API.
@@ -24,8 +22,6 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
 
   public function __construct(
     protected ClientInterface $httpClient,
-    #[Autowire(service: 'logger.channel.helfi_etusivu')]
-    protected LoggerChannelInterface $logger,
   ) {
   }
 
@@ -70,9 +66,8 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
         elseif (isset($data['message'])) {
           $errorMsg .= ': ' . $data['message'];
         }
-        $this->logger->error($errorMsg);
 
-        return ['features' => [], 'totalFeatures' => 0];
+        throw new RoadworkException($errorMsg);
       }
 
       return [
@@ -80,11 +75,9 @@ class RoadworkDataClient implements RoadworkDataClientInterface {
         'features' => $data['features'],
       ];
     }
-    catch (\Exception $e) {
-      Error::logException($this->logger, $e);
+    catch (GuzzleException $e) {
+      throw new RoadworkException($e->getMessage(), previous: $e);
     }
-
-    return ['features' => [], 'totalFeatures' => 0];
   }
 
 }
