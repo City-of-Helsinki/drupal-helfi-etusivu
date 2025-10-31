@@ -197,27 +197,24 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
    * Tests that the unpublish date widget only moves forward and shows the hint.
    */
   protected function testUpdatingWidgetOnlyMovesForwardAndShowsHint(): void {
-    $edit_url = $this->drupalCreateNode([
-      'type' => 'news_item',
-      'title' => 'Update the widget',
-      'status' => 0,
-    ])->toUrl('edit-form');
-    $this->drupalGet($edit_url);
-
+    $this->drupalGet('node/add/news_item');
     $page = $this->getSession()->getPage();
+    $yesterday = new \DateTimeImmutable('yesterday', new \DateTimeZone('UTC'));
+    $yesterdayExpected = $this->addMonths($yesterday, 11)->format('Y-m-d');
+
+    // Open the scheduling options.
     $this->openSchedulingOptions();
 
-    // Add a publish_on from the past.
-    $yesterday = new \DateTimeImmutable('yesterday', new \DateTimeZone('UTC'));
+    // Fill in the published on date.
     $page->fillField('publish_on[0][value][date]', $yesterday->format('m/d/Y'));
     $page->fillField('publish_on[0][value][time]', $yesterday->format('H:i:s'));
-    $yesterdayExpected = $this->addMonths($yesterday, 11)->format('Y-m-d');
+
+    // Check that the unpublish date is tomorrow + 11 months.
     $this->waitForInputValue('input[name="unpublish_on[0][value][date]"]', $yesterdayExpected);
+    $this->waitForInputValue('input[name="unpublish_on[0][value][time]"]', '01:00:00');
 
     // Ensure the widget exists in DOM and behaviors are attached.
     $this->ensureUpdatingWidgetExists();
-
-    $this->createScreenshot('testUpdatingWidgetOnlyMovesForwardAndShowsHint');
 
     // @todo Remove.
     $debug = $page->find('css', '[name="field_lead_in[0][value]"]');
