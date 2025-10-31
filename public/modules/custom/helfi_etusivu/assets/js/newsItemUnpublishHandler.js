@@ -104,18 +104,21 @@
       // Handle publish_on date/time changes.
       if (publishDateInput && publishTimeInput) {
         const handlePublishDateChange = () => {
-          if (statusCheckbox?.checked) {
-            return; // Skip if already published
+          // Skip if already published or if inputs are missing values.
+          if (
+            statusCheckbox?.checked ||
+            !publishDateInput?.value ||
+            !publishTimeInput?.value
+          ) {
+            return;
           }
 
-          const date = publishDateInput.value;
-          const time = publishTimeInput.value;
+          const date = publishDateInput.value.trim();
 
-          if (date && time) {
+          if (date) {
             // Parse date in UTC.
             const [year, month, day] = date.split('-').map(Number);
-            const [hours, minutes, seconds = 0] = time.split(':').map(Number);
-            const utcDate = new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds));
+            const utcDate = new Date(Date.UTC(year, month - 1, day, 1, 0, 0));
 
             // Set the unpublish date. The second argument is set to "false"
             // to indicate that this is not an initial load.
