@@ -27,7 +27,7 @@
   Drupal.behaviors.newsItemUnpublishHandler = {
     attach(context) {
       const form = context.querySelector('form') || document;
-      const updateWidget = form.querySelector('#news-item-updating-news-widget');
+      const updateWidgets = Array.from(form.querySelectorAll('.paragraph-type--news-update'));
       const publishDateInput = form.querySelector('[name="publish_on[0][value][date]"]');
       const publishTimeInput = form.querySelector('[name="publish_on[0][value][time]"]');
       const statusCheckbox = form.querySelector('input[name="status[value]"]');
@@ -146,8 +146,11 @@
 
       // Handle updating news date changes. Only update unpublish date
       // when user manually changes the date.
-      if (updateWidget) {
-        const dateInput = updateWidget.querySelector('input[type="date"], input.js-date');
+      if (updateWidgets.length > 0) {
+        // Get the last update widget.
+        const lastUpdateWidget = updateWidgets[updateWidgets.length - 1];
+        const dateInput = lastUpdateWidget.querySelector('input[type="date"], input.js-date');
+
         if (dateInput) {
           // Handle date changes.
           const handleDateChange = (e) => {
