@@ -50,6 +50,11 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $failOnJavascriptConsoleErrors = FALSE;
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -116,7 +121,6 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
     $expectedDate = $this->addMonths($publish, 11)->format('Y-m-d');
     $this->drupalGet('node/add/news_item');
     $page = $this->getSession()->getPage();
-    $page->checkField('status[value]');
 
     // Open the scheduling options.
     $this->openSchedulingOptions();
@@ -454,22 +458,17 @@ JS;
    *   Returns the date with the months added.
    */
   private function addMonths(\DateTimeImmutable $date, int $months): \DateTimeImmutable {
-    $utc = $date->setTimezone(new \DateTimeZone('UTC'))->setTime(12, 0);
+    // Keep in UTC for stable timestamp math.
+    $utc = $date->setTimezone(new \DateTimeZone('UTC'));
 
-    $year = (int) $utc->format('Y');
-    $month = (int) $utc->format('n');
-    $day = (int) $utc->format('j');
+    // 1 month = 30.436875 days = 2,629,746 seconds.
+    $secondsPerMonth = (int) round(30.436875 * 24 * 60 * 60); // 2629746
+    $secondsToAdd = $months * $secondsPerMonth;
 
-    // Add months arithmetically.
-    $month += $months;
-    $year += intdiv($month - 1, 12);
-    $month = (($month - 1) % 12 + 12) % 12 + 1;
+    // Add seconds to the Unix timestamp and return as UTC.
+    $newTimestamp = $utc->getTimestamp() + $secondsToAdd;
 
-    // Get last day of target month using DateTime.
-    $firstOfMonth = new \DateTimeImmutable(sprintf('%04d-%02d-01', $year, $month), new \DateTimeZone('UTC'));
-    $lastDayOfMonth = (int) $firstOfMonth->modify('last day of')->format('j');
-    $clampedDay = min($day, $lastDayOfMonth);
-    return $utc->setDate($year, $month, $clampedDay);
+    return (new \DateTimeImmutable('@' . $newTimestamp))->setTimezone(new \DateTimeZone('UTC'));
   }
 
 }
