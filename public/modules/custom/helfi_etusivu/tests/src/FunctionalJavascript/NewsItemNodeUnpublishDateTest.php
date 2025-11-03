@@ -459,7 +459,7 @@ JS;
    */
   private function addMonths(\DateTimeImmutable $date, int $months): \DateTimeImmutable {
     // Keep in UTC for stable timestamp math.
-    $utc = $date->setTimezone(new \DateTimeZo§ne('UTC'));
+    $utc = $date->setTimezone(new \DateTimeZone('UTC'));
 
     // 1 month = 30.436875 days = 2,629,746 seconds.
     $secondsPerMonth = (int) round(30.436875 * 24 * 60 * 60); // 2629746
