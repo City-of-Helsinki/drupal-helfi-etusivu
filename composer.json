@@ -71,6 +71,9 @@
         "patches": {
             "drupal/draggableviews": {
                 "Save langcode as part of draggableviews data in order to sort by by weight and language": "patches/draggableviews_language.patch"
+            },
+            "drupal/scheduler": {
+                "[#UHF-12387] https://www.drupal.org/i/3458578: Fixes Uncaught TypeError: Cannot read property 'value' of null": "https://www.drupal.org/files/issues/2024-07-02/scheduler-uncaught_type_error_reading_null_on_value-3458578-2.patch"
             }
         },
         "composer-exit-on-patch-failure": true,
