@@ -127,7 +127,6 @@ function _helfi_etusivu_form_unpublish_date_alter(array &$form, FormStateInterfa
 
   // Add the news item unpublish date handler library and class.
   $form['#attached']['library'][] = 'helfi_etusivu/news-item-unpublish-handler';
-  $form['#attributes']['class'][] = 'news-item-form';
 
   // Add the unpublish hint render array.
   $form['scheduler_unpublish_hint'] = [
@@ -135,26 +134,6 @@ function _helfi_etusivu_form_unpublish_date_alter(array &$form, FormStateInterfa
     '#message' => t('The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field.'),
     '#weight' => -100,
   ];
-
-  // Add the updating news widget wrapper.
-  if (isset($form['field_news_item_updating_news']['widget'])) {
-    $widget = &$form['field_news_item_updating_news']['widget'];
-    $deltas = Element::children($widget);
-    $numeric_deltas = array_filter($deltas, 'is_numeric');
-
-    // To calculate the unpublished date from "updating news item"'s updated
-    // date means that it is needed to calculate which delta is the latest
-    // and add a wrapper to it.
-    if (!empty($numeric_deltas)) {
-      $last_delta = max($numeric_deltas);
-
-      if (isset($widget[$last_delta]['subform']['field_news_update_date']['widget'][0]['value'])) {
-        $widget = &$widget[$last_delta]['subform']['field_news_update_date']['widget'][0]['value'];
-        $widget['#prefix'] = '<div id="news-item-updating-news-widget">';
-        $widget['#suffix'] = '</div>';
-      }
-    }
-  }
 }
 
 /**
