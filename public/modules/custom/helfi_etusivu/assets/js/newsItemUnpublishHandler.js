@@ -27,7 +27,7 @@
   Drupal.behaviors.newsItemUnpublishHandler = {
     attach(context) {
       const form = context.querySelector('form') || document;
-      const updateWidget = form.querySelector('#news-item-updating-news-widget');
+      const updateWidgets = Array.from(form.querySelectorAll('.paragraph-type--news-update'));
       const publishDateInput = form.querySelector('[name="publish_on[0][value][date]"]');
       const publishTimeInput = form.querySelector('[name="publish_on[0][value][time]"]');
       const statusCheckbox = form.querySelector('input[name="status[value]"]');
@@ -50,35 +50,20 @@
         }
       };
 
-      // Add months to a date. Clamping the day to the last valid day
-      // of the target month.
+      // Add months to a date.
       const addMonthsUtc = (inputDate, monthsToAdd) => {
-        // Anchor the time at noon UTC to avoid DST surprises.
-        const base = new Date(
-          Date.UTC(inputDate.getUTCFullYear(), inputDate.getUTCMonth(), inputDate.getUTCDate(), 12, 0, 0),
-        );
-        // JavaScript will automatically clamp the day to the last valid day
-        // of the target month.
-        base.setUTCMonth(base.getUTCMonth() + monthsToAdd);
-        return base;
+        // Use timestamp math in UTC to avoid DST issues.
+        const secondsInMonth = 30.436875 * 24 * 60 * 60;
+        const secondsToAdd = monthsToAdd * secondsInMonth;
+        const timestamp = inputDate.getTime();
+        const newTimestamp = timestamp + secondsToAdd * 1000;
+        return new Date(newTimestamp);
       };
 
       // Set the unpublish date to the given date plus 11 months.
       const setUnpublishDate = (date, isInitialLoad = false) => {
         if (!(date instanceof Date)) return;
-        const unpublishDate = addMonthsUtc(
-          new Date(
-            Date.UTC(
-              date.getUTCFullYear(),
-              date.getUTCMonth(),
-              date.getUTCDate(),
-              date.getUTCHours(),
-              date.getUTCMinutes(),
-              date.getUTCSeconds(),
-            ),
-          ),
-          11,
-        );
+        const unpublishDate = addMonthsUtc(date, 11);
 
         // Format the date as YYYY-MM-DD.
         const year = unpublishDate.getUTCFullYear();
@@ -94,7 +79,7 @@
             unpublishDateInput.dispatchEvent(ev);
           }
           if (unpublishTimeInput) {
-            unpublishTimeInput.value = '01:00:00';
+            unpublishTimeInput.value = '06:00:00';
             unpublishTimeInput.dispatchEvent(new Event('change', { bubbles: true }));
           }
           if (!isInitialLoad) toggleUnpublishHint(true);
@@ -118,7 +103,7 @@
           if (date) {
             // Parse date in UTC.
             const [year, month, day] = date.split('-').map(Number);
-            const utcDate = new Date(Date.UTC(year, month - 1, day, 1, 0, 0));
+            const utcDate = new Date(Date.UTC(year, month - 1, day, 6, 0, 0));
 
             // Set the unpublish date. The second argument is set to "false"
             // to indicate that this is not an initial load.
@@ -161,8 +146,11 @@
 
       // Handle updating news date changes. Only update unpublish date
       // when user manually changes the date.
-      if (updateWidget) {
-        const dateInput = updateWidget.querySelector('input[type="date"], input.js-date');
+      if (updateWidgets.length > 0) {
+        // Get the last update widget.
+        const lastUpdateWidget = updateWidgets[updateWidgets.length - 1];
+        const dateInput = lastUpdateWidget.querySelector('input[type="date"], input.js-date');
+
         if (dateInput) {
           // Handle date changes.
           const handleDateChange = (e) => {
@@ -199,7 +187,7 @@
               toggleUnpublishHint(true);
             }
             if (unpublishTimeInput) {
-              unpublishTimeInput.value = '01:00:00';
+              unpublishTimeInput.value = '06:00:00';
               unpublishTimeInput.dispatchEvent(new Event('change', { bubbles: true }));
             }
           });

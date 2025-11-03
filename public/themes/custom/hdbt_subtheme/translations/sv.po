@@ -106,3 +106,7 @@ msgstr "Tidsplan"
 msgctxt "Label for roadwork distance"
 msgid "Distance"
 msgstr "Avstånd"
+
+msgctxt "Helsinki near you"
+msgid "Something went wrong while getting the results. You may try searching again."
+msgstr "Något gick fel när resultaten skulle hämtas. Du kan försöka söka igen."
