@@ -43,7 +43,7 @@ interface RoadworkDataServiceInterface {
    *   - schedule: (string) Formatted date range
    *   - url: (string) URL for more information
    *
-   * @throws \GuzzleHttp\Exception\GuzzleException
+   * @throws \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkException
    *    Thrown when there is an error communicating with the API.
    */
   public function getFormattedProjectsByCoordinates(float $lat, float $lon, int $distance = 2000, ?int $limit = NULL, int $page = 0): Collection;
