@@ -130,7 +130,7 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
 
     // Check that the unpublish date is tomorrow + 11 months.
     $this->waitForInputValue('input[name="unpublish_on[0][value][date]"]', $expectedDate);
-    $this->waitForInputValue('input[name="unpublish_on[0][value][time]"]', '01:00:00');
+    $this->waitForInputValue('input[name="unpublish_on[0][value][time]"]', '06:00:00');
 
     // The hint should be shown to the user.
     $this->assertCssLacksClass('.news-item-unpublish-hint', 'is-hidden');
@@ -160,7 +160,7 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
 
     // Check that the unpublish date is next monday + 11 months.
     $this->waitForInputValue('input[name="unpublish_on[0][value][date]"]', $expectedDate);
-    $this->waitForInputValue('input[name="unpublish_on[0][value][time]"]', '01:00:00');
+    $this->waitForInputValue('input[name="unpublish_on[0][value][time]"]', '06:00:00');
 
     // Click the Published checkbox.
     $page->checkField('status[value]');
@@ -216,7 +216,7 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
 
     // Check that the unpublish date is tomorrow + 11 months.
     $this->waitForInputValue('input[name="unpublish_on[0][value][date]"]', $yesterdayExpected);
-    $this->waitForInputValue('input[name="unpublish_on[0][value][time]"]', '01:00:00');
+    $this->waitForInputValue('input[name="unpublish_on[0][value][time]"]', '06:00:00');
 
     // Ensure the widget exists in DOM and behaviors are attached.
     $this->ensureUpdatingWidgetExists();
@@ -237,7 +237,7 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
     $this->setUpdatingWidgetDate($later->format('Y-m-d'));
     $laterExpected = $this->addMonths($later, 11)->format('Y-m-d');
     $this->waitForInputValue('input[name="unpublish_on[0][value][date]"]', $laterExpected);
-    $this->assertInputValue('input[name="unpublish_on[0][value][time]"]', '01:00:00');
+    $this->assertInputValue('input[name="unpublish_on[0][value][time]"]', '06:00:00');
 
     // When the unpublish date is set via widget, the hint should be shown.
     $this->assertCssLacksClass('.news-item-unpublish-hint', 'is-hidden');
@@ -266,7 +266,7 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
     $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
     $expected = $this->addMonths($now, 11)->format('Y-m-d');
     $this->waitForInputValue('input[name="unpublish_on[0][value][date]"]', $expected);
-    $this->assertInputValue('input[name="unpublish_on[0][value][time]"]', '01:00:00');
+    $this->assertInputValue('input[name="unpublish_on[0][value][time]"]', '06:00:00');
 
     // The hint should be visible after programmatic update.
     $this->assertCssLacksClass('.news-item-unpublish-hint', 'is-hidden');
@@ -459,7 +459,7 @@ JS;
    */
   private function addMonths(\DateTimeImmutable $date, int $months): \DateTimeImmutable {
     // Keep in UTC for stable timestamp math.
-    $utc = $date->setTimezone(new \DateTimeZone('UTC'));
+    $utc = $date->setTimezone(new \DateTimeZo§ne('UTC'));
 
     // 1 month = 30.436875 days = 2,629,746 seconds.
     $secondsPerMonth = (int) round(30.436875 * 24 * 60 * 60); // 2629746
