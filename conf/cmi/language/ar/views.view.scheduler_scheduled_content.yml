@@ -1,5 +1,6 @@
 display:
   default:
+    display_title: الرئيسي
     display_options:
       exposed_form:
         options:
@@ -59,7 +60,6 @@ display:
         langcode:
           expose:
             label: اللغة
-    display_title: الرئيسي
   overview:
     display_options:
       tab_options:
