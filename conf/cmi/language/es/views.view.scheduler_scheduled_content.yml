@@ -2,6 +2,7 @@ label: 'Contenido planificado'
 description: 'Encontrar y gestionar contenido planificado.'
 display:
   default:
+    display_title: Máster
     display_options:
       exposed_form:
         options:
@@ -67,15 +68,14 @@ display:
       empty:
         area_text_custom:
           content: 'No hay contenido planificado.'
-    display_title: Máster
   overview:
+    display_title: 'Resumen del contenido'
     display_options:
       menu:
         title: Planificado
       tab_options:
         title: Contenido
         description: 'Encontrar y gestionar contenido planificado'
-    display_title: 'Resumen del contenido'
   user_page:
     display_options:
       menu:

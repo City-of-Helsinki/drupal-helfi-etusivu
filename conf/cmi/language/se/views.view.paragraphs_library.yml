@@ -1,5 +1,6 @@
 display:
   default:
+    display_title: Default
     display_options:
       exposed_form:
         options:
@@ -18,6 +19,5 @@ display:
           tags:
             previous: ‹‹
             next: ››
-    display_title: Default
   page_1:
     display_title: Siidu
