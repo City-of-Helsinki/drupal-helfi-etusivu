@@ -2,12 +2,19 @@
   Drupal.behaviors.updatingNewsTableOfContents = {
     attach: function attach(context) {
       // Prevent running multiple times on the main document.
-      if (context !== document || window.updatingNewsTableOfContentsInitialized) {
+      if (
+        context !== document ||
+        window.updatingNewsTableOfContentsInitialized
+      ) {
         return;
       }
 
-      const tableOfContentsNewsUpdates = context.getElementById('helfi-toc-table-of-contents-news-updates');
-      const tableOfContentsList = context.querySelector('#helfi-toc-table-of-contents-list > ul');
+      const tableOfContentsNewsUpdates = context.getElementById(
+        'helfi-toc-table-of-contents-news-updates',
+      );
+      const tableOfContentsList = context.querySelector(
+        '#helfi-toc-table-of-contents-list > ul',
+      );
 
       // Bail if table of contents is not enabled or list is not found.
       if (!tableOfContentsNewsUpdates || !tableOfContentsList) {
@@ -15,7 +22,10 @@
       }
 
       // Bail if heading injector is missing.
-      if (!Drupal.HeadingIdInjector || !Drupal.HeadingIdInjector.injectedHeadings) {
+      if (
+        !Drupal.HeadingIdInjector ||
+        !Drupal.HeadingIdInjector.injectedHeadings
+      ) {
         return;
       }
 
@@ -24,21 +34,28 @@
       tableOfContentsList.innerHTML = '';
 
       // Get all news update headings that have a TIME element as next sibling
-      const newsHeadings = Array.from(Drupal.HeadingIdInjector.injectedHeadings)
-        .filter(({ content }) =>
+      const newsHeadings = Array.from(
+        Drupal.HeadingIdInjector.injectedHeadings,
+      ).filter(
+        ({ content }) =>
           content.matches('.component--news-update .component__title') &&
-          content.nextElementSibling?.tagName === 'TIME');
+          content.nextElementSibling?.tagName === 'TIME',
+      );
 
       // Process each news heading with date
       newsHeadings.forEach(({ content, anchorName }) => {
-
         // On updating news there is published date under the title,
         // which we want to display in the news item table of contents.
         let contentPublishDate = '';
 
         // Get the published date from the next sibling element.
-        if (content.nextElementSibling && content.nextElementSibling.tagName === 'TIME') {
-          const contentPublishDateStamp = new Date(content.nextElementSibling.dateTime);
+        if (
+          content.nextElementSibling &&
+          content.nextElementSibling.tagName === 'TIME'
+        ) {
+          const contentPublishDateStamp = new Date(
+            content.nextElementSibling.dateTime,
+          );
           contentPublishDate = `${contentPublishDateStamp.getDate()}.${contentPublishDateStamp.getMonth() + 1}.${contentPublishDateStamp.getFullYear()}`;
         }
 
@@ -78,6 +95,6 @@
 
       // Mark as initialized.
       window.updatingNewsTableOfContentsInitialized = true;
-    }
+    },
   };
 })(Drupal);
