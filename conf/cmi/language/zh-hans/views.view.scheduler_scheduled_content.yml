@@ -1,5 +1,6 @@
 display:
   default:
+    display_title: 主
     display_options:
       exposed_form:
         options:
@@ -61,7 +62,6 @@ display:
         langcode:
           expose:
             label: 语言
-    display_title: 主
   overview:
     display_options:
       menu:

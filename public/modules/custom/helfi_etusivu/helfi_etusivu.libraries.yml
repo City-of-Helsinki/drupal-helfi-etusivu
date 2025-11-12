@@ -3,8 +3,10 @@ views-styles:
     theme:
       assets/css/views.css: {}
 
-news-item-unpublish:
+news-item-unpublish-handler:
   version: 1.0.0
-  css:
-    theme:
-      assets/css/news-item-unpublish.css: {}
+  js:
+    assets/js/newsItemUnpublishHandler.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
