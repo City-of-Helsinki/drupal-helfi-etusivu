@@ -69,17 +69,9 @@ msgctxt "Front page news of interest title"
 msgid "You might be interested in"
 msgstr "Teile võib huvi pakkuda"
 
-msgctxt "Image caption and photographer"
-msgid "@caption Photo: @photographer"
-msgstr "@caption Foto: @photographer"
-
 msgctxt "Image photographer"
-msgid "Photo: @photographer"
-msgstr "Foto: @photographer"
-
-msgctxt "Helfi Paragraphs Hero"
-msgid "Image: @image_author"
-msgstr "Foto: @image_author"
+msgid "Photo"
+msgstr "Foto"
 
 msgctxt "The helper text before the node changed timestamp"
 msgid "Updated over a year ago"
