@@ -1,7 +1,7 @@
 .block--main-news {
-  @include component-side-padding();
-  @include components-container-max-width();
-  @include component-margin-top();
+  @include component-side-padding;
+  @include components-container-max-width;
+  @include component-margin-top;
   margin: auto;
   width: 100%;
 
@@ -12,7 +12,7 @@
 }
 
 .component--news-of-interest {
-  @include component-margin-top();
+  @include component-margin-top;
   background-color:  $color-black-5;
   margin-left: $spacing;
   margin-right: $spacing;
