@@ -1,6 +1,7 @@
 // This implementation is very close to phasing component but not totally the same.
 .table-of-contents--news-update {
   @include component-side-padding;
+
   --item-title-lineheight: #{1.5 * get-font-size('h4')};
 
   .table-of-contents__container {
