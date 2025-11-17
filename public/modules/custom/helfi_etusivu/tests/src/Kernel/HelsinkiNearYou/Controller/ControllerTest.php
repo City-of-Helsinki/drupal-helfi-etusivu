@@ -112,7 +112,7 @@ class ControllerTest extends KernelTestBase {
     );
     $this->assertEquals($image_path . 'walking_by_houses-513x513.png', $build['#illustration_url_1x']);
     $this->assertEquals($image_path . 'walking_by_houses-1026x1026.png', $build['#illustration_url_2x']);
-    $this->assertEquals('Picture: Lille Santanen', (string) $build['#illustration_caption']);
+    $this->assertEquals('Lille Santanen', (string) $build['#illustration_caption']);
   }
 
 }
