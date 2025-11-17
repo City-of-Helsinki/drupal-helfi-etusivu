@@ -53,10 +53,6 @@ msgid "Enter your street address in the search field above to find services, eve
 msgstr "Skriv din adress i sökningen ovan och hitta tjänster, evenemang och nyheter nära dig."
 
 msgctxt "Helsinki near you"
-msgid "Picture: Lille Santanen"
-msgstr "Bild: Lille Santanen"
-
-msgctxt "Helsinki near you"
 msgid "Edit address"
 msgstr "Redigera adressen"
 
