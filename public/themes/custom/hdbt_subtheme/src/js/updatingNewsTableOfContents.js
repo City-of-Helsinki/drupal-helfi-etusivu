@@ -7,6 +7,8 @@
  *
  * This functionality uses the table of contents list created by
  * the core tableOfContents.js (helfi_toc).
+ *
+ * @todo Move this to helfi_etusivu module and create a test for it.
  */
 
 /**
