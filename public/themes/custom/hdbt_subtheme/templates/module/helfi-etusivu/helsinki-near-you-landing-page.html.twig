@@ -25,7 +25,11 @@
                 <img src="{{ illustration_url_1x }}" height="513" width="513" data-photographer="{{ illustration_caption }}" alt class="graphics__illustration">
               </picture>
             {% endif %}
-            <figcaption>{{ illustration_caption }}</figcaption>
+            {% embed '@hdbt/misc/caption.twig' with {
+              caption_identifier_class: 'graphics__illustration__caption',
+              credit: illustration_caption,
+            } %}
+            {% endembed %}
           </figure>
         </div>
       {% endblock component_content %}
