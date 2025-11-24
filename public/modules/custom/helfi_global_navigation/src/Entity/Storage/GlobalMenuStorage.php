@@ -55,7 +55,7 @@ final class GlobalMenuStorage extends SqlContentEntityStorage {
   }
 
   /**
-   * Sort and load all global menu entities..
+   * Sort and load all global menu entities.
    *
    * @return \Drupal\helfi_global_navigation\Entity\GlobalMenu[]
    *   An array of global menu entities.

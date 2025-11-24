@@ -181,7 +181,7 @@ class ResultsControllerTest extends KernelTestBase {
         $this->assertInstanceOf(TranslatableMarkup::class, $link['link_label']);
         $this->assertIsString($link['link_url']);
       }
-    };
+    }
   }
 
 }
