@@ -1,3 +1,5 @@
+{{ attach_library('helfi_toc/table_of_contents') }}
+
 <article>
   <div class="components components--computed components--helsinki-near-you-results">
     {% embed "@hdbt/misc/component.twig" with
@@ -16,57 +18,19 @@
         } %}
       {% endblock component_content %}
     {% endembed %}
-    {% embed "@hdbt/misc/component.twig" with
-      {
-        component_classes: [ 'component--popular-services' ],
-        component_title: 'Services'|t({}, {'context': 'Services near you block'}),
-        component_description: 'Go from the links to the search results for your address.'|t({}, {'context': 'Services near you block'}),
-        component_content_class: 'popular-services',
-      }
-    %}
-      {% block component_content %}
-        {% for service_group in service_groups %}
-          {% embed "@hdbt/misc/popular-service-item.twig" with { title: service_group.title } %}
-            {% block links %}
-              {% embed "@hdbt/misc/popular-service-links.twig" with { items: service_group.service_links } %}
-                {% block link %}
-                  {% set link_attributes = {
-                    'class': [
-                      'link__style--highlight',
-                    ],
-                  } %}
-                  {{ link(item.link_label, item.link_url, link_attributes) }}
-                {% endblock %}
-              {% endembed %}
-            {% endblock links %}
-          {% endembed %}
-        {% endfor %}
-      {% endblock component_content %}
-    {% endembed %}
-    {% embed "@hdbt/misc/component.twig" with
-      {
-        component_classes: [
-        'component--react-search',
-        'component--event-list',
-        'component--coordinates-based-list',
-        ],
-        component_title: 'Events'|trans({}, {'context': 'Helsinki near you'}),
-        component_description: 'Browse events near you by date.'|trans({}, {'context': 'Helsinki near you'}),
-        component_content_class: 'event-list',
-      }
-    %}
-      {% block component_content %}
-        {{ events_section }}
 
-        <div class="see-all-button see-all-button--near-results">
-          {% include '@hdbt/navigation/link-button.html.twig' with {
-            type: 'primary',
-            label: 'See all events near you'|t({}, {'context': 'Helsinki near you events search'}),
-            url: events_archive_url,
-          } %}
-        </div>
-      {% endblock component_content %}
-    {% endembed %}
+    <div id="helfi-toc-table-of-contents" class="table-of-contents__container">
+      {% if toc_title|render %}
+        <h2 class="table-of-contents__title">{{ toc_title }}</h2>
+      {% endif %}
+      <nav id="helfi-toc-table-of-contents-list" class="table-of-contents">
+        <ul class="table-of-contents__list">
+          <li class="js-remove table-of-contents__item">{{ 'Loading table of contents'|t }}</li>
+        </ul>
+      </nav>
+    </div>
+
+    {# News Section #}
     {% if nearby_neighbourhoods is not empty %}
       {% set neighbourhood_names = nearby_neighbourhoods | map(n => n.title.value) | join(', ', ' and ' | t({}, {'context': 'News close to you block'})) %}
       {% embed "@hdbt/misc/component.twig" with
@@ -106,6 +70,61 @@
       {% endembed %}
     {% endif %}
 
+    {# Events Section #}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--react-search',
+        'component--event-list',
+        'component--coordinates-based-list',
+        ],
+        component_title: 'Events'|trans({}, {'context': 'Helsinki near you'}),
+        component_description: 'Browse events near you by date.'|trans({}, {'context': 'Helsinki near you'}),
+        component_content_class: 'event-list',
+      }
+    %}
+      {% block component_content %}
+        {{ events_section }}
+
+        <div class="see-all-button see-all-button--near-results">
+          {% include '@hdbt/navigation/link-button.html.twig' with {
+            type: 'primary',
+            label: 'See all events near you'|t({}, {'context': 'Helsinki near you events search'}),
+            url: events_archive_url,
+          } %}
+        </div>
+      {% endblock component_content %}
+    {% endembed %}
+
+    {# Services Section #}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [ 'component--popular-services' ],
+        component_title: 'Services'|t({}, {'context': 'Services near you block'}),
+        component_description: 'Go from the links to the search results for your address.'|t({}, {'context': 'Services near you block'}),
+        component_content_class: 'popular-services',
+      }
+    %}
+      {% block component_content %}
+        {% for service_group in service_groups %}
+          {% embed "@hdbt/misc/popular-service-item.twig" with { title: service_group.title } %}
+            {% block links %}
+              {% embed "@hdbt/misc/popular-service-links.twig" with { items: service_group.service_links } %}
+                {% block link %}
+                  {% set link_attributes = {
+                    'class': [
+                      'link__style--highlight',
+                    ],
+                  } %}
+                  {{ link(item.link_label, item.link_url, link_attributes) }}
+                {% endblock %}
+              {% endembed %}
+            {% endblock links %}
+          {% endembed %}
+        {% endfor %}
+      {% endblock component_content %}
+    {% endembed %}
+
     {# Roadwork Section #}
     {% embed "@hdbt/misc/component.twig" with
       {
@@ -131,6 +150,7 @@
       {% endblock component_content %}
     {% endembed %}
 
+    {# Feedback Section #}
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [ 'component--feedback' ],
