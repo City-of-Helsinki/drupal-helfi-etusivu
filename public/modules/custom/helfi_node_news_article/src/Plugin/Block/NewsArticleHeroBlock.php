@@ -115,11 +115,7 @@ final class NewsArticleHeroBlock extends ContentBlockBase {
       ?->getString();
 
     if (!empty($image_author_name)) {
-      $image_author = $this->t(
-        'Image: @image_author',
-        ['@image_author' => $image_author_name],
-        ['context' => 'Helfi Paragraphs Hero']
-      );
+      $image_author = $image_author_name;
     }
 
     $build['news_article_hero_block'] = [

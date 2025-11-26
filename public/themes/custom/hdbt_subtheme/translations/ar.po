@@ -73,17 +73,9 @@ msgctxt "Front page news of interest title"
 msgid "You might be interested in"
 msgstr "قد تكون مهتمًا بـ"
 
-msgctxt "Image caption and photographer"
-msgid "@caption Photo: @photographer"
-msgstr "@caption صورة: @photographer"
-
 msgctxt "Image photographer"
-msgid "Photo: @photographer"
-msgstr "صورة: @photographer"
-
-msgctxt "Helfi Paragraphs Hero"
-msgid "Image: @image_author"
-msgstr "صورة: @image_author"
+msgid "Photo"
+msgstr "صورة"
 
 msgctxt "The helper text before the node changed timestamp"
 msgid "Updated"
