@@ -70,6 +70,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
       'helfi_etusivu.helsinki_near_you_roadworks' => ['first_paragraph_bg' => TRUE],
       'helfi_etusivu.helsinki_near_you_events' => ['first_paragraph_bg' => TRUE],
       'helfi_etusivu.helsinki_near_you_feedbacks' => ['first_paragraph_bg' => TRUE],
+      'helfi_etusivu.helsinki_near_you_results' => ['first_paragraph_bg' => FALSE],
       'helfi_etusivu.helsinki_near_you' => [
         'first_paragraph_bg' => FALSE,
         'form' => $this->formBuilder->getForm(LandingPageSearchForm::class),

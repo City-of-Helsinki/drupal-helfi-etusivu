@@ -28,6 +28,7 @@ enum RouteInformationEnum {
   public function getTitle() : TranslatableMarkup {
     return match($this) {
       self::LANDING_PAGE => new TranslatableMarkup('Helsinki near you', [], ['context' => 'Helsinki near you']),
+      self::RESULTS => new TranslatableMarkup('Helsinki near you', [], ['context' => 'Helsinki near you']),
       self::FEEDBACK  => new TranslatableMarkup('Feedback related to your neighbourhood', [], ['context' => 'Helsinki near you']),
       self::EVENTS => new TranslatableMarkup('Events near you', [], ['context' => 'Helsinki near you']),
       self::ROADWORKS => new TranslatableMarkup('Street and park projects near you', [], ['context' => 'Helsinki near you']),
