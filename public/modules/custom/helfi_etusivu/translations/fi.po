@@ -64,10 +64,6 @@ msgid "Enter your street address in the search field above to find services, eve
 msgstr "Kirjoita osoitteesi yllä olevaan hakuun ja löydä palveluita, tapahtumia ja uutisia läheltäsi."
 
 msgctxt "Helsinki near you"
-msgid "Picture: Lille Santanen"
-msgstr "Kuva: Lille Santanen"
-
-msgctxt "Helsinki near you"
 msgid "Edit address"
 msgstr "Muokkaa osoitetta"
 
