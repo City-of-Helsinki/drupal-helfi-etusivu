@@ -8,12 +8,14 @@ use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageSearchForm;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides a 'HelsinkiNearYouHeroBlock' block.
@@ -26,17 +28,23 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
 
   /**
    * The form builder.
-   *
-   * @var \Drupal\Core\Form\FormBuilderInterface
    */
   private FormBuilderInterface $formBuilder;
 
   /**
    * The route match.
-   *
-   * @var \Drupal\Core\Routing\RouteMatchInterface
    */
   private RouteMatchInterface $routeMatch;
+
+  /**
+   * The request stack.
+   */
+  private RequestStack $requestStack;
+
+  /**
+   * The language manager.
+   */
+  private LanguageManagerInterface $languageManager;
 
   /**
    * {@inheritdoc}
@@ -54,6 +62,8 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
     );
     $instance->formBuilder = $container->get(FormBuilderInterface::class);
     $instance->routeMatch = $container->get(RouteMatchInterface::class);
+    $instance->requestStack = $container->get(RequestStack::class);
+    $instance->languageManager = $container->get(LanguageManagerInterface::class);
 
     return $instance;
   }
@@ -65,12 +75,26 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
     $route = $this->routeMatch->getRouteName();
     $routeInformation = RouteInformationEnum::fromRoute($route);
 
+    $langcode = $this->languageManager->getCurrentLanguage()->getId();
+
     // Routes with their options.
     $routeOptions = [
       'helfi_etusivu.helsinki_near_you_roadworks' => ['first_paragraph_bg' => TRUE],
       'helfi_etusivu.helsinki_near_you_events' => ['first_paragraph_bg' => TRUE],
       'helfi_etusivu.helsinki_near_you_feedbacks' => ['first_paragraph_bg' => TRUE],
-      'helfi_etusivu.helsinki_near_you_results' => ['first_paragraph_bg' => FALSE],
+      'helfi_etusivu.helsinki_near_you_results' => [
+        'first_paragraph_bg' => FALSE,
+        'translation_arguments' => [
+          // Get address name from request attributes (set by the controller).
+          '@address' => $this
+            ->requestStack
+            ->getCurrentRequest()
+            ?->attributes
+            ->get('helsinki_near_you_address')
+            ?->streetName
+            ->getName($langcode) ?? ''
+        ],
+      ],
       'helfi_etusivu.helsinki_near_you' => [
         'first_paragraph_bg' => FALSE,
         'form' => $this->formBuilder->getForm(LandingPageSearchForm::class),
@@ -82,7 +106,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
     }
 
     return $this->buildHero(
-      $routeInformation->getTitle(),
+      $routeInformation->getTitle($routeOptions[$route]['translation_arguments'] ?? []),
       $routeInformation->getDescription(),
       $routeOptions[$route]['first_paragraph_bg'],
       $routeOptions[$route]['form'] ?? [],

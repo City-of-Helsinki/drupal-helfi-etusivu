@@ -51,6 +51,9 @@ final class ResultsController extends ControllerBase {
     }
     $address = $this->serviceMap->getAddressData(urldecode($address));
 
+    // Store address data in request attributes for use by blocks.
+    $request->attributes->set('helsinki_near_you_address', $address);
+
     if (!$address) {
       $this->messenger()->addError(
         $this->t(
