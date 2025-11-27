@@ -465,6 +465,8 @@ function helfi_etusivu_theme() : array {
         'back_link_url' => NULL,
         'coordinates' => NULL,
         'title' => NULL,
+        'toc_enabled' => NULL,
+        'toc_title' => NULL,
         'service_groups' => NULL,
         'nearby_neighbourhoods' => NULL,
         'news_archive_url' => NULL,

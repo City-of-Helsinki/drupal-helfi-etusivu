@@ -86,7 +86,12 @@ final class ResultsController extends ControllerBase {
             'cardsWithBorders' => TRUE,
           ],
         ],
+        'library' => [
+          'helfi_toc/table_of_contents',
+        ],
       ],
+      '#toc_enabled' => TRUE,
+      '#toc_title' => t('On this page'),
       '#events_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_events', options: [
         'query' => [
           'address' => $addressName,

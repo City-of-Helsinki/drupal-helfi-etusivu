@@ -1,5 +1,3 @@
-{{ attach_library('helfi_toc/table_of_contents') }}
-
 <article>
   <div class="components components--computed components--helsinki-near-you-results">
     {# {% embed "@hdbt/misc/component.twig" with
@@ -20,26 +18,9 @@
     {% endembed %} #}
 
     {# Table of contents #}
-    {% embed "@hdbt/misc/component.twig" with
-      {
-        component_classes: [
-          'component--table-of-contents',
-        ],
-      }
-    %}
-      {% block component_content %}
-        <div id="helfi-toc-table-of-contents" class="table-of-contents__container">
-          {% if toc_title|render %}
-            <h2 class="table-of-contents__title">{{ toc_title }}</h2>
-          {% endif %}
-          <nav id="helfi-toc-table-of-contents-list" class="table-of-contents">
-            <ul class="table-of-contents__list">
-              <li class="js-remove table-of-contents__item">{{ 'Loading table of contents'|t }}</li>
-            </ul>
-          </nav>
-        </div>
-      {% endblock component_content %}
-    {% endembed %}
+    {% embed "@hdbt/field/field--toc-enabled.html.twig" with {
+      modifier_class: ['table-of-contents--helsinki-near-you-results'],
+    }%}{% endembed %}
 
     {# News Section #}
     {% if nearby_neighbourhoods is not empty %}
@@ -50,6 +31,7 @@
           'component--react-search',
           'component--news-archive',
           'component--coordinates-based-list',
+          'component--hardcoded',
         ],
           component_title: 'News'|t({}, {'context': 'News close to you block'}),
           component_description: 'See news related to the neighbourhoods of %neighbourhoods%'|t({'%neighbourhoods%': neighbourhood_names}, {'context': 'News close to you block'}),
@@ -88,6 +70,7 @@
         'component--react-search',
         'component--event-list',
         'component--coordinates-based-list',
+          'component--hardcoded',
         ],
         component_title: 'Events'|trans({}, {'context': 'Helsinki near you'}),
         component_description: 'Browse events near you by date.'|trans({}, {'context': 'Helsinki near you'}),
@@ -110,7 +93,10 @@
     {# Services Section #}
     {% embed "@hdbt/misc/component.twig" with
       {
-        component_classes: [ 'component--popular-services' ],
+        component_classes: [
+          'component--popular-services',
+          'component--hardcoded',
+        ],
         component_title: 'Services'|t({}, {'context': 'Services near you block'}),
         component_description: 'Go from the links to the search results for your address.'|t({}, {'context': 'Services near you block'}),
         component_content_class: 'popular-services',
@@ -140,8 +126,9 @@
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [
-        'component--roadworks',
-        'component--coordinates-based-list',
+          'component--roadworks',
+          'component--coordinates-based-list',
+          'component--hardcoded',
         ],
         component_title: 'Street and park projects'|trans({}, {'context': 'Helsinki near you'}),
         component_description: 'Find information on street and park projects near you.'|trans({}, {'context': 'Helsinki near you'}),
@@ -164,7 +151,10 @@
     {# Feedback Section #}
     {% embed "@hdbt/misc/component.twig" with
       {
-        component_classes: [ 'component--feedback' ],
+        component_classes: [
+          'component--feedback',
+          'component--hardcoded',
+        ],
         component_title: 'Feedback'|trans({}, {'context': 'Feedback close to you block'}),
         component_description: 'Find information on feedback and fault reports near you.'|trans({}, {'context': 'Feedback close to you block'}),
         component_content_class: 'feedback',
