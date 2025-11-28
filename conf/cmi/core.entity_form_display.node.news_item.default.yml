@@ -19,7 +19,8 @@ dependencies:
   module:
     - field_group
     - hdbt_admin_tools
-    - linkit
+    - helfi_etusivu
+    - helfi_recommendations
     - media_library
     - paragraphs
     - path
@@ -33,7 +34,7 @@ third_party_settings:
       children:
         - field_news_item_links_title
         - field_news_item_links_link
-      label: Links
+      label: Linkit
       region: content
       parent_name: group_news_item_links_wrapper
       weight: 19
@@ -48,7 +49,7 @@ third_party_settings:
     group_news_item_links_wrapper:
       children:
         - group_news_item_links
-      label: Links
+      label: Linkit
       region: content
       parent_name: ''
       weight: 18
@@ -63,7 +64,7 @@ third_party_settings:
       children:
         - field_main_image
         - field_main_image_caption
-      label: 'Main image'
+      label: Pääkuva
       region: content
       parent_name: ''
       weight: 16
@@ -78,7 +79,7 @@ third_party_settings:
     group_updating_news:
       children:
         - field_news_item_updating_news
-      label: 'Updating news'
+      label: 'Päivittyvä uutinen'
       region: content
       parent_name: ''
       weight: 19
@@ -88,7 +89,7 @@ third_party_settings:
         show_empty_fields: true
         id: ''
         open: false
-        description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
+        description: 'Jätä sisältöalue tyhjäksi päivittyvän uutisen yläpuolelta, jos luot päivittyvän uutisen.<br />Lisää uusin uutispäivitys viimeiseksi. Verkkosivulla uutispäivitykset näytetään lukijalle uusimmasta vanhimpaan.'
         required_fields: false
 _core:
   default_config_hash: 4idwAdzBNTQx52km5yufL0uOiF01vQLSO2JIpnb2AnE
@@ -108,8 +109,8 @@ content:
     weight: 17
     region: content
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
+      title: Lohko
+      title_plural: Lohkot
       edit_mode: open
       closed_mode: summary
       autocollapse: none
@@ -145,6 +146,16 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_news_groups:
+    type: select2_entity_reference
+    weight: 21
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
   field_news_item_links_link:
     type: helfi_linkit
     weight: 20
@@ -172,6 +183,42 @@ content:
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
+    third_party_settings: {  }
+  field_news_item_updating_news:
+    type: paragraphs
+    weight: 17
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: '0'
+        convert: '0'
+        duplicate: '0'
+    third_party_settings: {  }
+  field_news_neighbourhoods:
+    type: select2_entity_reference
+    weight: 24
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_radioactivity:
+    type: radioactivity_reference
+    weight: 25
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_short_title:
     type: string_textfield
@@ -268,52 +315,6 @@ content:
     third_party_settings: {  }
   url_redirects:
     weight: 13
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_news_item_updating_news:
-    type: paragraphs
-    weight: 17
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: _none
-      features:
-        add_above: '0'
-        collapse_edit_all: '0'
-        convert: '0'
-        duplicate: '0'
-    third_party_settings: {  }
-  field_news_groups:
-    type: select2_entity_reference
-    weight: 21
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_news_neighbourhoods:
-    type: select2_entity_reference
-    weight: 24
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_radioactivity:
-    type: radioactivity_reference
-    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
