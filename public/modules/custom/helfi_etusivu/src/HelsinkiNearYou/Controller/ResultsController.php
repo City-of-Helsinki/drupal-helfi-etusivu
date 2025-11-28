@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
@@ -91,15 +92,13 @@ final class ResultsController extends ControllerBase {
         ],
       ],
       '#toc_enabled' => TRUE,
-      '#toc_title' => t('On this page'),
+      '#toc_title' => new TranslatableMarkup('On this page'),
       '#events_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_events', options: [
         'query' => [
           'address' => $addressName,
         ],
       ]),
       '#events_section' => $this->buildEvents($address, $langcode, 3),
-      '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
-      '#back_link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
       '#news_archive_url' => $this->getInternalSearchLink(InternalSearchLink::NEWS_ARCHIVE, $newsQuery, $langcode),
       '#coordinates' => $address->location,
       '#title' => $this->t(

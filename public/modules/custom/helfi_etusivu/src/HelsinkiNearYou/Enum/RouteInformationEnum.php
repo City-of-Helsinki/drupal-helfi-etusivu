@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Enum;
 
+use Drupal\Core\Link;
+use Drupal\Core\Render\RenderableInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
@@ -55,6 +57,23 @@ enum RouteInformationEnum {
   }
 
   /**
+   * Returns the hero description render array.
+   */
+  public function getHeroDescription(): TranslatableMarkup|array {
+    return match($this) {
+      self::RESULTS => array_merge(
+        Link::createFromRoute(new TranslatableMarkup('Edit address', [], ['context' => 'Helsinki near you']), 'helfi_etusivu.helsinki_near_you')->toRenderable(),
+        [
+          '#attributes' => [
+            'class' => ['hds-button', 'hds-button--supplementary'],
+          ],
+        ],
+      ),
+      default => $this->getDescription(),
+    };
+  }
+
+  /**
    * Returns the case that corresponds to a given route name.
    *
    * If the provided route does not have a matching enum
@@ -75,6 +94,18 @@ enum RouteInformationEnum {
       'helfi_etusivu.helsinki_near_you_events' => self::EVENTS,
       'helfi_etusivu.helsinki_near_you_roadworks' => self::ROADWORKS,
       default => NULL,
+    };
+  }
+
+  /**
+   * Returns the bg value for the first paragraph.
+   *
+   * No idea what that means.
+   */
+  public function getFirstParagraphBg(): bool {
+    return match($this) {
+      self::ROADWORKS, self::EVENTS, self::FEEDBACK => TRUE,
+      self::RESULTS, self::LANDING_PAGE => FALSE,
     };
   }
 
