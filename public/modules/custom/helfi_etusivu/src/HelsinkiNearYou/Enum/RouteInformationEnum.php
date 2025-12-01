@@ -98,9 +98,14 @@ enum RouteInformationEnum {
   }
 
   /**
-   * Returns the bg value for the first paragraph.
+   * Get the boolean for first paragraphs background status.
+   * 
+   * The hero needs to have gray background color if the 
+   * first paragraph right after hero also has gray background.
    *
-   * No idea what that means.
+   * @return bool
+   *   TRUE if the first paragraph right after hero also 
+   *   has gray background, FALSE otherwise.
    */
   public function getFirstParagraphBg(): bool {
     return match($this) {
