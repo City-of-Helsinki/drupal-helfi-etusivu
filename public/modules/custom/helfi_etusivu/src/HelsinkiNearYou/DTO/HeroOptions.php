@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\DTO;
 
+use Drupal\Core\Cache\CacheableMetadata;
+
 /**
  * Runtime information for Helsinki near you hero.
  *
@@ -16,6 +18,7 @@ final readonly class HeroOptions {
   public function __construct(
     public array $translationArguments = [],
     public ?array $form = NULL,
+    public ?CacheableMetadata $cache = NULL,
   ) {
   }
 
