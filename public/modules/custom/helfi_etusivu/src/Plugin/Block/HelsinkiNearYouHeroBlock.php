@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\Plugin\Block;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -94,7 +95,10 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
             ->get('helsinki_near_you_address')
           ?->streetName
             ->getName($langcode) ?? '',
-        ]
+        ],
+        // Response depends on the route arguments.
+        cache: (new CacheableMetadata())
+          ->setCacheMaxAge(0),
       ),
       RouteInformationEnum::LANDING_PAGE => new HeroOptions(form: $this->formBuilder->getForm(LandingPageSearchForm::class)),
     };
@@ -121,6 +125,9 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
       '#first_paragraph_bg' => $routeInformation->getFirstParagraphBg(),
       '#form' => $options->form,
     ];
+
+    $options->cache?->applyTo($build);
+
     return $build;
   }
 
