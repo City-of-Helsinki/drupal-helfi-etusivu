@@ -225,7 +225,7 @@ function hdbt_subtheme_preprocess_node__news_item(array &$variables): void {
 
   // Check if the news item has updating news.
   // If it does, pass the updating news variable to template.
-  // The updating_news variable is used to determine 
+  // The updating_news variable is used to determine
   // if the "Published over a year ago" tag should be shown.
   if ($variables['node']->get('field_news_item_updating_news')->getValue()) {
     $variables['updating_news'] = TRUE;
