@@ -71,6 +71,15 @@
     }
   }
 
+  .table-of-contents__item--loading {
+    padding-inline: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+    
+
   time {
     padding-left: $spacing;
 
