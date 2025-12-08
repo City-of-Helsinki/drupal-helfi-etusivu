@@ -1,3 +1,4 @@
 label: Користувач
 tags:
   canonical_url: '[user:url]'
+  title: '[user:display-name] | [site:page-title-suffix]'
