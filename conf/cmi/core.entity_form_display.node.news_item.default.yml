@@ -34,7 +34,7 @@ third_party_settings:
       children:
         - field_news_item_links_title
         - field_news_item_links_link
-      label: Linkit
+      label: Links
       region: content
       parent_name: group_news_item_links_wrapper
       weight: 19
@@ -49,7 +49,7 @@ third_party_settings:
     group_news_item_links_wrapper:
       children:
         - group_news_item_links
-      label: Linkit
+      label: Links
       region: content
       parent_name: ''
       weight: 18
@@ -64,7 +64,7 @@ third_party_settings:
       children:
         - field_main_image
         - field_main_image_caption
-      label: Pääkuva
+      label: 'Main image'
       region: content
       parent_name: ''
       weight: 16
@@ -79,7 +79,7 @@ third_party_settings:
     group_updating_news:
       children:
         - field_news_item_updating_news
-      label: 'Päivittyvä uutinen'
+      label: 'Updating news'
       region: content
       parent_name: ''
       weight: 19
@@ -89,7 +89,7 @@ third_party_settings:
         show_empty_fields: true
         id: ''
         open: false
-        description: 'Jätä sisältöalue tyhjäksi päivittyvän uutisen yläpuolelta, jos luot päivittyvän uutisen.<br />Lisää uusin uutispäivitys viimeiseksi. Verkkosivulla uutispäivitykset näytetään lukijalle uusimmasta vanhimpaan.'
+        description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
         required_fields: false
 _core:
   default_config_hash: 4idwAdzBNTQx52km5yufL0uOiF01vQLSO2JIpnb2AnE
@@ -109,8 +109,8 @@ content:
     weight: 17
     region: content
     settings:
-      title: Lohko
-      title_plural: Lohkot
+      title: Paragraph
+      title_plural: Paragraphs
       edit_mode: open
       closed_mode: summary
       autocollapse: none
