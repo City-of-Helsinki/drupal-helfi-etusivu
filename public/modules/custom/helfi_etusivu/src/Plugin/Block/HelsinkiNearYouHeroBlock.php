@@ -98,7 +98,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
         ],
         // Response depends on the route arguments.
         cache: (new CacheableMetadata())
-          ->setCacheMaxAge(0),
+          ->setCacheContexts(['url.query_args']),
       ),
       RouteInformationEnum::LANDING_PAGE => new HeroOptions(form: $this->formBuilder->getForm(LandingPageSearchForm::class)),
     };
