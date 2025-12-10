@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
@@ -51,6 +52,9 @@ final class ResultsController extends ControllerBase {
     }
     $address = $this->serviceMap->getAddressData(urldecode($address));
 
+    // Store address data in request attributes for use by blocks.
+    $request->attributes->set('helsinki_near_you_address', $address);
+
     if (!$address) {
       $this->messenger()->addError(
         $this->t(
@@ -83,16 +87,19 @@ final class ResultsController extends ControllerBase {
             'cardsWithBorders' => TRUE,
           ],
         ],
+        'library' => [
+          'helfi_toc/table_of_contents',
+        ],
       ],
+      '#toc_enabled' => TRUE,
+      '#toc_title' => new TranslatableMarkup('On this page'),
       '#events_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_events', options: [
         'query' => [
           'address' => $addressName,
         ],
       ]),
       '#events_section' => $this->buildEvents($address, $langcode, 3),
-      '#back_link_label' => $this->t('Edit address', [], ['context' => 'Helsinki near you']),
-      '#back_link_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you'),
-      '#news_archive_url' => $this->getInternalSearchLink(InternalSearchLink::NewsArchive, $newsQuery, $langcode),
+      '#news_archive_url' => $this->getInternalSearchLink(InternalSearchLink::NEWS_ARCHIVE, $newsQuery, $langcode),
       '#coordinates' => $address->location,
       '#title' => $this->t(
         'Helsinki near you: @address',
@@ -135,11 +142,11 @@ final class ResultsController extends ControllerBase {
         'service_links' => [
           [
             'link_label' => $this->t('Your health station', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::HealthStations, $addressQuery, $langcode),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::HEALTH_STATIONS, $addressQuery, $langcode),
           ],
           [
             'link_label' => $this->t('The maternity and child health clinic near you', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::ChildHealthStations, $addressQuery, $langcode),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::CHILD_HEALTH_STATIONS, $addressQuery, $langcode),
           ],
         ],
       ],
@@ -148,15 +155,15 @@ final class ResultsController extends ControllerBase {
         'service_links' => [
           [
             'link_label' => $this->t('Your local school', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::Schools, $addressQuery, $langcode),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::SCHOOLS, $addressQuery, $langcode),
           ],
           [
             'link_label' => $this->t('Playgrounds and family houses near you', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PlaygroundFamilyHouses, $viewsAddressQuery, $langcode, 'views-exposed-form-playground-search-block'),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PLAYGROUNDS_FAMILY_HOUSES, $viewsAddressQuery, $langcode, 'views-exposed-form-playground-search-block'),
           ],
           [
             'link_label' => $this->t('Daycare centres near you', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::DayCares, $viewsAddressQuery, $langcode, 'views-exposed-form-daycare-search-block'),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::DAYCARES, $viewsAddressQuery, $langcode, 'views-exposed-form-daycare-search-block'),
           ],
         ],
       ],
@@ -165,15 +172,15 @@ final class ResultsController extends ControllerBase {
         'service_links' => [
           [
             'link_label' => $this->t('Ploughing schedule', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PlowingSchedules, $addressQuery, $langcode),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PLOWING_SCHEDULES, $addressQuery, $langcode),
           ],
           [
             'link_label' => $this->t('Roadworks on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => ServiceMapLink::RoadworkEvents->getLink($addressName, $langcode),
+            'link_url' => ServiceMapLink::ROADWORK_EVENTS->getLink($addressName, $langcode),
           ],
           [
             'link_label' => $this->t('City bike stations and bikeracks on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => ServiceMapLink::CityBikeStationsStands->getLink($addressName, $langcode),
+            'link_url' => ServiceMapLink::CITYBIKE_STATIONS_STANDS->getLink($addressName, $langcode),
           ],
         ],
       ],
@@ -182,11 +189,11 @@ final class ResultsController extends ControllerBase {
         'service_links' => [
           [
             'link_label' => $this->t('Street and park projects on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => ServiceMapLink::StreetParkProjects->getLink($addressName, $langcode),
+            'link_url' => ServiceMapLink::STREET_PARK_PROJECTS->getLink($addressName, $langcode),
           ],
           [
             'link_label' => $this->t('Plans under preparation on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => ServiceMapLink::PlansInProcess->getLink($addressName, $langcode),
+            'link_url' => ServiceMapLink::PLANS_IN_PROCESS->getLink($addressName, $langcode),
           ],
         ],
       ],
