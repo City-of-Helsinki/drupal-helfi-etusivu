@@ -18,10 +18,10 @@ class ServiceMapLinkTest extends TestCase {
    * @covers ::link
    */
   public function testLinkMethod(): void {
-    $this->assertSame('eDAB7W', ServiceMapLink::RoadworkEvents->link());
-    $this->assertSame('eRqwiU', ServiceMapLink::CityBikeStationsStands->link());
-    $this->assertSame('eDBTcc', ServiceMapLink::StreetParkProjects->link());
-    $this->assertSame('eDB7Rk', ServiceMapLink::PlansInProcess->link());
+    $this->assertSame('eDAB7W', ServiceMapLink::ROADWORK_EVENTS->link());
+    $this->assertSame('eRqwiU', ServiceMapLink::CITYBIKE_STATIONS_STANDS->link());
+    $this->assertSame('eDBTcc', ServiceMapLink::STREET_PARK_PROJECTS->link());
+    $this->assertSame('eDB7Rk', ServiceMapLink::PLANS_IN_PROCESS->link());
   }
 
 }
