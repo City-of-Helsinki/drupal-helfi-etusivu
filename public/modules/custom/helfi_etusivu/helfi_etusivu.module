@@ -357,6 +357,7 @@ function helfi_etusivu_preprocess_page(&$variables): void {
 
   $near_you_pages = [
     'helfi_etusivu.helsinki_near_you',
+    'helfi_etusivu.helsinki_near_you_results',
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_roadworks',
     'helfi_etusivu.helsinki_near_you_feedbacks',
@@ -460,10 +461,10 @@ function helfi_etusivu_theme() : array {
     ],
     'helsinki_near_you_results_page' => [
       'variables' => [
-        'back_link_label' => NULL,
-        'back_link_url' => NULL,
         'coordinates' => NULL,
         'title' => NULL,
+        'toc_enabled' => NULL,
+        'toc_title' => NULL,
         'service_groups' => NULL,
         'nearby_neighbourhoods' => NULL,
         'news_archive_url' => NULL,
