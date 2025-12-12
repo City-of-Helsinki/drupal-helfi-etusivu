@@ -18,7 +18,7 @@
         "drupal/helfi_azure_fs": "^2.0",
         "drupal/helfi_drupal_tools": "dev-main",
         "drupal/helfi_navigation": "^2.0",
-        "drupal/helfi_platform_config": "^4.0",
+        "drupal/helfi_platform_config": "^5.0",
         "drupal/helfi_proxy": "^3.0",
         "drupal/helfi_tunnistamo": "^3.0",
         "drupal/json_field": "^1.0@RC",
@@ -71,9 +71,6 @@
         "patches": {
             "drupal/draggableviews": {
                 "Save langcode as part of draggableviews data in order to sort by by weight and language": "patches/draggableviews_language.patch"
-            },
-            "drupal/scheduler": {
-                "[#UHF-12387] https://www.drupal.org/i/3458578: Fixes Uncaught TypeError: Cannot read property 'value' of null": "https://www.drupal.org/files/issues/2024-07-02/scheduler-uncaught_type_error_reading_null_on_value-3458578-2.patch"
             }
         },
         "composer-exit-on-patch-failure": true,
