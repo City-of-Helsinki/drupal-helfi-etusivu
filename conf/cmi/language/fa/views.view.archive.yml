@@ -6,13 +6,13 @@ display:
       title: 'آرشیو ماهیانه'
       pager:
         options:
+          tags:
+            next: Next
+            previous: Previous
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
-          tags:
-            next: Next
-            previous: Previous
       exposed_form:
         options:
           submit_button: تایید

@@ -6,6 +6,6 @@ _core:
   default_config_hash: eBjYGo8oCvlm6QME9-tR8cPp8YaFzZXafEyAZ1Zumsg
 name: 'News neighbourhoods'
 vid: news_neighbourhoods
-description: null
+description: ''
 weight: 0
 new_revision: false

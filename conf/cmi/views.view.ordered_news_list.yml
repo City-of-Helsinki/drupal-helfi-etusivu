@@ -509,7 +509,7 @@ display:
           exposed: false
           draggable_views_reference: this
           draggable_views_null_order: after
-          draggable_views_pass_arguments: false
+          draggable_views_pass_arguments: 0
       defaults:
         group_by: false
         sorts: false

@@ -17,4 +17,4 @@ display:
     display_options:
       display_description: 'Uute kasutajate nimekiri'
       block_description: 'Uued kasutajad'
-      block_category: Kasutaja
+      block_category: 'User profile tab'

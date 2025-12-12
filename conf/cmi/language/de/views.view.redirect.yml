@@ -1,8 +1,6 @@
 label: Redirect
-description: 'List of redirects'
 display:
   default:
-    display_title: Master
     display_options:
       exposed_form:
         options:
@@ -23,8 +21,6 @@ display:
             items_per_page_options_all_label: '- Alle -'
             offset_label: Versatz
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
           label: From
           separator: ', '
@@ -61,8 +57,5 @@ display:
           expose:
             label: 'Original language'
       title: Redirect
-      empty:
-        area_text_custom:
-          content: 'There is no redirect yet.'
   page_1:
     display_title: Seite

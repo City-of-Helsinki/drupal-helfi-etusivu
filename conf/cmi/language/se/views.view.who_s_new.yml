@@ -6,4 +6,4 @@ display:
           exposed_sorts_label: Sirre
   block_1:
     display_options:
-      block_category: Geavaheaddji
+      block_category: 'User profile tab'
