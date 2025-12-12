@@ -9,7 +9,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 /**
  * An enum to store feedback status.
  */
-enum Status : string {
+enum Status: string {
 
   case Ready = 'READY';
   case Processing = 'PROCESSING';

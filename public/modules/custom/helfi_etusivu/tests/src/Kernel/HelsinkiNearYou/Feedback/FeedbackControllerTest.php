@@ -12,7 +12,6 @@ use Drupal\helfi_api_base\ServiceMap\DTO\StreetName;
 use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\KernelTests\KernelTestBase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -38,10 +37,7 @@ class FeedbackControllerTest extends KernelTestBase {
    * Tests controller without address.
    */
   public function testContentNoAddress() : void {
-    $mockRequest = $this->createMock(Request::class);
-    $queryWithoutArgs = new InputBag([]);
-    $mockRequest->query = $queryWithoutArgs;
-    $response = FeedbackController::create($this->container)->content($mockRequest);
+    $response = FeedbackController::create($this->container)->content(new Request());
 
     $this->assertIsArray($response['#autosuggest_form']);
     $this->assertArrayNotHasKey('feedback', $response);
@@ -55,11 +51,9 @@ class FeedbackControllerTest extends KernelTestBase {
    * Tests controller with valid address.
    */
   public function testContentWithAddress() : void {
-    $mockRequest = $this->createMock(Request::class);
-    $queryWithoutArgs = new InputBag([
+    $mockRequest = new Request([
       'q' => 'Kotikatu 1',
     ]);
-    $mockRequest->query = $queryWithoutArgs;
 
     $serviceMapMock = $this->prophesize(ServiceMapInterface::class);
     $serviceMapMock->getAddressData('Kotikatu 1')

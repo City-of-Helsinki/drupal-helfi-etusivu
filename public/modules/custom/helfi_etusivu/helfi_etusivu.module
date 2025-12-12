@@ -193,10 +193,10 @@ function _helfi_etusivu_handle_rss_params(SearchApiQuery $query) : SearchApiQuer
     if (isset($params[$param]) && is_array($params[$param])) {
       $query->addWhere('AND', $indexKey, $params[$param], 'IN');
     }
-  };
+  }
 
   return $query;
-};
+}
 
 /**
  * Implements hook_helfi_paragraph_types().

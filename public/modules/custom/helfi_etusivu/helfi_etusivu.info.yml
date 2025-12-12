@@ -2,7 +2,7 @@ name: helfi_etusivu
 type: module
 description: Etusivu specific functionality
 package: Custom
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:rest
   - drupal:big_pipe
