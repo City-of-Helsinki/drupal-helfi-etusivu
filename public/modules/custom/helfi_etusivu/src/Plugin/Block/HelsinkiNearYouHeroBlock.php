@@ -84,8 +84,8 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
 
     // Runtime options for the route.
     $routeOptions = fn (RouteInformationEnum|NULL $routeInformation) => match ($routeInformation) {
-      RouteInformationEnum::ROADWORKS, RouteInformationEnum::EVENTS, RouteInformationEnum::FEEDBACK => new HeroOptions(),
-      RouteInformationEnum::RESULTS => new HeroOptions(
+      RouteInformationEnum::Roadworks, RouteInformationEnum::Events, RouteInformationEnum::Feedback => new HeroOptions(),
+      RouteInformationEnum::Results => new HeroOptions(
         translationArguments: [
           // Get the address name from request attributes.
           '@address' => $this
@@ -100,7 +100,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
         cache: (new CacheableMetadata())
           ->setCacheContexts(['url.query_args']),
       ),
-      RouteInformationEnum::LANDING_PAGE => new HeroOptions(form: $this->formBuilder->getForm(LandingPageSearchForm::class)),
+      RouteInformationEnum::LandingPage => new HeroOptions(form: $this->formBuilder->getForm(LandingPageSearchForm::class)),
     };
 
     return $this->buildHero($routeInformation, $routeOptions($routeInformation));

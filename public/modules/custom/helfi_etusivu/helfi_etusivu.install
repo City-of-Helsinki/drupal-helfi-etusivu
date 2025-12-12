@@ -212,13 +212,6 @@ function helfi_etusivu_update_9007() : void {
 }
 
 /**
- * UHF-6102: Add latest news paragraph to lower content area on basic page.
- */
-function helfi_etusivu_update_9008(): void {
-  helfi_platform_config_update_paragraph_target_types();
-}
-
-/**
  * UHF-9739: Add 'news update' paragraph to news item.
  */
 function helfi_etusivu_update_9009(): void {
