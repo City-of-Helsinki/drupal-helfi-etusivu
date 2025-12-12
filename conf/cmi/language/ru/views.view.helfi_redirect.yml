@@ -5,19 +5,17 @@ display:
     display_options:
       title: Redirect
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
           label: From
           separator: ', '
         is_custom:
           label: Custom
           separator: ', '
-        created:
-          label: Created
         enabled:
           label: Enabled
           separator: ', '
+        created:
+          label: Created
       pager:
         options:
           tags:
@@ -36,9 +34,6 @@ display:
           exposed_sorts_label: 'Сортировать по'
           sort_asc_label: 'По возрастанию'
           sort_desc_label: 'По убыванию'
-      empty:
-        area_text_custom:
-          content: 'There is no redirect yet.'
       filters:
         redirect_source__path:
           expose:

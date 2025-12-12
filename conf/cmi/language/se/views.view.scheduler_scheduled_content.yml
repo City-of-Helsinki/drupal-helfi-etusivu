@@ -1,6 +1,6 @@
+label: Scheduled
 display:
   default:
-    display_title: Default
     display_options:
       exposed_form:
         options:
@@ -35,8 +35,13 @@ display:
         langcode:
           expose:
             label: Giella
+      title: Scheduled
+    display_title: Default
   overview:
     display_options:
+      menu:
+        title: Scheduled
+        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: Sisdoallu
   user_page:
@@ -47,3 +52,4 @@ display:
         uid:
           exception:
             title: Buot
+    display_title: 'User profile tab'

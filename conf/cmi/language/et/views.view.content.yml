@@ -20,11 +20,11 @@ display:
             format_custom_true: Avaldatud
         changed:
           label: Uuendatud
-        operations:
-          label: Toimingud
         langcode:
           label: Keel
           separator: ', '
+        operations:
+          label: Toimingud
       pager:
         options:
           tags:

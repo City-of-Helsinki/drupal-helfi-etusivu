@@ -17,4 +17,4 @@ display:
     display_options:
       display_description: 新用户列表
       block_description: 新进用户
-      block_category: 用户
+      block_category: 'User profile tab'

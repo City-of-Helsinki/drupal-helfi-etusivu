@@ -11,11 +11,11 @@ display:
         is_custom:
           label: Custom
           separator: ', '
-        created:
-          label: Created
         enabled:
           label: Enabled
           separator: ', '
+        created:
+          label: Created
       pager:
         options:
           tags:

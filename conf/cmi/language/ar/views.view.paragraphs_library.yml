@@ -11,13 +11,13 @@ display:
           sort_desc_label: تنازلي
       pager:
         options:
-          expose:
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
-            items_per_page_label: 'العناصر لكل صفحة'
           tags:
             previous: ‹‹
             next: ››
+          expose:
+            items_per_page_label: 'العناصر لكل صفحة'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       fields:
         label:
           label: التسمية
