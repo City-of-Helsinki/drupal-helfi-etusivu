@@ -1,16 +1,19 @@
+From 59cba8be5ccce4f6d4f05e84815e3dfd32440718 Mon Sep 17 00:00:00 2001
+From: Santeri Hurnanen <santeri.hurnanen@fame.fi>
+Date: Thu, 19 Sep 2024 22:36:48 +0300
+Subject: [PATCH] Issue #3475639: Use file_url_generator
+
+---
+ .../system/src/Controller/AssetControllerBase.php        | 9 ++++++++-
+ .../modules/system/src/Controller/CssAssetController.php | 1 +
+ core/modules/system/src/Controller/JsAssetController.php | 1 +
+ 3 files changed, 10 insertions(+), 1 deletion(-)
+
 diff --git a/core/modules/system/src/Controller/AssetControllerBase.php b/core/modules/system/src/Controller/AssetControllerBase.php
-index 4f8d5ad6965..eab3bafbb59 100644
+index 4f8d5ad69659..f4fa9e58637a 100644
 --- a/core/modules/system/src/Controller/AssetControllerBase.php
 +++ b/core/modules/system/src/Controller/AssetControllerBase.php
-@@ -2,6 +2,7 @@
- 
- namespace Drupal\system\Controller;
- 
-+use Drupal\Component\Render\FormattableMarkup;
- use Drupal\Component\Utility\UrlHelper;
- use Drupal\Core\Asset\AssetCollectionGrouperInterface;
- use Drupal\Core\Asset\AssetCollectionOptimizerInterface;
-@@ -11,6 +12,7 @@
+@@ -11,6 +11,7 @@
  use Drupal\Core\Asset\AttachedAssets;
  use Drupal\Core\Asset\AttachedAssetsInterface;
  use Drupal\Core\Asset\LibraryDependencyResolverInterface;
@@ -18,7 +21,16 @@ index 4f8d5ad6965..eab3bafbb59 100644
  use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
  use Drupal\Core\Theme\ThemeInitializationInterface;
  use Drupal\Core\Theme\ThemeManagerInterface;
-@@ -92,6 +94,7 @@ public function __construct(
+@@ -82,6 +83,8 @@ abstract class AssetControllerBase extends FileDownloadController {
+    *   The asset collection optimizer.
+    * @param \Drupal\Core\Asset\AssetDumperUriInterface $dumper
+    *   The asset dumper.
++   * @param \Drupal\Core\File\FileUrlGeneratorInterface $fileUrlGenerator
++   *   The file URL generator.
+    */
+   public function __construct(
+     StreamWrapperManagerInterface $streamWrapperManager,
+@@ -92,6 +95,7 @@ public function __construct(
      protected readonly AssetCollectionGrouperInterface $grouper,
      protected readonly AssetCollectionOptimizerInterface $optimizer,
      protected readonly AssetDumperUriInterface $dumper,
@@ -26,29 +38,33 @@ index 4f8d5ad6965..eab3bafbb59 100644
    ) {
      parent::__construct($streamWrapperManager);
      $this->fileExtension = $this->assetType;
-@@ -207,7 +210,7 @@ public function deliver(Request $request, string $file_name) {
+@@ -206,8 +210,11 @@ public function deliver(Request $request, string $file_name) {
+     }
      else {
        $expected_filename = $this->fileExtension . '_' . $generated_hash . '.' . $this->fileExtension;
++      $uri = 'assets://' . $this->fileExtension . '/' . $expected_filename;
++      $parsed_url = UrlHelper::parse($request->getRequestUri());
++
        $response = new RedirectResponse(
 -        str_replace($file_name, $expected_filename, $request->getRequestUri()),
-+        $this->fileUrlGenerator->generateString(str_replace($file_name, $expected_filename, $request->getRequestUri())),
++        $this->fileUrlGenerator->generateString($uri) . '?' . UrlHelper::buildQuery($parsed_url['query'] ?? []),
          301,
          ['Cache-Control' => 'public, max-age=3600, must-revalidate'],
        );
 diff --git a/core/modules/system/src/Controller/CssAssetController.php b/core/modules/system/src/Controller/CssAssetController.php
-index 76d1e8a8b71..5051510bcda 100644
+index 76d1e8a8b711..957984d62e70 100644
 --- a/core/modules/system/src/Controller/CssAssetController.php
 +++ b/core/modules/system/src/Controller/CssAssetController.php
 @@ -38,6 +38,7 @@ public static function create(ContainerInterface $container) {
        $container->get('asset.css.collection_grouper'),
        $container->get('asset.css.collection_optimizer'),
        $container->get('asset.css.dumper'),
-+      $container->get('file_url_generator'),
++      $container->get('file_url_generator')
      );
    }
- 
+
 diff --git a/core/modules/system/src/Controller/JsAssetController.php b/core/modules/system/src/Controller/JsAssetController.php
-index 221f53410dd..1154d9368a8 100644
+index 221f53410dde..1154d9368a81 100644
 --- a/core/modules/system/src/Controller/JsAssetController.php
 +++ b/core/modules/system/src/Controller/JsAssetController.php
 @@ -38,6 +38,7 @@ public static function create(ContainerInterface $container) {
@@ -58,4 +74,7 @@ index 221f53410dd..1154d9368a8 100644
 +      $container->get('file_url_generator'),
      );
    }
- 
+
+--
+GitLab
+
