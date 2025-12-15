@@ -1,5 +1,5 @@
 global-styling:
-  version: 1.x
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   css:
     theme:
       dist/css/styles.min.css: {}
