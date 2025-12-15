@@ -41,10 +41,10 @@ trait NewsTermsTrait {
   }
 
   /**
-   * Gets taxonomy terms with their archive links for the specified fields.
+   * Gets taxonomy term names with a link to the filtered news archive page.
    *
    * @return array
-   *   An array of taxonomy terms with their archive links, keyed by field name.
+   *   An array of taxonomy terms with links, keyed by field name.
    */
   public function getTaxonomyTermsWithArchiveLinks(): array {
     // Map the term fields on node to term groups.
@@ -70,7 +70,7 @@ trait NewsTermsTrait {
         $terms = $field->referencedEntities();
         // Get node's language code.
         $language = $this->language()->getId();
-        // Define language-specific base paths for news archive
+        // Define language-specific base paths for news archive.
         $base_paths = [
           'fi' => '/fi/uutiset/etsi-uutisia',
           'sv' => '/sv/nyheter/sok-efter-nyheter',
@@ -79,7 +79,7 @@ trait NewsTermsTrait {
         // Default to English if language is not found.
         $base_path = $base_paths[$language] ?? $base_paths['en'];
 
-        // Loop through each term
+        // Loop through each term.
         foreach ($terms as $term) {
           // Get the term label in the node's language.
           $term_name = ($term instanceof TranslatableInterface && $term->hasTranslation($language))
