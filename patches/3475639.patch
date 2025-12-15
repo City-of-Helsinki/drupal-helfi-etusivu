@@ -1,0 +1,61 @@
+diff --git a/core/modules/system/src/Controller/AssetControllerBase.php b/core/modules/system/src/Controller/AssetControllerBase.php
+index 4f8d5ad6965..eab3bafbb59 100644
+--- a/core/modules/system/src/Controller/AssetControllerBase.php
++++ b/core/modules/system/src/Controller/AssetControllerBase.php
+@@ -2,6 +2,7 @@
+ 
+ namespace Drupal\system\Controller;
+ 
++use Drupal\Component\Render\FormattableMarkup;
+ use Drupal\Component\Utility\UrlHelper;
+ use Drupal\Core\Asset\AssetCollectionGrouperInterface;
+ use Drupal\Core\Asset\AssetCollectionOptimizerInterface;
+@@ -11,6 +12,7 @@
+ use Drupal\Core\Asset\AttachedAssets;
+ use Drupal\Core\Asset\AttachedAssetsInterface;
+ use Drupal\Core\Asset\LibraryDependencyResolverInterface;
++use Drupal\Core\File\FileUrlGeneratorInterface;
+ use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
+ use Drupal\Core\Theme\ThemeInitializationInterface;
+ use Drupal\Core\Theme\ThemeManagerInterface;
+@@ -92,6 +94,7 @@ public function __construct(
+     protected readonly AssetCollectionGrouperInterface $grouper,
+     protected readonly AssetCollectionOptimizerInterface $optimizer,
+     protected readonly AssetDumperUriInterface $dumper,
++    protected readonly FileUrlGeneratorInterface $fileUrlGenerator,
+   ) {
+     parent::__construct($streamWrapperManager);
+     $this->fileExtension = $this->assetType;
+@@ -207,7 +210,7 @@ public function deliver(Request $request, string $file_name) {
+     else {
+       $expected_filename = $this->fileExtension . '_' . $generated_hash . '.' . $this->fileExtension;
+       $response = new RedirectResponse(
+-        str_replace($file_name, $expected_filename, $request->getRequestUri()),
++        $this->fileUrlGenerator->generateString(str_replace($file_name, $expected_filename, $request->getRequestUri())),
+         301,
+         ['Cache-Control' => 'public, max-age=3600, must-revalidate'],
+       );
+diff --git a/core/modules/system/src/Controller/CssAssetController.php b/core/modules/system/src/Controller/CssAssetController.php
+index 76d1e8a8b71..5051510bcda 100644
+--- a/core/modules/system/src/Controller/CssAssetController.php
++++ b/core/modules/system/src/Controller/CssAssetController.php
+@@ -38,6 +38,7 @@ public static function create(ContainerInterface $container) {
+       $container->get('asset.css.collection_grouper'),
+       $container->get('asset.css.collection_optimizer'),
+       $container->get('asset.css.dumper'),
++      $container->get('file_url_generator'),
+     );
+   }
+ 
+diff --git a/core/modules/system/src/Controller/JsAssetController.php b/core/modules/system/src/Controller/JsAssetController.php
+index 221f53410dd..1154d9368a8 100644
+--- a/core/modules/system/src/Controller/JsAssetController.php
++++ b/core/modules/system/src/Controller/JsAssetController.php
+@@ -38,6 +38,7 @@ public static function create(ContainerInterface $container) {
+       $container->get('asset.js.collection_grouper'),
+       $container->get('asset.js.collection_optimizer'),
+       $container->get('asset.js.dumper'),
++      $container->get('file_url_generator'),
+     );
+   }
+ 

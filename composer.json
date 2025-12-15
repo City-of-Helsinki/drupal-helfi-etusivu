@@ -73,7 +73,7 @@
                 "Save langcode as part of draggableviews data in order to sort by by weight and language": "patches/draggableviews_language.patch"
             },
             "drupal/core": {
-                "Debug asset path redirect": "patches/debug_redirect.patch"
+                "Debug asset path redirect": "patches/3475639.patch"
             }
         },
         "composer-exit-on-patch-failure": true,
