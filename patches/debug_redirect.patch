@@ -3,9 +3,9 @@ index 4f8d5ad6965..58051026edb 100644
 --- a/core/modules/system/src/Controller/AssetControllerBase.php
 +++ b/core/modules/system/src/Controller/AssetControllerBase.php
 @@ -2,6 +2,7 @@
- 
+
  namespace Drupal\system\Controller;
- 
+
 +use Drupal\Component\Render\FormattableMarkup;
  use Drupal\Component\Utility\UrlHelper;
  use Drupal\Core\Asset\AssetCollectionGrouperInterface;
@@ -14,7 +14,7 @@ index 4f8d5ad6965..58051026edb 100644
      }
      else {
        $expected_filename = $this->fileExtension . '_' . $generated_hash . '.' . $this->fileExtension;
-+      $this->getLogger('default')->info(new FormattableMarkup('Asset has [@hash] does not match the expected [@expected_hash] at @uri', [
++      $this->getLogger('default')->error(new FormattableMarkup('Asset has [@hash] does not match the expected [@expected_hash] at @uri', [
 +        '@uri' => $request->getRequestUri(),
 +        '@expected_hash' => $expected_filename,
 +        '@hash' => $generated_hash,
