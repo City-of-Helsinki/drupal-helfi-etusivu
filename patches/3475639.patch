@@ -1,5 +1,5 @@
 diff --git a/core/modules/system/src/Controller/AssetControllerBase.php b/core/modules/system/src/Controller/AssetControllerBase.php
-index 4f8d5ad6965..5d776f801dc 100644
+index 4f8d5ad6965..f4bf6bfa64a 100644
 --- a/core/modules/system/src/Controller/AssetControllerBase.php
 +++ b/core/modules/system/src/Controller/AssetControllerBase.php
 @@ -2,6 +2,7 @@
@@ -26,14 +26,15 @@ index 4f8d5ad6965..5d776f801dc 100644
    ) {
      parent::__construct($streamWrapperManager);
      $this->fileExtension = $this->assetType;
-@@ -205,9 +208,17 @@ public function deliver(Request $request, string $file_name) {
+@@ -205,9 +208,18 @@ public function deliver(Request $request, string $file_name) {
        $this->dumper->dumpToUri($data, $this->assetType, $uri);
      }
      else {
-+      $this->getLogger('default')->error(new FormattableMarkup('Hash validation failed for [@asset]. Expected hash [@expected_hash], got [@actual_hash]', [
++      $this->getLogger('default')->error(new FormattableMarkup('Hash validation failed for [@asset]. Expected hash [@expected_hash], got [@actual_hash]. Group: @group', [
 +        '@asset' => $uri,
 +        '@expected_hash' => $generated_hash,
 +        '@actual_hash' => $received_hash,
++        '@group' => print_r($group, TRUE),
 +      ]));
        $expected_filename = $this->fileExtension . '_' . $generated_hash . '.' . $this->fileExtension;
 +      $uri = 'assets://' . $this->fileExtension . '/' . $expected_filename;
