@@ -138,7 +138,6 @@ class NewsTermsTraitTest extends KernelTestBase {
    * Test getTaxonomyTermsWithArchiveLinks().
    */
   public function testGetTaxonomyTermsWithArchiveLinks(): void {
-    // Create taxonomy vocabularies.
     $vocabularies = [
       'item_tags' => 'Topics',
       'neighbourhoods' => 'Neighbourhoods',
@@ -150,7 +149,6 @@ class NewsTermsTraitTest extends KernelTestBase {
     foreach ($vocabularies as $vid => $name) {
       Vocabulary::create(['vid' => $vid, 'name' => $name])->save();
 
-      // Add terms to the vocabularies.
       foreach (['one', 'two'] as $label) {
         $term = Term::create([
           'name' => "$vid $label",
@@ -208,15 +206,12 @@ class NewsTermsTraitTest extends KernelTestBase {
       'status' => TRUE,
     ];
 
-    foreach ($terms as $mapper => $term_data) {
-      // Unused variable to please the phpcs.
-      unset($mapper);
+    foreach ($terms as $term_data) {
       $values[$term_data['field']][] = ['target_id' => $term_data['term_id']];
     }
 
     $node = Node::create($values);
 
-    // Set up the expected results.
     $expected = [
       'field_news_item_tags' => [
         [
