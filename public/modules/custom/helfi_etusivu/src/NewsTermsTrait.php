@@ -57,7 +57,6 @@ trait NewsTermsTrait {
 
     $result = [];
 
-    // Go through each field.
     foreach ($fields as $field_name => $url_param_name) {
       if (!$this->hasField($field_name) || $this->get($field_name)->isEmpty()) {
         continue;
@@ -68,8 +67,6 @@ trait NewsTermsTrait {
       // Make sure that the field is term reference field.
       if ($field instanceof EntityReferenceFieldItemListInterface) {
         $terms = $field->referencedEntities();
-
-        // Get node's language code.
         $language = $this->language()->getId();
 
         // Define language-specific base paths for news archive.
@@ -83,8 +80,6 @@ trait NewsTermsTrait {
         $base_path = $base_paths[$language] ?? $base_paths['en'];
 
         foreach ($terms as $term) {
-
-          // Get the term label in the node's language.
           $term_name = ($term instanceof TranslatableInterface && $term->hasTranslation($language))
             ? $term->getTranslation($language)->label()
             : $term->label();
