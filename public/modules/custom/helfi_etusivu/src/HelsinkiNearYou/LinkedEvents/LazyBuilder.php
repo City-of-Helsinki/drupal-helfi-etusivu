@@ -53,21 +53,25 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       ->get($query, $langcode, $limit);
 
     foreach ($data->items as $item) {
-      $build['#content'][] = [
+      $element = [
         '#theme' => 'helsinki_near_you_event_item',
         '#title' => [
           '#type' => 'link',
           '#title' => $item->title,
           '#url' => $item->uri,
         ],
-        '#external_image' => [
+        '#object' => $item,
+      ];
+
+      if ($item->image) {
+        $element['#external_image'] = [
           '#theme' => 'imagecache_external_responsive',
           '#uri' => $item->image->url,
           '#responsive_image_style_id' => 'card',
           '#alt' => $item->image->alt,
-        ],
-        '#object' => $item,
-      ];
+        ];
+      }
+      $build['#content'][] = $element;
     }
 
     return $build;
