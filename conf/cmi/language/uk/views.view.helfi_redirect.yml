@@ -5,19 +5,17 @@ display:
     display_options:
       title: Redirect
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
           label: From
           separator: ', '
         is_custom:
           label: Custom
           separator: ', '
-        created:
-          label: Created
         enabled:
           label: Enabled
           separator: ', '
+        created:
+          label: Created
       pager:
         options:
           tags:

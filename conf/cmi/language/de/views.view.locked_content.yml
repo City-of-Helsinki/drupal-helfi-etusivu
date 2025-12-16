@@ -1,26 +1,8 @@
 label: 'Gesperrte Inhalte'
 display:
   default:
-    display_title: Master
     display_options:
-      exposed_form:
-        options:
-          submit_button: Anwenden
-          reset_button_label: Zurücksetzen
-          exposed_sorts_label: Sortierung
-          sort_asc_label: Aufsteigend
-          sort_desc_label: Absteigend
-      pager:
-        options:
-          tags:
-            previous: ‹‹
-            next: ››
-            first: '« Anfang'
-            last: 'Ende »'
-          expose:
-            items_per_page_label: 'Elemente pro Seite'
-            items_per_page_options_all_label: '- Alle -'
-            offset_label: Versatz
+      title: 'Gesperrte Inhalte'
       fields:
         node_bulk_form:
           label: 'Node Massenbearbeitung Formular'
@@ -38,6 +20,27 @@ display:
           separator: ', '
         operations:
           label: Aktionen
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« Anfang'
+            last: 'Ende »'
+          expose:
+            items_per_page_label: 'Elemente pro Seite'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Versatz
+      exposed_form:
+        options:
+          submit_button: Anwenden
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: Sortierung
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
+      empty:
+        area_text_custom:
+          content: 'Es gibt aktuell keine Inhalte mit Bearbeitungssperren'
       filters:
         status:
           expose:
@@ -53,10 +56,6 @@ display:
         title:
           expose:
             label: Titel
-      title: 'Gesperrte Inhalte'
-      empty:
-        area_text_custom:
-          content: 'Es gibt aktuell keine Inhalte mit Bearbeitungssperren'
   page_1:
     display_title: Seite
     display_options:

@@ -1,6 +1,6 @@
+label: 预定
 display:
   default:
-    display_title: 主
     display_options:
       exposed_form:
         options:
@@ -62,10 +62,13 @@ display:
         langcode:
           expose:
             label: 语言
+      title: 预定
+    display_title: 主
   overview:
     display_options:
       menu:
         title: 预定
+        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: 内容
   user_page:
@@ -78,3 +81,4 @@ display:
         uid:
           exception:
             title: 全部
+    display_title: 'User profile tab'

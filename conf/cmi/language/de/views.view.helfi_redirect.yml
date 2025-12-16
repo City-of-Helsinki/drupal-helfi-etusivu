@@ -1,24 +1,20 @@
 label: Redirect
-description: 'List of redirects'
 display:
   default:
-    display_title: Master
     display_options:
       title: Redirect
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
           label: From
           separator: ', '
         is_custom:
           label: Custom
           separator: ', '
-        created:
-          label: Created
         enabled:
           label: Enabled
           separator: ', '
+        created:
+          label: Created
       pager:
         options:
           tags:
@@ -37,9 +33,6 @@ display:
           exposed_sorts_label: Sortierung
           sort_asc_label: Aufsteigend
           sort_desc_label: Absteigend
-      empty:
-        area_text_custom:
-          content: 'There is no redirect yet.'
       filters:
         redirect_source__path:
           expose:

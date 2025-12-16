@@ -4,22 +4,14 @@ display:
       fields:
         filename:
           label: Namma
+        count:
+          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       exposed_form:
         options:
           exposed_sorts_label: Sirre
-      pager:
-        options:
-          tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
   page_2:
     display_options:
       arguments:
         fid:
           exception:
             title: Buot
-      pager:
-        options:
-          tags:
-            next: 'Next ›'
-            previous: '‹ Previous'

@@ -36,7 +36,6 @@ display:
           separator: ', '
         count:
           label: Використано
-          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
         changed:
           label: Змінено
           separator: ', '

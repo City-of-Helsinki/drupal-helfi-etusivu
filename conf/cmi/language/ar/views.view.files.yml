@@ -5,6 +5,8 @@ display:
     display_options:
       title: الملفات
       fields:
+        fid:
+          label: Fid
         filename:
           label: الاسم
           separator: ', '
@@ -17,22 +19,20 @@ display:
           settings:
             format_custom_false: مؤقت
             format_custom_true: دائم
+        created:
+          label: 'تاريخ التحميل'
         count:
           label: 'مستخدمة في'
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
-        fid:
-          label: Fid
-        created:
-          label: 'تاريخ التحميل'
       pager:
         options:
           tags:
             next: 'التالي ›'
             previous: '‹ السابق'
           expose:
+            items_per_page_label: 'العناصر لكل صفحة'
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
-            items_per_page_label: 'العناصر لكل صفحة'
       exposed_form:
         options:
           submit_button: انتقاء
@@ -40,6 +40,9 @@ display:
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي
           sort_desc_label: تنازلي
+      empty:
+        area_text_custom:
+          content: 'لا تتوفر ملفّات.'
       filters:
         filename:
           expose:
@@ -50,15 +53,14 @@ display:
         status:
           expose:
             label: الحالة
-      empty:
-        area_text_custom:
-          content: 'لا تتوفر ملفّات.'
   page_1:
     display_options:
       menu:
         title: الملفات
   page_2:
+    display_title: 'استخدام الملف'
     display_options:
+      title: 'استخدام الملف'
       fields:
         entity_label:
           label: الكيان
@@ -72,13 +74,11 @@ display:
             next: 'التالي ›'
             previous: '‹ السابق'
           expose:
+            items_per_page_label: 'العناصر لكل صفحة'
             items_per_page_options_all_label: '- All -'
             offset_label: Offset
-            items_per_page_label: 'العناصر لكل صفحة'
       arguments:
         fid:
           exception:
             title: الكل
           title: 'معلومات استخدام الملف لـ {{ arguments.fid }}'
-      title: 'استخدام الملف'
-    display_title: 'استخدام الملف'

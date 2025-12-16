@@ -6,15 +6,13 @@ display:
           label: Geavahannamma
         created:
           label: 'Miellahttu leamaš'
-      exposed_form:
-        options:
-          exposed_sorts_label: Sirre
       pager:
         options:
           tags:
             first: First
             last: Last
-            next: 'Next ›'
-            previous: '‹ Previous'
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
   page_1:
     display_title: Siidu
