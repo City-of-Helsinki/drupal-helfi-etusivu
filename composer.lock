@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81ea8962dc7e990b918af2eb1d8656dc",
+    "content-hash": "0e71ef1c3625f828fe30456a78af952a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4488,16 +4488,16 @@
         },
         {
             "name": "drupal/hdbt_admin",
-            "version": "3.4.8",
+            "version": "dev-UHF-12582",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt-admin.git",
-                "reference": "67ee4923335a8688aeefdd7010173cc6b4e6988a"
+                "reference": "1edd191fd6a8d5d7f1d1132c78142026514c9cff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/67ee4923335a8688aeefdd7010173cc6b4e6988a",
-                "reference": "67ee4923335a8688aeefdd7010173cc6b4e6988a",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/1edd191fd6a8d5d7f1d1132c78142026514c9cff",
+                "reference": "1edd191fd6a8d5d7f1d1132c78142026514c9cff",
                 "shasum": ""
             },
             "require": {
@@ -4509,6 +4509,13 @@
                 "drupal/helfi_platform_config": "<4.16.68"
             },
             "type": "drupal-theme",
+            "extra": {
+                "patches": {
+                    "drupal/gin_toolbar": {
+                        "[#3552735] Dialog library causing Drupal CSS aggregation to link to non-existent CSS file": "./public/themes/contrib/hdbt_admin/patches/3552735.patch"
+                    }
+                }
+            },
             "license": [
                 "GPL-2.0+"
             ],
@@ -4517,10 +4524,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/3.4.8",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/UHF-12582",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/issues"
             },
-            "time": "2025-12-02T15:17:30+00:00"
+            "time": "2025-12-16T11:15:23+00:00"
         },
         {
             "name": "drupal/health_check",
@@ -21927,6 +21934,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/hdbt_admin": 20,
         "drupal/helfi_drupal_tools": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5,
