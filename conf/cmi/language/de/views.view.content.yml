@@ -20,11 +20,11 @@ display:
             format_custom_true: Veröffentlicht
         changed:
           label: Aktualisiert
-        operations:
-          label: Aktionen
         langcode:
           label: Sprache
           separator: ', '
+        operations:
+          label: Aktionen
       pager:
         options:
           tags:

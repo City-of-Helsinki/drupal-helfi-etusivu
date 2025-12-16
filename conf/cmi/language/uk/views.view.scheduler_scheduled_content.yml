@@ -1,6 +1,6 @@
+label: Заплановано
 display:
   default:
-    display_title: Головне
     display_options:
       exposed_form:
         options:
@@ -62,10 +62,13 @@ display:
         langcode:
           expose:
             label: Мова
+      title: Заплановано
+    display_title: Головне
   overview:
     display_options:
       menu:
         title: Заплановано
+        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: Вміст
   user_page:
@@ -78,3 +81,4 @@ display:
         uid:
           exception:
             title: Все
+    display_title: Користувач

@@ -5,13 +5,13 @@ display:
     display_options:
       pager:
         options:
-          expose:
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
-            items_per_page_label: 'العناصر لكل صفحة'
           tags:
             next: ››
             previous: ‹‹
+          expose:
+            items_per_page_label: 'العناصر لكل صفحة'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       exposed_form:
         options:
           submit_button: تطبيق

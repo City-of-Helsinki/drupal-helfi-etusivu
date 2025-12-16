@@ -22,8 +22,6 @@ display:
             items_per_page_options_all_label: '- Все -'
             offset_label: Пропустить
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
           label: From
           separator: ', '
@@ -60,8 +58,5 @@ display:
           expose:
             label: 'Original language'
       title: Redirect
-      empty:
-        area_text_custom:
-          content: 'There is no redirect yet.'
   page_1:
     display_title: Страница

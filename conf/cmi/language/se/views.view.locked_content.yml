@@ -2,14 +2,19 @@ display:
   default:
     display_title: Default
     display_options:
-      exposed_form:
-        options:
-          exposed_sorts_label: Sirre
       fields:
         title:
           label: Bajilčala
         type:
           label: Šládja
+      pager:
+        options:
+          tags:
+            first: First
+            last: Last
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
       filters:
         status:
           group_info:
@@ -22,12 +27,5 @@ display:
         title:
           expose:
             label: Bajilčala
-      pager:
-        options:
-          tags:
-            next: ››
-            previous: ‹‹
-            first: First
-            last: Last
   page_1:
     display_title: Siidu

@@ -9,38 +9,30 @@ display:
           action_title: عملکرد
         thumbnail__target_id:
           label: 'تصویر بندانگشتی'
-          separator: ', '
+        name:
+          label: 'Media name'
         bundle:
           label: نوع
-          separator: ', '
         uid:
           label: نویسنده
-          separator: ', '
         status:
           label: وضعیت
           settings:
             format_custom_false: 'منتشر نشده'
             format_custom_true: 'منتشر شده'
-          separator: ', '
         changed:
           label: به‌روز
-          separator: ', '
         operations:
           label: عملیات
-        name:
-          separator: ', '
-          label: 'Media name'
       pager:
         options:
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
-          tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
       exposed_form:
         options:
           submit_button: فیلتر
@@ -48,7 +40,13 @@ display:
           exposed_sorts_label: 'مرتب کن بر اساس'
           sort_asc_label: صعودی
           sort_desc_label: نزولی
+      empty:
+        area_text_custom:
+          content: 'رسانه‌ای در دسترس نیست'
       filters:
+        name:
+          expose:
+            label: 'Media name'
         bundle:
           expose:
             label: نوع
@@ -65,12 +63,6 @@ display:
         langcode:
           expose:
             label: زبان
-        name:
-          expose:
-            label: 'Media name'
-      empty:
-        area_text_custom:
-          content: 'رسانه‌ای در دسترس نیست'
   media_page_list:
     display_title: رسانه
     display_options:

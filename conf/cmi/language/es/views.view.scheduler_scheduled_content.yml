@@ -1,8 +1,7 @@
-label: 'Contenido planificado'
+label: Planificado
 description: 'Encontrar y gestionar contenido planificado.'
 display:
   default:
-    display_title: Máster
     display_options:
       exposed_form:
         options:
@@ -64,18 +63,20 @@ display:
         langcode:
           expose:
             label: Idioma
-      title: 'Contenido planificado'
+      title: Planificado
       empty:
         area_text_custom:
           content: 'No hay contenido planificado.'
+    display_title: Máster
   overview:
-    display_title: 'Resumen del contenido'
     display_options:
       menu:
         title: Planificado
+        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: Contenido
         description: 'Encontrar y gestionar contenido planificado'
+    display_title: 'Resumen del contenido'
   user_page:
     display_options:
       menu:
@@ -91,3 +92,4 @@ display:
       empty:
         area_text_custom:
           content: 'No hay contenido planificado para el usuario {{ arguments.uid }}'
+    display_title: 'User profile tab'

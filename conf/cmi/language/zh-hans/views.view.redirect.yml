@@ -22,8 +22,6 @@ display:
             items_per_page_options_all_label: '- 全部 -'
             offset_label: 偏移量
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
           label: From
           separator: ', '

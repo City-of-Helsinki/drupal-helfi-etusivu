@@ -17,4 +17,4 @@ display:
     display_options:
       display_description: 'Eine Liste der neuen Benutzer'
       block_description: 'Neue Benutzer'
-      block_category: Benutzer
+      block_category: Benutzerprofil-Reiter

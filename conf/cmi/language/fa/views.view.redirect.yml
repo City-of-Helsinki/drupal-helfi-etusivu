@@ -21,11 +21,8 @@ display:
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
           label: From
-          separator: ', '
         created:
           label: Created
       filters:
