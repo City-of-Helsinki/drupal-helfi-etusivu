@@ -1,5 +1,5 @@
 diff --git a/core/modules/system/src/Controller/AssetControllerBase.php b/core/modules/system/src/Controller/AssetControllerBase.php
-index 4f8d5ad6965..101bea2359b 100644
+index 4f8d5ad6965..605201f02ab 100644
 --- a/core/modules/system/src/Controller/AssetControllerBase.php
 +++ b/core/modules/system/src/Controller/AssetControllerBase.php
 @@ -2,6 +2,7 @@
@@ -30,7 +30,7 @@ index 4f8d5ad6965..101bea2359b 100644
        $this->dumper->dumpToUri($data, $this->assetType, $uri);
      }
      else {
-+      file_put_contents(DRUPAL_ROOT . '/public/sites/default/files/debug.log', (string) new FormattableMarkup('Hash validation failed for [@asset]. Expected hash [@expected_hash], got [@actual_hash]. Group: @group', [
++      file_put_contents(DRUPAL_ROOT . '/sites/default/files/debug.log', (string) new FormattableMarkup('Hash validation failed for [@asset]. Expected hash [@expected_hash], got [@actual_hash]. Group: @group', [
 +        '@asset' => $uri,
 +        '@expected_hash' => $generated_hash,
 +        '@actual_hash' => $received_hash,
