@@ -1,6 +1,6 @@
+label: Ajatatud
 display:
   default:
-    display_title: Peamine
     display_options:
       exposed_form:
         options:
@@ -61,6 +61,8 @@ display:
         langcode:
           expose:
             label: Keel
+      title: Ajatatud
+    display_title: Peamine
   overview:
     display_options:
       menu:

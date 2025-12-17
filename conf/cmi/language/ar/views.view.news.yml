@@ -1,5 +1,10 @@
 display:
+  latest_news:
+    display_title: 'آخر الأخبار'
+    display_options:
+      use_more_text: 'شاهد كل الأخبار'
   default:
+    display_title: الافتراضي
     display_options:
       title: 'آخر الأخبار'
       fields:
@@ -7,8 +12,6 @@ display:
           separator: ', '
         field_main_image:
           separator: ', '
-        view_node:
-          text: view
       exposed_form:
         options:
           submit_button: تطبيق
@@ -20,8 +23,3 @@ display:
         nid:
           exception:
             title: الكل
-    display_title: الافتراضي
-  latest_news:
-    display_title: 'آخر الأخبار'
-    display_options:
-      use_more_text: 'شاهد كل الأخبار'
