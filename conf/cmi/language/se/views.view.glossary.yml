@@ -9,11 +9,6 @@ display:
       exposed_form:
         options:
           exposed_sorts_label: Sirre
-      pager:
-        options:
-          tags:
-            next: ››
-            previous: ‹‹
   attachment_1:
     display_title: Mielddus
   page_1:

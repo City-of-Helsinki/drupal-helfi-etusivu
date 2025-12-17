@@ -1,16 +1,13 @@
-label: 'Contenido planificado'
+label: Planificado
 description: 'Encontrar y gestionar contenido planificado.'
 display:
   default:
-    display_title: Máster
     display_options:
       exposed_form:
         options:
           submit_button: Filtro
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
       pager:
         options:
           tags:
@@ -64,18 +61,19 @@ display:
         langcode:
           expose:
             label: Idioma
-      title: 'Contenido planificado'
+      title: Planificado
       empty:
         area_text_custom:
           content: 'No hay contenido planificado.'
+    display_title: Máster
   overview:
-    display_title: 'Resumen del contenido'
     display_options:
       menu:
         title: Planificado
       tab_options:
         title: Contenido
         description: 'Encontrar y gestionar contenido planificado'
+    display_title: 'Resumen del contenido'
   user_page:
     display_options:
       menu:

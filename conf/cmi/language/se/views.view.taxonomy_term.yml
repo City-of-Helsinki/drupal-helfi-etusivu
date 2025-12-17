@@ -8,10 +8,5 @@ display:
         tid:
           exception:
             title: Buot
-      pager:
-        options:
-          tags:
-            next: ››
-            previous: ‹‹
   page_1:
     display_title: Siidu

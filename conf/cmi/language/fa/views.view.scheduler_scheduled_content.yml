@@ -1,6 +1,5 @@
 display:
   default:
-    display_title: مدیر
     display_options:
       exposed_form:
         options:
@@ -21,25 +20,17 @@ display:
           action_title: عملکرد
         title:
           label: عنوان
-          separator: ', '
         type:
           label: 'نوع محتوا'
-          separator: ', '
         name:
           label: نویسنده
-          separator: ', '
         status:
           label: وضعیت
           settings:
             format_custom_true: 'منتشر شده'
             format_custom_false: 'منتشر نشده'
-          separator: ', '
         operations:
           label: عملیات
-        publish_on:
-          separator: ', '
-        unpublish_on:
-          separator: ', '
       filters:
         title:
           expose:
@@ -60,11 +51,12 @@ display:
         langcode:
           expose:
             label: زبان
+    display_title: مدیر
   overview:
-    display_title: 'مرورکلی محتوا'
     display_options:
       tab_options:
         title: محتوا
+    display_title: 'مرورکلی محتوا'
   user_page:
     display_options:
       tab_options:

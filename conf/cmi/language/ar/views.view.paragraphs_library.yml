@@ -12,12 +12,7 @@ display:
       pager:
         options:
           expose:
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
             items_per_page_label: 'العناصر لكل صفحة'
-          tags:
-            previous: ‹‹
-            next: ››
       fields:
         label:
           label: التسمية
@@ -47,5 +42,3 @@ display:
         type:
           expose:
             label: النوع
-  page_1:
-    display_title: Page
