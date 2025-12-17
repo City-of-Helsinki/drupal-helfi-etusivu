@@ -16,8 +16,6 @@ display:
           label: 'Date / Heure du verrouillage'
         name:
           separator: ', '
-        operations:
-          label: Actions
       pager:
         options:
           tags:

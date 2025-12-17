@@ -70,7 +70,6 @@ display:
     display_options:
       menu:
         title: Planificado
-        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: Contenido
         description: 'Encontrar y gestionar contenido planificado'

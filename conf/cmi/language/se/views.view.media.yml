@@ -11,11 +11,6 @@ display:
             format_custom_true: Almmuhuvvon
         changed:
           label: Ođastuvvon
-      pager:
-        options:
-          tags:
-            first: First
-            last: Last
       exposed_form:
         options:
           exposed_sorts_label: Sirre

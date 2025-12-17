@@ -17,11 +17,6 @@ display:
           label: Ođastuvvon
         langcode:
           label: Giella
-      pager:
-        options:
-          tags:
-            first: First
-            last: Last
       exposed_form:
         options:
           exposed_sorts_label: Sirre

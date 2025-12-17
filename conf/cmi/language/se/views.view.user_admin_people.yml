@@ -6,11 +6,6 @@ display:
           label: Geavahannamma
         created:
           label: 'Miellahttu leamaš'
-      pager:
-        options:
-          tags:
-            first: First
-            last: Last
       exposed_form:
         options:
           exposed_sorts_label: Sirre

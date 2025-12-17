@@ -11,9 +11,6 @@ display:
           sort_desc_label: نزولی
       pager:
         options:
-          tags:
-            previous: Previous
-            next: Next
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'

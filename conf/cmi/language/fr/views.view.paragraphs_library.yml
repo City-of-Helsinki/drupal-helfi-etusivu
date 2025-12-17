@@ -39,8 +39,6 @@ display:
         changed:
           label: Modifié
           separator: ', '
-        operations:
-          label: Actions
       filters:
         label:
           expose:
