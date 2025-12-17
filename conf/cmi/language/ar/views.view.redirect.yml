@@ -18,23 +18,7 @@ display:
             last: 'الأخيرة »'
           expose:
             items_per_page_label: 'العناصر لكل صفحة'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
-      fields:
-        redirect_source__path:
-          label: From
-          separator: ', '
-        created:
-          label: Created
       filters:
-        redirect_source__path:
-          expose:
-            label: From
-        redirect_redirect__uri:
-          expose:
-            label: To
         language:
           expose:
             label: 'اللغة الأصلية'
-  page_1:
-    display_title: Page

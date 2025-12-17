@@ -1,10 +1,8 @@
-label: Redirect
 display:
   default:
     display_options:
       exposed_form:
         options:
-          submit_button: Filter
           reset_button_label: Zurücksetzen
           exposed_sorts_label: Sortierung
           sort_asc_label: Aufsteigend
@@ -20,42 +18,5 @@ display:
             items_per_page_label: 'Elemente pro Seite'
             items_per_page_options_all_label: '- Alle -'
             offset_label: Versatz
-      fields:
-        redirect_source__path:
-          label: From
-          separator: ', '
-        created:
-          label: Created
-      filters:
-        redirect_source__path:
-          expose:
-            label: From
-        redirect_redirect__uri:
-          expose:
-            label: To
-        status_code:
-          expose:
-            label: 'Status code'
-          group_info:
-            label: 'Status code'
-            group_items:
-              1:
-                title: '300 Multiple Choices'
-              2:
-                title: '301 Moved Permanently'
-              3:
-                title: '302 Found'
-              4:
-                title: '303 See Other'
-              5:
-                title: '304 Not Modified'
-              6:
-                title: '305 Use Proxy'
-              7:
-                title: '307 Temporary Redirect'
-        language:
-          expose:
-            label: 'Original language'
-      title: Redirect
   page_1:
     display_title: Seite

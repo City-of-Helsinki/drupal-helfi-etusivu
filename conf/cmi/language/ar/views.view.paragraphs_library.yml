@@ -11,13 +11,8 @@ display:
           sort_desc_label: تنازلي
       pager:
         options:
-          tags:
-            previous: ‹‹
-            next: ››
           expose:
             items_per_page_label: 'العناصر لكل صفحة'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
       fields:
         label:
           label: التسمية
@@ -47,5 +42,3 @@ display:
         type:
           expose:
             label: النوع
-  page_1:
-    display_title: Page

@@ -12,8 +12,6 @@ display:
           separator: ', '
         field_main_image:
           separator: ', '
-        view_node:
-          text: view
       exposed_form:
         options:
           submit_button: تطبيق

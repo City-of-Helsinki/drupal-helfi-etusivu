@@ -6,8 +6,6 @@ display:
     display_options:
       title: Filer
       fields:
-        fid:
-          label: Fid
         filename:
           label: Namn
           separator: ', '

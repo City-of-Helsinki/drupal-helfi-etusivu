@@ -1,4 +1,3 @@
-label: Scheduled
 display:
   default:
     display_options:
@@ -60,13 +59,9 @@ display:
         langcode:
           expose:
             label: اللغة
-      title: Scheduled
     display_title: الرئيسي
   overview:
     display_options:
-      menu:
-        title: Scheduled
-        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: المحتوى
   user_page:
@@ -77,4 +72,3 @@ display:
         uid:
           exception:
             title: الكل
-    display_title: 'User profile tab'

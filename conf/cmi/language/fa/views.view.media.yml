@@ -9,8 +9,6 @@ display:
           action_title: عملکرد
         thumbnail__target_id:
           label: 'تصویر بندانگشتی'
-        name:
-          label: 'Media name'
         bundle:
           label: نوع
         uid:
@@ -26,9 +24,6 @@ display:
           label: عملیات
       pager:
         options:
-          tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
