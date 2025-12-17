@@ -68,7 +68,6 @@ display:
     display_options:
       menu:
         title: Запланировано
-        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: Содержимое
   user_page:
@@ -81,4 +80,3 @@ display:
         uid:
           exception:
             title: Все
-    display_title: 'User profile tab'

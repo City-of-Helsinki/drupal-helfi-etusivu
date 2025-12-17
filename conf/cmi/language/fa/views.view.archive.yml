@@ -6,9 +6,6 @@ display:
       title: 'آرشیو ماهیانه'
       pager:
         options:
-          tags:
-            next: Next
-            previous: Previous
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'

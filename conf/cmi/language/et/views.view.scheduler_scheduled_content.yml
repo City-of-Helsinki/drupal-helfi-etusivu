@@ -67,7 +67,6 @@ display:
     display_options:
       menu:
         title: Ajatatud
-        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: Sisu
   user_page:
@@ -80,4 +79,3 @@ display:
         uid:
           exception:
             title: Kõik
-    display_title: 'User profile tab'

@@ -1,4 +1,3 @@
-label: Redirect
 display:
   default:
     display_title: Förvald
@@ -59,7 +58,6 @@ display:
         language:
           expose:
             label: Originalspråk
-      title: Redirect
       empty:
         area_text_custom:
           content: 'Det finns inga omdirigeringar ännu.'

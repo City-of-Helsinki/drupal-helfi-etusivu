@@ -1,4 +1,3 @@
-label: Scheduled
 display:
   default:
     display_options:
@@ -52,13 +51,9 @@ display:
         langcode:
           expose:
             label: زبان
-      title: Scheduled
     display_title: مدیر
   overview:
     display_options:
-      menu:
-        title: Scheduled
-        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: محتوا
     display_title: 'مرورکلی محتوا'
@@ -70,4 +65,3 @@ display:
         uid:
           exception:
             title: همه
-    display_title: 'User profile tab'

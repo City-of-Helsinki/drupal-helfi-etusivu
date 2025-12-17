@@ -17,4 +17,3 @@ display:
     display_options:
       display_description: 'Список новых пользователей'
       block_description: 'Новые пользователи'
-      block_category: 'User profile tab'

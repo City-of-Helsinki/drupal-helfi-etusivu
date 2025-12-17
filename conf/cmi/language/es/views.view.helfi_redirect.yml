@@ -34,8 +34,6 @@ display:
           submit_button: Filtro
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
       filters:
         redirect_source__path:
           expose:
@@ -66,12 +64,6 @@ display:
         language:
           expose:
             label: 'Lenguaje original'
-        is_custom:
-          expose:
-            label: Custom
-        enabled:
-          expose:
-            label: Enabled
   page_1:
     display_title: Página
     display_options:

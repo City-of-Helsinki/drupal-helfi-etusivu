@@ -2,7 +2,6 @@ label: Medienbibliothek
 description: 'Medien finden und verwalten.'
 display:
   default:
-    display_title: Standard
     display_options:
       title: Medien
       fields:
@@ -99,8 +98,6 @@ display:
       fields:
         thumbnail__target_id:
           label: Miniaturbild
-        name:
-          label: Name
         uid:
           label: Autor
         changed:
@@ -109,10 +106,6 @@ display:
         bundle:
           exception:
             title: Alle
-      filters:
-        name:
-          expose:
-            label: Name
       header:
         display_link_grid:
           label: Raster
