@@ -2,20 +2,6 @@ display:
   default:
     display_title: مدیر
     display_options:
-      fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
-        redirect_source__path:
-          label: From
-          separator: ', '
-        is_custom:
-          label: Custom
-          separator: ', '
-        created:
-          label: Created
-        enabled:
-          label: Enabled
-          separator: ', '
       pager:
         options:
           tags:
@@ -34,18 +20,5 @@ display:
           exposed_sorts_label: 'مرتب کن بر اساس'
           sort_asc_label: صعودی
           sort_desc_label: نزولی
-      filters:
-        redirect_source__path:
-          expose:
-            label: From
-        redirect_redirect__uri:
-          expose:
-            label: To
-        is_custom:
-          expose:
-            label: Custom
-        enabled:
-          expose:
-            label: Enabled
   page_1:
     display_title: صفحه

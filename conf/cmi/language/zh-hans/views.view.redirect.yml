@@ -1,4 +1,3 @@
-label: Redirect
 display:
   default:
     display_title: 主
@@ -21,41 +20,5 @@ display:
             items_per_page_label: 每页条目数
             items_per_page_options_all_label: '- 全部 -'
             offset_label: 偏移量
-      fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
-        redirect_source__path:
-          label: From
-          separator: ', '
-        created:
-          label: Created
-      filters:
-        redirect_source__path:
-          expose:
-            label: From
-        redirect_redirect__uri:
-          expose:
-            label: To
-        status_code:
-          group_info:
-            group_items:
-              1:
-                title: '300 Multiple Choices'
-              2:
-                title: '301 Moved Permanently'
-              3:
-                title: '302 Found'
-              4:
-                title: '303 See Other'
-              5:
-                title: '304 Not Modified'
-              6:
-                title: '305 Use Proxy'
-              7:
-                title: '307 Temporary Redirect'
-        language:
-          expose:
-            label: 'Original language'
-      title: Redirect
   page_1:
     display_title: 页面

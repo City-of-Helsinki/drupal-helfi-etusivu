@@ -1,0 +1,109 @@
+// Illustration width on by screen size.
+$illustration-width: 258px;
+$illustration-width-l: 378px;
+$illustration-width-xl: 486px;
+
+// Illustration offsets by screen size.
+$illustration-offset: $spacing-double;
+$illustration-offset-l: $spacing-triple;
+$illustration-offset-xl: $spacing-quadruple;
+
+// Illustration aspect-ratio.
+$illustration-aspect-ratio: 1;
+$-current-item-font: 'special.large_link';
+
+// Lets calculate the padding size for the service-item based on the line-height of the chosen font.
+$-current-item-padding: ($wcag-touch-target-size-aaa - get-line-height($-current-item-font, $unremify: true) ) * 0.5;
+
+.component--current {
+  background-color: var(--hdbt-color-palette--secondary);
+  color: var(--hdbt-color-palette-text--secondary);
+}
+
+.current__content {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $content-area-wrapper-width-max;
+
+  @include breakpoint($breakpoint-m) {
+    flex-direction: row;
+  }
+}
+
+.current__content__list {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.current__content__list-item {
+  // The link wrapper needs to have the same font size and line-height as the link itself so that the list marker is
+  // shown in the correct position.
+  @include font($-current-item-font);
+  margin-bottom: $spacing - 2 * $-current-item-padding;
+  margin-top: 0;
+
+  // The padding here is also to help align the list marker to correct position.
+  padding-block: $-current-item-padding;
+  vertical-align: top;
+}
+
+.current__links-container {
+  padding-bottom: $spacing;
+  padding-top: $spacing;
+
+  @include breakpoint($breakpoint-s) {
+    padding-bottom: $spacing-and-half;
+    padding-top: $spacing-and-half;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    padding-right: $spacing;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    padding-bottom: $spacing-triple;
+    padding-top: $spacing-triple;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    padding-bottom: $spacing-quadruple;
+    padding-top: $spacing-quadruple;
+  }
+}
+
+.current {
+  display: flex;
+  flex-direction: column;
+}
+
+.current__illustration-container {
+  @include breakpoint($breakpoint-m) {
+    margin-left: auto;
+    margin-top: -$illustration-offset;
+  }
+
+  // Set the illustration offset to match the padding container padding
+  @include breakpoint($breakpoint-l) {
+    margin-top: -$illustration-offset-l;
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    margin-top: -$illustration-offset-xl;
+  }
+}
+
+.current__seasonal-illustration {
+  aspect-ratio: $illustration-aspect-ratio;
+  display: block;
+  width: $illustration-width;
+
+  @include breakpoint($breakpoint-l) {
+    width: $illustration-width-l;
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    width: $illustration-width-xl;
+  }
+}

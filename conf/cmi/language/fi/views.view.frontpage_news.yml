@@ -6,14 +6,14 @@ display:
     display_options:
       title: 'Sinua voisi kiinnostaa'
   latest_news_cards:
+    display_title: 'Uusimmat uutiset'
     display_options:
       title: 'Uusimmat uutiset'
       use_more_text: 'Etsi uutisia'
       link_url: /uutiset/etsi-uutisia
-    display_title: 'Uusimmat uutiset'
   latest_news_minimal:
+    display_title: 'Uusimmat uutiset'
     display_options:
       title: 'Uusimmat uutiset'
       use_more_text: 'Katso kaikki ajankohtaiset'
       link_url: /uutiset
-    display_title: 'Uusimmat uutiset'

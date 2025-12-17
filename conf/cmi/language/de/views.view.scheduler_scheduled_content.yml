@@ -1,4 +1,4 @@
-label: 'Geplanter Inhalt'
+label: Zeitgesteuert
 description: 'Zeitgesteuerte Inhalte finden und verwalten.'
 display:
   default:
@@ -63,11 +63,10 @@ display:
         langcode:
           expose:
             label: Sprache
-      title: 'Vom Zeitplaner gesteuerte Inhalte'
+      title: Zeitgesteuert
       empty:
         area_text_custom:
           content: 'Kein zeitgesteuerter Inhalt.'
-    display_title: Master
   overview:
     display_options:
       menu:
