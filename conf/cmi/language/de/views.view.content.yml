@@ -2,7 +2,6 @@ label: Inhalt
 description: 'Inhalte finden und verwalten.'
 display:
   default:
-    display_title: Standard
     display_options:
       title: Inhalt
       fields:
@@ -14,17 +13,16 @@ display:
         name:
           label: Autor
         status:
-          label: Status
           settings:
             format_custom_false: 'Nicht veröffentlicht'
             format_custom_true: Veröffentlicht
         changed:
           label: Aktualisiert
-        operations:
-          label: Aktionen
         langcode:
           label: Sprache
           separator: ', '
+        operations:
+          label: Aktionen
       pager:
         options:
           tags:
@@ -34,7 +32,6 @@ display:
             last: 'Ende »'
       exposed_form:
         options:
-          submit_button: Filter
           reset_button_label: Zurücksetzen
           exposed_sorts_label: Sortierung
           sort_asc_label: Aufsteigend
@@ -50,8 +47,6 @@ display:
           expose:
             label: Inhaltstyp
         status:
-          expose:
-            label: Status
           group_info:
             label: Veröffentlichungsstatus
             group_items:

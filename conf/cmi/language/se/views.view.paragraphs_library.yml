@@ -1,5 +1,6 @@
 display:
   default:
+    display_title: Default
     display_options:
       exposed_form:
         options:
@@ -13,11 +14,5 @@ display:
         type:
           expose:
             label: Šládja
-      pager:
-        options:
-          tags:
-            previous: ‹‹
-            next: ››
-    display_title: Default
   page_1:
     display_title: Siidu

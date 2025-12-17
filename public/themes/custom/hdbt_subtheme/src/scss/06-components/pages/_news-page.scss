@@ -1,0 +1,34 @@
+.block--main-news {
+  @include component-side-padding;
+  @include components-container-max-width;
+  @include component-margin-top;
+  margin: auto;
+  width: 100%;
+
+  h2 {
+    margin-bottom: $spacing-triple;
+    margin-top: 0;
+  }
+}
+
+.component--news-of-interest {
+  @include component-margin-top;
+  background-color:  $color-black-5;
+  margin-left: $spacing;
+  margin-right: $spacing;
+  padding: $spacing-double $spacing $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    padding: $spacing-triple $spacing-double $spacing-triple;
+  }
+
+  .card {
+    // TODO… UHF-9866 Remove this when the card style is renewed and the arrow is removed
+    // (https://helsinkisolutionoffice.atlassian.net/browse/UHF-9866).
+    padding: $spacing-and-half;
+  }
+
+  .empty-text {
+    @include font(body);
+  }
+}

@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents;
 
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\DTO\TargetGroup;
 
 /**
  * A lazy builder for Feedback block.
@@ -42,28 +43,35 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       '#theme' => 'helsinki_near_you_lazy_builder_content',
     ];
 
+    // Search with Adult target group by default.
+    $query = array_merge([
+      'dwithin_origin' => sprintf('%f,%f', $address->location->lon, $address->location->lat),
+      'dwithin_metres' => 2000,
+    ], TargetGroup::Adult->getQueryFilters());
+
     $data = $this->httpClient
-      ->get([
-        'dwithin_origin' => sprintf('%f,%f', $address->location->lon, $address->location->lat),
-        'dwithin_metres' => 2000,
-      ], $langcode, $limit);
+      ->get($query, $langcode, $limit);
 
     foreach ($data->items as $item) {
-      $build['#content'][] = [
+      $element = [
         '#theme' => 'helsinki_near_you_event_item',
         '#title' => [
           '#type' => 'link',
           '#title' => $item->title,
           '#url' => $item->uri,
         ],
-        '#external_image' => [
+        '#object' => $item,
+      ];
+
+      if ($item->image) {
+        $element['#external_image'] = [
           '#theme' => 'imagecache_external_responsive',
           '#uri' => $item->image->url,
           '#responsive_image_style_id' => 'card',
           '#alt' => $item->image->alt,
-        ],
-        '#object' => $item,
-      ];
+        ];
+      }
+      $build['#content'][] = $element;
     }
 
     return $build;

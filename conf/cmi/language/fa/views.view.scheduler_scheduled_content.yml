@@ -20,25 +20,17 @@ display:
           action_title: عملکرد
         title:
           label: عنوان
-          separator: ', '
         type:
           label: 'نوع محتوا'
-          separator: ', '
         name:
           label: نویسنده
-          separator: ', '
         status:
           label: وضعیت
           settings:
             format_custom_true: 'منتشر شده'
             format_custom_false: 'منتشر نشده'
-          separator: ', '
         operations:
           label: عملیات
-        publish_on:
-          separator: ', '
-        unpublish_on:
-          separator: ', '
       filters:
         title:
           expose:

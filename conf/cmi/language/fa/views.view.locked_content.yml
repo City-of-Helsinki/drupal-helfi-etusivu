@@ -2,6 +2,21 @@ display:
   default:
     display_title: مدیر
     display_options:
+      fields:
+        node_bulk_form:
+          action_title: عملکرد
+        title:
+          label: عنوان
+        type:
+          label: 'نوع محتوا'
+        operations:
+          label: عملیات
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
       exposed_form:
         options:
           submit_button: تایید
@@ -9,30 +24,6 @@ display:
           exposed_sorts_label: 'مرتب کن بر اساس'
           sort_asc_label: صعودی
           sort_desc_label: نزولی
-      pager:
-        options:
-          expose:
-            items_per_page_label: 'آیتم‌ها در هر صفحه'
-            items_per_page_options_all_label: '- همه -'
-            offset_label: جابجایی
-          tags:
-            next: Next
-            previous: Previous
-            first: '« First'
-            last: 'Last »'
-      fields:
-        node_bulk_form:
-          action_title: عملکرد
-        title:
-          label: عنوان
-          separator: ', '
-        type:
-          label: 'نوع محتوا'
-          separator: ', '
-        operations:
-          label: عملیات
-        name:
-          separator: ', '
       filters:
         status:
           expose:

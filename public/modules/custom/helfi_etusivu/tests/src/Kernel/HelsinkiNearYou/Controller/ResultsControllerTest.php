@@ -112,10 +112,8 @@ class ResultsControllerTest extends KernelTestBase {
    */
   public function testContent(): void {
     // Should redirect back when no address is supplied.
-    $mockRequest = $this->createMock(Request::class);
-    $queryWithoutArgs = new InputBag([]);
-    $mockRequest->query = $queryWithoutArgs;
-    $redirect = $this->controller->content($mockRequest);
+    $request = new Request();
+    $redirect = $this->controller->content($request);
     $this->assertInstanceOf(RedirectResponse::class, $redirect);
 
     $badAddress = 'Nonexistant street';
@@ -125,10 +123,9 @@ class ResultsControllerTest extends KernelTestBase {
     ];
 
     // Should redirect when serviceMap instance returns NULL for address query.
-    $queryWithBadArgs = new InputBag([
+    $request->query = new InputBag([
       'q' => $badAddress,
     ]);
-    $mockRequest->query = $queryWithBadArgs;
     $this->serviceMap->expects(self::exactly(2))
       ->method('getAddressData')
       ->willReturnMap([
@@ -144,15 +141,14 @@ class ResultsControllerTest extends KernelTestBase {
           ),
         ],
       ]);
-    $badArgRedirect = $this->controller->content($mockRequest);
+    $badArgRedirect = $this->controller->content($request);
     $this->assertInstanceOf(RedirectResponse::class, $badArgRedirect);
 
     // Should return build array when address checks out.
-    $queryWithValidArgs = new InputBag([
+    $request->query = new InputBag([
       'q' => $validAddress,
     ]);
-    $mockRequest->query = $queryWithValidArgs;
-    $build = $this->controller->content($mockRequest);
+    $build = $this->controller->content($request);
 
     $this->assertIsArray($build);
     $this->assertEquals('helsinki_near_you_results_page', $build['#theme']);
@@ -181,7 +177,7 @@ class ResultsControllerTest extends KernelTestBase {
         $this->assertInstanceOf(TranslatableMarkup::class, $link['link_label']);
         $this->assertIsString($link['link_url']);
       }
-    };
+    }
   }
 
 }
