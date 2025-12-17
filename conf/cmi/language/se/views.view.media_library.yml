@@ -17,11 +17,6 @@ display:
         langcode:
           expose:
             label: Giella
-      pager:
-        options:
-          tags:
-            next: ››
-            previous: ‹‹
   page:
     display_title: Siidu
     display_options:

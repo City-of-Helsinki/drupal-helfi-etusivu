@@ -8,8 +8,6 @@ display:
           submit_button: Filtrer
           reset_button_label: Réinitialiser
           exposed_sorts_label: 'Trier par'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
       pager:
         options:
           tags:
@@ -38,13 +36,9 @@ display:
         count:
           label: Utilisé
           format_plural_string: !!binary QGNvdW50IGVtcGxhY2VtZW50A0Bjb3VudCBlbXBsYWNlbWVudHM=
-          alter:
-            path: 'admin/content/entity-usage/paragraphs_library_item/{{ id }}'
         changed:
           label: Modifié
           separator: ', '
-        operations:
-          label: Actions
       filters:
         label:
           expose:

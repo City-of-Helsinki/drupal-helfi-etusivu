@@ -6,6 +6,6 @@ _core:
   default_config_hash: 30hewHSiD_kriuShRDORK88boHDf4MoFpNodtPTTr5A
 name: 'News tags'
 vid: news_tags
-description: null
+description: ''
 weight: 0
 new_revision: false

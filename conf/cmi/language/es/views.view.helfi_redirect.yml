@@ -1,5 +1,4 @@
 label: Redirección
-description: 'List of redirects'
 display:
   default:
     display_title: Máster
@@ -14,11 +13,11 @@ display:
         is_custom:
           label: Custom
           separator: ', '
-        created:
-          label: Creado
         enabled:
           label: Enabled
           separator: ', '
+        created:
+          label: Creado
       pager:
         options:
           tags:
@@ -35,11 +34,6 @@ display:
           submit_button: Filtro
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      empty:
-        area_text_custom:
-          content: 'There is no redirect yet.'
       filters:
         redirect_source__path:
           expose:
@@ -70,12 +64,6 @@ display:
         language:
           expose:
             label: 'Lenguaje original'
-        is_custom:
-          expose:
-            label: Custom
-        enabled:
-          expose:
-            label: Enabled
   page_1:
     display_title: Página
     display_options:

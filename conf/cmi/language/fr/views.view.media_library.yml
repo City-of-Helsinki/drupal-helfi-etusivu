@@ -1,4 +1,3 @@
-label: 'Media library'
 description: 'Trouver et gérer des media.'
 display:
   default:
@@ -22,8 +21,6 @@ display:
           submit_button: 'Appliquer les filtres'
           reset_button_label: Réinitialiser
           exposed_sorts_label: 'Trier par'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
       empty:
         area_text_custom:
           content: 'Aucun média disponible.'

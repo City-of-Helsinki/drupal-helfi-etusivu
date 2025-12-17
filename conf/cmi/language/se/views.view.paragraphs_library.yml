@@ -14,10 +14,5 @@ display:
         type:
           expose:
             label: Šládja
-      pager:
-        options:
-          tags:
-            previous: ‹‹
-            next: ››
   page_1:
     display_title: Siidu

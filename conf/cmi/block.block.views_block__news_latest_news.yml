@@ -23,7 +23,7 @@ settings:
   label_display: visible
   provider: views
   views_label: 'Latest news'
-  items_per_page: none
+  items_per_page: null
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
