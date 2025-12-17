@@ -20,11 +20,11 @@ display:
             format_custom_true: Опубликовано
         changed:
           label: Обновлено
-        operations:
-          label: Операции
         langcode:
           label: Язык
           separator: ', '
+        operations:
+          label: Операции
       pager:
         options:
           tags:

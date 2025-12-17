@@ -1,8 +1,7 @@
-label: 'Geplanter Inhalt'
+label: Zeitgesteuert
 description: 'Zeitgesteuerte Inhalte finden und verwalten.'
 display:
   default:
-    display_title: Master
     display_options:
       exposed_form:
         options:
@@ -64,12 +63,11 @@ display:
         langcode:
           expose:
             label: Sprache
-      title: 'Vom Zeitplaner gesteuerte Inhalte'
+      title: Zeitgesteuert
       empty:
         area_text_custom:
           content: 'Kein zeitgesteuerter Inhalt.'
   overview:
-    display_title: Inhaltsübersicht
     display_options:
       menu:
         title: Zeitgesteuert
@@ -79,8 +77,8 @@ display:
         description: 'Zeitgesteuerte Inhalte finden und verwalten'
       display_description: 'Übersicht über alle zeitgesteuerten Inhalte, als Reiter auf der Seite Inhalt verwalten.'
       display_comment: 'Eine Revisions-nid-Beziehung ist erforderlich, weil der Inhaltstyp nur auf der Stufe „Inhalt“, aber nicht auf der Stufe „Inhaltsrevision“ gespeichert wird.'
+    display_title: Inhaltsübersicht
   user_page:
-    display_title: Benutzerprofil-Reiter
     display_options:
       menu:
         title: Zeitgesteuert
@@ -92,3 +90,4 @@ display:
         uid:
           exception:
             title: Alle
+    display_title: Benutzerprofil-Reiter

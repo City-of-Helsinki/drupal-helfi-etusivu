@@ -1,5 +1,3 @@
-label: Redirect
-description: 'List of redirects'
 display:
   default:
     display_title: Förvald
@@ -43,8 +41,6 @@ display:
           group_info:
             label: Statuskod
             group_items:
-              7:
-                title: '307 Tillfällig omdirigering'
               1:
                 title: '300 Flera val'
               2:
@@ -57,10 +53,11 @@ display:
                 title: '304 Ej modifierad'
               6:
                 title: '305 Använd proxy'
+              7:
+                title: '307 Tillfällig omdirigering'
         language:
           expose:
             label: Originalspråk
-      title: Redirect
       empty:
         area_text_custom:
           content: 'Det finns inga omdirigeringar ännu.'

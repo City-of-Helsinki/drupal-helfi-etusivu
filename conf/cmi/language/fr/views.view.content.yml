@@ -20,8 +20,6 @@ display:
             format_custom_true: Publié
         changed:
           label: 'Mis à jour'
-        operations:
-          label: Actions
         langcode:
           label: Langue
           separator: ', '
@@ -37,8 +35,6 @@ display:
           submit_button: Filtrer
           reset_button_label: Réinitialiser
           exposed_sorts_label: 'Trier par'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
       empty:
         area_text_custom:
           content: 'Aucun contenu disponible.'
