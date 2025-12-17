@@ -7,11 +7,6 @@ display:
           label: Bajilčala
         type:
           label: Šládja
-      pager:
-        options:
-          tags:
-            first: First
-            last: Last
       exposed_form:
         options:
           exposed_sorts_label: Sirre

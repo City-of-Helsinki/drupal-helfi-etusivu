@@ -29,8 +29,6 @@ display:
         changed:
           label: 'Mis à jour'
           separator: ', '
-        operations:
-          label: Actions
       pager:
         options:
           tags:

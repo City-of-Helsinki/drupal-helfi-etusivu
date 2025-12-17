@@ -23,8 +23,6 @@ display:
         langcode:
           label: Langue
           separator: ', '
-        operations:
-          label: Actions
       pager:
         options:
           tags:

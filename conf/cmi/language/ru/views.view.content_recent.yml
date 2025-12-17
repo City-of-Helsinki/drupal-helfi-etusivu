@@ -4,7 +4,6 @@ display:
   default:
     display_title: 'По умолчанию'
     display_options:
-      title: 'Recent content'
       fields:
         changed:
           separator: ', '
