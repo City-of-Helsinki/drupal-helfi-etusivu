@@ -8,7 +8,9 @@
 declare(strict_types=1);
 
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -41,6 +43,27 @@ function helfi_etusivu_entity_bundle_info_alter(array &$bundles): void {
   if (isset($bundles['node']['survey'])) {
     $bundles['node']['survey']['class'] = Survey::class;
   }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * Adds a 'changed_at' field to news_item nodes.
+ */
+function helfi_etusivu_entity_base_field_info(EntityTypeInterface $entity_type): array {
+  $fields = [];
+
+  if ($entity_type->id() === 'node') {
+    $fields['changed_at'] = BaseFieldDefinition::create('timestamp')
+      ->setLabel(t('Content changed on'))
+      ->setDescription(t('Timestamp of when content was last changed via form.'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', FALSE);
+  }
+
+  return $fields;
 }
 
 /**
@@ -142,6 +165,29 @@ function helfi_etusivu_form_node_form_alter(&$form, FormStateInterface $form_sta
   _helfi_etusivu_form_promote_field_alter($form, $form_state, $form_id);
   _helfi_etusivu_form_updating_news_field_alter($form, $form_state, $form_id);
   _helfi_etusivu_form_unpublish_date_alter($form, $form_state, $form_id);
+  _helfi_etusivu_form_changed_at_alter($form, $form_state, $form_id);
+}
+
+/**
+ * Handler to update changed_at field for news_item nodes.
+ */
+function _helfi_etusivu_form_changed_at_alter(&$form, FormStateInterface $form_state, $form_id): void {
+  if (!str_contains($form_id, 'news_item')) {
+    return;
+  }
+
+  array_unshift($form['actions']['submit']['#submit'], '_helfi_etusivu_news_item_update_changed_at');
+}
+
+/**
+ * Submit handler to update changed_at field for news_item nodes.
+ */
+function _helfi_etusivu_news_item_update_changed_at($form, FormStateInterface $form_state): void {
+  $node = $form_state->getFormObject()->getEntity();
+
+  if ($node instanceof NewsItem) {
+    $node->set('changed_at', \Drupal::time()->getRequestTime());
+  }
 }
 
 /**

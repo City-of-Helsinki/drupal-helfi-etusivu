@@ -379,3 +379,38 @@ function helfi_etusivu_update_9017(): void {
   $generator = \Drupal::service('simple_sitemap.generator');
   $generator->rebuildQueue();
 }
+
+/**
+ * UHF-10893: Add changed_at field to nodes and populate for news_item.
+ */
+function helfi_etusivu_update_9018(): void {
+  // Install the new changed_at field.
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $field_storage_definition = \Drupal::service('entity_field.manager')
+    ->getFieldStorageDefinitions('node')['changed_at'] ?? NULL;
+
+  if ($field_storage_definition) {
+    $entity_definition_update_manager->installFieldStorageDefinition(
+      'changed_at',
+      'node',
+      'helfi_etusivu',
+      $field_storage_definition
+    );
+  }
+
+  $connection = Database::getConnection();
+
+  // Update changed_at default value same as changed for existing data.
+  $connection->update('node_field_data')
+    ->expression('changed_at', 'changed')
+    ->condition('type', 'news_item')
+    ->execute();
+
+  // Update node_field_revision table.
+  $connection->update('node_field_revision')
+    ->expression('changed_at', 'changed')
+    ->condition('nid', $connection->select('node_field_data', 'n')
+      ->fields('n', ['nid'])
+      ->condition('n.type', 'news_item'), 'IN')
+    ->execute();
+}
