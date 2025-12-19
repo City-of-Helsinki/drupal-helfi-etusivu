@@ -23,6 +23,11 @@ display:
           label: زبان
         operations:
           label: عملیات
+      pager:
+        options:
+          tags:
+            next: 'بعدی >'
+            previous: '< قبلی'
       exposed_form:
         options:
           submit_button: فیلتر

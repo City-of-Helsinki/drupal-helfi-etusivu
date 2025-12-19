@@ -8,6 +8,8 @@ display:
           submit_button: Filtro
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       pager:
         options:
           tags:
@@ -35,7 +37,10 @@ display:
           expose:
             label: Para
         status_code:
+          expose:
+            label: 'Código de estado'
           group_info:
+            label: 'Código de estado'
             group_items:
               1:
                 title: '300 Múltiples posibilidades'

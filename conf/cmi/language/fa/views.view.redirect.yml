@@ -20,5 +20,17 @@ display:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
+      fields:
+        redirect_source__path:
+          label: از
+        created:
+          label: 'ایجاد شده'
+      filters:
+        redirect_source__path:
+          expose:
+            label: از
+        redirect_redirect__uri:
+          expose:
+            label: به
   page_1:
     display_title: صفحه

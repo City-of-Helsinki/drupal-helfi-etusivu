@@ -1,9 +1,10 @@
-label: 'Recent content'
+label: 'Последние материалы'
 description: 'Последние материалы.'
 display:
   default:
     display_title: 'По умолчанию'
     display_options:
+      title: 'Последние материалы'
       fields:
         changed:
           separator: ', '
