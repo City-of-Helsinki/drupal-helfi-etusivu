@@ -4,7 +4,7 @@ display:
     display_options:
       fields:
         view_node:
-          text: view
+          text: مشاهده
       exposed_form:
         options:
           submit_button: تایید

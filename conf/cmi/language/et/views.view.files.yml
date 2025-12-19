@@ -6,6 +6,8 @@ display:
     display_options:
       title: Failid
       fields:
+        fid:
+          label: Fid
         filename:
           label: Nimi
           separator: ', '

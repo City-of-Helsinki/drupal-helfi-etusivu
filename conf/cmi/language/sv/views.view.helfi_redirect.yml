@@ -1,7 +1,9 @@
+label: Redirect
 display:
   default:
     display_title: Förvald
     display_options:
+      title: Redirect
       fields:
         redirect_bulk_form:
           action_title: 'Med valda'
@@ -75,3 +77,6 @@ display:
             label: Aktiverad
   page_1:
     display_title: Sida
+    display_options:
+      menu:
+        title: Redirect

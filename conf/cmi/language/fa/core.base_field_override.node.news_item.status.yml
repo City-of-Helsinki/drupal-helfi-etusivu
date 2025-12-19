@@ -1,4 +1,4 @@
 label: 'منتشر شده'
 settings:
-  on_label: 'On'
-  off_label: 'Off'
+  on_label: روشن
+  off_label: خاموش

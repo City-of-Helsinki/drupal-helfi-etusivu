@@ -80,3 +80,4 @@ display:
         uid:
           exception:
             title: 全部
+    display_title: 用户

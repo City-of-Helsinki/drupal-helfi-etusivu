@@ -2,6 +2,15 @@ display:
   default:
     display_title: مدیر
     display_options:
+      fields:
+        redirect_source__path:
+          label: از
+        is_custom:
+          label: سفارشی
+        enabled:
+          label: فعال
+        created:
+          label: 'ایجاد شده'
       pager:
         options:
           tags:
@@ -20,5 +29,18 @@ display:
           exposed_sorts_label: 'مرتب کن بر اساس'
           sort_asc_label: صعودی
           sort_desc_label: نزولی
+      filters:
+        redirect_source__path:
+          expose:
+            label: از
+        redirect_redirect__uri:
+          expose:
+            label: به
+        is_custom:
+          expose:
+            label: سفارشی
+        enabled:
+          expose:
+            label: فعال
   page_1:
     display_title: صفحه
