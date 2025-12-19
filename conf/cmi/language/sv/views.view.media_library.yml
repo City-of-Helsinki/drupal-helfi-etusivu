@@ -1,3 +1,4 @@
+label: 'Media library'
 description: 'Hitta och hantera media.'
 display:
   default:
@@ -77,6 +78,7 @@ display:
             alt: 'Radera {{ name }}'
           text: Radera
   widget:
+    display_title: Widget
     display_options:
       arguments:
         bundle:

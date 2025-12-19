@@ -2,6 +2,7 @@ label: Medien
 description: 'Medien finden und verwalten.'
 display:
   default:
+    display_title: Standard
     display_options:
       title: Medien
       fields:

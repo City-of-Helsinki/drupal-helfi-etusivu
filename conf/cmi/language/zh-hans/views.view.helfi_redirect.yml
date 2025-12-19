@@ -1,7 +1,21 @@
+label: 重定向
 display:
   default:
     display_title: 主
     display_options:
+      title: 重定向
+      fields:
+        redirect_source__path:
+          label: 源自
+          separator: ', '
+        is_custom:
+          label: 自定义
+          separator: ', '
+        enabled:
+          label: 启用
+          separator: ', '
+        created:
+          label: 已建立
       pager:
         options:
           tags:
@@ -20,5 +34,41 @@ display:
           exposed_sorts_label: 排序依据
           sort_asc_label: 升序
           sort_desc_label: 降序
+      filters:
+        redirect_source__path:
+          expose:
+            label: 源自
+        redirect_redirect__uri:
+          expose:
+            label: 到
+        status_code:
+          group_info:
+            group_items:
+              1:
+                title: 300多种选择
+              2:
+                title: 301永久移动
+              3:
+                title: 302临时重定向
+              4:
+                title: 303查看其它位置
+              5:
+                title: 304未修改
+              6:
+                title: 305使用代理
+              7:
+                title: 307临时重定向
+        language:
+          expose:
+            label: 原始语言
+        is_custom:
+          expose:
+            label: 自定义
+        enabled:
+          expose:
+            label: 启用
   page_1:
     display_title: 页面
+    display_options:
+      menu:
+        title: 重定向

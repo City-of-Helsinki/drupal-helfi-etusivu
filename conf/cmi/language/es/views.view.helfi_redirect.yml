@@ -11,10 +11,10 @@ display:
           label: Desde
           separator: ', '
         is_custom:
-          label: Custom
+          label: Personalizado
           separator: ', '
         enabled:
-          label: Enabled
+          label: Activado
           separator: ', '
         created:
           label: Creado
@@ -34,6 +34,8 @@ display:
           submit_button: Filtro
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       filters:
         redirect_source__path:
           expose:
@@ -43,9 +45,9 @@ display:
             label: Para
         status_code:
           expose:
-            label: 'Status code'
+            label: 'Código de estado'
           group_info:
-            label: 'Status code'
+            label: 'Código de estado'
             group_items:
               1:
                 title: '300 Múltiples posibilidades'
@@ -64,6 +66,12 @@ display:
         language:
           expose:
             label: 'Lenguaje original'
+        is_custom:
+          expose:
+            label: Personalizado
+        enabled:
+          expose:
+            label: Activado
   page_1:
     display_title: Página
     display_options:

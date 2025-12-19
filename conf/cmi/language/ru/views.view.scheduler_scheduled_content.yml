@@ -80,3 +80,4 @@ display:
         uid:
           exception:
             title: Все
+    display_title: Пользователь

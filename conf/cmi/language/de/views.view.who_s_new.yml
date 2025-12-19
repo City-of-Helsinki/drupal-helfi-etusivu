@@ -2,6 +2,7 @@ label: 'Neue Benutzer'
 description: 'Zeigt eine Liste der neuesten Benutzerkonten der Website.'
 display:
   default:
+    display_title: Standard
     display_options:
       title: 'Neue Benutzer'
       exposed_form:
