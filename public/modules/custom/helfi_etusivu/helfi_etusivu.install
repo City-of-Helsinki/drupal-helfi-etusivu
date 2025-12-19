@@ -381,13 +381,13 @@ function helfi_etusivu_update_9017(): void {
 }
 
 /**
- * UHF-10893: Add changed_at field to nodes and populate for news_item.
+ * UHF-10893: Add changed_at field to news_item and populate from changed.
  */
 function helfi_etusivu_update_9018(): void {
-  // Install the new changed_at field.
+  // Install the new changed_at bundle field for news_item.
   $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
   $field_storage_definition = \Drupal::service('entity_field.manager')
-    ->getFieldStorageDefinitions('node')['changed_at'] ?? NULL;
+    ->getFieldDefinitions('node', 'news_item')['changed_at'] ?? NULL;
 
   if ($field_storage_definition) {
     $entity_definition_update_manager->installFieldStorageDefinition(

@@ -10,8 +10,8 @@ declare(strict_types=1);
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\entity\BundleFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
@@ -46,24 +46,23 @@ function helfi_etusivu_entity_bundle_info_alter(array &$bundles): void {
 }
 
 /**
- * Implements hook_entity_base_field_info().
+ * Implements hook_entity_bundle_field_info_alter().
  *
  * Adds a 'changed_at' field to news_item nodes.
  */
-function helfi_etusivu_entity_base_field_info(EntityTypeInterface $entity_type): array {
-  $fields = [];
-
-  if ($entity_type->id() === 'node') {
-    $fields['changed_at'] = BaseFieldDefinition::create('timestamp')
+function helfi_etusivu_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle): void {
+  if ($entity_type->id() === 'node' && $bundle === 'news_item') {
+    $fields['changed_at'] = BundleFieldDefinition::create('timestamp')
+      ->setName('changed_at')
       ->setLabel(t('Content changed on'))
       ->setDescription(t('Timestamp of when content was last changed via form.'))
+      ->setTargetEntityTypeId('node')
+      ->setTargetBundle('news_item')
       ->setRevisionable(TRUE)
       ->setTranslatable(TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', FALSE);
   }
-
-  return $fields;
 }
 
 /**
