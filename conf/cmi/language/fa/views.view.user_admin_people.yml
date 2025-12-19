@@ -27,6 +27,9 @@ display:
           label: عملیات
       pager:
         options:
+          tags:
+            next: 'بعدی >'
+            previous: '< قبلی'
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'

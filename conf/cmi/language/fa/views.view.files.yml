@@ -25,6 +25,9 @@ display:
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       pager:
         options:
+          tags:
+            next: 'بعدی >'
+            previous: '< قبلی'
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
@@ -64,6 +67,9 @@ display:
           label: 'تعداد استفاده'
       pager:
         options:
+          tags:
+            next: 'بعدی >'
+            previous: '< قبلی'
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'

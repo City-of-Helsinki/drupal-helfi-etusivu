@@ -2,6 +2,7 @@ label: 'Neuester Inhalt'
 description: 'Neuer Inhalt.'
 display:
   default:
+    display_title: Standard
     display_options:
       title: 'Neuester Inhalt'
       fields:
@@ -18,3 +19,5 @@ display:
         area_text_custom:
           content: 'Kein Inhalt verfügbar.'
       use_more_text: Zusätzlich
+  block_1:
+    display_title: Block

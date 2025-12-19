@@ -6,6 +6,8 @@ display:
     display_options:
       title: Tiedostot
       fields:
+        fid:
+          label: FId
         filename:
           label: Nimi
           separator: ', '

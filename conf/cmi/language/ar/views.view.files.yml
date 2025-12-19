@@ -5,6 +5,8 @@ display:
     display_options:
       title: الملفات
       fields:
+        fid:
+          label: Fid
         filename:
           label: الاسم
           separator: ', '
@@ -29,6 +31,8 @@ display:
             previous: '‹ السابق'
           expose:
             items_per_page_label: 'العناصر لكل صفحة'
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       exposed_form:
         options:
           submit_button: انتقاء
@@ -71,6 +75,8 @@ display:
             previous: '‹ السابق'
           expose:
             items_per_page_label: 'العناصر لكل صفحة'
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       arguments:
         fid:
           exception:

@@ -11,6 +11,8 @@ display:
             previous: ‹‹
           expose:
             items_per_page_label: 'العناصر لكل صفحة'
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       exposed_form:
         options:
           submit_button: تطبيق
@@ -27,3 +29,5 @@ display:
       arguments:
         created_year_month:
           title: '{{ arguments.created_year_month }}'
+  page_1:
+    display_title: الصفحة
