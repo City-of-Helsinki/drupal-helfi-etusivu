@@ -1,21 +1,21 @@
-label: Redirect
+label: 'Suunatakse ümber'
 display:
   default:
     display_title: Peamine
     display_options:
-      title: Redirect
+      title: 'Suunatakse ümber'
       fields:
         redirect_source__path:
-          label: From
+          label: Kellelt
           separator: ', '
         is_custom:
-          label: Custom
+          label: Kohandatud
+          separator: ', '
+        enabled:
+          label: Lubatud
           separator: ', '
         created:
-          label: Created
-        enabled:
-          label: Enabled
-          separator: ', '
+          label: Loodud
       pager:
         options:
           tags:
@@ -37,21 +37,21 @@ display:
       filters:
         redirect_source__path:
           expose:
-            label: From
+            label: Kellelt
         redirect_redirect__uri:
           expose:
-            label: To
+            label: Kellele
         language:
           expose:
-            label: 'Original language'
+            label: 'Algne keel'
         is_custom:
           expose:
-            label: Custom
+            label: Kohandatud
         enabled:
           expose:
-            label: Enabled
+            label: Lubatud
   page_1:
     display_title: Lehekülg
     display_options:
       menu:
-        title: Redirect
+        title: 'Suunatakse ümber'

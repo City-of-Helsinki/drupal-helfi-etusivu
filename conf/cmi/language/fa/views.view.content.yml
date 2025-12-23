@@ -10,7 +10,6 @@ display:
           label: عنوان
         type:
           label: 'نوع محتوا'
-          separator: ', '
         name:
           label: نویسنده
         status:
@@ -20,11 +19,15 @@ display:
             format_custom_true: 'منتشر شده'
         changed:
           label: به‌روز
-        operations:
-          label: عملیات
         langcode:
           label: زبان
-          separator: ', '
+        operations:
+          label: عملیات
+      pager:
+        options:
+          tags:
+            next: 'بعدی >'
+            previous: '< قبلی'
       exposed_form:
         options:
           submit_button: فیلتر
@@ -55,13 +58,6 @@ display:
         langcode:
           expose:
             label: زبان
-      pager:
-        options:
-          tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
   page_1:
     display_title: صفحه
     display_options:

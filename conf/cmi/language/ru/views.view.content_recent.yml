@@ -1,8 +1,10 @@
+label: 'Последние материалы'
 description: 'Последние материалы.'
 display:
   default:
     display_title: 'По умолчанию'
     display_options:
+      title: 'Последние материалы'
       fields:
         changed:
           separator: ', '
@@ -17,7 +19,5 @@ display:
         area_text_custom:
           content: 'Нет доступных материалов.'
       use_more_text: Ещё
-      title: 'Recent content'
   block_1:
     display_title: Блок
-label: 'Recent content'
