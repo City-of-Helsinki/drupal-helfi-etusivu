@@ -1,8 +1,7 @@
-label: 'Contenu(s) planifié(s)'
+label: Planifié
 description: 'Chercher et gérer le contenu planifié.'
 display:
   default:
-    display_title: Maître
     display_options:
       exposed_form:
         options:
@@ -64,32 +63,28 @@ display:
         langcode:
           expose:
             label: Langue
-      title: 'Contenu(s) planifié(s)'
-      empty:
-        area_text_custom:
-          content: 'No scheduled content.'
+      title: Planifié
+    display_title: Maître
   overview:
-    display_title: "Vue d'ensemble des contenus"
     display_options:
       menu:
         title: Planifié
       tab_options:
         title: Contenu
-        description: 'Find and manage scheduled content'
       display_description: "Vue d'ensemble de tous les contenus planifiés, dans un onglet de la page principale d'administration du contenu"
+    display_title: "Vue d'ensemble des contenus"
   user_page:
-    display_title: 'User profile tab'
     display_options:
       menu:
         title: Planifié
       tab_options:
         title: Contenu
-        description: 'Find and manage scheduled content'
+      display_description: "Onglet de contenu planifié sur le profil de l'utilisateur, affichant uniquement les contenus qu'il(elle) a planifié"
       arguments:
         uid:
           exception:
             title: Tout
-      display_description: "Onglet de contenu planifié sur le profil de l'utilisateur, affichant uniquement les contenus qu'il(elle) a planifié"
       empty:
         area_text_custom:
           content: "Aucun contenu planifié pour l'utilisateur {{ arguments.uid }}"
+    display_title: Utilisateur

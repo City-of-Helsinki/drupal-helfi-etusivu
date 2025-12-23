@@ -1,3 +1,4 @@
+label: 'مكتبة الوسائط'
 display:
   default:
     display_title: الافتراضي
@@ -8,13 +9,13 @@ display:
           action_title: إجراء
       pager:
         options:
-          expose:
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
-            items_per_page_label: 'العناصر لكل صفحة'
           tags:
             next: ››
             previous: ‹‹
+          expose:
+            items_per_page_label: 'العناصر لكل صفحة'
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       exposed_form:
         options:
           submit_button: 'عمل تصفية'
@@ -22,23 +23,9 @@ display:
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي
           sort_desc_label: تنازلي
-      filters:
-        status:
-          group_info:
-            label: منشور
-            group_items:
-              1:
-                title: منشور
-              2:
-                title: 'غير منشور'
-          expose:
-            label: 'حالة النشر'
-        name:
-          expose:
-            label: الاسم
-        langcode:
-          expose:
-            label: اللغة
+      empty:
+        area_text_custom:
+          content: 'لا توجد وسائط متاحة.'
       sorts:
         created:
           expose:
@@ -49,11 +36,25 @@ display:
         name_1:
           expose:
             label: 'الاسم (ي-أ)'
-      empty:
-        area_text_custom:
-          content: 'لا توجد وسائط متاحة.'
+      filters:
+        status:
+          expose:
+            label: 'حالة النشر'
+          group_info:
+            label: منشور
+            group_items:
+              1:
+                title: منشور
+              2:
+                title: 'غير منشور'
+        name:
+          expose:
+            label: الاسم
+        langcode:
+          expose:
+            label: اللغة
   page:
-    display_title: Page
+    display_title: الصفحة
     display_options:
       fields:
         media_bulk_form:
@@ -61,15 +62,15 @@ display:
         name:
           separator: ', '
         edit_media:
-          text: تحرير
           alter:
             text: 'تحرير {{ name }}'
             alt: 'تحرير {{ name }}'
+          text: تحرير
         delete_media:
-          text: حذف
           alter:
             text: 'حذف {{ اسم }}'
             alt: 'حذف {{ اسم }}'
+          text: حذف
   widget:
     display_title: 'عنصر إدخال'
     display_options:
@@ -110,4 +111,3 @@ display:
           label: شبكة
         display_link_table:
           label: جدول
-label: 'مكتبة الوسائط'

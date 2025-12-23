@@ -3,19 +3,14 @@ display:
     display_title: مدیر
     display_options:
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
-          label: From
-          separator: ', '
+          label: از
         is_custom:
-          label: Custom
-          separator: ', '
-        created:
-          label: Created
+          label: سفارشی
         enabled:
-          label: Enabled
-          separator: ', '
+          label: فعال
+        created:
+          label: 'ایجاد شده'
       pager:
         options:
           tags:
@@ -37,15 +32,15 @@ display:
       filters:
         redirect_source__path:
           expose:
-            label: From
+            label: از
         redirect_redirect__uri:
           expose:
-            label: To
+            label: به
         is_custom:
           expose:
-            label: Custom
+            label: سفارشی
         enabled:
           expose:
-            label: Enabled
+            label: فعال
   page_1:
     display_title: صفحه

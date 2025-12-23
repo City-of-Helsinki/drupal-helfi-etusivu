@@ -863,15 +863,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              read_only: '0'
-              content_producer: '0'
-              editor: '0'
-              admin: '0'
-              menu_api: '0'
-              news_producer: '0'
-              super_administrator: '0'
-              survey_editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -937,15 +928,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              read_only: '0'
-              content_producer: '0'
-              editor: '0'
-              admin: '0'
-              menu_api: '0'
-              news_producer: '0'
-              super_administrator: '0'
-              survey_editor: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -1031,15 +1013,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              read_only: '0'
-              content_producer: '0'
-              editor: '0'
-              admin: '0'
-              menu_api: '0'
-              news_producer: '0'
-              super_administrator: '0'
-              survey_editor: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: search_api_fulltext_searched_fields

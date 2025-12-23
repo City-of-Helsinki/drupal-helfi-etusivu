@@ -21,19 +21,16 @@ display:
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
-          label: From
-          separator: ', '
+          label: از
         created:
-          label: Created
+          label: 'ایجاد شده'
       filters:
         redirect_source__path:
           expose:
-            label: From
+            label: از
         redirect_redirect__uri:
           expose:
-            label: To
+            label: به
   page_1:
     display_title: صفحه

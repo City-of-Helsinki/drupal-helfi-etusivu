@@ -1,23 +1,21 @@
-label: Redirect
+label: 重定向
 display:
   default:
     display_title: 主
     display_options:
-      title: Redirect
+      title: 重定向
       fields:
-        redirect_bulk_form:
-          action_title: 'With selection'
         redirect_source__path:
-          label: From
+          label: 源自
           separator: ', '
         is_custom:
-          label: Custom
+          label: 自定义
+          separator: ', '
+        enabled:
+          label: 启用
           separator: ', '
         created:
-          label: Created
-        enabled:
-          label: Enabled
-          separator: ', '
+          label: 已建立
       pager:
         options:
           tags:
@@ -39,38 +37,38 @@ display:
       filters:
         redirect_source__path:
           expose:
-            label: From
+            label: 源自
         redirect_redirect__uri:
           expose:
-            label: To
+            label: 到
         status_code:
           group_info:
             group_items:
               1:
-                title: '300 Multiple Choices'
+                title: 300多种选择
               2:
-                title: '301 Moved Permanently'
+                title: 301永久移动
               3:
-                title: '302 Found'
+                title: 302临时重定向
               4:
-                title: '303 See Other'
+                title: 303查看其它位置
               5:
-                title: '304 Not Modified'
+                title: 304未修改
               6:
-                title: '305 Use Proxy'
+                title: 305使用代理
               7:
-                title: '307 Temporary Redirect'
+                title: 307临时重定向
         language:
           expose:
-            label: 'Original language'
+            label: 原始语言
         is_custom:
           expose:
-            label: Custom
+            label: 自定义
         enabled:
           expose:
-            label: Enabled
+            label: 启用
   page_1:
     display_title: 页面
     display_options:
       menu:
-        title: Redirect
+        title: 重定向

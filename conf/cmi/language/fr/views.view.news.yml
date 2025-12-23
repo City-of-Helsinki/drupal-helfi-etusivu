@@ -8,7 +8,7 @@ display:
         field_main_image:
           separator: ', '
         view_node:
-          text: view
+          text: voir
       exposed_form:
         options:
           submit_button: Appliquer

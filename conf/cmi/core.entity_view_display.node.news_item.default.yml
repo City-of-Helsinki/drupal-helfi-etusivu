@@ -23,7 +23,7 @@ dependencies:
     - radioactivity
     - user
 _core:
-  default_config_hash: 9FLhVaf1SNYABMw_AjPFFjFcO0piJCPS-Q5TM-X26hs
+  default_config_hash: CgQhcGS_R-F8M6Q6L8P0rI_s2mddWqrrCOGCpru1jfM
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item
@@ -62,7 +62,7 @@ content:
     weight: 8
     region: content
   field_news_item_links_link:
-    type: link
+    type: linkit
     label: hidden
     settings:
       trim_length: 255
@@ -70,6 +70,7 @@ content:
       url_plain: false
       rel: '0'
       target: '0'
+      linkit_profile: helfi
     third_party_settings: {  }
     weight: 7
     region: content
