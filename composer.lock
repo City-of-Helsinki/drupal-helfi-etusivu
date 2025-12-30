@@ -4453,16 +4453,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.16.13",
+            "version": "6.16.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "07fab3b10b2ad8b745e14f190ebf52520514306b"
+                "reference": "882123d61f14dfb2fbd46818c1dfd24df01843a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/07fab3b10b2ad8b745e14f190ebf52520514306b",
-                "reference": "07fab3b10b2ad8b745e14f190ebf52520514306b",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/882123d61f14dfb2fbd46818c1dfd24df01843a7",
+                "reference": "882123d61f14dfb2fbd46818c1dfd24df01843a7",
                 "shasum": ""
             },
             "require": {
@@ -4481,10 +4481,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.13",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.15",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2025-12-16T10:00:11+00:00"
+            "time": "2025-12-30T13:09:09+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4791,16 +4791,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.0.15",
+            "version": "5.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "4c51766034f014e455a4461f60068b09f99f8824"
+                "reference": "8bff8c099f1d4af1296f6d34c2d007042ae9f5bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/4c51766034f014e455a4461f60068b09f99f8824",
-                "reference": "4c51766034f014e455a4461f60068b09f99f8824",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/8bff8c099f1d4af1296f6d34c2d007042ae9f5bf",
+                "reference": "8bff8c099f1d4af1296f6d34c2d007042ae9f5bf",
                 "shasum": ""
             },
             "require": {
@@ -4897,6 +4897,9 @@
                     "drupal/diff": {
                         "Revision overview form problem (https://www.drupal.org/i/3390329)": "./public/modules/contrib/helfi_platform_config/patches/diff_8.x_1.3_revision_overview_form.patch"
                     },
+                    "drupal/flysystem": {
+                        "[#3525203] Remove duplicated Add content button (https://www.drupal.org/i/3525203)": "./public/modules/contrib/helfi_platform_config/patches/3525203.patch"
+                    },
                     "drupal/gin_toolbar": {
                         "[#3552735] Dialog library causing Drupal CSS aggregation to link to non-existent CSS file": "./public/modules/contrib/helfi_platform_config/patches/3552735.patch"
                     },
@@ -4915,10 +4918,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.0.15",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.0.16",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2025-12-23T09:07:33+00:00"
+            "time": "2025-12-30T07:26:54+00:00"
         },
         {
             "name": "drupal/helfi_proxy",

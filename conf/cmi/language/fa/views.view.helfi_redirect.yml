@@ -5,10 +5,13 @@ display:
       fields:
         redirect_source__path:
           label: از
+          separator: ', '
         is_custom:
           label: سفارشی
+          separator: ', '
         enabled:
           label: فعال
+          separator: ', '
         created:
           label: 'ایجاد شده'
       pager:
