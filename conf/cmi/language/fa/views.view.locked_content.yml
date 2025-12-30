@@ -7,12 +7,21 @@ display:
           action_title: عملکرد
         title:
           label: عنوان
+          separator: ', '
         type:
           label: 'نوع محتوا'
+          separator: ', '
+        name:
+          separator: ', '
         operations:
           label: عملیات
       pager:
         options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
