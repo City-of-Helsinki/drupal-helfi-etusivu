@@ -11,6 +11,9 @@ display:
           sort_desc_label: نزولی
       pager:
         options:
+          tags:
+            previous: ‹‹
+            next: ››
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
@@ -18,14 +21,21 @@ display:
       fields:
         label:
           label: برچسب
+          separator: ', '
         type:
           label: نوع
+          separator: ', '
+        paragraphs__target_id:
+          separator: ', '
         langcode:
           label: زبان
+          separator: ', '
         id:
           label: شناسه
+          separator: ', '
         changed:
           label: 'تغییر یافته'
+          separator: ', '
         operations:
           label: عملیات
       filters:

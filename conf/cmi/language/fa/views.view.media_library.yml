@@ -9,6 +9,9 @@ display:
           action_title: عملکرد
       pager:
         options:
+          tags:
+            next: ››
+            previous: ‹‹
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
@@ -43,6 +46,8 @@ display:
       fields:
         media_bulk_form:
           action_title: عملکرد
+        name:
+          separator: ', '
         edit_media:
           text: ویرایش
         delete_media:
