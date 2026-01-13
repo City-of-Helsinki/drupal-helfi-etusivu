@@ -25,6 +25,8 @@ display:
             past_format: '@interval پیش'
         operations:
           label: عملیات
+        mail:
+          separator: ', '
       pager:
         options:
           tags:

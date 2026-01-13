@@ -11,7 +11,7 @@
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.6.7",
         "drupal/consumer_image_styles": "^4.0",
-        "drupal/core-composer-scaffold": "^11",
+        "drupal/core-composer-scaffold": "~11.2.0",
         "drupal/draggableviews": "^2.0",
         "drupal/hdbt": "^6.0",
         "drupal/hdbt_admin": "^3.0",
@@ -32,7 +32,6 @@
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/views_rss": "^2.0@RC",
         "josdejong/jsoneditor": "^5.29",
-        "justinrainbow/json-schema": "^5.2",
         "mglaman/composer-drupal-lenient": "*",
         "proj4php/proj4php": "^2.0"
     },
