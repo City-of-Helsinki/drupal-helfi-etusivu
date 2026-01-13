@@ -158,6 +158,7 @@ content:
     weight: 9
     region: content
 hidden:
+  changed_at: true
   field_news_groups: true
   field_news_item_tags: true
   field_news_item_updating_news: true
