@@ -43,6 +43,8 @@ display:
       fields:
         media_bulk_form:
           action_title: عملکرد
+        name:
+          separator: ', '
         edit_media:
           text: ویرایش
         delete_media:

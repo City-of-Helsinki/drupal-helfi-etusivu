@@ -7,8 +7,12 @@ display:
           action_title: عملکرد
         title:
           label: عنوان
+          separator: ', '
         type:
           label: 'نوع محتوا'
+          separator: ', '
+        name:
+          separator: ', '
         operations:
           label: عملیات
       pager:

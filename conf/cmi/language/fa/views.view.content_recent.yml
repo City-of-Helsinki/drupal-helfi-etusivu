@@ -4,6 +4,9 @@ display:
     display_title: پیش‌فرض
     display_options:
       title: 'جدیدترین محتوا'
+      fields:
+        changed:
+          separator: ', '
       exposed_form:
         options:
           submit_button: تایید

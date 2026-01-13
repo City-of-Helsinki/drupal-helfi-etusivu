@@ -18,14 +18,21 @@ display:
       fields:
         label:
           label: برچسب
+          separator: ', '
         type:
           label: نوع
+          separator: ', '
+        paragraphs__target_id:
+          separator: ', '
         langcode:
           label: زبان
+          separator: ', '
         id:
           label: شناسه
+          separator: ', '
         changed:
           label: 'تغییر یافته'
+          separator: ', '
         operations:
           label: عملیات
       filters:

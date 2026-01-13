@@ -1,3 +1,4 @@
+label: Scheduled
 display:
   default:
     display_options:
@@ -20,15 +21,23 @@ display:
           action_title: عملکرد
         title:
           label: عنوان
+          separator: ', '
         type:
           label: 'نوع محتوا'
+          separator: ', '
         name:
           label: نویسنده
+          separator: ', '
         status:
           label: وضعیت
           settings:
             format_custom_true: 'منتشر شده'
             format_custom_false: 'منتشر نشده'
+          separator: ', '
+        publish_on:
+          separator: ', '
+        unpublish_on:
+          separator: ', '
         operations:
           label: عملیات
       filters:
@@ -51,9 +60,13 @@ display:
         langcode:
           expose:
             label: زبان
+      title: Scheduled
     display_title: مدیر
   overview:
     display_options:
+      menu:
+        title: Scheduled
+        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: محتوا
     display_title: 'مرورکلی محتوا'
