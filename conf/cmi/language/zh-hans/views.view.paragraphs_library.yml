@@ -34,6 +34,8 @@ display:
         id:
           label: ID
           separator: ', '
+        count:
+          format_plural_string: !!binary MSDlpIQDQGNvdW50IOWkhA==
         changed:
           label: 已更改
           separator: ', '

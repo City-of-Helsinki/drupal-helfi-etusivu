@@ -12,6 +12,9 @@ display:
           label: 'آخرین به‌روزرسانی'
       pager:
         options:
+          tags:
+            next: ››
+            previous: ‹‹
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'

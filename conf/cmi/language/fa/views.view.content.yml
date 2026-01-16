@@ -30,6 +30,8 @@ display:
           tags:
             next: 'بعدی >'
             previous: '< قبلی'
+            first: '« First'
+            last: 'Last »'
       exposed_form:
         options:
           submit_button: فیلتر

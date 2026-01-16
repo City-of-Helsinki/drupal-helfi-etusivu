@@ -1,6 +1,7 @@
 label: 'Gesperrte Inhalte'
 display:
   default:
+    display_title: Master
     display_options:
       title: 'Gesperrte Inhalte'
       fields:

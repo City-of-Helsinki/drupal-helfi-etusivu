@@ -37,6 +37,8 @@ display:
           separator: ', '
         count:
           label: Utilisé
+          alter:
+            path: 'admin/content/entity-usage/paragraphs_library_item/{{ id }}'
           format_plural_string: !!binary QGNvdW50IGVtcGxhY2VtZW50A0Bjb3VudCBlbXBsYWNlbWVudHM=
         changed:
           label: Modifié
