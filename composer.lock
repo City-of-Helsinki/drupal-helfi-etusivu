@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b27cfd00a9cd0f2e6620cd7807973304",
+    "content-hash": "78cff9bd92911d07f3a9bca75c5bd4e7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5443,31 +5443,28 @@
         },
         {
             "name": "drupal/jsonapi_extras",
-            "version": "3.28.0",
+            "version": "3.27.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/jsonapi_extras.git",
-                "reference": "8.x-3.28"
+                "reference": "8.x-3.27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/jsonapi_extras-8.x-3.28.zip",
-                "reference": "8.x-3.28",
-                "shasum": "e46e47c2b0ef268f2080aabf89df3f71f22fc902"
+                "url": "https://ftp.drupal.org/files/projects/jsonapi_extras-8.x-3.27.zip",
+                "reference": "8.x-3.27",
+                "shasum": "faa6e5cf14fbff319dcaed5085eee911257815dc"
             },
             "require": {
                 "drupal/core": "^9.5 || ^10 || ^11",
                 "e0ipso/shaper": "^1",
                 "php": ">=8.1"
             },
-            "require-dev": {
-                "drupal/schemata": "dev-1.x"
-            },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.28",
-                    "datestamp": "1766134430",
+                    "version": "8.x-3.27",
+                    "datestamp": "1760700367",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
