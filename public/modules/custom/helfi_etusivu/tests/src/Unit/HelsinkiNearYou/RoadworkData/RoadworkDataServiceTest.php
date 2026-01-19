@@ -285,7 +285,7 @@ class RoadworkDataServiceTest extends UnitTestCase {
   /**
    * Data provider for date formatting tests.
    */
-  public function dateFormatProvider(): array {
+  public static function dateFormatProvider(): array {
     return [
       'ISO date' => ['2025-12-31T23:59:59', '31.12.2025 - 31.12.2025'],
       'Date only' => ['2025-01-01', '01.01.2025 - 01.01.2025'],

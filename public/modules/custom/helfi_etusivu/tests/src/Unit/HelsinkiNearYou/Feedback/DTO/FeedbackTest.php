@@ -49,7 +49,7 @@ class FeedbackTest extends UnitTestCase {
    * @return array
    *   The data.
    */
-  public function missingItemData(): array {
+  public static function missingItemData(): array {
     return [
       [
         [
