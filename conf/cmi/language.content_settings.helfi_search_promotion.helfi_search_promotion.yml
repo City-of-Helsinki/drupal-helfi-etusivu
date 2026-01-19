@@ -1,0 +1,17 @@
+uuid: 49589a21-6f1f-4ef4-a043-682a1fb1ceae
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_translation
+    - helfi_etusivu
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '1'
+id: helfi_search_promotion.helfi_search_promotion
+target_entity_type_id: helfi_search_promotion
+target_bundle: helfi_search_promotion
+default_langcode: site_default
+language_alterable: true
