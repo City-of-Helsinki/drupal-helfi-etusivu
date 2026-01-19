@@ -14,6 +14,8 @@ final readonly class PlatformConfig {
 
   /**
    * Implements hook_platform_config_grant_permissions().
+   *
+   * @codeCoverageIgnore
    */
   #[Hook('platform_config_grant_permissions')]
   public function permissions(): array {
@@ -32,6 +34,8 @@ final readonly class PlatformConfig {
 
   /**
    * Implements hook_helfi_paragraph_types().
+   *
+   * @codeCoverageIgnore
    */
   #[Hook('helfi_paragraph_types')]
   public function paragraphTypes() : array {
