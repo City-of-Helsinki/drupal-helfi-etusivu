@@ -13,6 +13,24 @@ use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 final readonly class PlatformConfig {
 
   /**
+   * Implements hook_platform_config_grant_permissions().
+   */
+  #[Hook('platform_config_grant_permissions')]
+  public function permissions(): array {
+    return [
+      'admin' => [
+        'administer search promotions',
+      ],
+      'content_producer' => [
+        'administer search promotions',
+      ],
+      'editor' => [
+        'administer search promotions',
+      ],
+    ];
+  }
+
+  /**
    * Implements hook_helfi_paragraph_types().
    */
   #[Hook('helfi_paragraph_types')]
