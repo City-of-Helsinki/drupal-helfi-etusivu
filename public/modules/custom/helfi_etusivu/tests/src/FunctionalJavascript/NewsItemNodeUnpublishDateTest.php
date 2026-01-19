@@ -361,7 +361,7 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
           form.appendChild(wrap);
           form.appendChild(addMore);
         debug.value += 'Reaches the widget creation end: ' + form + '\\n';
-          
+
         }
         if (typeof Drupal !== 'undefined' && Drupal.attachBehaviors) {
           Drupal.attachBehaviors(document, window.drupalSettings || {});
@@ -462,7 +462,7 @@ JS;
     $utc = $date->setTimezone(new \DateTimeZone('UTC'));
 
     // 1 month = 30.436875 days = 2,629,746 seconds.
-    $secondsPerMonth = (int) round(30.436875 * 24 * 60 * 60); // 2629746
+    $secondsPerMonth = (int) round(30.436875 * 24 * 60 * 60);
     $secondsToAdd = $months * $secondsPerMonth;
 
     // Add seconds to the Unix timestamp and return as UTC.
