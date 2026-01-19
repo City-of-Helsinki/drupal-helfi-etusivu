@@ -98,7 +98,7 @@ class GlobalMenuStorageTest extends KernelTestBase {
    * @return array
    *   The data.
    */
-  public function currentLanguageConditionData() : array {
+  public static function currentLanguageConditionData() : array {
     return [
       ['fi'],
       ['sv'],
