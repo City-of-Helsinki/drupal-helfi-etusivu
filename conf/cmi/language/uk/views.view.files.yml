@@ -6,6 +6,8 @@ display:
     display_options:
       title: Файли
       fields:
+        fid:
+          label: Fid
         filename:
           label: "Назва (ім'я)"
           separator: ', '

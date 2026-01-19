@@ -5,8 +5,13 @@ display:
     display_options:
       pager:
         options:
+          tags:
+            next: ››
+            previous: ‹‹
           expose:
             items_per_page_label: 'العناصر لكل صفحة'
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
       exposed_form:
         options:
           submit_button: تطبيق
@@ -18,5 +23,8 @@ display:
         tid:
           exception:
             title: الكل
+          title: '{{ arguments.tid }}'
   feed_1:
     display_title: التلقيمة
+  page_1:
+    display_title: الصفحة

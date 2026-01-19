@@ -8,6 +8,8 @@ display:
           submit_button: Filtrer
           reset_button_label: Réinitialiser
           exposed_sorts_label: 'Trier par'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       pager:
         options:
           tags:
@@ -16,6 +18,8 @@ display:
             first: "«\_premier"
             last: "dernier\_»"
       fields:
+        node_bulk_form:
+          action_title: Action
         title:
           label: Titre
           separator: ', '
@@ -37,6 +41,8 @@ display:
         unpublish_on:
           label: 'Dépublier le'
           separator: ', '
+        operations:
+          label: Actions
       filters:
         title:
           expose:
@@ -81,3 +87,4 @@ display:
       empty:
         area_text_custom:
           content: "Aucun contenu planifié pour l'utilisateur {{ arguments.uid }}"
+    display_title: Utilisateur

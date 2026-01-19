@@ -1,7 +1,21 @@
+label: 'Suunatakse ümber'
 display:
   default:
     display_title: Peamine
     display_options:
+      title: 'Suunatakse ümber'
+      fields:
+        redirect_source__path:
+          label: Kellelt
+          separator: ', '
+        is_custom:
+          label: Kohandatud
+          separator: ', '
+        enabled:
+          label: Lubatud
+          separator: ', '
+        created:
+          label: Loodud
       pager:
         options:
           tags:
@@ -20,5 +34,24 @@ display:
           exposed_sorts_label: 'Sorteerimise alus'
           sort_asc_label: Kasvav
           sort_desc_label: Kahanev
+      filters:
+        redirect_source__path:
+          expose:
+            label: Kellelt
+        redirect_redirect__uri:
+          expose:
+            label: Kellele
+        language:
+          expose:
+            label: 'Algne keel'
+        is_custom:
+          expose:
+            label: Kohandatud
+        enabled:
+          expose:
+            label: Lubatud
   page_1:
     display_title: Lehekülg
+    display_options:
+      menu:
+        title: 'Suunatakse ümber'

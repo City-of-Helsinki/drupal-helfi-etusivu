@@ -10,6 +10,7 @@ display:
           label: عنوان
         type:
           label: 'نوع محتوا'
+          separator: ', '
         name:
           label: نویسنده
         status:
@@ -21,8 +22,16 @@ display:
           label: به‌روز
         langcode:
           label: زبان
+          separator: ', '
         operations:
           label: عملیات
+      pager:
+        options:
+          tags:
+            next: 'بعدی >'
+            previous: '< قبلی'
+            first: '« First'
+            last: 'Last »'
       exposed_form:
         options:
           submit_button: فیلتر
