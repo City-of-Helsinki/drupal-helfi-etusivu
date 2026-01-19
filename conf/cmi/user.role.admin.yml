@@ -169,6 +169,7 @@ permissions:
   - 'edit terms in news_neighbourhoods'
   - 'edit terms in news_tags'
   - 'mark as hidden in editoria11y'
+  - 'rebuild node access permissions'
   - 'revert all revisions'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
