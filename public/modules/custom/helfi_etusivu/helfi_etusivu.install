@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 use Drupal\Core\Database\Database;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\node\Entity\Node;
 use Drupal\path_alias\Entity\PathAlias;
 
@@ -378,4 +379,15 @@ function helfi_etusivu_update_9017(): void {
   /** @var \Drupal\simple_sitemap\Manager\Generator $generator */
   $generator = \Drupal::service('simple_sitemap.generator');
   $generator->rebuildQueue();
+}
+
+/**
+ * UHF-12409: Install search promotions.
+ */
+function helfi_etusivu_update_11001(): void {
+  $type = \Drupal::service(EntityTypeManagerInterface::class)
+    ->getDefinition('helfi_search_promotion');
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installEntityType($type);
 }
