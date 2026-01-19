@@ -20,7 +20,7 @@ display:
             offset_label: Kompensera
       fields:
         label:
-          label: Label
+          label: Etikett
           separator: ', '
         type:
           label: Typ
@@ -34,6 +34,8 @@ display:
         id:
           label: ID
           separator: ', '
+        count:
+          format_plural_string: !!binary MSBwbGF0cwNAY291bnQgcGxhdHNlcg==
         changed:
           label: Ändrad
           separator: ', '
@@ -42,9 +44,9 @@ display:
       filters:
         label:
           expose:
-            label: Label
+            label: Etikett
           group_info:
-            label: Label
+            label: Etikett
         type:
           expose:
             label: Typ

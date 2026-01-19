@@ -3,8 +3,12 @@ display:
     display_title: پیش‌فرض
     display_options:
       fields:
+        published_at:
+          separator: ', '
+        field_main_image:
+          separator: ', '
         view_node:
-          text: view
+          text: مشاهده
       exposed_form:
         options:
           submit_button: تایید

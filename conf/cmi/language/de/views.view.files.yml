@@ -2,16 +2,21 @@ label: Dateien
 description: 'Dateien suchen und verwalten.'
 display:
   default:
+    display_title: Standard
     display_options:
       title: Dateien
       fields:
+        fid:
+          label: Fid
         filename:
+          label: Name
           separator: ', '
         filemime:
           label: MIME-Typ
         filesize:
           label: Größe
         status:
+          label: Status
           settings:
             format_custom_false: Temporär
             format_custom_true: Dauerhaft

@@ -1,8 +1,46 @@
-label: Schemalagd
-description: 'Hitta och hantera schemalagt innehåll.'
 display:
   default:
     display_options:
+      fields:
+        node_bulk_form:
+          action_title: Åtgärd
+        title:
+          label: Titel
+        type:
+          label: Innehållstyp
+        name:
+          label: Författare
+        status:
+          settings:
+            format_custom_true: Publicerad
+            format_custom_false: 'Ej publicerad'
+          label: Status
+        publish_on:
+          label: 'Publicera den'
+        unpublish_on:
+          label: 'Avpublicera den'
+        operations:
+          label: Funktioner
+      filters:
+        title:
+          expose:
+            label: Titel
+        type:
+          expose:
+            label: Innehållstyp
+        status:
+          group_info:
+            label: 'Status för publicering'
+            group_items:
+              1:
+                title: Publicerad
+              2:
+                title: 'Ej publicerad'
+          expose:
+            label: Status
+        langcode:
+          expose:
+            label: Språk
       exposed_form:
         options:
           submit_button: Filtrera
@@ -17,53 +55,7 @@ display:
             next: Nästa
             first: Första
             last: Sista
-      fields:
-        node_bulk_form:
-          action_title: Åtgärd
-        title:
-          label: Titel
-          separator: ', '
-        type:
-          label: Innehållstyp
-          separator: ', '
-        name:
-          label: Författare
-          separator: ', '
-        status:
-          label: Status
-          settings:
-            format_custom_true: Publicerad
-            format_custom_false: 'Ej publicerad'
-          separator: ', '
-        publish_on:
-          label: 'Publicera den'
-          separator: ', '
-        unpublish_on:
-          label: 'Avpublicera den'
-          separator: ', '
-        operations:
-          label: Funktioner
-      filters:
-        title:
-          expose:
-            label: Titel
-        type:
-          expose:
-            label: Innehållstyp
-        status:
-          expose:
-            label: Status
-          group_info:
-            label: 'Status för publicering'
-            group_items:
-              1:
-                title: Publicerad
-              2:
-                title: 'Ej publicerad'
-        langcode:
-          expose:
-            label: Språk
-      title: Schemalagd
+      title: 'Schemalagt innehåll'
       empty:
         area_text_custom:
           content: 'Inget schemalagt innehåll.'
@@ -85,4 +77,5 @@ display:
         uid:
           exception:
             title: Alla
-    display_title: Användare
+label: 'Schemalagt innehåll'
+description: 'Hitta och hantera schemalagt innehåll.'

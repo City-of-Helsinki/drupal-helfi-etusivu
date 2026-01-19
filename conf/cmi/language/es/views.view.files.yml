@@ -6,6 +6,8 @@ display:
     display_options:
       title: Archivos
       fields:
+        fid:
+          label: Fid
         filename:
           label: Nombre
           separator: ', '
@@ -41,6 +43,8 @@ display:
           submit_button: Filtro
           reset_button_label: Restablecer
           exposed_sorts_label: 'Ordenar por'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       empty:
         area_text_custom:
           content: 'No hay archivos disponibles.'
@@ -84,4 +88,6 @@ display:
             offset_label: Desplazamiento
       arguments:
         fid:
+          exception:
+            title: Todo(s)
           title: 'Información de uso de archivos para {{ arguments.fid }}'

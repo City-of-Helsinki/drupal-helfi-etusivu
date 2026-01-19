@@ -1,8 +1,21 @@
 label: Umleiten
 display:
   default:
+    display_title: Master
     display_options:
       title: Umleiten
+      fields:
+        redirect_source__path:
+          label: Von
+          separator: ', '
+        is_custom:
+          label: Benutzerdefiniert
+          separator: ', '
+        enabled:
+          label: Aktiviert
+          separator: ', '
+        created:
+          label: Erstellt
       pager:
         options:
           tags:
@@ -16,10 +29,47 @@ display:
             offset_label: Versatz
       exposed_form:
         options:
+          submit_button: Filter
           reset_button_label: Zurücksetzen
           exposed_sorts_label: Sortierung
           sort_asc_label: Aufsteigend
           sort_desc_label: Absteigend
+      filters:
+        redirect_source__path:
+          expose:
+            label: Von
+        redirect_redirect__uri:
+          expose:
+            label: An
+        status_code:
+          expose:
+            label: Statuscode
+          group_info:
+            label: Statuscode
+            group_items:
+              1:
+                title: '300 Mehrere Auswahlmöglichkeiten'
+              2:
+                title: '301 Dauerhaft verschoben'
+              3:
+                title: '302 Gefunden'
+              4:
+                title: '303 Siehe andere'
+              5:
+                title: '304 Nicht modifiziert'
+              6:
+                title: '305 Proxy verwenden'
+              7:
+                title: '307 Temporäre Weiterleitung'
+        language:
+          expose:
+            label: Originalsprache
+        is_custom:
+          expose:
+            label: Benutzerdefiniert
+        enabled:
+          expose:
+            label: Aktiviert
   page_1:
     display_title: Seite
     display_options:
