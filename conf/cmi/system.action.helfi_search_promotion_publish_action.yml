@@ -1,0 +1,11 @@
+uuid: 523b8d90-74f3-4782-88a2-c866e144aa5c
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_etusivu
+id: helfi_search_promotion_publish_action
+label: Publish
+type: helfi_search_promotion
+plugin: 'entity:publish_action:helfi_search_promotion'
+configuration: {  }
