@@ -6,6 +6,10 @@ core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:rest
   - drupal:big_pipe
+  - drupal:content_translation
+  - drupal:link
+  - drupal:text
+  - entity:entity
   - draggableviews:draggableviews
   - search_api:search_api
   - elasticsearch_connector:elasticsearch_connector
