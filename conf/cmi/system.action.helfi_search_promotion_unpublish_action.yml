@@ -1,0 +1,11 @@
+uuid: a023b04d-e2e4-4366-b86f-cbe0ca641067
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_etusivu
+id: helfi_search_promotion_unpublish_action
+label: Unpublish
+type: helfi_search_promotion
+plugin: 'entity:unpublish_action:helfi_search_promotion'
+configuration: {  }
