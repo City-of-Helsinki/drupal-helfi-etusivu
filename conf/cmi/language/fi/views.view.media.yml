@@ -1,26 +1,52 @@
-description: 'Etsi ja ylläpidä mediatiedostoja.'
 display:
   default:
-    display_title: Oletus
     display_options:
+      filters:
+        status:
+          expose:
+            description: ''
+            label: Tosi
+          group_info:
+            label: Julkaisutila
+            group_items:
+              1:
+                title: Julkaistu
+              2:
+                title: Julkaisematon
+        name:
+          expose:
+            label: 'Mediatiedoston nimi'
+        bundle:
+          expose:
+            label: Tyyppi
+        langcode:
+          expose:
+            label: Kieli
+      title: Media
       fields:
         media_bulk_form:
           action_title: Toiminto
         thumbnail__target_id:
           label: Pienoiskuva
+          separator: ', '
         name:
           label: 'Mediatiedoston nimi'
+          separator: ', '
         bundle:
           label: Tyyppi
+          separator: ', '
         uid:
           label: Kirjoittaja
+          separator: ', '
         status:
           label: Tila
           settings:
             format_custom_false: Julkaisematon
             format_custom_true: Julkaistu
+          separator: ', '
         changed:
           label: Päivitetty
+          separator: ', '
         operations:
           label: Toimenpiteet
       pager:
@@ -33,6 +59,7 @@ display:
           expose:
             items_per_page_label: 'Merkintöjä sivua kohti'
             items_per_page_options_all_label: '- Kaikki -'
+            offset_label: Offset
       exposed_form:
         options:
           submit_button: Suodata
@@ -43,27 +70,11 @@ display:
       empty:
         area_text_custom:
           content: 'Mediatiedostoja ei ole saatavilla.'
-      filters:
-        name:
-          expose:
-            label: 'Mediatiedoston nimi'
-        bundle:
-          expose:
-            label: Tyyppi
-        status:
-          expose:
-            label: Tosi
-            description: ''
-          group_info:
-            label: Julkaisutila
-            group_items:
-              1:
-                title: Julkaistu
-              2:
-                title: Julkaisematon
-        langcode:
-          expose:
-            label: Kieli
+    display_title: Oletus
   media_page_list:
+    display_title: Media
     display_options:
-      menu: {  }
+      menu:
+        title: Media
+label: Media
+description: 'Etsi ja ylläpidä mediatiedostoja.'
