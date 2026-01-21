@@ -30,6 +30,7 @@ dependencies:
     - filter
     - hdbt_cookie_banner
     - helfi_api_base
+    - helfi_etusivu
     - helfi_recommendations
     - locale
     - media
@@ -77,6 +78,7 @@ permissions:
   - 'administer paragraphs library'
   - 'administer pathauto'
   - 'administer redirects'
+  - 'administer search promotions'
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'
