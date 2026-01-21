@@ -12,6 +12,8 @@ services:
     tags:
       - { name: helfi_platform_config.og_image_builder }
 
+  Drupal\helfi_etusivu\Language\AltLanguageFallbacks: ~
+
   # Roadwork data services
   Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService: ~
 
