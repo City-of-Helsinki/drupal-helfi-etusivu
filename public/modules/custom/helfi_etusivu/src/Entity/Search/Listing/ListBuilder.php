@@ -49,7 +49,7 @@ final class ListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity): array {
     assert($entity instanceof Promotion);
     $row['title'] = $entity->toLink($entity->label(), 'edit-form');
-    $row['link'] = $entity->getUrl()->toString();
+    $row['link'] = Unicode::truncate($entity->getUrl()->toString(), 128, add_ellipsis: true);
     $row['keywords'] = Unicode::truncate(implode(', ', $entity->getKeywords()), 32, add_ellipsis: TRUE);
     $row['published'] = $entity->isPublished() ? $this->t('Published') : $this->t('Unpublished');
     return $row + parent::buildRow($entity);
