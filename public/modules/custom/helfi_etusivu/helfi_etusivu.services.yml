@@ -39,11 +39,3 @@ services:
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder: ~
 
-  Drupal\helfi_etusivu\Render\Placeholder\BigPipeStrategy:
-    parent: placeholder_strategy.big_pipe
-    class: Drupal\helfi_etusivu\Render\Placeholder\BigPipeStrategy
-    tags:
-      # Priority higher than placeholder_strategy.big_pipe (priority 0), so that
-      # our placeholder strategy is used by default. We only act on requests
-      # with '_big_pipe_force_placeholders' route option set to true.
-      - { name: placeholder_strategy, priority: 1 }
