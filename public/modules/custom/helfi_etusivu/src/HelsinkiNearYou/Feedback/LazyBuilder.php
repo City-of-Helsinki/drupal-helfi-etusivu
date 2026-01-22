@@ -9,7 +9,6 @@ use Drupal\Core\Pager\PagerManagerInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\StringTranslation\PluralTranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Template\Attribute;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Distance;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
@@ -34,8 +33,6 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *   The langcode.
    * @param int|null $limit
    *   The number of items to fetch or null.
-   * @param \Drupal\Core\Template\Attribute|null $attributes
-   *   Array of attributes to pass to template.
    *
    * @return array
    *   The render array.
@@ -44,7 +41,6 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     Address $address,
     string $langcode,
     ?int $limit,
-    ?Attribute $attributes = NULL,
   ): array {
     $build = [
       '#cache' => [
@@ -79,8 +75,8 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         '#title' => $item->title,
         '#address' => $item->address,
         '#requested_datetime' => $item->requested_datetime,
-        '#feedback_attributes' => $attributes,
         '#distance_label' => Distance::label($item->distance),
+        '#limit' => $limit,
       ];
     }
 

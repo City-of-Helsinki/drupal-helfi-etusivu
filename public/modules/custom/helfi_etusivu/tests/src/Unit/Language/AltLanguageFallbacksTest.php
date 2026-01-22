@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Unit\Language;
 
-use DG\BypassFinals;
-use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface;
