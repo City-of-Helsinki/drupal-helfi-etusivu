@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Kernel\Language;
 
+use Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface;
+use Drupal\helfi_etusivu\Hook\AltLanguageFallbackHooks;
 use Drupal\helfi_etusivu\Language\AltLanguageFallbacks;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
@@ -118,6 +120,10 @@ class AltLanguageFallbacksTest extends KernelTestBase {
    * Tests replaceMenuTree().
    */
   public function testReplaceMenuTree() : void {
+    $sut = new AltLanguageFallbackHooks(
+      $this->container->get(DefaultLanguageResolverInterface::class),
+      $this->container->get(AltLanguageFallbacks::class),
+    );
     $links = [
       [
         'title' => 'Test title en',
@@ -143,7 +149,7 @@ class AltLanguageFallbacksTest extends KernelTestBase {
       'menu_name' => 'headertopnavigation',
       'items' => $build,
     ];
-    helfi_alt_lang_fallback_preprocess_menu($variables);
+    $sut->preprocessMenu($variables);
 
     // Make sure preprocess yields same menu items.
     $this->assertEquals($build, $variables['items']);
