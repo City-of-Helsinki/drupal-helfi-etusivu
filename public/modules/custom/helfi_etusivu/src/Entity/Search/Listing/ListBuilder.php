@@ -7,30 +7,12 @@ namespace Drupal\helfi_etusivu\Entity\Search\Listing;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Entity\TranslatableInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\helfi_etusivu\Entity\Search\Promotion;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * List builder for search promotions.
  */
 final class ListBuilder extends EntityListBuilder {
-
-  /**
-   * The language manager.
-   */
-  protected LanguageManagerInterface $languageManager;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type): self {
-    $instance = parent::createInstance($container, $entity_type);
-    $instance->languageManager = $container->get(LanguageManagerInterface::class);
-    return $instance;
-  }
 
   /**
    * {@inheritdoc}
@@ -48,28 +30,19 @@ final class ListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity): array {
     assert($entity instanceof Promotion);
+
+    // Don't translate links with user interface language.
+    // Keep the entity default langcode.
+    $url = $entity
+      ->getUrl()
+      ->setOption('language', $entity->language())
+      ->toString();
+
     $row['title'] = $entity->toLink($entity->label(), 'edit-form');
-    $row['link'] = $entity->getUrl()->toString();
+    $row['link'] = Unicode::truncate($url, 128, add_ellipsis: TRUE);
     $row['keywords'] = Unicode::truncate(implode(', ', $entity->getKeywords()), 32, add_ellipsis: TRUE);
     $row['published'] = $entity->isPublished() ? $this->t('Published') : $this->t('Unpublished');
     return $row + parent::buildRow($entity);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function load() {
-    $entity_ids = $this->getEntityIds();
-    $current_language = $this->languageManager->getCurrentLanguage()->getId();
-    $entities = $this->storage->loadMultiple($entity_ids);
-    foreach ($entities as $entity_id => $entity) {
-      assert($entity instanceof TranslatableInterface);
-      if ($entity->hasTranslation($current_language)) {
-        $entities[$entity_id] = $entity->getTranslation($current_language);
-      }
-    }
-
-    return $entities;
   }
 
   /**
