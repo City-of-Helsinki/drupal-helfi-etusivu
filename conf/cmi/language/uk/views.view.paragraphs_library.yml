@@ -1,3 +1,4 @@
+label: 'Бібліотека абзаців'
 display:
   default:
     display_title: Головне
@@ -36,6 +37,9 @@ display:
           separator: ', '
         count:
           label: Використано
+          alter:
+            path: 'admin/content/entity-usage/paragraphs_library_item/{{ ідентифікатор }}'
+          format_plural_string: !!binary QGNvdW50INC80ZbRgdGG0LUDQGNvdW50INC80ZbRgdGG0Y8DQGNvdW50INC80ZbRgdGG0Yw=
         changed:
           label: Змінено
           separator: ', '
@@ -50,5 +54,9 @@ display:
         type:
           expose:
             label: Тип
+      title: 'Бібліотека абзаців'
+      empty:
+        area_text_custom:
+          content: 'Немає доступних бібліотечних позицій.'
   page_1:
     display_title: Сторінка

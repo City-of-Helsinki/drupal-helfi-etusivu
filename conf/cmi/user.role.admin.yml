@@ -30,6 +30,7 @@ dependencies:
     - filter
     - hdbt_cookie_banner
     - helfi_api_base
+    - helfi_etusivu
     - helfi_recommendations
     - locale
     - media
@@ -77,6 +78,7 @@ permissions:
   - 'administer paragraphs library'
   - 'administer pathauto'
   - 'administer redirects'
+  - 'administer search promotions'
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'
@@ -169,6 +171,7 @@ permissions:
   - 'edit terms in news_neighbourhoods'
   - 'edit terms in news_tags'
   - 'mark as hidden in editoria11y'
+  - 'rebuild node access permissions'
   - 'revert all revisions'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'

@@ -19,7 +19,6 @@ use Drupal\helfi_etusivu\Entity\Node\NewsItem;
 use Drupal\helfi_etusivu\Entity\Node\PublishExternallyInterface;
 use Drupal\helfi_etusivu\Entity\Node\Survey;
 use Drupal\helfi_etusivu\Entity\SimpleSitemap\HelfiSimpleSitemap;
-use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\helfi_platform_config\TextConverter\Document;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -196,52 +195,6 @@ function _helfi_etusivu_handle_rss_params(SearchApiQuery $query) : SearchApiQuer
   }
 
   return $query;
-}
-
-/**
- * Implements hook_helfi_paragraph_types().
- */
-function helfi_etusivu_helfi_paragraph_types() : array {
-  $entities = [
-    'node' => [
-      'landing_page' => [
-        'field_content' => [
-          'current' => 15,
-          'front_page_top_news' => 16,
-          'front_page_latest_news' => 17,
-          'event_list' => 18,
-          'news_archive' => 19,
-        ],
-      ],
-      'page' => [
-        'field_lower_content' => [
-          'front_page_latest_news' => 15,
-        ],
-      ],
-    ],
-    'paragraph' => [
-      'news_update' => [
-        'field_news_update' => [
-          'text' => 0,
-          'image' => 1,
-          'remote_video' => 2,
-          'banner' => 3,
-        ],
-      ],
-    ],
-  ];
-
-  $enabled = [];
-  foreach ($entities as $entityTypeId => $bundles) {
-    foreach ($bundles as $bundle => $fields) {
-      foreach ($fields as $field => $paragraphTypes) {
-        foreach ($paragraphTypes as $paragraphType => $weight) {
-          $enabled[] = new ParagraphTypeCollection($entityTypeId, $bundle, $field, $paragraphType, $weight);
-        }
-      }
-    }
-  }
-  return $enabled;
 }
 
 /**

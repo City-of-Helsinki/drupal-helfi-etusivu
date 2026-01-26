@@ -85,7 +85,7 @@ class ClientTest extends UnitTestCase {
    * @return array[]
    *   The data.
    */
-  public function uriData(): array {
+  public static function uriData(): array {
     return [
       [
         new Request(lat: 1, lon: 1, radius: 0.5),
