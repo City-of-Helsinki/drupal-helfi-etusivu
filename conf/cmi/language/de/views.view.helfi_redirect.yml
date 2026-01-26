@@ -1,6 +1,7 @@
 label: Umleiten
 display:
   default:
+    display_title: Master
     display_options:
       title: Umleiten
       fields:

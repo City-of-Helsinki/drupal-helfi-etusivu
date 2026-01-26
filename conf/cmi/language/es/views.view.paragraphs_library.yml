@@ -37,6 +37,7 @@ display:
           separator: ', '
         count:
           label: Usado
+          format_plural_string: !!binary MSBsdWdhcgNAY291bnQgbHVnYXJlcw==
         changed:
           label: Modificado
           separator: ', '
