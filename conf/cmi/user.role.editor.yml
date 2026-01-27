@@ -26,6 +26,7 @@ dependencies:
     - file
     - filter
     - helfi_api_base
+    - helfi_etusivu
     - locale
     - media
     - menu_link_attributes
@@ -63,6 +64,7 @@ permissions:
   - 'administer nodes'
   - 'administer paragraphs library'
   - 'administer redirects'
+  - 'administer search promotions'
   - 'administer url aliases'
   - 'cancel account'
   - 'change own username'
@@ -138,6 +140,7 @@ permissions:
   - 'edit remote entities'
   - 'edit terms in keywords'
   - 'mark as hidden in editoria11y'
+  - 'rebuild node access permissions'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert news_article revisions'

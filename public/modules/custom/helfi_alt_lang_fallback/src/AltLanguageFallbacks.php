@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Url;
-use Drupal\helfi_api_base\Language\DefaultLanguageResolver;
+use Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -43,9 +43,9 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
   /**
    * Default language resolver.
    *
-   * @var \Drupal\helfi_api_base\Language\DefaultLanguageResolver
+   * @var \Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface
    */
-  protected DefaultLanguageResolver $defaultLanguageResolver;
+  protected DefaultLanguageResolverInterface $defaultLanguageResolver;
 
   /**
    * Fallback regions to add language and direction attributes to.
@@ -95,11 +95,8 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
    *   Menu tree builder.
    * @param \Drupal\helfi_api_base\Language\DefaultLanguageResolver $default_language_resolver
    *   Default language resolver.
-   *
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, MenuLinkTreeInterface $menu_tree, DefaultLanguageResolver $default_language_resolver) {
+  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, MenuLinkTreeInterface $menu_tree, DefaultLanguageResolverInterface $default_language_resolver) {
     $this->languageManager = $language_manager;
     $this->entityTypeManager = $entity_type_manager;
     $this->menuTree = $menu_tree;
