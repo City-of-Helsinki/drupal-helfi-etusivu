@@ -23,6 +23,7 @@ dependencies:
     - file
     - filter
     - helfi_api_base
+    - helfi_etusivu
     - media
     - menu_link_content
     - node
@@ -54,6 +55,7 @@ permissions:
   - 'access user profiles'
   - 'administer nodes'
   - 'administer paragraphs library'
+  - 'administer search promotions'
   - 'cancel account'
   - 'change own username'
   - 'create announcement content'

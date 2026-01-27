@@ -13,5 +13,5 @@ third_party_settings:
 id: helfi_search_promotion.helfi_search_promotion
 target_entity_type_id: helfi_search_promotion
 target_bundle: helfi_search_promotion
-default_langcode: site_default
+default_langcode: current_interface
 language_alterable: true

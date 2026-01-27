@@ -89,7 +89,9 @@ class ListBuilderTest extends EntityKernelTestBase {
     $table = $listBuilder->render();
 
     $this->assertCount(2, $table['table']['#rows']);
-    $this->assertNotEmpty(array_find($table['table']['#rows'], fn ($row) => str_contains($row['link'], 'https://fi.example.com')));
+    foreach ($table['table']['#rows'] as $row) {
+      $this->assertStringContainsString('https://en.example.com', $row['link']);
+    }
   }
 
 }
