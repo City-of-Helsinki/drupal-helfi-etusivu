@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_alt_lang_fallback\Unit;
 
-use DG\BypassFinals;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks;
-use Drupal\helfi_api_base\Language\DefaultLanguageResolver;
+use Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -26,15 +25,6 @@ class AltLanguageFallbacksTest extends UnitTestCase {
   use ProphecyTrait;
 
   /**
-   * {@inheritdoc}
-   */
-  protected function setUp() : void {
-    parent::setUp();
-
-    BypassFinals::enable();
-  }
-
-  /**
    * Gets the SUT.
    *
    * @param bool $isAltLanguage
@@ -44,7 +34,7 @@ class AltLanguageFallbacksTest extends UnitTestCase {
    *   The sut.
    */
   public function getSut(bool $isAltLanguage) : AltLanguageFallbacks {
-    $resolver = $this->prophesize(DefaultLanguageResolver::class);
+    $resolver = $this->prophesize(DefaultLanguageResolverInterface::class);
     $resolver->isAltLanguage()->willReturn($isAltLanguage);
     $container = new ContainerBuilder();
     $container->set('language_manager', $this->prophesize(LanguageManagerInterface::class)->reveal());
