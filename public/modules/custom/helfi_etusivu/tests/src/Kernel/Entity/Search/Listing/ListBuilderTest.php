@@ -23,6 +23,7 @@ class ListBuilderTest extends EntityKernelTestBase {
   protected static $modules = [
     'link',
     'text',
+    'helfi_api_base',
     'helfi_etusivu',
     'language',
     'content_translation',
