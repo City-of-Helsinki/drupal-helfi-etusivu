@@ -19,7 +19,7 @@ dependencies:
   module:
     - entity_reference_revisions
     - helfi_platform_config
-    - link
+    - linkit
     - radioactivity
     - user
 _core:
