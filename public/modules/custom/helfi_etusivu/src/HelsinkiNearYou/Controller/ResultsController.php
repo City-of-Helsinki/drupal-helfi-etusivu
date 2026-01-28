@@ -7,7 +7,6 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\InternalSearchLink;
@@ -24,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 final class ResultsController extends ControllerBase {
 
-  use LazyBuilderTrait;
+  use HtmxContainerTrait;
 
   public function __construct(
     private readonly ServiceMapInterface $serviceMap,
@@ -98,7 +97,7 @@ final class ResultsController extends ControllerBase {
           'address' => $addressName,
         ],
       ]),
-      '#events_section' => $this->buildEvents($address, $langcode, 3),
+      '#events_section' => $this->buildEventsHtmxContainer($request, 3),
       '#news_archive_url' => $this->getInternalSearchLink(InternalSearchLink::NewsArchive, $newsQuery, $langcode),
       '#coordinates' => $address->location,
       '#title' => $this->t(
@@ -109,15 +108,15 @@ final class ResultsController extends ControllerBase {
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName, $langcode),
       '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address, $langcode),
-      '#roadwork_section' => $this->buildRoadworks($address, $langcode, 3, new Attribute(['class' => ['card--border']])),
+      '#roadwork_section' => $this->buildRoadworksHtmxContainer($request, 3),
+      '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedback', options: [
+        'query' => ['q' => $addressName],
+      ]),
+      '#feedback_section' => $this->buildFeedbackHtmxContainer($request, 3),
       '#cache' => [
         'contexts' => ['url.query_args:q'],
         'tags' => ['roadwork_section'],
       ],
-      '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedbacks', options: [
-        'query' => ['q' => $addressName],
-      ]),
-      '#feedback_section' => $this->buildFeedback($address, $langcode, 3, new Attribute(['class' => ['card--border']])),
     ];
   }
 

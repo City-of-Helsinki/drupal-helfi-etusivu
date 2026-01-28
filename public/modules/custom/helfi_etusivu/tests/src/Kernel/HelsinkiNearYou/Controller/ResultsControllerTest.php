@@ -34,8 +34,8 @@ class ResultsControllerTest extends KernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'helfi_api_base',
     'external_entities',
-    'big_pipe',
     'helfi_etusivu',
     'system',
   ];

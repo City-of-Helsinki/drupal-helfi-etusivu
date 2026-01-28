@@ -24,6 +24,7 @@ class HelfiSimpleSitemapTest extends EntityKernelTestBase {
   protected static $modules = [
     'language',
     'simple_sitemap',
+    'helfi_api_base',
     'big_pipe',
     'helfi_etusivu',
   ];

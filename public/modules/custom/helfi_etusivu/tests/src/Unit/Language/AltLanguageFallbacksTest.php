@@ -2,23 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_alt_lang_fallback\Unit;
+namespace Drupal\Tests\helfi_etusivu\Unit\Language;
 
-use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Url;
-use Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks;
 use Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface;
+use Drupal\helfi_etusivu\Language\AltLanguageFallbacks;
 use Drupal\Tests\UnitTestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * Tests Composer plugin.
  *
- * @coversDefaultClass \Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks
- * @group helfi_alt_lang_fallback
+ * @coversDefaultClass \Drupal\helfi_etusivu\Language\AltLanguageFallbacks
+ * @group helfi_etusivu
  */
 class AltLanguageFallbacksTest extends UnitTestCase {
 
@@ -30,18 +28,17 @@ class AltLanguageFallbacksTest extends UnitTestCase {
    * @param bool $isAltLanguage
    *   Whether current language is alt language.
    *
-   * @return \Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks
+   * @return \Drupal\helfi_etusivu\Language\AltLanguageFallbacks
    *   The sut.
    */
   public function getSut(bool $isAltLanguage) : AltLanguageFallbacks {
     $resolver = $this->prophesize(DefaultLanguageResolverInterface::class);
     $resolver->isAltLanguage()->willReturn($isAltLanguage);
-    $container = new ContainerBuilder();
-    $container->set('language_manager', $this->prophesize(LanguageManagerInterface::class)->reveal());
-    $container->set('entity_type.manager', $this->prophesize(EntityTypeManagerInterface::class)->reveal());
-    $container->set('menu.link_tree', $this->prophesize(MenuLinkTreeInterface::class)->reveal());
-    $container->set('helfi_api_base.default_language_resolver', $resolver->reveal());
-    return AltLanguageFallbacks::create($container);
+    return new AltLanguageFallbacks(
+      $this->prophesize(EntityTypeManagerInterface::class)->reveal(),
+      $this->prophesize(MenuLinkTreeInterface::class)->reveal(),
+      $resolver->reveal(),
+    );
   }
 
   /**
