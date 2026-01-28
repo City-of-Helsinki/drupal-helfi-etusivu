@@ -89,7 +89,7 @@ enum RouteInformationEnum {
     return match($route) {
       'helfi_etusivu.helsinki_near_you' => self::LandingPage,
       'helfi_etusivu.helsinki_near_you_results' => self::Results,
-      'helfi_etusivu.helsinki_near_you_feedbacks' => self::Feedback,
+      'helfi_etusivu.helsinki_near_you_feedback' => self::Feedback,
       'helfi_etusivu.helsinki_near_you_events' => self::Events,
       'helfi_etusivu.helsinki_near_you_roadworks' => self::Roadworks,
       default => NULL,

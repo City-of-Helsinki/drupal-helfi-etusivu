@@ -36,7 +36,7 @@ final readonly class Client {
    * @return string
    *   Resulting api url with params a query string
    */
-  public function getUri(string $langcode, array $options, int $pageSize) : string {
+  public static function getUri(string $langcode, array $options, int $pageSize) : string {
     $defaultOptions = [
       'event_type' => 'General',
       'format' => 'json',
@@ -77,7 +77,7 @@ final readonly class Client {
     $map = [];
 
     try {
-      $data = $this->httpClient->request('GET', $this->getUri($langcode, $options, $limit), [
+      $data = $this->httpClient->request('GET', self::getUri($langcode, $options, $limit), [
         RequestOptions::TIMEOUT => 10,
       ]);
       $json = json_decode($data->getBody()->getContents(), TRUE);
