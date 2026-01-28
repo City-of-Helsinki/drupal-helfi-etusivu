@@ -50,7 +50,7 @@ trait HtmxContainerTrait {
    */
   protected function buildHtmxRenderArray(string $route, Request $request, ?int $limit = NULL, ?Attribute $attributes = NULL): array {
     $htmx = new Htmx();
-    $htmx->post(new Url($route, options: [
+    $htmx->get(new Url($route, options: [
       'query' => array_merge(['limit' => $limit], $request->query->all()),
     ]))
       ->trigger('load');
