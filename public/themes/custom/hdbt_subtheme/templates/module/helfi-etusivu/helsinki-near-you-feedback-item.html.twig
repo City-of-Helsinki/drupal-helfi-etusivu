@@ -1,7 +1,7 @@
 {% embed '@hdbt/component/card.twig' with {
-  card_modifier_class: feedback_attributes['class']|join(' '),
+  card_modifier_class: limit ? 'card--border' : 'card',
   card_title: title,
-  card_title_level: feedback_attributes['title_level'] ? feedback_attributes['title_level'] : 'h3',
+  card_title_level: limit ? 'h4' : 'h3',
   card_url: uri,
   card_url_external: true,
   card_category_tag: {
