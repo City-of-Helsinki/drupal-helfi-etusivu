@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_alt_lang_fallback\Kernel;
+namespace Drupal\Tests\helfi_etusivu\Kernel\Language;
 
-use Drupal\helfi_alt_lang_fallback\AltLanguageFallbacks;
+use Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface;
+use Drupal\helfi_etusivu\Hook\AltLanguageFallbackHooks;
+use Drupal\helfi_etusivu\Language\AltLanguageFallbacks;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
@@ -15,7 +17,7 @@ use Drupal\Tests\helfi_api_base\Traits\LanguageManagerTrait;
 /**
  * Tests the Alt language fallbacks resource.
  *
- * @group helfi_alt_lang_fallback
+ * @group helfi_etusivu
  */
 class AltLanguageFallbacksTest extends KernelTestBase {
 
@@ -28,7 +30,7 @@ class AltLanguageFallbacksTest extends KernelTestBase {
   protected static $modules = [
     'helfi_language_negotiator_test',
     'helfi_api_base',
-    'helfi_alt_lang_fallback',
+    'helfi_etusivu',
     'menu_block_current_language',
     'content_translation',
     'language',
@@ -110,7 +112,7 @@ class AltLanguageFallbacksTest extends KernelTestBase {
    */
   private function renderMenuBlock(string $menuId, string $langcode) : array {
     $this->setOverrideLanguageCode($langcode);
-    $sut = AltLanguageFallbacks::create($this->container);
+    $sut = $this->container->get(AltLanguageFallbacks::class);
     return $sut->replaceMenuTree($menuId);
   }
 
@@ -118,6 +120,10 @@ class AltLanguageFallbacksTest extends KernelTestBase {
    * Tests replaceMenuTree().
    */
   public function testReplaceMenuTree() : void {
+    $sut = new AltLanguageFallbackHooks(
+      $this->container->get(DefaultLanguageResolverInterface::class),
+      $this->container->get(AltLanguageFallbacks::class),
+    );
     $links = [
       [
         'title' => 'Test title en',
@@ -143,7 +149,7 @@ class AltLanguageFallbacksTest extends KernelTestBase {
       'menu_name' => 'headertopnavigation',
       'items' => $build,
     ];
-    helfi_alt_lang_fallback_preprocess_menu($variables);
+    $sut->preprocessMenu($variables);
 
     // Make sure preprocess yields same menu items.
     $this->assertEquals($build, $variables['items']);

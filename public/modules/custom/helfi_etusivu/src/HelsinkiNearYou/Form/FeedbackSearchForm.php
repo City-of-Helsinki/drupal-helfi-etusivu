@@ -13,7 +13,7 @@ class FeedbackSearchForm extends SearchFormBase {
    * {@inheritdoc}
    */
   protected function getRedirectRoute(): string {
-    return 'helfi_etusivu.helsinki_near_you_feedbacks';
+    return 'helfi_etusivu.helsinki_near_you_feedback';
   }
 
 }
