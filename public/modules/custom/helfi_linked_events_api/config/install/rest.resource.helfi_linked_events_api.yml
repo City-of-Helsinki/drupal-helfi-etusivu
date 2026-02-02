@@ -1,0 +1,15 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - helfi_platform_config
+id: helfi_linked_events_api
+plugin_id: helfi_linked_events_api
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie
