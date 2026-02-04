@@ -2,50 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_alt_lang_fallback;
+namespace Drupal\helfi_etusivu\Language;
 
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Handler for alternate language fallback service.
- *
- * @package Drupal\helfi_alt_lang_fallback
  */
-final class AltLanguageFallbacks implements ContainerInjectionInterface {
-
-  /**
-   * The language manager.
-   *
-   * @var \Drupal\Core\Language\LanguageManagerInterface
-   */
-  protected LanguageManagerInterface $languageManager;
-
-  /**
-   * Entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  private EntityTypeManagerInterface $entityTypeManager;
-
-  /**
-   * The menu tree factory.
-   *
-   * @var \Drupal\Core\Menu\MenuLinkTreeInterface
-   */
-  protected MenuLinkTreeInterface $menuTree;
-
-  /**
-   * Default language resolver.
-   *
-   * @var \Drupal\helfi_api_base\Language\DefaultLanguageResolverInterface
-   */
-  protected DefaultLanguageResolverInterface $defaultLanguageResolver;
+final class AltLanguageFallbacks {
 
   /**
    * Fallback regions to add language and direction attributes to.
@@ -84,35 +51,11 @@ final class AltLanguageFallbacks implements ContainerInjectionInterface {
     'footer-bottom-navigation',
   ];
 
-  /**
-   * Constructs AltLanguageFallbacks service.
-   *
-   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
-   *   Language manager.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity type manager.
-   * @param \Drupal\Core\Menu\MenuLinkTreeInterface $menu_tree
-   *   Menu tree builder.
-   * @param \Drupal\helfi_api_base\Language\DefaultLanguageResolver $default_language_resolver
-   *   Default language resolver.
-   */
-  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, MenuLinkTreeInterface $menu_tree, DefaultLanguageResolverInterface $default_language_resolver) {
-    $this->languageManager = $language_manager;
-    $this->entityTypeManager = $entity_type_manager;
-    $this->menuTree = $menu_tree;
-    $this->defaultLanguageResolver = $default_language_resolver;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) : self {
-    return new self(
-      $container->get('language_manager'),
-      $container->get('entity_type.manager'),
-      $container->get('menu.link_tree'),
-      $container->get('helfi_api_base.default_language_resolver'),
-    );
+  public function __construct(
+    private EntityTypeManagerInterface $entityTypeManager,
+    private MenuLinkTreeInterface $menuTree,
+    private DefaultLanguageResolverInterface $defaultLanguageResolver,
+  ) {
   }
 
   /**
