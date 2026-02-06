@@ -1,0 +1,10 @@
+helfi_linked_events_api.image:
+  path: '/linked-events/image/{image_id}'
+  defaults:
+    _controller: 'Drupal\helfi_linked_events_api\Controller\LinkedEventsImageController::deliver'
+    _disable_route_normalizer: TRUE
+  requirements:
+    _access: 'TRUE'
+    image_id: '^[0-9]+$'
+  options:
+    _maintenance_access: TRUE
