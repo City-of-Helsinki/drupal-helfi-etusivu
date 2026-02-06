@@ -2,5 +2,5 @@ name: 'HELfi Linked Events API'
 type: module
 core_version_requirement: ^10 || ^11
 dependencies:
-  - drupal:rest
-  - helfi_platform_config:helfi_platform_config
+  - drupal:image
+  - imagecache_external:imagecache_external
