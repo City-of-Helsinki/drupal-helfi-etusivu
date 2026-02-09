@@ -226,7 +226,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
 }
 
 /**
- * Sut for LinkedEventsImageController.
+ * Sut stub for LinkedEventsImageController.
  */
 class LinkedEventsImageControllerSut extends LinkedEventsImageController {
 
