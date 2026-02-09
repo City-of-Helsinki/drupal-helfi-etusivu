@@ -25,6 +25,9 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
 
   use AutowireTrait;
 
+  /**
+   * Allowed image styles.
+   */
   private const IMAGE_STYLES_ALLOWED = [
     '1.5_511w_341h',
   ];
@@ -102,7 +105,7 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
       return $cache->data;
     }
 
-    // Make provided image style is allowed.
+    // Make sure provided image style is allowed.
     if (!in_array($image_style, self::IMAGE_STYLES_ALLOWED)) {
       return '';
     }
