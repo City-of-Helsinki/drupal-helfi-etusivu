@@ -62,9 +62,9 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    *   The redirect response or not found response.
    */
   public function deliver(Request $request, string $image_id): Response {
-    // Get and validate query parameters for image style and time.
-    $image_style = $this->getQueryParameterValue($request, 'style', '/^[0-9a-zA-Z_.\-]+$/');
-    $time = $this->getQueryParameterValue($request, 'time', '/^[0-9TZ.:\-]+$/');
+    // Get query parameter values for image style and time.
+    $image_style = $request->query->get('style');
+    $time = $request->query->get('time');
     if (!$image_style || !$time) {
       return $this->notFoundResponse();
     }
@@ -158,28 +158,6 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
     $image_style_url = $imageStyle->buildUrl($uri);
     $this->cache->set($cache_key, $image_style_url);
     return $image_style_url;
-  }
-
-  /**
-   * Get and validate a query parameter value.
-   *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The request object.
-   * @param string $name
-   *   The name of the query parameter.
-   * @param string $pattern
-   *   The regex pattern to validate the query parameter value against.
-   *
-   * @return string
-   *   The query parameter value.
-   */
-  private function getQueryParameterValue(Request $request, string $name, string $pattern): string {
-    $value = $request->query->get($name);
-    if (!$value || !preg_match($pattern, $value)) {
-      return '';
-    }
-
-    return $value;
   }
 
   /**
