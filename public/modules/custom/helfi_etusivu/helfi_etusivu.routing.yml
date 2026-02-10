@@ -14,5 +14,16 @@ helfi_etusivu.helsinki_near_you_results:
   requirements:
     _permission: 'access content'
 
+helfi_etusivu.linked_events_image:
+  path: '/linked-events/image/{image_id}'
+  defaults:
+    _controller: 'Drupal\helfi_etusivu\Controller\LinkedEventsImageController::deliver'
+    _disable_route_normalizer: TRUE
+  requirements:
+    _access: 'TRUE'
+    image_id: '^[0-9]+$'
+  options:
+    _maintenance_access: TRUE
+
 route_callbacks:
   - '\Drupal\helfi_etusivu\HelsinkiNearYou\Routing\RouteProvider::routes'
