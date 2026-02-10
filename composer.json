@@ -66,6 +66,9 @@
     },
     "extra": {
         "patches": {
+            "drupal/core": {
+                "[#3569803] htmx:beforeSwap fails with TypeError requestAssetsLoaded.get(...) is undefined": "patches/3569803.patch"
+            },
             "drupal/draggableviews": {
                 "Save langcode as part of draggableviews data in order to sort by by weight and language": "patches/draggableviews_language.patch"
             }

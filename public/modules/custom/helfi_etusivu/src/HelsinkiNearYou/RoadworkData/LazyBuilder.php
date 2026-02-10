@@ -108,6 +108,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
             $lon,
           )
         ),
+        '#limit' => $limit,
         '#roadwork_attributes' => $attributes,
       ];
     }

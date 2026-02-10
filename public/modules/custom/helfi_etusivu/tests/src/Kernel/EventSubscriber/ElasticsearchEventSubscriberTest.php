@@ -22,6 +22,7 @@ class ElasticsearchEventSubscriberTest extends KernelTestBase {
    */
   protected static $modules = [
     'elasticsearch_connector',
+    'helfi_api_base',
     'helfi_etusivu',
     'big_pipe',
     'search_api',

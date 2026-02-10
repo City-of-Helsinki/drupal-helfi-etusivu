@@ -9,6 +9,7 @@ dependencies:
   - drupal:content_translation
   - drupal:link
   - drupal:text
+  - drupal:image
   - entity:entity
   - draggableviews:draggableviews
   - search_api:search_api
@@ -18,5 +19,6 @@ dependencies:
   - helfi_react_search:helfi_react_search
   - helfi_platform_config:helfi_paragraphs_news_list
   - radioactivity:radioactivity
+  - imagecache_external:imagecache_external
 'interface translation project': helfi_etusivu
 'interface translation server pattern': modules/custom/helfi_etusivu/translations/%language.po
