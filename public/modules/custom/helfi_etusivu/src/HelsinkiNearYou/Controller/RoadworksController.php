@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
+use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Template\Attribute;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
+use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Form\RoadworkSearchForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\LazyBuilder;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller for the Helsinki Near You Roadworks page.
@@ -24,6 +28,15 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Form\RoadworkSearchForm;
  * @see \Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataClientInterface
  */
 final class RoadworksController extends SearchPageControllerBase {
+
+  public function __construct(
+    private LazyBuilder $lazyBuilder,
+    ServiceMapInterface $serviceMap,
+    FormBuilderInterface $formBuilder,
+    LanguageManagerInterface $languageManager,
+  ) {
+    parent::__construct($serviceMap, $formBuilder, $languageManager);
+  }
 
   /**
    * A controller callback for roadworks route that provides the route title.
@@ -52,15 +65,18 @@ final class RoadworksController extends SearchPageControllerBase {
   /**
    * {@inheritdoc}
    */
-  protected function build(Address $address): array {
-    $langcode = $this->languageManager
-      ->getCurrentLanguage()
-      ->getId();
-
+  protected function buildFormResults(Address $address, string $langcode, Request $request): array {
     return [
-      '#content' => $this->buildRoadworks($address, $langcode, NULL, new Attribute(['title_level' => ['h4']])),
+      '#content' => $this->buildRoadworksHtmxContainer($request),
       '#content_attributes' => ['classes' => ['components--helsinki-near-you-roadwork-page']],
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function buildHtmxResults(Address $address, string $langcode, ?int $limit = NULL): array {
+    return $this->lazyBuilder->build($address, $langcode, $limit);
   }
 
 }

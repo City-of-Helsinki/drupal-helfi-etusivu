@@ -12,7 +12,7 @@ display:
           label: Kohandatud
           separator: ', '
         enabled:
-          label: Lubatud
+          label: Aktiveeritud
           separator: ', '
         created:
           label: Loodud
@@ -49,7 +49,7 @@ display:
             label: Kohandatud
         enabled:
           expose:
-            label: Lubatud
+            label: Aktiveeritud
   page_1:
     display_title: Lehekülg
     display_options:
