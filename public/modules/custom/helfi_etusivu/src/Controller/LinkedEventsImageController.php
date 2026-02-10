@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_linked_events_api\Controller;
+namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableRedirectResponse;

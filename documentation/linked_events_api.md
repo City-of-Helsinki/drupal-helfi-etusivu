@@ -12,7 +12,7 @@ Base URL for the API endpoint is `https://www.hel.fi/linked-events/image/{image_
 
 These are query parameters instead of route parameters due to special characters that might cause issues when used in url paths.
 
-- `style`: The image style name to use. Only allows image styles listed in `Drupal\helfi_linked_events_api\Controller\LinkedEventsImageController::IMAGE_STYLES_ALLOWED`.
+- `style`: The image style name to use. Only allows image styles listed in `Drupal\helfi_etusivu\Controller\LinkedEventsImageController::IMAGE_STYLES_ALLOWED`.
 - `time`: The `last_modified_time` image-key. This ensures the latest version of the image is received.
 
 ## Response
