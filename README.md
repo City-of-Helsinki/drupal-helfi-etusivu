@@ -137,6 +137,14 @@ global announcements. Code related to the global announcements can be found in `
 `helfi_platform_config` and the configuration for the `Publish on external site` is in the conf/cmi folder of this
 instance and the configuration rewrite is [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/e2643195b8fc2989da835313c052ae533b8e0143/public/modules/custom/helfi_etusivu_config/config/rewrite/core.entity_form_display.node.announcement.default.yml).
 
+### Linked Events image API
+
+Serves image style versions for Linked Events images.
+
+Provides a redirect route that can be used in img src-attributes; downloads a Linked Events image and generates an image style derivative url for it, then redirects to that url.
+
+See [documentation/linked_events_api.md](/documentation/linked_events_api.md) for more information.
+
 ## Customizations
 
 ### Enabled languages
