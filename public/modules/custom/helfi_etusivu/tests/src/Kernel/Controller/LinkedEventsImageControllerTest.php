@@ -49,6 +49,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
   protected static $modules = [
     'image',
     'imagecache_external',
+    'helfi_api_base',
     'helfi_etusivu',
   ];
 
