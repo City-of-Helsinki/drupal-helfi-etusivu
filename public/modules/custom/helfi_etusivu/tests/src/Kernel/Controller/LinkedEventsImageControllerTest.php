@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_linked_events_api\Kernel\Controller;
+namespace Drupal\Tests\helfi_etusivu\Kernel\Controller;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\CacheableRedirectResponse;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\FileExists;
-use Drupal\helfi_linked_events_api\Controller\LinkedEventsImageController;
+use Drupal\helfi_etusivu\Controller\LinkedEventsImageController;
 use Drupal\image\ImageStyleInterface;
 use Drupal\image\ImageStyleStorageInterface;
 use Drupal\KernelTests\KernelTestBase;
@@ -29,7 +29,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Tests LinkedEventsImageController.
  */
-#[Group('helfi_linked_events_api')]
+#[Group('helfi_etusivu')]
 #[CoversClass(LinkedEventsImageController::class)]
 #[RunTestsInSeparateProcesses]
 class LinkedEventsImageControllerTest extends KernelTestBase {
@@ -49,7 +49,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
   protected static $modules = [
     'image',
     'imagecache_external',
-    'helfi_linked_events_api',
+    'helfi_etusivu',
   ];
 
   /**
