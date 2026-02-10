@@ -7,6 +7,8 @@ namespace Drupal\Tests\helfi_linked_events_api\Kernel\Controller;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\CacheableRedirectResponse;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\helfi_linked_events_api\Controller\LinkedEventsImageController;
 use Drupal\image\ImageStyleInterface;
 use Drupal\image\ImageStyleStorageInterface;
@@ -65,6 +67,8 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
+
+    $this->installConfig(['imagecache_external']);
 
     $this->cache = $this->prophesize(CacheBackendInterface::class);
     $this->cache->get(Argument::any())->willReturn(NULL);
@@ -217,7 +221,10 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
       $this->container->get('cache.default'),
     );
 
-    $sut->setImagecacheExternalUrl($is_download_external_success ? self::LINKED_EVENTS_IMAGE_URL : FALSE);
+    // Add imagecache_external target file for tests.
+    if ($is_download_external_success) {
+      $this->createImagecacheExternalTargetFile($is_download_external_with_cachebust);
+    }
 
     $response = $sut->deliver(new Request([
       'style' => $image_style,
@@ -256,6 +263,33 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
     }
   }
 
+  /**
+   * Create imagecache_external target file.
+   *
+   * Allows to bypass the file download process in
+   * imagecache_external_generate_path().
+   *
+   * @param bool $cachebust
+   *   Whether to cachebust the url.
+   */
+  private function createImagecacheExternalTargetFile(bool $cachebust = TRUE): void {
+    $url = self::LINKED_EVENTS_IMAGE_URL;
+    if ($cachebust) {
+      $url .= '?time=' . urlencode(self::LINKED_EVENTS_IMAGE_LAST_MODIFIED_TIME);
+    }
+    $hash = md5($url);
+    $filename = "$hash.jpg";
+
+    // Get the actual public files path and create the externals directory.
+    /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+    $file_system = \Drupal::service('file_system');
+    $externals_dir = 'public://' . $this->container->get('config.factory')->get('imagecache_external.settings')->get('imagecache_directory');
+    $file_system->prepareDirectory($externals_dir, FileSystemInterface::CREATE_DIRECTORY);
+
+    // Create the actual file so file_exists() returns TRUE.
+    $file_system->saveData('123', $externals_dir . '/' . $filename, FileExists::Replace);
+  }
+
 }
 
 /**
@@ -264,26 +298,9 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
 class LinkedEventsImageControllerSut extends LinkedEventsImageController {
 
   /**
-   * The imagecache external url.
-   *
-   * @var bool|string
-   */
-  private bool|string $imagecacheExternalUrl;
-
-  /**
    * Last download url parameter.
    */
   private string $lastDownloadUrlParameter = '';
-
-  /**
-   * Sets the imagecache external url for the sut.
-   *
-   * @param string $url
-   *   The imagecache external url.
-   */
-  public function setImagecacheExternalUrl(bool|string $url): void {
-    $this->imagecacheExternalUrl = $url;
-  }
 
   /**
    * Get last download url parameter.
@@ -298,7 +315,7 @@ class LinkedEventsImageControllerSut extends LinkedEventsImageController {
   /**
    * Stub for downloadExternalImage().
    *
-   * Allows to bypass the imagecache_external_generate_path() for tests.
+   * Allows to collect the last download url parameter for tests.
    *
    * @param string $url
    *   The url of the external image.
@@ -308,7 +325,7 @@ class LinkedEventsImageControllerSut extends LinkedEventsImageController {
    */
   protected function downloadExternalImage(string $url): bool|string {
     $this->lastDownloadUrlParameter = $url;
-    return $this->imagecacheExternalUrl;
+    return parent::downloadExternalImage($url);
   }
 
 }
