@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -416,14 +417,19 @@ function helfi_etusivu_update_11002(&$sandbox): void {
   $storage = Drupal::entityTypeManager()->getStorage('node');
   $query = $storage->getQuery();
   $query
-    ->accessCheck(FALSE)
     ->condition('type', 'news_item')
     ->condition('status', 1)
     ->condition('nid', $sandbox['current'], '>')
     ->condition('unpublish_on', operator: 'IS NULL')
     ->sort('nid')
     ->range(0, 1000);
+  $query->accessCheck(FALSE);
+
   $ids = $query->execute();
+
+  \Drupal::messenger()->addStatus(new FormattableMarkup('Processing @num nodes.', [
+    '@num' => count($ids),
+  ]));
 
   if (!$ids) {
     $sandbox['#finished'] = 1;
