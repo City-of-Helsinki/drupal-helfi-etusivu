@@ -405,7 +405,7 @@ function helfi_etusivu_update_11002(&$sandbox): ?FormattableMarkup {
   $environmentResolver = \Drupal::service(EnvironmentResolverInterface::class);
 
   // Skip update hook on local because it takes a really long time.
-  if ($environmentResolver->getActiveEnvironment() === EnvironmentEnum::Local) {
+  if ($environmentResolver->getActiveEnvironment()->getEnvironment() === EnvironmentEnum::Local) {
     return new FormattableMarkup('Skipped helfi_etusivu_update_11002().', []);
   }
   if (!isset($sandbox['current'])) {
