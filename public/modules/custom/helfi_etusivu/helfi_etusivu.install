@@ -401,13 +401,12 @@ function helfi_etusivu_update_11001(): void {
  *
  * Populate 'unpublish_on' for all items.
  */
-function helfi_etusivu_update_11002(&$sandbox): void {
+function helfi_etusivu_update_11002(&$sandbox): ?FormattableMarkup {
   $environmentResolver = \Drupal::service(EnvironmentResolverInterface::class);
 
   // Skip update hook on local because it takes a really long time.
   if ($environmentResolver->getActiveEnvironment() === EnvironmentEnum::Local) {
-    \Drupal::messenger()->addWarning('Skipped helfi_etusivu_update_11002().');
-    return;
+    return new FormattableMarkup('Skipped helfi_etusivu_update_11002().', []);
   }
   if (!isset($sandbox['current'])) {
     $sandbox['current'] = 0;
@@ -427,13 +426,9 @@ function helfi_etusivu_update_11002(&$sandbox): void {
 
   $ids = $query->execute();
 
-  \Drupal::messenger()->addStatus(new FormattableMarkup('Processing @num nodes.', [
-    '@num' => count($ids),
-  ]));
-
   if (!$ids) {
     $sandbox['#finished'] = 1;
-    return;
+    return NULL;
   }
 
   foreach ($ids as $id) {
@@ -463,4 +458,8 @@ function helfi_etusivu_update_11002(&$sandbox): void {
       $translation->save();
     }
   }
+  return new FormattableMarkup('Processed @num "news_items".', [
+    '@num' => count($ids),
+  ]);
+
 }
