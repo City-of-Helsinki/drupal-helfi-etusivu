@@ -26,8 +26,6 @@ display:
           label: 'Date de modification'
         count:
           label: 'Utilisé dans'
-          alter:
-            path: 'admin/content/files/usage/{{ fid }}'
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       pager:
         options:
@@ -76,7 +74,6 @@ display:
           label: 'Enregistrement du module'
         count:
           label: "Nombre d'utilisations"
-          format_plural_string: !!binary MQNAY291bnQ=
       pager:
         options:
           tags:
