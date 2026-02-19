@@ -19,9 +19,6 @@ display:
           label: 角色
         created:
           label: 注册了
-          settings:
-            future_format: '@interval'
-            past_format: '@interval'
         access:
           label: 上次访问
           settings:

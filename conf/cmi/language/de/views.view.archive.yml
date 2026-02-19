@@ -21,14 +21,7 @@ display:
           exposed_sorts_label: Sortierung
           sort_asc_label: Aufsteigend
           sort_desc_label: Absteigend
-      arguments:
-        created_year_month:
-          title: '{{ arguments.created_year_month }}'
   block_1:
     display_title: Block
-    display_options:
-      arguments:
-        created_year_month:
-          title: '{{ arguments.created_year_month }}'
   page_1:
     display_title: Seite
