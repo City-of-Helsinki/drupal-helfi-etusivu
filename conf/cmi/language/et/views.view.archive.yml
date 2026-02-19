@@ -21,14 +21,7 @@ display:
           exposed_sorts_label: 'Sorteerimise alus'
           sort_asc_label: Kasvav
           sort_desc_label: Kahanev
-      arguments:
-        created_year_month:
-          title: '{{ arguments.created_year_month }}'
   block_1:
     display_title: Plokk
-    display_options:
-      arguments:
-        created_year_month:
-          title: '{{ arguments.created_year_month }}'
   page_1:
     display_title: Lehekülg

@@ -6,8 +6,6 @@ display:
     display_options:
       title: Файли
       fields:
-        fid:
-          label: Fid
         filename:
           label: "Назва (ім'я)"
           separator: ', '
@@ -26,8 +24,6 @@ display:
           label: 'Дата зміни'
         count:
           label: 'Використано в'
-          alter:
-            path: 'admin/content/files/usage/{{ fid }}'
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       pager:
         options:
