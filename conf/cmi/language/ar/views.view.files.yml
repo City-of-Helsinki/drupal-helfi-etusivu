@@ -5,8 +5,6 @@ display:
     display_options:
       title: الملفات
       fields:
-        fid:
-          label: Fid
         filename:
           label: الاسم
           separator: ', '

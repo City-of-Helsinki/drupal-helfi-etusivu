@@ -6,8 +6,6 @@ display:
     display_options:
       title: Dateien
       fields:
-        fid:
-          label: Fid
         filename:
           label: Name
           separator: ', '
@@ -26,8 +24,6 @@ display:
           label: Änderungsdatum
         count:
           label: 'Verwendet in'
-          alter:
-            path: 'admin/content/files/usage/{{ fid }}'
           format_plural_string: !!binary QGNvdW50IFZlcndlbmR1bmcDQGNvdW50IFZlcndlbmR1bmdlbg==
       pager:
         options:
@@ -76,7 +72,6 @@ display:
           label: 'Registrierendes Modul'
         count:
           label: 'Anzahl der Verwendung'
-          format_plural_string: !!binary MQNAY291bnQ=
       pager:
         options:
           tags:
