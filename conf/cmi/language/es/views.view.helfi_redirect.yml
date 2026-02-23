@@ -1,5 +1,4 @@
 label: Redirección
-description: 'List of redirects'
 display:
   default:
     display_title: Máster
@@ -12,13 +11,13 @@ display:
           label: Desde
           separator: ', '
         is_custom:
-          label: Custom
+          label: Personalizado
+          separator: ', '
+        enabled:
+          label: Activado
           separator: ', '
         created:
           label: Creado
-        enabled:
-          label: Enabled
-          separator: ', '
       pager:
         options:
           tags:
@@ -37,9 +36,6 @@ display:
           exposed_sorts_label: 'Ordenar por'
           sort_asc_label: Asc
           sort_desc_label: Desc
-      empty:
-        area_text_custom:
-          content: 'There is no redirect yet.'
       filters:
         redirect_source__path:
           expose:
@@ -49,9 +45,9 @@ display:
             label: Para
         status_code:
           expose:
-            label: 'Status code'
+            label: 'Código de estado'
           group_info:
-            label: 'Status code'
+            label: 'Código de estado'
             group_items:
               1:
                 title: '300 Múltiples posibilidades'
@@ -72,10 +68,10 @@ display:
             label: 'Lenguaje original'
         is_custom:
           expose:
-            label: Custom
+            label: Personalizado
         enabled:
           expose:
-            label: Enabled
+            label: Activado
   page_1:
     display_title: Página
     display_options:

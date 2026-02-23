@@ -4,31 +4,16 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
-use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\DependencyInjection\AutowireTrait;
-use Drupal\Core\Form\FormBuilderInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
-use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * A controller base class for search pages.
  */
-abstract class SearchPageControllerBase extends ControllerBase {
+abstract class SearchPageControllerBase extends HtmxController {
 
-  use LazyBuilderTrait;
-  use AutowireTrait;
-
-  public function __construct(
-    protected readonly ServiceMapInterface $serviceMap,
-    FormBuilderInterface $formBuilder,
-    LanguageManagerInterface $languageManager,
-  ) {
-    $this->formBuilder = $formBuilder;
-    $this->languageManager = $languageManager;
-  }
+  use HtmxContainerTrait;
 
   /**
    * A title callback for given controller.
@@ -55,18 +40,22 @@ abstract class SearchPageControllerBase extends ControllerBase {
   abstract protected function getSearchForm() : string;
 
   /**
-   * The render array callback for ::content().
+   * Builds form results.
    *
    * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
+   * @param string $langcode
+   *   The langcode.
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
    *
    * @return array
    *   The render array.
    */
-  abstract protected function build(Address $address) : array;
+  abstract protected function buildFormResults(Address $address, string $langcode, Request $request) : array;
 
   /**
-   * A controller callback for feedback route.
+   * A controller callback for search page route.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
@@ -98,7 +87,7 @@ abstract class SearchPageControllerBase extends ControllerBase {
       return $build;
     }
 
-    $addressData = $this->serviceMap->getAddressData(urldecode($address));
+    $addressData = $this->getAddressForQuery($request);
 
     if (!$addressData) {
       $build['#address_error_message'] = $this->t(
@@ -109,7 +98,11 @@ abstract class SearchPageControllerBase extends ControllerBase {
 
       return $build;
     }
-    $build += $this->build($addressData);
+    $langcode = $this->languageManager
+      ->getCurrentLanguage()
+      ->getId();
+
+    $build += $this->buildFormResults($addressData, $langcode, $request);
 
     return $build;
   }

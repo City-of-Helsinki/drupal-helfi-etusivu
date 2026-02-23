@@ -33,13 +33,13 @@ display:
         id:
           label: ID
           separator: ', '
+        count:
+          format_plural_string: !!binary MSBhc3Vrb2h0A0Bjb3VudCBhc3Vrb2h0YQ==
         changed:
           label: Muudetud
           separator: ', '
         operations:
           label: Toimingud
-        count:
-          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       filters:
         label:
           expose:

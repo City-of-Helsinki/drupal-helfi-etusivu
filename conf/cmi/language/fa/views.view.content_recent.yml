@@ -4,6 +4,9 @@ display:
     display_title: پیش‌فرض
     display_options:
       title: 'جدیدترین محتوا'
+      fields:
+        changed:
+          separator: ', '
       exposed_form:
         options:
           submit_button: تایید
@@ -15,8 +18,5 @@ display:
         area_text_custom:
           content: 'هیچ محتوایی در دسترس نیست.'
       use_more_text: بیشتر
-      fields:
-        changed:
-          separator: ', '
   block_1:
     display_title: بلوک

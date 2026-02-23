@@ -11,14 +11,13 @@
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.6.7",
         "drupal/consumer_image_styles": "^4.0",
-        "drupal/core-composer-scaffold": "^10|^11",
         "drupal/draggableviews": "^2.0",
         "drupal/hdbt": "^6.0",
         "drupal/hdbt_admin": "^3.0",
         "drupal/helfi_azure_fs": "^2.0",
         "drupal/helfi_drupal_tools": "dev-main",
         "drupal/helfi_navigation": "^2.0",
-        "drupal/helfi_platform_config": "^4.0",
+        "drupal/helfi_platform_config": "^5.0",
         "drupal/helfi_proxy": "^3.0",
         "drupal/helfi_tunnistamo": "^3.0",
         "drupal/json_field": "^1.0@RC",
@@ -32,14 +31,11 @@
         "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/views_rss": "^2.0@RC",
         "josdejong/jsoneditor": "^5.29",
-        "justinrainbow/json-schema": "^5.2",
         "mglaman/composer-drupal-lenient": "*",
         "proj4php/proj4php": "^2.0"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-        "dg/bypass-finals": "^1.5",
-        "dmore/chrome-mink-driver": "^2.8",
         "drupal/core-dev": "^10|^11",
         "jangregor/phpstan-prophecy": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.1",
@@ -69,11 +65,11 @@
     },
     "extra": {
         "patches": {
+            "drupal/core": {
+                "[#3569803] htmx:beforeSwap fails with TypeError requestAssetsLoaded.get(...) is undefined": "patches/3569803.patch"
+            },
             "drupal/draggableviews": {
                 "Save langcode as part of draggableviews data in order to sort by by weight and language": "patches/draggableviews_language.patch"
-            },
-            "drupal/scheduler": {
-                "[#UHF-12387] https://www.drupal.org/i/3458578: Fixes Uncaught TypeError: Cannot read property 'value' of null": "https://www.drupal.org/files/issues/2024-07-02/scheduler-uncaught_type_error_reading_null_on_value-3458578-2.patch"
             }
         },
         "composer-exit-on-patch-failure": true,

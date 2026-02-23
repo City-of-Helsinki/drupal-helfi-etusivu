@@ -258,44 +258,6 @@ if ($session_suffix = getenv('DRUPAL_SESSION_SUFFIX')) {
   $config['helfi_proxy.settings']['session_suffix'] = $session_suffix;
 }
 
-$amq_destination = drupal_get_env([
-  'PROJECT_NAME',
-]);
-$amq_brokers = getenv('AMQ_BROKERS');
-
-if ($amq_brokers && $amq_destination) {
-  $settings['stomp']['default'] = [
-    'clientId' => getenv('AMQ_CLIENT_ID') ?: 'client_ ' . $amq_destination,
-    'login' => getenv('AMQ_USER') ?: NULL,
-    'passcode' => getenv('AMQ_PASSWORD') ?: NULL,
-    'destination' => sprintf('/queue/%s', $amq_destination),
-    'brokers' => $amq_brokers,
-    'timeout' => ['read' => 12000],
-    'heartbeat' => [
-      'send' => 20000,
-      'receive' => 0,
-      'observers' => [
-        [
-          'class' => '\Stomp\Network\Observer\HeartbeatEmitter',
-        ],
-      ],
-    ],
-  ];
-
-  $queues = [
-    'helfi_navigation_menu_queue',
-    'helfi_api_base_revision',
-  ];
-  foreach ($queues as $queue) {
-    // $settings['queue_service_' . $queue] = 'queue.stomp.default';
-  }
-  // You must configure project specific queues manually in 'all.settings.php'
-  // file.
-  // @see https://github.com/City-of-Helsinki/drupal-helfi-platform/blob/main/documentation/queue.md
-}
-
-$config['filelog.settings']['rotation']['schedule'] = 'never';
-
 if (
   ($redis_host = getenv('REDIS_HOST')) &&
   file_exists('modules/contrib/redis/redis.services.yml') &&
@@ -401,6 +363,27 @@ if (getenv('OPENAI_KEY')) {
   $config['helfi_search.settings']['openai_api_key'] = getenv('OPENAI_KEY');
   $config['helfi_search.settings']['openai_base_url'] = getenv('OPENAI_BASE_URL');
   $config['helfi_search.settings']['openai_model'] = getenv('OPENAI_MODEL');
+}
+
+// Hakuvahti:
+if (getenv('HAKUVAHTI_URL')) {
+  $config['helfi_hakuvahti.settings']['base_url'] = getenv('HAKUVAHTI_URL');
+  $config['helfi_hakuvahti.settings']['api_key'] = getenv('HAKUVAHTI_API_KEY');
+}
+
+// E2E test users. We should never do this in production, so adding a failsafe
+// in case the environment variable would ever end up in production.
+if (getenv('APP_ENV') !== 'production' && $e2e_test_user = getenv('E2E_TEST_USER')) {
+  $e2e_test_user = json_decode($e2e_test_user, TRUE);
+
+  // Make sure the user exists in Drupal.
+  $config['helfi_api_base.api_accounts']['accounts'][] = $e2e_test_user;
+
+  // Some features need to be modified for the test user.
+  // @see Drupal\helfi_tfa\Hook\UserHooks::userLogin().
+  $config['helfi_platform_config.e2e_test_users']['users'][] = array_intersect_key($e2e_test_user, [
+    "username" => TRUE,
+  ]);
 }
 
 // Environment specific overrides.

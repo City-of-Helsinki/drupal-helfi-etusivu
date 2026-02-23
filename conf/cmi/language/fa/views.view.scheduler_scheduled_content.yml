@@ -1,6 +1,6 @@
+label: Scheduled
 display:
   default:
-    display_title: مدیر
     display_options:
       exposed_form:
         options:
@@ -34,12 +34,12 @@ display:
             format_custom_true: 'منتشر شده'
             format_custom_false: 'منتشر نشده'
           separator: ', '
-        operations:
-          label: عملیات
         publish_on:
           separator: ', '
         unpublish_on:
           separator: ', '
+        operations:
+          label: عملیات
       filters:
         title:
           expose:
@@ -60,11 +60,16 @@ display:
         langcode:
           expose:
             label: زبان
+      title: Scheduled
+    display_title: مدیر
   overview:
-    display_title: 'مرورکلی محتوا'
     display_options:
+      menu:
+        title: Scheduled
+        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: محتوا
+    display_title: 'مرورکلی محتوا'
   user_page:
     display_options:
       tab_options:
@@ -73,3 +78,4 @@ display:
         uid:
           exception:
             title: همه
+    display_title: کاربر

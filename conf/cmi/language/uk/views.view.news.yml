@@ -13,10 +13,10 @@ display:
         field_main_image:
           separator: ', '
         view_node:
-          text: view
+          text: переглянути
       exposed_form:
         options:
-          submit_button: Apply
+          submit_button: Застосувати
           reset_button_label: Скинути
           exposed_sorts_label: 'Впорядкувати за'
           sort_asc_label: Зрост

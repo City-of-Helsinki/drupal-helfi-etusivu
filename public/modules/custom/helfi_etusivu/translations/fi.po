@@ -346,3 +346,33 @@ msgstr "Ukraina"
 
 msgid "The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field."
 msgstr "Uutinen ajastetaan ei-julkiseksi 11 kuukauden päähän julkaisuhetkestä. Tarvittaessa voit muuttaa aikaa kentästä <strong>Ajastettu piilottaminen.</strong>"
+
+msgid "Search promotion"
+msgstr "Hakunosto"
+
+msgid "List of search promotion entities"
+msgstr "List hakunostoista"
+
+msgctxt "Helfi search"
+msgid "Promotion"
+msgstr "Hakunosto"
+
+msgctxt "Helfi search"
+msgid "Promotions"
+msgstr "Hakunostot"
+
+msgctxt "Helfi search"
+msgid "promotion"
+msgstr "hakunosto"
+
+msgctxt "Helfi search"
+msgid "promotions"
+msgstr "hakunostot"
+
+msgctxt "Helfi search"
+msgid "Keywords"
+msgstr "Asiasanat"
+
+msgctxt "Helfi search"
+msgid "This search result is promoted if the query contains any of these keywords. The promotions do not use the AI search."
+msgstr "Hakunosto näytetään jos haku sisältää jonkin näistä asiasanoista. Hakunostoihin ei käytetä tekoälypohjaista hakua."

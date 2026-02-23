@@ -7,7 +7,7 @@ dependencies:
   module:
     - ckeditor5
 _core:
-  default_config_hash: WYDoXZLu7eLz0Y6jGDcpUxYA-MQhHukm-1YYHB8mHgA
+  default_config_hash: UZ7ojJKs8sEbFs15e0Ub1i_p9w-K20fG40pkpotEWUw
 format: full_html
 editor: ckeditor5
 settings:
@@ -46,6 +46,7 @@ settings:
       properties:
         reversed: false
         startIndex: true
+        styles: false
       multiBlock: true
     ckeditor5_paste_filter_pasteFilter:
       enabled: true
