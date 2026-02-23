@@ -101,15 +101,14 @@ selection of what to show is determined by the `field_listing_type`, and the par
 #### News archive (news_archive)
 
 The _news_archive_ paragraph provides the news archive search that can be added to landing pages. The news archive is
-a React search that uses views listing (`news_archive`) as a fallback when JavaScript is not enabled. All React
-searches are in the `hdbt` theme, so most of the related logic is also found there. The _news_archive_ paragraph has an
-editable title and description.
+a React search. All React searches are in the `hdbt` theme, so most of the related logic is also found there.
+The _news_archive_ paragraph has an editable title and description.
 - React search code can be found under the `hdbt` theme [here](https://github.com/City-of-Helsinki/drupal-hdbt/tree/main/src/js/react/apps/news-archive).
 - Additional configuration for the React app is under the `hdbt_subtheme` theme function
 `hdbt_subtheme_preprocess_paragraph` [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme)
-- Fallback view when JavaScript is not enabled can be found in the `/conf/cim` folder [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/conf/cmi/views.view.news_archive.yml).
-- **NOTICE:** The fallback view and RSS view retrieve data from the regular database, while the React application queries
-the Elasticsearch index. This is because switching the view to use the Elasticsearch index as the data source limits
+- Fallback view has been removed (01/2026).
+- **NOTICE:** RSS view retrieve data from the regular database, while the React application queries
+the Elasticsearch index. This is because using the Elasticsearch index as the data source limits
 its ability to filter using URL queries, compared to the regular view. For example, queries in the format
 `?tags%5b%5d=375` would no longer work out of the box, and the contextual filters would need to be added separately.
 
@@ -137,6 +136,14 @@ other instances, the announcement node form includes a `Publish on external site
 global announcements. Code related to the global announcements can be found in `helfi_global_announcement` under
 `helfi_platform_config` and the configuration for the `Publish on external site` is in the conf/cmi folder of this
 instance and the configuration rewrite is [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/e2643195b8fc2989da835313c052ae533b8e0143/public/modules/custom/helfi_etusivu_config/config/rewrite/core.entity_form_display.node.announcement.default.yml).
+
+### Linked Events image API
+
+Serves image style versions for Linked Events images.
+
+Provides a redirect route that can be used in img src-attributes; downloads a Linked Events image and generates an image style derivative url for it, then redirects to that url.
+
+See [documentation/linked_events_api.md](/documentation/linked_events_api.md) for more information.
 
 ## Customizations
 

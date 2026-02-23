@@ -1,4 +1,4 @@
 label: 'Ülendatud esilehele'
 settings:
-  on_label: 'On'
-  off_label: 'Off'
+  on_label: Sees
+  off_label: Väljas

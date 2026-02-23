@@ -26,10 +26,3 @@ display:
         langcode:
           expose:
             label: Giella
-      pager:
-        options:
-          tags:
-            first: First
-            last: Last
-            next: 'Next ›'
-            previous: '‹ Previous'

@@ -1,6 +1,6 @@
+label: Заплановано
 display:
   default:
-    display_title: Головне
     display_options:
       exposed_form:
         options:
@@ -62,6 +62,8 @@ display:
         langcode:
           expose:
             label: Мова
+      title: Заплановано
+    display_title: Головне
   overview:
     display_options:
       menu:
@@ -78,3 +80,4 @@ display:
         uid:
           exception:
             title: Все
+    display_title: Користувач

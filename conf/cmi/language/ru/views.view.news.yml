@@ -1,7 +1,12 @@
 display:
+  latest_news:
+    display_title: 'Последние новости'
+    display_options:
+      use_more_text: 'Посмотреть все новости'
   default:
     display_title: 'По умолчанию'
     display_options:
+      title: 'Последние новости'
       fields:
         published_at:
           separator: ', '
@@ -20,8 +25,3 @@ display:
         nid:
           exception:
             title: Все
-      title: 'Последние новости'
-  latest_news:
-    display_title: 'Последние новости'
-    display_options:
-      use_more_text: 'Посмотреть все новости'

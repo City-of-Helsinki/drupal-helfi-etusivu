@@ -56,9 +56,6 @@ $additionalEnvVars = [
   'ELASTIC_USER',
   'ELASTIC_PASSWORD',
   'SENTRY_DSN_REACT',
-  // 'AMQ_BROKERS',
-  // 'AMQ_USER',
-  // 'AMQ_PASSWORD',
 ];
 foreach ($additionalEnvVars as $var) {
   $preflight_checks['environmentVariables'][] = $var;

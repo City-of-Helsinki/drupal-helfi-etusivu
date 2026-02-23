@@ -1,4 +1,4 @@
 label: Опубліковано
 settings:
-  on_label: 'On'
-  off_label: 'Off'
+  on_label: Увімкнено
+  off_label: Вимкнено

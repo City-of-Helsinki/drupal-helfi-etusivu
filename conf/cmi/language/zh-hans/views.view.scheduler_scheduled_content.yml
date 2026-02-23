@@ -1,6 +1,6 @@
+label: 预定
 display:
   default:
-    display_title: 主
     display_options:
       exposed_form:
         options:
@@ -62,6 +62,8 @@ display:
         langcode:
           expose:
             label: 语言
+      title: 预定
+    display_title: 主
   overview:
     display_options:
       menu:
@@ -78,3 +80,4 @@ display:
         uid:
           exception:
             title: 全部
+    display_title: 用户

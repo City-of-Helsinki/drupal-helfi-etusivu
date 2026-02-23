@@ -15,15 +15,14 @@ display:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
             offset_label: جابجایی
-          tags:
-            previous: Previous
-            next: Next
       fields:
         label:
           label: برچسب
           separator: ', '
         type:
           label: نوع
+          separator: ', '
+        paragraphs__target_id:
           separator: ', '
         langcode:
           label: زبان
@@ -36,8 +35,6 @@ display:
           separator: ', '
         operations:
           label: عملیات
-        paragraphs__target_id:
-          separator: ', '
       filters:
         label:
           expose:

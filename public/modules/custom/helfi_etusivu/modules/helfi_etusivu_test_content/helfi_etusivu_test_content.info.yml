@@ -2,9 +2,9 @@ name: helfi_etusivu_test_content
 type: module
 description: Etusivu specific test content
 package: Custom
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^10 || ^11
 dependencies:
-  - default_content
+  - default_content:default_content
 default_content:
   node:
     - george_anson

@@ -7,5 +7,5 @@ third_party_settings:
 content:
   field_content:
     settings:
-      title: Paragraph
+      title: Seitenabschnitt
       title_plural: Seitenabschnitte

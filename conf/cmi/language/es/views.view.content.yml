@@ -20,11 +20,11 @@ display:
             format_custom_true: Publicado
         changed:
           label: Actualizado
-        operations:
-          label: Operaciones
         langcode:
           label: Idioma
           separator: ', '
+        operations:
+          label: Operaciones
       pager:
         options:
           tags:

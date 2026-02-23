@@ -269,7 +269,7 @@ display:
           exposed: false
           draggable_views_reference: this
           draggable_views_null_order: after
-          draggable_views_pass_arguments: false
+          draggable_views_pass_arguments: 0
         published_at:
           id: published_at
           table: node_field_data
@@ -1024,7 +1024,7 @@ display:
           exposed: false
           draggable_views_reference: 'ordered_news_articles_list:ordered_news_articles'
           draggable_views_null_order: after
-          draggable_views_pass_arguments: false
+          draggable_views_pass_arguments: 0
       arguments: {  }
       filters:
         status:
@@ -1421,7 +1421,7 @@ display:
           exposed: false
           draggable_views_reference: 'ordered_news_list:ordered_news'
           draggable_views_null_order: after
-          draggable_views_pass_arguments: false
+          draggable_views_pass_arguments: 0
       arguments: {  }
       style:
         type: default

@@ -1,4 +1,4 @@
-label: 'Promoted to front page'
+label: 'نمایش در صفحه اول'
 settings:
-  on_label: 'On'
-  off_label: 'Off'
+  on_label: روشن
+  off_label: خاموش

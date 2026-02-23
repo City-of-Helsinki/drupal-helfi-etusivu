@@ -11,35 +11,19 @@ helfi_etusivu.helsinki_near_you_results:
   defaults:
     _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController::content'
     _title: 'Results for your address'
-  options:
-    _big_pipe_force_placeholders: 'TRUE'
   requirements:
     _permission: 'access content'
 
-helfi_etusivu.helsinki_near_you_events:
-  path: '/helsinki-near-you/events'
+helfi_etusivu.linked_events_image:
+  path: '/linked-events/image/{image_id}'
   defaults:
-    _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\EventsController::content'
-    _title_callback: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\EventsController::getTitle'
+    _controller: 'Drupal\helfi_etusivu\Controller\LinkedEventsImageController::deliver'
+    _disable_route_normalizer: TRUE
   requirements:
-    _permission: 'access content'
-
-helfi_etusivu.helsinki_near_you_roadworks:
-  path: '/helsinki-near-you/roadworks'
-  defaults:
-    _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\RoadworksController::content'
-    _title_callback: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\RoadworksController::getTitle'
+    _access: 'TRUE'
+    image_id: '^[0-9]+$'
   options:
-    _big_pipe_force_placeholders: 'TRUE'
-  requirements:
-    _permission: 'access content'
+    _maintenance_access: TRUE
 
-helfi_etusivu.helsinki_near_you_feedbacks:
-  path: '/helsinki-near-you/feedback'
-  defaults:
-    _controller: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbackController::content'
-    _title_callback: '\Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbackController::getTitle'
-  options:
-    _big_pipe_force_placeholders: 'TRUE'
-  requirements:
-    _permission: 'access content'
+route_callbacks:
+  - '\Drupal\helfi_etusivu\HelsinkiNearYou\Routing\RouteProvider::routes'

@@ -7,7 +7,12 @@
 
 declare(strict_types=1);
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Database\Database;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\helfi_api_base\Environment\EnvironmentEnum;
+use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\node\Entity\Node;
 use Drupal\path_alias\Entity\PathAlias;
 
@@ -212,13 +217,6 @@ function helfi_etusivu_update_9007() : void {
 }
 
 /**
- * UHF-6102: Add latest news paragraph to lower content area on basic page.
- */
-function helfi_etusivu_update_9008(): void {
-  helfi_platform_config_update_paragraph_target_types();
-}
-
-/**
  * UHF-9739: Add 'news update' paragraph to news item.
  */
 function helfi_etusivu_update_9009(): void {
@@ -385,4 +383,83 @@ function helfi_etusivu_update_9017(): void {
   /** @var \Drupal\simple_sitemap\Manager\Generator $generator */
   $generator = \Drupal::service('simple_sitemap.generator');
   $generator->rebuildQueue();
+}
+
+/**
+ * UHF-12409: Install search promotions.
+ */
+function helfi_etusivu_update_11001(): void {
+  $type = \Drupal::service(EntityTypeManagerInterface::class)
+    ->getDefinition('helfi_search_promotion');
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installEntityType($type);
+}
+
+/**
+ * UHF-12424: Unpublish news created before 2024.
+ *
+ * Populate 'unpublish_on' for all items.
+ */
+function helfi_etusivu_update_11002(&$sandbox): ?FormattableMarkup {
+  $environmentResolver = \Drupal::service(EnvironmentResolverInterface::class);
+
+  // Skip update hook on local because it takes a really long time.
+  if ($environmentResolver->getActiveEnvironment()->getEnvironment() === EnvironmentEnum::Local) {
+    return new FormattableMarkup('Skipped helfi_etusivu_update_11002().', []);
+  }
+  if (!isset($sandbox['current'])) {
+    $sandbox['current'] = 0;
+  }
+  $sandbox['#finished'] = 0;
+
+  $storage = Drupal::entityTypeManager()->getStorage('node');
+  $query = $storage->getQuery();
+  $query
+    ->condition('type', 'news_item')
+    ->condition('status', 1)
+    ->condition('nid', $sandbox['current'], '>')
+    ->condition('unpublish_on', operator: 'IS NULL')
+    ->sort('nid')
+    ->range(0, 1000);
+  $query->accessCheck(FALSE);
+
+  $ids = $query->execute();
+
+  if (!$ids) {
+    $sandbox['#finished'] = 1;
+    return NULL;
+  }
+
+  foreach ($ids as $id) {
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $storage->load($id);
+    $sandbox['current'] = $id;
+
+    foreach ($node->getTranslationLanguages() as $language) {
+      /** @var \Drupal\helfi_etusivu\Entity\Node\NewsItem $translation */
+      $translation = $node->getTranslation($language->getId());
+
+      // Unpublish nodes created before 2024.
+      if ((int) $translation->getCreatedTime() <= 1704067200) {
+        $translation->setUnpublished()
+          ->save();
+
+        continue;
+      }
+      // Make sure translation has 'changed_at' set.
+      if ($translation->get('changed_at')->isEmpty()) {
+        $translation->set('changed_at', $translation->getChangedTime());
+      }
+      // Set 'unpublish_on' date to created+23 months.
+      $unpublishDate = DrupalDateTime::createFromTimestamp($translation->getCreatedTime());
+      $unpublishDate->modify('+23 months');
+      $translation->set('unpublish_on', $unpublishDate->format('U'));
+      $translation->save();
+    }
+  }
+  return new FormattableMarkup('Processed @num "news_items".', [
+    '@num' => count($ids),
+  ]);
+
 }

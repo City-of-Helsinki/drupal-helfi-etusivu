@@ -12,10 +12,10 @@ use Drupal\Core\Url;
  * Enum class for service map links.
  */
 enum ServiceMapLink {
-  case ROADWORK_EVENTS;
-  case CITYBIKE_STATIONS_STANDS;
-  case STREET_PARK_PROJECTS;
-  case PLANS_IN_PROCESS;
+  case RoadworkEvents;
+  case CityBikeStationsStands;
+  case StreetParkProjects;
+  case PlansInProcess;
 
   /**
    * Get link param for service map.
@@ -25,10 +25,10 @@ enum ServiceMapLink {
    */
   public function link(): string {
     return match($this) {
-      ServiceMapLink::ROADWORK_EVENTS => 'eDAB7W',
-      ServiceMapLink::CITYBIKE_STATIONS_STANDS => 'eRqwiU',
-      ServiceMapLink::STREET_PARK_PROJECTS => 'eDBTcc',
-      ServiceMapLink::PLANS_IN_PROCESS => 'eDB7Rk',
+      ServiceMapLink::RoadworkEvents => 'eDAB7W',
+      ServiceMapLink::CityBikeStationsStands => 'eRqwiU',
+      ServiceMapLink::StreetParkProjects => 'eDBTcc',
+      ServiceMapLink::PlansInProcess => 'eDB7Rk',
     };
   }
 
@@ -70,10 +70,10 @@ enum ServiceMapLink {
    */
   public function getAddressLabel(string $address) : TranslatableMarkup {
     return match($this) {
-      ServiceMapLink::ROADWORK_EVENTS => new TranslatableMarkup('Street works and events near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
-      ServiceMapLink::CITYBIKE_STATIONS_STANDS => new TranslatableMarkup('City bike stations and bicycle racks near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
-      ServiceMapLink::STREET_PARK_PROJECTS => new TranslatableMarkup('Street and park projects near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
-      ServiceMapLink::PLANS_IN_PROCESS => new TranslatableMarkup('Plans under preparation near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::RoadworkEvents => new TranslatableMarkup('Street works and events near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::CityBikeStationsStands => new TranslatableMarkup('City bike stations and bicycle racks near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::StreetParkProjects => new TranslatableMarkup('Street and park projects near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::PlansInProcess => new TranslatableMarkup('Plans under preparation near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
     };
   }
 

@@ -34,13 +34,13 @@ display:
         id:
           label: ID
           separator: ', '
+        count:
+          format_plural_string: !!binary MSDlpIQDQGNvdW50IOWkhA==
         changed:
           label: 已更改
           separator: ', '
         operations:
           label: 操作
-        count:
-          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
       filters:
         label:
           expose:

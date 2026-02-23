@@ -9,12 +9,5 @@ display:
       exposed_form:
         options:
           exposed_sorts_label: Sirre
-      pager:
-        options:
-          tags:
-            first: First
-            last: Last
-            next: 'Next ›'
-            previous: '‹ Previous'
   page_1:
     display_title: Siidu

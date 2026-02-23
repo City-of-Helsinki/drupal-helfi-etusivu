@@ -19,9 +19,6 @@ display:
           label: Ролі
         created:
           label: 'Зареєстрований вже'
-          settings:
-            future_format: '@interval'
-            past_format: '@interval'
         access:
           label: 'Останній доступ'
           settings:

@@ -19,7 +19,6 @@ use Drupal\helfi_etusivu\Entity\Node\NewsItem;
 use Drupal\helfi_etusivu\Entity\Node\PublishExternallyInterface;
 use Drupal\helfi_etusivu\Entity\Node\Survey;
 use Drupal\helfi_etusivu\Entity\SimpleSitemap\HelfiSimpleSitemap;
-use Drupal\helfi_platform_config\DTO\ParagraphTypeCollection;
 use Drupal\helfi_platform_config\TextConverter\Document;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -193,55 +192,9 @@ function _helfi_etusivu_handle_rss_params(SearchApiQuery $query) : SearchApiQuer
     if (isset($params[$param]) && is_array($params[$param])) {
       $query->addWhere('AND', $indexKey, $params[$param], 'IN');
     }
-  };
+  }
 
   return $query;
-};
-
-/**
- * Implements hook_helfi_paragraph_types().
- */
-function helfi_etusivu_helfi_paragraph_types() : array {
-  $entities = [
-    'node' => [
-      'landing_page' => [
-        'field_content' => [
-          'current' => 15,
-          'front_page_top_news' => 16,
-          'front_page_latest_news' => 17,
-          'event_list' => 18,
-          'news_archive' => 19,
-        ],
-      ],
-      'page' => [
-        'field_lower_content' => [
-          'front_page_latest_news' => 15,
-        ],
-      ],
-    ],
-    'paragraph' => [
-      'news_update' => [
-        'field_news_update' => [
-          'text' => 0,
-          'image' => 1,
-          'remote_video' => 2,
-          'banner' => 3,
-        ],
-      ],
-    ],
-  ];
-
-  $enabled = [];
-  foreach ($entities as $entityTypeId => $bundles) {
-    foreach ($bundles as $bundle => $fields) {
-      foreach ($fields as $field => $paragraphTypes) {
-        foreach ($paragraphTypes as $paragraphType => $weight) {
-          $enabled[] = new ParagraphTypeCollection($entityTypeId, $bundle, $field, $paragraphType, $weight);
-        }
-      }
-    }
-  }
-  return $enabled;
 }
 
 /**
@@ -341,7 +294,7 @@ function helfi_etusivu_preprocess_html(&$variables): void {
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_results',
     'helfi_etusivu.helsinki_near_you_roadworks',
-    'helfi_etusivu.helsinki_near_you_feedbacks',
+    'helfi_etusivu.helsinki_near_you_feedback',
   ];
 
   if (in_array($route, $near_you_pages)) {
@@ -360,7 +313,7 @@ function helfi_etusivu_preprocess_page(&$variables): void {
     'helfi_etusivu.helsinki_near_you_results',
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_roadworks',
-    'helfi_etusivu.helsinki_near_you_feedbacks',
+    'helfi_etusivu.helsinki_near_you_feedback',
   ];
 
   // There is hero block on Helsinki near you landing page but
@@ -455,7 +408,7 @@ function helfi_etusivu_theme() : array {
         'address' => NULL,
         'schedule' => NULL,
         'distance_label' => NULL,
-        'roadwork_attributes' => [],
+        'limit' => NULL,
       ],
       'template' => 'helsinki-near-you-roadwork-item',
     ],
@@ -494,7 +447,7 @@ function helfi_etusivu_theme() : array {
         'address' => NULL,
         'distance_label' => NULL,
         'requested_datetime' => NULL,
-        'feedback_attributes' => [],
+        'limit' => NULL,
       ],
       'template' => 'helsinki-near-you-feedback-item',
     ],
@@ -530,6 +483,7 @@ function helfi_etusivu_theme() : array {
     ],
     'helsinki_near_you_lazy_builder_preview' => [
       'variables' => [
+        'attributes' => NULL,
         'num_items' => NULL,
         'preview_attributes' => NULL,
       ],

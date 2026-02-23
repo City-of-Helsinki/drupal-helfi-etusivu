@@ -37,7 +37,10 @@ display:
           expose:
             label: Para
         status_code:
+          expose:
+            label: 'Código de estado'
           group_info:
+            label: 'Código de estado'
             group_items:
               1:
                 title: '300 Múltiples posibilidades'
@@ -53,16 +56,9 @@ display:
                 title: '305 Usar proxy'
               7:
                 title: '307 Redirección temporal'
-            label: 'Status code'
-          expose:
-            label: 'Status code'
         language:
           expose:
             label: 'Lenguaje original'
       title: Redirección
-      empty:
-        area_text_custom:
-          content: 'There is no redirect yet.'
   page_1:
     display_title: Página
-description: 'List of redirects'

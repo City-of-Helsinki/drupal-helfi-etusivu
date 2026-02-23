@@ -8,7 +8,7 @@ display:
         field_main_image:
           separator: ', '
         view_node:
-          text: view
+          text: 查看
       exposed_form:
         options:
           submit_button: 应用
