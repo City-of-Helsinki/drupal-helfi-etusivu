@@ -97,7 +97,7 @@ display:
         uid:
           label: المؤلف
         changed:
-          label: التحديث
+          label: 'تم التحديث'
       arguments:
         bundle:
           exception:
