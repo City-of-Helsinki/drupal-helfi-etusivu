@@ -19,7 +19,7 @@ display:
             format_custom_false: 'غير منشور'
             format_custom_true: منشور
         changed:
-          label: التحديث
+          label: 'تم التحديث'
         langcode:
           label: اللغة
           separator: ', '
