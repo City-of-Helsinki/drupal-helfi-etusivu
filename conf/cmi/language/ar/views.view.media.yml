@@ -1,9 +1,9 @@
-label: ميديا
+label: وسائط
 display:
   default:
     display_title: الافتراضي
     display_options:
-      title: ميديا
+      title: وسائط
       fields:
         media_bulk_form:
           action_title: إجراء
@@ -42,9 +42,9 @@ display:
             offset_label: الإزاحة
       exposed_form:
         options:
-          submit_button: انتقاء
+          submit_button: تصفية
           reset_button_label: 'إعادة الضبط'
-          exposed_sorts_label: 'الترتيب حسب'
+          exposed_sorts_label: 'فرز حسب'
           sort_asc_label: تصاعدي
           sort_desc_label: تنازلي
       empty:
@@ -68,7 +68,7 @@ display:
           expose:
             label: اللغة
   media_page_list:
-    display_title: ميديا
+    display_title: وسائط
     display_options:
       menu:
-        title: ميديا
+        title: وسائط
