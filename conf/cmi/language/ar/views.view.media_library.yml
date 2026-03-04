@@ -3,7 +3,7 @@ display:
   default:
     display_title: الافتراضي
     display_options:
-      title: ميديا
+      title: وسائط
       fields:
         media_bulk_form:
           action_title: إجراء
@@ -20,7 +20,7 @@ display:
         options:
           submit_button: 'عمل تصفية'
           reset_button_label: 'إعادة الضبط'
-          exposed_sorts_label: 'الترتيب حسب'
+          exposed_sorts_label: 'فرز حسب'
           sort_asc_label: تصاعدي
           sort_desc_label: تنازلي
       empty:
