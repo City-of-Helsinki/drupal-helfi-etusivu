@@ -30,7 +30,7 @@ display:
         options:
           submit_button: تطبيق
           reset_button_label: 'إعادة الضبط'
-          exposed_sorts_label: 'فرز حسب'
+          exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي
           sort_desc_label: تنازلي
       filters:

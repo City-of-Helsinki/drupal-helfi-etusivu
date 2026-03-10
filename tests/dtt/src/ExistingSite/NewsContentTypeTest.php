@@ -6,6 +6,7 @@ namespace Drupal\Tests\dtt\ExistingSite;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
@@ -212,6 +213,27 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
     // Media image is used.
     $this->drupalGet($node->toUrl());
     $this->assertSession()->elementAttributeContains('css', 'meta[property="og:image"]', 'content', $file->getFilename());
+  }
+
+  /**
+   * Temporarily use the custom drupalLogout() until the issue with
+   * openid-connect is fixed.
+   * See:
+   *  - https://www.drupal.org/project/dtt/issues/3577345
+   *  - https://www.drupal.org/project/openid_connect/issues/3577169
+   *  - https://www.drupal.org/project/openid_connect/issues/3291799
+   */
+  protected function drupalLogout() {
+    // Make a request to the logout page, and redirect to the user page, the
+    // idea being if you were properly logged out you should be seeing a login
+    // screen.
+    $destination = Url::fromRoute('user.page')->toString();
+    $this->drupalGet(Url::fromRoute('user.logout.confirm', options: ['query' => ['destination' => $destination]]));
+    // Target the submit button using the name rather than the value to work
+    // regardless of the user interface language.
+    $this->submitForm([], 'op', 'openid-connect-user-logout');
+
+    $this->drupalResetSession();
   }
 
 }
