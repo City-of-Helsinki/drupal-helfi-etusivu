@@ -5027,16 +5027,16 @@
         },
         {
             "name": "drupal/helfi_tunnistamo",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo.git",
-                "reference": "4ffd69c8f8f0e4f3b595574fcf03261799a8e1f9"
+                "reference": "330f673d9346e7ea05ec99af16e123b2e7ec8a5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/4ffd69c8f8f0e4f3b595574fcf03261799a8e1f9",
-                "reference": "4ffd69c8f8f0e4f3b595574fcf03261799a8e1f9",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/330f673d9346e7ea05ec99af16e123b2e7ec8a5e",
+                "reference": "330f673d9346e7ea05ec99af16e123b2e7ec8a5e",
                 "shasum": ""
             },
             "require": {
@@ -5048,15 +5048,22 @@
                 "drupal/coder": "^8.3"
             },
             "type": "drupal-module",
+            "extra": {
+                "patches": {
+                    "drupal/openid_connect": {
+                        "Fix logout button for Drupal Test Traits": "./public/modules/contrib/helfi_tunnistamo/patches/3577169.patch"
+                    }
+                }
+            },
             "license": [
                 "GPL-2.0-or-later"
             ],
             "description": "Tunnistamo integration",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/3.1.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/3.1.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/issues"
             },
-            "time": "2026-03-02T13:27:57+00:00"
+            "time": "2026-03-11T07:49:23+00:00"
         },
         {
             "name": "drupal/image_style_quality",
@@ -22107,5 +22114,5 @@
         "ext-libxml": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }
