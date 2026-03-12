@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\EventSubscriber;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\elasticsearch_connector\Event\AlterSettingsEvent;
+use Drupal\elasticsearch_connector\Event\FieldMappingEvent;
 use Drupal\elasticsearch_connector\Event\QueryParamsEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -20,6 +21,7 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents(): array {
     return [
       AlterSettingsEvent::class => 'prepareIndices',
+      FieldMappingEvent::class => 'mapPromotionFields',
       QueryParamsEvent::class => 'prepareQueryParams',
     ];
   }
@@ -49,6 +51,27 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
         ],
       ));
     }
+  }
+
+  /**
+   * Map the keywords field on the search_promotions index to text analyzers.
+   *
+   * @param \Drupal\elasticsearch_connector\Event\FieldMappingEvent $event
+   *   The FieldMapping event.
+   */
+  public function mapPromotionFields(FieldMappingEvent $event): void {
+    $field = $event->getField();
+    if ($field->getIndex()->id() !== 'search_promotions' || $field->getFieldIdentifier() !== 'keywords') {
+      return;
+    }
+    $event->setParam([
+      'type' => 'text',
+      'fields' => [
+        'fi' => ['type' => 'text', 'analyzer' => 'finnish'],
+        'sv' => ['type' => 'text', 'analyzer' => 'swedish'],
+        'en' => ['type' => 'text', 'analyzer' => 'english'],
+      ],
+    ]);
   }
 
   /**

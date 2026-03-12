@@ -21,6 +21,22 @@ field_settings:
     dependencies:
       module:
         - helfi_etusivu
+  link:
+    label: Link
+    datasource_id: 'entity:helfi_search_promotion'
+    property_path: link
+    type: string
+    dependencies:
+      module:
+        - helfi_etusivu
+  processed:
+    label: Description
+    datasource_id: 'entity:helfi_search_promotion'
+    property_path: 'description:processed'
+    type: string
+    dependencies:
+      module:
+        - helfi_etusivu
   title:
     label: Title
     datasource_id: 'entity:helfi_search_promotion'
