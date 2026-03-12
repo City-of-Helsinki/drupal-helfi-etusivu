@@ -13,10 +13,26 @@ name: 'Search promotions'
 description: ''
 read_only: false
 field_settings:
+  description:
+    label: Description
+    datasource_id: 'entity:helfi_search_promotion'
+    property_path: description
+    type: text
+    dependencies:
+      module:
+        - helfi_etusivu
   keywords:
     label: Keywords
     datasource_id: 'entity:helfi_search_promotion'
     property_path: keywords
+    type: string
+    dependencies:
+      module:
+        - helfi_etusivu
+  link:
+    label: Link
+    datasource_id: 'entity:helfi_search_promotion'
+    property_path: 'link:uri'
     type: string
     dependencies:
       module:
