@@ -3,7 +3,7 @@ display:
   default:
     display_title: الافتراضي
     display_options:
-      title: ميديا
+      title: وسائط
       fields:
         media_bulk_form:
           action_title: إجراء
@@ -97,7 +97,7 @@ display:
         uid:
           label: المؤلف
         changed:
-          label: التحديث
+          label: 'تم التحديث'
       arguments:
         bundle:
           exception:
