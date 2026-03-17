@@ -63,22 +63,69 @@
             "time": "2026-01-28T13:08:04+00:00"
         },
         {
-            "name": "azure-oss/storage",
-            "version": "1.8.0",
+            "name": "azure-oss/identity",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Azure-OSS/azure-storage-php-blob.git",
-                "reference": "748dc333b60a0cc157e09ac0554102d7e88f61ee"
+                "url": "https://github.com/Azure-OSS/azure-identity-php.git",
+                "reference": "419e221cb1b29a8189f19c1e253bb6a54c1accc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Azure-OSS/azure-storage-php-blob/zipball/748dc333b60a0cc157e09ac0554102d7e88f61ee",
-                "reference": "748dc333b60a0cc157e09ac0554102d7e88f61ee",
+                "url": "https://api.github.com/repos/Azure-OSS/azure-identity-php/zipball/419e221cb1b29a8189f19c1e253bb6a54c1accc1",
+                "reference": "419e221cb1b29a8189f19c1e253bb6a54c1accc1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "php": "^8.1",
+                "php-http/discovery": "^1.20",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.1"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.10",
+                "laravel/pint": "^1.27",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpunit/phpunit": "^13.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Provides a PSR-18 HTTP client and PSR-17 factories (used by default when installed)."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AzureOss\\Identity\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "support": {
+                "issues": "https://github.com/Azure-OSS/azure-identity-php/issues",
+                "source": "https://github.com/Azure-OSS/azure-identity-php/tree/1.0.0"
+            },
+            "time": "2026-03-13T18:32:57+00:00"
+        },
+        {
+            "name": "azure-oss/storage",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Azure-OSS/azure-storage-php-blob.git",
+                "reference": "ed2d4ad652cc90fa8067d9e47468666ed942cf76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Azure-OSS/azure-storage-php-blob/zipball/ed2d4ad652cc90fa8067d9e47468666ed942cf76",
+                "reference": "ed2d4ad652cc90fa8067d9e47468666ed942cf76",
                 "shasum": ""
             },
             "require": {
                 "azure-oss/storage-common": "^1.0",
-                "caseyamcl/guzzle_retry_middleware": "^2.10",
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-simplexml": "*",
@@ -87,6 +134,9 @@
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "aliases.php"
+                ],
                 "psr-4": {
                     "AzureOss\\Storage\\Blob\\": ""
                 }
@@ -113,31 +163,35 @@
                 "storage"
             ],
             "support": {
-                "source": "https://github.com/Azure-OSS/azure-storage-php-blob/tree/1.8.0"
+                "source": "https://github.com/Azure-OSS/azure-storage-php-blob/tree/1.9.0"
             },
-            "time": "2026-03-05T20:31:56+00:00"
+            "time": "2026-03-15T06:57:10+00:00"
         },
         {
             "name": "azure-oss/storage-common",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Azure-OSS/azure-storage-php-common.git",
-                "reference": "68541f8b27b46a011826ca29a443652a473d0e22"
+                "reference": "3169c2f19475a087963e71aeb2cbf183eb676025"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Azure-OSS/azure-storage-php-common/zipball/68541f8b27b46a011826ca29a443652a473d0e22",
-                "reference": "68541f8b27b46a011826ca29a443652a473d0e22",
+                "url": "https://api.github.com/repos/Azure-OSS/azure-storage-php-common/zipball/3169c2f19475a087963e71aeb2cbf183eb676025",
+                "reference": "3169c2f19475a087963e71aeb2cbf183eb676025",
                 "shasum": ""
             },
             "require": {
+                "azure-oss/identity": "^1.0",
                 "caseyamcl/guzzle_retry_middleware": "^2.10",
                 "guzzlehttp/guzzle": "^7.8",
                 "php": "^8.1"
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "aliases.php"
+                ],
                 "psr-4": {
                     "AzureOss\\Storage\\Common\\": ""
                 }
@@ -153,9 +207,9 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/Azure-OSS/azure-storage-php-common/tree/1.0.1"
+                "source": "https://github.com/Azure-OSS/azure-storage-php-common/tree/1.1.0"
             },
-            "time": "2026-03-05T21:14:47+00:00"
+            "time": "2026-03-13T19:18:28+00:00"
         },
         {
             "name": "caseyamcl/guzzle_retry_middleware",
@@ -4343,17 +4397,17 @@
         },
         {
             "name": "drupal/gin",
-            "version": "5.0.12",
+            "version": "5.0.11",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gin.git",
-                "reference": "5.0.12"
+                "reference": "5.0.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gin-5.0.12.zip",
-                "reference": "5.0.12",
-                "shasum": "cb170a5d1c56b3ae2cc0743d7ad3cd4fdd2183d8"
+                "url": "https://ftp.drupal.org/files/projects/gin-5.0.11.zip",
+                "reference": "5.0.11",
+                "shasum": "60423f2c9662ccc7197f79aa29e7939b93028d7a"
             },
             "require": {
                 "drupal/core": "^11.2",
@@ -4362,8 +4416,8 @@
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "5.0.12",
-                    "datestamp": "1768553668",
+                    "version": "5.0.11",
+                    "datestamp": "1768311009",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4472,16 +4526,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.16.48",
+            "version": "6.16.50",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "20cb51221e292b24342bacbdff638ef7a8d8fa2c"
+                "reference": "94fb625bb0ba7093fe46292a8fe47695050e3ea4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/20cb51221e292b24342bacbdff638ef7a8d8fa2c",
-                "reference": "20cb51221e292b24342bacbdff638ef7a8d8fa2c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/94fb625bb0ba7093fe46292a8fe47695050e3ea4",
+                "reference": "94fb625bb0ba7093fe46292a8fe47695050e3ea4",
                 "shasum": ""
             },
             "require": {
@@ -4500,23 +4554,23 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.48",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.50",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-03-10T11:03:40+00:00"
+            "time": "2026-03-16T10:55:09+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
-            "version": "3.4.13",
+            "version": "3.4.14",
             "source": {
                 "type": "git",
-                "url": "https://github.com/City-of-Helsinki/drupal-hdbt-admin.git",
-                "reference": "5bd31dda4c12cd453d3797de14cfef3121d11665"
+                "url": "git@github.com:city-of-helsinki/drupal-hdbt-admin.git",
+                "reference": "5ac32718eb61c471faed43074f9c77b72f65b4ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/5bd31dda4c12cd453d3797de14cfef3121d11665",
-                "reference": "5bd31dda4c12cd453d3797de14cfef3121d11665",
+                "url": "https://api.github.com/repos/city-of-helsinki/drupal-hdbt-admin/zipball/5ac32718eb61c471faed43074f9c77b72f65b4ea",
+                "reference": "5ac32718eb61c471faed43074f9c77b72f65b4ea",
                 "shasum": ""
             },
             "require": {
@@ -4524,6 +4578,7 @@
                 "drupal/gin": "^4.0 || ^5.0"
             },
             "conflict": {
+                "drupal/gin": ">5.0.11",
                 "drupal/helfi_api_base": "<2.7.6",
                 "drupal/helfi_platform_config": "<4.16.68"
             },
@@ -4535,11 +4590,7 @@
             "keywords": [
                 "Drupal"
             ],
-            "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/3.4.13",
-                "issues": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/issues"
-            },
-            "time": "2026-01-29T12:24:52+00:00"
+            "time": "2026-03-16T12:12:46+00:00"
         },
         {
             "name": "drupal/health_check",
@@ -5027,16 +5078,16 @@
         },
         {
             "name": "drupal/helfi_tunnistamo",
-            "version": "3.1.3",
+            "version": "3.1.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo.git",
-                "reference": "3043c33e2fb822a038e88cf6fd457b8201af8733"
+                "url": "git@github.com:city-of-helsinki/drupal-module-helfi-tunnistamo.git",
+                "reference": "0c0ac0673b3ddc9417ac5d9520e8a1d5b7b57bc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/3043c33e2fb822a038e88cf6fd457b8201af8733",
-                "reference": "3043c33e2fb822a038e88cf6fd457b8201af8733",
+                "url": "https://api.github.com/repos/city-of-helsinki/drupal-module-helfi-tunnistamo/zipball/0c0ac0673b3ddc9417ac5d9520e8a1d5b7b57bc7",
+                "reference": "0c0ac0673b3ddc9417ac5d9520e8a1d5b7b57bc7",
                 "shasum": ""
             },
             "require": {
@@ -5059,11 +5110,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Tunnistamo integration",
-            "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/3.1.3",
-                "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/issues"
-            },
-            "time": "2026-03-11T11:14:17+00:00"
+            "time": "2026-03-13T05:56:33+00:00"
         },
         {
             "name": "drupal/image_style_quality",
@@ -6515,17 +6562,17 @@
         },
         {
             "name": "drupal/openid_connect",
-            "version": "3.0.0-alpha7",
+            "version": "3.0.0-alpha8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/openid_connect.git",
-                "reference": "3.0.0-alpha7"
+                "reference": "3.0.0-alpha8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/openid_connect-3.0.0-alpha7.zip",
-                "reference": "3.0.0-alpha7",
-                "shasum": "b7e1b38c9e01948489dad17c5af7b823b274713a"
+                "url": "https://ftp.drupal.org/files/projects/openid_connect-3.0.0-alpha8.zip",
+                "reference": "3.0.0-alpha8",
+                "shasum": "d35402dcbc2f14d3057c482b307d93938b0ad63e"
             },
             "require": {
                 "drupal/core": "^10.2 || ^11",
@@ -6536,8 +6583,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.0-alpha7",
-                    "datestamp": "1772658173",
+                    "version": "3.0.0-alpha8",
+                    "datestamp": "1773253373",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -10906,16 +10953,16 @@
         },
         {
             "name": "mck89/peast",
-            "version": "v1.17.4",
+            "version": "v1.17.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mck89/peast.git",
-                "reference": "c6a63f32410d2e4ee2cd20fe94b35af147fb852d"
+                "reference": "e19a8bd896b7f04941a38fd38a140c9a6531c84f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mck89/peast/zipball/c6a63f32410d2e4ee2cd20fe94b35af147fb852d",
-                "reference": "c6a63f32410d2e4ee2cd20fe94b35af147fb852d",
+                "url": "https://api.github.com/repos/mck89/peast/zipball/e19a8bd896b7f04941a38fd38a140c9a6531c84f",
+                "reference": "e19a8bd896b7f04941a38fd38a140c9a6531c84f",
                 "shasum": ""
             },
             "require": {
@@ -10928,7 +10975,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.17.4-dev"
+                    "dev-master": "1.17.5-dev"
                 }
             },
             "autoload": {
@@ -10949,9 +10996,9 @@
             "description": "Peast is PHP library that generates AST for JavaScript code",
             "support": {
                 "issues": "https://github.com/mck89/peast/issues",
-                "source": "https://github.com/mck89/peast/tree/v1.17.4"
+                "source": "https://github.com/mck89/peast/tree/v1.17.5"
             },
-            "time": "2025-10-10T12:53:17+00:00"
+            "time": "2026-03-15T10:47:07+00:00"
         },
         {
             "name": "mglaman/composer-drupal-lenient",
@@ -11578,7 +11625,6 @@
                 "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Console_Getopt",
                 "source": "https://github.com/pear/Console_Getopt"
             },
-            "abandoned": true,
             "time": "2019-11-20T18:27:48+00:00"
         },
         {
@@ -13164,16 +13210,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.21.0",
+            "version": "4.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "2bf405fc4d38f00073a7d023cf321e59f614d54c"
+                "reference": "ce6ab95a7021f976a27b4628a4072e481c8acf60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/2bf405fc4d38f00073a7d023cf321e59f614d54c",
-                "reference": "2bf405fc4d38f00073a7d023cf321e59f614d54c",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/ce6ab95a7021f976a27b4628a4072e481c8acf60",
+                "reference": "ce6ab95a7021f976a27b4628a4072e481c8acf60",
                 "shasum": ""
             },
             "require": {
@@ -13239,7 +13285,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.21.0"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.22.0"
             },
             "funding": [
                 {
@@ -13251,7 +13297,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-02-24T15:32:51+00:00"
+            "time": "2026-03-16T13:03:46+00:00"
         },
         {
             "name": "stomp-php/stomp-php",
