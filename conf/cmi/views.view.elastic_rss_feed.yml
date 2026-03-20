@@ -925,7 +925,7 @@ display:
             identifier: neighbourhoods
             required: false
             remember: false
-            multiple: false
+            multiple: true
             remember_roles:
               authenticated: authenticated
             min_placeholder: ''
@@ -938,7 +938,51 @@ display:
             identifier: ''
             optional: true
             widget: select
-            multiple: false
+            multiple: true
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        news_groups:
+          id: news_groups
+          table: search_api_index_news
+          field: news_groups
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api_numeric
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: news_groups_op
+            label: 'News groups » Luokittelutermi » Termin ID'
+            description: ''
+            use_operator: false
+            operator: news_groups_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: groups
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: true
             remember: false
             default_group: All
             default_group_multiple: {  }
@@ -1035,6 +1079,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: default
         options:
@@ -1084,7 +1132,7 @@ display:
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 20
+          items_per_page: 15
           total_pages: null
           id: 0
           tags:
