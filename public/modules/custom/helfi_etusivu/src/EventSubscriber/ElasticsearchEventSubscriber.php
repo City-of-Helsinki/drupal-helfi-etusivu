@@ -8,11 +8,15 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\elasticsearch_connector\Event\AlterSettingsEvent;
 use Drupal\elasticsearch_connector\Event\QueryParamsEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * {@inheritdoc}
  */
 class ElasticsearchEventSubscriber implements EventSubscriberInterface {
+
+  public function __construct(private readonly RequestStack $requestStack) {
+  }
 
   /**
    * {@inheritdoc}
@@ -87,7 +91,7 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
     }
 
     // Map the views/react filters with indexed filters.
-    $urlParams = \Drupal::request()->query->all();
+    $urlParams = $this->requestStack->getCurrentRequest()->query->all();
     $fieldMapping = [
       'topic' => 'news_tags',
       'groups' => 'news_groups',
