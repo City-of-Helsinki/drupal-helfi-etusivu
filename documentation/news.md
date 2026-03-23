@@ -43,3 +43,7 @@ You can find the values for the filters by going to `https://www.hel.fi/en/news`
 #### Groups
 
 `groups`: An array of group IDs. For example `?groups[0]=5`.
+
+#### Page
+
+`page`: The selected page. Indexing starts from `0`
