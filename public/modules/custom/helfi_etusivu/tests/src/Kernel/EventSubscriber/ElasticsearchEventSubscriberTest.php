@@ -37,7 +37,7 @@ class ElasticsearchEventSubscriberTest extends KernelTestBase {
 
     $event = new AlterSettingsEvent([], [], $index->reveal());
 
-    $subscriber = new ElasticsearchEventSubscriber();
+    $subscriber = $this->container->get(ElasticsearchEventSubscriber::class);
     $subscriber->prepareIndices($event);
 
     $this->assertArrayHasKey('analysis', $event->getSettings());
@@ -59,7 +59,7 @@ class ElasticsearchEventSubscriberTest extends KernelTestBase {
    */
   public function testPrepareQueryParams() {
     $emptyEvent = new QueryParamsEvent('news', []);
-    $subscriber = new ElasticsearchEventSubscriber();
+    $subscriber = $this->container->get(ElasticsearchEventSubscriber::class);
     $subscriber->prepareQueryParams($emptyEvent);
     $this->assertEquals([], $emptyEvent->getParams());
 
