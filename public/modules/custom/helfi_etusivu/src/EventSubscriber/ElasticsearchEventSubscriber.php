@@ -68,7 +68,7 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
     if (!empty($params['body']['query']['bool']['must']['query_string'])) {
       $must = $params['body']['query']['bool']['must'];
       $query = $must['query_string']['query'];
-      $keyword = str_split($query, strlen($query) - 1)[0];
+      $keyword = str_split($query, mb_strlen($query) - 1)[0];
 
       $params['body']['query']['bool']['should'] = [$must];
       unset($params['body']['query']['bool']['must']);
