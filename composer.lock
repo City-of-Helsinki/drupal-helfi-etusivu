@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa3cac9faa7fc3bba36943288aada885",
+    "content-hash": "0e2bc1428d2037ff4b73a01fc21becea",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4823,6 +4823,38 @@
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
             "time": "2026-02-28T06:56:13+00:00"
+        },
+        {
+            "name": "drupal/helfi_hakuvahti",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti.git",
+                "reference": "fc44c07faf61c24f8f6238fa2a9d7380e90f80b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-hakuvahti/zipball/fc44c07faf61c24f8f6238fa2a9d7380e90f80b4",
+                "reference": "fc44c07faf61c24f8f6238fa2a9d7380e90f80b4",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/helfi_api_base": "*"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "drupal/coder": "^8.3"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Helfi - Hakuvahti",
+            "support": {
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/tree/1.2.3",
+                "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/issues"
+            },
+            "time": "2026-03-23T09:43:42+00:00"
         },
         {
             "name": "drupal/helfi_navigation",
@@ -22162,5 +22194,5 @@
         "ext-libxml": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }
