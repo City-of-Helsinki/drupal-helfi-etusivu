@@ -10,7 +10,7 @@ const outDir = path.resolve(__dirname, 'dist');
 
 // React apps.
 const reactApps = {
-  // 'app-name': './src/js/react/apps/app-nem/index.tsx',
+  'site-search': './src/js/react/apps/site-search/index.tsx',
 };
 
 // Vanilla JS files.

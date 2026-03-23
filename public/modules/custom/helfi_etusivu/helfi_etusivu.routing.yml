@@ -25,5 +25,13 @@ helfi_etusivu.linked_events_image:
   options:
     _maintenance_access: TRUE
 
+helfi_etusivu.site_search:
+  path: '/search/new'
+  defaults:
+    _controller: '\Drupal\helfi_etusivu\Search\Controller\SearchPageController::content'
+    _title: 'Search'
+  requirements:
+    _permission: 'access content'
+
 route_callbacks:
   - '\Drupal\helfi_etusivu\HelsinkiNearYou\Routing\RouteProvider::routes'
