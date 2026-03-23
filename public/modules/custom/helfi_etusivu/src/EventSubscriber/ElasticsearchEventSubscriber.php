@@ -15,7 +15,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class ElasticsearchEventSubscriber implements EventSubscriberInterface {
 
-  public function __construct(private readonly RequestStack $requestStack) {
+  public function __construct(
+    private readonly RequestStack $requestStack,
+  ) {
   }
 
   /**
