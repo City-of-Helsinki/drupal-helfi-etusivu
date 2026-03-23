@@ -6,6 +6,7 @@ dependencies:
     - search_api.server.etusivu
   module:
     - helfi_etusivu
+    - helfi_platform_config
     - helfi_react_search
     - helfi_recommendations
 id: search_promotions
@@ -57,6 +58,12 @@ processor_settings:
   district_image_absolute_url: {  }
   entity_status: {  }
   entity_type: {  }
+  helfi_resolve_link_uri:
+    weights:
+      preprocess_index: 0
+    all_fields: false
+    fields:
+      - link
   language_with_fallback: {  }
   main_image_url: {  }
   project_execution_schedule: {  }
