@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Tests\Kernel\EventSubscriber;
 
 use Drupal\elasticsearch_connector\Event\AlterSettingsEvent;
+use Drupal\elasticsearch_connector\Event\FieldMappingEvent;
 use Drupal\elasticsearch_connector\Event\QueryParamsEvent;
 use Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\search_api\Entity\Index;
+use Drupal\search_api\Item\FieldInterface;
 
 /**
  * Tests for ElasticsearchEventSubscriber.
@@ -52,6 +54,31 @@ class ElasticsearchEventSubscriberTest extends KernelTestBase {
     $wrongEvent = new AlterSettingsEvent([], [], $wrongIndex->reveal());
     $subscriber->prepareIndices($wrongEvent);
     $this->assertEmpty($wrongEvent->getSettings());
+  }
+
+  /**
+   * Tests mapPromotionFields method.
+   */
+  public function testMapPromotionFields(): void {
+    $index = $this->prophesize(Index::class);
+    $index->id()->willReturn('search_promotions');
+
+    $field = $this->prophesize(FieldInterface::class);
+    $field->getIndex()->willReturn($index->reveal());
+    $field->getFieldIdentifier()->willReturn('keywords');
+
+    $event = new FieldMappingEvent($field->reveal(), []);
+    $subscriber = new ElasticsearchEventSubscriber();
+    $subscriber->mapPromotionFields($event);
+
+    $param = $event->getParam();
+    $this->assertEquals('text', $param['type']);
+    $this->assertEquals('text', $param['fields']['fi']['type']);
+    $this->assertEquals('finnish', $param['fields']['fi']['analyzer']);
+    $this->assertEquals('text', $param['fields']['sv']['type']);
+    $this->assertEquals('swedish', $param['fields']['sv']['analyzer']);
+    $this->assertEquals('text', $param['fields']['en']['type']);
+    $this->assertEquals('english', $param['fields']['en']['analyzer']);
   }
 
   /**
