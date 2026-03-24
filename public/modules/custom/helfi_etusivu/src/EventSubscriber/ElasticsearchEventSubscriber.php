@@ -26,7 +26,7 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents(): array {
     return [
       AlterSettingsEvent::class => 'prepareIndices',
-      QueryParamsEvent::class => 'prepareQueryParams',
+      //QueryParamsEvent::class => 'prepareQueryParams',
     ];
   }
 
