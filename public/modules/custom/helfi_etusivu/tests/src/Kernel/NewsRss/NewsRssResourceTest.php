@@ -93,9 +93,10 @@ class NewsRssResourceTest extends KernelTestBase {
     $this->createUser();
 
     $this->elasticClient = $this->container->get('helfi_platform_config.etusivu_elastic_client');
-    $this->elasticClient->indices()->create([
+    $response = $this->elasticClient->indices()->create([
       'index' => 'news_rss_test',
     ]);
+    $this->assertEquals(200, $response->getStatusCode());
 
     $startTime = time();
 
@@ -124,7 +125,7 @@ class NewsRssResourceTest extends KernelTestBase {
           $tags[] = 114;
         }
 
-        $this->elasticClient->index([
+        $response = $this->elasticClient->index([
           'index' => 'news_rss_test',
           'id' => $id,
           'body' => [
@@ -140,6 +141,7 @@ class NewsRssResourceTest extends KernelTestBase {
             'news_groups' => $groups,
           ],
         ]);
+        $this->assertEquals(201, $response->getStatusCode());
       }
     }
   }
@@ -151,7 +153,8 @@ class NewsRssResourceTest extends KernelTestBase {
     parent::tearDown();
 
     // Remove test elastic index.
-    $this->elasticClient->indices()->delete(['index' => 'news_rss_test']);
+    $response = $this->elasticClient->indices()->delete(['index' => 'news_rss_test']);
+    $this->assertEquals(200, $response->getStatusCode());
   }
 
   /**
