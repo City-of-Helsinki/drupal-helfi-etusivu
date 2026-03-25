@@ -7,6 +7,7 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\NewsRss;
 use Drupal\Component\Uuid\UuidInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\helfi_api_base\Environment\EnvironmentEnum;
+use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_etusivu\Plugin\rest\resource\NewsRssResource;
 use Drupal\rest\Entity\RestResourceConfig;
@@ -67,6 +68,7 @@ class NewsRssResourceTest extends KernelTestBase {
    *   The elastic client.
    */
   protected function getElasticClient() : Client {
+    $this->assertEquals(EnvironmentEnum::Local, $this->container->get(EnvironmentResolverInterface::class)->getActiveEnvironment()->environment);
     return $this->container->get('helfi_platform_config.etusivu_elastic_client');
   }
 
