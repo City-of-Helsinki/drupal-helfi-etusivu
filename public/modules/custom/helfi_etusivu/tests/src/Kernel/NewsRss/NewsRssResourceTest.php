@@ -6,9 +6,12 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\NewsRss;
 
 use Drupal\Component\Uuid\UuidInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
+use Drupal\helfi_api_base\Environment\EnvironmentEnum;
+use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_etusivu\Plugin\rest\resource\NewsRssResource;
 use Drupal\rest\Entity\RestResourceConfig;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
+use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
 use Drupal\Tests\helfi_platform_config\Kernel\KernelTestBase;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Elastic\Elasticsearch\Client;
@@ -25,6 +28,7 @@ class NewsRssResourceTest extends KernelTestBase {
 
   use UserCreationTrait;
   use ApiTestTrait;
+  use EnvironmentResolverTrait;
 
   /**
    * {@inheritdoc}
@@ -69,6 +73,7 @@ class NewsRssResourceTest extends KernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
+    $this->setActiveProject(Project::ETUSIVU, EnvironmentEnum::Local);
     $this->installEntitySchema('rest_resource_config');
     $this->installEntitySchema('user');
 
