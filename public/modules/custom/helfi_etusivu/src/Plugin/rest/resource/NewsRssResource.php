@@ -175,7 +175,7 @@ final class NewsRssResource extends ResourceBase {
     try {
       $results = $this->client->search([
         'index' => $this->elasticIndex,
-        'timeout' => 10,
+        'timeout' => 20,
         'body' => [
           'sort' => [
             '_score',
