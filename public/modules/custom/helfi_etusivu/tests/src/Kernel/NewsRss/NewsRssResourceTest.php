@@ -55,13 +55,6 @@ class NewsRssResourceTest extends KernelTestBase {
   protected ?Client $elasticClient = NULL;
 
   /**
-   * The stored elastic documents.
-   *
-   * @var string[]
-   */
-  protected array $elasticDocuments = [];
-
-  /**
    * {@inheritdoc}
    */
   public function register(ContainerBuilder $container): void {
@@ -108,7 +101,6 @@ class NewsRssResourceTest extends KernelTestBase {
         $groups = [300];
 
         $id = sprintf('entity:node/%d:%s', $i, $language);
-        $this->elasticDocuments[$id] = [];
 
         // Every second item should have a group with 302 term ID.
         if ($i % 2 === 0) {
