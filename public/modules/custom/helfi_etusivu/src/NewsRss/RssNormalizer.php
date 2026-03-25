@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 /**
  * A normalizer to support RSS feed.
  */
-class RssNormalizer implements NormalizerInterface {
+final class RssNormalizer implements NormalizerInterface {
 
   /**
    * {@inheritdoc}
@@ -33,19 +33,19 @@ class RssNormalizer implements NormalizerInterface {
     $channel = $dom->createElement('channel');
     $rss->appendChild($channel);
 
-    $this->appendTextNode($dom, $channel, 'title', $data->title, cdata: TRUE);
+    $this->appendTextNode($dom, $channel, 'title', $data->title);
     $this->appendTextNode($dom, $channel, 'link', $data->link);
     $this->appendTextNode($dom, $channel, 'language', $data->language);
-    $this->appendTextNode($dom, $channel, 'description', $data->description, cdata: TRUE);
+    $this->appendTextNode($dom, $channel, 'description', $data->description);
 
     // <item> entries
     foreach ($data->items as $itemData) {
       $item = $dom->createElement('item');
       $channel->appendChild($item);
 
-      $this->appendTextNode($dom, $item, 'title', $itemData->title, cdata: TRUE);
+      $this->appendTextNode($dom, $item, 'title', $itemData->title);
       $this->appendTextNode($dom, $item, 'link', $itemData->link);
-      $this->appendTextNode($dom, $item, 'description', $itemData->description, cdata: TRUE);
+      $this->appendTextNode($dom, $item, 'description', $itemData->description);
       $this->appendTextNode($dom, $item, 'pubDate', $itemData->pubDate);
 
       $guid = $dom->createElement('guid', $itemData->guid);
@@ -67,22 +67,14 @@ class RssNormalizer implements NormalizerInterface {
    *   The tag.
    * @param null|string $value
    *   The value.
-   * @param bool $cdata
-   *   Whether to wrap value in CDATA.
    *
    * @throws \DOMException
    */
-  private function appendTextNode(\DOMDocument $dom, \DOMElement $parent, string $tag, ?string $value, bool $cdata = FALSE): void {
+  private function appendTextNode(\DOMDocument $dom, \DOMElement $parent, string $tag, ?string $value): void {
     $value = (string) $value;
 
     $element = $dom->createElement($tag);
-
-    if ($cdata) {
-      $element->appendChild($dom->createCDATASection($value));
-    }
-    else {
-      $element->appendChild($dom->createTextNode($value));
-    }
+    $element->appendChild($dom->createTextNode($value));
     $parent->appendChild($element);
   }
 

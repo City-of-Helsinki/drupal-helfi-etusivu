@@ -6,7 +6,7 @@ dependencies:
     - serialization
     - helfi_etusivu
     - basic_auth
-id: helfi_etusivu_news_items
+id: helfi_etusivu_news_rss
 plugin_id: helfi_etusivu_news_rss
 granularity: resource
 configuration:

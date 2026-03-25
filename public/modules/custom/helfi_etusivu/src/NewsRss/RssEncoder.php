@@ -9,13 +9,15 @@ use Symfony\Component\Serializer\Encoder\EncoderInterface;
 /**
  * A encoder for RSS feed.
  */
-class RssEncoder implements EncoderInterface {
+final class RssEncoder implements EncoderInterface {
 
   /**
    * {@inheritdoc}
    */
   public function encode(mixed $data, string $format, array $context = []): string {
-    assert(is_string($data));
+    if (!is_string($data)) {
+      return '';
+    }
     return $data;
   }
 
