@@ -74,16 +74,6 @@ final class NewsRssResource extends ResourceBase {
   }
 
   /**
-   * Gets the elastic index.
-   *
-   * @return string
-   *   The elastic index.
-   */
-  public function getElasticIndex(): string {
-    return $this->elasticIndex;
-  }
-
-  /**
    * Parses the value from elastic response.
    *
    * @param string $key
@@ -185,6 +175,7 @@ final class NewsRssResource extends ResourceBase {
     try {
       $results = $this->client->search([
         'index' => $this->elasticIndex,
+        'timeout' => 10,
         'body' => [
           'sort' => [
             '_score',
