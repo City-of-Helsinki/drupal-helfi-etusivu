@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\NewsRss;
 
-use Drupal\rest\ResourceResponse;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -36,7 +35,7 @@ final class ContentTypeSubscriber implements EventSubscriberInterface {
   public function onResponse(ResponseEvent $event): void {
     $response = $event->getResponse();
 
-    if ($event->getRequest()->getRequestFormat() === 'rss' && $response instanceof ResourceResponse) {
+    if ($event->getRequest()->getRequestFormat() === 'rss') {
       $response->headers->set('Content-Type', 'application/rss+xml; charset=UTF-8');
     }
   }

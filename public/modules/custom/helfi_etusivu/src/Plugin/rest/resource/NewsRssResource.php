@@ -19,6 +19,7 @@ use Elastic\Elasticsearch\Client;
 use Elastic\Elasticsearch\Exception\ClientResponseException;
 use Elastic\Elasticsearch\Exception\ServerResponseException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -32,6 +33,8 @@ use Symfony\Component\HttpFoundation\Request;
   ],
 )]
 final class NewsRssResource extends ResourceBase {
+
+  public const int PAGE_SIZE = 15;
 
   /**
    * The Elastic client.
@@ -81,26 +84,6 @@ final class NewsRssResource extends ResourceBase {
   }
 
   /**
-   * Adds a cacheable dependency to parsed node.
-   *
-   * @param \Drupal\Core\Cache\CacheableMetadata $metadata
-   *   The cacheable metadata.
-   * @param string $id
-   *   The source id.
-   */
-  private function addCacheableEntityDependency(CacheableMetadata $metadata, string $id): void {
-    $parts = explode(':', $id);
-
-    // The ID should be something like entity:node/8555:en.
-    if (count($parts) < 3) {
-      return;
-    }
-    [$entityType, $entityId] = explode('/', $parts[1]);
-
-    $metadata->addCacheTags([sprintf('%s:%s', $entityType, $entityId)]);
-  }
-
-  /**
    * Responds to GET requests.
    *
    * Returns a list of published news items in the current content language.
@@ -118,12 +101,37 @@ final class NewsRssResource extends ResourceBase {
 
     $query = [
       'bool' => [
+        'filter' => [
+          ['term' => ['search_api_language' => $langcode]],
+        ],
         'must' => [
-          ['term' => ['_language' => $langcode]],
           ['term' => ['entity_type' => 'node']],
         ],
       ],
     ];
+
+    if ($keyword = $request->query->get('keyword')) {
+      $query['bool']['must'][] = [
+        'bool' => [
+          'minimum_should_match' => 1,
+          'should' => [
+            [
+              'query_string' => [
+                'fields' => [
+                  'fulltext_title^2',
+                  'field_lead_in^1.5',
+                  'text_content^.1',
+                ],
+                'query' => "$keyword~",
+              ],
+            ],
+            [
+              'wildcard' => ['title.keyword' => "*$keyword*"],
+            ],
+          ],
+        ],
+      ];
+    }
 
     $filters = [
       'topic' => 'news_tags',
@@ -142,32 +150,31 @@ final class NewsRssResource extends ResourceBase {
       if (!is_array($queryValue)) {
         $queryValue = [$queryValue];
       }
-      $inGroup = array_map(fn ($value) => ['term' => [$elasticField => $value]], $queryValue);
 
+      // Upper bound for query filters.
+      if (count($queryValue) > 100) {
+        throw new BadRequestException('Too many filters.');
+      }
       $query['bool']['must'][] = [
-        'bool' => ['should' => $inGroup],
+        'terms' => [$elasticField => $queryValue],
       ];
     }
 
-    if ($keyword = $request->query->get('keyword')) {
-      $query['bool']['must'][] = [
-        'wildcard' => [
-          'title.keyword' => '*' . $keyword . '*',
-        ],
-      ];
-    }
+    $currentPage = $request->query->get('page', 0);
+
+    $results = [];
 
     try {
       $results = $this->client->search([
         'index' => 'news',
         'body' => [
           'sort' => [
-            '_score' => ['order' => 'desc'],
-            'published_at' => ['order' => 'desc'],
+            '_score',
+            ['published_at' => ['order' => 'desc']],
           ],
           'query' => $query,
-          'size' => 15,
-          'from' => $request->query->get('page', 0),
+          'size' => self::PAGE_SIZE,
+          'from' => $currentPage,
         ],
       ])->asArray();
     }
@@ -176,12 +183,11 @@ final class NewsRssResource extends ResourceBase {
 
     $cacheableMetadata = (new CacheableMetadata())
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT))
+      ->setCacheMaxAge(0)
       ->addCacheContexts(['languages:language_content', 'url.query_args']);
 
     $items = [];
     foreach ($results['hits']['hits'] ?? [] as $result) {
-      $this->addCacheableEntityDependency($cacheableMetadata, $result['_id']);
-
       $items[] = new RssItem(
         title: $this->parseSourceValue('title', $result),
         link: $this->parseSourceValue('url', $result),
@@ -198,7 +204,11 @@ final class NewsRssResource extends ResourceBase {
       description: (string) new TranslatableMarkup('feed'),
       items: $items,
     );
-    $response = new ResourceResponse($feed, 200);
+    $response = new ResourceResponse($feed, 200, [
+      'X-Total-Count' => $results['hits']['total']['value'] ?? 0,
+      'X-Page-Size' => self::PAGE_SIZE,
+      'X-Page' => $currentPage,
+    ]);
     $response->addCacheableDependency($cacheableMetadata);
 
     return $response;
