@@ -69,8 +69,18 @@ final class NewsRssResource extends ResourceBase {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->client = $container->get('helfi_platform_config.etusivu_elastic_client');
     $instance->languageManager = $container->get(LanguageManagerInterface::class);
-    $instance->elasticIndex = $container->getParameter('news_rss_elastic_index');
+    $instance->elasticIndex = $container->getParameter('helfi_etusivu.news_rss_elastic_index');
     return $instance;
+  }
+
+  /**
+   * Gets the elastic index.
+   *
+   * @return string
+   *   The elastic index.
+   */
+  public function getElasticIndex(): string {
+    return $this->elasticIndex;
   }
 
   /**
