@@ -68,7 +68,7 @@ class ElasticsearchEventSubscriberTest extends KernelTestBase {
     $field->getFieldIdentifier()->willReturn('keywords');
 
     $event = new FieldMappingEvent($field->reveal(), []);
-    $subscriber = new ElasticsearchEventSubscriber();
+    $subscriber = $this->container->get(ElasticsearchEventSubscriber::class);
     $subscriber->mapPromotionFields($event);
 
     $param = $event->getParam();
