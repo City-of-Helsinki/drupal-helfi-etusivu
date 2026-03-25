@@ -39,3 +39,12 @@ services:
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder: ~
 
+  Drupal\helfi_etusivu\NewsRss\ContentTypeSubscriber: ~
+  Drupal\helfi_etusivu\NewsRss\RssEncoder:
+    tags:
+      - { name: encoder, format: rss }
+
+  Drupal\helfi_etusivu\NewsRss\RssNormalizer:
+    tags:
+      - { name: normalizer, priority: 10 }
+

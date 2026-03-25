@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - serialization
+    - helfi_etusivu
+    - basic_auth
+id: helfi_etusivu_news_items
+plugin_id: helfi_etusivu_news_rss
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - rss
+  authentication:
+    - cookie
+    - basic_auth
