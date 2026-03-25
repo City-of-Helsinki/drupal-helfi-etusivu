@@ -183,8 +183,9 @@ final class NewsRssResource extends ResourceBase {
 
     $cacheableMetadata = (new CacheableMetadata())
       ->addCacheableDependency($request->attributes->get(AccessAwareRouterInterface::ACCESS_RESULT))
-      ->setCacheMaxAge(0)
-      ->addCacheContexts(['languages:language_content', 'url.query_args']);
+      ->addCacheContexts(['languages:language_content', 'url.query_args'])
+      // This should invalidate caches when index is updated.
+      ->addCacheTags(['search_api_list:news']);
 
     $items = [];
     foreach ($results['hits']['hits'] ?? [] as $result) {
