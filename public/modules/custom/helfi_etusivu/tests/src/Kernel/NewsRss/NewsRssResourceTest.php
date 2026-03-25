@@ -52,19 +52,22 @@ class NewsRssResourceTest extends KernelTestBase {
   ];
 
   /**
-   * The elasticsearch client.
-   *
-   * @var \Elastic\Elasticsearch\Client|null
-   */
-  protected ?Client $elasticClient = NULL;
-
-  /**
    * {@inheritdoc}
    */
   public function register(ContainerBuilder $container): void {
-    $container->setParameter('news_rss_elastic_index', 'news_rss_test');
+    $container->setParameter('helfi_etusivu.news_rss_elastic_index', 'news_rss_test');
 
     parent::register($container);
+  }
+
+  /**
+   * Gets the elastic client.
+   *
+   * @return \Elastic\Elasticsearch\Client
+   *   The elastic client.
+   */
+  protected function getElasticClient() : Client {
+    return $this->container->get('helfi_platform_config.etusivu_elastic_client');
   }
 
   /**
@@ -91,9 +94,9 @@ class NewsRssResourceTest extends KernelTestBase {
     // Create a dummy user before tests to make sure our actual user is not
     // UID1 and getting all permissions automatically.
     $this->createUser();
+    $this->assertEquals('news_rss_test', $this->container->getParameter('helfi_etusivu.news_rss_elastic_index'));
 
-    $this->elasticClient = $this->container->get('helfi_platform_config.etusivu_elastic_client');
-    $response = $this->elasticClient->indices()->create([
+    $response = $this->getElasticClient()->indices()->create([
       'index' => 'news_rss_test',
     ]);
     $this->assertEquals(200, $response->getStatusCode());
@@ -125,7 +128,7 @@ class NewsRssResourceTest extends KernelTestBase {
           $tags[] = 114;
         }
 
-        $response = $this->elasticClient->index([
+        $response = $this->getElasticClient()->index([
           'index' => 'news_rss_test',
           'id' => $id,
           'body' => [
@@ -150,11 +153,11 @@ class NewsRssResourceTest extends KernelTestBase {
    * {@inheritdoc}
    */
   protected function tearDown(): void {
-    parent::tearDown();
-
     // Remove test elastic index.
-    $response = $this->elasticClient->indices()->delete(['index' => 'news_rss_test']);
+    $response = $this->getElasticClient()->indices()->delete(['index' => 'news_rss_test']);
     $this->assertEquals(200, $response->getStatusCode());
+
+    parent::tearDown();
   }
 
   /**
