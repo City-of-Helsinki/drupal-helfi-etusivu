@@ -51,6 +51,13 @@ final class NewsRssResource extends ResourceBase {
   private LanguageManagerInterface $languageManager;
 
   /**
+   * The elastic index.
+   *
+   * @var string
+   */
+  private string $elasticIndex;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(
@@ -62,6 +69,7 @@ final class NewsRssResource extends ResourceBase {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->client = $container->get('helfi_platform_config.etusivu_elastic_client');
     $instance->languageManager = $container->get(LanguageManagerInterface::class);
+    $instance->elasticIndex = $container->getParameter('news_rss_elastic_index');
     return $instance;
   }
 
@@ -166,7 +174,7 @@ final class NewsRssResource extends ResourceBase {
 
     try {
       $results = $this->client->search([
-        'index' => 'news',
+        'index' => $this->elasticIndex,
         'body' => [
           'sort' => [
             '_score',
@@ -174,11 +182,11 @@ final class NewsRssResource extends ResourceBase {
           ],
           'query' => $query,
           'size' => self::PAGE_SIZE,
-          'from' => $currentPage,
+          'from' => $currentPage * self::PAGE_SIZE,
         ],
       ])->asArray();
     }
-    catch (ClientResponseException | ServerResponseException) {
+    catch (ClientResponseException | ServerResponseException $e) {
     }
 
     $cacheableMetadata = (new CacheableMetadata())
