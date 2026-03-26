@@ -21,6 +21,7 @@ use Elastic\Elasticsearch\Exception\ServerResponseException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Represents published news items as an RSS resource.
@@ -175,7 +176,6 @@ final class NewsRssResource extends ResourceBase {
     try {
       $results = $this->client->search([
         'index' => $this->elasticIndex,
-        'timeout' => 20,
         'body' => [
           'sort' => [
             '_score',
@@ -188,6 +188,7 @@ final class NewsRssResource extends ResourceBase {
       ])->asArray();
     }
     catch (ClientResponseException | ServerResponseException $e) {
+      throw new HttpException(500, 'Elastic search error');
     }
 
     $cacheableMetadata = (new CacheableMetadata())
