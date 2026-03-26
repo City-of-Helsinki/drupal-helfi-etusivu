@@ -149,6 +149,20 @@ class NewsRssResourceTest extends KernelTestBase {
         $this->assertEquals(201, $response->getStatusCode());
       }
     }
+
+    do {
+      // Elastic takes some time to index data. Make sure
+      // everything up to date before running tests.
+      $response = $this->getElasticClient()->search([
+        'index' => 'news_rss_test',
+      ])->asArray();
+      $hits = $response['hits']['total']['value'] ?? 0;
+
+      if ($hits === (3 * 45)) {
+        break;
+      }
+      sleep(2);
+    } while (TRUE);
   }
 
   /**
