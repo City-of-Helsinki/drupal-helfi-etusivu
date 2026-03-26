@@ -57,8 +57,8 @@ final readonly class Client {
 
     // Use full_text instead of all_ongoing_AND.
     if (isset($options['all_ongoing_AND'])) {
-      $options['full_text'] = $options['full_text'] ?? '';
-      $options['full_text'] .= ' ' . $options['all_ongoing_AND'];
+      $options['full_text'] = !empty($options['full_text']) ? $options['full_text'] . ' ' : '';
+      $options['full_text'] .= $options['all_ongoing_AND'];
       unset($options['all_ongoing_AND']);
     }
 
