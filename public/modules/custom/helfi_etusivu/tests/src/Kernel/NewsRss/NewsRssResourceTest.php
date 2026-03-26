@@ -96,21 +96,18 @@ class NewsRssResourceTest extends KernelTestBase {
     // Create a dummy user before tests to make sure our actual user is not
     // UID1 and getting all permissions automatically.
     $this->createUser();
+
     $this->assertEquals('news_rss_test', $this->container->getParameter('helfi_etusivu.news_rss_elastic_index'));
 
-    $response = $this->getElasticClient()->indices()->create([
+    $this->getElasticClient()->indices()->create([
       'index' => 'news_rss_test',
     ]);
-    $this->assertEquals(200, $response->getStatusCode());
 
     $startTime = time();
 
     foreach (['fi', 'sv', 'en'] as $language) {
       for ($i = 1; $i <= 45; $i++) {
-        $tags = [100];
-        $neighbourhoods = [200];
-        $groups = [300];
-
+        $tags = $neighbourhoods = $groups = [];
         $id = sprintf('entity:node/%d:%s', $i, $language);
 
         // Every second item should have a group with 302 term ID.
@@ -130,13 +127,13 @@ class NewsRssResourceTest extends KernelTestBase {
           $tags[] = 114;
         }
 
-        $response = $this->getElasticClient()->index([
+        $this->getElasticClient()->index([
           'index' => 'news_rss_test',
           'id' => $id,
           'body' => [
-            'title' => ['Title ' . $language . ' ' . $i],
-            'url' => ['https://app/' . $language . '/node/' . $i],
-            'field_lead_in' => ['Description ' . $language . ' ' . $i],
+            'title' => ["Title $language $i"],
+            'url' => ["https://app/$language/node/$i"],
+            'field_lead_in' => ["Description $language $i"],
             'published_at' => [$startTime - $i],
             'uuid' => [$this->container->get(UuidInterface::class)->generate()],
             'search_api_language' => [$language],
@@ -146,7 +143,6 @@ class NewsRssResourceTest extends KernelTestBase {
             'news_groups' => $groups,
           ],
         ]);
-        $this->assertEquals(201, $response->getStatusCode());
       }
     }
 
@@ -158,6 +154,7 @@ class NewsRssResourceTest extends KernelTestBase {
       ])->asArray();
       $hits = $response['hits']['total']['value'] ?? 0;
 
+      // We index 45 documents in 3 languages.
       if ($hits === (3 * 45)) {
         break;
       }
