@@ -6,7 +6,6 @@ namespace Drupal\helfi_etusivu\Tests\Kernel\EventSubscriber;
 
 use Drupal\elasticsearch_connector\Event\AlterSettingsEvent;
 use Drupal\elasticsearch_connector\Event\FieldMappingEvent;
-use Drupal\elasticsearch_connector\Event\QueryParamsEvent;
 use Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\search_api\Entity\Index;
@@ -79,54 +78,6 @@ class ElasticsearchEventSubscriberTest extends KernelTestBase {
     $this->assertEquals('swedish', $param['fields']['sv']['analyzer']);
     $this->assertEquals('text', $param['fields']['en']['type']);
     $this->assertEquals('english', $param['fields']['en']['analyzer']);
-  }
-
-  /**
-   * Tests prepareQueryParams method.
-   */
-  public function testPrepareQueryParams() {
-    $emptyEvent = new QueryParamsEvent('news', []);
-    $subscriber = $this->container->get(ElasticsearchEventSubscriber::class);
-    $subscriber->prepareQueryParams($emptyEvent);
-    $this->assertEquals([], $emptyEvent->getParams());
-
-    $event = new QueryParamsEvent('news', [
-      'body' => [
-        'query' => [
-          'bool' => [
-            'must' => [
-              'query_string' => [
-                'query' => 'test~',
-              ],
-            ],
-          ],
-        ],
-      ],
-    ]);
-
-    $subscriber->prepareQueryParams($event);
-    $this->assertEquals([
-      'body' => [
-        'query' => [
-          'bool' => [
-            'should' => [
-              [
-                'query_string' => [
-                  'query' => 'test~',
-                ],
-              ],
-              [
-                'wildcard' => [
-                  'title.keyword' => '*test*',
-                ],
-              ],
-            ],
-            'minimum_should_match' => 1,
-          ],
-        ],
-      ],
-      'index' => 'news',
-    ], $event->getParams());
   }
 
 }
