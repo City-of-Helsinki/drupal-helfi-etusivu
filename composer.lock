@@ -3462,17 +3462,17 @@
         },
         {
             "name": "drupal/editoria11y",
-            "version": "2.2.20",
+            "version": "2.2.21",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/editoria11y.git",
-                "reference": "2.2.20"
+                "reference": "2.2.21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/editoria11y-2.2.20.zip",
-                "reference": "2.2.20",
-                "shasum": "886e3e268b29574833096d29bebfb42e419bd6cc"
+                "url": "https://ftp.drupal.org/files/projects/editoria11y-2.2.21.zip",
+                "reference": "2.2.21",
+                "shasum": "61665339c3eedbdc8d0fa342e5e41f8b5e62dbd1"
             },
             "require": {
                 "drupal/core": "^9 || ^10 || ^11"
@@ -3483,8 +3483,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.2.20",
-                    "datestamp": "1768410721",
+                    "version": "2.2.21",
+                    "datestamp": "1774488747",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4529,16 +4529,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.16.55",
+            "version": "6.16.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "da7c7ba04beb379562882db4f2d4ae6a60a65500"
+                "reference": "8e1976867836013e6a5aec72396152d257965cf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/da7c7ba04beb379562882db4f2d4ae6a60a65500",
-                "reference": "da7c7ba04beb379562882db4f2d4ae6a60a65500",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/8e1976867836013e6a5aec72396152d257965cf0",
+                "reference": "8e1976867836013e6a5aec72396152d257965cf0",
                 "shasum": ""
             },
             "require": {
@@ -4557,22 +4557,22 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.55",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.56",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-03-23T14:28:27+00:00"
+            "time": "2026-03-26T12:26:39+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
             "version": "3.4.14",
             "source": {
                 "type": "git",
-                "url": "git@github.com:city-of-helsinki/drupal-hdbt-admin.git",
+                "url": "https://github.com/City-of-Helsinki/drupal-hdbt-admin.git",
                 "reference": "5ac32718eb61c471faed43074f9c77b72f65b4ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/city-of-helsinki/drupal-hdbt-admin/zipball/5ac32718eb61c471faed43074f9c77b72f65b4ea",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt-admin/zipball/5ac32718eb61c471faed43074f9c77b72f65b4ea",
                 "reference": "5ac32718eb61c471faed43074f9c77b72f65b4ea",
                 "shasum": ""
             },
@@ -4593,6 +4593,10 @@
             "keywords": [
                 "Drupal"
             ],
+            "support": {
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/3.4.14",
+                "issues": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/issues"
+            },
             "time": "2026-03-16T12:12:46+00:00"
         },
         {
@@ -4647,16 +4651,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.8.11",
+            "version": "2.8.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "6ea1beca1dd696904e20b443c0139ffc9f130cfc"
+                "reference": "f1f9a52edef5e52ea5b21380080ed0312631b15b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/6ea1beca1dd696904e20b443c0139ffc9f130cfc",
-                "reference": "6ea1beca1dd696904e20b443c0139ffc9f130cfc",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/f1f9a52edef5e52ea5b21380080ed0312631b15b",
+                "reference": "f1f9a52edef5e52ea5b21380080ed0312631b15b",
                 "shasum": ""
             },
             "require": {
@@ -4698,10 +4702,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.11",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.12",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2026-03-24T06:55:10+00:00"
+            "time": "2026-03-26T12:22:32+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -4863,16 +4867,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.1.28",
+            "version": "5.1.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "376c343bd3fefdce6e905fbcd7d5da7c377a1e4e"
+                "reference": "6c915f77438372b246958f1573ade4b2d0df38ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/376c343bd3fefdce6e905fbcd7d5da7c377a1e4e",
-                "reference": "376c343bd3fefdce6e905fbcd7d5da7c377a1e4e",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/6c915f77438372b246958f1573ade4b2d0df38ae",
+                "reference": "6c915f77438372b246958f1573ade4b2d0df38ae",
                 "shasum": ""
             },
             "require": {
@@ -4987,10 +4991,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.28",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.29",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-03-25T09:40:58+00:00"
+            "time": "2026-03-26T12:27:32+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -8445,8 +8449,20 @@
             ],
             "authors": [
                 {
+                    "name": "anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "chesn0k",
+                    "homepage": "https://www.drupal.org/user/3650191"
+                },
+                {
                     "name": "chi",
                     "homepage": "https://www.drupal.org/user/556138"
+                },
+                {
+                    "name": "grevil",
+                    "homepage": "https://www.drupal.org/user/3668491"
                 }
             ],
             "description": "A Twig extension with some useful functions and filters for Drupal development.",
@@ -11337,16 +11353,16 @@
         },
         {
             "name": "open-telemetry/context",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/context.git",
-                "reference": "d4c4470b541ce72000d18c339cfee633e4c8e0cf"
+                "reference": "3c414b246e0dabb7d6145404e6a5e4536ca18d07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/context/zipball/d4c4470b541ce72000d18c339cfee633e4c8e0cf",
-                "reference": "d4c4470b541ce72000d18c339cfee633e4c8e0cf",
+                "url": "https://api.github.com/repos/opentelemetry-php/context/zipball/3c414b246e0dabb7d6145404e6a5e4536ca18d07",
+                "reference": "3c414b246e0dabb7d6145404e6a5e4536ca18d07",
                 "shasum": ""
             },
             "require": {
@@ -11388,11 +11404,11 @@
             ],
             "support": {
                 "chat": "https://app.slack.com/client/T08PSQ7BQ/C01NFPCV44V",
-                "docs": "https://opentelemetry.io/docs/php",
+                "docs": "https://opentelemetry.io/docs/languages/php",
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2025-09-19T00:05:49+00:00"
+            "time": "2025-10-19T06:44:33+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -12273,30 +12289,31 @@
         },
         {
             "name": "phrity/net-stream",
-            "version": "2.3.3",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sirn-se/phrity-net-stream.git",
-                "reference": "f46694e1b721867ec3c19731a7fcbbead3c6ac89"
+                "reference": "a0726a8dddf11a4cd3a9e45d17e145d78e948f43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sirn-se/phrity-net-stream/zipball/f46694e1b721867ec3c19731a7fcbbead3c6ac89",
-                "reference": "f46694e1b721867ec3c19731a7fcbbead3c6ac89",
+                "url": "https://api.github.com/repos/sirn-se/phrity-net-stream/zipball/a0726a8dddf11a4cd3a9e45d17e145d78e948f43",
+                "reference": "a0726a8dddf11a4cd3a9e45d17e145d78e948f43",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
                 "phrity/util-errorhandler": "^1.1",
+                "phrity/util-interpolator": "^1.1",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.1 || ^2.0"
             },
             "require-dev": {
                 "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
+                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0 || ^13.0",
                 "phrity/net-uri": "^2.0",
                 "robiningelbrecht/phpunit-coverage-tools": "^1.9",
-                "squizlabs/php_codesniffer": "^3.5 || ^4.0"
+                "squizlabs/php_codesniffer": "^4.0"
             },
             "type": "library",
             "autoload": {
@@ -12328,9 +12345,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sirn-se/phrity-net-stream/issues",
-                "source": "https://github.com/sirn-se/phrity-net-stream/tree/2.3.3"
+                "source": "https://github.com/sirn-se/phrity-net-stream/tree/2.4.0"
             },
-            "time": "2025-12-24T12:07:07+00:00"
+            "time": "2026-03-25T18:16:40+00:00"
         },
         {
             "name": "phrity/net-uri",
@@ -12395,6 +12412,58 @@
             "time": "2025-12-05T10:39:22+00:00"
         },
         {
+            "name": "phrity/util-accessor",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sirn-se/phrity-util-accessor.git",
+                "reference": "e9741da6b532fa2da7f627fce60fa77f00f6e354"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sirn-se/phrity-util-accessor/zipball/e9741da6b532fa2da7f627fce60fa77f00f6e354",
+                "reference": "e9741da6b532fa2da7f627fce60fa77f00f6e354",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "phrity/util-transformer": "^1.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
+                "robiningelbrecht/phpunit-coverage-tools": "^1.9",
+                "squizlabs/php_codesniffer": "^3.5 || ^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phrity\\Util\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sören Jensen",
+                    "email": "sirn@sirn.se",
+                    "homepage": "https://phrity.sirn.se"
+                }
+            ],
+            "description": "Utility to handle access to a data set by using access paths. Similar to and partly compatible with xpath and json-pointer.",
+            "homepage": "https://phrity.sirn.se/util-accessor",
+            "keywords": [
+                "accessor"
+            ],
+            "support": {
+                "issues": "https://github.com/sirn-se/phrity-util-accessor/issues",
+                "source": "https://github.com/sirn-se/phrity-util-accessor/tree/1.3.1"
+            },
+            "time": "2025-12-05T21:18:15+00:00"
+        },
+        {
             "name": "phrity/util-errorhandler",
             "version": "1.2.2",
             "source": {
@@ -12445,6 +12514,118 @@
                 "source": "https://github.com/sirn-se/phrity-util-errorhandler/tree/1.2.2"
             },
             "time": "2025-12-05T21:25:36+00:00"
+        },
+        {
+            "name": "phrity/util-interpolator",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sirn-se/phrity-util-interpolator.git",
+                "reference": "18b0362d2aff60984c530808333c5e64c80c3e50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sirn-se/phrity-util-interpolator/zipball/18b0362d2aff60984c530808333c5e64c80c3e50",
+                "reference": "18b0362d2aff60984c530808333c5e64c80c3e50",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "phrity/util-accessor": "^1.3",
+                "phrity/util-transformer": "^1.3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
+                "robiningelbrecht/phpunit-coverage-tools": "^1.9",
+                "squizlabs/php_codesniffer": "^3.5 || ^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phrity\\Util\\Interpolator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sören Jensen",
+                    "email": "sirn@sirn.se",
+                    "homepage": "https://phrity.sirn.se"
+                }
+            ],
+            "description": "Interpolator class and trait.",
+            "homepage": "https://phrity.sirn.se/util-interpolator",
+            "keywords": [
+                "interpolate",
+                "interpolator"
+            ],
+            "support": {
+                "issues": "https://github.com/sirn-se/phrity-util-interpolator/issues",
+                "source": "https://github.com/sirn-se/phrity-util-interpolator/tree/1.1.1"
+            },
+            "time": "2025-12-05T21:35:25+00:00"
+        },
+        {
+            "name": "phrity/util-transformer",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sirn-se/phrity-util-transformer.git",
+                "reference": "3fd4d7fa4077deafe5130c4b9ee8146b5488abe3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sirn-se/phrity-util-transformer/zipball/3fd4d7fa4077deafe5130c4b9ee8146b5488abe3",
+                "reference": "3fd4d7fa4077deafe5130c4b9ee8146b5488abe3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
+                "robiningelbrecht/phpunit-coverage-tools": "^1.9",
+                "squizlabs/php_codesniffer": "^3.5 || ^4.0",
+                "symfony/property-access": "^6.0 || ^7.0 || ^8.0",
+                "symfony/serializer": "^6.0 || ^7.0 || ^8.0",
+                "symfony/translation-contracts": "^3.0",
+                "symfony/uid": "^6.0 || ^7.0 || ^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phrity\\Util\\Transformer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sören Jensen",
+                    "email": "sirn@sirn.se",
+                    "homepage": "https://phrity.sirn.se"
+                }
+            ],
+            "description": "Type transformers, normalizers and resolvers.",
+            "homepage": "https://phrity.sirn.se/util-transformer",
+            "keywords": [
+                "normalizer",
+                "resolver",
+                "transformer",
+                "type"
+            ],
+            "support": {
+                "issues": "https://github.com/sirn-se/phrity-util-transformer/issues",
+                "source": "https://github.com/sirn-se/phrity-util-transformer/tree/1.3.1"
+            },
+            "time": "2025-12-05T22:07:04+00:00"
         },
         {
             "name": "phrity/websocket",
@@ -17888,23 +18069,23 @@
         },
         {
             "name": "google/protobuf",
-            "version": "v4.33.2",
+            "version": "v4.33.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/protocolbuffers/protobuf-php.git",
-                "reference": "fbd96b7bf1343f4b0d8fb358526c7ba4d72f1318"
+                "reference": "84b008c23915ed94536737eae46f41ba3bccfe67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/fbd96b7bf1343f4b0d8fb358526c7ba4d72f1318",
-                "reference": "fbd96b7bf1343f4b0d8fb358526c7ba4d72f1318",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/84b008c23915ed94536737eae46f41ba3bccfe67",
+                "reference": "84b008c23915ed94536737eae46f41ba3bccfe67",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=5.0.0 <8.5.27"
+                "phpunit/phpunit": ">=10.5.62 <11.0.0"
             },
             "suggest": {
                 "ext-bcmath": "Need to support JSON deserialization"
@@ -17926,9 +18107,9 @@
                 "proto"
             ],
             "support": {
-                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v4.33.2"
+                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v4.33.6"
             },
-            "time": "2025-12-05T22:12:22+00:00"
+            "time": "2026-03-18T17:32:05+00:00"
         },
         {
             "name": "jangregor/phpstan-prophecy",
