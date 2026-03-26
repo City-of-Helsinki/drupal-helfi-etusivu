@@ -24,27 +24,23 @@
     <th scope="col">Package</th>
     <th scope="col">Version</th>
     <th scope="col">Timestamp</th>
-    <th scope="col">Releases</th>
   </tr>
   </thead>
   <tbody>
   {% for package in data.packages %}
     <tr>
-      <th scope="row">
-        {{ package.name }}
-      </th>
+      <td>
+        {% if package.releases_url %}
+          {{ link(package.name, package.releases_url) }}
+        {% else %}
+          {{ package.name }}
+        {% endif %}
+      </td>
       <td>
         {{ package.version }}
       </td>
       <td>
         {{ package.time|date('U')|format_date('long') }}
-      </td>
-      <td>
-        {% set link_url = package.source.url|replace({'.git':''}) %}
-        {% set link_title = link_url|replace({'https://github.com/City-of-Helsinki/':''}) %}
-        {% if link_url %}
-          {{ link(link_title, link_url ~ '/releases') }}
-        {% endif %}
       </td>
     </tr>
   {% endfor %}
