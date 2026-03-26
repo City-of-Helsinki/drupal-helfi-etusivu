@@ -46,4 +46,6 @@ You can find the values for the filters by going to `https://www.hel.fi/en/news`
 
 #### Page
 
-`page`: The selected page. Indexing starts from `0`
+`page`: The selected page. Indexing starts from `0`.
+
+You can use `X-Total-Count`, `X-Page-Size` and `X-Page` headers to calculate total number of pages.
