@@ -146,9 +146,9 @@ class NewsRssResourceTest extends KernelTestBase {
       }
     }
 
-    do {
-      // Elastic takes some time to index data. Make sure
-      // everything up to date before running tests.
+    // Elastic takes some time to index data. Make sure everything is up to
+    // date before running tests. Allow this run up to ~120 seconds.
+    for ($i = 1; $i <= 60; $i++) {
       $response = $this->getElasticClient()->search([
         'index' => 'news_rss_test',
       ])->asArray();
@@ -159,7 +159,7 @@ class NewsRssResourceTest extends KernelTestBase {
         break;
       }
       sleep(2);
-    } while (TRUE);
+    }
   }
 
   /**
