@@ -26,8 +26,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
   stages: [
     'add_properties' => 0,
   ],
-  locked: TRUE,
-  hidden: TRUE,
 )]
 final class MainImageProcessor extends MainImageUrlProcessorBase {
 
