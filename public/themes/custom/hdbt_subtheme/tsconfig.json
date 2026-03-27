@@ -32,5 +32,5 @@
       "../../contrib/hdbt/src/js/types"
     ]
   },
-  "include": ["src"]
+  "include": ["src", "../../contrib/hdbt/src/js/types"]
 }
