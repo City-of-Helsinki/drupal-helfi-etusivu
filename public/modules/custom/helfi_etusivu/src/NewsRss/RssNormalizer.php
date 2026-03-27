@@ -39,6 +39,7 @@ final class RssNormalizer implements NormalizerInterface {
     $this->appendTextNode($dom, $channel, 'description', $data->description);
 
     // <item> entries
+    /** @var \Drupal\helfi_etusivu\NewsRss\DTO\RssItem $itemData */
     foreach ($data->items as $itemData) {
       $item = $dom->createElement('item');
       $channel->appendChild($item);
@@ -47,6 +48,14 @@ final class RssNormalizer implements NormalizerInterface {
       $this->appendTextNode($dom, $item, 'link', $itemData->link);
       $this->appendTextNode($dom, $item, 'description', $itemData->description);
       $this->appendTextNode($dom, $item, 'pubDate', $itemData->pubDate);
+
+      if ($itemData->enclosure) {
+        $enclosure = $dom->createElement('enclosure');
+        $enclosure->setAttribute('url', $itemData->enclosure->url);
+        $enclosure->setAttribute('length', (string) $itemData->enclosure->length);
+        $enclosure->setAttribute('type', $itemData->enclosure->type);
+        $item->appendChild($enclosure);
+      }
 
       $guid = $dom->createElement('guid', $itemData->guid);
       $guid->setAttribute('isPermaLink', 'true');
