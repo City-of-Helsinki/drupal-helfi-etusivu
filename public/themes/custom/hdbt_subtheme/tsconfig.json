@@ -7,12 +7,7 @@
       "react": ["../../contrib/hdbt/node_modules/react"],
       "react/*": ["../../contrib/hdbt/node_modules/react/*"],
       "react-dom": ["../../contrib/hdbt/node_modules/react-dom"],
-      "react-dom/*": ["../../contrib/hdbt/node_modules/react-dom/*"],
-      "hds-react": ["../../contrib/hdbt/node_modules/hds-react"],
-      "jotai": ["../../contrib/hdbt/node_modules/jotai"],
-      "swr": ["../../contrib/hdbt/node_modules/swr"],
-      "swr/*": ["../../contrib/hdbt/node_modules/swr/*"],
-      "@sentry/react": ["../../contrib/hdbt/node_modules/@sentry/react"]
+      "react-dom/*": ["../../contrib/hdbt/node_modules/react-dom/*"]
     },
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],

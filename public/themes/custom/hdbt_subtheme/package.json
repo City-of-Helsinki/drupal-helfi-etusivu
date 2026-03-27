@@ -19,10 +19,15 @@
   "dependencies": {
     "@biomejs/biome": "^2.2.4",
     "@hdbt/theme-builder": "file:../../contrib/hdbt/theme-builder",
+    "@sentry/react": "^10.46.0",
     "breakpoint-sass": "^3.0.0",
     "glob": "^11.0.0",
     "hds-design-tokens": "^2.0.0",
-    "npm-run-all2": "^8.0.4"
+    "hds-react": "^4.4.0",
+    "html-react-parser": "^5.2.17",
+    "jotai": "^2.19.0",
+    "npm-run-all2": "^8.0.4",
+    "swr": "^2.4.1"
   },
   "browserslist": [
     "last 3 major versions",
