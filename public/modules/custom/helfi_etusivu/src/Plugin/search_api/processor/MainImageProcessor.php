@@ -4,96 +4,110 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Plugin\search_api\processor;
 
-use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\File\FileUrlGeneratorInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\file\FileInterface;
+use Drupal\helfi_platform_config\SearchAPI\Processor\MainImageProcessorProperties;
+use Drupal\helfi_platform_config\SearchAPI\Processor\MainImageUrlProcessorBase;
+use Drupal\node\NodeInterface;
+use Drupal\search_api\Attribute\SearchApiProcessor;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Item\ItemInterface;
-use Drupal\search_api\Processor\ProcessorPluginBase;
 use Drupal\search_api\Processor\ProcessorProperty;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Indexes main image uri in correct image style.
- *
- * @SearchApiProcessor(
- *   id = "main_image_url",
- *   label = @Translation("Main image"),
- *   description = @Translation("Indexes main image uri in correct image style"),
- *   stages = {
- *     "add_properties" = 0
- *   },
- *   locked = true,
- *   hidden = true,
- * )
  */
-class MainImageProcessor extends ProcessorPluginBase {
+#[SearchApiProcessor(
+  id: 'main_image_url',
+  label: new TranslatableMarkup('Main image'),
+  description: new TranslatableMarkup('Indexes main image uri in correct image style'),
+  stages: [
+    'add_properties' => 0,
+  ],
+  locked: TRUE,
+  hidden: TRUE,
+)]
+final class MainImageProcessor extends MainImageUrlProcessorBase {
+
+  /**
+   * The file url generator service.
+   *
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   */
+  protected FileUrlGeneratorInterface $fileUrlGenerator;
 
   /**
    * {@inheritdoc}
    */
-  public function getPropertyDefinitions(?DataSourceInterface $datasource = NULL) {
-    $properties = [];
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) : self {
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->fileUrlGenerator = $container->get(FileUrlGeneratorInterface::class);
+    return $instance;
+  }
 
-    if (!$datasource) {
-      $definition = [
-        'label' => $this->t('Main image'),
-        'description' => $this->t('Indexes main image uri in correct image style'),
-        'type' => 'object',
-        'processor_id' => $this->getPluginId(),
-      ];
+  /**
+   * {@inheritdoc}
+   */
+  protected function getFieldProperties(): MainImageProcessorProperties {
+    return new MainImageProcessorProperties(
+      imageStyleField: 'main_image_url',
+      entityField: 'field_main_image',
+    );
+  }
 
-      $properties['main_image_url'] = new ProcessorProperty($definition);
-    }
-
+  /**
+   * {@inheritdoc}
+   */
+  public function getPropertyDefinitions(?DatasourceInterface $datasource = NULL): array {
+    $properties = parent::getPropertyDefinitions($datasource);
+    $properties['main_image'] = new ProcessorProperty([
+      'label' => $this->t('Main image: original file'),
+      'description' => $this->t('The original main image file'),
+      'type' => 'string',
+      'processor_id' => $this->getPluginId(),
+    ]);
     return $properties;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function addFieldValues(ItemInterface $item) {
-    $dataSourceId = $item->getDataSourceId();
+  protected function isValid(NodeInterface $node): bool {
+    return in_array($node->getType(), ['news_item', 'news_article']);
+  }
 
-    if ($dataSourceId !== 'entity:node' || !$node = $item->getOriginalObject()->getValue()) {
-      return;
-    }
+  /**
+   * {@inheritdoc}
+   */
+  protected function processFields(ItemInterface $item, FileInterface $file): void {
+    parent::processFields($item, $file);
 
-    $type = $node->getType();
+    $this->processOriginalFile($item, $file);
+  }
 
-    if ($type !== 'news_item' && $type !== 'news_article') {
-      return;
-    }
+  /**
+   * Processes the original file field.
+   *
+   * @param \Drupal\search_api\Item\ItemInterface $item
+   *   The item to process.
+   * @param \Drupal\file\FileInterface $file
+   *   The file to process.
+   */
+  private function processOriginalFile(ItemInterface $item, FileInterface $file): void {
+    $fields = $this
+      ->getFieldsHelper()
+      ->filterForPropertyPath($item->getFields(), 'entity:node', 'main_image');
 
-    $image = $node->get('field_main_image')->entity;
-
-    if (!$image || !$image->hasField('field_media_image') || !$file = $image->get('field_media_image')->entity) {
-      return;
-    }
-
-    $imagePath = $file->getFileUri();
-    $imageStyles = [
-      '1.5_304w_203h' => '1248',
-      '1.5_294w_196h' => '992',
-      '1.5_220w_147h' => '768',
-      '1.5_176w_118h' => '576',
-      '1.5_511w_341h' => '320',
-      '1.5_608w_406w_LQ' => '1248_2x',
-      '1.5_588w_392h_LQ' => '992_2x',
-      '1.5_440w_294h_LQ' => '768_2x',
-      '1.5_352w_236h_LQ' => '576_2x',
-      '1.5_1022w_682h_LQ' => '320_2x',
+    $properties = [
+      'url' => $this->fileUrlGenerator->generateAbsoluteString($file->getFileUri()),
+      'size' => $file->getSize(),
+      'mime' => $file->getMimeType(),
     ];
 
-    $urls = [];
-    foreach ($imageStyles as $styleName => $breakpoint) {
-      $imageStyle = ImageStyle::load($styleName);
-      if ($imageStyle) {
-        $urls[$breakpoint] = $imageStyle->buildUrl($imagePath);
-      }
-    }
-
-    $fields = $this->getFieldsHelper()
-      ->filterForPropertyPath($item->getFields(), NULL, 'main_image_url');
     foreach ($fields as $field) {
-      $field->addValue(json_encode($urls));
+      $field->addValue(json_encode($properties));
     }
   }
 
