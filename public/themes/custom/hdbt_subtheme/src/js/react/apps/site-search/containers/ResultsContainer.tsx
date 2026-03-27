@@ -7,9 +7,13 @@ import AppSettings from '../enum/AppSettings';
 import useSearchQuery from '../hooks/useSearchQuery';
 import { queryAtom } from '../store';
 
-const ResultsContainer = () => {
+type ResultsContainerProps = {
+  bundle?: string;
+};
+
+const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const query = useAtomValue(queryAtom);
-  const { data, error, isLoading } = useSearchQuery(query);
+  const { data, error, isLoading } = useSearchQuery(query, bundle);
 
   if (query.length < AppSettings.MIN_QUERY_LENGTH) {
     return null;
@@ -39,18 +43,10 @@ const ResultsContainer = () => {
             url={item.url}
             title={item.title}
             description={item.description}
-            className='result-card--promoted'
+            cardModifierClass='result-card--promoted'
           />
         ))}
-      {hasResults &&
-        data.results.map((item) => (
-          <ResultCard
-            key={item.url}
-            url={item.url}
-            title={item.title}
-            entity_type={item.entity_type}
-          />
-        ))}
+      {hasResults && data.results.map((item) => <ResultCard key={item.url} url={item.url} title={item.title} />)}
     </div>
   );
 };
