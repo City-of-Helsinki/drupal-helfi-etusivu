@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Plugin\search_api\processor;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\search_api\Attribute\SearchApiProcessor;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Processor\ProcessorPluginBase;
@@ -12,18 +14,15 @@ use Drupal\search_api\Processor\ProcessorProperty;
 
 /**
  * Indexes uuid with langcode.
- *
- * @SearchApiProcessor(
- *   id = "uuid_langcode",
- *   label = @Translation("UUID Langcode"),
- *   description = @Translation("Indexes uuid and langcode for faster lookup"),
- *   stages = {
- *     "add_properties" = 0
- *   },
- *   locked = true,
- *   hidden = true,
- * )
  */
+#[SearchApiProcessor(
+  id: 'uuid_langcode',
+  label: new TranslatableMarkup('UUID Langcode'),
+  description: new TranslatableMarkup('Indexes uuid and langcode for faster lookup'),
+  stages: [
+    'add_properties' => 0,
+  ],
+)]
 final class UuidLangcode extends ProcessorPluginBase {
 
   /**
