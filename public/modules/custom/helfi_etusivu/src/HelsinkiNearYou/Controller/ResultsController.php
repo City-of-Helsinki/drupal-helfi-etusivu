@@ -43,7 +43,7 @@ final class ResultsController extends ControllerBase {
    *   A renderable array or redirect response.
    */
   public function content(Request $request): array|RedirectResponse {
-    $address = $request->query->get('q');
+    $address = $request->query->get('home_address');
 
     if (!$address) {
       $this->messenger()->addError($this->t('Please enter an address', [], ['context' => 'Helsinki near you']));
@@ -94,7 +94,7 @@ final class ResultsController extends ControllerBase {
       '#toc_title' => new TranslatableMarkup('On this page'),
       '#events_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_events', options: [
         'query' => [
-          'address' => $addressName,
+          'home_address' => $addressName,
         ],
       ]),
       '#events_section' => $this->buildEventsHtmxContainer($request, 3),
@@ -110,11 +110,11 @@ final class ResultsController extends ControllerBase {
       '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address, $langcode),
       '#roadwork_section' => $this->buildRoadworksHtmxContainer($request, 3),
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedback', options: [
-        'query' => ['q' => $addressName],
+        'query' => ['home_address' => $addressName],
       ]),
       '#feedback_section' => $this->buildFeedbackHtmxContainer($request, 3),
       '#cache' => [
-        'contexts' => ['url.query_args:q'],
+        'contexts' => ['url.query_args:home_address'],
         'tags' => ['roadwork_section'],
       ],
     ];
@@ -132,7 +132,7 @@ final class ResultsController extends ControllerBase {
    *   Render array.
    */
   public function buildServiceGroups(string $addressName, string $langcode) : array {
-    $addressQuery = ['address' => $addressName];
+    $addressQuery = ['home_address' => $addressName];
     $viewsAddressQuery = ['address_search' => $addressName];
 
     return [
@@ -171,7 +171,7 @@ final class ResultsController extends ControllerBase {
         'service_links' => [
           [
             'link_label' => $this->t('Ploughing schedule', [], ['context' => 'Helsinki near you']),
-            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PlowingSchedules, $addressQuery, $langcode),
+            'link_url' => $this->getInternalSearchLink(InternalSearchLink::PlowingSchedules, ['address' => $addressName], $langcode),
           ],
           [
             'link_label' => $this->t('Roadworks on the map', [], ['context' => 'Helsinki near you']),

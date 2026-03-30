@@ -199,7 +199,7 @@ final class RoadworkDataService implements RoadworkDataServiceInterface {
    */
   public function getSeeAllUrl(Address $address, string $langcode): Url {
     $options = [
-      'query' => ['q' => $address->streetName->getName($langcode)],
+      'query' => ['home_address' => $address->streetName->getName($langcode)],
     ];
     return Url::fromRoute('helfi_etusivu.helsinki_near_you_roadworks', [], $options);
   }
