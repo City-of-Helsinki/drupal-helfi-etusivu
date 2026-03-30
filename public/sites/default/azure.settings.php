@@ -15,8 +15,6 @@ $settings['php_storage']['twig']['secret'] = $settings['hash_salt'];
 $settings['file_chmod_directory'] = 16895;
 $settings['file_chmod_file'] = 16895;
 
-$config['system.performance']['cache']['page']['max_age'] = 86400;
-
 // Keep old assets for three months (default is one month).
 $config['system.performance']['stale_file_threshold'] = 7776000;
 

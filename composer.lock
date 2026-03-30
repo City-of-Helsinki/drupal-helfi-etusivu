@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa3cac9faa7fc3bba36943288aada885",
+    "content-hash": "a266a743ad762c49906b006afaa6f578",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4651,16 +4651,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.8.12",
+            "version": "dev-UHF-13066",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "f1f9a52edef5e52ea5b21380080ed0312631b15b"
+                "reference": "d036eab5058d2b226860f70a22ad1e5f994ae04b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/f1f9a52edef5e52ea5b21380080ed0312631b15b",
-                "reference": "f1f9a52edef5e52ea5b21380080ed0312631b15b",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/d036eab5058d2b226860f70a22ad1e5f994ae04b",
+                "reference": "d036eab5058d2b226860f70a22ad1e5f994ae04b",
                 "shasum": ""
             },
             "require": {
@@ -4702,10 +4702,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.12",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/UHF-13066",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2026-03-26T12:22:32+00:00"
+            "time": "2026-03-30T07:23:20+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -22338,6 +22338,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/helfi_api_base": 20,
         "drupal/helfi_drupal_tools": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5,
