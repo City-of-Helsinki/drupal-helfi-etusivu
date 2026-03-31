@@ -6,7 +6,6 @@ namespace Drupal\helfi_etusivu\Search\Controller;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Url;
 
@@ -14,8 +13,6 @@ use Drupal\Core\Url;
  * Site search controller.
  */
 final class SearchPageController extends ControllerBase implements ContainerInjectionInterface {
-
-  use AutowireTrait;
 
   /**
    * Constructs a new instance.
