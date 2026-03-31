@@ -2,16 +2,24 @@
 
 declare(strict_types=1);
 
-use Drupal\helfi_etusivu\Search\Controller\SearchPageController;
+namespace Drupal\helfi_etusivu\Search\Controller;
+
 use Drupal\KernelTests\KernelTestBase;
 
-class SearchPageControllerTest extends KernelTestBase  {
+/**
+ * Tests for SearchPageController.
+ */
+class SearchPageControllerTest extends KernelTestBase {
+
+  /**
+   * {@inheritdoc}
+   */
   protected static $modules = [
     'helfi_etusivu',
     'helfi_api_base',
     'helfi_search',
     'system',
-  ];  
+  ];
 
   /**
    * Tests that the search page content is rendered correctly.
