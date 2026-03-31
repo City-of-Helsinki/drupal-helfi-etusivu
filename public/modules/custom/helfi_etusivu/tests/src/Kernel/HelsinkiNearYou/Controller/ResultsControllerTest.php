@@ -124,7 +124,7 @@ class ResultsControllerTest extends KernelTestBase {
 
     // Should redirect when serviceMap instance returns NULL for address query.
     $request->query = new InputBag([
-      'q' => $badAddress,
+      'home_address' => $badAddress,
     ]);
     $this->serviceMap->expects(self::exactly(2))
       ->method('getAddressData')
@@ -146,7 +146,7 @@ class ResultsControllerTest extends KernelTestBase {
 
     // Should return build array when address checks out.
     $request->query = new InputBag([
-      'q' => $validAddress,
+      'home_address' => $validAddress,
     ]);
     $build = $this->controller->content($request);
 
