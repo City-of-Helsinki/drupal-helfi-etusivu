@@ -17,6 +17,7 @@ dependencies:
     - search_api.server.default
   module:
     - helfi_etusivu
+    - helfi_platform_config
     - helfi_react_search
     - helfi_recommendations
     - media
@@ -135,16 +136,13 @@ field_settings:
     dependencies:
       module:
         - node
-  main_image:
-    label: 'Main image: original file'
-    datasource_id: 'entity:node'
-    property_path: main_image
-    type: string
   main_image_url:
-    label: 'Main image: styles'
+    label: 'Main image: URL'
     datasource_id: 'entity:node'
     property_path: main_image_url
     type: string
+    configuration:
+      field_name: field_main_image
   name:
     label: Name
     datasource_id: 'entity:taxonomy_term'
@@ -303,7 +301,6 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   custom_value: {  }
-  district_image_absolute_url: {  }
   entity_status: {  }
   entity_type: {  }
   ignorecase:
@@ -318,7 +315,6 @@ processor_settings:
   language_with_fallback: {  }
   main_image_url: {  }
   project_execution_schedule: {  }
-  project_image_absolute_url: {  }
   project_plan_schedule: {  }
   rendered_item: {  }
   reverse_entity_references: {  }
