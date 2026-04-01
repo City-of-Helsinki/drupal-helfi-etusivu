@@ -67,7 +67,7 @@ abstract class SearchPageControllerBase extends HtmxController {
     $build = [
       '#theme' => 'helsinki_near_you_search_page',
       '#cache' => [
-        'contexts' => ['url.query_args:q', 'url.query_args:page'],
+        'contexts' => ['url.query_args:home_address', 'url.query_args:page'],
         'max-age' => 0,
       ],
       '#component_title' => $this->getTitle(),
@@ -76,7 +76,7 @@ abstract class SearchPageControllerBase extends HtmxController {
         ->getForm($this->getSearchForm()),
     ];
 
-    $address = $request->query->get('q');
+    $address = $request->query->get('home_address');
     if (!$address) {
       $build['#address_missing_message'] = $this->t(
         'Start by searching with your address.',
