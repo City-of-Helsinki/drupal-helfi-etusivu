@@ -12,6 +12,9 @@ const useSearchQuery = (query: string, bundle?: string) => {
   url?.searchParams.set('q', query);
   bundle && url?.searchParams.set('bundle', bundle);
 
+  // Use this model as default for now
+  url?.searchParams.set('model', 'text-embedding-3-large');
+
   const key = url?.toString() ?? null;
 
   return useSWR<SearchResponse>(key, fetcher, { revalidateOnFocus: false });
