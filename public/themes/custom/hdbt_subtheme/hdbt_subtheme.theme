@@ -159,6 +159,9 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
       $variables['#attached']['html_head'][] = [$feed_link, 'feed_link'];
       $variables['#attached']['drupalSettings']['helfi_news_archive']['feed_base_url'] = $feed_base_url;
     }
+
+    // Apply hakuvahti settings to expose them to the React frontend.
+    \Drupal::service(\Drupal\helfi_hakuvahti\DrupalSettings::class)->applyTo($variables);
   }
 }
 
