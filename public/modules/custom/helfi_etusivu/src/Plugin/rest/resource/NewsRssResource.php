@@ -182,14 +182,14 @@ final class NewsRssResource extends ResourceBase {
     $enclosure = NULL;
 
     // Main image is not required field.
-    if ($mainImage = $this->parseSourceValue('main_image', $result)) {
-      $mainImage = json_decode($mainImage, TRUE);
+    if ($mainImage = $this->parseSourceValue('main_image_url', $result)) {
+      $mainImage = json_decode($mainImage);
 
-      if (isset($mainImage['url'], $mainImage['size'], $mainImage['mime'])) {
+      if (isset($mainImage->original->url, $mainImage->original->size, $mainImage->original->mime)) {
         $enclosure = new RssEnclosure(
-          url: $mainImage['url'],
-          length: (int) $mainImage['size'],
-          type: $mainImage['mime'],
+          url: $mainImage->original->url,
+          length: (int) $mainImage->original->size,
+          type: $mainImage->original->mime,
         );
       }
     }
