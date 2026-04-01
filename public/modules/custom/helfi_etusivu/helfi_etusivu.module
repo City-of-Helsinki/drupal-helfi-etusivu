@@ -463,6 +463,10 @@ function helfi_etusivu_theme() : array {
         'message' => NULL,
       ],
     ],
+    'helfi_etusivu_site_search' => [
+      'variables' => [],
+      'template' => 'helfi-etusivu-site-search',
+    ],
   ];
 }
 
