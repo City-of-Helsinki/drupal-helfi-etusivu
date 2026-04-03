@@ -10,6 +10,7 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Routing\AccessAwareRouterInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\helfi_etusivu\NewsRss\DTO\RssEnclosure;
 use Drupal\helfi_etusivu\NewsRss\DTO\RssFeed;
 use Drupal\helfi_etusivu\NewsRss\DTO\RssItem;
 use Drupal\rest\Attribute\RestResource;
@@ -93,21 +94,17 @@ final class NewsRssResource extends ResourceBase {
   }
 
   /**
-   * Responds to GET requests.
-   *
-   * Returns a list of published news items in the current content language.
+   * Builds the elastic query for given parameters.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
+   * @param string $langcode
+   *   The langcode.
    *
-   * @return \Drupal\rest\ResourceResponse
-   *   The response containing RSS-serializable news item data.
+   * @return array
+   *   The elastic query.
    */
-  public function get(Request $request): ResourceResponse {
-    $langcode = $this->languageManager
-      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-      ->getId();
-
+  private function buildQuery(Request $request, string $langcode): array {
     $query = [
       'bool' => [
         'filter' => [
@@ -169,9 +166,60 @@ final class NewsRssResource extends ResourceBase {
       ];
     }
 
-    $currentPage = $request->query->get('page', 0);
+    return $query;
+  }
 
-    $results = [];
+  /**
+   * Creates an RSS item object.
+   *
+   * @param array $result
+   *   The elastic result.
+   *
+   * @return \Drupal\helfi_etusivu\NewsRss\DTO\RssItem
+   *   The RSS item.
+   */
+  private function createRssItem(array $result): RssItem {
+    $enclosure = NULL;
+
+    // Main image is not required field.
+    if ($mainImage = $this->parseSourceValue('main_image_url', $result)) {
+      $mainImage = json_decode($mainImage);
+
+      if (isset($mainImage->original->url, $mainImage->original->size, $mainImage->original->mime)) {
+        $enclosure = new RssEnclosure(
+          url: $mainImage->original->url,
+          length: (int) $mainImage->original->size,
+          type: $mainImage->original->mime,
+        );
+      }
+    }
+    return new RssItem(
+      title: $this->parseSourceValue('title', $result),
+      link: $this->parseSourceValue('url', $result),
+      description: $this->parseSourceValue('field_lead_in', $result),
+      pubDate: DrupalDateTime::createFromTimestamp($this->parseSourceValue('published_at', $result))->format('r'),
+      guid: $this->parseSourceValue('uuid', $result),
+      enclosure: $enclosure,
+    );
+  }
+
+  /**
+   * Responds to GET requests.
+   *
+   * Returns a list of published news items in the current content language.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
+   * @return \Drupal\rest\ResourceResponse
+   *   The response containing RSS-serializable news item data.
+   */
+  public function get(Request $request): ResourceResponse {
+    $langcode = $this->languageManager
+      ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
+      ->getId();
+
+    $currentPage = $request->query->get('page', 0);
 
     try {
       $results = $this->client->search([
@@ -181,7 +229,7 @@ final class NewsRssResource extends ResourceBase {
             '_score',
             ['published_at' => ['order' => 'desc']],
           ],
-          'query' => $query,
+          'query' => $this->buildQuery($request, $langcode),
           'size' => self::PAGE_SIZE,
           'from' => $currentPage * self::PAGE_SIZE,
         ],
@@ -199,13 +247,7 @@ final class NewsRssResource extends ResourceBase {
 
     $items = [];
     foreach ($results['hits']['hits'] ?? [] as $result) {
-      $items[] = new RssItem(
-        title: $this->parseSourceValue('title', $result),
-        link: $this->parseSourceValue('url', $result),
-        description: $this->parseSourceValue('field_lead_in', $result),
-        pubDate: DrupalDateTime::createFromTimestamp($this->parseSourceValue('published_at', $result))->format('r'),
-        guid: $this->parseSourceValue('uuid', $result),
-      );
+      $items[] = $this->createRssItem($result);
     }
 
     $feed = new RssFeed(

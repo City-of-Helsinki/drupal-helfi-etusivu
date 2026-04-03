@@ -15,6 +15,7 @@ final readonly class RssItem {
     public string $description,
     public string $pubDate,
     public string $guid,
+    public ?RssEnclosure $enclosure = NULL,
   ) {
   }
 
