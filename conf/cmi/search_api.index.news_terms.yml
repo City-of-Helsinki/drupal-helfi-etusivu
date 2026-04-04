@@ -7,6 +7,7 @@ dependencies:
     - search_api.server.default
   module:
     - helfi_etusivu
+    - helfi_platform_config
     - helfi_react_search
     - helfi_recommendations
     - taxonomy
