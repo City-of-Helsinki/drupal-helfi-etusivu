@@ -144,17 +144,29 @@ class NewsRssResourceTest extends KernelTestBase {
         );
       }
     }
+    // We index 45 documents in 3 languages. Allow indexing take
+    // up to ~120 seconds.
+    $this->validateElasticIndex(135, 60);
+  }
 
+  /**
+   * Validates that the elastic index is populated.
+   *
+   * @param int $expectedResults
+   *   The expected number of results.
+   * @param int $maxLoops
+   *   The maximum loops. Each loops takes ~2 seconds.
+   */
+  private function validateElasticIndex(int $expectedResults, int $maxLoops): void {
     // Elastic takes some time to index data. Make sure everything is up to
-    // date before running tests. Allow this run up to ~120 seconds.
-    for ($i = 1; $i <= 60; $i++) {
+    // date before running tests.
+    for ($i = 1; $i <= $maxLoops; $i++) {
       $response = $this->getElasticClient()->search([
         'index' => 'news_rss_test',
       ])->asArray();
       $hits = $response['hits']['total']['value'] ?? 0;
 
-      // We index 45 documents in 3 languages.
-      if ($hits === (3 * 45)) {
+      if ($hits === $expectedResults) {
         break;
       }
       sleep(2);
@@ -279,6 +291,8 @@ class NewsRssResourceTest extends KernelTestBase {
       neighbourhoods: [],
       groups: [],
     );
+    $this->validateElasticIndex(1, 5);
+
     $request = $this->getMockedRequest('/news/rss');
     $response = $this->processRequest($request);
 
@@ -400,6 +414,7 @@ class NewsRssResourceTest extends KernelTestBase {
       publishedAt: time(),
       language: 'en',
     );
+    $this->validateElasticIndex(3, 5);
 
     $request = $this->getMockedRequest('/news/rss');
     $response = $this->processRequest($request);
