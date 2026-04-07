@@ -194,11 +194,11 @@ final class NewsRssResource extends ResourceBase {
       }
     }
     return new RssItem(
-      title: $this->parseSourceValue('title', $result),
-      link: $this->parseSourceValue('url', $result),
-      description: $this->parseSourceValue('field_lead_in', $result),
+      title: (string) $this->parseSourceValue('title', $result),
+      link: (string) $this->parseSourceValue('url', $result),
+      description: (string) $this->parseSourceValue('field_lead_in', $result),
       pubDate: DrupalDateTime::createFromTimestamp($this->parseSourceValue('published_at', $result))->format('r'),
-      guid: $this->parseSourceValue('uuid', $result),
+      guid: (string) $this->parseSourceValue('uuid', $result),
       enclosure: $enclosure,
     );
   }
