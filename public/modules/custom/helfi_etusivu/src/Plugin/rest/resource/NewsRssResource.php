@@ -187,9 +187,9 @@ final class NewsRssResource extends ResourceBase {
 
       if (isset($mainImage->original->url, $mainImage->original->size, $mainImage->original->mime)) {
         $enclosure = new RssEnclosure(
-          url: $mainImage->original->url,
+          url: (string) $mainImage->original->url,
           length: (int) $mainImage->original->size,
-          type: $mainImage->original->mime,
+          type: (string) $mainImage->original->mime,
         );
       }
     }
@@ -197,7 +197,7 @@ final class NewsRssResource extends ResourceBase {
       title: (string) $this->parseSourceValue('title', $result),
       link: (string) $this->parseSourceValue('url', $result),
       description: (string) $this->parseSourceValue('field_lead_in', $result),
-      pubDate: DrupalDateTime::createFromTimestamp($this->parseSourceValue('published_at', $result))->format('r'),
+      pubDate: DrupalDateTime::createFromTimestamp((int) $this->parseSourceValue('published_at', $result))->format('r'),
       guid: (string) $this->parseSourceValue('uuid', $result),
       enclosure: $enclosure,
     );
