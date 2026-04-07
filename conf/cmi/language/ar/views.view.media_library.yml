@@ -3,7 +3,7 @@ display:
   default:
     display_title: الافتراضي
     display_options:
-      title: ميديا
+      title: وسائط
       fields:
         media_bulk_form:
           action_title: إجراء

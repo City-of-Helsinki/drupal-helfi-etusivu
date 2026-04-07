@@ -1,9 +1,9 @@
-label: ميديا
+label: وسائط
 display:
   default:
     display_title: الافتراضي
     display_options:
-      title: ميديا
+      title: وسائط
       fields:
         media_bulk_form:
           action_title: إجراء
@@ -11,6 +11,7 @@ display:
           label: 'النسخة المصغرة'
           separator: ', '
         name:
+          label: 'Media name'
           separator: ', '
         bundle:
           label: النوع
@@ -42,7 +43,7 @@ display:
             offset_label: الإزاحة
       exposed_form:
         options:
-          submit_button: انتقاء
+          submit_button: تصفية
           reset_button_label: 'إعادة الضبط'
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي
@@ -51,6 +52,9 @@ display:
         area_text_custom:
           content: 'لا توجد وسائط متاحة.'
       filters:
+        name:
+          expose:
+            label: 'Media name'
         bundle:
           expose:
             label: النوع
@@ -68,7 +72,7 @@ display:
           expose:
             label: اللغة
   media_page_list:
-    display_title: ميديا
+    display_title: وسائط
     display_options:
       menu:
-        title: ميديا
+        title: وسائط

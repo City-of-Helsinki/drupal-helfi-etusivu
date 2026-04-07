@@ -16,3 +16,11 @@ status_activated:
 status_blocked:
   subject: 'تفاصيل الحساب لـ [user:display-name] في [site:name] (محظور)'
   body: "[user:display-name],\r\n\r\nحسابك على [site:name] قد تم حظره.\r\n\r\n--  [site:name] فريق"
+status_canceled:
+  subject: 'Account details for [user:display-name] at [site:name] (canceled)'
+  body: |-
+    [user:display-name],
+
+    Your account on [site:name] has been canceled.
+
+    --  [site:name] team

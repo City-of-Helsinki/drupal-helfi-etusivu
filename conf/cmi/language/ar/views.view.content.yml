@@ -34,7 +34,7 @@ display:
             last: 'الأخيرة »'
       exposed_form:
         options:
-          submit_button: انتقاء
+          submit_button: تصفية
           reset_button_label: 'إعادة الضبط'
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي
@@ -57,8 +57,6 @@ display:
             group_items:
               1:
                 title: منشور
-              2:
-                title: 'غير منشور'
         langcode:
           expose:
             label: اللغة

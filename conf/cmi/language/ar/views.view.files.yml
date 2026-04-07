@@ -19,6 +19,8 @@ display:
             format_custom_true: دائم
         created:
           label: 'تاريخ التحميل'
+        changed:
+          label: 'Changed date'
         count:
           label: 'مستخدمة في'
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
@@ -33,7 +35,7 @@ display:
             offset_label: الإزاحة
       exposed_form:
         options:
-          submit_button: انتقاء
+          submit_button: تصفية
           reset_button_label: 'إعادة الضبط'
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي
