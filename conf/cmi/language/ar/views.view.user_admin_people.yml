@@ -6,6 +6,8 @@ display:
     display_options:
       title: الأشخاص
       fields:
+        user_bulk_form:
+          label: 'تحديث شامل'
         name:
           label: 'اسم المستخدم'
         status:
@@ -36,7 +38,7 @@ display:
             offset_label: الإزاحة
       exposed_form:
         options:
-          submit_button: انتقاء
+          submit_button: تصفية
           reset_button_label: 'إعادة الضبط'
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي

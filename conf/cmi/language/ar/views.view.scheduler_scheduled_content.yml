@@ -1,9 +1,10 @@
+label: Scheduled
 display:
   default:
     display_options:
       exposed_form:
         options:
-          submit_button: انتقاء
+          submit_button: تصفية
           reset_button_label: 'إعادة الضبط'
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي
@@ -59,9 +60,13 @@ display:
         langcode:
           expose:
             label: اللغة
+      title: Scheduled
     display_title: الرئيسي
   overview:
     display_options:
+      menu:
+        title: Scheduled
+        description: 'Content scheduled for publishing and unpublishing'
       tab_options:
         title: المحتوى
   user_page:

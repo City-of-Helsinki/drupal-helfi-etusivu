@@ -23,11 +23,11 @@ third_party_settings:
     unpublish_required: false
     unpublish_revision: false
 _core:
-  default_config_hash: cuG0V4bO6HUkRRqgqDE7_WXpGCWgHMCK3a4qCnj9CdU
+  default_config_hash: bZ4yM0pOYF3RJG0tmD95VDDTHsByefdvFPogyuMqS18
 name: 'News item'
 type: news_item
 description: 'Content type for news items.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false

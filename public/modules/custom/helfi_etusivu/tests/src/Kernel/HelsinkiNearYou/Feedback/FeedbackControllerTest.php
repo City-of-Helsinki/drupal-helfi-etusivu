@@ -52,7 +52,7 @@ class FeedbackControllerTest extends KernelTestBase {
    */
   public function testContentWithAddress() : void {
     $mockRequest = new Request([
-      'q' => 'Kotikatu 1',
+      'home_address' => 'Kotikatu 1',
     ]);
 
     $serviceMapMock = $this->prophesize(ServiceMapInterface::class);
