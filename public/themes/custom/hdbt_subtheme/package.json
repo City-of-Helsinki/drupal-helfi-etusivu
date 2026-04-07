@@ -16,6 +16,16 @@
     "format:js": "biome format --write src/js/",
     "lint": "npm-run-all --parallel lint:scss lint:js -s"
   },
+  "@comment dependencies": [
+    "The following packages were updated manually.",
+    "Remove this section once the dependencies have been updated in their respective upstream packages.",
+    {
+      "minimatch": ">=10.2.1, dependency of hds-core (eslint)"
+    }
+  ],
+  "overrides": {
+    "minimatch": "^10.2.1"
+  },
   "dependencies": {
     "@biomejs/biome": "^2.2.4",
     "@hdbt/theme-builder": "file:../../contrib/hdbt/theme-builder",
