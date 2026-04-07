@@ -102,13 +102,17 @@ class NewsRssResourceTest extends KernelTestBase {
     $this->getElasticClient()->indices()->create([
       'index' => 'news_rss_test',
     ]);
+  }
 
+  /**
+   * Populates the index with dummy data.
+   */
+  private function populateIndex(): void {
     $startTime = time();
 
     foreach (['fi', 'sv', 'en'] as $language) {
       for ($i = 1; $i <= 45; $i++) {
         $tags = $neighbourhoods = $groups = [];
-        $id = sprintf('entity:node/%d:%s', $i, $language);
 
         // Every second item should have a group with 302 term ID.
         if ($i % 2 === 0) {
@@ -126,23 +130,18 @@ class NewsRssResourceTest extends KernelTestBase {
         if ($i % 14 === 0) {
           $tags[] = 114;
         }
-
-        $this->getElasticClient()->index([
-          'index' => 'news_rss_test',
-          'id' => $id,
-          'body' => [
-            'title' => ["Title $language $i"],
-            'url' => ["https://app/$language/node/$i"],
-            'field_lead_in' => ["Description $language $i"],
-            'published_at' => [$startTime - $i],
-            'uuid' => [$this->container->get(UuidInterface::class)->generate()],
-            'search_api_language' => [$language],
-            'entity_type' => ['node'],
-            'news_tags' => $tags,
-            'neighbourhoods' => $neighbourhoods,
-            'news_groups' => $groups,
-          ],
-        ]);
+        $this->createElasticIndexItem(
+          sprintf('entity:node/%d:%s', $i, $language),
+          "Title $language $i",
+          "https://app/$language/node/$i",
+          "Description $language $i",
+          $startTime - $i,
+          $this->container->get(UuidInterface::class)->generate(),
+          $language,
+          $tags,
+          $neighbourhoods,
+          $groups,
+        );
       }
     }
 
@@ -160,6 +159,60 @@ class NewsRssResourceTest extends KernelTestBase {
       }
       sleep(2);
     }
+  }
+
+  /**
+   * Constructs a new Elastic item.
+   *
+   * @param string|null $id
+   *   The ID.
+   * @param string|null $title
+   *   The title.
+   * @param string|null $url
+   *   The URL.
+   * @param string|null $description
+   *   The description.
+   * @param int|null $publishedAt
+   *   The published at.
+   * @param string|null $uuid
+   *   The uuid.
+   * @param string|null $language
+   *   The language.
+   * @param array|null $tags
+   *   The tags.
+   * @param array|null $neighbourhoods
+   *   The neighbourhoods.
+   * @param array|null $groups
+   *   The groups.
+   */
+  protected function createElasticIndexItem(
+    ?string $id = NULL,
+    ?string $title = NULL,
+    ?string $url = NULL,
+    ?string $description = NULL,
+    ?int $publishedAt = NULL,
+    ?string $uuid = NULL,
+    ?string $language = NULL,
+    ?array $tags = NULL,
+    ?array $neighbourhoods = NULL,
+    ?array $groups = NULL,
+  ): void {
+    $this->getElasticClient()->index([
+      'index' => 'news_rss_test',
+      'id' => $id,
+      'body' => [
+        'title' => [$title],
+        'url' => [$url],
+        'field_lead_in' => [$description],
+        'published_at' => [$publishedAt],
+        'uuid' => [$uuid],
+        'search_api_language' => [$language],
+        'entity_type' => ['node'],
+        'news_tags' => $tags,
+        'neighbourhoods' => $neighbourhoods,
+        'news_groups' => $groups,
+      ],
+    ]);
   }
 
   /**
@@ -214,6 +267,18 @@ class NewsRssResourceTest extends KernelTestBase {
    */
   #[Test]
   public function testAccess(): void {
+    $this->createElasticIndexItem(
+      id: 'entity:node/1:en',
+      title: 'Title 1',
+      url: 'https://app',
+      description: '',
+      publishedAt: 0,
+      uuid: '123',
+      language: 'en',
+      tags: [],
+      neighbourhoods: [],
+      groups: [],
+    );
     $request = $this->getMockedRequest('/news/rss');
     $response = $this->processRequest($request);
 
@@ -231,6 +296,7 @@ class NewsRssResourceTest extends KernelTestBase {
    */
   #[Test]
   public function testPager(): void {
+    $this->populateIndex();
     $this->setUpCurrentUser(permissions: ['restful get helfi_etusivu_news_rss']);
 
     $itemNumber = 1;
@@ -264,6 +330,7 @@ class NewsRssResourceTest extends KernelTestBase {
    */
   #[Test]
   public function testFilters(): void {
+    $this->populateIndex();
     $this->setUpCurrentUser(permissions: ['restful get helfi_etusivu_news_rss']);
 
     $request = $this->getMockedRequest('/news/rss', parameters: ['keyword' => 'Description en']);
@@ -304,6 +371,40 @@ class NewsRssResourceTest extends KernelTestBase {
     $this->assertEquals(200, $response->getStatusCode());
     // Only one item should have group 303 AND topic 114.
     $this->assertEquals(1, $response->headers->get('X-Total-Count'));
+  }
+
+  /**
+   * Tests RSS with invalid elastic values.
+   */
+  public function testEmptyFieldValues(): void {
+    $this->setUpCurrentUser(permissions: ['restful get helfi_etusivu_news_rss']);
+    // Make sure we have at least one valid item so Elastic creates the correct
+    // field mapping.
+    $this->createElasticIndexItem(
+      id: 'entity:node/1:en',
+      title: 'Title 1',
+      url: 'https://app',
+      description: '',
+      publishedAt: 0,
+      uuid: '123',
+      language: 'en',
+      tags: [],
+      neighbourhoods: [],
+      groups: [],
+    );
+    // Create an empty elastic item, this should be completely ignored due to
+    // 'search_api_language' filter.
+    $this->createElasticIndexItem();
+    // Create an item with bare minimum values.
+    $this->createElasticIndexItem(
+      publishedAt: time(),
+      language: 'en',
+    );
+
+    $request = $this->getMockedRequest('/news/rss');
+    $response = $this->processRequest($request);
+    $this->assertEquals(200, $response->getStatusCode());
+    $this->assertEquals(2, $response->headers->get('X-Total-Count'));
   }
 
 }
