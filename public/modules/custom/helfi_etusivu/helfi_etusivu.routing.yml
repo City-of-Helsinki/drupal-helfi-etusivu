@@ -31,7 +31,7 @@ helfi_etusivu.site_search:
     _controller: '\Drupal\helfi_etusivu\Search\Controller\SearchPageController::content'
     _title: 'Search'
   requirements:
-    _permission: 'access content'
+    _role: 'authenticated'
 
 route_callbacks:
   - '\Drupal\helfi_etusivu\HelsinkiNearYou\Routing\RouteProvider::routes'
