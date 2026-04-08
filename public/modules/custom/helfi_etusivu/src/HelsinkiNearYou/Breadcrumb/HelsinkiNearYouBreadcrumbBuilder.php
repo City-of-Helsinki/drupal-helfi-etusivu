@@ -76,8 +76,10 @@ final class HelsinkiNearYouBreadcrumbBuilder implements BreadcrumbBuilderInterfa
         // On sub-pages, link back to results with address.
         $breadcrumb->addLink(Link::fromTextAndUrl(
           $text,
-          Url::fromRoute('helfi_etusivu.helsinki_near_you_results', [], [
+          // Javascript apps want to alter this link. Add id for targeting.
+          Url::fromRoute('helfi_etusivu.helsinki_near_you_results', options: [
             'query' => ['home_address' => $address],
+            'attributes' => ['id' => 'hny-address-breadcrumb'],
           ]),
         ));
         $breadcrumb->addLink(Link::createFromRoute($routeEnum->getTitle([]), '<none>'));
