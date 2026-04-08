@@ -50,6 +50,11 @@ display:
         name:
           expose:
             label: الاسم
+        bundle:
+          expose:
+            label: 'Media type'
+          group_info:
+            label: 'Media type'
         langcode:
           expose:
             label: اللغة

@@ -142,7 +142,7 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
       $variables['#attached']['drupalSettings']['helfi_react_search']['sentry_dsn_react'] = $sentry_dsn_react;
     }
 
-    $feed_base_url = Url::fromRoute('view.elastic_rss_feed.feed_1')->toString();
+    $feed_base_url = Url::fromRoute('rest.helfi_etusivu_news_rss.GET')->toString();
 
     if ($feed_base_url) {
       $feed_link = [

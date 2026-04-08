@@ -38,7 +38,7 @@ abstract class HtmxController extends ControllerBase {
    *   The address or NULL.
    */
   protected function getAddressForQuery(Request $request): ?Address {
-    if (!$address = $request->query->get('q')) {
+    if (!$address = $request->query->get('home_address')) {
       return NULL;
     }
     return $this->serviceMap->getAddressData(urldecode($address));
