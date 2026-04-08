@@ -17,6 +17,9 @@ display:
           label: عملیات
       pager:
         options:
+          tags:
+            first: First
+            last: Last
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'
