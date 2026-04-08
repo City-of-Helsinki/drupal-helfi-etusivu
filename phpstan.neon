@@ -9,7 +9,7 @@ parameters:
     - ./public/themes/custom
   excludePaths:
     - vendor
-  level: 3
+  level: 7
   treatPhpDocTypesAsCertain: false
   drupal:
     entityMapping:
