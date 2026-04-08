@@ -110,3 +110,27 @@ msgstr "Etäisyys"
 msgctxt "Helsinki near you"
 msgid "Something went wrong while getting the results. You may try searching again."
 msgstr "Tuloksien hakemisessa tapahtui virhe. Voit kokeilla hakea uudelleen."
+
+msgctxt "Hakuvahti confirm success"
+msgid "You will be notified of new search matches no more than once a day."
+msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä."
+
+msgctxt "Hakuvahti confirm success"
+msgid "You can cancel your subscription using the link sent with each notification."
+msgstr "Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+
+msgctxt "Hakuvahti confirm success"
+msgid "You can subscribe to new search alerts at any time. The alerts are valid for 12 months."
+msgstr "Hakuvahti on voimassa kuusi kuukautta."
+
+msgctxt "Hakuvahti already confirmed"
+msgid "You have already confirmed this search alert."
+msgstr "Olet jo vahvistanut tämän uutisten hakuvahdin."
+
+msgctxt "Hakuvahti already confirmed"
+msgid "You will receive email alerts about new search results up to once a day."
+msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä."
+
+msgctxt "Hakuvahti already confirmed"
+msgid "Each email contains an unsubscribe link that you can use to unsubscribe from saved search alerts. You can save a new search at any time."
+msgstr "Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
