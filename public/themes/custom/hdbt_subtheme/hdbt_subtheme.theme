@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\helfi_hakuvahti\DrupalSettings;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -161,7 +162,7 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
     }
 
     // Apply hakuvahti settings to expose them to the React frontend.
-    \Drupal::service(\Drupal\helfi_hakuvahti\DrupalSettings::class)->applyTo($variables);
+    \Drupal::service(DrupalSettings::class)->applyTo($variables);
   }
 }
 
