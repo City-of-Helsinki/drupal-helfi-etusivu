@@ -57,6 +57,8 @@ display:
             group_items:
               1:
                 title: Опубліковано
+              2:
+                title: Неопубліковано
         langcode:
           expose:
             label: Мова

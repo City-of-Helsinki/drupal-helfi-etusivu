@@ -57,6 +57,8 @@ display:
             group_items:
               1:
                 title: Avaldatud
+              2:
+                title: Avaldamata
         langcode:
           expose:
             label: Keel
