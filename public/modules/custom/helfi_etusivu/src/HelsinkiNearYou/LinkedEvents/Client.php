@@ -35,6 +35,9 @@ final readonly class Client {
    *
    * @return string
    *   Resulting api url with params a query string
+   *
+   * @throws \InvalidArgumentException
+   *   If the all_ongoing_AND filter is used.
    */
   public static function getUri(string $langcode, array $options, int $pageSize) : string {
     $defaultOptions = [
@@ -51,8 +54,13 @@ final readonly class Client {
 
     $options = array_merge($defaultOptions, $options);
 
-    if (!isset($options['all_ongoing_AND'])) {
-      $options['all_ongoing'] = 'true';
+    // Filter ongoing events for Helsinki.
+    $options['ongoing'] = 'true';
+    $options['division'] = 'kunta:helsinki';
+
+    // Do not allow the all_ongoing_AND filter.
+    if (isset($options['all_ongoing_AND'])) {
+      throw new \InvalidArgumentException('The all_ongoing_AND filter is not allowed. Use full_text instead.');
     }
 
     // Linked events URLs should end with '/' (URLs without '/' are redirect).
