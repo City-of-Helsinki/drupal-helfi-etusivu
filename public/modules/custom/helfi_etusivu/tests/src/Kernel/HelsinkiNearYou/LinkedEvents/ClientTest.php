@@ -51,7 +51,17 @@ class ClientTest extends KernelTestBase {
    */
   public function testGetUri() : void {
     $sut = $this->container->get(Client::class);
-    $this->assertEquals('https://api.hel.fi/linkedevents/v1/event/?event_type=General&format=json&include=keywords%2Clocation&page=1&page_size=5&sort=end_time&start=now&super_event_type=umbrella%2Cnone&language=en&all_ongoing=true', $sut->getUri('en', [], 5));
+    $this->assertEquals('https://api.hel.fi/linkedevents/v1/event/?event_type=General&format=json&include=keywords%2Clocation&page=1&page_size=5&sort=end_time&start=now&super_event_type=umbrella%2Cnone&language=en&ongoing=true&division=kunta%3Ahelsinki', $sut->getUri('en', [], 5));
+  }
+
+  /**
+   * Tests that all_ongoing_AND is rejected in getUri().
+   */
+  public function testGetUriRejectsAllOngoingAndFilter() : void {
+    $sut = $this->container->get(Client::class);
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage('The all_ongoing_AND filter is not allowed. Use full_text instead.');
+    $sut->getUri('fi', ['all_ongoing_AND' => 'true'], 5);
   }
 
 }
