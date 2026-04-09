@@ -18,6 +18,8 @@ display:
       pager:
         options:
           tags:
+            next: Next
+            previous: Previous
             first: First
             last: Last
           expose:
