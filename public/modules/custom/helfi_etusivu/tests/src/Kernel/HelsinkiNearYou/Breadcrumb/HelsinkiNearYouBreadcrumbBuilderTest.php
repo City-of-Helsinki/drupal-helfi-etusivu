@@ -57,23 +57,23 @@ class HelsinkiNearYouBreadcrumbBuilderTest extends KernelTestBase {
     $this->assertCount($expectedLinkCount, $links);
 
     // This link is injected by helfi_platform_config_system_breadcrumb_alter.
-    $this->assertEquals('Front page', (string) $links[0]->getText());
+    $this->assertEquals('Front page', $links[0]->getText());
     $this->assertEquals('<front>', $links[0]->getUrl()->getRouteName());
 
-    $this->assertEquals('Helsinki near you', (string) $links[1]->getText());
+    $this->assertEquals('Helsinki near you', $links[1]->getText());
 
     if ($expectedLinkCount > 2) {
       $this->assertEquals('helfi_etusivu.helsinki_near_you', $links[1]->getUrl()->getRouteName());
 
       // Address link should point to results page with query parameter.
-      $this->assertStringContainsString('Kalevankatu 2', (string) $links[2]->getText());
+      $this->assertStringContainsString('Kalevankatu 2', $links[2]->getText());
     }
 
     if ($expectedLinkCount > 3) {
       $this->assertEquals('helfi_etusivu.helsinki_near_you_results', $links[2]->getUrl()->getRouteName());
       $this->assertEquals('Kalevankatu 2', $links[2]->getUrl()->getOption('query')['home_address']);
 
-      $this->assertNotEmpty((string) $links[3]->getText());
+      $this->assertNotEmpty($links[3]->getText());
     }
 
     // Last link should always be the current page.
@@ -87,6 +87,9 @@ class HelsinkiNearYouBreadcrumbBuilderTest extends KernelTestBase {
 
   /**
    * Data provider for all pages.
+   *
+   * @return array<mixed>
+   *   Test data.
    */
   public static function pagesProvider(): array {
     return [
