@@ -39,7 +39,11 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
-    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+    <form
+      className='hdbt-search--react__form-container hdbt-search--react__form-container--site-search'
+      role='search'
+      onSubmit={onSubmit}
+    >
       <SearchInput
         label={Drupal.t('Keyword or a question', {}, { context: 'Site search' })}
         value={inputValue}
@@ -48,7 +52,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
         className='hdbt-search--react__input'
       />
       {withBundleFilters && (
-        <div>
+        <div className='hdbt-search--react__filters-container hdbt-search--react__filters-container--site-search'>
           <Accordion
             border
             card
@@ -79,7 +83,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
               </Button>
             </div>
           </Accordion>
-          <p>
+          <p className='hdbt-search--react__disclaimer'>
             {Drupal.t('The search uses artificial intelligence.', {}, { context: 'Site search' })}&nbsp;
             <a href='https://www.hel.fi'>
               {Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}

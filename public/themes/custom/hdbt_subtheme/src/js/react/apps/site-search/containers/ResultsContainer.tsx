@@ -48,7 +48,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   }
 
   return (
-    <div className='react-search__results'>
+    <div className='hdbt-search--react__results hdbt-search--react__results--site-search'>
       <ResultsHeader
         resultText={Drupal.formatPlural(
           total,

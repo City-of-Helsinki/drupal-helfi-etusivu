@@ -1,0 +1,29 @@
+.hdbt-search--react__form-container--site-search {
+  max-width: 588px; // As in the designs
+}
+
+.hdbt-search--react__filters-container--site-search {
+  margin-block-start: $spacing;
+  overflow: hidden;
+}
+
+.hdbt-search--react__results--site-search {
+  max-width: $content-width-max;
+}
+
+.hdbt-search--react__disclaimer {
+  margin-block-end: $spacing-double;
+}
+
+.card--site-search {
+  border-top: 1px solid $color-black-20;
+  padding-inline: 0;
+
+  &:last-child {
+    border-bottom: 1px solid $color-black-20;
+  }
+}
+
+.card--site-search + .card--site-search {
+  margin-block-start: 0;
+}

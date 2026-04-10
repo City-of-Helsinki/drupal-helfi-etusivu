@@ -4,16 +4,15 @@ type ResultCardProps = {
   url: string;
   title: string;
   description?: string;
-  cardModifierClass?: string;
 };
 
-const ResultCard = ({ url, title, description, cardModifierClass }: ResultCardProps) => (
+const ResultCard = ({ url, title, description }: ResultCardProps) => (
   <CardItem
     cardTitle={title}
     cardUrl={url}
     cardDescription={description}
-    cardModifierClass={cardModifierClass}
-    cardTitleLevel={4}
+    cardModifierClass={'card--site-search'}
+    cardTitleLevel={3}
   />
 );
 
