@@ -51,7 +51,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
         <div>
           <Accordion
             border
-            card 
+            card
             className='hdbt-search--react__filters'
             heading={Drupal.t('Refine search results', {}, { context: 'Site search' })}
             headingLevel={2}
@@ -62,7 +62,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
             <fieldset className='hdbt-search--react__filters__checkboxes'>
               <legend className='hdbt-search--react__filters__checkboxes-legend'>
                 {Drupal.t('Show only', {}, { context: 'Site search' })}
-              </legend> 
+              </legend>
               {BUNDLE_OPTIONS.map(({ value }) => (
                 <Checkbox
                   key={value}
@@ -81,7 +81,9 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
           </Accordion>
           <p>
             {Drupal.t('The search uses artificial intelligence.', {}, { context: 'Site search' })}&nbsp;
-            <a href="#">{Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}</a>
+            <a href='https://www.hel.fi'>
+              {Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}
+            </a>
           </p>
         </div>
       )}
