@@ -306,8 +306,8 @@ msgid "No feedback was found near address @address"
 msgstr "Palautteita ei löytynyt osoitteella @address"
 
 msgctxt "Helsinki near you"
-msgid "Tulokset osoitteella @address"
-msgstr "Results for @address"
+msgid "Results for @address"
+msgstr "Tulokset osoitteella @address"
 
 msgid "Arabic"
 msgstr "Arabia"
