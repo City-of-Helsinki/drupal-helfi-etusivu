@@ -7,6 +7,7 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Breadcrumb;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Breadcrumb\ChainBreadcrumbBuilderInterface;
 use Drupal\Core\Routing\RouteMatch;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_api_base\Environment\EnvironmentEnum;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
@@ -66,7 +67,9 @@ class HelsinkiNearYouBreadcrumbBuilderTest extends KernelTestBase {
       $this->assertEquals('helfi_etusivu.helsinki_near_you', $links[1]->getUrl()->getRouteName());
 
       // Address link should point to results page with query parameter.
-      $this->assertStringContainsString('Kalevankatu 2', $links[2]->getText());
+      $addressLinkText = $links[2]->getText();
+      $this->assertInstanceOf(TranslatableMarkup::class, $addressLinkText);
+      $this->assertStringContainsString('Kalevankatu 2', (string) $addressLinkText);
     }
 
     if ($expectedLinkCount > 3) {
