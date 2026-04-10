@@ -299,8 +299,8 @@ msgid "No feedback was found near address @address"
 msgstr "Inga responser hittades på adressen @address"
 
 msgctxt "Helsinki near you"
-msgstr "Results for @address"
 msgid "Resultat för @address"
+msgstr "Results for @address"
 
 msgid "Hiding the page"
 msgstr "Schemalagd döljning"
