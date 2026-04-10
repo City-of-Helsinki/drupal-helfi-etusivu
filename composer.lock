@@ -4534,16 +4534,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.16.61",
+            "version": "6.16.62",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "036385b6a8b566fc2e067568b0fea90655bc9d49"
+                "reference": "73e3876d5850392035d1567237fb7bcaaead6086"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/036385b6a8b566fc2e067568b0fea90655bc9d49",
-                "reference": "036385b6a8b566fc2e067568b0fea90655bc9d49",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/73e3876d5850392035d1567237fb7bcaaead6086",
+                "reference": "73e3876d5850392035d1567237fb7bcaaead6086",
                 "shasum": ""
             },
             "require": {
@@ -4562,10 +4562,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.61",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.62",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-04-09T16:24:34+00:00"
+            "time": "2026-04-10T08:05:14+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -9502,12 +9502,12 @@
             "version": "v7.0.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/firebase/php-jwt.git",
+                "url": "https://github.com/googleapis/php-jwt.git",
                 "reference": "47ad26bab5e7c70ae8a6f08ed25ff83631121380"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/47ad26bab5e7c70ae8a6f08ed25ff83631121380",
+                "url": "https://api.github.com/repos/googleapis/php-jwt/zipball/47ad26bab5e7c70ae8a6f08ed25ff83631121380",
                 "reference": "47ad26bab5e7c70ae8a6f08ed25ff83631121380",
                 "shasum": ""
             },
@@ -9556,8 +9556,8 @@
                 "php"
             ],
             "support": {
-                "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v7.0.5"
+                "issues": "https://github.com/googleapis/php-jwt/issues",
+                "source": "https://github.com/googleapis/php-jwt/tree/v7.0.5"
             },
             "time": "2026-04-01T20:38:03+00:00"
         },
