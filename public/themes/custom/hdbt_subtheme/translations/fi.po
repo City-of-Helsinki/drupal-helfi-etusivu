@@ -110,3 +110,45 @@ msgstr "Etäisyys"
 msgctxt "Helsinki near you"
 msgid "Something went wrong while getting the results. You may try searching again."
 msgstr "Tuloksien hakemisessa tapahtui virhe. Voit kokeilla hakea uudelleen."
+
+msgctxt "Site search"
+msgid "Keyword or a question"
+msgstr "Hakusana tai kysymys"
+
+msgctxt "Site search"
+msgid "Refine search results"
+msgstr "Rajaa hakutuloksia"
+
+msgctxt "Site search"
+msgid "Show only"
+msgstr "Näytä vain"
+
+msgctxt "Site search"
+msgid "News"
+msgstr "Uutiset"
+
+msgctxt "Site search"
+msgid "Pages"
+msgstr "Perussivut"
+
+msgctxt "Site search"
+msgid "Landing pages"
+msgstr "Laskeutumissivut"
+
+msgctxt "Site search"
+msgid "Refine search"
+msgstr "Rajaa hakua"
+
+msgctxt "Site search"
+msgid "The search uses artificial intelligence."
+msgstr "Haku käyttää tekoälyä."
+
+msgctxt "Site search"
+msgid "Read more from the artificial intelligence register."
+msgstr "Lue lisää tekoälyrekisteristä."
+
+msgctxt "Site search"
+msgid "@count search result"
+msgid_plural "@count search results"
+msgstr[0] "@count hakutulos"
+msgstr[1] "@count hakutulosta"

@@ -29,7 +29,7 @@ helfi_etusivu.site_search:
   path: '/search/new'
   defaults:
     _controller: '\Drupal\helfi_etusivu\Search\Controller\SearchPageController::content'
-    _title: 'Search'
+    _title_callback: '\Drupal\helfi_etusivu\Search\Controller\SearchPageController::getTitle'
   requirements:
     _role: 'authenticated'
 

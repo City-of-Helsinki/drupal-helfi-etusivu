@@ -379,3 +379,7 @@ msgstr "Hakunosto näytetään jos haku sisältää jonkin näistä asiasanoista
 
 msgid "News"
 msgstr "Uutiset"
+
+msgctxt "Site search"
+msgid "Search in the website"
+msgstr "Hae sivustolta"
