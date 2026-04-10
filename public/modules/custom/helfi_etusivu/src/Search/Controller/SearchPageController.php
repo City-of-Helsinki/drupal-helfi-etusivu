@@ -50,4 +50,11 @@ final class SearchPageController extends ControllerBase implements ContainerInje
     ];
   }
 
+  /**
+   * Returns the title.
+   */
+  public function getTitle(): string {
+    return (string) $this->t('Search in the website', [], ['context' => 'Site search']);
+  }
+
 }

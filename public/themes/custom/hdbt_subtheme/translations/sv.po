@@ -110,3 +110,46 @@ msgstr "Avstånd"
 msgctxt "Helsinki near you"
 msgid "Something went wrong while getting the results. You may try searching again."
 msgstr "Något gick fel när resultaten skulle hämtas. Du kan försöka söka igen."
+
+
+msgctxt "Site search"
+msgid "Keyword or a question"
+msgstr "Sökord eller fråga"
+
+msgctxt "Site search"
+msgid "Refine search results"
+msgstr "Begränsa sökresultaten"
+
+msgctxt "Site search"
+msgid "Show only"
+msgstr "Visa endast"
+
+msgctxt "Site search"
+msgid "News"
+msgstr "Nyheter"
+
+msgctxt "Site search"
+msgid "Pages"
+msgstr "Grundläggande sidor"
+
+msgctxt "Site search"
+msgid "Landing pages"
+msgstr "Landningssidor"
+
+msgctxt "Site search"
+msgid "Refine search"
+msgstr "Begränsa sökningen"
+
+msgctxt "Site search"
+msgid "The search uses artificial intelligence."
+msgstr "Sökningen använder artificiell intelligens."
+
+msgctxt "Site search"
+msgid "Read more from the artificial intelligence register."
+msgstr "Läs mer i registret för artificiell intelligens."
+
+msgctxt "Site search"
+msgid "@count search result"
+msgid_plural "@count search results"
+msgstr[0] "@count sökresultat"
+msgstr[1] "@count sökresultat"
