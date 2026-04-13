@@ -56,19 +56,24 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
           <Accordion
             border
             card
-            className='hdbt-search--react__filters'
+            className='hdbt-search--react__filters hdbt-search--react__filters--site-search'
             heading={Drupal.t('Refine search results', {}, { context: 'Site search' })}
             headingLevel={2}
             initiallyOpen={false}
             language={window.drupalSettings.path.currentLanguage || 'fi'}
             size={AccordionSize.Small}
+            theme={{
+              '--padding-horizontal': 'var(--spacing-s)',
+              '--header-outline-color-focus': 'var(--color-black-90)',
+            }}
           >
-            <fieldset className='hdbt-search--react__filters__checkboxes'>
-              <legend className='hdbt-search--react__filters__checkboxes-legend'>
+            <fieldset className='hdbt-search--react__filters__fieldset'>
+              <legend className='hdbt-search--react__filters__fieldset-legend'>
                 {Drupal.t('Show only', {}, { context: 'Site search' })}
               </legend>
               {BUNDLE_OPTIONS.map(({ value }) => (
                 <Checkbox
+                  className='hdbt-search--react__filters__checkbox'
                   key={value}
                   id={`site-search-bundle-${value}`}
                   label={bundleLabels[value]}
@@ -83,7 +88,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
               </Button>
             </div>
           </Accordion>
-          <p className='hdbt-search--react__disclaimer'>
+          <p className='hdbt-search--react__site-search-disclaimer'>
             {Drupal.t('The search uses artificial intelligence.', {}, { context: 'Site search' })}&nbsp;
             <a href='https://www.hel.fi'>
               {Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}
