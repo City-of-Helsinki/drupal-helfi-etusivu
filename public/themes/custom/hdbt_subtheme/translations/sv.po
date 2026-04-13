@@ -153,3 +153,7 @@ msgid "@count search result"
 msgid_plural "@count search results"
 msgstr[0] "@count sökresultat"
 msgstr[1] "@count sökresultat"
+
+msgctxt "Site search"
+msgid "Published"
+msgstr "Publicerad"

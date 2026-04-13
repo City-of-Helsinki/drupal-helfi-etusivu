@@ -69,7 +69,10 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
             cardModifierClass='result-card--promoted'
           />
         ))}
-      {resultsCount > 0 && data.results.map((item) => <ResultCard key={item.url} url={item.url} title={item.title} />)}
+      {resultsCount > 0 &&
+        data.results.map((item) => (
+          <ResultCard key={item.url} url={item.url} title={item.title} bundle={item.bundle} />
+        ))}
     </div>
   );
 };

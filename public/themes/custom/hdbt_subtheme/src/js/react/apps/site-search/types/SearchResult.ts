@@ -1,6 +1,7 @@
 type SearchResult = {
   score: number;
   entity_type: string;
+  bundle: string;
   url: string;
   title: string;
   language: string;
