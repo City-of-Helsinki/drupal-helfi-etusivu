@@ -134,3 +134,7 @@ msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päiväs
 msgctxt "Hakuvahti already confirmed"
 msgid "Each email contains an unsubscribe link that you can use to unsubscribe from saved search alerts. You can save a new search at any time."
 msgstr "Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+
+msgctxt "News search monitor"
+msgid "You have not selected any search criteria. You will be notified of all the latest news."
+msgstr "Et ole valinnut yhtään hakuehtoa. Saat tiedon kaikista uusista uutisista."

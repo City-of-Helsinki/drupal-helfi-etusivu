@@ -134,3 +134,7 @@ msgstr "Du får information om nya träffar till din e-post högst en gång per 
 msgctxt "Hakuvahti already confirmed"
 msgid "Each email contains an unsubscribe link that you can use to unsubscribe from saved search alerts. You can save a new search at any time."
 msgstr "Du kan avsluta din beställning via en länk som finns i varje meddelande."
+
+msgctxt "News search monitor"
+msgid "You have not selected any search criteria. You will be notified of all the latest news."
+msgstr "Du har inte valt några sökvillkor. Du får information om alla nya nyheter."
