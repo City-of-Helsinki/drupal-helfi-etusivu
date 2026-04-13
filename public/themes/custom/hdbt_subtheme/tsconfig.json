@@ -1,4 +1,5 @@
 {
+  "extends": "../../contrib/hdbt/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -9,22 +10,8 @@
       "react-dom": ["../../contrib/hdbt/node_modules/react-dom"],
       "react-dom/*": ["../../contrib/hdbt/node_modules/react-dom/*"]
     },
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "module": "esnext",
     "moduleResolution": "node",
-    "noEmit": false,
-    "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/js/types",
