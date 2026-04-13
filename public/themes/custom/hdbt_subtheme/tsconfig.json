@@ -8,13 +8,12 @@
       "react": ["../../contrib/hdbt/node_modules/react"],
       "react/*": ["../../contrib/hdbt/node_modules/react/*"],
       "react-dom": ["../../contrib/hdbt/node_modules/react-dom"],
-      "react-dom/*": ["../../contrib/hdbt/node_modules/react-dom/*"]
+      "react-dom/*": ["../../contrib/hdbt/node_modules/react-dom/*"],
+      "*": ["node_modules/*", "../../contrib/hdbt/node_modules/*"]
     },
     "downlevelIteration": true,
     "moduleResolution": "node",
     "typeRoots": [
-      "./node_modules/@types",
-      "./src/js/types",
       "../../contrib/hdbt/node_modules/@types",
       "../../contrib/hdbt/src/js/types"
     ]
