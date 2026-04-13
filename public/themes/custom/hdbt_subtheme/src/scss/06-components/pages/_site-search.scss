@@ -7,12 +7,47 @@
   overflow: hidden;
 }
 
-.hdbt-search--react__results--site-search {
-  max-width: $content-width-max;
+.hdbt-search--react__filters--site-search {
+  [role='heading'] button:focus {
+    outline-offset: $spacing-quarter;
+  }
+
+  .hdbt-search--react__filters__fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hdbt-search--react__filters__fieldset-legend {
+    font-weight: 500;
+    margin-block-end: $spacing;
+  }
+
+  .hdbt-search--react__filters__checkbox:not(:first-of-type) {
+    margin-block-start: $spacing;
+  }
+
+  .hdbt-search--react__submit {
+    width: 100%;
+  }
+
+  .hdbt-search--react__submit-button {
+    margin-block-end: 0;
+  }
 }
 
-.hdbt-search--react__disclaimer {
+.hdbt-search--react__site-search-disclaimer {
   margin-block-end: $spacing-double;
+
+  a:focus {
+    outline: 2px solid $color-black-90;
+    outline-offset: 2px;
+  }
+}
+
+
+.hdbt-search--react__results--site-search {
+  max-width: $content-width-max;
 }
 
 .card--site-search {
