@@ -36,6 +36,20 @@ export const submitNewsSearchAtom = atom(null, (get, set) => {
   window.history.pushState({}, '', newUrl);
 });
 
+export const removeBundleAtom = atom(null, (get, set, bundle: string) => {
+  const newBundles = get(committedBundlesAtom).filter((b) => b !== bundle);
+
+  set(stagedBundlesAtom, newBundles);
+  set(committedBundlesAtom, newBundles);
+
+  const newUrl = new URL(window.location.toString());
+  newBundles.length > 0
+    ? newUrl.searchParams.set('bundles', newBundles.join(','))
+    : newUrl.searchParams.delete('bundles');
+
+  window.history.pushState({}, '', newUrl);
+});
+
 export const activeTabAtom = atom<number>(initialNewsFilter ? 1 : 0);
 
 export const setActiveTabAtom = atom(null, (_get, set, tabIndex: number) => {
