@@ -68,7 +68,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     return <ResultsError error={error} className={resultsClassName} />;
   }
 
-  if (!total) {
+  if (!data || !total) {
     return <ResultsEmpty />;
   }
 
