@@ -75,9 +75,7 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
   }
 
   .card__metas {
-    @include breakpoint($breakpoint-m) {
-      margin-block-start: $spacing-and-half;
-    }
+    margin-block-start: $spacing-half;
   }
 
   .card__meta {
