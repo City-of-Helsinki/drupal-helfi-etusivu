@@ -7,6 +7,12 @@ type FormContainerProps = {
   withBundleFilters?: boolean;
 };
 
+const AI_REGISTER_URLS: Record<string, string> = {
+  fi: 'https://www.hel.fi/fi/',
+  sv: 'https://www.hel.fi/sv/',
+  en: 'https://www.hel.fi/en/',
+};
+
 const BUNDLE_OPTIONS = [
   { value: 'news_item' as const },
   { value: 'page' as const },
@@ -18,6 +24,9 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const [stagedBundles, setStagedBundles] = useAtom(stagedBundlesAtom);
   const submitAll = useSetAtom(submitAllSearchAtom);
   const submitNews = useSetAtom(submitNewsSearchAtom);
+
+  const lang = drupalSettings?.path?.currentLanguage ?? 'en';
+  const aiRegisterUrl = AI_REGISTER_URLS[lang] ?? AI_REGISTER_URLS.en;
 
   const toggleBundle = (value: string, checked: boolean) =>
     setStagedBundles(checked ? [...stagedBundles, value] : stagedBundles.filter((b) => b !== value));
@@ -90,7 +99,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
           </Accordion>
           <p className='hdbt-search--react__site-search-disclaimer'>
             {Drupal.t('The search uses artificial intelligence.', {}, { context: 'Site search' })}&nbsp;
-            <a href='https://www.hel.fi'>
+            <a href={aiRegisterUrl}>
               {Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}
             </a>
           </p>

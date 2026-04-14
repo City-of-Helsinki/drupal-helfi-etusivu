@@ -7,6 +7,7 @@
   overflow: hidden;
 }
 
+// Filters that are in the fieldset element.
 .hdbt-search--react__filters--site-search {
   [role='heading'] button:focus {
     outline-offset: $spacing-quarter;
@@ -36,6 +37,7 @@
   }
 }
 
+// Disclaimer text that comes before the results.
 .hdbt-search--react__site-search-disclaimer {
   margin-block-end: $spacing-double;
 
@@ -45,11 +47,11 @@
   }
 }
 
-
 .hdbt-search--react__results--site-search {
   max-width: $content-width-max;
 }
 
+// Card design used in site search results.
 .card--site-search {
   border-top: 1px solid $color-black-20;
   padding-inline: 0;
@@ -86,4 +88,53 @@
 
 .card--site-search + .card--site-search {
   margin-block-start: 0;
+}
+
+// Notification with links to external services that comes in the middle of results.
+.hdbt-search--react__results--site-search .notification--site-search {
+  margin-block: $spacing-and-half;
+  overflow: visible;
+  
+  &::before {
+    background-color: $color-black-20;
+    content:"";
+    display: block;
+    height: 1px;
+    left: -$spacing-half;
+    position: absolute;
+    right: 0;
+    top: -$spacing-and-half;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint($breakpoint-m) {
+      column-gap: $spacing;
+      display: flex;
+    }
+  }
+
+  li {
+    margin-block-end: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      margin-block: 0;
+    }
+    
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  a {
+    @include font('small');
+    
+    &:focus {
+      outline: 2px solid $color-black-90;
+      outline-offset: 2px;
+    }
+  }
 }

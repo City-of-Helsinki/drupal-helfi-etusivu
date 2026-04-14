@@ -7,11 +7,12 @@ type ResultCardProps = {
   description?: string;
   bundle?: string;
   publishDate?: string;
+  cardModifierClass?: string;
 };
 
 const DESCRIPTION_PLACEHOLDER =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-const DATE_PLACEHOLDER = '1.1.2000';
+const DATE_PLACEHOLDER = 'DD.MM.YYYY';
 const PUBLISH_DATE_PLACEHOLDER = '2000-01-01';
 
 const isOlderThanOneYear = (isoDate: string): boolean => {
@@ -26,6 +27,7 @@ const ResultCard = ({
   description = DESCRIPTION_PLACEHOLDER,
   bundle,
   publishDate = PUBLISH_DATE_PLACEHOLDER,
+  cardModifierClass,
 }: ResultCardProps) => {
   const isNewsItem = bundle === 'news_item';
   const isOutdated = isNewsItem && isOlderThanOneYear(publishDate);
@@ -35,7 +37,7 @@ const ResultCard = ({
       cardTitle={title}
       cardUrl={url}
       cardDescription={description}
-      cardModifierClass={'card--site-search'}
+      cardModifierClass={cardModifierClass}
       cardTitleLevel={3}
       {...(isNewsItem && {
         date: DATE_PLACEHOLDER,
