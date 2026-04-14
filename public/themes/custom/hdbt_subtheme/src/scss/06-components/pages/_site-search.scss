@@ -1,4 +1,8 @@
+$site-search-disclaimer-bottom-padding: $spacing-quarter;
+
 .hdbt-search--react__form-container--site-search {
+  // This is to balance the disclaimer's bottom padding.
+  margin-block-end: calc($spacing-double - $site-search-disclaimer-bottom-padding);
   max-width: 588px; // As in the designs
 }
 
@@ -39,7 +43,7 @@
 
 // Disclaimer text that comes before the results.
 .hdbt-search--react__site-search-disclaimer {
-  margin-block-end: $spacing-double;
+  padding-block-end: $site-search-disclaimer-bottom-padding;
 
   a:focus {
     outline: 2px solid $color-black-90;
@@ -47,8 +51,18 @@
   }
 }
 
+.hdbt-search--react__selections--site-search {
+  margin-block-end: $spacing-double;
+}
+
 .hdbt-search--react__results--site-search {
   max-width: $content-width-max;
+}
+
+.hdbt-search--react__form-container--site-search + .hdbt-search--react__results--site-search {
+  @include breakpoint($breakpoint-m) {
+    margin-block-start: $spacing-triple;
+  }
 }
 
 // Card design used in site search results.

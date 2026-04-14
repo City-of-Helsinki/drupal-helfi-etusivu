@@ -1,4 +1,5 @@
 import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, SearchInput } from 'hds-react';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { useAtom, useSetAtom } from 'jotai';
 import type { SyntheticEvent } from 'react';
 import { stagedBundlesAtom, stagedQueryAtom, submitAllSearchAtom, submitNewsSearchAtom } from '../store';
@@ -88,6 +89,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
                   label={bundleLabels[value]}
                   checked={stagedBundles.includes(value)}
                   onChange={(e) => toggleBundle(value, e.target.checked)}
+                  style={defaultCheckboxStyle}
                 />
               ))}
             </fieldset>
