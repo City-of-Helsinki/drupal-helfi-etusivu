@@ -10,10 +10,13 @@ type ResultCardProps = {
   cardModifierClass?: string;
 };
 
+// PLACEHOLDER: Description placeholder until we get the real deal from the API.
 const DESCRIPTION_PLACEHOLDER =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+// PLACEHOLDER: Adjust this date if you want to see a real date on the result cards.
 const DATE_PLACEHOLDER = 'DD.MM.YYYY';
-const PUBLISH_DATE_PLACEHOLDER = '2000-01-01';
+// PLACEHOLDER: Adjust this date if you need to test the outdated tag.
+const PUBLISH_DATE_PLACEHOLDER = '2026-04-14';
 
 const isOlderThanOneYear = (isoDate: string): boolean => {
   const oneYearAgo = new Date();
