@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Tests\Kernel\EventSubscriber;
 
 use Drupal\elasticsearch_connector\Event\AlterSettingsEvent;
-use Drupal\elasticsearch_connector\Event\QueryParamsEvent;
+use Drupal\elasticsearch_connector\Event\FieldMappingEvent;
 use Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\search_api\Entity\Index;
+use Drupal\search_api\Item\FieldInterface;
 
 /**
  * Tests for ElasticsearchEventSubscriber.
@@ -55,51 +56,28 @@ class ElasticsearchEventSubscriberTest extends KernelTestBase {
   }
 
   /**
-   * Tests prepareQueryParams method.
+   * Tests mapPromotionFields method.
    */
-  public function testPrepareQueryParams() {
-    $emptyEvent = new QueryParamsEvent('news', []);
+  public function testMapPromotionFields(): void {
+    $index = $this->prophesize(Index::class);
+    $index->id()->willReturn('search_promotions');
+
+    $field = $this->prophesize(FieldInterface::class);
+    $field->getIndex()->willReturn($index->reveal());
+    $field->getFieldIdentifier()->willReturn('keywords');
+
+    $event = new FieldMappingEvent($field->reveal(), []);
     $subscriber = $this->container->get(ElasticsearchEventSubscriber::class);
-    $subscriber->prepareQueryParams($emptyEvent);
-    $this->assertEquals([], $emptyEvent->getParams());
+    $subscriber->mapPromotionFields($event);
 
-    $event = new QueryParamsEvent('news', [
-      'body' => [
-        'query' => [
-          'bool' => [
-            'must' => [
-              'query_string' => [
-                'query' => 'test~',
-              ],
-            ],
-          ],
-        ],
-      ],
-    ]);
-
-    $subscriber->prepareQueryParams($event);
-    $this->assertEquals([
-      'body' => [
-        'query' => [
-          'bool' => [
-            'should' => [
-              [
-                'query_string' => [
-                  'query' => 'test~',
-                ],
-              ],
-              [
-                'wildcard' => [
-                  'title.keyword' => '*test*',
-                ],
-              ],
-            ],
-            'minimum_should_match' => 1,
-          ],
-        ],
-      ],
-      'index' => 'news',
-    ], $event->getParams());
+    $param = $event->getParam();
+    $this->assertEquals('text', $param['type']);
+    $this->assertEquals('text', $param['fields']['fi']['type']);
+    $this->assertEquals('finnish', $param['fields']['fi']['analyzer']);
+    $this->assertEquals('text', $param['fields']['sv']['type']);
+    $this->assertEquals('swedish', $param['fields']['sv']['analyzer']);
+    $this->assertEquals('text', $param['fields']['en']['type']);
+    $this->assertEquals('english', $param['fields']['en']['analyzer']);
   }
 
 }
