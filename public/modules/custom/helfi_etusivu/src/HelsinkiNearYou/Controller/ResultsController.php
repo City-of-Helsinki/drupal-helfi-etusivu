@@ -46,7 +46,6 @@ final class ResultsController extends ControllerBase {
     $address = $request->query->get('home_address');
 
     if (!$address) {
-      $this->messenger()->addError($this->t('Please enter an address', [], ['context' => 'Helsinki near you']));
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
     $address = $this->serviceMap->getAddressData(urldecode($address));
@@ -55,13 +54,6 @@ final class ResultsController extends ControllerBase {
     $request->attributes->set('helsinki_near_you_address', $address);
 
     if (!$address) {
-      $this->messenger()->addError(
-        $this->t(
-          'Make sure the address is written correctly. You can also search using a nearby street number.',
-          [],
-          ['context' => 'React search: Address not found hint']
-        )
-      );
       return $this->redirect('helfi_etusivu.helsinki_near_you');
     }
     $langcode = $this->languageManager

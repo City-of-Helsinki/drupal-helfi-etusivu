@@ -275,6 +275,24 @@ function helfi_etusivu_preprocess_html(&$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
+function helfi_etusivu_preprocess_status_messages(&$variables): void {
+  $route = \Drupal::routeMatch()->getRouteName();
+
+  $near_you_pages = [
+    'helfi_etusivu.helsinki_near_you',
+  ];
+
+  //Remove default error messages because of accessibility
+  //The errors are added as inline errors in the form.
+  if (in_array($route, $near_you_pages)) {
+    unset($variables['message_list']['error']);
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function helfi_etusivu_preprocess_page(&$variables): void {
   $route = \Drupal::routeMatch()->getRouteName();
 
