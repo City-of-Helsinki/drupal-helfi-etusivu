@@ -1,0 +1,62 @@
+{%
+  set classes = [
+    'js-form-item',
+    'form-item',
+    'form-type-' ~ type|clean_class,
+    'js-form-type-' ~ type|clean_class,
+    'form-item-' ~ name|clean_class,
+    'js-form-item-' ~ name|clean_class,
+    title_display not in ['after', 'before'] ? 'form-no-label',
+    disabled == 'disabled' ? 'form-disabled',
+    errors ? 'form-item--error',
+  ]
+%}
+{%
+  set description_classes = [
+    'description',
+    description_display == 'invisible' ? 'visually-hidden',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {% if label_display in ['before', 'invisible'] %}
+    {{ label }}
+  {% endif %}
+  {% if description_display == 'before' and description.content %}
+    <div{{ description.attributes.addClass(description_classes) }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
+  {% if prefix is not empty %}
+    <span class="field-prefix">{{ prefix }}</span>
+  {% endif %}
+  {{ children }}
+  {% if suffix is not empty %}
+    <span class="field-suffix">{{ suffix }}</span>
+  {% endif %}
+  {% if label_display == 'after' %}
+    {{ label }}
+  {% endif %}
+  {% if errors %}
+    {% if errors is iterable %}
+    <div class="hds-notification hds-notification--error" id="js-address-not-found-error">
+      <div class="hds-notification__content">
+        <div class="hds-notification__label">
+          <span class="hds-icon hds-icon--error-fill" aria-hidden="true"></span>
+          <span>{{- errors.0 -}}</span>
+        </div>
+        <div class="hds-notification__body">
+          {{- errors.1 -}}
+        </div>
+      </div>
+    </div>
+    {% else %}
+      <span class="hds-text-input__error-text" id="js-address-mandatory-error">{{- errors -}}</span>
+    {% endif %}
+  {% endif %}
+  {% if description_display in ['after', 'invisible'] and description.content %}
+    <div{{ description.attributes.addClass(description_classes) }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
+</div>

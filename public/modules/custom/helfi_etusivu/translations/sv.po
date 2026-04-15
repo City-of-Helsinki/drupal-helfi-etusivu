@@ -349,3 +349,15 @@ msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publicerin
 
 msgid "News"
 msgstr "Nyheter"
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the address"
+msgstr "Inga resultat hittades för adressen"
+
+msgctxt "Helsinki near you"
+msgid "Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
+msgstr "Kontrollera adressen eller prova en annan adress i närheten. Sökningen föreslår alternativ när du börjar skriva in adressen."
+
+msgctxt "Helsinki near you"
+msgid "Address is required."
+msgstr "Adress krävs."

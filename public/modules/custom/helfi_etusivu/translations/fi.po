@@ -383,3 +383,15 @@ msgstr "Hakunosto näytetään jos haku sisältää jonkin näistä asiasanoista
 
 msgid "News"
 msgstr "Uutiset"
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the address"
+msgstr "Osoitteelle ei löytynyt tuloksia"
+
+msgctxt "Helsinki near you"
+msgid "Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
+msgstr "Varmista, että osoite on oikein. Voit kokeilla hakea myös läheisellä katuosoitteella. Haku ehdottaa osoitteita, kun alat kirjoittaa."
+
+msgctxt "Helsinki near you"
+msgid "Address is required."
+msgstr "Osoite on pakollinen."
