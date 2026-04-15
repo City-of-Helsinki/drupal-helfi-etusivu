@@ -19,6 +19,8 @@ display:
             format_custom_true: دائم
         created:
           label: 'تاريخ التحميل'
+        changed:
+          label: 'Changed date'
         count:
           label: 'مستخدمة في'
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz

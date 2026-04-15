@@ -18,6 +18,7 @@ dependencies:
   - simple_sitemap:simple_sitemap
   - helfi_react_search:helfi_react_search
   - helfi_platform_config:helfi_paragraphs_news_list
+  - helfi_search:helfi_search
   - radioactivity:radioactivity
   - imagecache_external:imagecache_external
 'interface translation project': helfi_etusivu

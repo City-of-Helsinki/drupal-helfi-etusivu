@@ -1,0 +1,19 @@
+uuid: 44e91a18-bf9d-4cb3-9486-184f6e387dae
+langcode: en
+status: true
+dependencies:
+  module:
+    - serialization
+    - helfi_etusivu
+    - basic_auth
+id: helfi_etusivu_news_rss
+plugin_id: helfi_etusivu_news_rss
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - rss
+  authentication:
+    - cookie
+    - basic_auth
