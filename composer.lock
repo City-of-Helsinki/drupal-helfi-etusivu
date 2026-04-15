@@ -4534,16 +4534,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.16.62",
+            "version": "6.16.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "73e3876d5850392035d1567237fb7bcaaead6086"
+                "reference": "d8e7a78eec9861986a84beb64a6b269d21219318"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/73e3876d5850392035d1567237fb7bcaaead6086",
-                "reference": "73e3876d5850392035d1567237fb7bcaaead6086",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/d8e7a78eec9861986a84beb64a6b269d21219318",
+                "reference": "d8e7a78eec9861986a84beb64a6b269d21219318",
                 "shasum": ""
             },
             "require": {
@@ -4562,10 +4562,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.62",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.63",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-04-10T08:05:14+00:00"
+            "time": "2026-04-14T10:52:42+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4904,16 +4904,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.1.37",
+            "version": "5.1.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "041d657e92fe34118f12b662b15b689100846fab"
+                "reference": "95b951106c63086cfb95d6050a251ad9b836930c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/041d657e92fe34118f12b662b15b689100846fab",
-                "reference": "041d657e92fe34118f12b662b15b689100846fab",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/95b951106c63086cfb95d6050a251ad9b836930c",
+                "reference": "95b951106c63086cfb95d6050a251ad9b836930c",
                 "shasum": ""
             },
             "require": {
@@ -5028,10 +5028,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.37",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.38",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-04-09T06:02:42+00:00"
+            "time": "2026-04-14T14:01:40+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -11335,6 +11335,84 @@
             "time": "2025-12-06T11:56:16+00:00"
         },
         {
+            "name": "nyholm/psr7",
+            "version": "1.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nyholm/psr7.git",
+                "reference": "a71f2b11690f4b24d099d6b16690a90ae14fc6f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nyholm/psr7/zipball/a71f2b11690f4b24d099d6b16690a90ae14fc6f3",
+                "reference": "a71f2b11690f4b24d099d6b16690a90ae14fc6f3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.1 || ^2.0"
+            },
+            "provide": {
+                "php-http/message-factory-implementation": "1.0",
+                "psr/http-factory-implementation": "1.0",
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "http-interop/http-factory-tests": "^0.9",
+                "php-http/message-factory": "^1.0",
+                "php-http/psr7-integration-tests": "^1.0",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.4",
+                "symfony/error-handler": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nyholm\\Psr7\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com"
+                },
+                {
+                    "name": "Martijn van der Ven",
+                    "email": "martijn@vanderven.se"
+                }
+            ],
+            "description": "A fast PHP7 implementation of PSR-7",
+            "homepage": "https://tnyholm.se",
+            "keywords": [
+                "psr-17",
+                "psr-7"
+            ],
+            "support": {
+                "issues": "https://github.com/Nyholm/psr7/issues",
+                "source": "https://github.com/Nyholm/psr7/tree/1.8.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Zegnat",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nyholm",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-09-09T07:06:30+00:00"
+        },
+        {
             "name": "open-telemetry/api",
             "version": "1.9.0",
             "source": {
@@ -12682,35 +12760,36 @@
         },
         {
             "name": "phrity/websocket",
-            "version": "3.6.2",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sirn-se/websocket-php.git",
-                "reference": "b9816ed2b4a10c8c42bd0b6398044ab506869756"
+                "reference": "01f15374987d8281dba0ca511f322a0e18229330"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sirn-se/websocket-php/zipball/b9816ed2b4a10c8c42bd0b6398044ab506869756",
-                "reference": "b9816ed2b4a10c8c42bd0b6398044ab506869756",
+                "url": "https://api.github.com/repos/sirn-se/websocket-php/zipball/01f15374987d8281dba0ca511f322a0e18229330",
+                "reference": "01f15374987d8281dba0ca511f322a0e18229330",
                 "shasum": ""
             },
             "require": {
+                "nyholm/psr7": "^1.4",
                 "php": "^8.1",
-                "phrity/http": "^1.0",
-                "phrity/net-stream": "^2.3",
+                "phrity/http": "^1.1",
+                "phrity/net-stream": "^2.4",
                 "phrity/net-uri": "^2.1",
-                "psr/http-message": "^1.1 | ^2.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.1 || ^2.0",
                 "psr/log": "^1.0 || ^2.0 || ^3.0"
             },
             "require-dev": {
-                "guzzlehttp/psr7": "^2.0",
                 "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
+                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0 || ^13.0",
                 "phrity/logger-console": "^1.0",
-                "phrity/net-mock": "^2.3",
+                "phrity/net-mock": "^2.4",
                 "phrity/util-errorhandler": "^1.1",
                 "robiningelbrecht/phpunit-coverage-tools": "^1.9",
-                "squizlabs/php_codesniffer": "^3.5 || ^4.0"
+                "squizlabs/php_codesniffer": "^4.0"
             },
             "type": "library",
             "autoload": {
@@ -12741,9 +12820,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sirn-se/websocket-php/issues",
-                "source": "https://github.com/sirn-se/websocket-php/tree/3.6.2"
+                "source": "https://github.com/sirn-se/websocket-php/tree/3.7.0"
             },
-            "time": "2025-12-21T09:58:16+00:00"
+            "time": "2026-04-06T18:18:14+00:00"
         },
         {
             "name": "proj4php/proj4php",
@@ -14773,16 +14852,16 @@
         },
         {
             "name": "symfony/polyfill-iconv",
-            "version": "v1.33.0",
+            "version": "v1.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-iconv.git",
-                "reference": "5f3b930437ae03ae5dff61269024d8ea1b3774aa"
+                "reference": "2c5729fd241b4b22f6e4b436bc3354a4f262df57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/5f3b930437ae03ae5dff61269024d8ea1b3774aa",
-                "reference": "5f3b930437ae03ae5dff61269024d8ea1b3774aa",
+                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/2c5729fd241b4b22f6e4b436bc3354a4f262df57",
+                "reference": "2c5729fd241b4b22f6e4b436bc3354a4f262df57",
                 "shasum": ""
             },
             "require": {
@@ -14833,7 +14912,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-iconv/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-iconv/tree/v1.35.0"
             },
             "funding": [
                 {
@@ -14853,7 +14932,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-17T14:58:18+00:00"
+            "time": "2026-04-10T16:19:22+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -14939,7 +15018,7 @@
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.33.0",
+            "version": "v1.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
@@ -15002,7 +15081,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.35.0"
             },
             "funding": [
                 {
@@ -15344,16 +15423,16 @@
         },
         {
             "name": "symfony/polyfill-php82",
-            "version": "v1.33.0",
+            "version": "v1.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php82.git",
-                "reference": "5d2ed36f7734637dacc025f179698031951b1692"
+                "reference": "34808efe3e68f69685796f7c253a2f1d8ea9df59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php82/zipball/5d2ed36f7734637dacc025f179698031951b1692",
-                "reference": "5d2ed36f7734637dacc025f179698031951b1692",
+                "url": "https://api.github.com/repos/symfony/polyfill-php82/zipball/34808efe3e68f69685796f7c253a2f1d8ea9df59",
+                "reference": "34808efe3e68f69685796f7c253a2f1d8ea9df59",
                 "shasum": ""
             },
             "require": {
@@ -15400,7 +15479,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php82/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-php82/tree/v1.35.0"
             },
             "funding": [
                 {
@@ -15420,20 +15499,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-09T11:45:10+00:00"
+            "time": "2026-04-10T16:19:22+00:00"
         },
         {
             "name": "symfony/polyfill-php83",
-            "version": "v1.33.0",
+            "version": "v1.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php83.git",
-                "reference": "17f6f9a6b1735c0f163024d959f700cfbc5155e5"
+                "reference": "3600c2cb22399e25bb226e4a135ce91eeb2a6149"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php83/zipball/17f6f9a6b1735c0f163024d959f700cfbc5155e5",
-                "reference": "17f6f9a6b1735c0f163024d959f700cfbc5155e5",
+                "url": "https://api.github.com/repos/symfony/polyfill-php83/zipball/3600c2cb22399e25bb226e4a135ce91eeb2a6149",
+                "reference": "3600c2cb22399e25bb226e4a135ce91eeb2a6149",
                 "shasum": ""
             },
             "require": {
@@ -15480,7 +15559,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php83/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-php83/tree/v1.35.0"
             },
             "funding": [
                 {
@@ -15500,7 +15579,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-07-08T02:45:35+00:00"
+            "time": "2026-04-10T17:25:58+00:00"
         },
         {
             "name": "symfony/polyfill-php84",
@@ -15584,16 +15663,16 @@
         },
         {
             "name": "symfony/polyfill-php85",
-            "version": "v1.33.0",
+            "version": "v1.35.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php85.git",
-                "reference": "d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91"
+                "reference": "2c408a6bb0313e6001a83628dc5506100474254e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91",
-                "reference": "d4e5fcd4ab3d998ab16c0db48e6cbb9a01993f91",
+                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/2c408a6bb0313e6001a83628dc5506100474254e",
+                "reference": "2c408a6bb0313e6001a83628dc5506100474254e",
                 "shasum": ""
             },
             "require": {
@@ -15640,7 +15719,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php85/tree/v1.33.0"
+                "source": "https://github.com/symfony/polyfill-php85/tree/v1.35.0"
             },
             "funding": [
                 {
@@ -15660,7 +15739,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-23T16:12:55+00:00"
+            "time": "2026-04-10T16:50:15+00:00"
         },
         {
             "name": "symfony/process",
@@ -19310,16 +19389,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.26.0",
+            "version": "v1.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "0da07c10d5fe64cd0c748f0523b47599400f2ed1"
+                "reference": "09c2e5949d676286358a62af818f8407167a9dd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/0da07c10d5fe64cd0c748f0523b47599400f2ed1",
-                "reference": "0da07c10d5fe64cd0c748f0523b47599400f2ed1",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/09c2e5949d676286358a62af818f8407167a9dd6",
+                "reference": "09c2e5949d676286358a62af818f8407167a9dd6",
                 "shasum": ""
             },
             "require": {
@@ -19375,9 +19454,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpspec/prophecy/issues",
-                "source": "https://github.com/phpspec/prophecy/tree/v1.26.0"
+                "source": "https://github.com/phpspec/prophecy/tree/v1.26.1"
             },
-            "time": "2026-02-24T15:40:48+00:00"
+            "time": "2026-04-13T14:35:16+00:00"
         },
         {
             "name": "phpspec/prophecy-phpunit",
