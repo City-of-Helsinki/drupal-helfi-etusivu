@@ -2,7 +2,7 @@ label: Люди
 description: 'Пошук людей, які взаємодіють з сайтом, і керування ними.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: Люди
       fields:

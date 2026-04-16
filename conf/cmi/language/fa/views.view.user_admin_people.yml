@@ -2,7 +2,7 @@ label: افراد
 description: 'یافتن و اداره افراد در تعامل با سایت شما.'
 display:
   default:
-    display_title: پیش‌فرض
+    display_title: Default
     display_options:
       title: افراد
       fields:
