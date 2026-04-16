@@ -16,6 +16,7 @@ final class SiteSearchSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    *
    * @return array<string>
+   *   The editable config names.
    */
   protected function getEditableConfigNames(): array {
     return ['helfi_etusivu.site_search_settings'];
