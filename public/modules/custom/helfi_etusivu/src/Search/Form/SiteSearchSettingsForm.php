@@ -49,29 +49,20 @@ final class SiteSearchSettingsForm extends ConfigFormBase {
       '#open' => TRUE,
     ];
 
-    $form['external_links']['jobs'] = [
-      '#type' => 'url',
-      '#title' => $this->t('Open jobs URL'),
-      '#default_value' => $config->get('external_links.jobs'),
+    $external_link_fields = [
+      'jobs' => $this->t('Open jobs URL'),
+      'events' => $this->t('Events URL'),
+      'decisions' => $this->t('Decisions URL'),
+      'contact' => $this->t('Contact URL'),
     ];
 
-    $form['external_links']['events'] = [
-      '#type' => 'url',
-      '#title' => $this->t('Events URL'),
-      '#default_value' => $config->get('external_links.events'),
-    ];
-
-    $form['external_links']['decisions'] = [
-      '#type' => 'url',
-      '#title' => $this->t('Decisions URL'),
-      '#default_value' => $config->get('external_links.decisions'),
-    ];
-
-    $form['external_links']['contact'] = [
-      '#type' => 'url',
-      '#title' => $this->t('Contact URL'),
-      '#default_value' => $config->get('external_links.contact'),
-    ];
+    foreach ($external_link_fields as $key => $label) {
+      $form['external_links'][$key] = [
+        '#type' => 'url',
+        '#title' => $label,
+        '#default_value' => $config->get("external_links.{$key}"),
+      ];
+    }
 
     $form['ai_register_url'] = [
       '#type' => 'url',
