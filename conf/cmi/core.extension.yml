@@ -53,9 +53,9 @@ module:
   helfi_ckeditor: 0
   helfi_csp: 0
   helfi_etusivu_config: 0
-  helfi_hakuvahti: 0
   helfi_etusivu_entities: 0
   helfi_global_navigation: 0
+  helfi_hakuvahti: 0
   helfi_image_styles: 0
   helfi_media: 0
   helfi_media_chart: 0

@@ -1,7 +1,7 @@
 label: آرشیو
 display:
   default:
-    display_title: پیش‌فرض
+    display_title: Default
     display_options:
       title: 'آرشیو ماهیانه'
       pager:

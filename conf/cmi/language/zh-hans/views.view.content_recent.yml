@@ -2,7 +2,7 @@ label: 最新内容
 description: 最近的内容。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       title: 最新内容
       fields:

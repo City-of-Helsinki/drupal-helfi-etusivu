@@ -1,7 +1,7 @@
 label: 'جدیدترین محتوا'
 display:
   default:
-    display_title: پیش‌فرض
+    display_title: Default
     display_options:
       title: 'جدیدترین محتوا'
       fields:
