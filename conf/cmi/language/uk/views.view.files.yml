@@ -2,7 +2,7 @@ label: Файли
 description: 'Пошук файлів та керування ними.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: Файли
       fields:

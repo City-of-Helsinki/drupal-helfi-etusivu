@@ -2,7 +2,7 @@ label: Archiver
 description: 'Tous les contenus, triés par mois.'
 display:
   default:
-    display_title: 'Par défaut'
+    display_title: Default
     display_options:
       title: 'Archive mensuelle'
       pager:

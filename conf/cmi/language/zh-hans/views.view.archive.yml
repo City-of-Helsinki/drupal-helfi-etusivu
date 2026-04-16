@@ -2,7 +2,7 @@ label: 存档
 description: 按月显示的所有内容。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       title: 月度存档
       pager:
