@@ -32,9 +32,12 @@ services:
       DRUPAL_VARNISH_PORT: 6081
       REDIS_HOST: redis
       PROJECT_NAME: "${PROJECT_NAME}"
+      HAKUVAHTI_URL: "${HAKUVAHTI_URL:-}"
+      HAKUVAHTI_API_KEY: "${HAKUVAHTI_API_KEY:-}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
       - "${DRUPAL_HOSTNAME}:host-gateway"
+      - "hakuvahti.docker.so:host-gateway"
     networks:
       - internal
       - stonehenge-network
