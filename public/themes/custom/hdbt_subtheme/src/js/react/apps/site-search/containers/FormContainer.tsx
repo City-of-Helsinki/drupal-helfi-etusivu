@@ -8,12 +8,6 @@ type FormContainerProps = {
   withBundleFilters?: boolean;
 };
 
-const AI_REGISTER_URLS: Record<string, string> = {
-  fi: 'https://www.hel.fi/fi/',
-  sv: 'https://www.hel.fi/sv/',
-  en: 'https://www.hel.fi/en/',
-};
-
 const BUNDLE_OPTIONS = [
   { value: 'news_item' as const },
   { value: 'page' as const },
@@ -26,8 +20,8 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const submitAll = useSetAtom(submitAllSearchAtom);
   const submitNews = useSetAtom(submitNewsSearchAtom);
 
-  const lang = drupalSettings?.path?.currentLanguage ?? 'en';
-  const aiRegisterUrl = AI_REGISTER_URLS[lang] ?? AI_REGISTER_URLS.en;
+  const lang = drupalSettings?.path?.currentLanguage ?? 'fi';
+  const aiRegisterUrl = drupalSettings?.helfi_site_search?.ai_register_url;
 
   const toggleBundle = (value: string, checked: boolean) =>
     setStagedBundles(checked ? [...stagedBundles, value] : stagedBundles.filter((b) => b !== value));
@@ -70,7 +64,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
             heading={Drupal.t('Refine search results', {}, { context: 'Site search' })}
             headingLevel={2}
             initiallyOpen={false}
-            language={window.drupalSettings.path.currentLanguage || 'fi'}
+            language={lang}
             size={AccordionSize.Small}
             theme={{
               '--padding-horizontal': 'var(--spacing-s)',
@@ -100,10 +94,15 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
             </div>
           </Accordion>
           <p className='hdbt-search--react__site-search-disclaimer'>
-            {Drupal.t('The search uses artificial intelligence.', {}, { context: 'Site search' })}&nbsp;
-            <a href={aiRegisterUrl}>
-              {Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}
-            </a>
+            {Drupal.t('The search uses artificial intelligence.', {}, { context: 'Site search' })}
+            {aiRegisterUrl && (
+              <>
+                &nbsp;
+                <a href={aiRegisterUrl}>
+                  {Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}
+                </a>
+              </>
+            )}
           </p>
         </div>
       )}
