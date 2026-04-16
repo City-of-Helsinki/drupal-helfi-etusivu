@@ -2,7 +2,7 @@ label: Архів
 description: 'Всі матеріали, за місяцем.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: 'Щомісячний архів'
       pager:
