@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Kernel\Search\Form;
 
 use Drupal\Core\Form\FormState;
-use Drupal\Core\Serialization\Yaml;
+use Drupal\Component\Serialization\Yaml;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\helfi_etusivu\Search\Form\SiteSearchSettingsForm;
 
@@ -74,13 +74,14 @@ class SiteSearchSettingsFormTest extends KernelTestBase {
    * Tests that config/install defaults define all required keys.
    */
   public function testConfigDefaults(): void {
-    $module_path = $this->container->get('extension.list.module')
-      ->getPath('helfi_etusivu');
-    $config_file = DRUPAL_ROOT . '/' . $module_path . '/config/install/helfi_etusivu.site_search_settings.yml';
+    $config_file = __DIR__ . '/../../../../../config/install/helfi_etusivu.site_search_settings.yml';
 
     $this->assertFileExists($config_file);
 
-    $data = Yaml::decode(file_get_contents($config_file));
+    $contents = file_get_contents($config_file);
+    $this->assertIsString($contents);
+
+    $data = Yaml::decode($contents);
 
     $this->assertNotEmpty($data['external_links']['jobs']);
     $this->assertNotEmpty($data['external_links']['events']);
