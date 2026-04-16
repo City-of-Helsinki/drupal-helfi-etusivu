@@ -14,6 +14,8 @@ final class SiteSearchSettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string>
    */
   protected function getEditableConfigNames(): array {
     return ['helfi_etusivu.site_search_settings'];
@@ -28,6 +30,14 @@ final class SiteSearchSettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return array<string, mixed>
+   *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $config = $this->config('helfi_etusivu.site_search_settings');
@@ -73,6 +83,11 @@ final class SiteSearchSettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @param array<string, mixed> $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('helfi_etusivu.site_search_settings')
