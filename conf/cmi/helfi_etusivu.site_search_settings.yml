@@ -1,7 +1,9 @@
+_core:
+  default_config_hash: w2nN1ztHt1Sg6HLFzbs_giBE5UxpRYFXOEuuJclS0lo
 langcode: en
 external_links:
   jobs: 'https://www.hel.fi/en/open-jobs'
   events: 'https://tapahtumat.hel.fi/en'
   decisions: 'https://paatokset.hel.fi/en'
   contact: 'https://www.hel.fi/en/decision-making/contact-the-city-of-helsinki'
-ai_register_url: 'https://www.hel.fi/en'
+ai_register_url: 'https://www.hel.fi/en/'
