@@ -2645,16 +2645,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "11.3.6",
+            "version": "11.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "728d09ef108bcbadf06cf8f0a5984450e089de9b"
+                "reference": "bb36d7d09b0132185bd33be730ec2e6d35c2d627"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/728d09ef108bcbadf06cf8f0a5984450e089de9b",
-                "reference": "728d09ef108bcbadf06cf8f0a5984450e089de9b",
+                "url": "https://api.github.com/repos/drupal/core/zipball/bb36d7d09b0132185bd33be730ec2e6d35c2d627",
+                "reference": "bb36d7d09b0132185bd33be730ec2e6d35c2d627",
                 "shasum": ""
             },
             "require": {
@@ -2812,13 +2812,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/11.3.6"
+                "source": "https://github.com/drupal/core/tree/11.3.7"
             },
-            "time": "2026-04-08T09:15:33+00:00"
+            "time": "2026-04-15T15:47:32+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "11.3.6",
+            "version": "11.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2862,7 +2862,7 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/11.3.6"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/11.3.7"
             },
             "time": "2026-02-10T11:39:53+00:00"
         },
@@ -3992,17 +3992,17 @@
         },
         {
             "name": "drupal/external_entities",
-            "version": "3.0.0-rc1",
+            "version": "3.0.0-rc2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/external_entities.git",
-                "reference": "3.0.0-rc1"
+                "reference": "3.0.0-rc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/external_entities-3.0.0-rc1.zip",
-                "reference": "3.0.0-rc1",
-                "shasum": "7319be341c37a0763a32815edba1a98081efc11e"
+                "url": "https://ftp.drupal.org/files/projects/external_entities-3.0.0-rc2.zip",
+                "reference": "3.0.0-rc2",
+                "shasum": "a6e1f6e0194bdad17b41f258772e829edeb3e220"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
@@ -4015,8 +4015,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.0-rc1",
-                    "datestamp": "1769878913",
+                    "version": "3.0.0-rc2",
+                    "datestamp": "1776284356",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4534,16 +4534,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.16.63",
+            "version": "6.16.64",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "d8e7a78eec9861986a84beb64a6b269d21219318"
+                "reference": "bd00ea26e0eb6307ce8eb8a66404708da2d9d909"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/d8e7a78eec9861986a84beb64a6b269d21219318",
-                "reference": "d8e7a78eec9861986a84beb64a6b269d21219318",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/bd00ea26e0eb6307ce8eb8a66404708da2d9d909",
+                "reference": "bd00ea26e0eb6307ce8eb8a66404708da2d9d909",
                 "shasum": ""
             },
             "require": {
@@ -4562,10 +4562,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.63",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.64",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-04-14T10:52:42+00:00"
+            "time": "2026-04-15T15:34:13+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4838,16 +4838,16 @@
         },
         {
             "name": "drupal/helfi_hakuvahti",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti.git",
-                "reference": "fc44c07faf61c24f8f6238fa2a9d7380e90f80b4"
+                "reference": "f6e86aa805455f2a736a9f9bb7bb23f0647bda1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-hakuvahti/zipball/fc44c07faf61c24f8f6238fa2a9d7380e90f80b4",
-                "reference": "fc44c07faf61c24f8f6238fa2a9d7380e90f80b4",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-hakuvahti/zipball/f6e86aa805455f2a736a9f9bb7bb23f0647bda1b",
+                "reference": "f6e86aa805455f2a736a9f9bb7bb23f0647bda1b",
                 "shasum": ""
             },
             "require": {
@@ -4863,10 +4863,10 @@
             ],
             "description": "Helfi - Hakuvahti",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/tree/1.2.3",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/tree/1.2.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/issues"
             },
-            "time": "2026-03-23T09:43:42+00:00"
+            "time": "2026-04-13T12:35:08+00:00"
         },
         {
             "name": "drupal/helfi_navigation",
@@ -14769,7 +14769,7 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -14828,7 +14828,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -14852,7 +14852,7 @@
         },
         {
             "name": "symfony/polyfill-iconv",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-iconv.git",
@@ -14912,7 +14912,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-iconv/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-iconv/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -14936,7 +14936,7 @@
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
@@ -14994,7 +14994,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -15018,7 +15018,7 @@
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
@@ -15081,7 +15081,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -15105,7 +15105,7 @@
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
@@ -15166,7 +15166,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -15190,7 +15190,7 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -15251,7 +15251,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -15343,7 +15343,7 @@
         },
         {
             "name": "symfony/polyfill-php81",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php81.git",
@@ -15399,7 +15399,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php81/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-php81/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -15423,7 +15423,7 @@
         },
         {
             "name": "symfony/polyfill-php82",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php82.git",
@@ -15479,7 +15479,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php82/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-php82/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -15503,7 +15503,7 @@
         },
         {
             "name": "symfony/polyfill-php83",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php83.git",
@@ -15559,7 +15559,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php83/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-php83/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -15583,7 +15583,7 @@
         },
         {
             "name": "symfony/polyfill-php84",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php84.git",
@@ -15639,7 +15639,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php84/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-php84/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -15663,7 +15663,7 @@
         },
         {
             "name": "symfony/polyfill-php85",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php85.git",
@@ -15719,7 +15719,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php85/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-php85/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -18141,7 +18141,7 @@
         },
         {
             "name": "drupal/core-dev",
-            "version": "11.3.6",
+            "version": "11.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-dev.git",
@@ -18191,7 +18191,7 @@
             ],
             "description": "require-dev dependencies from drupal/drupal; use in addition to drupal/core-recommended to run tests from drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-dev/tree/11.3.6"
+                "source": "https://github.com/drupal/core-dev/tree/11.3.7"
             },
             "time": "2026-02-04T09:01:40+00:00"
         },
@@ -22087,7 +22087,7 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
@@ -22143,7 +22143,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -22167,7 +22167,7 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.35.0",
+            "version": "v1.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
@@ -22227,7 +22227,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.35.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.36.0"
             },
             "funding": [
                 {
@@ -22478,5 +22478,5 @@
         "ext-libxml": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

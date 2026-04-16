@@ -2,7 +2,7 @@ label: 人员
 description: 查找并管理和站点进行交互的用户。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       title: 人员
       fields:
