@@ -164,7 +164,7 @@ msgstr "Gå till separata söktjänster"
 
 msgctxt "Site search"
 msgid "Open jobs"
-msgstr Lediga jobb"
+msgstr "Lediga jobb"
 
 msgctxt "Site search"
 msgid "Events"

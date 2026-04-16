@@ -2,7 +2,6 @@ import { atom } from 'jotai';
 
 const params = new URLSearchParams(window.location.search);
 const initialQuery = params.get('s') ?? '';
-const initialNewsFilter = params.get('type') === 'news';
 const initialBundles = params.get('bundles')?.split(',').filter(Boolean) ?? [];
 
 export const stagedQueryAtom = atom<string>(initialQuery);
@@ -46,17 +45,6 @@ export const removeBundleAtom = atom(null, (get, set, bundle: string) => {
   newBundles.length > 0
     ? newUrl.searchParams.set('bundles', newBundles.join(','))
     : newUrl.searchParams.delete('bundles');
-
-  window.history.pushState({}, '', newUrl);
-});
-
-export const activeTabAtom = atom<number>(initialNewsFilter ? 1 : 0);
-
-export const setActiveTabAtom = atom(null, (_get, set, tabIndex: number) => {
-  set(activeTabAtom, tabIndex);
-
-  const newUrl = new URL(window.location.toString());
-  tabIndex === 1 ? newUrl.searchParams.set('type', 'news') : newUrl.searchParams.delete('type');
 
   window.history.pushState({}, '', newUrl);
 });

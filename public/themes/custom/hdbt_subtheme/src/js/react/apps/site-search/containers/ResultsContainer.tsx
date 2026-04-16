@@ -1,5 +1,6 @@
 import { useAtomValue } from 'jotai';
 import { createRef, Fragment, useEffect } from 'react';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import { Notification } from 'hds-react';
 import { GhostList } from '@/react/common/GhostList';
 import ExternalLink from '@/react/common/ExternalLink';
@@ -15,31 +16,9 @@ type ResultsContainerProps = {
   bundle?: string;
 };
 
-const OTHER_SEARCHES: Record<string, { jobs: string; events: string; decisions: string; contact: string }> = {
-  fi: {
-    jobs: 'https://www.hel.fi/fi/avoimet-tyopaikat',
-    events: 'https://tapahtumat.hel.fi/fi',
-    decisions: 'https://paatokset.hel.fi/fi',
-    contact: 'https://www.hel.fi/fi/paatoksenteko-ja-hallinto/ota-yhteytta-helsingin-kaupunkiin',
-  },
-  sv: {
-    jobs: 'https://www.hel.fi/sv/lediga-jobb',
-    events: 'https://tapahtumat.hel.fi/sv',
-    decisions: 'https://paatokset.hel.fi/sv',
-    contact: 'https://www.hel.fi/sv/beslutsfattande-och-forvaltning/kontakta-helsingfors-stad',
-  },
-  en: {
-    jobs: 'https://www.hel.fi/en/open-jobs',
-    events: 'https://tapahtumat.hel.fi/en',
-    decisions: 'https://paatokset.hel.fi/en',
-    contact: 'https://www.hel.fi/en/decision-making/contact-the-city-of-helsinki',
-  },
-};
-
 const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const query = useAtomValue(queryAtom);
-  const lang = drupalSettings?.path?.currentLanguage ?? 'en';
-  const links = OTHER_SEARCHES[lang] ?? OTHER_SEARCHES.en;
+  const links = drupalSettings?.helfi_site_search?.external_links;
   const { data, error, isLoading } = useSearchQuery(query, bundle);
   const scrollTarget = createRef<HTMLHeadingElement>();
 
@@ -48,6 +27,8 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const total = promotedCount + resultsCount;
   const isValidQuery = query.length >= AppSettings.MIN_QUERY_LENGTH;
   const resultsClassName = 'hdbt-search--react__results hdbt-search--react__results--site-search';
+
+  useScrollToResults(scrollTarget, !isLoading && isValidQuery);
 
   useEffect(() => {
     if (!isValidQuery || isLoading || error) {
@@ -65,11 +46,11 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   }
 
   if (error) {
-    return <ResultsError error={error} className={resultsClassName} />;
+    return <ResultsError error={error} className={resultsClassName} ref={scrollTarget} />;
   }
 
   if (!data || !total) {
-    return <ResultsEmpty />;
+    return <ResultsEmpty ref={scrollTarget} />;
   }
 
   return (
@@ -98,7 +79,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
         data.results.map((item, index) => (
           <Fragment key={item.url}>
             <ResultCard url={item.url} title={item.title} bundle={item.bundle} cardModifierClass='card--site-search' />
-            {(index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && (
+            {links && (index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && (
               <Notification
                 className='notification--site-search'
                 label={Drupal.t('Go to external search services', {}, { context: 'Site search' })}
