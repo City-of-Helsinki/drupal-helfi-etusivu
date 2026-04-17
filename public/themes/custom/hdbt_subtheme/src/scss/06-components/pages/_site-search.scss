@@ -150,3 +150,7 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
     }
   }
 }
+
+.hdbt-search--react__results--no-results .notification--site-search::before {
+  display: none;
+}
