@@ -696,11 +696,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/tests/modules/news_terms_trait_test/src/Entity/NewsTermsTestNode.php
 
 		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\FunctionalJavascript\\\\NewsItemTableOfContentsTest\\:\\:generateContent\\(\\) has parameter \\$headings with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/FunctionalJavascript/NewsItemTableOfContentsTest.php
-
-		-
 			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Controller\\\\LinkedEventsImageControllerTest\\:\\:providerDeliver\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
