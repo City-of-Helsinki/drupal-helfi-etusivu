@@ -18,6 +18,9 @@ abstract class SearchFormBase extends FormBase {
     protected readonly ServiceMapInterface $serviceMap,
   ) {}
 
+  /**
+   * {@inheritdoc}
+   */
   public static function create(ContainerInterface $container) : static {
     return new static(
       $container->get(ServiceMapInterface::class),
@@ -79,15 +82,18 @@ abstract class SearchFormBase extends FormBase {
     return $form;
   }
 
+  /**
+   * Validates the form.
+   */
   public function validateForm(array &$form, FormStateInterface $form_state) : void {
     parent::validateForm($form, $form_state);
 
     $address = $form_state->getValue('home_address');
 
-     if (!$address) {
+    if (!$address) {
       $form_state->setErrorByName(
-        'home_address',
-        $this->t('Address is required.', [], ['context' => 'Helsinki near you']),
+       'home_address',
+       $this->t('Address is required.', [], ['context' => 'Helsinki near you']),
       );
       return;
     }
@@ -101,7 +107,8 @@ abstract class SearchFormBase extends FormBase {
           'Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
           [],
           ['context' => 'Helsinki near you']
-        )]
+          ),
+        ]
       );
     }
   }
