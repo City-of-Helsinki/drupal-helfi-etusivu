@@ -361,3 +361,7 @@ msgstr "Kontrollera adressen eller prova en annan adress i närheten. Sökningen
 msgctxt "Helsinki near you"
 msgid "Address is required."
 msgstr "Adress krävs."
+
+msgctxt "Site search"
+msgid "Search in the website"
+msgstr "Sök i webbplatsen"

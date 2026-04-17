@@ -31,4 +31,12 @@ class SearchPageControllerTest extends KernelTestBase {
     $this->assertArrayHasKey('drupalSettings', $result['#attached']);
   }
 
+  /**
+   * Tests that the page title is correct.
+   */
+  public function testGetTitle(): void {
+    $controller = SearchPageController::create($this->container);
+    $this->assertEquals('Search in the website', $controller->getTitle());
+  }
+
 }
