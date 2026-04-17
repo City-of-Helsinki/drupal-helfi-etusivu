@@ -1,6 +1,6 @@
 display:
   default:
-    display_title: پیش‌فرض
+    display_title: Default
     display_options:
       title: 'کاربران آنلاین'
       exposed_form:

@@ -2,7 +2,7 @@ label: 'Terme de taxonomie'
 description: 'Contenu associé à un terme de taxonomie donné.'
 display:
   default:
-    display_title: 'Par défaut'
+    display_title: Default
     display_options:
       pager:
         options:
