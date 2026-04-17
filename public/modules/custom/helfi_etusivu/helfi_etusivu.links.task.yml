@@ -1,0 +1,4 @@
+helfi_etusivu.site_search_settings:
+  route_name: helfi_etusivu.site_search_settings
+  title: 'Site search settings'
+  base_route: helfi_etusivu.site_search_settings
