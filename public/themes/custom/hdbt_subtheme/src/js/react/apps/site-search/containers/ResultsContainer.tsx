@@ -49,8 +49,36 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     return <ResultsError error={error} className={resultsClassName} ref={scrollTarget} />;
   }
 
+  const externalLinksNotification = links && (
+    <Notification
+      className='notification--site-search'
+      label={Drupal.t('Go to external search services', {}, { context: 'Site search' })}
+      type='info'
+      headingLevel={3}
+    >
+      <ul>
+        <li>
+          <a href={links.jobs}>{Drupal.t('Open jobs', {}, { context: 'Site search' })}</a>
+        </li>
+        <li>
+          <ExternalLink href={links.events} title={Drupal.t('Events', {}, { context: 'Site search' })} />
+        </li>
+        <li>
+          <ExternalLink href={links.decisions} title={Drupal.t('Decisions', {}, { context: 'Site search' })} />
+        </li>
+        <li>
+          <a href={links.contact}>{Drupal.t('Contact', {}, { context: 'Site search' })}</a>
+        </li>
+      </ul>
+    </Notification>
+  );
+
   if (!data || !total) {
-    return <ResultsEmpty ref={scrollTarget} />;
+    return (
+      <ResultsEmpty wrapperClass={`${resultsClassName} hdbt-search--react__results--no-results`} ref={scrollTarget}>
+        {externalLinksNotification}
+      </ResultsEmpty>
+    );
   }
 
   return (
@@ -79,32 +107,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
         data.results.map((item, index) => (
           <Fragment key={item.url}>
             <ResultCard url={item.url} title={item.title} bundle={item.bundle} cardModifierClass='card--site-search' />
-            {links && (index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && (
-              <Notification
-                className='notification--site-search'
-                label={Drupal.t('Go to external search services', {}, { context: 'Site search' })}
-                type='info'
-                headingLevel={3}
-              >
-                <ul>
-                  <li>
-                    <a href={links.jobs}>{Drupal.t('Open jobs', {}, { context: 'Site search' })}</a>
-                  </li>
-                  <li>
-                    <ExternalLink href={links.events} title={Drupal.t('Events', {}, { context: 'Site search' })} />
-                  </li>
-                  <li>
-                    <ExternalLink
-                      href={links.decisions}
-                      title={Drupal.t('Decisions', {}, { context: 'Site search' })}
-                    />
-                  </li>
-                  <li>
-                    <a href={links.contact}>{Drupal.t('Contact', {}, { context: 'Site search' })}</a>
-                  </li>
-                </ul>
-              </Notification>
-            )}
+            {(index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && externalLinksNotification}
           </Fragment>
         ))}
     </div>

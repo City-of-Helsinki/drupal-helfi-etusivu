@@ -5,7 +5,7 @@ global-styling:
       dist/css/styles.min.css: {}
 
 site-search:
-  version: 1.0.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/site-search.min.js: { preprocess: false, minified: true }
   dependencies:
