@@ -1141,16 +1141,6 @@ parameters:
 			path: public/modules/custom/helfi_node_news_article/src/Plugin/Block/NewsArticleHeroBlock.php
 
 		-
-			message: "#^Call to method applyTo\\(\\) on an unknown class Drupal\\\\helfi_hakuvahti\\\\DrupalSettings\\.$#"
-			count: 1
-			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
-
-		-
-			message: "#^Class Drupal\\\\helfi_hakuvahti\\\\DrupalSettings not found\\.$#"
-			count: 1
-			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
-
-		-
 			message: "#^Function hdbt_subtheme_preprocess_block\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
