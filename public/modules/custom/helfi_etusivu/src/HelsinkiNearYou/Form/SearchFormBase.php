@@ -106,7 +106,7 @@ abstract class SearchFormBase extends FormBase {
           $this->t(
           'Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
           [],
-          ['context' => 'Helsinki near you']
+          ['context' => 'Address search error message']
           ),
         ]
       );
