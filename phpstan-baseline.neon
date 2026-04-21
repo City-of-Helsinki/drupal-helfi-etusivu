@@ -121,6 +121,11 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
 
 		-
+			message: "#^Function helfi_etusivu_preprocess_status_messages\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
 			message: "#^Function helfi_etusivu_preprocess_toolbar\\(\\) has parameter \\$variables with no type specified\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
@@ -386,6 +391,11 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Feedback/LazyBuilder.php
 
 		-
+			message: "#^Left side of && is always true\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Form\\\\SearchFormBase\\:\\:buildForm\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
@@ -402,6 +412,21 @@ parameters:
 
 		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Form\\\\SearchFormBase\\:\\:submitForm\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Form\\\\SearchFormBase\\:\\:validateForm\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Parameter \\#2 \\$message of method Drupal\\\\Core\\\\Form\\\\FormStateInterface\\:\\:setErrorByName\\(\\) expects string\\|Stringable, array\\<int, Drupal\\\\Core\\\\StringTranslation\\\\TranslatableMarkup\\> given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
 
@@ -1152,11 +1177,6 @@ parameters:
 
 		-
 			message: "#^Function hdbt_subtheme_preprocess_paragraph\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
-
-		-
-			message: "#^Function hdbt_subtheme_preprocess_status_messages\\(\\) has parameter \\$variables with no type specified\\.$#"
 			count: 1
 			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
 
