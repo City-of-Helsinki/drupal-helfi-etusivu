@@ -384,6 +384,14 @@ msgstr "Hakunosto näytetään jos haku sisältää jonkin näistä asiasanoista
 msgid "News"
 msgstr "Uutiset"
 
+msgctxt "Helsinki near you"
+msgid "No results were found for the address"
+msgstr "Osoitteelle ei löytynyt tuloksia"
+
+msgctxt "Helsinki near you"
+msgid "Address is required."
+msgstr "Osoite on pakollinen."
+
 msgctxt "Site search"
 msgid "Search in the website"
 msgstr "Hae sivustolta"
