@@ -4656,16 +4656,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.8.18",
+            "version": "2.8.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "367c81e08da477d482e63196035228f443759aa5"
+                "reference": "989784a16b9f4336a67e8d2c33e71f44813bd45d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/367c81e08da477d482e63196035228f443759aa5",
-                "reference": "367c81e08da477d482e63196035228f443759aa5",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/989784a16b9f4336a67e8d2c33e71f44813bd45d",
+                "reference": "989784a16b9f4336a67e8d2c33e71f44813bd45d",
                 "shasum": ""
             },
             "require": {
@@ -4674,7 +4674,7 @@
                 "drupal/entity": "^1.0",
                 "drupal/health_check": "^3.0",
                 "drupal/monolog": "^3.0",
-                "drupal/raven": "^5.0 || ^6.0",
+                "drupal/raven": "^6.0 || ^7.0",
                 "drupal/redis": "^1.0",
                 "ext-curl": "*",
                 "firebase/php-jwt": "^7.0",
@@ -4708,10 +4708,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.18",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.19",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2026-04-20T15:00:51+00:00"
+            "time": "2026-04-21T08:39:47+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -4905,16 +4905,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.1.41",
+            "version": "5.1.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "a7f6d73b73e92701d9eae06e0dd244d7fa0e22d3"
+                "reference": "90ea1221ee2bb76d7bf4966d0888ed876809cce4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/a7f6d73b73e92701d9eae06e0dd244d7fa0e22d3",
-                "reference": "a7f6d73b73e92701d9eae06e0dd244d7fa0e22d3",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/90ea1221ee2bb76d7bf4966d0888ed876809cce4",
+                "reference": "90ea1221ee2bb76d7bf4966d0888ed876809cce4",
                 "shasum": ""
             },
             "require": {
@@ -5030,10 +5030,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.41",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.42",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-04-20T10:52:27+00:00"
+            "time": "2026-04-21T10:23:14+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -7113,33 +7113,33 @@
         },
         {
             "name": "drupal/raven",
-            "version": "6.0.16",
+            "version": "7.3.8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/raven.git",
-                "reference": "6.0.16"
+                "reference": "7.3.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/raven-6.0.16.zip",
-                "reference": "6.0.16",
-                "shasum": "7859678b6c935afbdacf72f5ca3508784d9b0948"
+                "url": "https://ftp.drupal.org/files/projects/raven-7.3.8.zip",
+                "reference": "7.3.8",
+                "shasum": "78e4219650a9b49a7f35ae165cb8d6077ceb46bc"
             },
             "require": {
-                "drupal/core": "^10.2 || ^11",
-                "sentry/sentry": "^4.9"
+                "drupal/core": "^11.1",
+                "sentry/sentry": "^4.20"
             },
             "require-dev": {
                 "drupal/csp": "^1.17 || ^2.0",
                 "drupal/monitoring": "^1.13",
                 "drupal/seckit": "^2.0",
-                "drush/drush": "^11.0 || ^12.0 || ^13.0"
+                "drush/drush": "^13.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.0.16",
-                    "datestamp": "1755300523",
+                    "version": "7.3.8",
+                    "datestamp": "1775584686",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7167,6 +7167,10 @@
                 {
                     "type": "github",
                     "url": "https://github.com/sponsors/mfb"
+                },
+                {
+                    "type": "ko-fi",
+                    "url": "https://ko-fi.com/mfb"
                 },
                 {
                     "type": "patreon",
