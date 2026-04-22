@@ -2,7 +2,7 @@ label: 'Блок "Хто в мережі"'
 description: 'Показує імена користувачів, що були активними останнім часом, і загальне число активних користувачів.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: 'Хто на сайті'
       exposed_form:

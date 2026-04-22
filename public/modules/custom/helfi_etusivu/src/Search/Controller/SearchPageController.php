@@ -32,12 +32,16 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     $search_url = Url::fromRoute('helfi_search.semantic_search')->toString();
 
+    $site_search_config = $this->configFactoryService->get('helfi_etusivu.site_search_settings');
+
     return [
       '#theme' => 'helfi_etusivu_site_search',
       '#attached' => [
         'drupalSettings' => [
           'helfi_site_search' => [
             'search_url' => $search_url,
+            'external_links' => $site_search_config->get('external_links'),
+            'ai_register_url' => $site_search_config->get('ai_register_url'),
           ],
           'helfi_react_search' => [
             'sentry_dsn_react' => $sentry_dsn,
@@ -48,6 +52,13 @@ final class SearchPageController extends ControllerBase implements ContainerInje
         ],
       ],
     ];
+  }
+
+  /**
+   * Returns the title.
+   */
+  public function getTitle(): string {
+    return (string) $this->t('Search in the website', [], ['context' => 'Site search']);
   }
 
 }

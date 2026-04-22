@@ -2,7 +2,7 @@ label: Inhalt
 description: 'Inhalte finden und verwalten.'
 display:
   default:
-    display_title: Standard
+    display_title: Default
     display_options:
       title: Inhalt
       fields:

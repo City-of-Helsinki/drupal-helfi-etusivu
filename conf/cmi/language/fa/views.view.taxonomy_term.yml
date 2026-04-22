@@ -1,7 +1,7 @@
 label: 'واژه طبقه‌بندی'
 display:
   default:
-    display_title: پیش‌فرض
+    display_title: Default
     display_options:
       pager:
         options:
