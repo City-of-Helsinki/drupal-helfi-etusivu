@@ -1,0 +1,1221 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Function helfi_etusivu_update_11002\\(\\) has parameter \\$sandbox with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.install
+
+		-
+			message: "#^Function _helfi_etusivu_form_promote_field_alter\\(\\) has parameter \\$form with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function _helfi_etusivu_form_promote_field_alter\\(\\) has parameter \\$form_id with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function _helfi_etusivu_form_unpublish_date_alter\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function _helfi_etusivu_form_updating_news_field_alter\\(\\) has parameter \\$form with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function _helfi_etusivu_form_updating_news_field_alter\\(\\) has parameter \\$form_id with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_block_alter\\(\\) has parameter \\$definitions with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_entity_bundle_info_alter\\(\\) has parameter \\$bundles with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_entity_type_alter\\(\\) has parameter \\$entity_types with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_first_paragraph_grey_alter\\(\\) has parameter \\$paragraphs with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_form_node_form_alter\\(\\) has parameter \\$form with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_form_node_form_alter\\(\\) has parameter \\$form_id with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_helfi_hero_design_alter\\(\\) has parameter \\$designs with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_metatags_alter\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_metatags_alter\\(\\) has parameter \\$metatags with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_module_implements_alter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_module_implements_alter\\(\\) has parameter \\$hook with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_module_implements_alter\\(\\) has parameter \\$implementations with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_page_attachments\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_page_attachments\\(\\) has parameter \\$page with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_preprocess_html\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_preprocess_node__news_item\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_preprocess_node__news_item__full\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_preprocess_page\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_preprocess_status_messages\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_preprocess_toolbar\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_theme\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_theme_registry_alter\\(\\) has parameter \\$theme_registry with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
+
+		-
+			message: "#^Function helfi_etusivu_token_info\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.tokens.inc
+
+		-
+			message: "#^Function helfi_etusivu_tokens\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.tokens.inc
+
+		-
+			message: "#^Function helfi_etusivu_tokens\\(\\) has parameter \\$tokens with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.tokens.inc
+
+		-
+			message: "#^Function helfi_etusivu_tokens\\(\\) has parameter \\$type with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.tokens.inc
+
+		-
+			message: "#^Function helfi_etusivu_tokens\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/helfi_etusivu.tokens.inc
+
+		-
+			message: "#^Parameter \\#1 \\$path of method Drupal\\\\image\\\\Entity\\\\ImageStyle\\:\\:buildUrl\\(\\) expects string, string\\|true given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Controller/LinkedEventsImageController.php
+
+		-
+			message: "#^Parameter \\#1 \\$uri of method Drupal\\\\image\\\\Entity\\\\ImageStyle\\:\\:supportsUri\\(\\) expects string, string\\|true given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Controller/LinkedEventsImageController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Node\\\\Announcement\\:\\:getExternalCacheTags\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/Node/Announcement.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Node\\\\NewsItem\\:\\:getTaxonomyTermsWithArchiveLinks\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/Node/NewsItem.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Node\\\\PublishExternallyInterface\\:\\:getExternalCacheTags\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/Node/PublishExternallyInterface.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Node\\\\Survey\\:\\:getExternalCacheTags\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/Node/Survey.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Form\\\\PromotionForm\\:\\:save\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Form/PromotionForm.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:buildHeader\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:buildRow\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:render\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\SimpleSitemap\\\\HelfiSimpleSitemap\\:\\:toUrl\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Entity/SimpleSitemap/HelfiSimpleSitemap.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\EventsController\\:\\:buildHtmxResults\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/EventsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\EventsController\\:\\:content\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/EventsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\FeedbackController\\:\\:buildFormResults\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/FeedbackController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\FeedbackController\\:\\:buildHtmxResults\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/FeedbackController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\HtmxController\\:\\:buildHtmxResults\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/HtmxController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\HtmxController\\:\\:htmx\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/HtmxController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\LandingPageController\\:\\:content\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/LandingPageController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\ResultsController\\:\\:buildEventsHtmxContainer\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\ResultsController\\:\\:buildFeedbackHtmxContainer\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\ResultsController\\:\\:buildHtmxRenderArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\ResultsController\\:\\:buildRoadworksHtmxContainer\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\ResultsController\\:\\:buildServiceGroups\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\ResultsController\\:\\:content\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\ResultsController\\:\\:getInternalSearchLink\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(Drupal\\\\Core\\\\Entity\\\\EntityInterface\\)\\: mixed\\)\\|null, Closure\\(Drupal\\\\helfi_paragraphs_news_list\\\\Entity\\\\ExternalEntity\\\\Term\\)\\: int given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Parameter \\#1 \\$ids of method Drupal\\\\Core\\\\Entity\\\\EntityStorageInterface\\:\\:loadMultiple\\(\\) expects array\\<int\\|string\\>\\|null, array\\|int given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/ResultsController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\RoadworksController\\:\\:buildFormResults\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/RoadworksController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\RoadworksController\\:\\:buildHtmxResults\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/RoadworksController.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\SearchPageControllerBase\\:\\:buildEventsHtmxContainer\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/SearchPageControllerBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\SearchPageControllerBase\\:\\:buildFeedbackHtmxContainer\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/SearchPageControllerBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\SearchPageControllerBase\\:\\:buildFormResults\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/SearchPageControllerBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\SearchPageControllerBase\\:\\:buildHtmxRenderArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/SearchPageControllerBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\SearchPageControllerBase\\:\\:buildRoadworksHtmxContainer\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/SearchPageControllerBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\SearchPageControllerBase\\:\\:content\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/SearchPageControllerBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Controller\\\\SearchPageControllerBase\\:\\:content\\(\\) should return array\\<array\\> but returns array\\<string, array\\|Drupal\\\\Core\\\\StringTranslation\\\\TranslatableMarkup\\|string\\>\\.$#"
+			count: 2
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/SearchPageControllerBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\CoordinateConversionService\\:\\:etrsGk25ToWgs84\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/CoordinateConversionService.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\CoordinateConversionService\\:\\:wgs84ToEtrsGk25\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/CoordinateConversionService.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\DTO\\\\HeroOptions\\:\\:__construct\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/DTO/HeroOptions.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\DTO\\\\HeroOptions\\:\\:__construct\\(\\) has parameter \\$translationArguments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/DTO/HeroOptions.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Enum\\\\InternalSearchLink\\:\\:getLinkTranslations\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Enum/InternalSearchLink.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Enum\\\\RouteInformationEnum\\:\\:getHeroDescription\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Enum/RouteInformationEnum.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Enum\\\\RouteInformationEnum\\:\\:getTitle\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Enum/RouteInformationEnum.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Feedback\\\\DTO\\\\Feedback\\:\\:createFromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Feedback/DTO/Feedback.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Feedback\\\\LazyBuilder\\:\\:build\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Feedback/LazyBuilder.php
+
+		-
+			message: "#^Left side of && is always true\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Form\\\\SearchFormBase\\:\\:buildForm\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Form\\\\SearchFormBase\\:\\:buildForm\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Form\\\\SearchFormBase\\:\\:submitForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Form\\\\SearchFormBase\\:\\:submitForm\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\Form\\\\SearchFormBase\\:\\:validateForm\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Parameter \\#2 \\$message of method Drupal\\\\Core\\\\Form\\\\FormStateInterface\\:\\:setErrorByName\\(\\) expects string\\|Stringable, array\\<int, Drupal\\\\Core\\\\StringTranslation\\\\TranslatableMarkup\\> given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Using nullsafe property access on non\\-nullable type Symfony\\\\Component\\\\HttpFoundation\\\\Request\\. Use \\-\\> instead\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\Client\\:\\:get\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/Client.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\Client\\:\\:getUri\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/Client.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\DTO\\\\Event\\:\\:__construct\\(\\) has parameter \\$tags with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/DTO/Event.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\DTO\\\\Event\\:\\:createFromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/DTO/Event.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\DTO\\\\Event\\:\\:getCategory\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/DTO/Event.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\DTO\\\\Event\\:\\:getLocationString\\(\\) has parameter \\$location with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/DTO/Event.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\DTO\\\\Image\\:\\:createFromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/DTO/Image.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\DTO\\\\TargetGroup\\:\\:getQueryFilters\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/DTO/TargetGroup.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\LinkedEvents\\\\LazyBuilder\\:\\:build\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/LinkedEvents/LazyBuilder.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\RoadworkData\\\\DTO\\\\Collection\\:\\:__construct\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/RoadworkData/DTO/Collection.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/RoadworkData/LazyBuilder.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\RoadworkData\\\\LazyBuilder\\:\\:build\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/RoadworkData/LazyBuilder.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\RoadworkData\\\\RoadworkDataClient\\:\\:getProjectsByCoordinates\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/RoadworkData/RoadworkDataClient.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\RoadworkData\\\\RoadworkDataClientInterface\\:\\:getProjectsByCoordinates\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/RoadworkData/RoadworkDataClientInterface.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\HelsinkiNearYou\\\\RoadworkData\\\\RoadworkDataService\\:\\:extractFirstCoordinate\\(\\) has parameter \\$geometry with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/RoadworkData/RoadworkDataService.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Hook\\\\AltLanguageFallbackHooks\\:\\:preprocessBlock\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Hook/AltLanguageFallbackHooks.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Hook\\\\AltLanguageFallbackHooks\\:\\:preprocessMenu\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Hook/AltLanguageFallbackHooks.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Hook\\\\AltLanguageFallbackHooks\\:\\:preprocessRegion\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Hook/AltLanguageFallbackHooks.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Hook\\\\PlatformConfig\\:\\:paragraphTypes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Hook/PlatformConfig.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Hook\\\\PlatformConfig\\:\\:permissions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Hook/PlatformConfig.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Language\\\\AltLanguageFallbacks\\:\\:checkIfBlockHasFallbackContent\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Language/AltLanguageFallbacks.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Language\\\\AltLanguageFallbacks\\:\\:replaceMenuTree\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Language/AltLanguageFallbacks.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Language\\\\AltLanguageFallbacks\\:\\:shouldMenuTreeBeReplaced\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Language/AltLanguageFallbacks.php
+
+		-
+			message: "#^Property Drupal\\\\helfi_etusivu\\\\Language\\\\AltLanguageFallbacks\\:\\:\\$fallbackBlocks type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Language/AltLanguageFallbacks.php
+
+		-
+			message: "#^Property Drupal\\\\helfi_etusivu\\\\Language\\\\AltLanguageFallbacks\\:\\:\\$fallbackMenus type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Language/AltLanguageFallbacks.php
+
+		-
+			message: "#^Property Drupal\\\\helfi_etusivu\\\\Language\\\\AltLanguageFallbacks\\:\\:\\$fallbackRegions type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Language/AltLanguageFallbacks.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\NewsRss\\\\DTO\\\\RssFeed\\:\\:__construct\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/NewsRss/DTO/RssFeed.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\NewsRss\\\\RssEncoder\\:\\:encode\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/NewsRss/RssEncoder.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\NewsRss\\\\RssNormalizer\\:\\:normalize\\(\\) should return string but returns string\\|false\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/NewsRss/RssNormalizer.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\EtusivuLocalTasksBlock\\:\\:build\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/EtusivuLocalTasksBlock.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\EtusivuLocalTasksBlock\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/EtusivuLocalTasksBlock.php
+
+		-
+			message: "#^Match expression does not handle remaining value\\: null$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/HelsinkiNearYouHeroBlock.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\HelsinkiNearYouHeroBlock\\:\\:build\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/HelsinkiNearYouHeroBlock.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\HelsinkiNearYouHeroBlock\\:\\:buildHero\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/HelsinkiNearYouHeroBlock.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\HelsinkiNearYouHeroBlock\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/HelsinkiNearYouHeroBlock.php
+
+		-
+			message: "#^Class Drupal\\\\helfi_etusivu\\\\Plugin\\\\Field\\\\FieldFormatter\\\\RssEnclosureFormatter extends generic class Drupal\\\\Core\\\\Field\\\\FormatterBase but does not specify its types\\: T$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldFormatter/RssEnclosureFormatter.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Field\\\\FieldFormatter\\\\RssEnclosureFormatter\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldFormatter/RssEnclosureFormatter.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Field\\\\FieldFormatter\\\\RssEnclosureFormatter\\:\\:viewElements\\(\\) has parameter \\$items with generic interface Drupal\\\\Core\\\\Field\\\\FieldItemListInterface but does not specify its types\\: T$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldFormatter/RssEnclosureFormatter.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Field\\\\FieldFormatter\\\\RssEnclosureFormatter\\:\\:viewElements\\(\\) has parameter \\$items with no value type specified in iterable type Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldFormatter/RssEnclosureFormatter.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Field\\\\FieldWidget\\\\HelfiLinkitWidget\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldWidget/HelfiLinkitWidget.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Field\\\\FieldWidget\\\\HelfiLinkitWidget\\:\\:massageFormValues\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldWidget/HelfiLinkitWidget.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Field\\\\FieldWidget\\\\HelfiLinkitWidget\\:\\:massageFormValues\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldWidget/HelfiLinkitWidget.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Field\\\\FieldWidget\\\\HelfiLinkitWidget\\:\\:massageFormValues\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldWidget/HelfiLinkitWidget.php
+
+		-
+			message: "#^Binary operation \"\\*\" between int\\|string and 15 results in an error\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/rest/resource/NewsRssResource.php
+
+		-
+			message: "#^Call to an undefined method Elastic\\\\Elasticsearch\\\\Response\\\\Elasticsearch\\|Http\\\\Promise\\\\Promise\\:\\:asArray\\(\\)\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/rest/resource/NewsRssResource.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\rest\\\\resource\\\\NewsRssResource\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/rest/resource/NewsRssResource.php
+
+		-
+			message: "#^Property Drupal\\\\helfi_etusivu\\\\Plugin\\\\rest\\\\resource\\\\NewsRssResource\\:\\:\\$elasticIndex \\(string\\) does not accept array\\|bool\\|float\\|int\\|string\\|UnitEnum\\|null\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/rest/resource/NewsRssResource.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\search_api\\\\processor\\\\UuidLangcode\\:\\:addFieldValues\\(\\) has parameter \\$item with no value type specified in iterable type Drupal\\\\search_api\\\\Item\\\\ItemInterface\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Plugin/search_api/processor/UuidLangcode.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Search\\\\Controller\\\\SearchPageController\\:\\:content\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/src/Search/Controller/SearchPageController.php
+
+		-
+			message: "#^Function news_terms_trait_test_entity_type_build\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/modules/news_terms_trait_test/news_terms_trait_test.module
+
+		-
+			message: "#^Function news_terms_trait_test_entity_type_build\\(\\) has parameter \\$entity_types with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/modules/news_terms_trait_test/news_terms_trait_test.module
+
+		-
+			message: "#^Method Drupal\\\\news_terms_trait_test\\\\Entity\\\\NewsTermsTestNode\\:\\:getTaxonomyTermsWithArchiveLinks\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/modules/news_terms_trait_test/src/Entity/NewsTermsTestNode.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Controller\\\\LinkedEventsImageControllerTest\\:\\:providerDeliver\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
+
+		-
+			message: "#^Parameter \\$body of class GuzzleHttp\\\\Psr7\\\\Response constructor expects Psr\\\\Http\\\\Message\\\\StreamInterface\\|resource\\|string\\|null, string\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
+
+		-
+			message: "#^Property Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Controller\\\\LinkedEventsImageControllerTest\\:\\:\\$cache with generic class Prophecy\\\\Prophecy\\\\ObjectProphecy does not specify its types\\: T$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
+
+		-
+			message: "#^Property Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Controller\\\\LinkedEventsImageControllerTest\\:\\:\\$imageStyle with generic class Prophecy\\\\Prophecy\\\\ObjectProphecy does not specify its types\\: T$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Entity\\\\Search\\\\PromotionTest\\:\\:assertEntityAccess\\(\\) has parameter \\$ops with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
+
+		-
+			message: "#^Parameter \\#3 \\$account of method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Entity\\\\Search\\\\PromotionTest\\:\\:assertEntityAccess\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface\\|null, Drupal\\\\user\\\\Entity\\\\User\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_etusivu\\\\Tests\\\\Kernel\\\\EventSubscriber\\\\ElasticsearchEventSubscriberTest\\:\\:testPrepareIndices\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/EventSubscriber/ElasticsearchEventSubscriberTest.php
+
+		-
+			message: "#^Call to an undefined method Drupal\\\\helfi_api_base\\\\ServiceMap\\\\ServiceMap\\|PHPUnit\\\\Framework\\\\MockObject\\\\MockObject\\:\\:expects\\(\\)\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/HelsinkiNearYou/Controller/ResultsControllerTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\HelsinkiNearYou\\\\Controller\\\\ResultsControllerTest\\:\\:testBuildServiceGroups\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/HelsinkiNearYou/Controller/ResultsControllerTest.php
+
+		-
+			message: "#^Parameter \\$body of class GuzzleHttp\\\\Psr7\\\\Response constructor expects Psr\\\\Http\\\\Message\\\\StreamInterface\\|resource\\|string\\|null, string\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/HelsinkiNearYou/Feedback/LazyBuilderTest.php
+
+		-
+			message: "#^Parameter \\$body of class GuzzleHttp\\\\Psr7\\\\Response constructor expects Psr\\\\Http\\\\Message\\\\StreamInterface\\|resource\\|string\\|null, string\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/HelsinkiNearYou/LinkedEvents/LazyBuilderTest.php
+
+		-
+			message: "#^Parameter \\$body of class GuzzleHttp\\\\Psr7\\\\Response constructor expects Psr\\\\Http\\\\Message\\\\StreamInterface\\|resource\\|string\\|null, string\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/HelsinkiNearYou/RoadworkData/LazyBuilderTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Language\\\\AltLanguageFallbacksTest\\:\\:renderMenuBlock\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Language/AltLanguageFallbacksTest.php
+
+		-
+			message: "#^Call to an undefined method Elastic\\\\Elasticsearch\\\\Response\\\\Elasticsearch\\|Http\\\\Promise\\\\Promise\\:\\:asArray\\(\\)\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
+
+		-
+			message: "#^Call to an undefined method Elastic\\\\Elasticsearch\\\\Response\\\\Elasticsearch\\|Http\\\\Promise\\\\Promise\\:\\:getStatusCode\\(\\)\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$groups with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$neighbourhoods with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$tags with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$xml of method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:assertXml\\(\\) expects string, string\\|false given\\.$#"
+			count: 2
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
+
+		-
+			message: "#^Cannot access an offset on array\\<int, array\\<string, int\\|string\\|null\\>\\>\\|string\\|true\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsTermsTraitTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsTermsTraitTest\\:\\:getTestNode\\(\\) has parameter \\$term_ids with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsTermsTraitTest.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$result has no value type specified in iterable type Drupal\\\\search_api\\\\Item\\\\ItemInterface\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/SearchApi/Processor/UuidLangcodeTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\HelsinkiNearYou\\\\Feedback\\\\ClientTest\\:\\:uriData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/Feedback/ClientTest.php
+
+		-
+			message: "#^Parameter \\$body of class GuzzleHttp\\\\Psr7\\\\Response constructor expects Psr\\\\Http\\\\Message\\\\StreamInterface\\|resource\\|string\\|null, string\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/Feedback/ClientTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\HelsinkiNearYou\\\\Feedback\\\\DTO\\\\FeedbackTest\\:\\:missingItemData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/Feedback/DTO/FeedbackTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\HelsinkiNearYou\\\\Feedback\\\\DTO\\\\FeedbackTest\\:\\:testCreateFromArrayMissingItemException\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/Feedback/DTO/FeedbackTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataClientTest\\:\\:testGetProjectsByCoordinatesApiError\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataClientTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataClientTest\\:\\:testGetProjectsByCoordinatesInvalidResponse\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataClientTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataClientTest\\:\\:testGetProjectsByCoordinatesSuccess\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataClientTest.php
+
+		-
+			message: "#^Parameter \\#3 \\$body of class GuzzleHttp\\\\Psr7\\\\Response constructor expects Psr\\\\Http\\\\Message\\\\StreamInterface\\|resource\\|string\\|null, string\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataClientTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataServiceTest\\:\\:dateFormatProvider\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataServiceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataServiceTest\\:\\:testDateFormatting\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataServiceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataServiceTest\\:\\:testDateFormatting\\(\\) has parameter \\$expected with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataServiceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataServiceTest\\:\\:testDateFormatting\\(\\) has parameter \\$input with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataServiceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataServiceTest\\:\\:testFormatProjectsEmpty\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataServiceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataServiceTest\\:\\:testGetFormattedProjectsByCoordinates\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataServiceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataServiceTest\\:\\:testGetSeeAllUrl\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataServiceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\RoadworkData\\\\RoadworkDataServiceTest\\:\\:testPagination\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/HelsinkiNearYou/RoadworkData/RoadworkDataServiceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Unit\\\\Language\\\\AltLanguageFallbacksTest\\:\\:testInvalidAltLanguage\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_etusivu/tests/src/Unit/Language/AltLanguageFallbacksTest.php
+
+		-
+			message: "#^Function helfi_global_navigation_preprocess_menu__external_menu\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/helfi_global_navigation.module
+
+		-
+			message: "#^Function helfi_global_navigation_theme\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/helfi_global_navigation.module
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Entity\\\\Form\\\\GlobalMenuOverviewForm\\:\\:buildForm\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Entity/Form/GlobalMenuOverviewForm.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Entity\\\\Form\\\\GlobalMenuOverviewForm\\:\\:buildForm\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Entity/Form/GlobalMenuOverviewForm.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Entity\\\\Form\\\\GlobalMenuOverviewForm\\:\\:submitForm\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Entity/Form/GlobalMenuOverviewForm.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Entity/GlobalMenu.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Entity\\\\GlobalMenu\\:\\:preSave\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Entity/GlobalMenu.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of method Drupal\\\\Core\\\\Entity\\\\ContentEntityBase\\:\\:set\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Entity/GlobalMenu.php
+
+		-
+			message: "#^Parameter \\#2 \\$regex of method Symfony\\\\Component\\\\Routing\\\\Route\\:\\:setRequirement\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Entity/Routing/GlobalMenuRouteProvider.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Entity\\\\Storage\\\\GlobalMenuStorage\\:\\:loadMultipleSorted\\(\\) has parameter \\$conditions with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Entity/Storage/GlobalMenuStorage.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Normalizer\\\\MenuTreeNormalizer\\:\\:normalize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Normalizer/MenuTreeNormalizer.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Normalizer\\\\MenuTreeNormalizer\\:\\:normalize\\(\\) should return array but returns array\\|ArrayObject\\|bool\\|float\\|int\\|string\\|null\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Normalizer/MenuTreeNormalizer.php
+
+		-
+			message: "#^Property Drupal\\\\helfi_global_navigation\\\\Normalizer\\\\MenuTreeNormalizer\\:\\:\\$supportedInterfaceOrClass has no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Normalizer/MenuTreeNormalizer.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Plugin\\\\rest\\\\resource\\\\GlobalMenu\\:\\:permissions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Plugin/rest/resource/GlobalMenu.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$sub_tree\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Plugin/rest/resource/GlobalMenuResourceBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Plugin\\\\rest\\\\resource\\\\GlobalMenuResourceBase\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Plugin/rest/resource/GlobalMenuResourceBase.php
+
+		-
+			message: "#^Right side of && is always true\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Plugin/rest/resource/GlobalMenuResourceBase.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Plugin\\\\rest\\\\resource\\\\MenuLinkCollection\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Plugin/rest/resource/MenuLinkCollection.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Plugin\\\\rest\\\\resource\\\\MenuLinkCollection\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Plugin/rest/resource/MenuLinkCollection.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Plugin\\\\rest\\\\resource\\\\MenuResourceBase\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/src/Plugin/rest/resource/MenuResourceBase.php
+
+		-
+			message: "#^Parameter \\#1 \\$account of method Drupal\\\\Tests\\\\BrowserTestBase\\:\\:drupalLogin\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface, Drupal\\\\user\\\\UserInterface\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuOverviewFormTest.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$sub_tree\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_global_navigation\\\\Functional\\\\GlobalMenuResourceTest\\:\\:createGlobalMenu\\(\\) has parameter \\$menu with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_global_navigation\\\\Functional\\\\GlobalMenuResourceTest\\:\\:getMockJson\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$account of method Drupal\\\\Tests\\\\BrowserTestBase\\:\\:drupalLogin\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface, Drupal\\\\user\\\\Entity\\\\User\\|false given\\.$#"
+			count: 3
+			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
+
+		-
+			message: "#^Property Drupal\\\\Tests\\\\helfi_global_navigation\\\\Functional\\\\RestTestBase\\:\\:\\$account \\(Drupal\\\\user\\\\UserInterface\\|null\\) does not accept Drupal\\\\user\\\\Entity\\\\User\\|false\\.$#"
+			count: 2
+			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$account of method Drupal\\\\Tests\\\\BrowserTestBase\\:\\:drupalLogin\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface, Drupal\\\\user\\\\Entity\\\\User\\|false given\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/MenuLinkCollectionResourceTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_global_navigation\\\\Kernel\\\\GlobalMenuStorageTest\\:\\:assertEntityLanguage\\(\\) has parameter \\$entities with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/tests/src/Kernel/GlobalMenuStorageTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_global_navigation\\\\Kernel\\\\GlobalMenuStorageTest\\:\\:assertEntityOrder\\(\\) has parameter \\$expectedOrder with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/tests/src/Kernel/GlobalMenuStorageTest.php
+
+		-
+			message: "#^Method Drupal\\\\Tests\\\\helfi_global_navigation\\\\Kernel\\\\GlobalMenuStorageTest\\:\\:currentLanguageConditionData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_global_navigation/tests/src/Kernel/GlobalMenuStorageTest.php
+
+		-
+			message: "#^Function helfi_node_news_article_block_access\\(\\) has parameter \\$operation with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_entity_bundle_info_alter\\(\\) has parameter \\$bundles with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_get_block_configurations\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_helfi_paragraph_types\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_platform_config_grant_permissions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_preprocess_node__news_article\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_sidebar_visibility_allowed_entities_alter\\(\\) has parameter \\$allowed_entities with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_sidebar_visibility_alter\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_theme\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_themes_installed\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Function helfi_node_news_article_themes_installed\\(\\) has parameter \\$theme_list with no type specified\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/helfi_node_news_article.module
+
+		-
+			message: "#^Method Drupal\\\\helfi_node_news_article\\\\Entity\\\\Node\\\\NewsArticle\\:\\:getTaxonomyTermsWithArchiveLinks\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/src/Entity/Node/NewsArticle.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_node_news_article\\\\Plugin\\\\Block\\\\NewsArticleHeroBlock\\:\\:__construct\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/src/Plugin/Block/NewsArticleHeroBlock.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_node_news_article\\\\Plugin\\\\Block\\\\NewsArticleHeroBlock\\:\\:build\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/src/Plugin/Block/NewsArticleHeroBlock.php
+
+		-
+			message: "#^Method Drupal\\\\helfi_node_news_article\\\\Plugin\\\\Block\\\\NewsArticleHeroBlock\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/src/Plugin/Block/NewsArticleHeroBlock.php
+
+		-
+			message: "#^Using nullsafe method call on non\\-nullable type Drupal\\\\Core\\\\Entity\\\\Plugin\\\\DataType\\\\EntityAdapter\\. Use \\-\\> instead\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/src/Plugin/Block/NewsArticleHeroBlock.php
+
+		-
+			message: "#^Using nullsafe method call on non\\-nullable type Drupal\\\\Core\\\\Entity\\\\Plugin\\\\DataType\\\\EntityReference\\. Use \\-\\> instead\\.$#"
+			count: 1
+			path: public/modules/custom/helfi_node_news_article/src/Plugin/Block/NewsArticleHeroBlock.php
+
+		-
+			message: "#^Using nullsafe method call on non\\-nullable type Drupal\\\\Core\\\\Field\\\\FieldItemListInterface\\<Drupal\\\\Core\\\\Field\\\\FieldItemInterface\\>\\. Use \\-\\> instead\\.$#"
+			count: 6
+			path: public/modules/custom/helfi_node_news_article/src/Plugin/Block/NewsArticleHeroBlock.php
+
+		-
+			message: "#^Using nullsafe method call on non\\-nullable type Drupal\\\\media\\\\Entity\\\\Media\\. Use \\-\\> instead\\.$#"
+			count: 2
+			path: public/modules/custom/helfi_node_news_article/src/Plugin/Block/NewsArticleHeroBlock.php
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_block\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_block\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_field\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_field\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_menu\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_menu\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_node__news_item\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_paragraph\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_paragraph\\(\\) has parameter \\$variables with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_preprocess_views_view_row_rss\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_theme_suggestions_block_alter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_theme_suggestions_block_alter\\(\\) has parameter \\$suggestions with no type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_theme_suggestions_menu_alter\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_theme_suggestions_menu_alter\\(\\) has parameter \\$suggestions with no type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Function hdbt_subtheme_theme_suggestions_menu_alter\\(\\) has parameter \\$variables with no type specified\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^If condition is always true\\.$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme
+
+		-
+			message: "#^Match expression does not handle remaining value\\: mixed$#"
+			count: 1
+			path: public/themes/custom/hdbt_subtheme/hdbt_subtheme.theme

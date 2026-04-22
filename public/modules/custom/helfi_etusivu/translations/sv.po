@@ -298,6 +298,10 @@ msgctxt "Helsinki near you"
 msgid "No feedback was found near address @address"
 msgstr "Inga responser hittades på adressen @address"
 
+msgctxt "Helsinki near you"
+msgid "Results for @address"
+msgstr "Resultat för @address"
+
 msgid "Hiding the page"
 msgstr "Schemalagd döljning"
 
@@ -345,3 +349,15 @@ msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publicerin
 
 msgid "News"
 msgstr "Nyheter"
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the address"
+msgstr "Inga resultat hittades för adressen"
+
+msgctxt "Helsinki near you"
+msgid "Address is required."
+msgstr "Adress krävs."
+
+msgctxt "Site search"
+msgid "Search in the website"
+msgstr "Sök i webbplatsen"

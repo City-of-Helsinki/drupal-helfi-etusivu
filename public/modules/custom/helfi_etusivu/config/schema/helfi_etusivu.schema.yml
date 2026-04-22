@@ -1,0 +1,28 @@
+helfi_etusivu.site_search_settings:
+  type: config_object
+  label: 'Hel.fi site search settings'
+  mapping:
+    external_links:
+      type: mapping
+      label: 'Links for other searches'
+      mapping:
+        jobs:
+          type: label
+          label: 'Open jobs URL'
+          translatable: true
+        events:
+          type: label
+          label: 'Events URL'
+          translatable: true
+        decisions:
+          type: label
+          label: 'Decisions URL'
+          translatable: true
+        contact:
+          type: label
+          label: 'Contact URL'
+          translatable: true
+    ai_register_url:
+      type: label
+      label: 'AI register URL'
+      translatable: true

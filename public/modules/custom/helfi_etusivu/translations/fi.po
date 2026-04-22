@@ -305,6 +305,10 @@ msgctxt "Helsinki near you"
 msgid "No feedback was found near address @address"
 msgstr "Palautteita ei löytynyt osoitteella @address"
 
+msgctxt "Helsinki near you"
+msgid "Results for @address"
+msgstr "Tulokset osoitteella @address"
+
 msgid "Arabic"
 msgstr "Arabia"
 
@@ -379,3 +383,36 @@ msgstr "Hakunosto näytetään jos haku sisältää jonkin näistä asiasanoista
 
 msgid "News"
 msgstr "Uutiset"
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the address"
+msgstr "Osoitteelle ei löytynyt tuloksia"
+
+msgctxt "Helsinki near you"
+msgid "Address is required."
+msgstr "Osoite on pakollinen."
+
+msgctxt "Site search"
+msgid "Search in the website"
+msgstr "Hae sivustolta"
+
+msgid "Hel.fi site search settings"
+msgstr "Hel.fi sivustohaun asetukset"
+
+msgid "Links for other searches"
+msgstr "Linkit muihin hakuihin"
+
+msgid "Open jobs URL"
+msgstr "Avoimet työpaikat -URL"
+
+msgid "Events URL"
+msgstr "Tapahtumat-URL"
+
+msgid "Decisions URL"
+msgstr "Päätökset-URL"
+
+msgid "Contact URL"
+msgstr "Ota yhteyttä -URL"
+
+msgid "AI register URL"
+msgstr "Tekoälyrekisterin URL"

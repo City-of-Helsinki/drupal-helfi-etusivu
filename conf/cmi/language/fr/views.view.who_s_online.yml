@@ -2,7 +2,7 @@ label: 'Bloc "Qui est connecté"'
 description: "Affiche les noms des utilisateurs les plus actifs récemment et le nombre total d'utilisateurs actifs."
 display:
   default:
-    display_title: 'Par défaut'
+    display_title: Default
     display_options:
       title: 'Utilisateurs en ligne'
       exposed_form:

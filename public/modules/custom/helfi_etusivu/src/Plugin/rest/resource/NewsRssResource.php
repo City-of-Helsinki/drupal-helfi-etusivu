@@ -80,7 +80,7 @@ final class NewsRssResource extends ResourceBase {
    *
    * @param string $key
    *   The key.
-   * @param array $result
+   * @param array<mixed> $result
    *   The result.
    *
    * @return string|int|bool|null
@@ -101,7 +101,7 @@ final class NewsRssResource extends ResourceBase {
    * @param string $langcode
    *   The langcode.
    *
-   * @return array
+   * @return array<mixed>
    *   The elastic query.
    */
   private function buildQuery(Request $request, string $langcode): array {
@@ -172,7 +172,7 @@ final class NewsRssResource extends ResourceBase {
   /**
    * Creates an RSS item object.
    *
-   * @param array $result
+   * @param array<mixed> $result
    *   The elastic result.
    *
    * @return \Drupal\helfi_etusivu\NewsRss\DTO\RssItem
@@ -183,7 +183,7 @@ final class NewsRssResource extends ResourceBase {
 
     // Main image is not required field.
     if ($mainImage = $this->parseSourceValue('main_image_url', $result)) {
-      $mainImage = json_decode($mainImage);
+      $mainImage = json_decode((string) $mainImage);
 
       if (isset($mainImage->original->url, $mainImage->original->size, $mainImage->original->mime)) {
         $enclosure = new RssEnclosure(
