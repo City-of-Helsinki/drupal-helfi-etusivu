@@ -2,7 +2,7 @@ label: 术语表
 description: 所有内容，按字母排序。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       fields:
         title:

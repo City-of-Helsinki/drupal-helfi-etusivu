@@ -10,6 +10,12 @@ helfi_etusivu.ordered_news_articles:
   parent: hdbt_admin_tools.overview
   weight: 99
 
+helfi_etusivu.site_search_settings:
+  title: 'Hel.fi site search settings'
+  route_name: helfi_etusivu.site_search_settings
+  parent: hdbt_admin_tools.overview
+  weight: 3
+
 entity.helfi_search_promotion.collection:
   title: Search promotion
   description: List of search promotion entities
