@@ -1,7 +1,7 @@
-import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, SearchInput } from 'hds-react';
+import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, Search } from 'hds-react';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { useAtom, useSetAtom } from 'jotai';
-import type { SyntheticEvent } from 'react';
+import { type SyntheticEvent, useCallback, useState } from 'react';
 import { stagedBundlesAtom, stagedQueryAtom, submitAllSearchAtom, submitNewsSearchAtom } from '../store';
 
 type FormContainerProps = {
@@ -26,13 +26,15 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const toggleBundle = (value: string, checked: boolean) =>
     setStagedBundles(checked ? [...stagedBundles, value] : stagedBundles.filter((b) => b !== value));
 
-  const handleSubmit = () => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value), []);
+
+  const handleSend = useCallback(() => {
     withBundleFilters ? submitAll() : submitNews();
-  };
+  }, [withBundleFilters, submitAll, submitNews]);
 
   const onSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleSubmit();
+    handleSend();
   };
 
   const bundleLabels: Record<string, string> = {
@@ -41,6 +43,13 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     landing_page: Drupal.t('Landing pages', {}, { context: 'Site search' }),
   };
 
+  const [searchInputProps] = useState({
+    className: 'hdbt-search--react__input hdbt-search__search-input',
+    texts: {
+      label: Drupal.t('Keyword or a question', {}, { context: 'Site search' }),
+    },
+  });
+
   return (
     // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
     <form
@@ -48,13 +57,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       role='search'
       onSubmit={onSubmit}
     >
-      <SearchInput
-        label={Drupal.t('Keyword or a question', {}, { context: 'Site search' })}
-        value={inputValue}
-        onChange={setInputValue}
-        onSubmit={handleSubmit}
-        className='hdbt-search--react__input'
-      />
+      <Search {...searchInputProps} onChange={handleChange} onSend={handleSend} value={inputValue} />
       {withBundleFilters && (
         <div className='hdbt-search--react__filters-container hdbt-search--react__filters-container--site-search'>
           <Accordion
