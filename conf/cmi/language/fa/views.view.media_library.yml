@@ -1,7 +1,7 @@
 label: 'کتابخانه رسانه'
 display:
   default:
-    display_title: پیش‌فرض
+    display_title: Default
     display_options:
       title: رسانه
       fields:
@@ -9,6 +9,9 @@ display:
           action_title: عملکرد
       pager:
         options:
+          tags:
+            next: Next
+            previous: Previous
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'

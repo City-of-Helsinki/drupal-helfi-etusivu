@@ -2,7 +2,7 @@ label: 'Contenu récent'
 description: 'Contenu récent.'
 display:
   default:
-    display_title: 'Par défaut'
+    display_title: Default
     display_options:
       title: 'Contenu récent'
       fields:

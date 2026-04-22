@@ -110,3 +110,97 @@ msgstr "Etäisyys"
 msgctxt "Helsinki near you"
 msgid "Something went wrong while getting the results. You may try searching again."
 msgstr "Tuloksien hakemisessa tapahtui virhe. Voit kokeilla hakea uudelleen."
+
+msgctxt "Site search"
+msgid "Keyword or a question"
+msgstr "Hakusana tai kysymys"
+
+msgctxt "Site search"
+msgid "Refine search results"
+msgstr "Rajaa hakutuloksia"
+
+msgctxt "Site search"
+msgid "Show only"
+msgstr "Näytä vain"
+
+msgctxt "Site search"
+msgid "News"
+msgstr "Uutiset"
+
+msgctxt "Site search"
+msgid "Pages"
+msgstr "Perussivut"
+
+msgctxt "Site search"
+msgid "Landing pages"
+msgstr "Laskeutumissivut"
+
+msgctxt "Site search"
+msgid "Refine search"
+msgstr "Rajaa hakua"
+
+msgctxt "Site search"
+msgid "The search uses artificial intelligence."
+msgstr "Haku käyttää tekoälyä."
+
+msgctxt "Site search"
+msgid "Read more from the artificial intelligence register."
+msgstr "Lue lisää tekoälyrekisteristä."
+
+msgctxt "Site search"
+msgid "@count search result"
+msgid_plural "@count search results"
+msgstr[0] "@count hakutulos"
+msgstr[1] "@count hakutulosta"
+
+msgctxt "Site search"
+msgid "Published"
+msgstr "Julkaistu"
+
+msgctxt "Site search"
+msgid "Go to external search services"
+msgstr "Siirry erillisiin hakupalveluihin"
+
+msgctxt "Site search"
+msgid "Open jobs"
+msgstr "Avoimet työpaikat"
+
+msgctxt "Site search"
+msgid "Events"
+msgstr "Tapahtumat"
+
+msgctxt "Site search"
+msgid "Decisions"
+msgstr "Päätökset"
+
+msgctxt "Site search"
+msgid "Contact"
+msgstr "Yhteystiedot"
+
+msgctxt "Hakuvahti confirm success"
+msgid "You will be notified of new search matches no more than once a day."
+msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä."
+
+msgctxt "Hakuvahti confirm success"
+msgid "You can cancel your subscription using the link sent with each notification."
+msgstr "Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+
+msgctxt "Hakuvahti confirm success"
+msgid "You can subscribe to new search alerts at any time."
+msgstr "Voit koska tahansa tilata uusia hakuvahteja."
+
+msgctxt "Hakuvahti already confirmed"
+msgid "You have already confirmed this search alert."
+msgstr "Olet jo vahvistanut tämän uutisten hakuvahdin."
+
+msgctxt "Hakuvahti already confirmed"
+msgid "You will receive email alerts about new search results up to once a day."
+msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä."
+
+msgctxt "Hakuvahti already confirmed"
+msgid "Each email contains an unsubscribe link that you can use to unsubscribe from saved search alerts. You can save a new search at any time."
+msgstr "Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+
+msgctxt "News search monitor"
+msgid "You have not selected any search criteria. You will be notified of all the latest news."
+msgstr "Et ole valinnut yhtään hakuehtoa. Saat tiedon kaikista uusista uutisista."

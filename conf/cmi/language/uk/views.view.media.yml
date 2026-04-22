@@ -2,7 +2,7 @@ label: Медіа
 description: 'Пошук медіа та керування ними.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: Медіа
       fields:
