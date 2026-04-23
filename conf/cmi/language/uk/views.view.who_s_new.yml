@@ -2,7 +2,7 @@ label: 'Хто новенький'
 description: 'Показує перелік найновіших облікових записів на сайті.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: 'Хто новенький'
       exposed_form:
