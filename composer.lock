@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e2bc1428d2037ff4b73a01fc21becea",
+    "content-hash": "035ec329e2daf3c6d7abb437f3ca7a53",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4905,16 +4905,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.1.42",
+            "version": "5.1.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "90ea1221ee2bb76d7bf4966d0888ed876809cce4"
+                "reference": "f0a654e35613192d2464e80ad77083c9938a5ed9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/90ea1221ee2bb76d7bf4966d0888ed876809cce4",
-                "reference": "90ea1221ee2bb76d7bf4966d0888ed876809cce4",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/f0a654e35613192d2464e80ad77083c9938a5ed9",
+                "reference": "f0a654e35613192d2464e80ad77083c9938a5ed9",
                 "shasum": ""
             },
             "require": {
@@ -4992,6 +4992,7 @@
             "extra": {
                 "patches": {
                     "drupal/core": {
+                        "[#UHF-13177, #3569803] htmx:beforeSwap fails with TypeError requestAssetsLoaded.get(...) is undefined": "./public/modules/contrib/helfi_platform_config/patches/3569803.patch",
                         "[#UHF-12709] Patch 'Deleted and replaced ...' error messages": "./public/modules/contrib/helfi_platform_config/patches/UHF-12709-skip_deleted_and_replaced_log.patch",
                         "[#UHF-181] Hide untranslated menu links (https://www.drupal.org/project/drupal/issues/3091246)": "./public/modules/contrib/helfi_platform_config/patches/3091246.patch",
                         "[#UHF-3812] Ajax exposed filters not working for multiple instances of the same Views block placed on one page (https://www.drupal.org/project/drupal/issues/3163299)": "./public/modules/contrib/helfi_platform_config/patches/3163299-104-D10.patch",
@@ -5030,10 +5031,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.42",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.43",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-04-21T10:23:14+00:00"
+            "time": "2026-04-23T07:27:24+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
