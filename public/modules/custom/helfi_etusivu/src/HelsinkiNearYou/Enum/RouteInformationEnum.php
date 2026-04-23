@@ -78,14 +78,14 @@ enum RouteInformationEnum {
    * If the provided route does not have a matching enum
    * case, `null` is returned.
    *
-   * @param string|null $route
+   * @param string $route
    *   The route name.
    *
    * @return static|null
    *   The corresponding enum case if a match exists, or
    *   NULL if no match was found.
    */
-  public static function fromRoute(string|NULL $route): ?self {
+  public static function fromRoute(string $route): ?self {
     return match($route) {
       'helfi_etusivu.helsinki_near_you' => self::LandingPage,
       'helfi_etusivu.helsinki_near_you_results' => self::Results,

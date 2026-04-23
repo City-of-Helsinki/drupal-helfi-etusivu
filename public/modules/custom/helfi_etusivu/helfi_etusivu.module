@@ -522,6 +522,10 @@ function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
 function helfi_etusivu_page_attachments(array &$page): void {
   // Check if the current route matches the desired route.
   $route = \Drupal::routeMatch()->getRouteName();
+  if (!$route) {
+    return;
+  }
+
   $routeInformation = RouteInformationEnum::fromRoute($route);
 
   if ($routeInformation) {
