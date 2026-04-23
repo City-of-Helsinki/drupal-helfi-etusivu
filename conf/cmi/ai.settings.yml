@@ -1,0 +1,16 @@
+_core:
+  default_config_hash: dNM1Uh8o43t2mRnI6vTWTKrLh6GqilHniGlSdDEutGQ
+prompt_logging: false
+prompt_logging_tags: ''
+default_providers:
+  chat:
+    provider_id: azure
+    model_id: ''
+  embeddings:
+    provider_id: azure
+    model_id: ''
+default_vdb_provider: ''
+request_timeout: 120
+models: {  }
+allowed_hosts: {  }
+allowed_hosts_rewrite_links: false
