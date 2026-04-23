@@ -30,8 +30,8 @@ display:
           tags:
             next: 'Weiter ›'
             previous: '‹ Zurück'
-            first: '« Anfang'
-            last: 'Ende »'
+            first: '« Erste'
+            last: 'Letzte »'
       exposed_form:
         options:
           submit_button: Filter

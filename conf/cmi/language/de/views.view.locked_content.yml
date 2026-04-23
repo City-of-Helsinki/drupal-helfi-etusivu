@@ -26,8 +26,8 @@ display:
           tags:
             next: ››
             previous: ‹‹
-            first: '« Anfang'
-            last: 'Ende »'
+            first: '« Erste'
+            last: 'Letzte »'
           expose:
             items_per_page_label: 'Elemente pro Seite'
             items_per_page_options_all_label: '- Alle -'
