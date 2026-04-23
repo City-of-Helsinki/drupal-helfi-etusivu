@@ -2,7 +2,7 @@ label: Personnes
 description: 'Trouver et gérer les personnes interagissant avec votre site.'
 display:
   default:
-    display_title: 'Par défaut'
+    display_title: Default
     display_options:
       title: Personnes
       fields:

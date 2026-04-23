@@ -1,0 +1,9 @@
+uuid: a3f7e8b2-9c14-4d6a-b5e1-2f8d9a4c7e30
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: VOToVi_aKYE5IrQ7kOYaB0Ki5hOC4kh2f_KF5FJqKnY
+id: default
+label: Default
+site_id: etusivu

@@ -2,7 +2,7 @@ label: 分类术语
 description: 属于某个分类词汇的内容。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       pager:
         options:

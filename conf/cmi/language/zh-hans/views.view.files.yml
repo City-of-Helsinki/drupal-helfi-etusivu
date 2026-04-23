@@ -2,7 +2,7 @@ label: 文件
 description: 查找与管理文件。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       title: 文件
       fields:

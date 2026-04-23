@@ -2,7 +2,7 @@ label: 媒体库
 description: 查找和管理媒体。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       title: 媒体
       fields:

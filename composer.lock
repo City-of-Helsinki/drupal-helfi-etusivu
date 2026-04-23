@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57b581da96d9ed7d8fc15b6219a03dfc",
+    "content-hash": "035ec329e2daf3c6d7abb437f3ca7a53",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4534,16 +4534,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.16.62",
+            "version": "6.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "73e3876d5850392035d1567237fb7bcaaead6086"
+                "reference": "2dec708474d0468c03b8f4c4e4cc829f3c15b5cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/73e3876d5850392035d1567237fb7bcaaead6086",
-                "reference": "73e3876d5850392035d1567237fb7bcaaead6086",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/2dec708474d0468c03b8f4c4e4cc829f3c15b5cc",
+                "reference": "2dec708474d0468c03b8f4c4e4cc829f3c15b5cc",
                 "shasum": ""
             },
             "require": {
@@ -4562,10 +4562,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.16.62",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.17.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-04-10T08:05:14+00:00"
+            "time": "2026-04-22T12:51:29+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4838,6 +4838,38 @@
             "time": "2026-02-28T06:56:13+00:00"
         },
         {
+            "name": "drupal/helfi_hakuvahti",
+            "version": "1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti.git",
+                "reference": "f6e86aa805455f2a736a9f9bb7bb23f0647bda1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-hakuvahti/zipball/f6e86aa805455f2a736a9f9bb7bb23f0647bda1b",
+                "reference": "f6e86aa805455f2a736a9f9bb7bb23f0647bda1b",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/helfi_api_base": "*"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "drupal/coder": "^8.3"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Helfi - Hakuvahti",
+            "support": {
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/tree/1.2.4",
+                "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/issues"
+            },
+            "time": "2026-04-13T12:35:08+00:00"
+        },
+        {
             "name": "drupal/helfi_navigation",
             "version": "2.3.1",
             "source": {
@@ -5006,16 +5038,16 @@
         },
         {
             "name": "drupal/helfi_proxy",
-            "version": "3.4.0",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy.git",
-                "reference": "f3f460548b0848d22bd889f4826b825e4aa103f6"
+                "reference": "7cfd008ab8668254f2522ee9bef8e9008c90425a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-proxy/zipball/f3f460548b0848d22bd889f4826b825e4aa103f6",
-                "reference": "f3f460548b0848d22bd889f4826b825e4aa103f6",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-proxy/zipball/7cfd008ab8668254f2522ee9bef8e9008c90425a",
+                "reference": "7cfd008ab8668254f2522ee9bef8e9008c90425a",
                 "shasum": ""
             },
             "require": {
@@ -5045,10 +5077,10 @@
             ],
             "description": "Provides various fixes so we can serve multiple Drupal instances in one domain.",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/tree/3.4.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/tree/3.4.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/issues"
             },
-            "time": "2025-11-21T14:03:03+00:00"
+            "time": "2026-04-21T07:08:58+00:00"
         },
         {
             "name": "drupal/helfi_tpr",
@@ -10204,16 +10236,16 @@
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.3.16",
+            "version": "v0.3.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "11e7d5f93803a2190b00e145142cb00a33d17ad2"
+                "reference": "6a82ac19a28b916ae0885828795dbd4c59d9a818"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/11e7d5f93803a2190b00e145142cb00a33d17ad2",
-                "reference": "11e7d5f93803a2190b00e145142cb00a33d17ad2",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/6a82ac19a28b916ae0885828795dbd4c59d9a818",
+                "reference": "6a82ac19a28b916ae0885828795dbd4c59d9a818",
                 "shasum": ""
             },
             "require": {
@@ -10257,9 +10289,9 @@
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.3.16"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.17"
             },
-            "time": "2026-03-23T14:35:33+00:00"
+            "time": "2026-04-20T16:07:33+00:00"
         },
         {
             "name": "league/container",
@@ -18116,7 +18148,7 @@
         },
         {
             "name": "drupal/core-dev",
-            "version": "11.3.6",
+            "version": "11.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-dev.git",
@@ -18166,7 +18198,7 @@
             ],
             "description": "require-dev dependencies from drupal/drupal; use in addition to drupal/core-recommended to run tests from drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-dev/tree/11.3.6"
+                "source": "https://github.com/drupal/core-dev/tree/11.3.8"
             },
             "time": "2026-02-04T09:01:40+00:00"
         },
