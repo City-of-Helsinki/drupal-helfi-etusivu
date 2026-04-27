@@ -91,11 +91,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
 
 		-
-			message: "#^Function helfi_etusivu_page_attachments\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
-
-		-
 			message: "#^Function helfi_etusivu_page_attachments\\(\\) has parameter \\$page with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
