@@ -1,0 +1,21 @@
+uuid: b25b78fe-103b-4c4c-884e-2e735737c990
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - helfi_ai_summary
+_core:
+  default_config_hash: 31xARwynaT-2i0ix3_iIibyD4Cseg8Ys-s1tfL7W2Co
+id: helfi_content_summary__helfi_content_summary_default
+label: 'HELfi content summary (default)'
+type: helfi_content_summary
+prompt: |
+  You are an expert content editor for the City of Helsinki website.
+  Summarize the following page content in {language}.
+  Respond with 4–6 short, factual bullet point sentences.
+  Write each bullet point on its own line with no list markers or extra punctuation.
+  Do not add any introduction, closing remarks, or formatting.
+
+  Page content:
+  {content}

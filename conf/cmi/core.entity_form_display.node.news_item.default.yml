@@ -19,6 +19,7 @@ dependencies:
   module:
     - field_group
     - hdbt_admin_tools
+    - helfi_ai_summary
     - linkit
     - media_library
     - paragraphs
@@ -100,6 +101,12 @@ content:
   created:
     type: datetime_timestamp
     weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_ai_summary:
+    type: ai_summary
+    weight: 50
     region: content
     settings: {  }
     third_party_settings: {  }
