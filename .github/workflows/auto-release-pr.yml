@@ -1,11 +1,10 @@
 on:
-  workflow_dispatch:
   push:
     branches:
       - dev
 name: Automatic release PR
 jobs:
   release-pr:
-    uses: city-of-helsinki/drupal-gh-actions/.github/workflows/auto-release-pr.yml@UHF-13109
+    uses: city-of-helsinki/drupal-gh-actions/.github/workflows/auto-release-pr.yml@main
     secrets:
       gh_token: ${{ secrets.GITHUB_TOKEN }}
