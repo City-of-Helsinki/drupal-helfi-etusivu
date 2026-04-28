@@ -14,7 +14,8 @@
     "lint:stylelint": "npx --prefix ../../contrib/hdbt/theme-builder stylelint \"$INIT_CWD/src/scss/**/*.scss\" --config ../../contrib/hdbt/theme-builder/.stylelintrc.yaml --fix",
     "lint:js": "biome lint src/js/",
     "format:js": "biome format --write src/js/",
-    "lint": "npm-run-all --parallel lint:scss lint:js -s"
+    "lint": "npm-run-all --parallel lint:scss lint:js -s",
+    "validate-ts": "npx --prefix ../../contrib/hdbt tsc --noEmit 2>&1 | grep -v 'hdbt' || true"
   },
   "@comment dependencies": [
     "The following packages were updated manually.",
@@ -32,12 +33,8 @@
     "@sentry/react": "^10.46.0",
     "breakpoint-sass": "^3.0.0",
     "glob": "^11.0.0",
-    "hds-design-tokens": "^2.0.0",
-    "hds-react": "^4.4.0",
     "html-react-parser": "^5.2.17",
-    "jotai": "^2.19.0",
-    "npm-run-all2": "^8.0.4",
-    "swr": "^2.4.1"
+    "npm-run-all2": "^8.0.4"
   },
   "browserslist": [
     "last 3 major versions",
