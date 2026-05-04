@@ -106,7 +106,14 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
       {resultsCount > 0 &&
         data.results.map((item, index) => (
           <Fragment key={item.url}>
-            <ResultCard url={item.url} title={item.title} bundle={item.bundle} cardModifierClass='card--site-search' />
+            <ResultCard
+              url={item.url}
+              title={item.title}
+              description={item.content || undefined}
+              bundle={item.bundle}
+              publishDate={item.published_at}
+              cardModifierClass='card--site-search'
+            />
             {(index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && externalLinksNotification}
           </Fragment>
         ))}
