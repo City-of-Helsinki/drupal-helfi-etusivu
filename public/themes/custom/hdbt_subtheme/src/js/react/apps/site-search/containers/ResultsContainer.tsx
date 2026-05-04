@@ -107,7 +107,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
         data.results.map((item, index) => (
           <Fragment key={item.url}>
             <ResultCard
-              url={item.url}
+              url={item.fragment ? `${item.url}#${item.fragment}` : item.url}
               title={item.title}
               description={item.content || undefined}
               bundle={item.bundle}
