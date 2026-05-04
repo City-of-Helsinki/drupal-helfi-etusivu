@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Search\Controller;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -24,6 +25,8 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
   /**
    * Returns a renderable array.
+   *
+   * @phpstan-return array<string, mixed>
    */
   public function content(): array {
     $sentry_dsn = $this->configFactoryService
@@ -32,9 +35,9 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     $search_url = Url::fromRoute('helfi_search.semantic_search')->toString();
 
-    $site_search_config = $this->configFactoryService->get('helfi_etusivu.site_search_settings');
+    $site_search_config = $this->configFactoryService->get('helfi_search.settings');
 
-    return [
+    $build = [
       '#theme' => 'helfi_etusivu_site_search',
       '#attached' => [
         'drupalSettings' => [
@@ -52,6 +55,12 @@ final class SearchPageController extends ControllerBase implements ContainerInje
         ],
       ],
     ];
+
+    $cache = new CacheableMetadata();
+    $cache->addCacheableDependency($site_search_config);
+    $cache->applyTo($build);
+
+    return $build;
   }
 
   /**
