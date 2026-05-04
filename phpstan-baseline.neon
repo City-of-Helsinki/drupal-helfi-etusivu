@@ -671,11 +671,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/Plugin/search_api/processor/UuidLangcode.php
 
 		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Search\\\\Controller\\\\SearchPageController\\:\\:content\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Search/Controller/SearchPageController.php
-
-		-
 			message: "#^Function news_terms_trait_test_entity_type_build\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/modules/news_terms_trait_test/news_terms_trait_test.module
