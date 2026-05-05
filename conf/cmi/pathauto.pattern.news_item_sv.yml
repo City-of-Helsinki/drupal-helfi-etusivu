@@ -2,6 +2,8 @@ uuid: a16f10c8-234d-4a3c-9fe2-98d88117881d
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.news_item
   module:
     - language
     - node
@@ -10,7 +12,7 @@ _core:
 id: news_item_sv
 label: 'News item | SV'
 type: 'canonical_entities:node'
-pattern: 'nyheter/[node:short-title]'
+pattern: '/nyheter/[node:short-title]'
 selection_criteria:
   d3b12b5b-bb8c-4829-af2e-ca020b74facb:
     id: 'entity_bundle:node'
