@@ -32,8 +32,6 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
       cardTitle={title}
       cardUrl={url}
       cardDescription={description}
-      cardDescriptionHtml={true}
-      cardDescriptionAllowedTags={['p', 'ol', 'ul', 'li']}
       cardModifierClass={cardModifierClass}
       cardTitleLevel={3}
       {...(isNewsItem &&
