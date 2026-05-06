@@ -463,3 +463,44 @@ function helfi_etusivu_update_11002(&$sandbox): ?FormattableMarkup {
   ]);
 
 }
+
+/**
+ * UHF-13119: Migrate site search settings into helfi_search.settings.
+ */
+function helfi_etusivu_update_11003(): void {
+  $oldName = 'helfi_etusivu.site_search_settings';
+  $newName = 'helfi_search.settings';
+  $configFactory = \Drupal::configFactory();
+
+  $old = $configFactory->getEditable($oldName);
+  if (!$old->isNew()) {
+    $new = $configFactory->getEditable($newName);
+    if ($externalLinks = $old->get('external_links')) {
+      $new->set('external_links', $externalLinks);
+    }
+    if ($aiRegisterUrl = $old->get('ai_register_url')) {
+      $new->set('ai_register_url', $aiRegisterUrl);
+    }
+    $new->save();
+    $old->delete();
+  }
+
+  /** @var \Drupal\language\ConfigurableLanguageManagerInterface $languageManager */
+  $languageManager = \Drupal::languageManager();
+  foreach (array_keys($languageManager->getLanguages()) as $langcode) {
+    $oldOverride = $languageManager->getLanguageConfigOverride($langcode, $oldName);
+    if ($oldOverride->isNew()) {
+      continue;
+    }
+
+    $newOverride = $languageManager->getLanguageConfigOverride($langcode, $newName);
+    if ($externalLinks = $oldOverride->get('external_links')) {
+      $newOverride->set('external_links', $externalLinks);
+    }
+    if ($aiRegisterUrl = $oldOverride->get('ai_register_url')) {
+      $newOverride->set('ai_register_url', $aiRegisterUrl);
+    }
+    $newOverride->save();
+    $oldOverride->delete();
+  }
+}
