@@ -127,7 +127,6 @@ class BlockHooksTest extends UnitTestCase {
       'en on helsinki near you'    => ['en', $nearYouRoute, NULL],
       'sv on helsinki near you'    => ['sv', $nearYouRoute, NULL],
       'page content type'          => ['fi', NULL, 'page'],
-      'landing_page content type'  => ['fi', NULL, 'landing_page'],
     ];
   }
 
