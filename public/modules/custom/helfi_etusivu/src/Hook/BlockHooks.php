@@ -79,10 +79,7 @@ class BlockHooks {
 
     // Show on page and landing_page content types.
     $node = $this->routeMatch->getParameter('node');
-    if (
-      $node instanceof NodeInterface &&
-      in_array($node->bundle(), ['page', 'landing_page'], TRUE)
-    ) {
+    if ($node instanceof NodeInterface && $node->bundle() === 'page') {
       return AccessResult::allowed()
         ->addCacheContexts($cacheContexts)
         ->addCacheableDependency($node);
