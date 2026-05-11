@@ -13,7 +13,6 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\Tests\UnitTestCase;
 use Drupal\block\Entity\Block;
 use Drupal\helfi_etusivu\Hook\BlockHooks;
@@ -86,19 +85,10 @@ class BlockHooksTest extends UnitTestCase {
   }
 
   /**
-   * Creates a mock account.
-   */
-  private function mockAccount(): AccountInterface {
-    return $this->prophesize(AccountInterface::class)->reveal();
-  }
-
-  /**
    * The hook must return neutral for non-react_and_share blocks.
    */
   public function testNonReactAndShareBlockIsNeutral(): void {
-    $result = $this->getSut()->askemBlockAccess(
-      $this->mockBlock('other_block'), 'view', $this->mockAccount()
-    );
+    $result = $this->getSut()->askemBlockAccess($this->mockBlock('other_block'), 'view');
     $this->assertInstanceOf(AccessResultNeutral::class, $result);
   }
 
@@ -109,8 +99,7 @@ class BlockHooksTest extends UnitTestCase {
    */
   public function testAccessGranted(string $langId, ?string $routeName, ?string $nodeBundle): void {
     $node = $nodeBundle ? $this->mockNode($nodeBundle) : NULL;
-    $result = $this->getSut(langId: $langId, routeName: $routeName, node: $node)
-      ->askemBlockAccess($this->mockBlock('react_and_share'), 'view', $this->mockAccount());
+    $result = $this->getSut(langId: $langId, routeName: $routeName, node: $node)->askemBlockAccess($this->mockBlock('react_and_share'), 'view');
     $this->assertInstanceOf(AccessResultAllowed::class, $result);
   }
 
@@ -140,8 +129,7 @@ class BlockHooksTest extends UnitTestCase {
    */
   public function testAccessDenied(string $operation, string $langId, bool $isFrontPage, ?string $nodeBundle): void {
     $node = $nodeBundle ? $this->mockNode($nodeBundle) : NULL;
-    $result = $this->getSut(langId: $langId, isFrontPage: $isFrontPage, node: $node)
-      ->askemBlockAccess($this->mockBlock('react_and_share'), $operation, $this->mockAccount());
+    $result = $this->getSut(langId: $langId, isFrontPage: $isFrontPage, node: $node)->askemBlockAccess($this->mockBlock('react_and_share'), $operation);
     $this->assertInstanceOf(AccessResultForbidden::class, $result);
   }
 
@@ -166,8 +154,7 @@ class BlockHooksTest extends UnitTestCase {
    * Test cache contexts.
    */
   public function testCacheContextsArePresent(): void {
-    $result = $this->getSut()
-      ->askemBlockAccess($this->mockBlock('react_and_share'), 'view', $this->mockAccount());
+    $result = $this->getSut()->askemBlockAccess($this->mockBlock('react_and_share'), 'view');
     $this->assertInstanceOf(CacheableDependencyInterface::class, $result);
     assert($result instanceof CacheableDependencyInterface);
     $this->assertContains('languages:language_interface', $result->getCacheContexts());
