@@ -12,7 +12,6 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\block\Entity\Block;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\node\NodeInterface;
@@ -37,7 +36,7 @@ class BlockHooks {
    * Implements hook_block_access().
    */
   #[Hook('block_access')]
-  public function askemBlockAccess(Block $block, string $operation, AccountInterface $account): AccessResultInterface {
+  public function askemBlockAccess(Block $block, string $operation): AccessResultInterface {
     // Only applies to the React and Share block.
     if ($block->getPluginId() !== 'react_and_share') {
       return AccessResult::neutral();
