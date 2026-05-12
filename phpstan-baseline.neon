@@ -691,16 +691,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
 
 		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Entity\\\\Search\\\\PromotionTest\\:\\:assertEntityAccess\\(\\) has parameter \\$ops with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
-
-		-
-			message: "#^Parameter \\#3 \\$account of method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Entity\\\\Search\\\\PromotionTest\\:\\:assertEntityAccess\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface\\|null, Drupal\\\\user\\\\Entity\\\\User\\|false given\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
-
-		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\Tests\\\\Kernel\\\\EventSubscriber\\\\ElasticsearchEventSubscriberTest\\:\\:testPrepareIndices\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/EventSubscriber/ElasticsearchEventSubscriberTest.php

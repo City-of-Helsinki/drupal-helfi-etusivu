@@ -14,6 +14,29 @@ class PromotionForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}
+   *
+   * @phpstan-param array<string, mixed> $form
+   *
+   * @phpstan-return array<string, mixed>
+   */
+  public function form(array $form, FormStateInterface $form_state): array {
+    $form = parent::form($form, $form_state);
+
+    // Promotion is not revisionable, so ContentEntityForm does not create the
+    // 'advanced' vertical-tabs group. Add it here so scheduler fields (and the
+    // Gin sidebar layout) have a group to attach to.
+    if (!isset($form['advanced'])) {
+      $form['advanced'] = [
+        '#type' => 'vertical_tabs',
+        '#weight' => 99,
+      ];
+    }
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
     $saved = parent::save($form, $form_state);

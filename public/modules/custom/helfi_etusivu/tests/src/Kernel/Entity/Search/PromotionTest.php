@@ -9,11 +9,13 @@ use Drupal\helfi_etusivu\Entity\Search\Promotion;
 use Drupal\helfi_etusivu\Entity\Search\PromotionType;
 use Drupal\Tests\helfi_etusivu\Kernel\Entity\EntityKernelTestBase;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests promotion entity access.
  */
 #[Group('helfi_etusivu')]
+#[RunTestsInSeparateProcesses]
 class PromotionTest extends EntityKernelTestBase {
 
   /**
@@ -58,7 +60,7 @@ class PromotionTest extends EntityKernelTestBase {
   /**
    * Asserts entity access for given operations.
    *
-   * @param array $ops
+   * @param array<mixed> $ops
    *   The ops [operation => expected access (bool)].
    * @param \Drupal\helfi_etusivu\Entity\Search\Promotion $entity
    *   The entity.
@@ -91,6 +93,7 @@ class PromotionTest extends EntityKernelTestBase {
       'administer search promotions',
     ]);
 
+    $this->assertInstanceOf(AccountInterface::class, $account);
     $this->assertEntityAccess([
       'view' => TRUE,
       'update' => TRUE,
