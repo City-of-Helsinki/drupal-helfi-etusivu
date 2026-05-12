@@ -381,6 +381,9 @@ msgctxt "Helfi search"
 msgid "This search result is promoted if the query contains any of these keywords. The promotions do not use the AI search."
 msgstr "Hakunosto näytetään jos haku sisältää jonkin näistä asiasanoista. Hakunostoihin ei käytetä tekoälypohjaista hakua."
 
+msgid "Add promotion"
+msgstr "Lisää hakunosto"
+
 msgid "News"
 msgstr "Uutiset"
 

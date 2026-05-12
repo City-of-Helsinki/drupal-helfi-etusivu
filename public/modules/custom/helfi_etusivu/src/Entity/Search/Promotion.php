@@ -20,7 +20,6 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\entity\Menu\DefaultEntityLocalTaskProvider;
-use Drupal\entity\Menu\EntityCollectionLocalActionProvider;
 use Drupal\helfi_etusivu\Entity\Search\Form\PromotionForm;
 use Drupal\link\LinkItemInterface;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
@@ -61,16 +60,12 @@ use Drupal\views\EntityViewsData;
     'route_provider' => [
       'html' => AdminHtmlRouteProvider::class,
     ],
-    "local_action_provider" => [
-      "collection" => EntityCollectionLocalActionProvider::class,
-    ],
     "local_task_provider" => [
       "default" => DefaultEntityLocalTaskProvider::class,
     ],
   ],
   links: [
     'collection' => '/admin/search',
-    'add-page' => '/admin/search/add',
     'add-form' => '/admin/search/add/{helfi_search_promotion_type}',
     'canonical' => '/admin/search/{helfi_search_promotion}',
     'delete-form' => '/admin/search/{helfi_search_promotion}/delete',
