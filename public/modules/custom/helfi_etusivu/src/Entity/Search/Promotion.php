@@ -108,18 +108,21 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
         'weight' => -5,
       ]);
 
-    $fields['description'] = BaseFieldDefinition::create('text_long')
+    $fields['description'] = BaseFieldDefinition::create('string_long')
       ->setLabel(new TranslatableMarkup('Description'))
       ->setRequired(TRUE)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
         'label' => 'hidden',
-        'type' => 'text_default',
+        'type' => 'basic_string',
         'weight' => 0,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'text_textfield',
+        'type' => 'string_textarea',
         'weight' => 0,
+        'settings' => [
+          'rows' => 4,
+        ],
       ]);
 
     $fields['link'] = BaseFieldDefinition::create('link')

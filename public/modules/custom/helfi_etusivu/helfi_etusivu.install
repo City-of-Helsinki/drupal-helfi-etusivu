@@ -10,7 +10,10 @@ declare(strict_types=1);
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_api_base\Environment\EnvironmentEnum;
 use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\node\Entity\Node;
@@ -503,4 +506,77 @@ function helfi_etusivu_update_11003(): void {
     $newOverride->save();
     $oldOverride->delete();
   }
+}
+
+/**
+ * UHF-13257: Convert helfi_search_promotion description to plain text.
+ */
+function helfi_etusivu_update_11004(): void {
+  $entity_type_id = 'helfi_search_promotion';
+  $field_name = 'description';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $entity_field_manager = \Drupal::service(EntityFieldManagerInterface::class);
+  $database = \Drupal::database();
+  $data_table = "{$entity_type_id}_data";
+
+  // Idempotency: if the field is already string_long, nothing to do.
+  $current = $manager->getFieldStorageDefinition($field_name, $entity_type_id);
+  if ($current && $current->getType() === 'string_long') {
+    return;
+  }
+
+  // Snapshot existing rows and convert to plain text.
+  $snapshot = [];
+  $rows = $database->select($data_table, 't')
+    ->fields('t', ['id', 'langcode', 'description__value'])
+    ->execute();
+  foreach ($rows as $row) {
+    $text = strip_tags($row->description__value ?? '');
+    $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $snapshot[] = [
+      'id' => $row->id,
+      'langcode' => $row->langcode,
+      'value' => trim((string) preg_replace('/\s+/u', ' ', $text)),
+    ];
+  }
+
+  // Empty the column values so countFieldData() reports zero. This makes
+  // Drupal take the simple "no data" uninstall path, which just drops the
+  // columns instead of moving them into a dedicated deleted table that has
+  // to be purged later.
+  $database->update($data_table)
+    ->fields(['description__value' => NULL, 'description__format' => NULL])
+    ->execute();
+
+  // Drop the old text_long field. With no data, this just drops the columns.
+  $manager->uninstallFieldStorageDefinition(
+    $manager->getFieldStorageDefinition($field_name, $entity_type_id),
+  );
+  $entity_field_manager->clearCachedFieldDefinitions();
+
+  // Recreate as string_long.
+  $manager->installFieldStorageDefinition(
+    $field_name,
+    $entity_type_id,
+    'helfi_etusivu',
+    BaseFieldDefinition::create('string_long')
+      ->setLabel(new TranslatableMarkup('Description'))
+      ->setRequired(TRUE)
+      ->setTranslatable(TRUE),
+  );
+  $entity_field_manager->clearCachedFieldDefinitions();
+
+  // Restore each row's description into the new column.
+  foreach ($snapshot as $row) {
+    $database->update($data_table)
+      ->fields(['description' => $row['value']])
+      ->condition('id', $row['id'])
+      ->condition('langcode', $row['langcode'])
+      ->execute();
+  }
+
+  \Drupal::entityTypeManager()
+    ->getStorage('search_api_index')
+    ->load('search_promotions')
+    ?->reindex();
 }

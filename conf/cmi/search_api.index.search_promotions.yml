@@ -33,7 +33,7 @@ field_settings:
   processed:
     label: Description
     datasource_id: 'entity:helfi_search_promotion'
-    property_path: 'description:processed'
+    property_path: 'description:value'
     type: string
     dependencies:
       module:
