@@ -757,3 +757,42 @@ function helfi_etusivu_update_11005(): FormattableMarkup {
     '@bundle' => $bundle_id,
   ]);
 }
+
+/**
+ * UHF-13257: Add changed base field to helfi_search_promotion.
+ */
+function helfi_etusivu_update_11006(): void {
+  $entity_type_id = 'helfi_search_promotion';
+  $field_name = 'changed';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  if ($manager->getFieldStorageDefinition($field_name, $entity_type_id)) {
+    return;
+  }
+
+  $manager->installFieldStorageDefinition(
+    $field_name,
+    $entity_type_id,
+    'helfi_etusivu',
+    BaseFieldDefinition::create('changed')
+      ->setLabel(new TranslatableMarkup('Changed'))
+      ->setDescription(new TranslatableMarkup('The time the promotion was last edited.'))
+      ->setTranslatable(TRUE),
+  );
+
+  \Drupal::service(EntityFieldManagerInterface::class)
+    ->clearCachedFieldDefinitions();
+}
+
+/**
+ * UHF-13257: Backfill changed timestamps on existing promotions.
+ */
+function helfi_etusivu_update_11007(): void {
+  $database = \Drupal::database();
+  $now = \Drupal::time()->getRequestTime();
+
+  $database->update('helfi_search_promotion_data')
+    ->fields(['changed' => $now])
+    ->isNull('changed')
+    ->execute();
+}

@@ -16,3 +16,5 @@ display:
           label: Julkaistu
         content_translation_changed:
           label: Päivitetty
+        operations:
+          label: Toimenpiteet

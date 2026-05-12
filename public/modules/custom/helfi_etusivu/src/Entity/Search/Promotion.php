@@ -9,6 +9,9 @@ use Drupal\Core\Entity\Attribute\ContentEntityType;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityDeleteForm;
 use Drupal\Core\Entity\EntityAccessControlHandler;
+use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Entity\EntityChangedTrait;
+use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\EntityPublishedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -48,6 +51,7 @@ use Drupal\views\EntityViewsData;
   handlers: [
     'view_builder' => EntityViewBuilder::class,
     'views_data' => EntityViewsData::class,
+    'list_builder' => EntityListBuilder::class,
     'access' => EntityAccessControlHandler::class,
     'translation' => ContentTranslationHandler::class,
     'form' => [
@@ -82,10 +86,11 @@ use Drupal\views\EntityViewsData;
   data_table: 'helfi_search_promotion_data',
   translatable: TRUE,
 )]
-final class Promotion extends ContentEntityBase implements EntityPublishedInterface, EntityOwnerInterface {
+final class Promotion extends ContentEntityBase implements EntityPublishedInterface, EntityOwnerInterface, EntityChangedInterface {
 
   use EntityPublishedTrait;
   use EntityOwnerTrait;
+  use EntityChangedTrait;
 
   /**
    * {@inheritdoc}
@@ -134,6 +139,11 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
         'type' => 'link_default',
         'weight' => 5,
       ]);
+
+    $fields['changed'] = BaseFieldDefinition::create('changed')
+      ->setLabel(new TranslatableMarkup('Changed'))
+      ->setDescription(new TranslatableMarkup('The time the promotion was last edited.'))
+      ->setTranslatable(TRUE);
 
     $fields['keywords'] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Keywords', options: ['context' => 'Helfi search']))

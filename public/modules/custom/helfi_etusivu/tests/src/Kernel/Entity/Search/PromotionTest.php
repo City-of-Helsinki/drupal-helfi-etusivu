@@ -101,4 +101,15 @@ class PromotionTest extends EntityKernelTestBase {
     ], $this->promotion, $account);
   }
 
+  /**
+   * Tests that the changed timestamp is populated and round-trips on save.
+   */
+  public function testChangedTimestamp(): void {
+    $this->assertGreaterThan(0, $this->promotion->getChangedTime());
+
+    $this->promotion->setChangedTime(1234567890)->save();
+    $reloaded = Promotion::load($this->promotion->id());
+    $this->assertSame(1234567890, $reloaded->getChangedTime());
+  }
+
 }

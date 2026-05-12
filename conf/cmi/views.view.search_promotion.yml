@@ -12,7 +12,7 @@ dependencies:
 id: search_promotion
 label: 'Search promotion'
 module: views
-description: ''
+description: 'Promoted search results'
 tag: ''
 base_table: helfi_search_promotion_data
 base_field: id
@@ -83,7 +83,28 @@ display:
           clear_on_exposed: true
           show_multipage_selection_box: default
           show_select_all: default
-          selected_actions: {  }
+          selected_actions:
+            -
+              action_id: 'entity:publish_action:helfi_search_promotion'
+              preconfiguration:
+                add_confirmation: false
+                confirm_help_text: ''
+                label_override: ''
+                message_override: ''
+            -
+              action_id: 'entity:unpublish_action:helfi_search_promotion'
+              preconfiguration:
+                add_confirmation: false
+                confirm_help_text: ''
+                label_override: ''
+                message_override: ''
+            -
+              action_id: views_bulk_operations_delete_entity
+              preconfiguration:
+                add_confirmation: true
+                confirm_help_text: ''
+                label_override: ''
+                message_override: ''
         title:
           id: title
           table: helfi_search_promotion_data
@@ -349,17 +370,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        content_translation_changed:
-          id: content_translation_changed
-          table: helfi_search_promotion_data
-          field: content_translation_changed
+        operations:
+          id: operations
+          table: helfi_search_promotion
+          field: operations
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: helfi_search_promotion
-          entity_field: content_translation_changed
-          plugin_id: field
-          label: Changed
+          plugin_id: entity_operations
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -400,32 +419,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: timestamp
-          settings:
-            date_format: long
-            custom_date_format: ''
-            timezone: ''
-            tooltip:
-              date_format: html_datetime
-              custom_date_format: ''
-            time_diff:
-              enabled: false
-              future_format: '@interval hence'
-              past_format: '@interval ago'
-              granularity: 2
-              refresh: 60
-              description: ''
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
+          destination: true
       pager:
         type: full
         options:
@@ -726,7 +720,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/content/search-promotion
+      path: admin/search
       menu:
         type: normal
         title: 'Search promotions'
