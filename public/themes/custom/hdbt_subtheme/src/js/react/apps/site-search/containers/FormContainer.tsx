@@ -8,11 +8,7 @@ type FormContainerProps = {
   withBundleFilters?: boolean;
 };
 
-const BUNDLE_OPTIONS = [
-  { value: 'news_item' as const, label: Drupal.t('News', {}, { context: 'Site search' }) },
-  { value: 'page' as const, label: Drupal.t('Pages', {}, { context: 'Site search' }) },
-  { value: 'landing_page' as const, label: Drupal.t('Landing pages', {}, { context: 'Site search' }) },
-];
+const BUNDLE_OPTIONS = [{ value: 'news_item' as const, label: Drupal.t('News', {}, { context: 'Site search' }) }];
 
 const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const [inputValue, setInputValue] = useAtom(stagedQueryAtom);
