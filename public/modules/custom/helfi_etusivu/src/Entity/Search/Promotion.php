@@ -47,7 +47,6 @@ use Drupal\views\EntityViewsData;
     'owner' => 'uid',
   ],
   handlers: [
-    'list_builder' => ListBuilder::class,
     'view_builder' => EntityViewBuilder::class,
     'views_data' => EntityViewsData::class,
     'access' => EntityAccessControlHandler::class,

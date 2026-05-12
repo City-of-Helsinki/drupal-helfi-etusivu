@@ -196,21 +196,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Form/PromotionForm.php
 
 		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:buildHeader\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:buildRow\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:render\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
-
-		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\SimpleSitemap\\\\HelfiSimpleSitemap\\:\\:toUrl\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/Entity/SimpleSitemap/HelfiSimpleSitemap.php
