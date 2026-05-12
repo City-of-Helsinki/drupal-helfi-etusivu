@@ -1,0 +1,73 @@
+uuid: 132e8d8d-ac3a-48ed-991b-ed43ed6176e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - helfi_etusivu.helfi_search_promotion_type.promotion
+  module:
+    - helfi_etusivu
+    - link
+    - scheduler
+id: helfi_search_promotion.promotion.default
+targetEntityType: helfi_search_promotion
+bundle: promotion
+mode: default
+content:
+  description:
+    type: string_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 4
+      placeholder: ''
+    third_party_settings: {  }
+  keywords:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  link:
+    type: link_default
+    weight: 5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  publish_on:
+    type: datetime_timestamp_no_default
+    weight: 52
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 15
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  scheduler_settings:
+    weight: 9
+    region: content
+    settings: { }
+    third_party_settings: { }
+  unpublish_on:
+    type: datetime_timestamp_no_default
+    weight: 54
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  uid: true

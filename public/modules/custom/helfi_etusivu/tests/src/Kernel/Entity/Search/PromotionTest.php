@@ -6,6 +6,7 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\Entity\Search;
 
 use Drupal\Core\Session\AccountInterface;
 use Drupal\helfi_etusivu\Entity\Search\Promotion;
+use Drupal\helfi_etusivu\Entity\Search\PromotionType;
 use Drupal\Tests\helfi_etusivu\Kernel\Entity\EntityKernelTestBase;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -22,6 +23,7 @@ class PromotionTest extends EntityKernelTestBase {
     'link',
     'helfi_api_base',
     'text',
+    'scheduler',
     'helfi_etusivu',
   ];
 
@@ -36,13 +38,16 @@ class PromotionTest extends EntityKernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
+    $this->installEntitySchema('helfi_search_promotion_type');
     $this->installEntitySchema('helfi_search_promotion');
+    PromotionType::create(['id' => 'promotion', 'label' => 'Promotion'])->save();
 
     // Create a dummy user before tests to make sure our actual user is not
     // UID1 and getting all permissions automatically.
     $this->drupalCreateUser();
 
     $this->promotion = Promotion::create([
+      'bundle' => 'promotion',
       'title' => 'Test Promotion',
       'description' => 'Test description',
       'link' => 'https://example.com',

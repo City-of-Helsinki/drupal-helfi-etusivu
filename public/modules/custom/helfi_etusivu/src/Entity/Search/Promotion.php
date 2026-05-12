@@ -22,7 +22,6 @@ use Drupal\Core\Url;
 use Drupal\entity\Menu\DefaultEntityLocalTaskProvider;
 use Drupal\entity\Menu\EntityCollectionLocalActionProvider;
 use Drupal\helfi_etusivu\Entity\Search\Form\PromotionForm;
-use Drupal\helfi_etusivu\Entity\Search\Listing\ListBuilder;
 use Drupal\link\LinkItemInterface;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\user\EntityOwnerInterface;
@@ -41,6 +40,7 @@ use Drupal\views\EntityViewsData;
   entity_keys: [
     'id' => 'id',
     'uuid' => 'uuid',
+    'bundle' => 'bundle',
     'label' => 'title',
     'langcode' => 'langcode',
     'published' => 'status',
@@ -70,7 +70,8 @@ use Drupal\views\EntityViewsData;
   ],
   links: [
     'collection' => '/admin/search',
-    'add-form' => '/admin/search/add',
+    'add-page' => '/admin/search/add',
+    'add-form' => '/admin/search/add/{helfi_search_promotion_type}',
     'canonical' => '/admin/search/{helfi_search_promotion}',
     'delete-form' => '/admin/search/{helfi_search_promotion}/delete',
     'edit-form' => '/admin/search/{helfi_search_promotion}/edit',
@@ -80,6 +81,8 @@ use Drupal\views\EntityViewsData;
   // anonymous users. Anonymouse users should interact with
   // promotions through the helfi search.
   admin_permission: "administer search promotions",
+  bundle_entity_type: 'helfi_search_promotion_type',
+  bundle_label: new TranslatableMarkup('Promotion type', options: ['context' => 'Helfi search']),
   base_table: 'helfi_search_promotion',
   data_table: 'helfi_search_promotion_data',
   translatable: TRUE,
