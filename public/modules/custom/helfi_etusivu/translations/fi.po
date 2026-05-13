@@ -44,8 +44,16 @@ msgid "Discover city services, events and news near you."
 msgstr "Etsi kaupungin palveluita, tapahtumia ja uutisia osoitteesi perusteella."
 
 msgctxt "Helsinki near you"
-msgid "Address"
-msgstr "Osoite"
+msgid "Street address"
+msgstr "Katuosoite"
+
+msgctxt "Helsinki near you"
+msgid "Street address is required."
+msgstr "Katuosoite on pakollinen."
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the street address"
+msgstr "Katuosoitteella ei löytynyt tuloksia"
 
 msgctxt "Helsinki near you"
 msgid "For example, Mannerheimintie 1"
@@ -257,10 +265,6 @@ msgctxt "Helsinki near you status label"
 msgid "Unknown"
 msgstr "Tuntematon"
 
-msgctxt "Helsinki near you"
-msgid "Address"
-msgstr "Osoite"
-
 msgctxt "Helsinki near you title"
 msgid "Find feedback"
 msgstr "Etsi palautteita"
@@ -387,15 +391,6 @@ msgstr "Lisää hakunosto"
 msgid "News"
 msgstr "Uutiset"
 
-msgctxt "Helsinki near you"
-msgid "No results were found for the address"
-msgstr "Osoitteelle ei löytynyt tuloksia"
-
-msgctxt "Helsinki near you"
-msgid "Address is required."
-msgstr "Osoite on pakollinen."
-
 msgctxt "Site search"
 msgid "Search in the website"
 msgstr "Hae sivustolta"
-
