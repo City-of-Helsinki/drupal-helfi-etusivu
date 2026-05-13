@@ -22,7 +22,10 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const toggleBundle = (value: string, checked: boolean) =>
     setStagedBundles(checked ? [...stagedBundles, value] : stagedBundles.filter((b) => b !== value));
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value), []);
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value && !e.nativeEvent) return;
+    setInputValue(e.target.value);
+  }, []);
 
   const handleSend = useCallback(() => {
     withBundleFilters ? submitAll() : submitNews();
