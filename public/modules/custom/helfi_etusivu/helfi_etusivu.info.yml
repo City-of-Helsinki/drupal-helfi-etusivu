@@ -21,5 +21,6 @@ dependencies:
   - helfi_search:helfi_search
   - radioactivity:radioactivity
   - imagecache_external:imagecache_external
+  - scheduler:scheduler
 'interface translation project': helfi_etusivu
 'interface translation server pattern': modules/custom/helfi_etusivu/translations/%language.po

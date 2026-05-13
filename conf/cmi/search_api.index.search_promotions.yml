@@ -30,10 +30,10 @@ field_settings:
     dependencies:
       module:
         - helfi_etusivu
-  processed:
+  description:
     label: Description
     datasource_id: 'entity:helfi_search_promotion'
-    property_path: 'description:processed'
+    property_path: 'description:value'
     type: string
     dependencies:
       module:

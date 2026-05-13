@@ -196,21 +196,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Form/PromotionForm.php
 
 		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:buildHeader\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:buildRow\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:render\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
-
-		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\SimpleSitemap\\\\HelfiSimpleSitemap\\:\\:toUrl\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/Entity/SimpleSitemap/HelfiSimpleSitemap.php
@@ -704,16 +689,6 @@ parameters:
 			message: "#^Property Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Controller\\\\LinkedEventsImageControllerTest\\:\\:\\$imageStyle with generic class Prophecy\\\\Prophecy\\\\ObjectProphecy does not specify its types\\: T$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Entity\\\\Search\\\\PromotionTest\\:\\:assertEntityAccess\\(\\) has parameter \\$ops with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
-
-		-
-			message: "#^Parameter \\#3 \\$account of method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Entity\\\\Search\\\\PromotionTest\\:\\:assertEntityAccess\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface\\|null, Drupal\\\\user\\\\Entity\\\\User\\|false given\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
 
 		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\Tests\\\\Kernel\\\\EventSubscriber\\\\ElasticsearchEventSubscriberTest\\:\\:testPrepareIndices\\(\\) has no return type specified\\.$#"

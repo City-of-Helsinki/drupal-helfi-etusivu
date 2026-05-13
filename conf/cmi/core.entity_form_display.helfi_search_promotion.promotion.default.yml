@@ -1,0 +1,46 @@
+uuid: 132e8d8d-ac3a-48ed-991b-ed43ed6176e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - helfi_etusivu.helfi_search_promotion_type.promotion
+  module:
+    - link
+    - scheduler
+id: helfi_search_promotion.promotion.default
+targetEntityType: helfi_search_promotion
+bundle: promotion
+mode: default
+content:
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  publish_on:
+    type: datetime_timestamp_no_default
+    weight: 52
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  scheduler_settings:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  unpublish_on:
+    type: datetime_timestamp_no_default
+    weight: 54
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  changed: true
+  uid: true
