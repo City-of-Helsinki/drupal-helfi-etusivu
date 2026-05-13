@@ -14,7 +14,20 @@ display:
           label: Asiasanat
         status:
           label: Julkaistu
-        content_translation_changed:
-          label: Päivitetty
         operations:
           label: Toimenpiteet
+        changed:
+          label: Päivitetty
+      filters:
+        title:
+          expose:
+            label: Otsikko
+        keywords_value:
+          expose:
+            label: Asiasanat
+        status:
+          expose:
+            label: Julkaistu
+        langcode:
+          expose:
+            label: Kieli
