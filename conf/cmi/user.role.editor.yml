@@ -64,7 +64,6 @@ permissions:
   - 'administer nodes'
   - 'administer paragraphs library'
   - 'administer redirects'
-  - 'administer search promotions'
   - 'administer url aliases'
   - 'cancel account'
   - 'change own username'

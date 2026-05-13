@@ -20,6 +20,9 @@ type Promotion = {
 type SearchResponse = {
   promoted: Promotion[];
   results: SearchResult[];
+  page: number;
+  size: number;
+  total_hits: number;
 };
 
 export type { SearchResult, Promotion, SearchResponse };

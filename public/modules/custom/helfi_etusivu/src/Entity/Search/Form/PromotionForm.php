@@ -4,18 +4,89 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Entity\Search\Form;
 
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for the promotion edit forms.
  */
-class PromotionForm extends ContentEntityForm {
+final class PromotionForm extends ContentEntityForm {
+
+  /**
+   * Date formatter.
+   */
+  private DateFormatterInterface $dateFormatter;
 
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state) {
+  public static function create(ContainerInterface $container): self {
+    $instance = parent::create($container);
+    $instance->dateFormatter = $container->get(DateFormatterInterface::class);
+    return $instance;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @phpstan-param array<string, mixed> $form
+   *
+   * @phpstan-return array<string, mixed>
+   */
+  public function form(array $form, FormStateInterface $form_state): array {
+    $form = parent::form($form, $form_state);
+
+    /** @var \Drupal\helfi_etusivu\Entity\Search\Promotion $entity*/
+    $entity = $this->entity;
+
+    // Promotion is not revisionable, so ContentEntityForm does not create the
+    // 'advanced' vertical-tabs group. Add it here so scheduler fields (and the
+    // Gin sidebar layout) have a group to attach to.
+    if (!isset($form['advanced'])) {
+      $form['advanced'] = [
+        '#type' => 'vertical_tabs',
+        '#weight' => 99,
+      ];
+    }
+
+    $form['advanced']['#attributes']['class'][] = 'entity-meta';
+
+    $form['meta'] = [
+      '#type' => 'details',
+      '#group' => 'advanced',
+      '#weight' => -10,
+      '#title' => $this->t('Status'),
+      '#attributes' => ['class' => ['entity-meta__header']],
+      '#tree' => TRUE,
+    ];
+    $form['meta']['published'] = [
+      '#type' => 'item',
+      '#markup' => $entity->isPublished() ? $this->t('Published') : $this->t('Not published'),
+      '#access' => !$entity->isNew(),
+      '#wrapper_attributes' => ['class' => ['entity-meta__title']],
+    ];
+    $form['meta']['changed'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Last saved'),
+      '#markup' => !$entity->isNew() ? $this->dateFormatter->format($entity->getChangedTime(), 'short') : $this->t('Not saved yet'),
+      '#wrapper_attributes' => ['class' => ['entity-meta__last-saved']],
+    ];
+    $form['meta']['author'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Author'),
+      '#markup' => $entity->getOwner()->getDisplayName(),
+      '#wrapper_attributes' => ['class' => ['entity-meta__author']],
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function save(array $form, FormStateInterface $form_state): int {
     $saved = parent::save($form, $form_state);
 
     $options = [

@@ -8,11 +8,7 @@ type FormContainerProps = {
   withBundleFilters?: boolean;
 };
 
-const BUNDLE_OPTIONS = [
-  { value: 'news_item' as const },
-  { value: 'page' as const },
-  { value: 'landing_page' as const },
-];
+const BUNDLE_OPTIONS = [{ value: 'news_item' as const, label: Drupal.t('News', {}, { context: 'Site search' }) }];
 
 const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const [inputValue, setInputValue] = useAtom(stagedQueryAtom);
@@ -26,7 +22,10 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const toggleBundle = (value: string, checked: boolean) =>
     setStagedBundles(checked ? [...stagedBundles, value] : stagedBundles.filter((b) => b !== value));
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value), []);
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value && !e.nativeEvent) return;
+    setInputValue(e.target.value);
+  }, []);
 
   const handleSend = useCallback(() => {
     withBundleFilters ? submitAll() : submitNews();
@@ -35,12 +34,6 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const onSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleSend();
-  };
-
-  const bundleLabels: Record<string, string> = {
-    news_item: Drupal.t('News', {}, { context: 'Site search' }),
-    page: Drupal.t('Pages', {}, { context: 'Site search' }),
-    landing_page: Drupal.t('Landing pages', {}, { context: 'Site search' }),
   };
 
   const [searchInputProps] = useState({
@@ -78,12 +71,12 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
               <legend className='hdbt-search--react__filters__fieldset-legend'>
                 {Drupal.t('Show only', {}, { context: 'Site search' })}
               </legend>
-              {BUNDLE_OPTIONS.map(({ value }) => (
+              {BUNDLE_OPTIONS.map(({ value, label }) => (
                 <Checkbox
                   className='hdbt-search--react__filters__checkbox'
                   key={value}
                   id={`site-search-bundle-${value}`}
-                  label={bundleLabels[value]}
+                  label={label}
                   checked={stagedBundles.includes(value)}
                   onChange={(e) => toggleBundle(value, e.target.checked)}
                   style={defaultCheckboxStyle}

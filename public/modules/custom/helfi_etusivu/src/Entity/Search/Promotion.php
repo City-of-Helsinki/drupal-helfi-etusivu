@@ -9,6 +9,9 @@ use Drupal\Core\Entity\Attribute\ContentEntityType;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityDeleteForm;
 use Drupal\Core\Entity\EntityAccessControlHandler;
+use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Entity\EntityChangedTrait;
+use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\EntityPublishedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -20,9 +23,7 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\entity\Menu\DefaultEntityLocalTaskProvider;
-use Drupal\entity\Menu\EntityCollectionLocalActionProvider;
 use Drupal\helfi_etusivu\Entity\Search\Form\PromotionForm;
-use Drupal\helfi_etusivu\Entity\Search\Listing\ListBuilder;
 use Drupal\link\LinkItemInterface;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\user\EntityOwnerInterface;
@@ -41,15 +42,16 @@ use Drupal\views\EntityViewsData;
   entity_keys: [
     'id' => 'id',
     'uuid' => 'uuid',
+    'bundle' => 'bundle',
     'label' => 'title',
     'langcode' => 'langcode',
     'published' => 'status',
     'owner' => 'uid',
   ],
   handlers: [
-    'list_builder' => ListBuilder::class,
     'view_builder' => EntityViewBuilder::class,
     'views_data' => EntityViewsData::class,
+    'list_builder' => EntityListBuilder::class,
     'access' => EntityAccessControlHandler::class,
     'translation' => ContentTranslationHandler::class,
     'form' => [
@@ -62,16 +64,13 @@ use Drupal\views\EntityViewsData;
     'route_provider' => [
       'html' => AdminHtmlRouteProvider::class,
     ],
-    "local_action_provider" => [
-      "collection" => EntityCollectionLocalActionProvider::class,
-    ],
     "local_task_provider" => [
       "default" => DefaultEntityLocalTaskProvider::class,
     ],
   ],
   links: [
     'collection' => '/admin/search',
-    'add-form' => '/admin/search/add',
+    'add-form' => '/admin/search/add/{helfi_search_promotion_type}',
     'canonical' => '/admin/search/{helfi_search_promotion}',
     'delete-form' => '/admin/search/{helfi_search_promotion}/delete',
     'edit-form' => '/admin/search/{helfi_search_promotion}/edit',
@@ -81,14 +80,17 @@ use Drupal\views\EntityViewsData;
   // anonymous users. Anonymouse users should interact with
   // promotions through the helfi search.
   admin_permission: "administer search promotions",
+  bundle_entity_type: 'helfi_search_promotion_type',
+  bundle_label: new TranslatableMarkup('Promotion type', options: ['context' => 'Helfi search']),
   base_table: 'helfi_search_promotion',
   data_table: 'helfi_search_promotion_data',
   translatable: TRUE,
 )]
-final class Promotion extends ContentEntityBase implements EntityPublishedInterface, EntityOwnerInterface {
+final class Promotion extends ContentEntityBase implements EntityPublishedInterface, EntityOwnerInterface, EntityChangedInterface {
 
   use EntityPublishedTrait;
   use EntityOwnerTrait;
+  use EntityChangedTrait;
 
   /**
    * {@inheritdoc}
@@ -108,18 +110,21 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
         'weight' => -5,
       ]);
 
-    $fields['description'] = BaseFieldDefinition::create('text_long')
+    $fields['description'] = BaseFieldDefinition::create('string_long')
       ->setLabel(new TranslatableMarkup('Description'))
       ->setRequired(TRUE)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
         'label' => 'hidden',
-        'type' => 'text_default',
+        'type' => 'basic_string',
         'weight' => 0,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'text_textfield',
+        'type' => 'string_textarea',
         'weight' => 0,
+        'settings' => [
+          'rows' => 4,
+        ],
       ]);
 
     $fields['link'] = BaseFieldDefinition::create('link')
@@ -134,6 +139,11 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
         'type' => 'link_default',
         'weight' => 5,
       ]);
+
+    $fields['changed'] = BaseFieldDefinition::create('changed')
+      ->setLabel(new TranslatableMarkup('Changed'))
+      ->setDescription(new TranslatableMarkup('The time the promotion was last edited.'))
+      ->setTranslatable(TRUE);
 
     $fields['keywords'] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Keywords', options: ['context' => 'Helfi search']))
