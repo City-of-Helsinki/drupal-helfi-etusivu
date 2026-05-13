@@ -7,18 +7,12 @@ namespace Drupal\helfi_etusivu\Entity\Search\Form;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for the promotion edit forms.
  */
 final class PromotionForm extends ContentEntityForm {
-
-  /**
-   * The current user.
-   */
-  private AccountProxyInterface $currentUser;
 
   /**
    * Date formatter.
@@ -30,7 +24,6 @@ final class PromotionForm extends ContentEntityForm {
    */
   public static function create(ContainerInterface $container): self {
     $instance = parent::create($container);
-    $instance->currentUser = $container->get(AccountProxyInterface::class);
     $instance->dateFormatter = $container->get(DateFormatterInterface::class);
     return $instance;
   }
@@ -67,7 +60,6 @@ final class PromotionForm extends ContentEntityForm {
       '#title' => $this->t('Status'),
       '#attributes' => ['class' => ['entity-meta__header']],
       '#tree' => TRUE,
-      '#access' => $this->currentUser->hasPermission('administer nodes'),
     ];
     $form['meta']['published'] = [
       '#type' => 'item',
@@ -94,7 +86,7 @@ final class PromotionForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function save(array $form, FormStateInterface $form_state) {
+  public function save(array $form, FormStateInterface $form_state): int {
     $saved = parent::save($form, $form_state);
 
     $options = [

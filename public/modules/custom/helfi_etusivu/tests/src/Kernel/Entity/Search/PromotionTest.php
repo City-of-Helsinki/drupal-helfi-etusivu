@@ -42,7 +42,10 @@ class PromotionTest extends EntityKernelTestBase {
 
     $this->installEntitySchema('helfi_search_promotion_type');
     $this->installEntitySchema('helfi_search_promotion');
-    PromotionType::create(['id' => 'promotion', 'label' => 'Promotion'])->save();
+    $type = PromotionType::create(['id' => 'promotion', 'label' => 'Promotion']);
+    $type->setThirdPartySetting('scheduler', 'publish_enable', TRUE);
+    $type->setThirdPartySetting('scheduler', 'unpublish_enable', TRUE);
+    $type->save();
 
     // Create a dummy user before tests to make sure our actual user is not
     // UID1 and getting all permissions automatically.
@@ -102,14 +105,37 @@ class PromotionTest extends EntityKernelTestBase {
   }
 
   /**
-   * Tests that the changed timestamp is populated and round-trips on save.
+   * Tests scheduled publishing and unpublishing of a promotion.
    */
-  public function testChangedTimestamp(): void {
-    $this->assertGreaterThan(0, $this->promotion->getChangedTime());
+  public function testSchedulerPublishAndUnpublish(): void {
+    $past = \Drupal::time()->getRequestTime() - 60;
 
-    $this->promotion->setChangedTime(1234567890)->save();
-    $reloaded = Promotion::load($this->promotion->id());
-    $this->assertSame(1234567890, $reloaded->getChangedTime());
+    // Create an unpublished promotion with publish_on in the past.
+    $promotion = Promotion::create([
+      'bundle' => 'promotion',
+      'title' => 'Scheduled promotion',
+      'description' => 'Test description',
+      'link' => 'https://example.com',
+      'publish_on' => $past,
+    ]);
+    $promotion->setUnpublished()->save();
+    $this->assertFalse($promotion->isPublished());
+
+    /** @var \Drupal\scheduler\SchedulerManager $scheduler */
+    $scheduler = $this->container->get('scheduler.manager');
+    $scheduler->publish();
+
+    $reloaded = Promotion::load($promotion->id());
+    $this->assertTrue($reloaded->isPublished());
+    $this->assertNull($reloaded->get('publish_on')->value);
+
+    // Now set unpublish_on in the past and run the unpublish phase.
+    $reloaded->set('unpublish_on', $past)->save();
+    $scheduler->unpublish();
+
+    $reloaded = Promotion::load($promotion->id());
+    $this->assertFalse($reloaded->isPublished());
+    $this->assertNull($reloaded->get('unpublish_on')->value);
   }
 
 }

@@ -9,46 +9,31 @@ helfi_etusivu.helfi_search_promotion_type.*:
       type: label
       label: 'Label'
 
-# Scheduler third-party settings on the promotion type bundle. The schema
-# mirrors the alias defined in scheduler.schema.yml so config validation
-# passes on a custom (non-node/media/etc.) bundle.
 helfi_etusivu.helfi_search_promotion_type.*.third_party.scheduler:
   type: mapping
   label: 'Scheduler entity type settings'
   mapping:
     expand_fieldset:
       type: string
-      label: 'Conditions under which to expand the date input fieldset or vertical tab ("when_required" or "always")'
     fields_display_mode:
       type: string
-      label: 'The way the scheduling fields are displayed in the edit form ("vertical_tab" or "fieldset")'
     publish_enable:
       type: boolean
-      label: 'Enable scheduled publishing'
     publish_past_date:
       type: string
-      label: 'Action to be taken for publication dates in the past ("error", "publish" or "schedule")'
     publish_past_date_created:
       type: boolean
-      label: 'Change entity creation date for past dates to avoid "changed" being earlier than "created"'
     publish_required:
       type: boolean
-      label: 'Require scheduled publishing'
     publish_revision:
       type: boolean
-      label: 'Create a new revision on publishing'
     publish_touch:
       type: boolean
-      label: 'Change entity creation time to match the scheduled publish time'
     show_message_after_update:
       type: boolean
-      label: 'Show a message after updating an entity which is scheduled'
     unpublish_enable:
       type: boolean
-      label: 'Enable scheduled unpublishing'
     unpublish_required:
       type: boolean
-      label: 'Require scheduled unpublishing'
     unpublish_revision:
       type: boolean
-      label: 'Create a new revision on unpublishing'
