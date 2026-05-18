@@ -26,7 +26,6 @@ dependencies:
     - file
     - filter
     - helfi_api_base
-    - helfi_etusivu
     - locale
     - media
     - menu_link_attributes
