@@ -111,8 +111,8 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
       <ResultsHeader
         resultText={Drupal.formatPlural(
           totalHits,
-          '@count search result',
-          '@count search results',
+          '@count result',
+          '@count results',
           {},
           { context: 'Site search' },
         )}

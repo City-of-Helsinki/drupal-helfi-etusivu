@@ -148,8 +148,8 @@ msgid "Read about the use of artificial intelligence in search."
 msgstr "Lue tekoälyn käytöstä haussa."
 
 msgctxt "Site search"
-msgid "@count search result"
-msgid_plural "@count search results"
+msgid "@count result"
+msgid_plural "@count results"
 msgstr[0] "@count hakutulos"
 msgstr[1] "@count hakutulosta"
 
