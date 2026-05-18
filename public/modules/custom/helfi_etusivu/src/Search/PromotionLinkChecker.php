@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Search;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\content_lock\ContentLock\ContentLockInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Entity\Search\Promotion;
@@ -35,6 +36,7 @@ final class PromotionLinkChecker implements LoggerAwareInterface {
     private readonly ClientInterface $httpClient,
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly TimeInterface $time,
+    private readonly ContentLockInterface $contentLock,
   ) {}
 
   /**
@@ -59,6 +61,16 @@ final class PromotionLinkChecker implements LoggerAwareInterface {
 
     foreach ($storage->loadMultiple($ids) as $promotion) {
       assert($promotion instanceof Promotion);
+
+      // Skip entities someone is currently editing so cron doesn't bump
+      // `changed` under them and break their save.
+      if ($this->contentLock->fetchLock($promotion) !== FALSE) {
+        $this->logger?->info('Skipping promotion @id link check — entity is locked by content_lock.', [
+          '@id' => $promotion->id(),
+        ]);
+        continue;
+      }
+
       foreach ($promotion->getTranslationLanguages() as $language) {
         $translation = $promotion->getTranslation($language->getId());
         assert($translation instanceof Promotion);

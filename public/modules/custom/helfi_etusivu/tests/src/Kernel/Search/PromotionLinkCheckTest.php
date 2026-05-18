@@ -36,6 +36,7 @@ class PromotionLinkCheckTest extends KernelTestBase {
     'link',
     'user',
     'system',
+    'content_lock',
     'helfi_api_base',
     'helfi_etusivu',
   ];
@@ -49,6 +50,8 @@ class PromotionLinkCheckTest extends KernelTestBase {
     $this->installEntitySchema('user');
     $this->installEntitySchema('helfi_search_promotion_type');
     $this->installEntitySchema('helfi_search_promotion');
+    $this->installSchema('content_lock', ['content_lock']);
+    $this->installConfig(['content_lock']);
 
     // Create uid1 so subsequent test users do not inherit super-admin perms.
     $this->createUser();
@@ -124,6 +127,35 @@ class PromotionLinkCheckTest extends KernelTestBase {
     // Unpublished item was not checked.
     $reloaded = Promotion::load($unpublished->id());
     $this->assertSame(0, (int) $reloaded->get('last_checked')->value);
+  }
+
+  /**
+   * Tests that a promotion locked by content_lock is skipped this run.
+   */
+  public function testLockedPromotionIsSkipped(): void {
+    // Only one response: the first checkLinks() must skip the entity entirely
+    // (the lock prevents HTTP contact); the second consumes the 404.
+    $checker = $this->checkerWithResponses([new Response(404)]);
+
+    $promotion = $this->createPromotion();
+
+    $editor = $this->createUser();
+    $this->assertInstanceOf(User::class, $editor);
+    $this->container->get('content_lock')->locking($promotion, '*', (int) $editor->id());
+
+    $checker->checkLinks();
+
+    $reloaded = Promotion::load($promotion->id());
+    $this->assertSame(0, (int) $reloaded->get('last_checked')->value);
+    $this->assertSame(0, (int) $reloaded->get('failed_check_count')->value);
+
+    // Releasing the lock lets the next run pick the entity up.
+    $this->container->get('content_lock')->release($promotion);
+    $checker->checkLinks();
+
+    $reloaded = Promotion::load($promotion->id());
+    $this->assertGreaterThan(0, (int) $reloaded->get('last_checked')->value);
+    $this->assertSame(1, (int) $reloaded->get('failed_check_count')->value);
   }
 
   /**
