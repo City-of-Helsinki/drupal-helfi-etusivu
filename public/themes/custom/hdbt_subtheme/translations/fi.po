@@ -144,8 +144,8 @@ msgid "The search uses artificial intelligence."
 msgstr "Haku käyttää tekoälyä."
 
 msgctxt "Site search"
-msgid "Read more from the artificial intelligence register."
-msgstr "Lue lisää tekoälyrekisteristä."
+msgid "Read about the use of artificial intelligence in search."
+msgstr "Lue tekoälyn käytöstä haussa."
 
 msgctxt "Site search"
 msgid "@count search result"

@@ -95,7 +95,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
               <>
                 &nbsp;
                 <a href={aiRegisterUrl}>
-                  {Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}
+                  {Drupal.t('Read about the use of artificial intelligence in search.', {}, { context: 'Site search' })}
                 </a>
               </>
             )}

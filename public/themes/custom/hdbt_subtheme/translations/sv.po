@@ -144,8 +144,8 @@ msgid "The search uses artificial intelligence."
 msgstr "Sökningen använder artificiell intelligens."
 
 msgctxt "Site search"
-msgid "Read more from the artificial intelligence register."
-msgstr "Läs mer i registret för artificiell intelligens."
+msgid "Read about the use of artificial intelligence in search."
+msgstr "Läs om användningen av artificiell intelligens i sökningen."
 
 msgctxt "Site search"
 msgid "@count search result"
