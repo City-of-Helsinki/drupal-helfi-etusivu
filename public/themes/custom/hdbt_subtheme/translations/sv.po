@@ -136,8 +136,8 @@ msgid "Landing pages"
 msgstr "Landningssidor"
 
 msgctxt "Site search"
-msgid "Refine search"
-msgstr "Begränsa sökningen"
+msgid "Filter search results"
+msgstr "Begränsa sökresultaten"
 
 msgctxt "Site search"
 msgid "The search uses artificial intelligence."

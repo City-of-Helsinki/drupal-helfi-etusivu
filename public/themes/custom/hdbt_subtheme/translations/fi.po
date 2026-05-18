@@ -136,8 +136,8 @@ msgid "Landing pages"
 msgstr "Laskeutumissivut"
 
 msgctxt "Site search"
-msgid "Refine search"
-msgstr "Rajaa hakua"
+msgid "Filter search results"
+msgstr "Rajaa hakutuloksia"
 
 msgctxt "Site search"
 msgid "The search uses artificial intelligence."

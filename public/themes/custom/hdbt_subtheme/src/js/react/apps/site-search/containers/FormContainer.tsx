@@ -85,7 +85,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
             </fieldset>
             <div className='hdbt-search--react__submit'>
               <Button className='hdbt-search--react__submit-button' type='submit' variant={ButtonVariant.Primary}>
-                {Drupal.t('Refine search', {}, { context: 'Site search' })}
+                {Drupal.t('Filter search results', {}, { context: 'Site search' })}
               </Button>
             </div>
           </Accordion>
