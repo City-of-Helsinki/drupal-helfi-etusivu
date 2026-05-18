@@ -174,8 +174,8 @@ msgid "Decisions"
 msgstr "Beslut"
 
 msgctxt "Site search"
-msgid "Contact"
-msgstr "Kontakt"
+msgid "Contact information"
+msgstr "Kontaktuppgifter"
 
 msgctxt "Hakuvahti confirm success"
 msgid "You will be notified of new search matches no more than once a day."

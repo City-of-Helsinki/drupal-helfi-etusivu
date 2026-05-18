@@ -84,7 +84,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
           <ExternalLink href={links.decisions} title={Drupal.t('Decisions', {}, { context: 'Site search' })} />
         </li>
         <li>
-          <a href={links.contact}>{Drupal.t('Contact', {}, { context: 'Site search' })}</a>
+          <a href={links.contact}>{Drupal.t('Contact information', {}, { context: 'Site search' })}</a>
         </li>
       </ul>
     </Notification>
