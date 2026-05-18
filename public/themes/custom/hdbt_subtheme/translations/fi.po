@@ -112,7 +112,7 @@ msgid "Something went wrong while getting the results. You may try searching aga
 msgstr "Tuloksien hakemisessa tapahtui virhe. Voit kokeilla hakea uudelleen."
 
 msgctxt "Site search"
-msgid "Keyword or a question"
+msgid "Search term or question"
 msgstr "Hakusana tai kysymys"
 
 msgctxt "Site search"

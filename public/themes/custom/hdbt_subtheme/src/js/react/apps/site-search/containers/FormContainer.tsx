@@ -39,7 +39,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const [searchInputProps] = useState({
     className: 'hdbt-search--react__input hdbt-search__search-input',
     texts: {
-      label: Drupal.t('Keyword or a question', {}, { context: 'Site search' }),
+      label: Drupal.t('Search term or question', {}, { context: 'Site search' }),
     },
   });
 
