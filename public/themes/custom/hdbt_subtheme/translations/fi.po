@@ -177,6 +177,10 @@ msgctxt "Site search"
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
+msgctxt "Site search"
+msgid "Helsinki near you"
+msgstr "Helsinki lähelläsi"
+
 msgctxt "Hakuvahti confirm success"
 msgid "You will be notified of new search matches no more than once a day."
 msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä."

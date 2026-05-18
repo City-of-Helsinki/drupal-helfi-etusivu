@@ -86,6 +86,9 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
         <li>
           <a href={links.contact}>{Drupal.t('Contact information', {}, { context: 'Site search' })}</a>
         </li>
+        <li>
+          <a href={links.helsinki_near_you}>{Drupal.t('Helsinki near you', {}, { context: 'Site search' })}</a>
+        </li>
       </ul>
     </Notification>
   );
