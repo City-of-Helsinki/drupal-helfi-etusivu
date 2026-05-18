@@ -116,10 +116,6 @@ msgid "Search term or question"
 msgstr "Sökord eller fråga"
 
 msgctxt "Site search"
-msgid "Refine search results"
-msgstr "Begränsa sökresultaten"
-
-msgctxt "Site search"
 msgid "Show only"
 msgstr "Visa endast"
 
@@ -138,6 +134,10 @@ msgstr "Landningssidor"
 msgctxt "Site search"
 msgid "Filter search results"
 msgstr "Begränsa sökresultaten"
+
+msgctxt "Site search submit"
+msgid "Filter search results"
+msgstr "Begränsa sökningen"
 
 msgctxt "Site search"
 msgid "The search uses artificial intelligence."

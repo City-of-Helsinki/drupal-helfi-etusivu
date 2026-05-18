@@ -57,7 +57,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
             border
             card
             className='hdbt-search--react__filters hdbt-search--react__filters--site-search'
-            heading={Drupal.t('Refine search results', {}, { context: 'Site search' })}
+            heading={Drupal.t('Filter search results', {}, { context: 'Site search' })}
             headingLevel={2}
             initiallyOpen={false}
             language={lang}
@@ -85,7 +85,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
             </fieldset>
             <div className='hdbt-search--react__submit'>
               <Button className='hdbt-search--react__submit-button' type='submit' variant={ButtonVariant.Primary}>
-                {Drupal.t('Filter search results', {}, { context: 'Site search' })}
+                {Drupal.t('Filter search results', {}, { context: 'Site search submit' })}
               </Button>
             </div>
           </Accordion>

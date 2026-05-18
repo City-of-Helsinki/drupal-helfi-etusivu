@@ -116,10 +116,6 @@ msgid "Search term or question"
 msgstr "Hakusana tai kysymys"
 
 msgctxt "Site search"
-msgid "Refine search results"
-msgstr "Rajaa hakutuloksia"
-
-msgctxt "Site search"
 msgid "Show only"
 msgstr "Näytä vain"
 
@@ -138,6 +134,10 @@ msgstr "Laskeutumissivut"
 msgctxt "Site search"
 msgid "Filter search results"
 msgstr "Rajaa hakutuloksia"
+
+msgctxt "Site search submit"
+msgid "Filter search results"
+msgstr "Rajaa hakua"
 
 msgctxt "Site search"
 msgid "The search uses artificial intelligence."
