@@ -158,6 +158,10 @@ msgid "Published"
 msgstr "Publicerad"
 
 msgctxt "Site search"
+msgid "Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information."
+msgstr "Din sökning gav inga resultat. Använd de separata söktjänsterna om du letar efter lediga jobb, evenemang, beslut eller kontaktuppgifter."
+
+msgctxt "Site search"
 msgid "Looking for these search services?"
 msgstr "Letar du efter dessa söktjänster?"
 

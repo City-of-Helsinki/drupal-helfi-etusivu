@@ -95,7 +95,15 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
 
   if (!data || totalHits === 0) {
     return (
-      <ResultsEmpty wrapperClass={`${resultsClassName} hdbt-search--react__results--no-results`} ref={scrollTarget}>
+      <ResultsEmpty
+        wrapperClass={`${resultsClassName} hdbt-search--react__results--no-results`}
+        ref={scrollTarget}
+        bodyText={Drupal.t(
+          'Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information.',
+          {},
+          { context: 'Site search' },
+        )}
+      >
         {externalLinksNotification}
       </ResultsEmpty>
     );
@@ -109,13 +117,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   return (
     <div className={resultsClassName}>
       <ResultsHeader
-        resultText={Drupal.formatPlural(
-          totalHits,
-          '@count result',
-          '@count results',
-          {},
-          { context: 'Site search' },
-        )}
+        resultText={Drupal.formatPlural(totalHits, '@count result', '@count results', {}, { context: 'Site search' })}
         ref={scrollTarget}
       />
       {promotedCount > 0 &&
