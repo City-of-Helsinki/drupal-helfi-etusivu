@@ -5,6 +5,7 @@ dependencies:
   module:
     - helfi_etusivu
     - link
+    - user
     - views_bulk_operations
 id: search_promotion_broken_links
 label: 'Search promotion: broken links'
@@ -581,8 +582,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'administer search promotions'
       cache:
         type: tag
         options: {  }
@@ -821,6 +823,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags: {  }
   page_1:
     id: page_1
@@ -846,4 +849,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags: {  }
