@@ -161,6 +161,19 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
       ->setDefaultValue(0)
       ->setReadOnly(TRUE);
 
+    $fields['enable_link_check'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(new TranslatableMarkup('Enable automated link check', options: ['context' => 'Helfi search']))
+      ->setDescription(new TranslatableMarkup('Run the automated checker against this link. Uncheck for destinations that block automated requests (e.g. bot protection). The editor is then responsible for verifying the link manually.', ['context' => 'Helfi search']))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+        'settings' => [
+          'display_label' => TRUE,
+        ],
+        'weight' => 12,
+      ]);
+
     $fields['keywords'] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Keywords', options: ['context' => 'Helfi search']))
       ->setDescription(new TranslatableMarkup('This search result is promoted if the query contains any of these keywords. The promotions do not use the AI search.', ['context' => 'Helfi search']))
@@ -258,6 +271,21 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
    */
   public function incrementFailedCheckCount(): self {
     $this->set('failed_check_count', $this->getFailedCheckCount() + 1);
+    return $this;
+  }
+
+  /**
+   * Whether the automated link checker is enabled for this translation.
+   */
+  public function getEnableLinkCheck(): bool {
+    return (bool) $this->get('enable_link_check')->value;
+  }
+
+  /**
+   * Sets whether the automated link checker is enabled for this translation.
+   */
+  public function setEnableLinkCheck(bool $enabled): self {
+    $this->set('enable_link_check', $enabled);
     return $this;
   }
 

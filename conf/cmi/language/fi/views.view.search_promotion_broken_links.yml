@@ -17,10 +17,15 @@ display:
           label: Päivitetty
         operations:
           label: Toimenpiteet
+        enable_link_check:
+          label: 'Linkintarkistus käytössä'
       filters:
         status:
           expose:
             label: Julkaistu
+        enable_link_check:
+          expose:
+            label: 'Automaattinen linkkitarkistus käytössä'
   page_1:
     display_options:
       menu:

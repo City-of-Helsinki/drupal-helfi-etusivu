@@ -50,6 +50,7 @@ final class PromotionLinkChecker implements LoggerAwareInterface {
     $ids = $storage->getQuery()
       ->accessCheck(FALSE)
       ->condition('status', 1)
+      ->condition('enable_link_check', 1)
       ->condition('last_checked', $threshold, '<')
       ->sort('last_checked', 'ASC')
       ->range(0, self::BATCH_SIZE)
@@ -76,6 +77,9 @@ final class PromotionLinkChecker implements LoggerAwareInterface {
         assert($translation instanceof Promotion);
 
         if (!$translation->isPublished()) {
+          continue;
+        }
+        if (!$translation->getEnableLinkCheck()) {
           continue;
         }
         if ($translation->getLastChecked() > $threshold) {
@@ -110,6 +114,7 @@ final class PromotionLinkChecker implements LoggerAwareInterface {
       ->getQuery()
       ->accessCheck(FALSE)
       ->condition('failed_check_count', $threshold, '>=')
+      ->condition('enable_link_check', 1)
       ->count()
       ->execute();
   }

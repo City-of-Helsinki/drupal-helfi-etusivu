@@ -101,6 +101,9 @@ class PromotionLinkCheckTest extends KernelTestBase {
     $unpublished = $this->createPromotion();
     $unpublished->setUnpublished()->save();
 
+    $disabled = $this->createPromotion();
+    $disabled->setEnableLinkCheck(FALSE)->save();
+
     $promotion = $this->createPromotion();
 
     $checker->checkLinks();
@@ -126,6 +129,10 @@ class PromotionLinkCheckTest extends KernelTestBase {
 
     // Unpublished item was not checked.
     $reloaded = Promotion::load($unpublished->id());
+    $this->assertSame(0, (int) $reloaded->get('last_checked')->value);
+
+    // Item was not checked if check is disabled.
+    $reloaded = Promotion::load($disabled->id());
     $this->assertSame(0, (int) $reloaded->get('last_checked')->value);
   }
 
