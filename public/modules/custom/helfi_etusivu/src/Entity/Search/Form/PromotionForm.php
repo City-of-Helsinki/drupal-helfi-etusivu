@@ -73,6 +73,18 @@ final class PromotionForm extends ContentEntityForm {
       '#markup' => !$entity->isNew() ? $this->dateFormatter->format($entity->getChangedTime(), 'short') : $this->t('Not saved yet'),
       '#wrapper_attributes' => ['class' => ['entity-meta__last-saved']],
     ];
+    $form['meta']['last_checked'] = [
+      '#type' => 'item',
+      '#title' => $this->t('Last link check', options: ['context' => 'Helfi search']),
+      '#markup' => $entity->getLastChecked() > 0 ? $this->dateFormatter->format($entity->getLastChecked(), 'long') : $this->t('Never'),
+    ];
+    if ($entity->getFailedCheckCount() > 0) {
+      $form['meta']['failed_check_count'] = [
+        '#type' => 'item',
+        '#title' => $this->t('Failed link checks', options: ['context' => 'Helfi search']),
+        '#markup' => (string) $entity->getFailedCheckCount(),
+      ];
+    }
     $form['meta']['author'] = [
       '#type' => 'item',
       '#title' => $this->t('Author'),

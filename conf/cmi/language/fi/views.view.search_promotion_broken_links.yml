@@ -1,0 +1,28 @@
+label: 'Hakunostot: rikkinäiset linkit'
+description: 'Hakunostot joiden linkit on rikki'
+display:
+  default:
+    display_options:
+      title: 'Hakunostot: rikkinäiset linkit'
+      fields:
+        title:
+          label: Otsikko
+        failed_check_count:
+          label: 'Epäonnistuneet tarkistukset'
+        link__uri:
+          label: Linkki
+        langcode:
+          label: Kieli
+        changed:
+          label: Päivitetty
+        operations:
+          label: Toimenpiteet
+      filters:
+        status:
+          expose:
+            label: Julkaistu
+  page_1:
+    display_options:
+      menu:
+        title: 'Rikkinäiset linkit'
+        description: 'Listaa hakunostot joiden linkki on rikki'

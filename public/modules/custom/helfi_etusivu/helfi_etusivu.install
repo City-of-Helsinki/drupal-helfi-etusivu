@@ -796,3 +796,53 @@ function helfi_etusivu_update_11007(): void {
     ->isNull('changed')
     ->execute();
 }
+
+/**
+ * UHF-13257: Add link health monitoring fields to helfi_search_promotion.
+ */
+function helfi_etusivu_update_11008(): void {
+  $entity_type_id = 'helfi_search_promotion';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  $definitions = [
+    'failed_check_count' => BaseFieldDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Failed link checks'))
+      ->setDescription(new TranslatableMarkup('Number of consecutive automated link checks that have failed.'))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(0)
+      ->setReadOnly(TRUE),
+    'last_checked' => BaseFieldDefinition::create('timestamp')
+      ->setLabel(new TranslatableMarkup('Last link check'))
+      ->setDescription(new TranslatableMarkup('Timestamp of the last automated link check.'))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(0)
+      ->setReadOnly(TRUE),
+  ];
+
+  foreach ($definitions as $field_name => $definition) {
+    if ($manager->getFieldStorageDefinition($field_name, $entity_type_id)) {
+      continue;
+    }
+    $manager->installFieldStorageDefinition($field_name, $entity_type_id, 'helfi_etusivu', $definition);
+  }
+
+  \Drupal::service(EntityFieldManagerInterface::class)
+    ->clearCachedFieldDefinitions();
+}
+
+/**
+ * UHF-13257: Backfill link-check fields so the cron query picks up legacy rows.
+ */
+function helfi_etusivu_update_11009(): void {
+  $database = \Drupal::database();
+
+  $database->update('helfi_search_promotion_data')
+    ->fields(['last_checked' => 0])
+    ->isNull('last_checked')
+    ->execute();
+
+  $database->update('helfi_search_promotion_data')
+    ->fields(['failed_check_count' => 0])
+    ->isNull('failed_check_count')
+    ->execute();
+}
