@@ -10,6 +10,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Search\PromotionLinkChecker;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 /**
  * Hooks for the search promotion entity.
@@ -62,11 +63,20 @@ final class PromotionHooks {
       return;
     }
 
+    try {
+      $url = Url::fromRoute('view.search_promotion_broken_links.page_1')->toString();
+    }
+    catch (RouteNotFoundException) {
+      // The broken-links view config may legitimately be absent
+      // e.g. in kernel tests.
+      $url = Url::fromRoute('entity.helfi_search_promotion.collection')->toString();
+    }
+
     $this->messenger->addWarning($this->formatPlural(
       $count,
       '1 search promotion has a failing link check. <a href=":url">Review</a>.',
       '@count search promotions have failing link checks. <a href=":url">Review</a>.',
-      [':url' => Url::fromRoute('view.search_promotion_broken_links.page_1')->toString()]
+      [':url' => $url],
     ));
   }
 

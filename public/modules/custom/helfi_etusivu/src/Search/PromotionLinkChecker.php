@@ -36,7 +36,7 @@ final class PromotionLinkChecker implements LoggerAwareInterface {
     private readonly ClientInterface $httpClient,
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly TimeInterface $time,
-    private readonly ContentLockInterface $contentLock,
+    private readonly ?ContentLockInterface $contentLock,
   ) {}
 
   /**
@@ -65,7 +65,7 @@ final class PromotionLinkChecker implements LoggerAwareInterface {
 
       // Skip entities someone is currently editing so cron doesn't bump
       // `changed` under them and break their save.
-      if ($this->contentLock->fetchLock($promotion) !== FALSE) {
+      if ($this->contentLock?->fetchLock($promotion) !== FALSE) {
         $this->logger?->info('Skipping promotion @id link check — entity is locked by content_lock.', [
           '@id' => $promotion->id(),
         ]);
