@@ -158,8 +158,8 @@ msgid "Published"
 msgstr "Publicerad"
 
 msgctxt "Site search"
-msgid "Go to external search services"
-msgstr "Gå till separata söktjänster"
+msgid "Looking for these search services?"
+msgstr "Letar du efter dessa söktjänster?"
 
 msgctxt "Site search"
 msgid "Open jobs"

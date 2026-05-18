@@ -158,8 +158,8 @@ msgid "Published"
 msgstr "Julkaistu"
 
 msgctxt "Site search"
-msgid "Go to external search services"
-msgstr "Siirry erillisiin hakupalveluihin"
+msgid "Looking for these search services?"
+msgstr "Etsitkö näitä hakupalveluja?"
 
 msgctxt "Site search"
 msgid "Open jobs"

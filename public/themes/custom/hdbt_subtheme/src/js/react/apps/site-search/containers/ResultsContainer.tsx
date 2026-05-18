@@ -69,7 +69,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const externalLinksNotification = links && (
     <Notification
       className='notification--site-search'
-      label={Drupal.t('Go to external search services', {}, { context: 'Site search' })}
+      label={Drupal.t('Looking for these search services?', {}, { context: 'Site search' })}
       type='info'
       headingLevel={3}
     >
