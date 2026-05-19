@@ -3,3 +3,31 @@ display:
     display_options:
       menu:
         title: Hakunostot
+  default:
+    display_options:
+      fields:
+        title:
+          label: Otsikko
+        link__uri:
+          label: Linkki
+        keywords_value:
+          label: Asiasanat
+        status:
+          label: Julkaistu
+        operations:
+          label: Toimenpiteet
+        changed:
+          label: Päivitetty
+      filters:
+        title:
+          expose:
+            label: Otsikko
+        keywords_value:
+          expose:
+            label: Asiasanat
+        status:
+          expose:
+            label: Julkaistu
+        langcode:
+          expose:
+            label: Kieli

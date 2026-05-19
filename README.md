@@ -168,3 +168,14 @@ The initial feed ordering view was done in [this PR](https://github.com/City-of-
 - `langcode` column was added to draggableviews -database table.
 - Query alter was created for views utilizing draggableviews to filter out content by language.
 - Page preprocess was included to add custom styling to the admin interface of the view used to organize the items.
+
+### Customisation on blocks
+
+Askem / React and share block visibility is controlled programmatically because the block UI and configuration do not support the required complexity, such as route-based conditions. The logic lives in `BlockHooks::askemBlockAccess()` [here](https://github.com/City-of-Helsinki/drupal-helfi-etusivu/blob/dev/public/modules/custom/helfi_etusivu/src/Hook/BlockHooks.php).
+
+The block is shown when the following conditions are met:
+- The current language is Finnish, English or Swedish
+- The current page is not the front page.
+- The current route is `helfi_etusivu.helsinki_near_you_results` (Helsinki near you pages), **or** the current node is of content type `page` or `landing_page`.
+
+Because visibility is fully managed in code, editing the block configuration through the UI is prevented.
