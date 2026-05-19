@@ -355,5 +355,5 @@ msgid "News"
 msgstr "Nyheter"
 
 msgctxt "Site search"
-msgid "Search in the website"
-msgstr "Sök i webbplatsen"
+msgid "Search this site"
+msgstr "Sök från webbplatsen"

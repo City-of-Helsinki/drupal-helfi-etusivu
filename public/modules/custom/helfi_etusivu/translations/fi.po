@@ -408,5 +408,5 @@ msgid "News"
 msgstr "Uutiset"
 
 msgctxt "Site search"
-msgid "Search in the website"
+msgid "Search this site"
 msgstr "Hae sivustolta"

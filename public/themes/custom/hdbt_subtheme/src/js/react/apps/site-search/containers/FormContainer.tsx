@@ -39,7 +39,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const [searchInputProps] = useState({
     className: 'hdbt-search--react__input hdbt-search__search-input',
     texts: {
-      label: Drupal.t('Keyword or a question', {}, { context: 'Site search' }),
+      label: Drupal.t('Search term or question', {}, { context: 'Site search' }),
     },
   });
 
@@ -57,7 +57,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
             border
             card
             className='hdbt-search--react__filters hdbt-search--react__filters--site-search'
-            heading={Drupal.t('Refine search results', {}, { context: 'Site search' })}
+            heading={Drupal.t('Filter search results', {}, { context: 'Site search' })}
             headingLevel={2}
             initiallyOpen={false}
             language={lang}
@@ -85,7 +85,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
             </fieldset>
             <div className='hdbt-search--react__submit'>
               <Button className='hdbt-search--react__submit-button' type='submit' variant={ButtonVariant.Primary}>
-                {Drupal.t('Refine search', {}, { context: 'Site search' })}
+                {Drupal.t('Filter search results', {}, { context: 'Site search submit' })}
               </Button>
             </div>
           </Accordion>
@@ -95,7 +95,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
               <>
                 &nbsp;
                 <a href={aiRegisterUrl}>
-                  {Drupal.t('Read more from the artificial intelligence register.', {}, { context: 'Site search' })}
+                  {Drupal.t('Read about the use of artificial intelligence in search.', {}, { context: 'Site search' })}
                 </a>
               </>
             )}

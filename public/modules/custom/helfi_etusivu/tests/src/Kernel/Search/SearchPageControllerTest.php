@@ -36,7 +36,7 @@ class SearchPageControllerTest extends KernelTestBase {
    */
   public function testGetTitle(): void {
     $controller = SearchPageController::create($this->container);
-    $this->assertEquals('Search in the website', $controller->getTitle());
+    $this->assertEquals('Search this site', $controller->getTitle());
   }
 
 }

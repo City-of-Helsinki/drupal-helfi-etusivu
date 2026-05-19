@@ -69,7 +69,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const externalLinksNotification = links && (
     <Notification
       className='notification--site-search'
-      label={Drupal.t('Go to external search services', {}, { context: 'Site search' })}
+      label={Drupal.t('Looking for these search services?', {}, { context: 'Site search' })}
       type='info'
       headingLevel={3}
     >
@@ -84,7 +84,10 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
           <ExternalLink href={links.decisions} title={Drupal.t('Decisions', {}, { context: 'Site search' })} />
         </li>
         <li>
-          <a href={links.contact}>{Drupal.t('Contact', {}, { context: 'Site search' })}</a>
+          <a href={links.contact}>{Drupal.t('Contact information', {}, { context: 'Site search' })}</a>
+        </li>
+        <li>
+          <a href={links.helsinki_near_you}>{Drupal.t('Helsinki near you', {}, { context: 'Site search' })}</a>
         </li>
       </ul>
     </Notification>
@@ -92,7 +95,16 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
 
   if (!data || totalHits === 0) {
     return (
-      <ResultsEmpty wrapperClass={`${resultsClassName} hdbt-search--react__results--no-results`} ref={scrollTarget}>
+      <ResultsEmpty
+        wrapperClass={`${resultsClassName} hdbt-search--react__results--no-results`}
+        ref={scrollTarget}
+        resultText={Drupal.t('No results', {}, { context: 'Site search' })}
+        bodyText={Drupal.t(
+          'Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information.',
+          {},
+          { context: 'Site search' },
+        )}
+      >
         {externalLinksNotification}
       </ResultsEmpty>
     );
@@ -106,13 +118,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   return (
     <div className={resultsClassName}>
       <ResultsHeader
-        resultText={Drupal.formatPlural(
-          totalHits,
-          '@count search result',
-          '@count search results',
-          {},
-          { context: 'Site search' },
-        )}
+        resultText={Drupal.formatPlural(totalHits, '@count result', '@count results', {}, { context: 'Site search' })}
         ref={scrollTarget}
       />
       {promotedCount > 0 &&
