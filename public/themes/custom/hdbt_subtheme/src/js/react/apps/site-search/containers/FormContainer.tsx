@@ -36,12 +36,16 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     handleSend();
   };
 
-  const [searchInputProps] = useState({
-    className: 'hdbt-search--react__input hdbt-search__search-input',
-    texts: {
-      label: Drupal.t('Search term or question', {}, { context: 'Site search' }),
+  const [searchInputProps] = useState(
+    {
+      className: 'hdbt-search--react__input hdbt-search__search-input',
+      texts: {
+        language: lang,
+        label: Drupal.t('Search term or question', {}, { context: 'Site search' }),
+      },
     },
-  });
+    [lang],
+  );
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
