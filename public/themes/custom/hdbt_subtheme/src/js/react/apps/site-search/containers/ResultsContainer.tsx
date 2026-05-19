@@ -98,6 +98,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
       <ResultsEmpty
         wrapperClass={`${resultsClassName} hdbt-search--react__results--no-results`}
         ref={scrollTarget}
+        resultText={Drupal.t('No results', {}, { context: 'Site search' })}
         bodyText={Drupal.t(
           'Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information.',
           {},
