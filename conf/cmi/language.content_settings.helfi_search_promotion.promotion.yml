@@ -1,4 +1,4 @@
-uuid: 49589a21-6f1f-4ef4-a043-682a1fb1ceae
+uuid: 5615e6c3-17d3-4da1-b8ed-653f76a7401e
 langcode: en
 status: true
 dependencies:
@@ -10,8 +10,8 @@ third_party_settings:
     enabled: true
     bundle_settings:
       untranslatable_fields_hide: '1'
-id: helfi_search_promotion.helfi_search_promotion
+id: helfi_search_promotion.promotion
 target_entity_type_id: helfi_search_promotion
-target_bundle: helfi_search_promotion
+target_bundle: promotion
 default_langcode: current_interface
 language_alterable: true

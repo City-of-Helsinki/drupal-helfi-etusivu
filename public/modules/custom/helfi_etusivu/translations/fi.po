@@ -44,8 +44,16 @@ msgid "Discover city services, events and news near you."
 msgstr "Etsi kaupungin palveluita, tapahtumia ja uutisia osoitteesi perusteella."
 
 msgctxt "Helsinki near you"
-msgid "Address"
-msgstr "Osoite"
+msgid "Street address"
+msgstr "Katuosoite"
+
+msgctxt "Helsinki near you"
+msgid "Street address is required."
+msgstr "Katuosoite on pakollinen."
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the street address"
+msgstr "Katuosoitteella ei löytynyt tuloksia"
 
 msgctxt "Helsinki near you"
 msgid "For example, Mannerheimintie 1"
@@ -257,10 +265,6 @@ msgctxt "Helsinki near you status label"
 msgid "Unknown"
 msgstr "Tuntematon"
 
-msgctxt "Helsinki near you"
-msgid "Address"
-msgstr "Osoite"
-
 msgctxt "Helsinki near you title"
 msgid "Find feedback"
 msgstr "Etsi palautteita"
@@ -381,18 +385,28 @@ msgctxt "Helfi search"
 msgid "This search result is promoted if the query contains any of these keywords. The promotions do not use the AI search."
 msgstr "Hakunosto näytetään jos haku sisältää jonkin näistä asiasanoista. Hakunostoihin ei käytetä tekoälypohjaista hakua."
 
+msgid "Search promotions"
+msgstr "Hakunostot"
+
+msgctxt "Helfi search"
+msgid "Last link check"
+msgstr "Viimeisin linkkitarkistus"
+
+msgctxt "Helfi search"
+msgid "Failed link checks"
+msgstr "Epäonnistuneet linkkitarkistukset"
+
+msgid "1 search promotion has a failing link check. <a href=\":url\">Review</a>."
+msgid_plural "@count search promotions have failing link checks. <a href=\":url\">Review</a>."
+msgstr[0] "1 hakunoston linkkitarkistus on epäonnistunut. <a href=\":url\">Tarkastele</a>."
+msgstr[1] "@count hakunoston linkkitarkistusta on epäonnistunut. <a href=\":url\">Tarkastele</a>."
+
+msgid "Add promotion"
+msgstr "Lisää hakunosto"
+
 msgid "News"
 msgstr "Uutiset"
 
-msgctxt "Helsinki near you"
-msgid "No results were found for the address"
-msgstr "Osoitteelle ei löytynyt tuloksia"
-
-msgctxt "Helsinki near you"
-msgid "Address is required."
-msgstr "Osoite on pakollinen."
-
 msgctxt "Site search"
-msgid "Search in the website"
+msgid "Search this site"
 msgstr "Hae sivustolta"
-

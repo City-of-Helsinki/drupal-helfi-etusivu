@@ -4,6 +4,8 @@ verbose: true
 types:
   crop: {  }
   file: {  }
+  helfi_search_promotion:
+    '*': '*'
   menu_link_content: {  }
   node:
     '*': '*'
@@ -23,6 +25,9 @@ form_op_lock:
     values: {  }
   file:
     mode: null
+    values: {  }
+  helfi_search_promotion:
+    mode: 0
     values: {  }
   menu_link_content:
     mode: 0
