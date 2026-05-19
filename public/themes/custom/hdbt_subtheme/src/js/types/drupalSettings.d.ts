@@ -6,6 +6,7 @@ declare namespace drupalSettings {
       events: string;
       decisions: string;
       contact: string;
+      helsinki_near_you: string;
     };
     ai_register_url?: string;
   };
