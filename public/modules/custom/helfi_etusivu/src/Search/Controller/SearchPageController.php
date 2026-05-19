@@ -53,6 +53,11 @@ final class SearchPageController extends ControllerBase implements ContainerInje
         'library' => [
           'hdbt_subtheme/site-search',
         ],
+        // @todo Prevent search engines from indexing search page until
+        // we are redy to replace the production search page.
+        'http_header' => [
+          ['X-Robots-Tag', 'noindex'],
+        ],
       ],
     ];
 
