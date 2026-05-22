@@ -36,7 +36,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
 
   use ApiTestTrait;
 
-  const SUPPORTED_IMAGE_STYLE = '1.5_511w_341h';
+  const SUPPORTED_IMAGE_STYLE = '1_5_511w_341h';
   const UNSUPPORTED_IMAGE_STYLE = 'unsupported_image_style';
   const LINKED_EVENTS_IMAGE_URL = 'https://example.com/image.jpg';
   const LINKED_EVENTS_IMAGE_LAST_MODIFIED_TIME = '2026-02-06T07:29:43.686092Z';
