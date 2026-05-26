@@ -8,7 +8,16 @@ type FormContainerProps = {
   withBundleFilters?: boolean;
 };
 
-const BUNDLE_OPTIONS = [{ value: 'news_item' as const, label: Drupal.t('News', {}, { context: 'Site search' }) }];
+const BUNDLE_OPTIONS = [
+  {
+    value: 'news_item',
+    label: Drupal.t('News', {}, { context: 'Site search' }),
+  },
+  {
+    value: 'others',
+    label: Drupal.t('Other content', {}, { context: 'Site search' }),
+  },
+];
 
 const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const [inputValue, setInputValue] = useAtom(stagedQueryAtom);
@@ -36,16 +45,13 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     handleSend();
   };
 
-  const [searchInputProps] = useState(
-    {
-      className: 'hdbt-search--react__input hdbt-search__search-input',
-      texts: {
-        language: lang,
-        label: Drupal.t('Search term or question', {}, { context: 'Site search' }),
-      },
+  const [searchInputProps] = useState({
+    className: 'hdbt-search--react__input hdbt-search__search-input',
+    texts: {
+      language: lang,
+      label: Drupal.t('Search term or question', {}, { context: 'Site search' }),
     },
-    [lang],
-  );
+  });
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
