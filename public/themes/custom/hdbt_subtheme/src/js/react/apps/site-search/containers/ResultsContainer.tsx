@@ -1,8 +1,8 @@
+import { Notification } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { createRef, Fragment, type SyntheticEvent, useEffect, useRef } from 'react';
-import { Notification } from 'hds-react';
-import { GhostList } from '@/react/common/GhostList';
 import ExternalLink from '@/react/common/ExternalLink';
+import { GhostList } from '@/react/common/GhostList';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';

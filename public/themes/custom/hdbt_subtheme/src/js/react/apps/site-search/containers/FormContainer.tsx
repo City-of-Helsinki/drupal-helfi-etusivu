@@ -1,7 +1,7 @@
 import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, Search } from 'hds-react';
-import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { useAtom, useSetAtom } from 'jotai';
 import { type SyntheticEvent, useCallback, useState } from 'react';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { stagedBundlesAtom, stagedQueryAtom, submitAllSearchAtom, submitNewsSearchAtom } from '../store';
 
 type FormContainerProps = {
