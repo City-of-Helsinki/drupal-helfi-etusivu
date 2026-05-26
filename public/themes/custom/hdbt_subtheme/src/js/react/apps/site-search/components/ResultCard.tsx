@@ -27,7 +27,7 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
   const lang = drupalSettings?.path?.currentLanguage ?? 'fi';
   const formattedDate = parsedDate ? parsedDate.toLocaleDateString(lang) : undefined;
 
-  return (
+  const cardItem = (
     <CardItem
       cardTitle={title}
       cardUrl={url}
@@ -54,6 +54,19 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
       })}
     />
   );
+
+  if (DEBUG_MODE) {
+    return (
+      <div>
+        {cardItem}
+        <pre style={{ fontSize: '12px', marginTop: '8px' }}>
+          {JSON.stringify({ url, title, description, bundle, publishDate }, null, 2)}
+        </pre>
+      </div>
+    );
+  }
+
+  return cardItem;
 };
 
 export default ResultCard;
