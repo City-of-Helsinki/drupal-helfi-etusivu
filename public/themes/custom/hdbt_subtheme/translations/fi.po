@@ -133,7 +133,7 @@ msgstr "Laskeutumissivut"
 
 msgctxt "Site search"
 msgid "Other content"
-msgstr "Muu sisältö"
+msgstr "Muut sisällöt"
 
 msgctxt "Site search"
 msgid "Filter search results"
