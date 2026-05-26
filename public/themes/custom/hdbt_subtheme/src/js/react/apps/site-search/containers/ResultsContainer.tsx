@@ -7,6 +7,7 @@ import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
+import DebugBlock from '../components/DebugBlock';
 import ResultCard from '../components/ResultCard';
 import AppSettings from '../enum/AppSettings';
 import useSearchQuery from '../hooks/useSearchQuery';
@@ -117,6 +118,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
 
   return (
     <div className={resultsClassName}>
+      {DEBUG_MODE && data?.debug && <DebugBlock label='DEBUG — backend response' data={data.debug} />}
       <ResultsHeader
         resultText={Drupal.formatPlural(totalHits, '@count result', '@count results', {}, { context: 'Site search' })}
         ref={scrollTarget}
