@@ -23,6 +23,9 @@ type SearchResponse = {
   page: number;
   size: number;
   total_hits: number;
+  debug?: {
+    bundles: Record<string, number>;
+  };
 };
 
 export type { Promotion, SearchResponse, SearchResult };

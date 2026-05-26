@@ -1,5 +1,6 @@
 import CardItem from '@/react/common/Card';
 import Icon from '@/react/common/Icon';
+import DebugBlock from './DebugBlock';
 
 type ResultCardProps = {
   url: string;
@@ -59,9 +60,7 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
     return (
       <div>
         {cardItem}
-        <pre style={{ fontSize: '12px', marginTop: '8px' }}>
-          {JSON.stringify({ url, title, description, bundle, publishDate }, null, 2)}
-        </pre>
+        <DebugBlock data={{ url, title, description, bundle, publishDate }} />
       </div>
     );
   }

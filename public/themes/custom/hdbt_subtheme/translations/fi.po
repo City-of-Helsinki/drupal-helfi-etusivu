@@ -132,6 +132,10 @@ msgid "Landing pages"
 msgstr "Laskeutumissivut"
 
 msgctxt "Site search"
+msgid "Other content"
+msgstr "Muu sisältö"
+
+msgctxt "Site search"
 msgid "Filter search results"
 msgstr "Rajaa hakutuloksia"
 

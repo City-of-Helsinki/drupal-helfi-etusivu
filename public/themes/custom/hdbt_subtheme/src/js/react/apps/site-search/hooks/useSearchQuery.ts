@@ -13,6 +13,9 @@ const useSearchQuery = (query: string, bundle?: string, page: number = 1) => {
   bundle && url?.searchParams.set('bundle', bundle);
   url?.searchParams.set('page', String(page));
   url?.searchParams.set('size', String(AppSettings.SIZE));
+  if (DEBUG_MODE) {
+    url?.searchParams.set('debug', '1');
+  }
 
   const key = url?.toString() ?? null;
 
