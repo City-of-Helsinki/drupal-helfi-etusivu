@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import type { SearchResponse } from '../types/SearchResult';
 import AppSettings from '../enum/AppSettings';
+import type { SearchResponse } from '../types/SearchResult';
 
 const fetcher = (url: string): Promise<SearchResponse> => fetch(url).then((res) => res.json());
 

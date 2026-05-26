@@ -25,4 +25,4 @@ type SearchResponse = {
   total_hits: number;
 };
 
-export type { SearchResult, Promotion, SearchResponse };
+export type { Promotion, SearchResponse, SearchResult };
