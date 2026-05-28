@@ -50,6 +50,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     texts: {
       language: lang,
       label: Drupal.t('Search term or question', {}, { context: 'Site search' }),
+      searchPlaceholder: undefined,
     },
   });
 
