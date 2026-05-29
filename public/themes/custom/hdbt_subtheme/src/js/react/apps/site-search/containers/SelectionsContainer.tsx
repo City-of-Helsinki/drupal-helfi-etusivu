@@ -4,7 +4,7 @@ import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import { committedBundlesAtom, removeBundleAtom, stagedBundlesAtom, submitAllSearchAtom } from '../store';
 
 const BUNDLE_LABELS: Record<string, string> = {
-  news_item: Drupal.t('News', {}, { context: 'Site search' }),
+  news: Drupal.t('News', {}, { context: 'Site search' }),
   page: Drupal.t('Pages', {}, { context: 'Site search' }),
   landing_page: Drupal.t('Landing pages', {}, { context: 'Site search' }),
   others: Drupal.t('Other content', {}, { context: 'Site search' }),
