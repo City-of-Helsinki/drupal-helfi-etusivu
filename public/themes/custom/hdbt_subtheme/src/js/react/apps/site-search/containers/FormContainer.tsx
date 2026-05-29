@@ -10,7 +10,7 @@ type FormContainerProps = {
 
 const BUNDLE_OPTIONS = [
   {
-    value: 'news_item',
+    value: 'news',
     label: Drupal.t('News', {}, { context: 'Site search' }),
   },
   {
