@@ -132,6 +132,10 @@ msgid "Landing pages"
 msgstr "Landningssidor"
 
 msgctxt "Site search"
+msgid "Other content"
+msgstr "Övrigt innehåll"
+
+msgctxt "Site search"
 msgid "Filter search results"
 msgstr "Begränsa sökresultaten"
 
