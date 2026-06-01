@@ -561,16 +561,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/NewsRss/RssNormalizer.php
 
 		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\EtusivuLocalTasksBlock\\:\\:build\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/EtusivuLocalTasksBlock.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\EtusivuLocalTasksBlock\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/EtusivuLocalTasksBlock.php
-
-		-
 			message: "#^Match expression does not handle remaining value\\: null$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/HelsinkiNearYouHeroBlock.php
