@@ -44,8 +44,10 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
 
   /**
    * {@inheritDoc}
+   *
+   * @phpstan-return array<mixed>
    */
-  public function build() {
+  public function build(): array {
     $build = parent::build();
 
     if (!isset($build['#primary']) || !is_array($build['#primary'])) {
