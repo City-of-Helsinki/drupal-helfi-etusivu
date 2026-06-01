@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Plugin\Block;
 
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Menu\Plugin\Block\LocalTasksBlock;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\helfi_users\Plugin\Block\LocalTasksBlock;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -44,8 +44,10 @@ class EtusivuLocalTasksBlock extends LocalTasksBlock {
 
   /**
    * {@inheritDoc}
+   *
+   * @phpstan-return array<mixed>
    */
-  public function build() {
+  public function build(): array {
     $build = parent::build();
 
     if (!isset($build['#primary']) || !is_array($build['#primary'])) {
