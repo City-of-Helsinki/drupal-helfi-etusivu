@@ -28,4 +28,6 @@ enforce:
     frame-ancestors:
       base: self
   reporting:
-    plugin: none
+    plugin: csp_log
+    options:
+      cleanup: 2
