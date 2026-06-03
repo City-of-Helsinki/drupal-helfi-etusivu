@@ -28,6 +28,6 @@ enforce:
     frame-ancestors:
       base: self
   reporting:
-    plugin: csp_log
+    plugin: uri
     options:
-      cleanup: 2
+      uri: 'https://www.test.hel.ninja/log-report-uri/enforce'
