@@ -64,6 +64,7 @@ function helfi_node_news_article_platform_config_grant_permissions() : array {
       'revert news_article revisions',
       'set news_article published on date',
       'translate news_article node',
+      'view any unpublished news_article content',
       'view news_article revisions',
     ],
     'read_only' => [
