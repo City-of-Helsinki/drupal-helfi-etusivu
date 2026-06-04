@@ -31,15 +31,7 @@ helfi_etusivu.site_search:
     _controller: '\Drupal\helfi_etusivu\Search\Controller\SearchPageController::content'
     _title_callback: '\Drupal\helfi_etusivu\Search\Controller\SearchPageController::getTitle'
   requirements:
-    _role: 'authenticated'
-
-helfi_etusivu.site_search_settings:
-  path: '/admin/config/search/site-search-settings'
-  defaults:
-    _form: '\Drupal\helfi_etusivu\Search\Form\SiteSearchSettingsForm'
-    _title: 'Site search settings'
-  requirements:
-    _permission: 'administer site search settings'
+    _permission: 'access content'
 
 route_callbacks:
   - '\Drupal\helfi_etusivu\HelsinkiNearYou\Routing\RouteProvider::routes'

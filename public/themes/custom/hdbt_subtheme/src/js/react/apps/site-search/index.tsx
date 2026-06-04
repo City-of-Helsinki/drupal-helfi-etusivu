@@ -1,10 +1,9 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-
-import initSentry from '@/react/common/helpers/Sentry';
 import { GhostList } from '@/react/common/GhostList';
-import AppSettings from './enum/AppSettings';
+import initSentry from '@/react/common/helpers/Sentry';
 import SearchContainer from './containers/SearchContainer';
+import AppSettings from './enum/AppSettings';
 
 initSentry();
 

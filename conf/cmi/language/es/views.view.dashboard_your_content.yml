@@ -1,0 +1,75 @@
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        content_translation_outdated:
+          label: 'Traducción anticuada'
+          settings:
+            format_custom_true: desactualizado
+          separator: ', '
+        title:
+          label: Título
+          separator: ', '
+        type:
+          label: 'Tipo de contenido'
+          separator: ', '
+        uid:
+          label: Autor
+          separator: ', '
+        revision_uid:
+          separator: ', '
+        langcode:
+          label: Idioma
+          separator: ', '
+        status:
+          label: Estado
+          settings:
+            format_custom_false: 'Sin publicar'
+            format_custom_true: Publicado
+          separator: ', '
+        changed:
+          label: Modificado
+          separator: ', '
+        operations:
+          label: Operaciones
+      pager:
+        options:
+          tags:
+            next: Siguiente
+            previous: Anterior
+            first: Primero
+            last: Último
+          expose:
+            items_per_page_label: 'Elementos por página'
+            items_per_page_options_all_label: '- Todo -'
+            offset_label: Desplazamiento
+      exposed_form:
+        options:
+          submit_button: Filtro
+          reset_button_label: Restablecer
+          exposed_sorts_label: 'Ordenar por'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      filters:
+        title:
+          expose:
+            label: Título
+        type:
+          expose:
+            label: 'Tipo de contenido'
+        status:
+          expose:
+            label: 'Estado de publicación'
+          group_info:
+            label: 'Estado de publicación'
+            group_items:
+              1:
+                title: Publicado
+              2:
+                title: 'Sin publicar'
+        langcode:
+          expose:
+            label: Idioma
+  your_content_block:
+    display_title: Bloque

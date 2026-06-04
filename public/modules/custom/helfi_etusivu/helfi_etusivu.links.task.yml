@@ -1,4 +1,5 @@
-helfi_etusivu.site_search_settings:
-  route_name: helfi_etusivu.site_search_settings
-  title: 'Site search settings'
-  base_route: helfi_etusivu.site_search_settings
+helfi_etusivu.search_promotion.list:
+  title: 'Search promotions'
+  route_name: entity.helfi_search_promotion.collection
+  base_route: entity.helfi_search_promotion.collection
+  weight: -10

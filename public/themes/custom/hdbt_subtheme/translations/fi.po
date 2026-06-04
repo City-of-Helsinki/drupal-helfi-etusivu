@@ -112,12 +112,8 @@ msgid "Something went wrong while getting the results. You may try searching aga
 msgstr "Tuloksien hakemisessa tapahtui virhe. Voit kokeilla hakea uudelleen."
 
 msgctxt "Site search"
-msgid "Keyword or a question"
+msgid "Search term or question"
 msgstr "Hakusana tai kysymys"
-
-msgctxt "Site search"
-msgid "Refine search results"
-msgstr "Rajaa hakutuloksia"
 
 msgctxt "Site search"
 msgid "Show only"
@@ -136,7 +132,15 @@ msgid "Landing pages"
 msgstr "Laskeutumissivut"
 
 msgctxt "Site search"
-msgid "Refine search"
+msgid "Other content"
+msgstr "Muut sisällöt"
+
+msgctxt "Site search"
+msgid "Filter search results"
+msgstr "Rajaa hakutuloksia"
+
+msgctxt "Site search submit"
+msgid "Filter search results"
 msgstr "Rajaa hakua"
 
 msgctxt "Site search"
@@ -144,12 +148,12 @@ msgid "The search uses artificial intelligence."
 msgstr "Haku käyttää tekoälyä."
 
 msgctxt "Site search"
-msgid "Read more from the artificial intelligence register."
-msgstr "Lue lisää tekoälyrekisteristä."
+msgid "Read about the use of artificial intelligence in search."
+msgstr "Lue tekoälyn käytöstä haussa."
 
 msgctxt "Site search"
-msgid "@count search result"
-msgid_plural "@count search results"
+msgid "@count result"
+msgid_plural "@count results"
 msgstr[0] "@count hakutulos"
 msgstr[1] "@count hakutulosta"
 
@@ -158,8 +162,12 @@ msgid "Published"
 msgstr "Julkaistu"
 
 msgctxt "Site search"
-msgid "Go to external search services"
-msgstr "Siirry erillisiin hakupalveluihin"
+msgid "Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information."
+msgstr "Valinnoillasi ei löytynyt tuloksia. Käytä erillisiä hakupalveluja, jos etsit avoimia työpaikkoja, tapahtumia, päätöksiä tai yhteystietoja."
+
+msgctxt "Site search"
+msgid "Looking for these search services?"
+msgstr "Etsitkö näitä hakupalveluja?"
 
 msgctxt "Site search"
 msgid "Open jobs"
@@ -174,8 +182,12 @@ msgid "Decisions"
 msgstr "Päätökset"
 
 msgctxt "Site search"
-msgid "Contact"
+msgid "Contact information"
 msgstr "Yhteystiedot"
+
+msgctxt "Site search"
+msgid "Helsinki near you"
+msgstr "Helsinki lähelläsi"
 
 msgctxt "Hakuvahti confirm success"
 msgid "You will be notified of new search matches no more than once a day."
@@ -204,3 +216,7 @@ msgstr "Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
 msgctxt "News search monitor"
 msgid "You have not selected any search criteria. You will be notified of all the latest news."
 msgstr "Et ole valinnut yhtään hakuehtoa. Saat tiedon kaikista uusista uutisista."
+
+msgctxt "Site search"
+msgid "No results"
+msgstr "Ei hakutuloksia"
