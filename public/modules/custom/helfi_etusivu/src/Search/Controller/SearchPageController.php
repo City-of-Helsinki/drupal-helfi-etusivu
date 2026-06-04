@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Search\Controller;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -24,6 +25,8 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
   /**
    * Returns a renderable array.
+   *
+   * @phpstan-return array<string, mixed>
    */
   public function content(): array {
     $sentry_dsn = $this->configFactoryService
@@ -32,9 +35,9 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     $search_url = Url::fromRoute('helfi_search.semantic_search')->toString();
 
-    $site_search_config = $this->configFactoryService->get('helfi_etusivu.site_search_settings');
+    $site_search_config = $this->configFactoryService->get('helfi_search.settings');
 
-    return [
+    $build = [
       '#theme' => 'helfi_etusivu_site_search',
       '#attached' => [
         'drupalSettings' => [
@@ -50,15 +53,26 @@ final class SearchPageController extends ControllerBase implements ContainerInje
         'library' => [
           'hdbt_subtheme/site-search',
         ],
+        // @todo Prevent search engines from indexing search page until
+        // we are redy to replace the production search page.
+        'http_header' => [
+          ['X-Robots-Tag', 'noindex'],
+        ],
       ],
     ];
+
+    $cache = new CacheableMetadata();
+    $cache->addCacheableDependency($site_search_config);
+    $cache->applyTo($build);
+
+    return $build;
   }
 
   /**
    * Returns the title.
    */
   public function getTitle(): string {
-    return (string) $this->t('Search in the website', [], ['context' => 'Site search']);
+    return (string) $this->t('Search this site', [], ['context' => 'Site search']);
   }
 
 }

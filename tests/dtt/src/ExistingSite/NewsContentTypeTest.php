@@ -12,12 +12,12 @@ use Drupal\media\Entity\Media;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Tests\helfi_api_base\Functional\ExistingSiteTestBase;
 use Drupal\Tests\TestFileCreationTrait;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Tests news endpoint.
- *
- * @group dtt
  */
+#[Group('dtt')]
 class NewsContentTypeTest extends ExistingSiteTestBase {
 
   use TestFileCreationTrait;
