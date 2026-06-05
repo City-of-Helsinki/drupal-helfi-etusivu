@@ -19,7 +19,7 @@ dependencies:
   module:
     - field_group
     - hdbt_admin_tools
-    - helfi_ai_summary
+    - helfi_ai
     - linkit
     - media_library
     - paragraphs
