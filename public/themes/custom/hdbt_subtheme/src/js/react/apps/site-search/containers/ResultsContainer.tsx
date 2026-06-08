@@ -138,7 +138,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
           <Fragment key={item.url}>
             <ResultCard
               url={item.fragment ? `${item.url}#${item.fragment}` : item.url}
-              title={item.title}
+              title={item.metatag_title || item.title}
               description={item.content || undefined}
               bundle={item.bundle}
               publishDate={item.published_at}
