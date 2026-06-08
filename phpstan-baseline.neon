@@ -716,36 +716,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Language/AltLanguageFallbacksTest.php
 
 		-
-			message: "#^Call to an undefined method Elastic\\\\Elasticsearch\\\\Response\\\\Elasticsearch\\|Http\\\\Promise\\\\Promise\\:\\:asArray\\(\\)\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Call to an undefined method Elastic\\\\Elasticsearch\\\\Response\\\\Elasticsearch\\|Http\\\\Promise\\\\Promise\\:\\:getStatusCode\\(\\)\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$groups with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$neighbourhoods with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$tags with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$xml of method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:assertXml\\(\\) expects string, string\\|false given\\.$#"
-			count: 2
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
 			message: "#^Cannot access an offset on array\\<int, array\\<string, int\\|string\\|null\\>\\>\\|string\\|true\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsTermsTraitTest.php
