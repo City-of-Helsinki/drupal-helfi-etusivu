@@ -1,8 +1,6 @@
 _core:
-  default_config_hash: 30AOZRgOGRJ3m13eg7y-Hzj653nUuoTmsRA2qfsrmtQ
+  default_config_hash: I2rYvuJOLB7BAJ37EOt4_L7L1at_Ubiil3JZeRTYEl4
 langcode: en
-openai_models:
-  - text-embedding-3-large
 openai_model_pricing:
   text-embedding-3-large: 0.13
 ignored_classes:
