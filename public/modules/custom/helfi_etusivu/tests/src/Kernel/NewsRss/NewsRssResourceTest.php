@@ -14,6 +14,7 @@ use Drupal\rest\Entity\RestResourceConfig;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
 use Drupal\Tests\helfi_platform_config\Kernel\KernelTestBase;
+use Drupal\Tests\helfi_platform_config\Traits\ElasticTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Elastic\Elasticsearch\Client;
 use PHPUnit\Framework\Attributes\Group;
@@ -30,6 +31,7 @@ class NewsRssResourceTest extends KernelTestBase {
   use UserCreationTrait;
   use ApiTestTrait;
   use EnvironmentResolverTrait;
+  use ElasticTrait;
 
   /**
    * {@inheritdoc}
@@ -59,17 +61,6 @@ class NewsRssResourceTest extends KernelTestBase {
     $container->setParameter('helfi_etusivu.news_rss_elastic_index', 'news_rss_test');
 
     parent::register($container);
-  }
-
-  /**
-   * Gets the elastic client.
-   *
-   * @return \Elastic\Elasticsearch\Client
-   *   The elastic client.
-   */
-  protected function getElasticClient() : Client {
-    $this->assertEquals(EnvironmentEnum::Local, $this->container->get(EnvironmentResolverInterface::class)->getActiveEnvironment()->environment);
-    return $this->container->get('helfi_platform_config.etusivu_elastic_client');
   }
 
   /**
