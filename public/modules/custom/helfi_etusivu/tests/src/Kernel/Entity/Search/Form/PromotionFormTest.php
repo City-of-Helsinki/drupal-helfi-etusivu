@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Kernel\Entity\Search\Form;
 
+use Drupal\content_translation\ContentTranslationManagerInterface;
 use Drupal\Core\Entity\ContentEntityFormInterface;
 use Drupal\Core\Entity\EntityFormBuilderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_etusivu\Entity\Search\Promotion;
 use Drupal\helfi_etusivu\Entity\Search\PromotionType;
+use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\helfi_etusivu\Kernel\Entity\EntityKernelTestBase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
@@ -27,6 +30,8 @@ class PromotionFormTest extends EntityKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'language',
+    'content_translation',
     'link',
     'helfi_api_base',
     'scheduler',
@@ -125,6 +130,54 @@ class PromotionFormTest extends EntityKernelTestBase {
     $form = $this->buildForm($unpublished);
 
     $this->assertSame('Not published', (string) $form['meta']['published']['#markup']);
+  }
+
+  /**
+   * Tests that the status widget can unpublish a multilingual promotion.
+   */
+  public function testNativeStatusUnpublishesMultilingualPromotion(): void {
+    ConfigurableLanguage::createFromLangcode('sv')->save();
+    $this->container->get(ContentTranslationManagerInterface::class)
+      ->setEnabled('helfi_search_promotion', 'promotion', TRUE);
+
+    $this->drupalSetUpCurrentUser(permissions: [
+      'administer search promotions',
+    ]);
+
+    // Published promotion with two translations.
+    $entity = $this->createPromotion([
+      'langcode' => 'fi',
+    ]);
+    $entity->setPublished()->save();
+    $entity->addTranslation('sv', [
+      'title' => 'Test Promotion sv',
+      'description' => 'Test description sv',
+      'link' => 'https://example.com',
+    ])->setPublished()->save();
+
+    $reloaded = Promotion::load($entity->id());
+    $this->assertCount(2, $reloaded->getTranslationLanguages());
+
+    // Build the fi form through the form builder so content_translation's
+    // alter and entity builder run, then submit with the status widget
+    // unchecked while leaving the (hidden) content_translation checkbox at
+    // its default.
+    $formObject = $this->createFormObject($reloaded->getTranslation('fi'));
+    $formState = new FormState();
+    $formState->setFormObject($formObject);
+    $form = $this->container->get(FormBuilderInterface::class)
+      ->buildForm($formObject, $formState);
+
+    // The redundant content_translation checkbox is hidden.
+    $this->assertFalse($form['content_translation']['status']['#access']);
+
+    $formState->setValue(['status', 'value'], FALSE);
+    $formState->setValue(['content_translation', 'status'], 1);
+    $formState->setValue(['content_translation', 'uid'], (int) $this->container->get('current_user')->id());
+    $formState->setValue(['content_translation', 'created'], '');
+
+    $built = $formObject->buildEntity($form, $formState);
+    $this->assertFalse($built->isPublished());
   }
 
   /**
