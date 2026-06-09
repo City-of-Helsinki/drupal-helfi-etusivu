@@ -177,6 +177,7 @@ class PromotionFormTest extends EntityKernelTestBase {
     $formState->setValue(['content_translation', 'created'], '');
 
     $built = $formObject->buildEntity($form, $formState);
+    $this->assertInstanceOf(Promotion::class, $built);
     $this->assertFalse($built->isPublished());
   }
 

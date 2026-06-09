@@ -6,7 +6,7 @@ namespace Drupal\helfi_etusivu\Entity\Search;
 
 use Drupal\content_translation\ContentTranslationHandler;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\TranslatableInterface;
+use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -22,6 +22,8 @@ final class PromotionTranslationHandler extends ContentTranslationHandler {
 
   /**
    * {@inheritdoc}
+   *
+   * @phpstan-param array<string, mixed> $form
    */
   #[\Override]
   public function entityFormAlter(array &$form, FormStateInterface $form_state, EntityInterface $entity): void {
@@ -34,12 +36,14 @@ final class PromotionTranslationHandler extends ContentTranslationHandler {
 
   /**
    * {@inheritdoc}
+   *
+   * @phpstan-param array<string, mixed> $form
    */
   #[\Override]
-  public function entityFormEntityBuild($entity_type, EntityInterface $entity, array $form, FormStateInterface $form_state) {
+  public function entityFormEntityBuild($entity_type, EntityInterface $entity, array $form, FormStateInterface $form_state): void {
     if ($form_state->hasValue('content_translation')) {
       $translation = &$form_state->getValue('content_translation');
-      assert($entity instanceof TranslatableInterface);
+      assert($entity instanceof EntityPublishedInterface);
       $translation['status'] = $entity->isPublished();
     }
     parent::entityFormEntityBuild($entity_type, $entity, $form, $form_state);
