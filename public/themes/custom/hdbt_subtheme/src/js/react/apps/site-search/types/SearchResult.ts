@@ -5,6 +5,7 @@ type SearchResult = {
   bundle: string;
   url: string;
   title: string;
+  metatag_title: string;
   published_at?: number;
   content?: string;
   fragment?: string | null;
