@@ -664,7 +664,21 @@ display:
           entity_field: langcode
           plugin_id: language
           operator: in
-          value: {  }
+          value:
+            fi: fi
+            sv: sv
+            en: en
+            de: de
+            fr: fr
+            ru: ru
+            uk: uk
+            ar: ar
+            et: et
+            fa: fa
+            es: es
+            so: so
+            se: se
+            zh-hans: zh-hans
           group: 1
           exposed: true
           expose:
