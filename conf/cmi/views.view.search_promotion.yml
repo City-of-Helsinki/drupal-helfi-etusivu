@@ -712,7 +712,7 @@ display:
             status: status
             changed: changed
             operations: operations
-          default: '-1'
+          default: changed
           info:
             views_bulk_operations_bulk_form:
               align: ''
