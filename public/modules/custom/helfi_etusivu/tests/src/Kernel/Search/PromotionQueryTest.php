@@ -40,6 +40,9 @@ class PromotionQueryTest extends EtusivuElasticTestBase {
           'keywords' => $this->promotionKeywordsMapping(),
           // The promotion query filters on this with a `term` clause.
           'search_api_language' => ['type' => 'keyword'],
+          // The search-time query percolates the user input against it.
+          // https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-percolate-query
+          'query' => ['type' => 'percolator'],
         ],
       ],
     ];
@@ -51,6 +54,7 @@ class PromotionQueryTest extends EtusivuElasticTestBase {
   public function testPromotionQuery(): void {
     $this->indexPromotion('sauna', 'sauna', 'fi');
     $this->indexPromotion('palvelu', 'Taloushallintopalvelu', 'fi');
+    $this->indexPromotion('camping', 'Rastila Camping hinnasto', 'fi');
     $this->refreshIndex();
 
     // Exact keyword match.
@@ -59,9 +63,7 @@ class PromotionQueryTest extends EtusivuElasticTestBase {
     // Case-insensitive match.
     $this->assertSame(['sauna'], $this->matchedPromotions('MISSÄ SAUNA', 'fi'));
 
-    // The keyword "sauna" is a stemmed whole-word token inside the query
-    // "Helsingin saunat" ("saunat" -> "sauna"), so it must match. This is the
-    // case match_phrase used to miss.
+    // "saunat" -> "sauna", so it must match.
     $this->assertSame(['sauna'], $this->matchedPromotions('Helsingin saunat', 'fi'));
 
     // Word boundaries are respected: "palvelu" is only a substring of the
@@ -71,6 +73,12 @@ class PromotionQueryTest extends EtusivuElasticTestBase {
 
     // A query in a different language must not surface fi promotions.
     $this->assertSame([], $this->matchedPromotions('sauna', 'sv'));
+
+    // The query matches some keywords keyword, but the result would irrelevant.
+    $this->assertSame([], $this->matchedPromotions('Yrjönkadun uimahalli hinnasto', 'fi'));
+
+    // Matches if query contains extra words and inflected words matches.
+    $this->assertSame(['camping'], $this->matchedPromotions('Mistä löydän rastilan camping alueen hinnaston', 'fi'));
   }
 
   /**
@@ -121,6 +129,8 @@ class PromotionQueryTest extends EtusivuElasticTestBase {
         'link' => ['https://example.com/' . $title],
         'keywords' => [$keyword],
         'search_api_language' => [$language],
+        // Mirror what ElasticsearchEventSubscriber stores in production.
+        'query' => QueryBuilder::buildPromotionPercolatorQuery([$keyword], $language),
       ],
     );
   }
