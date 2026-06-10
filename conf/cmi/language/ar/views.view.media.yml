@@ -11,6 +11,7 @@ display:
           label: 'النسخة المصغرة'
           separator: ', '
         name:
+          label: 'Media name'
           separator: ', '
         bundle:
           label: النوع
@@ -51,6 +52,9 @@ display:
         area_text_custom:
           content: 'لا توجد وسائط متاحة.'
       filters:
+        name:
+          expose:
+            label: 'Media name'
         bundle:
           expose:
             label: النوع

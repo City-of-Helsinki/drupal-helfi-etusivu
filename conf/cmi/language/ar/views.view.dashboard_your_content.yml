@@ -4,6 +4,9 @@ display:
     display_options:
       fields:
         content_translation_outdated:
+          label: 'Translation outdated'
+          settings:
+            format_custom_true: outdated
           separator: ', '
         title:
           label: العنوان

@@ -664,7 +664,21 @@ display:
           entity_field: langcode
           plugin_id: language
           operator: in
-          value: {  }
+          value:
+            fi: fi
+            sv: sv
+            en: en
+            de: de
+            fr: fr
+            ru: ru
+            uk: uk
+            ar: ar
+            et: et
+            fa: fa
+            es: es
+            so: so
+            se: se
+            zh-hans: zh-hans
           group: 1
           exposed: true
           expose:
@@ -681,7 +695,7 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
+            reduce: true
           is_grouped: false
           group_info:
             label: ''
@@ -712,7 +726,7 @@ display:
             status: status
             changed: changed
             operations: operations
-          default: '-1'
+          default: changed
           info:
             views_bulk_operations_bulk_form:
               align: ''
@@ -775,7 +789,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      use_ajax: true
+      use_ajax: false
       header: {  }
       footer: {  }
       display_extenders: {  }
