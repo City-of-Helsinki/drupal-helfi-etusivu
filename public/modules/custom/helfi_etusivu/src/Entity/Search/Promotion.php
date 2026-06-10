@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Entity\Search;
 
-use Drupal\content_translation\ContentTranslationHandler;
 use Drupal\Core\Entity\Attribute\ContentEntityType;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityDeleteForm;
@@ -55,7 +54,7 @@ use Drupal\views\EntityViewsData;
     'views_data' => EntityViewsData::class,
     'list_builder' => EntityListBuilder::class,
     'access' => EntityAccessControlHandler::class,
-    'translation' => ContentTranslationHandler::class,
+    'translation' => PromotionTranslationHandler::class,
     'form' => [
       'default' => PromotionForm::class,
       'add' => PromotionForm::class,
