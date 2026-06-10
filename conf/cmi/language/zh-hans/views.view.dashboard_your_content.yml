@@ -1,0 +1,75 @@
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        content_translation_outdated:
+          label: 翻译过时
+          settings:
+            format_custom_true: 过时的
+          separator: ', '
+        title:
+          label: 标题
+          separator: ', '
+        type:
+          label: 内容类型
+          separator: ', '
+        uid:
+          label: 作者
+          separator: ', '
+        revision_uid:
+          separator: ', '
+        langcode:
+          label: 语言
+          separator: ', '
+        status:
+          label: 状态
+          settings:
+            format_custom_false: 未发布
+            format_custom_true: 已发布
+          separator: ', '
+        changed:
+          label: 已更改
+          separator: ', '
+        operations:
+          label: 操作
+      pager:
+        options:
+          tags:
+            next: '下一页 ›'
+            previous: '‹ 上一页'
+            first: 第一
+            last: 末页
+          expose:
+            items_per_page_label: 每页条目数
+            items_per_page_options_all_label: '- 全部 -'
+            offset_label: 偏移量
+      exposed_form:
+        options:
+          submit_button: 过滤
+          reset_button_label: 重置
+          exposed_sorts_label: 排序依据
+          sort_asc_label: 升序
+          sort_desc_label: 降序
+      filters:
+        title:
+          expose:
+            label: 标题
+        type:
+          expose:
+            label: 内容类型
+        status:
+          expose:
+            label: 发布状态
+          group_info:
+            label: 发布状态
+            group_items:
+              1:
+                title: 已发布
+              2:
+                title: 未发布
+        langcode:
+          expose:
+            label: 语言
+  your_content_block:
+    display_title: 区块

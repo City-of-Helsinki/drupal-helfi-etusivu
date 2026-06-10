@@ -4,3 +4,7 @@ third_party_settings:
       label: روابط
     group_news_item_links_wrapper:
       label: روابط
+content:
+  field_content:
+    settings:
+      title: فقرة
