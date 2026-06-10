@@ -92,6 +92,12 @@ final class PromotionForm extends ContentEntityForm {
       '#wrapper_attributes' => ['class' => ['entity-meta__author']],
     ];
 
+    // Move the published status into the footer group, like NodeForm. On Gin
+    // content forms this becomes the "Published" toggle in the sticky top bar.
+    if (isset($form['status'])) {
+      $form['status']['#group'] = 'footer';
+    }
+
     return $form;
   }
 

@@ -1,5 +1,6 @@
 import CardItem from '@/react/common/Card';
 import Icon from '@/react/common/Icon';
+import DebugBlock from './DebugBlock';
 
 type ResultCardProps = {
   url: string;
@@ -27,7 +28,7 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
   const lang = drupalSettings?.path?.currentLanguage ?? 'fi';
   const formattedDate = parsedDate ? parsedDate.toLocaleDateString(lang) : undefined;
 
-  return (
+  const cardItem = (
     <CardItem
       cardTitle={title}
       cardUrl={url}
@@ -54,6 +55,17 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
       })}
     />
   );
+
+  if (DEBUG_MODE) {
+    return (
+      <div>
+        {cardItem}
+        <DebugBlock data={{ url, title, description, bundle, publishDate }} />
+      </div>
+    );
+  }
+
+  return cardItem;
 };
 
 export default ResultCard;

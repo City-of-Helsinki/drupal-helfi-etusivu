@@ -1,0 +1,75 @@
+display:
+  default:
+    display_title: الافتراضي
+    display_options:
+      fields:
+        content_translation_outdated:
+          label: 'Translation outdated'
+          settings:
+            format_custom_true: outdated
+          separator: ', '
+        title:
+          label: العنوان
+          separator: ', '
+        type:
+          label: 'نوع المحتوى'
+          separator: ', '
+        uid:
+          label: المؤلف
+          separator: ', '
+        revision_uid:
+          separator: ', '
+        langcode:
+          label: اللغة
+          separator: ', '
+        status:
+          label: الحالة
+          settings:
+            format_custom_false: 'غير منشور'
+            format_custom_true: منشور
+          separator: ', '
+        changed:
+          label: 'تم التغير'
+          separator: ', '
+        operations:
+          label: عمليات
+      pager:
+        options:
+          tags:
+            next: 'التالية ›'
+            previous: '‹ السابقة'
+            first: '« الأولى'
+            last: 'الأخيرة »'
+          expose:
+            items_per_page_label: 'العناصر لكل صفحة'
+            items_per_page_options_all_label: '- الكل -'
+            offset_label: الإزاحة
+      exposed_form:
+        options:
+          submit_button: تصفية
+          reset_button_label: 'إعادة الضبط'
+          exposed_sorts_label: 'الترتيب حسب'
+          sort_asc_label: تصاعدي
+          sort_desc_label: تنازلي
+      filters:
+        title:
+          expose:
+            label: العنوان
+        type:
+          expose:
+            label: 'نوع المحتوى'
+        status:
+          expose:
+            label: 'حالة النشر'
+          group_info:
+            label: 'حالة النشر'
+            group_items:
+              1:
+                title: منشور
+              2:
+                title: 'غير منشور'
+        langcode:
+          expose:
+            label: اللغة
+  your_content_block:
+    display_title: صندوق
