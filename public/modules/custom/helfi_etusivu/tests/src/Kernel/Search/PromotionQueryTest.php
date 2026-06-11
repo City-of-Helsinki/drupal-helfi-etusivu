@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Kernel\Search;
 
 use Drupal\elasticsearch_connector\Event\FieldMappingEvent;
+use Drupal\elasticsearch_connector\Event\IndexParamsEvent;
+use Drupal\elasticsearch_connector\Event\IndexPreCreateEvent;
 use Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber;
 use Drupal\helfi_search\QueryBuilder;
 use Drupal\search_api\Entity\Index;
@@ -42,7 +44,7 @@ class PromotionQueryTest extends EtusivuElasticTestBase {
           'search_api_language' => ['type' => 'keyword'],
           // The search-time query percolates the user input against it.
           // https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-percolate-query
-          'query' => ['type' => 'percolator'],
+          'query' => $this->promotionQueryMapping(),
         ],
       ],
     ];
@@ -122,17 +124,56 @@ class PromotionQueryTest extends EtusivuElasticTestBase {
    *   The language code.
    */
   private function indexPromotion(string $title, string $keyword, string $language): void {
-    $this->indexItem(
-      body: [
-        'title' => [$title],
-        'description' => ['Description for ' . $title],
-        'link' => ['https://example.com/' . $title],
-        'keywords' => [$keyword],
-        'search_api_language' => [$language],
-        // Mirror what ElasticsearchEventSubscriber stores in production.
-        'query' => QueryBuilder::buildPromotionPercolatorQuery([$keyword], $language),
+    $source = [
+      'title' => [$title],
+      'description' => ['Description for ' . $title],
+      'link' => ['https://example.com/' . $title],
+      'keywords' => [$keyword],
+      'search_api_language' => [$language],
+    ];
+    // Populate the percolator query through the production subscriber rather
+    // than mirroring it by hand, so this test exercises the real indexing
+    // path and breaks if the subscriber stops storing the query.
+    $this->indexItem(body: $this->withPercolatorQuery($source));
+  }
+
+  /**
+   * Runs a document source through the percolator-query subscriber.
+   *
+   * @param array<string, mixed> $source
+   *   The document source to index.
+   *
+   * @return array<string, mixed>
+   *   The source with the `query` field populated by the subscriber.
+   */
+  private function withPercolatorQuery(array $source): array {
+    // The subscriber mutates a bulk body that alternates action lines with
+    // document sources; wrap the document the way the bulk indexer does.
+    $event = new IndexParamsEvent($this->indexName, [
+      'body' => [
+        ['index' => []],
+        $source,
       ],
-    );
+    ], 'search_promotions');
+    (new ElasticsearchEventSubscriber())->addPromotionPercolatorQuery($event);
+
+    return $event->getParams()['body'][1];
+  }
+
+  /**
+   * Builds the percolator field mapping using the production subscriber.
+   *
+   * @return array<string, mixed>
+   *   The Elasticsearch mapping for the query (percolator) field.
+   */
+  private function promotionQueryMapping(): array {
+    $index = $this->prophesize(Index::class);
+    $index->id()->willReturn('search_promotions');
+
+    $event = new IndexPreCreateEvent([], $index->reveal());
+    (new ElasticsearchEventSubscriber())->addPercolatorField($event);
+
+    return $event->getParams()['body']['mappings']['properties']['query'];
   }
 
   /**

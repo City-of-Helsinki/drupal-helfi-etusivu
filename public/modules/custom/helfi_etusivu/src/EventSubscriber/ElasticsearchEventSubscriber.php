@@ -101,13 +101,15 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
     }
     $params = $event->getParams();
     // The bulk body alternates action lines (['index' => [...]]) with the
-    // document source; only the latter carry the indexed fields.
-    foreach ($params['body'] ?? [] as &$line) {
+    // document source; only the latter carry the indexed fields. Write to
+    // $params['body'][$i] directly: a `foreach (... ?? [] as &$line)` would
+    // iterate a temporary copy and the writes would never reach $params.
+    foreach ($params['body'] ?? [] as $i => $line) {
       if (isset($line['index']) || empty($line['keywords'])) {
         continue;
       }
       $language = $line['search_api_language'][0] ?? 'en';
-      $line['query'] = QueryBuilder::buildPromotionPercolatorQuery($line['keywords'], $language);
+      $params['body'][$i]['query'] = QueryBuilder::buildPromotionPercolatorQuery($line['keywords'], $language);
     }
     $event->setParams($params);
   }
