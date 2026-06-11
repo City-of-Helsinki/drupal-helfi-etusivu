@@ -133,10 +133,12 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
     }
 
     $image_url = Url::fromUri($data['url'], [
+      'query' => [
+        // Add time query parameter to the image url to make sure the original
+        // is refetched if the image has updated.
+        'time' => $data['last_modified_time'] ?? '',
+      ],
       'absolute' => TRUE,
-      // Add time query parameter to the image url to make sure the original is
-      // refetched if the image has updated.
-      'time' => $data['last_modified_time'] ?? '',
     ]);
 
     // Download the image into Drupal filesystem.
