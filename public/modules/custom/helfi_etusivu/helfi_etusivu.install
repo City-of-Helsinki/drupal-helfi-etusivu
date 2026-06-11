@@ -8,11 +8,18 @@
 declare(strict_types=1);
 
 use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleExtensionList;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_api_base\Environment\EnvironmentEnum;
 use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
+use Drupal\helfi_etusivu\Entity\Search\PromotionType;
 use Drupal\node\Entity\Node;
 use Drupal\path_alias\Entity\PathAlias;
 
@@ -60,6 +67,39 @@ function helfi_etusivu_install() : void {
       }
     }
   }
+
+  _helfi_etusivu_apply_promotion_bundle_scheduler_defaults();
+}
+
+/**
+ * Adds scheduler defaults to the 'promotion' bundle when scheduler is on.
+ */
+function _helfi_etusivu_apply_promotion_bundle_scheduler_defaults(): void {
+  if (!\Drupal::moduleHandler()->moduleExists('scheduler')) {
+    return;
+  }
+  $bundle = PromotionType::load('promotion');
+  if (!$bundle || $bundle->getThirdPartySetting('scheduler', 'publish_enable') !== NULL) {
+    return;
+  }
+  $defaults = [
+    'expand_fieldset' => 'when_required',
+    'fields_display_mode' => 'vertical_tab',
+    'publish_enable' => TRUE,
+    'publish_past_date' => 'error',
+    'publish_past_date_created' => FALSE,
+    'publish_required' => FALSE,
+    'publish_revision' => FALSE,
+    'publish_touch' => FALSE,
+    'show_message_after_update' => TRUE,
+    'unpublish_enable' => TRUE,
+    'unpublish_required' => FALSE,
+    'unpublish_revision' => FALSE,
+  ];
+  foreach ($defaults as $key => $value) {
+    $bundle->setThirdPartySetting('scheduler', $key, $value);
+  }
+  $bundle->save();
 }
 
 /**
@@ -503,4 +543,333 @@ function helfi_etusivu_update_11003(): void {
     $newOverride->save();
     $oldOverride->delete();
   }
+}
+
+/**
+ * UHF-13257: Convert helfi_search_promotion description to plain text.
+ */
+function helfi_etusivu_update_11004(): void {
+  $entity_type_id = 'helfi_search_promotion';
+  $field_name = 'description';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $entity_field_manager = \Drupal::service(EntityFieldManagerInterface::class);
+  $database = \Drupal::database();
+  $data_table = "{$entity_type_id}_data";
+
+  // Idempotency: if the field is already string_long, nothing to do.
+  $current = $manager->getFieldStorageDefinition($field_name, $entity_type_id);
+  if ($current && $current->getType() === 'string_long') {
+    return;
+  }
+
+  // Snapshot existing rows and convert to plain text.
+  $snapshot = [];
+  $rows = $database->select($data_table, 't')
+    ->fields('t', ['id', 'langcode', 'description__value'])
+    ->execute();
+  foreach ($rows as $row) {
+    $text = strip_tags($row->description__value ?? '');
+    $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $snapshot[] = [
+      'id' => $row->id,
+      'langcode' => $row->langcode,
+      'value' => trim((string) preg_replace('/\s+/u', ' ', $text)),
+    ];
+  }
+
+  // Empty the column values so countFieldData() reports zero. This makes
+  // Drupal take the simple "no data" uninstall path, which just drops the
+  // columns instead of moving them into a dedicated deleted table that has
+  // to be purged later.
+  $database->update($data_table)
+    ->fields(['description__value' => NULL, 'description__format' => NULL])
+    ->execute();
+
+  // Drop the old text_long field. With no data, this just drops the columns.
+  $manager->uninstallFieldStorageDefinition(
+    $manager->getFieldStorageDefinition($field_name, $entity_type_id),
+  );
+  $entity_field_manager->clearCachedFieldDefinitions();
+
+  // Recreate as string_long.
+  $manager->installFieldStorageDefinition(
+    $field_name,
+    $entity_type_id,
+    'helfi_etusivu',
+    BaseFieldDefinition::create('string_long')
+      ->setLabel(new TranslatableMarkup('Description'))
+      ->setRequired(TRUE)
+      ->setTranslatable(TRUE),
+  );
+  $entity_field_manager->clearCachedFieldDefinitions();
+
+  // Restore each row's description into the new column.
+  foreach ($snapshot as $row) {
+    $database->update($data_table)
+      ->fields(['description' => $row['value']])
+      ->condition('id', $row['id'])
+      ->condition('langcode', $row['langcode'])
+      ->execute();
+  }
+
+  \Drupal::entityTypeManager()
+    ->getStorage('search_api_index')
+    ->load('search_promotions')
+    ?->reindex();
+}
+
+/**
+ * UHF-13257: Convert helfi_search_promotion to a bundleable entity.
+ */
+function helfi_etusivu_update_11005(): FormattableMarkup {
+  $entity_type_id = 'helfi_search_promotion';
+  $bundle_entity_type_id = 'helfi_search_promotion_type';
+  $bundle_id = 'promotion';
+
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  $repository = \Drupal::service('entity.last_installed_schema.repository');
+  $database = \Drupal::database();
+  $schema = $database->schema();
+
+  // 1. Install the bundle config entity type.
+  $bundle_entity_type = $entity_type_manager->getDefinition($bundle_entity_type_id);
+  if (!$repository->getLastInstalledDefinition($bundle_entity_type_id)) {
+    $update_manager->installEntityType($bundle_entity_type);
+  }
+
+  // 2. Create the default bundle and apply scheduler defaults. The same
+  // bundle ships as install config for fresh installs.
+  if (!PromotionType::load($bundle_id)) {
+    PromotionType::create([
+      'id' => $bundle_id,
+      'label' => 'Promotion',
+      'uuid' => '7ddb50ab-6641-43be-87e2-2eb7ae69d0f8',
+    ])->save();
+  }
+  _helfi_etusivu_apply_promotion_bundle_scheduler_defaults();
+
+  // 3. Backfill the bundle column on dedicated field tables. They already
+  // had a 'bundle' column from when the entity had no bundle key, populated
+  // with the entity type id; the rows now need to point at the new bundle.
+  foreach ($schema->findTables($entity_type_id . '__%') as $table) {
+    if ($schema->fieldExists($table, 'bundle')) {
+      $database->update($table)
+        ->fields(['bundle' => $bundle_id])
+        ->condition('bundle', $entity_type_id)
+        ->execute();
+    }
+  }
+
+  // 4. Add the bundle column to the storage tables.
+  $bundle_spec = [
+    'type' => 'varchar_ascii',
+    'length' => EntityTypeInterface::BUNDLE_MAX_LENGTH,
+    'not null' => TRUE,
+    'default' => $bundle_id,
+    'description' => 'The bundle ID.',
+  ];
+  foreach ([$entity_type_id, "{$entity_type_id}_data"] as $table) {
+    if (!$schema->fieldExists($table, 'bundle')) {
+      $schema->addField($table, 'bundle', $bundle_spec);
+    }
+  }
+  // Backfill rows.
+  $database->update($entity_type_id)
+    ->fields(['bundle' => $bundle_id])
+    ->condition('bundle', '', '=')
+    ->execute();
+  $database->update($entity_type_id . '_data')
+    ->fields(['bundle' => $bundle_id])
+    ->condition('bundle', '', '=')
+    ->execute();
+
+  // 5. Tell Drupal about the new entity type definition and its bundle field.
+  $entity_type_manager->clearCachedDefinitions();
+  $entity_field_manager = \Drupal::service(EntityFieldManagerInterface::class);
+  $entity_field_manager->clearCachedFieldDefinitions();
+
+  $entity_type = $entity_type_manager->getDefinition($entity_type_id);
+  $repository->setLastInstalledDefinition($entity_type);
+
+  $base_fields = $entity_field_manager->getBaseFieldDefinitions($entity_type_id);
+  $field_storage_definitions = $repository
+    ->getLastInstalledFieldStorageDefinitions($entity_type_id);
+  if (isset($base_fields['bundle']) && !isset($field_storage_definitions['bundle'])) {
+    $field_storage_definitions['bundle'] = $base_fields['bundle']->getFieldStorageDefinition();
+  }
+  $repository->setLastInstalledFieldStorageDefinitions($entity_type_id, $field_storage_definitions);
+
+  // 6. Migrate the content_translation language settings config which
+  // previously used the entity-type id as the bundle.
+  $config_factory = \Drupal::configFactory();
+  $old_id = "{$entity_type_id}.{$entity_type_id}";
+  $new_id = "{$entity_type_id}.{$bundle_id}";
+  $old_config = $config_factory->getEditable("language.content_settings.{$old_id}");
+  if (!$old_config->isNew()) {
+    $new_config = $config_factory->getEditable("language.content_settings.{$new_id}");
+    if ($new_config->isNew()) {
+      $data = $old_config->getRawData();
+      $data['id'] = $new_id;
+      $data['target_bundle'] = $bundle_id;
+      unset($data['uuid']);
+      foreach ($data as $key => $value) {
+        $new_config->set($key, $value);
+      }
+      $new_config->save();
+    }
+    $old_config->delete();
+  }
+
+  // 7. Tell Scheduler about the new plugin and install its publish_on /
+  // unpublish_on base fields against the entity type's storage tables.
+  /** @var \Drupal\scheduler\SchedulerManager $scheduler_manager */
+  $scheduler_manager = \Drupal::service('scheduler.manager');
+  $scheduler_manager->invalidatePluginCache();
+  $entity_field_manager->clearCachedFieldDefinitions();
+  $scheduler_manager->entityUpdate();
+
+  // 8. Install the default form display from config/optional. Clean up the
+  // old display that was implicitly keyed by the entity type id.
+  $entity_field_manager->clearCachedFieldDefinitions();
+  $form_display_storage = $entity_type_manager->getStorage('entity_form_display');
+  $old_form_display = $form_display_storage->load("{$entity_type_id}.{$entity_type_id}.default");
+  $old_form_display?->delete();
+
+  $form_display_id = "{$entity_type_id}.{$bundle_id}.default";
+  if (!$form_display_storage->load($form_display_id)) {
+    $config_path = \Drupal::service(ModuleExtensionList::class)
+      ->getPath('helfi_etusivu') . '/config/optional';
+    $source = new FileStorage($config_path);
+    $values = $source->read("core.entity_form_display.{$form_display_id}");
+    if ($values) {
+      $form_display_storage->create($values)->save();
+    }
+  }
+
+  \Drupal::entityTypeManager()
+    ->getStorage('search_api_index')
+    ->load('search_promotions')
+    ?->reindex();
+
+  return new FormattableMarkup('Converted @type to a bundleable entity.', [
+    '@type' => $entity_type_id,
+    '@bundle' => $bundle_id,
+  ]);
+}
+
+/**
+ * UHF-13257: Add changed base field to helfi_search_promotion.
+ */
+function helfi_etusivu_update_11006(): void {
+  $entity_type_id = 'helfi_search_promotion';
+  $field_name = 'changed';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  if ($manager->getFieldStorageDefinition($field_name, $entity_type_id)) {
+    return;
+  }
+
+  $manager->installFieldStorageDefinition(
+    $field_name,
+    $entity_type_id,
+    'helfi_etusivu',
+    BaseFieldDefinition::create('changed')
+      ->setLabel(new TranslatableMarkup('Changed'))
+      ->setDescription(new TranslatableMarkup('The time the promotion was last edited.'))
+      ->setTranslatable(TRUE),
+  );
+
+  \Drupal::service(EntityFieldManagerInterface::class)
+    ->clearCachedFieldDefinitions();
+}
+
+/**
+ * UHF-13257: Backfill changed timestamps on existing promotions.
+ */
+function helfi_etusivu_update_11007(): void {
+  $database = \Drupal::database();
+  $now = \Drupal::time()->getRequestTime();
+
+  $database->update('helfi_search_promotion_data')
+    ->fields(['changed' => $now])
+    ->isNull('changed')
+    ->execute();
+}
+
+/**
+ * UHF-13257: Add link health monitoring fields to helfi_search_promotion.
+ */
+function helfi_etusivu_update_11008(): void {
+  $entity_type_id = 'helfi_search_promotion';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  $definitions = [
+    'failed_check_count' => BaseFieldDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Failed link checks'))
+      ->setDescription(new TranslatableMarkup('Number of consecutive automated link checks that have failed.'))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(0)
+      ->setReadOnly(TRUE),
+    'last_checked' => BaseFieldDefinition::create('timestamp')
+      ->setLabel(new TranslatableMarkup('Last link check'))
+      ->setDescription(new TranslatableMarkup('Timestamp of the last automated link check.'))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(0)
+      ->setReadOnly(TRUE),
+  ];
+
+  foreach ($definitions as $field_name => $definition) {
+    if ($manager->getFieldStorageDefinition($field_name, $entity_type_id)) {
+      continue;
+    }
+    $manager->installFieldStorageDefinition($field_name, $entity_type_id, 'helfi_etusivu', $definition);
+  }
+
+  \Drupal::service(EntityFieldManagerInterface::class)
+    ->clearCachedFieldDefinitions();
+}
+
+/**
+ * UHF-13257: Backfill link-check fields so the cron query picks up legacy rows.
+ */
+function helfi_etusivu_update_11009(): void {
+  $database = \Drupal::database();
+
+  $database->update('helfi_search_promotion_data')
+    ->fields(['last_checked' => 0])
+    ->isNull('last_checked')
+    ->execute();
+
+  $database->update('helfi_search_promotion_data')
+    ->fields(['failed_check_count' => 0])
+    ->isNull('failed_check_count')
+    ->execute();
+}
+
+/**
+ * UHF-13046: Add enable_link_check field to helfi_search_promotion.
+ */
+function helfi_etusivu_update_11010(): void {
+  $entity_type_id = 'helfi_search_promotion';
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  $field_name = 'enable_link_check';
+  if (!$manager->getFieldStorageDefinition($field_name, $entity_type_id)) {
+    $definition = BaseFieldDefinition::create('boolean')
+      ->setLabel(new TranslatableMarkup('Enable automated link check', options: ['context' => 'Helfi search']))
+      ->setDescription(new TranslatableMarkup('Run the automated checker against this link. Uncheck for destinations that block automated requests (e.g. bot protection). The editor is then responsible for verifying the link manually.', ['context' => 'Helfi search']))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(TRUE);
+    $manager->installFieldStorageDefinition($field_name, $entity_type_id, 'helfi_etusivu', $definition);
+  }
+
+  \Drupal::service(EntityFieldManagerInterface::class)
+    ->clearCachedFieldDefinitions();
+
+  \Drupal::database()
+    ->update('helfi_search_promotion_data')
+    ->fields([$field_name => 1])
+    ->isNull('enable_link_check')
+    ->execute();
 }

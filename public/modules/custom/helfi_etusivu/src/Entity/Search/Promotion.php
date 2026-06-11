@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Entity\Search;
 
-use Drupal\content_translation\ContentTranslationHandler;
 use Drupal\Core\Entity\Attribute\ContentEntityType;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityDeleteForm;
 use Drupal\Core\Entity\EntityAccessControlHandler;
+use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Entity\EntityChangedTrait;
+use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\EntityPublishedTrait;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityViewBuilder;
 use Drupal\Core\Entity\Form\DeleteMultipleForm;
@@ -20,10 +23,9 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\entity\Menu\DefaultEntityLocalTaskProvider;
-use Drupal\entity\Menu\EntityCollectionLocalActionProvider;
 use Drupal\helfi_etusivu\Entity\Search\Form\PromotionForm;
-use Drupal\helfi_etusivu\Entity\Search\Listing\ListBuilder;
 use Drupal\link\LinkItemInterface;
+use Drupal\link\LinkTitleVisibility;
 use Drupal\link\Plugin\Field\FieldType\LinkItem;
 use Drupal\user\EntityOwnerInterface;
 use Drupal\user\EntityOwnerTrait;
@@ -41,17 +43,18 @@ use Drupal\views\EntityViewsData;
   entity_keys: [
     'id' => 'id',
     'uuid' => 'uuid',
+    'bundle' => 'bundle',
     'label' => 'title',
     'langcode' => 'langcode',
     'published' => 'status',
     'owner' => 'uid',
   ],
   handlers: [
-    'list_builder' => ListBuilder::class,
     'view_builder' => EntityViewBuilder::class,
     'views_data' => EntityViewsData::class,
+    'list_builder' => EntityListBuilder::class,
     'access' => EntityAccessControlHandler::class,
-    'translation' => ContentTranslationHandler::class,
+    'translation' => PromotionTranslationHandler::class,
     'form' => [
       'default' => PromotionForm::class,
       'add' => PromotionForm::class,
@@ -62,16 +65,13 @@ use Drupal\views\EntityViewsData;
     'route_provider' => [
       'html' => AdminHtmlRouteProvider::class,
     ],
-    "local_action_provider" => [
-      "collection" => EntityCollectionLocalActionProvider::class,
-    ],
     "local_task_provider" => [
       "default" => DefaultEntityLocalTaskProvider::class,
     ],
   ],
   links: [
     'collection' => '/admin/search',
-    'add-form' => '/admin/search/add',
+    'add-form' => '/admin/search/add/{helfi_search_promotion_type}',
     'canonical' => '/admin/search/{helfi_search_promotion}',
     'delete-form' => '/admin/search/{helfi_search_promotion}/delete',
     'edit-form' => '/admin/search/{helfi_search_promotion}/edit',
@@ -81,14 +81,17 @@ use Drupal\views\EntityViewsData;
   // anonymous users. Anonymouse users should interact with
   // promotions through the helfi search.
   admin_permission: "administer search promotions",
+  bundle_entity_type: 'helfi_search_promotion_type',
+  bundle_label: new TranslatableMarkup('Promotion type', options: ['context' => 'Helfi search']),
   base_table: 'helfi_search_promotion',
   data_table: 'helfi_search_promotion_data',
   translatable: TRUE,
 )]
-final class Promotion extends ContentEntityBase implements EntityPublishedInterface, EntityOwnerInterface {
+final class Promotion extends ContentEntityBase implements EntityPublishedInterface, EntityOwnerInterface, EntityChangedInterface {
 
   use EntityPublishedTrait;
   use EntityOwnerTrait;
+  use EntityChangedTrait;
 
   /**
    * {@inheritdoc}
@@ -108,18 +111,21 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
         'weight' => -5,
       ]);
 
-    $fields['description'] = BaseFieldDefinition::create('text_long')
+    $fields['description'] = BaseFieldDefinition::create('string_long')
       ->setLabel(new TranslatableMarkup('Description'))
       ->setRequired(TRUE)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
         'label' => 'hidden',
-        'type' => 'text_default',
+        'type' => 'basic_string',
         'weight' => 0,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'text_textfield',
+        'type' => 'string_textarea',
         'weight' => 0,
+        'settings' => [
+          'rows' => 4,
+        ],
       ]);
 
     $fields['link'] = BaseFieldDefinition::create('link')
@@ -128,11 +134,43 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
       ->setTranslatable(TRUE)
       ->setSettings([
         'link_type' => LinkItemInterface::LINK_GENERIC,
-        'title' => DRUPAL_DISABLED,
+        'title' => LinkTitleVisibility::Disabled->value,
       ])
       ->setDisplayOptions('form', [
         'type' => 'link_default',
         'weight' => 5,
+      ]);
+
+    $fields['changed'] = BaseFieldDefinition::create('changed')
+      ->setLabel(new TranslatableMarkup('Changed'))
+      ->setDescription(new TranslatableMarkup('The time the promotion was last edited.'))
+      ->setTranslatable(TRUE);
+
+    $fields['failed_check_count'] = BaseFieldDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Failed link checks'))
+      ->setDescription(new TranslatableMarkup('Number of consecutive automated link checks that have failed.'))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(0)
+      ->setReadOnly(TRUE);
+
+    $fields['last_checked'] = BaseFieldDefinition::create('timestamp')
+      ->setLabel(new TranslatableMarkup('Last link check'))
+      ->setDescription(new TranslatableMarkup('Timestamp of the last automated link check.'))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(0)
+      ->setReadOnly(TRUE);
+
+    $fields['enable_link_check'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(new TranslatableMarkup('Enable automated link check', options: ['context' => 'Helfi search']))
+      ->setDescription(new TranslatableMarkup('Run the automated checker against this link. Uncheck for destinations that block automated requests (e.g. bot protection). The editor is then responsible for verifying the link manually.', ['context' => 'Helfi search']))
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+        'settings' => [
+          'display_label' => TRUE,
+        ],
+        'weight' => 12,
       ]);
 
     $fields['keywords'] = BaseFieldDefinition::create('string')
@@ -160,6 +198,31 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function preSave(EntityStorageInterface $storage): void {
+    parent::preSave($storage);
+
+    $original = $this->original ?? NULL;
+    if (!$original instanceof self) {
+      return;
+    }
+    $langcode = $this->language()->getId();
+    if (!$original->hasTranslation($langcode)) {
+      return;
+    }
+    $originalTranslation = $original->getTranslation($langcode);
+    if ($this->get('link')->equals($originalTranslation->get('link'))) {
+      return;
+    }
+
+    // Clears the automated link check state when the link is edited so the next
+    // cron run re-verifies the new URL instead of reusing prior results.
+    $this->setLastChecked(0);
+    $this->resetFailedCheckCount();
+  }
+
+  /**
    * Gets promotion URL.
    */
   public function getUrl(): ?Url {
@@ -170,6 +233,59 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
     }
 
     return NULL;
+  }
+
+  /**
+   * Gets the timestamp of the last automated link check.
+   */
+  public function getLastChecked(): int {
+    return (int) $this->get('last_checked')->value;
+  }
+
+  /**
+   * Sets the timestamp of the last automated link check.
+   */
+  public function setLastChecked(int $timestamp): self {
+    $this->set('last_checked', $timestamp);
+    return $this;
+  }
+
+  /**
+   * Gets the number of consecutive failed link checks.
+   */
+  public function getFailedCheckCount(): int {
+    return (int) $this->get('failed_check_count')->value;
+  }
+
+  /**
+   * Resets the failed link check counter back to zero.
+   */
+  public function resetFailedCheckCount(): self {
+    $this->set('failed_check_count', 0);
+    return $this;
+  }
+
+  /**
+   * Increments the failed link check counter by one.
+   */
+  public function incrementFailedCheckCount(): self {
+    $this->set('failed_check_count', $this->getFailedCheckCount() + 1);
+    return $this;
+  }
+
+  /**
+   * Whether the automated link checker is enabled for this translation.
+   */
+  public function getEnableLinkCheck(): bool {
+    return (bool) $this->get('enable_link_check')->value;
+  }
+
+  /**
+   * Sets whether the automated link checker is enabled for this translation.
+   */
+  public function setEnableLinkCheck(bool $enabled): self {
+    $this->set('enable_link_check', $enabled);
+    return $this;
   }
 
   /**

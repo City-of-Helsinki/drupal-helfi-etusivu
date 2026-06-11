@@ -1,0 +1,8 @@
+helfi_etusivu.helfi_search_promotion.add:
+  route_name: entity.helfi_search_promotion.add_form
+  route_parameters:
+    helfi_search_promotion_type: promotion
+  title: 'Add promotion'
+  appears_on:
+    - view.search_promotion.page_1
+    - entity.helfi_search_promotion.collection

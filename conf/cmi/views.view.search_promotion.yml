@@ -12,7 +12,7 @@ dependencies:
 id: search_promotion
 label: 'Search promotion'
 module: views
-description: ''
+description: 'Promoted search results'
 tag: ''
 base_table: helfi_search_promotion_data
 base_field: id
@@ -83,7 +83,28 @@ display:
           clear_on_exposed: true
           show_multipage_selection_box: default
           show_select_all: default
-          selected_actions: {  }
+          selected_actions:
+            -
+              action_id: 'entity:publish_action:helfi_search_promotion'
+              preconfiguration:
+                add_confirmation: false
+                confirm_help_text: ''
+                label_override: ''
+                message_override: ''
+            -
+              action_id: 'entity:unpublish_action:helfi_search_promotion'
+              preconfiguration:
+                add_confirmation: false
+                confirm_help_text: ''
+                label_override: ''
+                message_override: ''
+            -
+              action_id: views_bulk_operations_delete_entity
+              preconfiguration:
+                add_confirmation: true
+                confirm_help_text: ''
+                label_override: ''
+                message_override: ''
         title:
           id: title
           table: helfi_search_promotion_data
@@ -138,73 +159,6 @@ display:
           click_sort_column: value
           type: string
           settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        status:
-          id: status
-          table: helfi_search_promotion_data
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: helfi_search_promotion
-          entity_field: status
-          plugin_id: field
-          label: Published
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: boolean
-          settings:
-            format: default
-            format_custom_false: ''
-            format_custom_true: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -349,6 +303,150 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        status:
+          id: status
+          table: helfi_search_promotion_data
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: helfi_search_promotion
+          entity_field: status
+          plugin_id: field
+          label: Published
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: default
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        changed:
+          id: changed
+          table: helfi_search_promotion_data
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: helfi_search_promotion
+          entity_field: changed
+          plugin_id: field
+          label: Changed
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: long
+            custom_date_format: ''
+            timezone: ''
+            tooltip:
+              date_format: html_datetime
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
+              description: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         operations:
           id: operations
           table: helfi_search_promotion
@@ -356,7 +454,6 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: helfi_search_promotion
           plugin_id: entity_operations
           label: Operations
           exclude: false
@@ -399,7 +496,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          destination: false
+          destination: true
       pager:
         type: full
         options:
@@ -567,7 +664,21 @@ display:
           entity_field: langcode
           plugin_id: language
           operator: in
-          value: {  }
+          value:
+            fi: fi
+            sv: sv
+            en: en
+            de: de
+            fr: fr
+            ru: ru
+            uk: uk
+            ar: ar
+            et: et
+            fa: fa
+            es: es
+            so: so
+            se: se
+            zh-hans: zh-hans
           group: 1
           exposed: true
           expose:
@@ -584,7 +695,7 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
+            reduce: true
           is_grouped: false
           group_info:
             label: ''
@@ -610,11 +721,12 @@ display:
           columns:
             views_bulk_operations_bulk_form: views_bulk_operations_bulk_form
             title: title
-            status: status
             link__uri: link__uri
             keywords_value: keywords_value
+            status: status
+            changed: changed
             operations: operations
-          default: '-1'
+          default: changed
           info:
             views_bulk_operations_bulk_form:
               align: ''
@@ -628,6 +740,18 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            link__uri:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            keywords_value:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             status:
               sortable: true
               default_sort_order: asc
@@ -635,14 +759,9 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            link__uri:
-              sortable: false
+            changed:
+              sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            keywords_value:
               align: ''
               separator: ''
               empty_column: false
@@ -670,7 +789,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      use_ajax: true
+      use_ajax: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -690,7 +809,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/content/search-promotion
+      path: admin/search
       menu:
         type: normal
         title: 'Search promotions'

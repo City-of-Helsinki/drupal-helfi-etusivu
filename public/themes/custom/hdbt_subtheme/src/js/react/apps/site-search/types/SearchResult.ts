@@ -5,6 +5,7 @@ type SearchResult = {
   bundle: string;
   url: string;
   title: string;
+  metatag_title: string;
   published_at?: number;
   content?: string;
   fragment?: string | null;
@@ -20,6 +21,12 @@ type Promotion = {
 type SearchResponse = {
   promoted: Promotion[];
   results: SearchResult[];
+  page: number;
+  size: number;
+  total_hits: number;
+  debug?: {
+    bundles: Record<string, number>;
+  };
 };
 
-export type { SearchResult, Promotion, SearchResponse };
+export type { Promotion, SearchResponse, SearchResult };
