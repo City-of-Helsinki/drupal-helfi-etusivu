@@ -6,16 +6,12 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\NewsRss;
 
 use Drupal\Component\Uuid\UuidInterface;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
-use Drupal\helfi_api_base\Environment\EnvironmentEnum;
-use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
-use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_etusivu\Plugin\rest\resource\NewsRssResource;
 use Drupal\rest\Entity\RestResourceConfig;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
-use Drupal\Tests\helfi_platform_config\Kernel\KernelTestBase;
+use Drupal\Tests\helfi_etusivu\Kernel\EtusivuElasticTestBase;
 use Drupal\Tests\user\Traits\UserCreationTrait;
-use Elastic\Elasticsearch\Client;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use PHPUnit\Framework\Attributes\Test;
@@ -25,7 +21,7 @@ use PHPUnit\Framework\Attributes\Test;
  */
 #[Group('helfi_etusivu')]
 #[RunTestsInSeparateProcesses]
-class NewsRssResourceTest extends KernelTestBase {
+class NewsRssResourceTest extends EtusivuElasticTestBase {
 
   use UserCreationTrait;
   use ApiTestTrait;
@@ -56,20 +52,9 @@ class NewsRssResourceTest extends KernelTestBase {
    * {@inheritdoc}
    */
   public function register(ContainerBuilder $container): void {
-    $container->setParameter('helfi_etusivu.news_rss_elastic_index', 'news_rss_test');
+    $container->setParameter('helfi_etusivu.news_rss_elastic_index', $this->indexName);
 
     parent::register($container);
-  }
-
-  /**
-   * Gets the elastic client.
-   *
-   * @return \Elastic\Elasticsearch\Client
-   *   The elastic client.
-   */
-  protected function getElasticClient() : Client {
-    $this->assertEquals(EnvironmentEnum::Local, $this->container->get(EnvironmentResolverInterface::class)->getActiveEnvironment()->environment);
-    return $this->container->get('helfi_platform_config.etusivu_elastic_client');
   }
 
   /**
@@ -78,7 +63,6 @@ class NewsRssResourceTest extends KernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->setActiveProject(Project::ETUSIVU, EnvironmentEnum::Local);
     $this->installEntitySchema('rest_resource_config');
     $this->installEntitySchema('user');
 
@@ -97,11 +81,7 @@ class NewsRssResourceTest extends KernelTestBase {
     // UID1 and getting all permissions automatically.
     $this->createUser();
 
-    $this->assertEquals('news_rss_test', $this->container->getParameter('helfi_etusivu.news_rss_elastic_index'));
-
-    $this->getElasticClient()->indices()->create([
-      'index' => 'news_rss_test',
-    ]);
+    $this->assertEquals($this->indexName, $this->container->getParameter('helfi_etusivu.news_rss_elastic_index'));
   }
 
   /**
@@ -144,33 +124,8 @@ class NewsRssResourceTest extends KernelTestBase {
         );
       }
     }
-    // We index 45 documents in 3 languages. Allow indexing take
-    // up to ~120 seconds.
-    $this->validateElasticIndex(135, 60);
-  }
-
-  /**
-   * Validates that the elastic index is populated.
-   *
-   * @param int $expectedResults
-   *   The expected number of results.
-   * @param int $maxLoops
-   *   The maximum loops. Each loops takes ~2 seconds.
-   */
-  private function validateElasticIndex(int $expectedResults, int $maxLoops): void {
-    // Elastic takes some time to index data. Make sure everything is up to
-    // date before running tests.
-    for ($i = 1; $i <= $maxLoops; $i++) {
-      $response = $this->getElasticClient()->search([
-        'index' => 'news_rss_test',
-      ])->asArray();
-      $hits = $response['hits']['total']['value'] ?? 0;
-
-      if ($hits === $expectedResults) {
-        break;
-      }
-      sleep(2);
-    }
+    // We index 45 documents in 3 languages.
+    $this->refreshIndex();
   }
 
   /**
@@ -190,11 +145,11 @@ class NewsRssResourceTest extends KernelTestBase {
    *   The uuid.
    * @param string|null $language
    *   The language.
-   * @param array|null $tags
+   * @param list<int>|null $tags
    *   The tags.
-   * @param array|null $neighbourhoods
+   * @param list<int>|null $neighbourhoods
    *   The neighbourhoods.
-   * @param array|null $groups
+   * @param list<int>|null $groups
    *   The groups.
    */
   protected function createElasticIndexItem(
@@ -209,10 +164,9 @@ class NewsRssResourceTest extends KernelTestBase {
     ?array $neighbourhoods = NULL,
     ?array $groups = NULL,
   ): void {
-    $this->getElasticClient()->index([
-      'index' => 'news_rss_test',
-      'id' => $id,
-      'body' => [
+    $this->indexItem(
+      id: $id,
+      body: [
         'title' => [$title],
         'url' => [$url],
         'field_lead_in' => [$description],
@@ -223,31 +177,21 @@ class NewsRssResourceTest extends KernelTestBase {
         'news_tags' => $tags,
         'neighbourhoods' => $neighbourhoods,
         'news_groups' => $groups,
-      ],
-    ]);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function tearDown(): void {
-    // Remove test elastic index.
-    $response = $this->getElasticClient()->indices()->delete(['index' => 'news_rss_test']);
-    $this->assertEquals(200, $response->getStatusCode());
-
-    parent::tearDown();
+      ]
+    );
   }
 
   /**
    * Validates the given XML.
    *
-   * @param string $xml
-   *   The XML to validate.
+   * @param string|false $xml
+   *   The XML to validate, e.g. the result of Response::getContent().
    *
    * @return \DOMDocument
    *   The loaded XML document.
    */
-  private function assertXml(string $xml): \DOMDocument {
+  private function assertXml(string|false $xml): \DOMDocument {
+    $this->assertIsString($xml);
     $dom = new \DOMDocument();
     $dom->loadXML($xml);
     $errors = libxml_get_errors();
@@ -291,7 +235,7 @@ class NewsRssResourceTest extends KernelTestBase {
       neighbourhoods: [],
       groups: [],
     );
-    $this->validateElasticIndex(1, 5);
+    $this->refreshIndex();
 
     $request = $this->getMockedRequest('/news/rss');
     $response = $this->processRequest($request);
@@ -414,7 +358,7 @@ class NewsRssResourceTest extends KernelTestBase {
       publishedAt: time(),
       language: 'en',
     );
-    $this->validateElasticIndex(3, 5);
+    $this->refreshIndex();
 
     $request = $this->getMockedRequest('/news/rss');
     $response = $this->processRequest($request);

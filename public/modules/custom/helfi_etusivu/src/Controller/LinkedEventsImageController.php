@@ -29,7 +29,7 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    * Allowed image styles.
    */
   private const IMAGE_STYLES_ALLOWED = [
-    '1.5_511w_341h',
+    '1_5_511w_341h',
   ];
 
   /**

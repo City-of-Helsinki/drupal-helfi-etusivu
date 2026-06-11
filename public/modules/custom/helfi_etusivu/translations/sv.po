@@ -33,8 +33,16 @@ msgid "Discover city services, events and news near you."
 msgstr "Hitta stadens tjänster, evenemang och nyheter nära dig."
 
 msgctxt "Helsinki near you"
-msgid "Address"
-msgstr "Adress"
+msgid "Street address"
+msgstr "Gatuadress"
+
+msgctxt "Helsinki near you"
+msgid "Street address is required."
+msgstr "Gatuadress krävs."
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the street address"
+msgstr "Inga resultat hittades för gatuadressen"
 
 msgctxt "Helsinki near you"
 msgid "For example, Mannerheimintie 1"
@@ -250,10 +258,6 @@ msgctxt "Helsinki near you status label"
 msgid "Unknown"
 msgstr "Okänd"
 
-msgctxt "Helsinki near you"
-msgid "Address"
-msgstr "Adress"
-
 msgctxt "Helsinki near you title"
 msgid "Find feedback"
 msgstr "Sök respons"
@@ -350,14 +354,6 @@ msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publicerin
 msgid "News"
 msgstr "Nyheter"
 
-msgctxt "Helsinki near you"
-msgid "No results were found for the address"
-msgstr "Inga resultat hittades för adressen"
-
-msgctxt "Helsinki near you"
-msgid "Address is required."
-msgstr "Adress krävs."
-
 msgctxt "Site search"
-msgid "Search in the website"
-msgstr "Sök i webbplatsen"
+msgid "Search this site"
+msgstr "Sök från webbplatsen"
