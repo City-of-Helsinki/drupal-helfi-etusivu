@@ -199,7 +199,7 @@ msgstr "Varje e-postmeddelande innehåller en annulleringslänk via vilken du ka
 
 msgctxt "Hakuvahti confirm success"
 msgid "You can subscribe to new search alerts at any time. The alerts are valid for 12 months."
-msgstr "En sökvakt är i kraft i sex månader."
+msgstr "Du kan när som helst beställa nya sökvakter. Sökvakterna gäller i 12 månader."
 
 msgctxt "Hakuvahti already confirmed"
 msgid "You have already confirmed this search alert."
