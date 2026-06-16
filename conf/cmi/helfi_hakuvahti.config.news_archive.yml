@@ -4,6 +4,6 @@ status: true
 dependencies: {}
 id: news_archive
 label: "News Archive"
-site_id: "etusivu"
+site_id: etusivu
 confirm_success_body: "You will receive an email with new search matches no more than once a day.\nYou can cancel your subscription using the link you will receive with each notification.\nThe search alert subscription is valid for six months."
 already_confirmed_body: "You have already confirmed this search alert.\nYou will receive email alerts about new search results up to once a day. Each email contains an unsubscribe link that you can use to unsubscribe from saved search alerts."
