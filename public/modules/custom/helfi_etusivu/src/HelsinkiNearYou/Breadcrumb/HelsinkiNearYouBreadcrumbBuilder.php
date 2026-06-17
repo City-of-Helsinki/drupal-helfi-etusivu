@@ -32,7 +32,8 @@ final class HelsinkiNearYouBreadcrumbBuilder implements BreadcrumbBuilderInterfa
   #[\Override]
   public function applies(RouteMatchInterface $route_match, ?CacheableMetadata $cacheable_metadata = NULL): bool {
     $cacheable_metadata?->addCacheContexts(['route']);
-    return RouteInformationEnum::fromRoute($route_match->getRouteName()) !== NULL;
+    $route = $route_match->getRouteName();
+    return $route && RouteInformationEnum::fromRoute($route) !== NULL;
   }
 
   /**
@@ -45,7 +46,9 @@ final class HelsinkiNearYouBreadcrumbBuilder implements BreadcrumbBuilderInterfa
 
     // Frontpage is injected as first link by
     // helfi_platform_config_system_breadcrumb_alter.
-    $routeEnum = RouteInformationEnum::fromRoute($route_match->getRouteName());
+    $route = $route_match->getRouteName();
+    assert($route);
+    $routeEnum = RouteInformationEnum::fromRoute($route);
 
     if ($routeEnum === RouteInformationEnum::LandingPage) {
       $breadcrumb->addLink(Link::createFromRoute(

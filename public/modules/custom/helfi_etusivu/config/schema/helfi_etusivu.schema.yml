@@ -1,28 +1,39 @@
-helfi_etusivu.site_search_settings:
-  type: config_object
-  label: 'Hel.fi site search settings'
+helfi_etusivu.helfi_search_promotion_type.*:
+  type: config_entity
+  label: 'Search promotion type'
   mapping:
-    external_links:
-      type: mapping
-      label: 'Links for other searches'
-      mapping:
-        jobs:
-          type: label
-          label: 'Open jobs URL'
-          translatable: true
-        events:
-          type: label
-          label: 'Events URL'
-          translatable: true
-        decisions:
-          type: label
-          label: 'Decisions URL'
-          translatable: true
-        contact:
-          type: label
-          label: 'Contact URL'
-          translatable: true
-    ai_register_url:
+    id:
+      type: string
+      label: 'Machine name'
+    label:
       type: label
-      label: 'AI register URL'
-      translatable: true
+      label: 'Label'
+
+helfi_etusivu.helfi_search_promotion_type.*.third_party.scheduler:
+  type: mapping
+  label: 'Scheduler entity type settings'
+  mapping:
+    expand_fieldset:
+      type: string
+    fields_display_mode:
+      type: string
+    publish_enable:
+      type: boolean
+    publish_past_date:
+      type: string
+    publish_past_date_created:
+      type: boolean
+    publish_required:
+      type: boolean
+    publish_revision:
+      type: boolean
+    publish_touch:
+      type: boolean
+    show_message_after_update:
+      type: boolean
+    unpublish_enable:
+      type: boolean
+    unpublish_required:
+      type: boolean
+    unpublish_revision:
+      type: boolean

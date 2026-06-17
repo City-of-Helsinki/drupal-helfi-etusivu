@@ -29,7 +29,7 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    * Allowed image styles.
    */
   private const IMAGE_STYLES_ALLOWED = [
-    '1.5_511w_341h',
+    '1_5_511w_341h',
   ];
 
   /**
@@ -93,10 +93,10 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    * @param string $time
    *   The time of the image.
    *
-   * @return string
-   *   The linked events image style url.
+   * @return string|false
+   *   The linked events image style url or false.
    */
-  private function getImageStyleUrl(string $image_id, string $image_style, string $time): string {
+  private function getImageStyleUrl(string $image_id, string $image_style, string $time): false|string {
     $cache_key = "linked_events_image_style_url:{$image_id}:{$image_style}:{$time}";
 
     // Try to get the image style url from cache first.
@@ -107,13 +107,13 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
 
     // Make sure provided image style is allowed.
     if (!in_array($image_style, self::IMAGE_STYLES_ALLOWED)) {
-      return '';
+      return FALSE;
     }
 
     // Make sure the image style exists.
     $imageStyle = $this->entityTypeManager->getStorage('image_style')->load($image_style);
     if (!$imageStyle) {
-      return '';
+      return FALSE;
     }
     assert($imageStyle instanceof ImageStyleInterface);
 
@@ -129,29 +129,22 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
 
     // Make sure the image url is set.
     if (empty($data['url'])) {
-      return '';
+      return FALSE;
     }
 
-    // Add time query parameter to the image url to make sure the original is
-    // refetched if the time parameter has changed. But only if the time
-    // matches the last_modified_time of the image, to prevent a DoS attack
-    // where the attacker could keep requesting the same image with different
-    // time parameters.
-    $latest_time = $data['last_modified_time'] ?? NULL;
-    $options = [
+    $image_url = Url::fromUri($data['url'], [
+      'query' => [
+        // Add time query parameter to the image url to make sure the original
+        // is refetched if the image has updated.
+        'time' => $data['last_modified_time'] ?? '',
+      ],
       'absolute' => TRUE,
-    ];
-    if ($time === $latest_time) {
-      $options['query'] = [
-        'time' => $time,
-      ];
-    }
-    $image_url = Url::fromUri($data['url'], $options);
+    ]);
 
     // Download the image into Drupal filesystem.
     $uri = $this->downloadExternalImage($image_url->toString());
     if (!$uri || !$imageStyle->supportsUri($uri)) {
-      return '';
+      return FALSE;
     }
 
     // Generate, cache and return the image style url.

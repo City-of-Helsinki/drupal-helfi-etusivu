@@ -1,0 +1,74 @@
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        content_translation_outdated:
+          settings:
+            format_custom_true: منسوخ
+          separator: ', '
+        title:
+          label: عنوان
+          separator: ', '
+        type:
+          label: 'نوع محتوا'
+          separator: ', '
+        uid:
+          label: نویسنده
+          separator: ', '
+        revision_uid:
+          separator: ', '
+        langcode:
+          label: زبان
+          separator: ', '
+        status:
+          label: وضعیت
+          settings:
+            format_custom_false: 'منتشر نشده'
+            format_custom_true: 'منتشر شده'
+          separator: ', '
+        changed:
+          label: 'تغییر یافته'
+          separator: ', '
+        operations:
+          label: عملیات
+      pager:
+        options:
+          tags:
+            next: بعدی
+            previous: قبلی
+            first: اولین
+            last: آخرین
+          expose:
+            items_per_page_label: 'آیتم‌ها در هر صفحه'
+            items_per_page_options_all_label: '- همه -'
+            offset_label: جابجایی
+      exposed_form:
+        options:
+          submit_button: فیلتر
+          reset_button_label: بازنشانی
+          exposed_sorts_label: 'مرتب کن بر اساس'
+          sort_asc_label: صعودی
+          sort_desc_label: نزولی
+      filters:
+        title:
+          expose:
+            label: عنوان
+        type:
+          expose:
+            label: 'نوع محتوا'
+        status:
+          expose:
+            label: 'وضعیت انتشار'
+          group_info:
+            label: 'وضعیت انتشار'
+            group_items:
+              1:
+                title: 'منتشر شده'
+              2:
+                title: 'منتشر نشده'
+        langcode:
+          expose:
+            label: زبان
+  your_content_block:
+    display_title: بلوک

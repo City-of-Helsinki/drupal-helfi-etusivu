@@ -1,0 +1,75 @@
+display:
+  default:
+    display_title: Vaikimisi
+    display_options:
+      fields:
+        content_translation_outdated:
+          label: 'Tõlge on aegunud'
+          settings:
+            format_custom_true: vananenud
+          separator: ', '
+        title:
+          label: Pealkiri
+          separator: ', '
+        type:
+          label: 'Sisu tüüp'
+          separator: ', '
+        uid:
+          label: Autor
+          separator: ', '
+        revision_uid:
+          separator: ', '
+        langcode:
+          label: Keel
+          separator: ', '
+        status:
+          label: Olek
+          settings:
+            format_custom_false: Avaldamata
+            format_custom_true: Avaldatud
+          separator: ', '
+        changed:
+          label: Muudetud
+          separator: ', '
+        operations:
+          label: Toimingud
+      pager:
+        options:
+          tags:
+            next: 'järgmine ›'
+            previous: '‹ eelmine'
+            first: Esimene
+            last: Viimane
+          expose:
+            items_per_page_label: 'Kirjeid lehel'
+            items_per_page_options_all_label: '- Kõik -'
+            offset_label: Nihe
+      exposed_form:
+        options:
+          submit_button: Filtreeri
+          reset_button_label: Tühista
+          exposed_sorts_label: 'Sorteerimise alus'
+          sort_asc_label: Kasvav
+          sort_desc_label: Kahanev
+      filters:
+        title:
+          expose:
+            label: Pealkiri
+        type:
+          expose:
+            label: 'Sisu tüüp'
+        status:
+          expose:
+            label: 'Avaldamise staatus'
+          group_info:
+            label: 'Avaldamise staatus'
+            group_items:
+              1:
+                title: Avaldatud
+              2:
+                title: Avaldamata
+        langcode:
+          expose:
+            label: Keel
+  your_content_block:
+    display_title: Plokk

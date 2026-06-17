@@ -1,51 +1,45 @@
 import CardItem from '@/react/common/Card';
 import Icon from '@/react/common/Icon';
+import DebugBlock from './DebugBlock';
 
 type ResultCardProps = {
   url: string;
   title: string;
   description?: string;
   bundle?: string;
-  publishDate?: string;
+  publishDate?: number;
   cardModifierClass?: string;
 };
 
-// PLACEHOLDER: Description placeholder until we get the real deal from the API.
-const DESCRIPTION_PLACEHOLDER =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-// PLACEHOLDER: Adjust this date if you want to see a real date on the result cards.
-const DATE_PLACEHOLDER = 'DD.MM.YYYY';
-// PLACEHOLDER: Adjust this date if you need to test the outdated tag.
-const PUBLISH_DATE_PLACEHOLDER = '2026-04-14';
-
-const isOlderThanOneYear = (isoDate: string): boolean => {
-  const oneYearAgo = new Date();
-  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-  return new Date(isoDate) < oneYearAgo;
+const parsePublishDate = (value: number): Date | null => {
+  return new Date(value * 1000);
 };
 
-const ResultCard = ({
-  url,
-  title,
-  description = DESCRIPTION_PLACEHOLDER,
-  bundle,
-  publishDate = PUBLISH_DATE_PLACEHOLDER,
-  cardModifierClass,
-}: ResultCardProps) => {
-  const isNewsItem = bundle === 'news_item';
-  const isOutdated = isNewsItem && isOlderThanOneYear(publishDate);
+const isOlderThanOneYear = (date: Date): boolean => {
+  const oneYearAgo = new Date();
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+  return date < oneYearAgo;
+};
 
-  return (
+const ResultCard = ({ url, title, description, bundle, publishDate, cardModifierClass }: ResultCardProps) => {
+  const isNewsItem = bundle === 'news_item';
+  const parsedDate = publishDate ? parsePublishDate(publishDate) : null;
+  const isOutdated = isNewsItem && parsedDate ? isOlderThanOneYear(parsedDate) : false;
+  const lang = drupalSettings?.path?.currentLanguage ?? 'fi';
+  const formattedDate = parsedDate ? parsedDate.toLocaleDateString(lang) : undefined;
+
+  const cardItem = (
     <CardItem
       cardTitle={title}
       cardUrl={url}
       cardDescription={description}
       cardModifierClass={cardModifierClass}
       cardTitleLevel={3}
-      {...(isNewsItem && {
-        date: DATE_PLACEHOLDER,
-        dateLabel: Drupal.t('Published', {}, { context: 'Site search' }),
-      })}
+      {...(isNewsItem &&
+        formattedDate && {
+          date: formattedDate,
+          dateLabel: Drupal.t('Published', {}, { context: 'Site search' }),
+        })}
       {...(isOutdated && {
         cardTags: [
           {
@@ -61,6 +55,17 @@ const ResultCard = ({
       })}
     />
   );
+
+  if (DEBUG_MODE) {
+    return (
+      <div>
+        {cardItem}
+        <DebugBlock data={{ url, title, description, bundle, publishDate }} />
+      </div>
+    );
+  }
+
+  return cardItem;
 };
 
 export default ResultCard;
