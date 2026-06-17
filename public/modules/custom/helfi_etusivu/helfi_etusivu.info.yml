@@ -16,10 +16,12 @@ dependencies:
   - elasticsearch_connector:elasticsearch_connector
   - helfi_api_base:helfi_api_base
   - simple_sitemap:simple_sitemap
+  - content_lock:content_lock
   - helfi_react_search:helfi_react_search
   - helfi_platform_config:helfi_paragraphs_news_list
   - helfi_search:helfi_search
   - radioactivity:radioactivity
   - imagecache_external:imagecache_external
+  - scheduler:scheduler
 'interface translation project': helfi_etusivu
 'interface translation server pattern': modules/custom/helfi_etusivu/translations/%language.po

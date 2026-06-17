@@ -52,7 +52,7 @@ abstract class SearchFormBase extends FormBase {
     ];
     $form['home_address'] = [
       '#placeholder' => $this->t('For example, Kotikatu 1', [], ['context' => 'Helsinki near you']),
-      '#title' => $this->t('Address', [], ['context' => 'Helsinki near you']),
+      '#title' => $this->t('Street address', [], ['context' => 'Helsinki near you']),
       '#default_value' => $this->getRequest()?->query->get('home_address', ''),
       '#type' => 'helfi_location_autocomplete',
       '#autocomplete_route_name' => 'helfi_api_base.location_autocomplete',
@@ -93,7 +93,7 @@ abstract class SearchFormBase extends FormBase {
     if (!$address) {
       $form_state->setErrorByName(
        'home_address',
-       $this->t('Address is required.', [], ['context' => 'Helsinki near you']),
+       $this->t('Street address is required.', [], ['context' => 'Helsinki near you']),
       );
       return;
     }
@@ -102,7 +102,7 @@ abstract class SearchFormBase extends FormBase {
       $form_state->setErrorByName(
         'home_address',
         [
-          $this->t('No results were found for the address', [], ['context' => 'Helsinki near you']),
+          $this->t('No results were found for the street address', [], ['context' => 'Helsinki near you']),
           $this->t(
           'Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
           [],

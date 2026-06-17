@@ -91,11 +91,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
 
 		-
-			message: "#^Function helfi_etusivu_page_attachments\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
-
-		-
 			message: "#^Function helfi_etusivu_page_attachments\\(\\) has parameter \\$page with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
@@ -199,21 +194,6 @@ parameters:
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Form\\\\PromotionForm\\:\\:save\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Form/PromotionForm.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:buildHeader\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:buildRow\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Listing\\\\ListBuilder\\:\\:render\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Listing/ListBuilder.php
 
 		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\SimpleSitemap\\\\HelfiSimpleSitemap\\:\\:toUrl\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
@@ -581,16 +561,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/NewsRss/RssNormalizer.php
 
 		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\EtusivuLocalTasksBlock\\:\\:build\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/EtusivuLocalTasksBlock.php
-
-		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Plugin\\\\Block\\\\EtusivuLocalTasksBlock\\:\\:create\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/EtusivuLocalTasksBlock.php
-
-		-
 			message: "#^Match expression does not handle remaining value\\: null$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/HelsinkiNearYouHeroBlock.php
@@ -676,11 +646,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/Plugin/search_api/processor/UuidLangcode.php
 
 		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Search\\\\Controller\\\\SearchPageController\\:\\:content\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Search/Controller/SearchPageController.php
-
-		-
 			message: "#^Function news_terms_trait_test_entity_type_build\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/modules/news_terms_trait_test/news_terms_trait_test.module
@@ -694,36 +659,6 @@ parameters:
 			message: "#^Method Drupal\\\\news_terms_trait_test\\\\Entity\\\\NewsTermsTestNode\\:\\:getTaxonomyTermsWithArchiveLinks\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/modules/news_terms_trait_test/src/Entity/NewsTermsTestNode.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Controller\\\\LinkedEventsImageControllerTest\\:\\:providerDeliver\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
-
-		-
-			message: "#^Parameter \\$body of class GuzzleHttp\\\\Psr7\\\\Response constructor expects Psr\\\\Http\\\\Message\\\\StreamInterface\\|resource\\|string\\|null, string\\|false given\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
-
-		-
-			message: "#^Property Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Controller\\\\LinkedEventsImageControllerTest\\:\\:\\$cache with generic class Prophecy\\\\Prophecy\\\\ObjectProphecy does not specify its types\\: T$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
-
-		-
-			message: "#^Property Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Controller\\\\LinkedEventsImageControllerTest\\:\\:\\$imageStyle with generic class Prophecy\\\\Prophecy\\\\ObjectProphecy does not specify its types\\: T$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Entity\\\\Search\\\\PromotionTest\\:\\:assertEntityAccess\\(\\) has parameter \\$ops with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
-
-		-
-			message: "#^Parameter \\#3 \\$account of method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Entity\\\\Search\\\\PromotionTest\\:\\:assertEntityAccess\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface\\|null, Drupal\\\\user\\\\Entity\\\\User\\|false given\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
 
 		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\Tests\\\\Kernel\\\\EventSubscriber\\\\ElasticsearchEventSubscriberTest\\:\\:testPrepareIndices\\(\\) has no return type specified\\.$#"
@@ -759,36 +694,6 @@ parameters:
 			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\Language\\\\AltLanguageFallbacksTest\\:\\:renderMenuBlock\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Language/AltLanguageFallbacksTest.php
-
-		-
-			message: "#^Call to an undefined method Elastic\\\\Elasticsearch\\\\Response\\\\Elasticsearch\\|Http\\\\Promise\\\\Promise\\:\\:asArray\\(\\)\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Call to an undefined method Elastic\\\\Elasticsearch\\\\Response\\\\Elasticsearch\\|Http\\\\Promise\\\\Promise\\:\\:getStatusCode\\(\\)\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$groups with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$neighbourhoods with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:createElasticIndexItem\\(\\) has parameter \\$tags with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$xml of method Drupal\\\\Tests\\\\helfi_etusivu\\\\Kernel\\\\NewsRss\\\\NewsRssResourceTest\\:\\:assertXml\\(\\) expects string, string\\|false given\\.$#"
-			count: 2
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/NewsRss/NewsRssResourceTest.php
 
 		-
 			message: "#^Cannot access an offset on array\\<int, array\\<string, int\\|string\\|null\\>\\>\\|string\\|true\\.$#"

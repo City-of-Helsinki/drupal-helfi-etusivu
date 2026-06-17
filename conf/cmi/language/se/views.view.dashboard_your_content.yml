@@ -1,0 +1,40 @@
+display:
+  default:
+    display_options:
+      fields:
+        title:
+          label: Bajilčala
+        type:
+          label: Šládja
+        uid:
+          label: Čálli
+        langcode:
+          label: Giella
+        status:
+          settings:
+            format_custom_true: Almmuhuvvon
+      pager:
+        options:
+          tags:
+            next: 'boahtte ›'
+            previous: '‹ ovddit'
+            first: '« vuosttaš'
+            last: 'maŋemuš »'
+      exposed_form:
+        options:
+          exposed_sorts_label: Sirre
+      filters:
+        title:
+          expose:
+            label: Bajilčala
+        type:
+          expose:
+            label: Šládja
+        status:
+          group_info:
+            group_items:
+              1:
+                title: Almmuhuvvon
+        langcode:
+          expose:
+            label: Giella

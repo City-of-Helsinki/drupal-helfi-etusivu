@@ -71,6 +71,8 @@ display:
         title: المحتوى
   user_page:
     display_options:
+      menu:
+        title: مجدول
       tab_options:
         title: المحتوى
       arguments:
