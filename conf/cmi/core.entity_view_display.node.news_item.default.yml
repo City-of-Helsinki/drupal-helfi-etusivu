@@ -30,7 +30,7 @@ bundle: news_item
 mode: default
 content:
   field_ai_summary:
-    type: text_span
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
