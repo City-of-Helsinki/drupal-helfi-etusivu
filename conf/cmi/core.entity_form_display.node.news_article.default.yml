@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.news_article.field_short_title
     - node.type.news_article
   module:
+    - allowed_formats
     - field_group
     - hdbt_admin_tools
     - helfi_ai
@@ -93,7 +94,10 @@ content:
     weight: 18
     region: content
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      allowed_formats:
+        hide_help: '1'
+        hide_guidelines: '1'
   field_content:
     type: paragraphs
     weight: 20
