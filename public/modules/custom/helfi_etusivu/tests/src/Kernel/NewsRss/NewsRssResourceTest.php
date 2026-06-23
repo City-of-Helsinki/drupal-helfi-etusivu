@@ -170,6 +170,7 @@ class NewsRssResourceTest extends EtusivuElasticTestBase {
         'title' => [$title],
         'url' => [$url],
         'field_lead_in' => [$description],
+        'field_lead_in_raw' => [$description],
         'published_at' => [$publishedAt],
         'uuid' => [$uuid],
         'search_api_language' => [$language],
