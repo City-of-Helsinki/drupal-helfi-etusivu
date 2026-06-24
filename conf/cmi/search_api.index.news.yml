@@ -70,6 +70,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_lead_in
+  field_lead_in_raw:
+    label: 'Ingress (raw)'
+    datasource_id: 'entity:node'
+    property_path: field_lead_in
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_lead_in
   field_main_image_caption:
     label: Caption
     datasource_id: 'entity:node'

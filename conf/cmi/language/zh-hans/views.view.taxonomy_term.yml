@@ -24,5 +24,7 @@ display:
         tid:
           exception:
             title: 全部
+  feed_1:
+    display_title: Feed
   page_1:
     display_title: 页面
