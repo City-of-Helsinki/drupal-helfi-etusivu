@@ -6,4 +6,16 @@ id: news_archive
 label: "News Archive"
 site_id: etusivu
 confirm_success_body: "You will receive an email with new search matches no more than once a day.\nYou can cancel your subscription using the link you will receive with each notification.\nThe search alert subscription is valid for six months."
-already_confirmed_body: "You have already confirmed this search alert.\nYou will receive email alerts about new search results up to once a day. Each email contains an unsubscribe link that you can use to unsubscribe from saved search alerts."
+confirm_failure_body: "Confirmation of search alert subscription failed.\nYou can try confirming your search alert subscription again from your email."
+already_confirmed_body: "You have already confirmed this news alert subscription.\nYou will be notified of new search matches no more than once a day.\nYou can cancel your subscription using the link sent with each notification."
+unsubscribe_not_found_title: "Unable to find search alert"
+unsubscribe_not_found_body: "Search alert is either no longer valid or it has been removed."
+renew_success_title: "Search alert subscription has been extended"
+renew_success_body: "Your search alert subscription has been successfully extended."
+renew_failure_title: "Search alert subscription could not be extended"
+renew_failure_body: "Search alert subscription could not be extended. It may have expired."
+renew_processing_title: "Extend search alert subscription"
+renew_processing_message: "Search alert subscription is being processed…"
+confirm_page_title: 'Confirm search alert'
+renew_page_title: 'Extend search alert'
+unsubscribe_page_title: 'Remove search alert'
