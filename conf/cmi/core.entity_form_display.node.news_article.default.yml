@@ -83,12 +83,6 @@ targetEntityType: node
 bundle: news_article
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   ai_summary:
     type: ai_summary
     weight: 19
@@ -98,6 +92,12 @@ content:
       allowed_formats:
         hide_help: '1'
         hide_guidelines: '1'
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_content:
     type: paragraphs
     weight: 20
