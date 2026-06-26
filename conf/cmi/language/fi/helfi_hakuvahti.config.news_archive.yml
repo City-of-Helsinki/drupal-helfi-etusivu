@@ -1,0 +1,15 @@
+label: "Uutisarkisto"
+confirm_success_body: "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä.\nVoit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana.\nHakuvahti on voimassa kuusi kuukautta."
+confirm_failure_body: "Hakuvahdin vahvistus epäonnistui.\nVoit kokeilla vahvistaa hakuvahdin uudelleen sähköpostistasi."
+already_confirmed_body: "Olet jo vahvistanut tämän uutisten hakuvahdin.\nSaat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä.\nVoit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+unsubscribe_not_found_title: "Hakuvahtia ei löytynyt"
+unsubscribe_not_found_body: "Hakuvahti ei ole enää voimassa tai se on jo poistettu."
+renew_success_title: "Hakuvahdin tilausta jatkettiin"
+renew_success_body: "Hakuvahtisi tilausta on nyt jatkettu onnistuneesti."
+renew_failure_title: "Hakuvahdin tilausta ei voitu jatkaa"
+renew_failure_body: "Hakuvahdin tilausta ei voitu jatkaa. Tilaus saattoi olla jo vanhentunut."
+renew_processing_title: "Jatketaan hakuvahdin tilausta"
+renew_processing_message: "Hakuvahdin tilausta käsitellään…"
+confirm_page_title: 'Hakuvahdin vahvistaminen'
+renew_page_title: 'Jatka hakuvahdin tilausta'
+unsubscribe_page_title: 'Hakuvahdin poistaminen'
