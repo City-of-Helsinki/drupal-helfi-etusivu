@@ -106,7 +106,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_ai_summary:
+  ai_summary:
     type: ai_summary
     weight: 18
     region: content

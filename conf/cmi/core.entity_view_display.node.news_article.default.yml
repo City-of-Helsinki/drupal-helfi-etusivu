@@ -30,7 +30,7 @@ targetEntityType: node
 bundle: news_article
 mode: default
 content:
-  field_ai_summary:
+  ai_summary:
     type: text_default
     label: hidden
     settings: {  }
