@@ -30,6 +30,13 @@ targetEntityType: node
 bundle: news_article
 mode: default
 content:
+  ai_summary:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_content:
     type: entity_reference_revisions_entity_view
     label: hidden
@@ -37,7 +44,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_hero_design:
     type: list_key
@@ -60,14 +67,14 @@ content:
       view_mode: hero
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_main_image_caption:
     type: text_span
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 9
     region: content
   field_news_groups:
     type: entity_reference_label
@@ -75,7 +82,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 10
+    weight: 11
     region: content
   field_news_item_links_link:
     type: linkit
@@ -88,7 +95,7 @@ content:
       target: '0'
       linkit_profile: helfi
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: content
   field_news_item_links_title:
     type: string
@@ -96,7 +103,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   field_news_item_tags:
     type: entity_reference_label
@@ -104,7 +111,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 11
+    weight: 12
     region: content
   field_news_neighbourhoods:
     type: entity_reference_label
@@ -112,7 +119,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 12
+    weight: 13
     region: content
   field_radioactivity:
     type: radioactivity_reference_emitter
@@ -122,7 +129,7 @@ content:
       display: false
       decimals: 0.0
     third_party_settings: {  }
-    weight: 9
+    weight: 10
     region: content
   field_short_title:
     type: string
