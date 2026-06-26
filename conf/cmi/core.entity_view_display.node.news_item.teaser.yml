@@ -76,6 +76,7 @@ content:
     weight: 4
     region: content
 hidden:
+  ai_summary: true
   changed_at: true
   field_content: true
   field_lead_in: true
