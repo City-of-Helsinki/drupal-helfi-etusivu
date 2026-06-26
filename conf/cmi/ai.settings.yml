@@ -1,5 +1,5 @@
 _core:
-  default_config_hash: dNM1Uh8o43t2mRnI6vTWTKrLh6GqilHniGlSdDEutGQ
+  default_config_hash: WWvo9_41v-oaqjbKdBtohSrem-s9w-7MIfvCWjZvAI4
 prompt_logging: false
 prompt_logging_tags: ''
 default_providers:
@@ -14,3 +14,4 @@ request_timeout: 120
 models: {  }
 allowed_hosts: {  }
 allowed_hosts_rewrite_links: false
+global_guardrails: {  }
