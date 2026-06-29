@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: Nimetus
+            label: Pealkiri
   entity_reference:
     display_title: 'Olemi viide'

@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: Beschriftung
+            label: Titel
   entity_reference:
     display_title: Entitätsreferenzierung
