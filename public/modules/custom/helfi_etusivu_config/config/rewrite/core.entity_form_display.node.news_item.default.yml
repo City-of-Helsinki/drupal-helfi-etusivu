@@ -22,6 +22,7 @@ dependencies:
   module:
     - field_group
     - hdbt_admin_tools
+    - helfi_ai
     - linkit
     - media_library
     - paragraphs
@@ -48,6 +49,15 @@ third_party_settings:
         description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
         required_fields: false
 content:
+  ai_summary:
+    type: ai_summary
+    weight: 18
+    region: content
+    settings: { }
+    third_party_settings:
+      allowed_formats:
+        hide_help: '1'
+        hide_guidelines: '1'
   field_news_item_updating_news:
     type: paragraphs
     weight: 17
@@ -70,7 +80,7 @@ content:
     third_party_settings: {  }
   field_news_groups:
     type: select2_entity_reference
-    weight: 21
+    weight: 22
     region: content
     settings:
       width: 100%
@@ -80,7 +90,7 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 22
+    weight: 23
     region: content
     settings:
       width: 100%
