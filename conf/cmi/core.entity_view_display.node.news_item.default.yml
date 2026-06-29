@@ -114,6 +114,13 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  ai_summary:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_news_groups:
     type: entity_reference_label
     label: above
