@@ -51,7 +51,7 @@ third_party_settings:
 content:
   ai_summary:
     type: ai_summary
-    weight: 17
+    weight: 18
     region: content
     settings: { }
     third_party_settings:
@@ -90,7 +90,7 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 23
+    weight: 22
     region: content
     settings:
       width: 100%
