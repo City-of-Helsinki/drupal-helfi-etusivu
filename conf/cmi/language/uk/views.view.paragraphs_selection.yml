@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: Мітка
+            label: Заголовок
   entity_reference:
     display_title: 'Посилання на сутність'

@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: برچسب
+            label: عنوان
   entity_reference:
     display_title: 'ارجاع موجودیت'
