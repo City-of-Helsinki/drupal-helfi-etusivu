@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: التسمية
+            label: العنوان
   entity_reference:
     display_title: 'مرجع الكيان'

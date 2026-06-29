@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: Etiqueta
+            label: Título
   entity_reference:
     display_title: 'Referencia de entidad'
