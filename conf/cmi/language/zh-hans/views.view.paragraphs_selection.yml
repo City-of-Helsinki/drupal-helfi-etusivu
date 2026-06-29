@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: 标签
+            label: 标题
   entity_reference:
     display_title: 实体引用

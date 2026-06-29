@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: Libellé
+            label: Titre
   entity_reference:
     display_title: 'Référence à une entité'

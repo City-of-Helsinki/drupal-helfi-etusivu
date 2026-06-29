@@ -4928,20 +4928,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-tools.git",
-                "reference": "ecd8504aa075d84c90035de677b91d6ebd862984"
+                "reference": "c37d2cbb0c526f73b0a151a5754a93660147d969"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/ecd8504aa075d84c90035de677b91d6ebd862984",
-                "reference": "ecd8504aa075d84c90035de677b91d6ebd862984",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/c37d2cbb0c526f73b0a151a5754a93660147d969",
+                "reference": "c37d2cbb0c526f73b0a151a5754a93660147d969",
                 "shasum": ""
             },
             "require": {
                 "drupal/helfi_api_base": "*",
-                "drush/drush": "^12 || ^13"
+                "drush/drush": "^13"
             },
             "conflict": {
-                "drush/drush": "< 12.5"
+                "drush/drush": "< 13.7"
             },
             "require-dev": {
                 "composer/installers": "^2",
@@ -5001,7 +5001,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/main",
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
-            "time": "2026-06-26T13:15:55+00:00"
+            "time": "2026-06-29T10:23:41+00:00"
         },
         {
             "name": "drupal/helfi_hakuvahti",
@@ -5071,16 +5071,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.1.80",
+            "version": "5.1.82",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "30c893a2383c7061e112828de3b6f3aff7ddb891"
+                "reference": "69d7b043b279b364dbd2cad632bbf687ec2c53ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/30c893a2383c7061e112828de3b6f3aff7ddb891",
-                "reference": "30c893a2383c7061e112828de3b6f3aff7ddb891",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/69d7b043b279b364dbd2cad632bbf687ec2c53ae",
+                "reference": "69d7b043b279b364dbd2cad632bbf687ec2c53ae",
                 "shasum": ""
             },
             "require": {
@@ -5200,10 +5200,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.80",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.82",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-06-29T07:54:01+00:00"
+            "time": "2026-06-29T12:55:29+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -13091,16 +13091,16 @@
         },
         {
             "name": "phrity/websocket",
-            "version": "3.7.2",
+            "version": "3.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sirn-se/websocket-php.git",
-                "reference": "a8edb30395d45edd83452f54dfbb0905c3115a95"
+                "reference": "c92d613ec298ea108b8ebae306609cd40427f7d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sirn-se/websocket-php/zipball/a8edb30395d45edd83452f54dfbb0905c3115a95",
-                "reference": "a8edb30395d45edd83452f54dfbb0905c3115a95",
+                "url": "https://api.github.com/repos/sirn-se/websocket-php/zipball/c92d613ec298ea108b8ebae306609cd40427f7d6",
+                "reference": "c92d613ec298ea108b8ebae306609cd40427f7d6",
                 "shasum": ""
             },
             "require": {
@@ -13151,9 +13151,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sirn-se/websocket-php/issues",
-                "source": "https://github.com/sirn-se/websocket-php/tree/3.7.2"
+                "source": "https://github.com/sirn-se/websocket-php/tree/3.7.3"
             },
-            "time": "2026-06-15T08:13:51+00:00"
+            "time": "2026-06-22T14:53:45+00:00"
         },
         {
             "name": "proj4php/proj4php",
