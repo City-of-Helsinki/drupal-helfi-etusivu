@@ -51,7 +51,7 @@ third_party_settings:
 content:
   ai_summary:
     type: ai_summary
-    weight: 18
+    weight: 17
     region: content
     settings: { }
     third_party_settings:
