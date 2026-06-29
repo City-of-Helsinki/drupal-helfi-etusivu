@@ -50,11 +50,6 @@ display:
         name:
           expose:
             label: الاسم
-        bundle:
-          expose:
-            label: 'Media type'
-          group_info:
-            label: 'Media type'
         langcode:
           expose:
             label: اللغة
@@ -93,7 +88,6 @@ display:
         display_link_table:
           label: جدول
   widget_table:
-    display_title: 'Widget (table)'
     display_options:
       fields:
         thumbnail__target_id:

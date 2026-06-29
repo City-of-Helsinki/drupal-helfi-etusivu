@@ -10,12 +10,12 @@ already_confirmed_body: |-
   Du har redan bekräftat denna sökvakt för nyheter.
   Du får information om nya träffar till din e-post högst en gång per dag.
   Varje meddelande innehåller en annulleringslänk via vilken du kan sluta beställningen av denna sökvakt.
-unsubscribe_not_found_title: 'Ingen sökvakt hittades'
-unsubscribe_not_found_body: 'Beställningen på sökvakten är inte längre i kraft eller den har raderats.'
 renew_success_title: 'Beställningen på sökvakten fortsätter'
 renew_success_body: 'Din beställning på sökvakten har nu förlängts.'
 renew_failure_title: 'Beställningen på sökvakten kunde inte förlängas'
 renew_failure_body: 'Beställningen på sökvakten kunde inte förlängas. Den har kanske löpt ut.'
+unsubscribe_not_found_title: 'Ingen sökvakt hittades'
+unsubscribe_not_found_body: 'Beställningen på sökvakten är inte längre i kraft eller den har raderats.'
 renew_processing_title: 'Förläng beställningen på sökvakten'
 renew_processing_message: 'Beställningen på sökvakten behandlas…'
 confirm_page_title: 'Bekräftelse av sökvakten'
