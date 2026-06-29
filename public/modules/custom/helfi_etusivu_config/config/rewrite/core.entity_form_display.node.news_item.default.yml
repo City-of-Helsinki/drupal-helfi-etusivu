@@ -39,7 +39,7 @@ third_party_settings:
       label: 'Updating news'
       region: content
       parent_name: ''
-      weight: 19
+      weight: 20
       format_type: details
       format_settings:
         classes: ''
@@ -51,7 +51,7 @@ third_party_settings:
 content:
   ai_summary:
     type: ai_summary
-    weight: 18
+    weight: 17
     region: content
     settings: { }
     third_party_settings:
@@ -90,7 +90,7 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 22
+    weight: 23
     region: content
     settings:
       width: 100%
