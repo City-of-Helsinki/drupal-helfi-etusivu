@@ -1,6 +1,6 @@
 display:
   default:
-    display_title: Förvald
+    display_title: Default
     display_options:
       fields:
         id:
@@ -10,13 +10,13 @@ display:
       pager:
         options:
           tags:
-            next: Nästa
-            previous: Föregående
+            next: ››
+            previous: ‹‹
           expose:
-            offset_label: Kompensera
+            offset_label: Décalage
       filters:
         label:
           expose:
-            label: Etikett
+            label: Libellé
   entity_reference:
-    display_title: Objektsreferens
+    display_title: 'Référence à une entité'
