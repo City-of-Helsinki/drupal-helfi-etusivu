@@ -1,0 +1,22 @@
+display:
+  default:
+    display_title: Vaikimisi
+    display_options:
+      fields:
+        id:
+          separator: ', '
+        label:
+          separator: ', '
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            offset_label: Nihe
+      filters:
+        label:
+          expose:
+            label: Pealkiri
+  entity_reference:
+    display_title: 'Olemi viide'

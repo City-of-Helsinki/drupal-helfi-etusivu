@@ -19,6 +19,7 @@ dependencies:
   module:
     - field_group
     - hdbt_admin_tools
+    - helfi_ai
     - linkit
     - media_library
     - paragraphs
@@ -51,7 +52,7 @@ third_party_settings:
       label: Links
       region: content
       parent_name: ''
-      weight: 18
+      weight: 19
       format_type: fieldset
       format_settings:
         classes: ''
@@ -81,7 +82,7 @@ third_party_settings:
       label: 'Updating news'
       region: content
       parent_name: ''
-      weight: 19
+      weight: 20
       format_type: details
       format_settings:
         classes: ''
@@ -91,7 +92,7 @@ third_party_settings:
         description: "Leave the content region above the updating news blank if you are creating an updating news.<br />\r\nAdd the latest news update at the end. The system will display updates on the page in reverse order."
         required_fields: false
 _core:
-  default_config_hash: 4idwAdzBNTQx52km5yufL0uOiF01vQLSO2JIpnb2AnE
+  default_config_hash: eCyRF7wMS7W0uwcN3yy3XBJbBrFDx3DKDtZceBJIzCE
 id: node.news_item.default
 targetEntityType: node
 bundle: news_item
@@ -105,7 +106,7 @@ content:
     third_party_settings: {  }
   field_content:
     type: paragraphs
-    weight: 17
+    weight: 18
     region: content
     settings:
       title: Paragraph
@@ -165,7 +166,7 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 22
+    weight: 23
     region: content
     settings:
       width: 100%
@@ -271,6 +272,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  ai_summary:
+    type: ai_summary
+    weight: 17
+    region: content
+    settings: {  }
+    third_party_settings:
+      allowed_formats:
+        hide_help: '1'
+        hide_guidelines: '1'
   field_news_item_updating_news:
     type: paragraphs
     weight: 17
@@ -293,7 +303,7 @@ content:
     third_party_settings: {  }
   field_news_groups:
     type: select2_entity_reference
-    weight: 21
+    weight: 22
     region: content
     settings:
       width: 100%

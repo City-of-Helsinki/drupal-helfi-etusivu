@@ -1,0 +1,22 @@
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        id:
+          separator: ', '
+        label:
+          separator: ', '
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            offset_label: Зміщення
+      filters:
+        label:
+          expose:
+            label: Заголовок
+  entity_reference:
+    display_title: 'Посилання на сутність'

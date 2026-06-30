@@ -2,18 +2,18 @@ display:
   default:
     display_title: Oletus
     display_options:
-      pager:
-        options:
-          expose:
-            offset_label: Offset
-          tags:
-            previous: '‹ Edellinen'
-            next: 'Seuraava ›'
       fields:
         id:
           separator: ', '
         label:
           separator: ', '
+      pager:
+        options:
+          tags:
+            next: Seuraava
+            previous: Edellinen
+          expose:
+            offset_label: Offset
       filters:
         label:
           expose:
