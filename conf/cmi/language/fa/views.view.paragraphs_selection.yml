@@ -1,0 +1,22 @@
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        id:
+          separator: ', '
+        label:
+          separator: ', '
+      pager:
+        options:
+          tags:
+            next: Next
+            previous: Previous
+          expose:
+            offset_label: جابجایی
+      filters:
+        label:
+          expose:
+            label: عنوان
+  entity_reference:
+    display_title: 'ارجاع موجودیت'

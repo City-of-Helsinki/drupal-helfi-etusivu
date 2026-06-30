@@ -1,0 +1,22 @@
+display:
+  default:
+    display_title: الافتراضي
+    display_options:
+      fields:
+        id:
+          separator: ', '
+        label:
+          separator: ', '
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            offset_label: الإزاحة
+      filters:
+        label:
+          expose:
+            label: العنوان
+  entity_reference:
+    display_title: 'مرجع الكيان'

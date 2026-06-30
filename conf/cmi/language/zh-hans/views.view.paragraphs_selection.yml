@@ -1,0 +1,22 @@
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        id:
+          separator: ', '
+        label:
+          separator: ', '
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            offset_label: 偏移量
+      filters:
+        label:
+          expose:
+            label: 标题
+  entity_reference:
+    display_title: 实体引用
