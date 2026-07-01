@@ -1,0 +1,31 @@
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        id:
+          separator: ', '
+        label:
+          separator: ', '
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page_label: 'Елементів на сторінку'
+            items_per_page_options_all_label: '- Усе -'
+            offset_label: Зміщення
+      exposed_form:
+        options:
+          submit_button: Застосувати
+          reset_button_label: Скинути
+          exposed_sorts_label: 'Впорядкувати за'
+          sort_asc_label: Зрост
+          sort_desc_label: Спад
+      filters:
+        label:
+          expose:
+            label: Заголовок
+  entity_reference:
+    display_title: 'Посилання на сутність'
