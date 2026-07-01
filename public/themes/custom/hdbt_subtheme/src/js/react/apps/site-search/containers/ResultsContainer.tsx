@@ -33,7 +33,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const totalPages = Math.ceil(totalHits / AppSettings.SIZE);
   const isValidQuery = query.length >= AppSettings.MIN_QUERY_LENGTH;
   const resultsClassName = 'hdbt-search--react__results hdbt-search--react__results--site-search';
-  const currentSearchKey = isValidQuery ? `${query}::${page}` : null;
+  const currentSearchKey = isValidQuery ? `${query}::${bundle ?? ''}::${page}` : null;
   const isLoadingNewSearch = isValidating && currentSearchKey !== lastDataKeyRef.current;
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     if (!isValidQuery || !data) {
       return;
     }
-    const currentKey = `${query}::${data.page}`;
+    const currentKey = `${query}::${bundle ?? ''}::${data.page}`;
     if (currentKey !== lastSeenKeyRef.current) {
       const node = scrollTarget.current;
       if (node) {
