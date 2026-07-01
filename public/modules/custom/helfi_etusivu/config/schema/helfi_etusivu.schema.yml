@@ -1,11 +1,3 @@
-helfi_etusivu.llms_txt:
-  type: config_object
-  label: 'llms.txt settings'
-  mapping:
-    content:
-      type: string
-      label: 'Content'
-
 helfi_etusivu.helfi_search_promotion_type.*:
   type: config_entity
   label: 'Search promotion type'

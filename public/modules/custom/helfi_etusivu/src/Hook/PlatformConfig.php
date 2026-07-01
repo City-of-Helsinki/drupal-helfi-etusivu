@@ -14,12 +14,13 @@ final readonly class PlatformConfig {
 
   /**
    * Implements hook_platform_config_grant_permissions().
+   *
+   * @codeCoverageIgnore
    */
   #[Hook('platform_config_grant_permissions')]
   public function permissions(): array {
     return [
       'admin' => [
-        'administer llms.txt',
         'administer search promotions',
       ],
     ];
