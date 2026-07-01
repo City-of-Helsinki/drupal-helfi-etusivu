@@ -22,9 +22,10 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const page = useAtomValue(pageAtom);
   const setPage = useSetAtom(setPageAtom);
   const links = drupalSettings?.helfi_site_search?.external_links;
-  const { data, error, isLoading } = useSearchQuery(query, bundle, page);
+  const { data, error, isLoading, isValidating } = useSearchQuery(query, bundle, page);
   const scrollTarget = createRef<HTMLHeadingElement>();
-  const lastSeenPageRef = useRef<number | null>(null);
+  const lastSeenKeyRef = useRef<string | null>(null);
+  const lastDataKeyRef = useRef<string | null>(null);
 
   const totalHits = data?.total_hits ?? 0;
   const promotedCount = page === 1 ? (data?.promoted?.length ?? 0) : 0;
@@ -32,21 +33,30 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const totalPages = Math.ceil(totalHits / AppSettings.SIZE);
   const isValidQuery = query.length >= AppSettings.MIN_QUERY_LENGTH;
   const resultsClassName = 'hdbt-search--react__results hdbt-search--react__results--site-search';
+  const currentSearchKey = isValidQuery ? `${query}::${page}` : null;
+  const isLoadingNewSearch = isValidating && currentSearchKey !== lastDataKeyRef.current;
+
+  useEffect(() => {
+    if (data && currentSearchKey) {
+      lastDataKeyRef.current = currentSearchKey;
+    }
+  }, [data, currentSearchKey]);
 
   useEffect(() => {
     if (!isValidQuery || !data) {
       return;
     }
-    if (data.page !== lastSeenPageRef.current) {
-      lastSeenPageRef.current = data.page;
+    const currentKey = `${query}::${data.page}`;
+    if (currentKey !== lastSeenKeyRef.current) {
       const node = scrollTarget.current;
       if (node) {
+        lastSeenKeyRef.current = currentKey;
         node.setAttribute('tabindex', '-1');
         node.focus({ preventScroll: true });
         node.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
-  }, [data, isValidQuery, scrollTarget]);
+  }, [data, isValidQuery, query, scrollTarget]);
 
   useEffect(() => {
     if (!isValidQuery || isLoading || error) {
@@ -59,7 +69,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     return null;
   }
 
-  if (isLoading && !data) {
+  if ((isLoading && !data) || isLoadingNewSearch) {
     return <GhostList simple modifierClass={resultsClassName} count={Number(AppSettings.SIZE)} />;
   }
 
