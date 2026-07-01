@@ -73,6 +73,7 @@ permissions:
   - 'access user profiles'
   - 'administer blocks'
   - 'administer hdbt_cookie_banner'
+  - 'administer llms.txt'
   - 'administer menu'
   - 'administer nodes'
   - 'administer paragraphs library'
