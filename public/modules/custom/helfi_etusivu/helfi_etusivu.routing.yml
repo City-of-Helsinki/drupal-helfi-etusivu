@@ -33,5 +33,25 @@ helfi_etusivu.site_search:
   requirements:
     _permission: 'access content'
 
+helfi_etusivu.llms_txt:
+  path: '/llms.txt'
+  defaults:
+    _controller: '\Drupal\helfi_etusivu\LlmsTxt\Controller'
+    _title: 'llms.txt'
+    # Serve from the unprefixed root path.
+    _disable_route_normalizer: TRUE
+  requirements:
+    _access: 'TRUE'
+
+helfi_etusivu.llms_txt_settings:
+  path: '/admin/tools/llms-txt'
+  defaults:
+    _form: '\Drupal\helfi_etusivu\LlmsTxt\SettingsForm'
+    _title: 'llms.txt settings'
+  requirements:
+    _permission: 'administer llms.txt'
+  options:
+    _admin_route: TRUE
+
 route_callbacks:
   - '\Drupal\helfi_etusivu\HelsinkiNearYou\Routing\RouteProvider::routes'
