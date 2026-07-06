@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Plugin\Block;
 
-use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\helfi_users\Plugin\Block\LocalTasksBlock;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class to override core's LocalTaskBlock.
@@ -17,30 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Translate the local tasks menu's link titles on preferred admin language.
  */
 class EtusivuLocalTasksBlock extends LocalTasksBlock {
-
-  /**
-   * Language-manager interface.
-   *
-   * @var \Drupal\Core\Language\LanguageManagerInterface
-   */
-  protected LanguageManagerInterface $languageManager;
-
-  /**
-   * The current user.
-   *
-   * @var \Drupal\Core\Session\AccountProxyInterface
-   */
-  protected AccountProxyInterface $currentUser;
-
-  /**
-   * {@inheritDoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
-    $instance->languageManager = $container->get('language_manager');
-    $instance->currentUser = $container->get('current_user');
-    return $instance;
-  }
 
   /**
    * {@inheritDoc}
