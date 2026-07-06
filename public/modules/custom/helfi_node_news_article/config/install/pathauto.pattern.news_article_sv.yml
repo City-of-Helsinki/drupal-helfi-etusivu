@@ -13,7 +13,6 @@ selection_criteria:
   834affe2-dd99-4270-af42-4f0c6ac66950:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 834affe2-dd99-4270-af42-4f0c6ac66950
     context_mapping:
       node: node
     bundles:
@@ -21,7 +20,6 @@ selection_criteria:
   7699ae38-c87e-410c-9dbd-23b822bfff40:
     id: language
     negate: false
-    uuid: 7699ae38-c87e-410c-9dbd-23b822bfff40
     context_mapping:
       language: 'node:langcode:language'
     langcodes:
