@@ -33,7 +33,16 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const totalPages = Math.ceil(totalHits / AppSettings.SIZE);
   const isValidQuery = query.length >= AppSettings.MIN_QUERY_LENGTH;
   const resultsClassName = 'hdbt-search--react__results hdbt-search--react__results--site-search';
-  const currentSearchKey = isValidQuery ? `${query}::${bundle ?? ''}::${page}` : null;
+  // Unique key for the current search state. Null when query is too short.
+  let currentSearchKey: string | null = null;
+  if (isValidQuery) {
+    const bundleSegment = bundle !== undefined ? bundle : '';
+    currentSearchKey = `${query}::${bundleSegment}::${page}`;
+  }
+  // isLoadingNewSearch is true when fetching results for a different search than what
+  // is currently displayed. The currentSearchKey comparison filters out background
+  // revalidations for the same search so ghost cards are shown only on actual new
+  // searches.
   const isLoadingNewSearch = isValidating && currentSearchKey !== lastDataKeyRef.current;
 
   useEffect(() => {
