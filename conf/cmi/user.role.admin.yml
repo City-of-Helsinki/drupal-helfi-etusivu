@@ -31,6 +31,7 @@ dependencies:
     - hdbt_cookie_banner
     - helfi_api_base
     - helfi_etusivu
+    - helfi_llms_txt
     - helfi_recommendations
     - locale
     - media
