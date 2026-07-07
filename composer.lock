@@ -4664,16 +4664,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.17.32",
+            "version": "6.17.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "6efe99a8cad7dbf7f796842e9c8a347ac8dc0ff7"
+                "reference": "b4c7f30469e833f8b167cb9560941770ece47460"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/6efe99a8cad7dbf7f796842e9c8a347ac8dc0ff7",
-                "reference": "6efe99a8cad7dbf7f796842e9c8a347ac8dc0ff7",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/b4c7f30469e833f8b167cb9560941770ece47460",
+                "reference": "b4c7f30469e833f8b167cb9560941770ece47460",
                 "shasum": ""
             },
             "require": {
@@ -4692,10 +4692,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.17.32",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.17.33",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-07-07T07:43:21+00:00"
+            "time": "2026-07-07T15:56:50+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4962,16 +4962,16 @@
         },
         {
             "name": "drupal/helfi_hakuvahti",
-            "version": "1.2.7",
+            "version": "1.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti.git",
-                "reference": "219cbb88c19fa9ff19de5dd8776fefafcf2ce628"
+                "reference": "4b6ea65f0ae671c6af947947a8fef0c2d985cbf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-hakuvahti/zipball/219cbb88c19fa9ff19de5dd8776fefafcf2ce628",
-                "reference": "219cbb88c19fa9ff19de5dd8776fefafcf2ce628",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-hakuvahti/zipball/4b6ea65f0ae671c6af947947a8fef0c2d985cbf0",
+                "reference": "4b6ea65f0ae671c6af947947a8fef0c2d985cbf0",
                 "shasum": ""
             },
             "require": {
@@ -4987,10 +4987,10 @@
             ],
             "description": "Helfi - Hakuvahti",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/tree/1.2.7",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/tree/1.2.8",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/issues"
             },
-            "time": "2026-06-30T06:16:55+00:00"
+            "time": "2026-07-07T15:59:04+00:00"
         },
         {
             "name": "drupal/helfi_navigation",
