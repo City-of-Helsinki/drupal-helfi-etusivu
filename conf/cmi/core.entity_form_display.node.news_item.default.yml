@@ -272,15 +272,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  ai_summary:
-    type: ai_summary
-    weight: 17
-    region: content
-    settings: {  }
-    third_party_settings:
-      allowed_formats:
-        hide_help: '1'
-        hide_guidelines: '1'
   field_news_item_updating_news:
     type: paragraphs
     weight: 17
@@ -328,4 +319,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  ai_summary: true
   hide_sidebar_navigation: true
