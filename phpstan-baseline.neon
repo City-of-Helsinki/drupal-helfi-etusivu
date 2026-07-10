@@ -851,11 +851,6 @@ parameters:
 			path: public/modules/custom/helfi_global_navigation/src/Normalizer/MenuTreeNormalizer.php
 
 		-
-			message: "#^Method Drupal\\\\helfi_global_navigation\\\\Normalizer\\\\MenuTreeNormalizer\\:\\:normalize\\(\\) should return array but returns array\\|ArrayObject\\|bool\\|float\\|int\\|string\\|null\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_global_navigation/src/Normalizer/MenuTreeNormalizer.php
-
-		-
 			message: "#^Property Drupal\\\\helfi_global_navigation\\\\Normalizer\\\\MenuTreeNormalizer\\:\\:\\$supportedInterfaceOrClass has no type specified\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_global_navigation/src/Normalizer/MenuTreeNormalizer.php
@@ -896,11 +891,6 @@ parameters:
 			path: public/modules/custom/helfi_global_navigation/src/Plugin/rest/resource/MenuResourceBase.php
 
 		-
-			message: "#^Parameter \\#1 \\$account of method Drupal\\\\Tests\\\\BrowserTestBase\\:\\:drupalLogin\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface, Drupal\\\\user\\\\UserInterface\\|false given\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuOverviewFormTest.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$sub_tree\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
@@ -914,21 +904,6 @@ parameters:
 			message: "#^Method Drupal\\\\Tests\\\\helfi_global_navigation\\\\Functional\\\\GlobalMenuResourceTest\\:\\:getMockJson\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$account of method Drupal\\\\Tests\\\\BrowserTestBase\\:\\:drupalLogin\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface, Drupal\\\\user\\\\Entity\\\\User\\|false given\\.$#"
-			count: 3
-			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
-
-		-
-			message: "#^Property Drupal\\\\Tests\\\\helfi_global_navigation\\\\Functional\\\\RestTestBase\\:\\:\\$account \\(Drupal\\\\user\\\\UserInterface\\|null\\) does not accept Drupal\\\\user\\\\Entity\\\\User\\|false\\.$#"
-			count: 2
-			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/GlobalMenuResourceTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$account of method Drupal\\\\Tests\\\\BrowserTestBase\\:\\:drupalLogin\\(\\) expects Drupal\\\\Core\\\\Session\\\\AccountInterface, Drupal\\\\user\\\\Entity\\\\User\\|false given\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_global_navigation/tests/src/Functional/MenuLinkCollectionResourceTest.php
 
 		-
 			message: "#^Method Drupal\\\\Tests\\\\helfi_global_navigation\\\\Kernel\\\\GlobalMenuStorageTest\\:\\:assertEntityLanguage\\(\\) has parameter \\$entities with no value type specified in iterable type array\\.$#"

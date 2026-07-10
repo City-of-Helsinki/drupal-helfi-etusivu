@@ -17,8 +17,10 @@ dependencies:
     - field.field.node.news_article.field_short_title
     - node.type.news_article
   module:
+    - allowed_formats
     - field_group
     - hdbt_admin_tools
+    - helfi_ai
     - helfi_etusivu
     - helfi_recommendations
     - media_library
@@ -52,7 +54,7 @@ third_party_settings:
       label: Links
       region: content
       parent_name: ''
-      weight: 20
+      weight: 21
       format_type: fieldset
       format_settings:
         classes: ''
@@ -81,6 +83,15 @@ targetEntityType: node
 bundle: news_article
 mode: default
 content:
+  ai_summary:
+    type: ai_summary
+    weight: 19
+    region: content
+    settings: {  }
+    third_party_settings:
+      allowed_formats:
+        hide_help: '1'
+        hide_guidelines: '1'
   created:
     type: datetime_timestamp
     weight: 4
@@ -89,7 +100,7 @@ content:
     third_party_settings: {  }
   field_content:
     type: paragraphs
-    weight: 19
+    weight: 20
     region: content
     settings:
       title: Paragraph
@@ -137,7 +148,7 @@ content:
     third_party_settings: {  }
   field_news_groups:
     type: select2_entity_reference
-    weight: 22
+    weight: 23
     region: content
     settings:
       width: 100%
@@ -165,7 +176,7 @@ content:
     third_party_settings: {  }
   field_news_item_tags:
     type: select2_entity_reference
-    weight: 21
+    weight: 22
     region: content
     settings:
       width: 100%
@@ -175,7 +186,7 @@ content:
     third_party_settings: {  }
   field_news_neighbourhoods:
     type: select2_entity_reference
-    weight: 23
+    weight: 24
     region: content
     settings:
       width: 100%
@@ -185,7 +196,7 @@ content:
     third_party_settings: {  }
   field_radioactivity:
     type: radioactivity_reference
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }

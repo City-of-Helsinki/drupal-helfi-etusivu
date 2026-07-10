@@ -180,7 +180,7 @@ field_settings:
           id: 1_5_352w_236h_lq
           breakpoint: 576_2x
         -
-          id: 1.5_1022w_682h_lq
+          id: 1_5_1022w_682h_lq
           breakpoint: 320_2x
   name:
     label: Name

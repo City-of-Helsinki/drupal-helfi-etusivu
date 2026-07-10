@@ -163,6 +163,16 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
 
     // Apply hakuvahti settings to expose them to the React frontend.
     \Drupal::service(DrupalSettings::class)->applyTo($variables);
+
+    // Use the news_archive config entity so its texts are isolated
+    // from the shared 'default' entity.
+    if (!empty($variables['#attached']['drupalSettings']['hakuvahti'])) {
+      $variables['#attached']['drupalSettings']['hakuvahti']['apiUrl'] = Url::fromRoute(
+        'helfi_hakuvahti.subscribe',
+        [],
+        ['query' => ['config' => 'news_archive']],
+      )->toString();
+    }
   }
 }
 
