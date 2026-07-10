@@ -29,6 +29,7 @@ dependencies:
     - file
     - filter
     - hdbt_cookie_banner
+    - helfi_ai
     - helfi_api_base
     - helfi_etusivu
     - helfi_llms_txt
@@ -208,6 +209,7 @@ permissions:
   - 'update any media'
   - 'update content translations'
   - 'update media'
+  - 'use helfi ai title suggestion'
   - 'use menu link attributes'
   - 'use text format full_html'
   - 'use text format minimal'
