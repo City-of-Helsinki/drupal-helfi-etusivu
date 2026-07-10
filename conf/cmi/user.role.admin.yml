@@ -29,8 +29,10 @@ dependencies:
     - file
     - filter
     - hdbt_cookie_banner
+    - helfi_ai
     - helfi_api_base
     - helfi_etusivu
+    - helfi_llms_txt
     - helfi_recommendations
     - locale
     - media
@@ -73,6 +75,7 @@ permissions:
   - 'access user profiles'
   - 'administer blocks'
   - 'administer hdbt_cookie_banner'
+  - 'administer llms.txt'
   - 'administer menu'
   - 'administer nodes'
   - 'administer paragraphs library'
@@ -206,6 +209,7 @@ permissions:
   - 'update any media'
   - 'update content translations'
   - 'update media'
+  - 'use helfi ai title suggestion'
   - 'use menu link attributes'
   - 'use text format full_html'
   - 'use text format minimal'

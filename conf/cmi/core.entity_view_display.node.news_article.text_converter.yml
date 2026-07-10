@@ -42,6 +42,7 @@ content:
     weight: 3
     region: content
 hidden:
+  ai_summary: true
   field_hero_design: true
   field_main_image: true
   field_main_image_caption: true
