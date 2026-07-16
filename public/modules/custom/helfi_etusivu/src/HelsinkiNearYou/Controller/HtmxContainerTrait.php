@@ -48,7 +48,7 @@ trait HtmxContainerTrait {
    * @return array
    *   The htmx render array.
    */
-  protected function buildHtmxRenderArray(string $route, Request $request, ?int $limit = NULL, ?Attribute $attributes = NULL): array {
+  protected function buildHtmxRenderArray(string $route, Request $request, ?int $limit = NULL, ?Attribute $attributes = NULL, ?string $searchingLabel = NULL): array {
     $htmx = new Htmx();
     $htmx->get(new Url($route, options: [
       'query' => array_merge(['limit' => $limit], $request->query->all()),
@@ -59,6 +59,7 @@ trait HtmxContainerTrait {
       '#theme' => 'helsinki_near_you_lazy_builder_preview',
       '#num_items' => $limit,
       '#preview_attributes' => $attributes,
+      '#searching_label' => $searchingLabel,
     ];
     $htmx->applyTo($build);
     return $build;
@@ -75,11 +76,13 @@ trait HtmxContainerTrait {
    * @return array
    *   The render array.
    */
-  protected function buildFeedbackHtmxContainer(Request $request, ?int $limit = NULL) : array {
+  protected function buildFeedbackHtmxContainer(Request $request, ?int $limit = NULL, ?string $searchingLabel = NULL) : array {
     return $this->buildHtmxRenderArray(
       'helfi_etusivu.helsinki_near_you_feedback_htmx',
       $request,
       $limit,
+      NULL,
+      $searchingLabel,
     );
   }
 
@@ -94,7 +97,7 @@ trait HtmxContainerTrait {
    * @return array
    *   The render array.
    */
-  protected function buildRoadworksHtmxContainer(Request $request, ?int $limit = NULL) : array {
+  protected function buildRoadworksHtmxContainer(Request $request, ?int $limit = NULL, ?string $searchingLabel = NULL) : array {
     return $this->buildHtmxRenderArray(
       'helfi_etusivu.helsinki_near_you_roadworks_htmx',
       $request,
@@ -102,6 +105,7 @@ trait HtmxContainerTrait {
       new Attribute([
         'class' => ['card--ghost--no-image'],
       ]),
+      $searchingLabel,
     );
   }
 

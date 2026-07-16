@@ -473,6 +473,7 @@ function helfi_etusivu_theme() : array {
         'attributes' => NULL,
         'num_items' => NULL,
         'preview_attributes' => NULL,
+        'searching_label' => NULL,
       ],
     ],
     'news_item_unpublish_hint' => [
