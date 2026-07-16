@@ -14,6 +14,8 @@ export const committedBundlesAtom = atom<string[]>(initialBundles);
 
 export const pageAtom = atom<number>(initialPage);
 
+export const submitCountAtom = atom(0);
+
 export const submitAllSearchAtom = atom(null, (get, set) => {
   const query = get(stagedQueryAtom);
   const bundles = get(stagedBundlesAtom);
@@ -21,6 +23,7 @@ export const submitAllSearchAtom = atom(null, (get, set) => {
   set(queryAtom, query);
   set(committedBundlesAtom, bundles);
   set(pageAtom, 1);
+  set(submitCountAtom, get(submitCountAtom) + 1);
 
   const newUrl = new URL(window.location.toString());
   query ? newUrl.searchParams.set('s', query) : newUrl.searchParams.delete('s');
@@ -35,6 +38,7 @@ export const submitNewsSearchAtom = atom(null, (get, set) => {
 
   set(queryAtom, query);
   set(pageAtom, 1);
+  set(submitCountAtom, get(submitCountAtom) + 1);
 
   const newUrl = new URL(window.location.toString());
   query ? newUrl.searchParams.set('s', query) : newUrl.searchParams.delete('s');
