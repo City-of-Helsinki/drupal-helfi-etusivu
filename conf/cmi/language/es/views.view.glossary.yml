@@ -2,7 +2,7 @@ label: Glosario
 description: 'Todo el contenido, alfabéticamente.'
 display:
   default:
-    display_title: 'Por defecto'
+    display_title: Default
     display_options:
       fields:
         title:

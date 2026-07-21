@@ -23,12 +23,6 @@ final readonly class PlatformConfig {
       'admin' => [
         'administer search promotions',
       ],
-      'content_producer' => [
-        'administer search promotions',
-      ],
-      'editor' => [
-        'administer search promotions',
-      ],
     ];
   }
 

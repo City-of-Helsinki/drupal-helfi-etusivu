@@ -1,0 +1,25 @@
+uuid: 339e10c3-47c8-4bd7-9f76-ed4296f5f004
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+_core:
+  default_config_hash: pBDX2-oKhcHdikJN4yoTvpSPiOcm54jfmDj_hWCVbk0
+name: 1_5_511w_341h
+label: 1.5_511w_341h
+effects:
+  e7da735e-aa35-463b-b99a-b61aba89a53f:
+    uuid: e7da735e-aa35-463b-b99a-b61aba89a53f
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 511
+      height: 341
+      crop_type: focal_point
+  79a7c5b0-4e1e-437c-91ad-e7ca08d2e76a:
+    uuid: 79a7c5b0-4e1e-437c-91ad-e7ca08d2e76a
+    id: image_convert
+    weight: -10
+    data:
+      extension: webp

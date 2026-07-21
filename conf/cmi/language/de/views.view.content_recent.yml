@@ -2,7 +2,7 @@ label: 'Neuester Inhalt'
 description: 'Neuer Inhalt.'
 display:
   default:
-    display_title: Standard
+    display_title: Default
     display_options:
       title: 'Neuester Inhalt'
       fields:

@@ -22,7 +22,6 @@ use Drupal\helfi_etusivu\Entity\SimpleSitemap\HelfiSimpleSitemap;
 use Drupal\helfi_platform_config\TextConverter\Document;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
-use Drupal\search_api\Plugin\views\query\SearchApiQuery;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\Plugin\views\query\Sql;
 use Drupal\views\ViewExecutable;
@@ -166,35 +165,6 @@ function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $
       ];
     }
   }
-
-  if ($view->id() === 'elastic_rss_feed') {
-    $query = _helfi_etusivu_handle_rss_params($query);
-  }
-}
-
-/**
- * Support multiple topics, groups and neighbourhoods in RSS feed.
- *
- * @param \Drupal\search_api\Plugin\views\query\SearchApiQuery $query
- *   The initial query.
- *
- * @return \Drupal\search_api\Plugin\views\query\SearchApiQuery
- *   The resulting query.
- */
-function _helfi_etusivu_handle_rss_params(SearchApiQuery $query) : SearchApiQuery {
-  $params = Drupal::request()->query->all();
-
-  foreach ([
-    'topic' => 'news_tags',
-    'groups' => 'news_groups',
-    'neighbourhoods' => 'neighbourhoods',
-  ] as $param => $indexKey) {
-    if (isset($params[$param]) && is_array($params[$param])) {
-      $query->addWhere('AND', $indexKey, $params[$param], 'IN');
-    }
-  }
-
-  return $query;
 }
 
 /**
@@ -294,11 +264,28 @@ function helfi_etusivu_preprocess_html(&$variables): void {
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_results',
     'helfi_etusivu.helsinki_near_you_roadworks',
-    'helfi_etusivu.helsinki_near_you_feedbacks',
+    'helfi_etusivu.helsinki_near_you_feedback',
   ];
 
   if (in_array($route, $near_you_pages)) {
     $variables['theme_color'] = 'suomenlinna';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function helfi_etusivu_preprocess_status_messages(&$variables): void {
+  $route = \Drupal::routeMatch()->getRouteName();
+
+  $near_you_pages = [
+    'helfi_etusivu.helsinki_near_you',
+  ];
+
+  // Remove default error messages because of accessibility
+  // The errors are added as inline errors in the form.
+  if (in_array($route, $near_you_pages)) {
+    unset($variables['message_list']['error']);
   }
 }
 
@@ -313,7 +300,7 @@ function helfi_etusivu_preprocess_page(&$variables): void {
     'helfi_etusivu.helsinki_near_you_results',
     'helfi_etusivu.helsinki_near_you_events',
     'helfi_etusivu.helsinki_near_you_roadworks',
-    'helfi_etusivu.helsinki_near_you_feedbacks',
+    'helfi_etusivu.helsinki_near_you_feedback',
   ];
 
   // There is hero block on Helsinki near you landing page but
@@ -408,7 +395,7 @@ function helfi_etusivu_theme() : array {
         'address' => NULL,
         'schedule' => NULL,
         'distance_label' => NULL,
-        'roadwork_attributes' => [],
+        'limit' => NULL,
       ],
       'template' => 'helsinki-near-you-roadwork-item',
     ],
@@ -447,7 +434,7 @@ function helfi_etusivu_theme() : array {
         'address' => NULL,
         'distance_label' => NULL,
         'requested_datetime' => NULL,
-        'feedback_attributes' => [],
+        'limit' => NULL,
       ],
       'template' => 'helsinki-near-you-feedback-item',
     ],
@@ -483,6 +470,7 @@ function helfi_etusivu_theme() : array {
     ],
     'helsinki_near_you_lazy_builder_preview' => [
       'variables' => [
+        'attributes' => NULL,
         'num_items' => NULL,
         'preview_attributes' => NULL,
       ],
@@ -491,6 +479,10 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'message' => NULL,
       ],
+    ],
+    'helfi_etusivu_site_search' => [
+      'variables' => [],
+      'template' => 'helfi-etusivu-site-search',
     ],
   ];
 }
@@ -527,9 +519,13 @@ function helfi_etusivu_preprocess_node__news_item(array &$variables): void {
 /**
  * Implements hook_page_attachments_HOOK().
  */
-function helfi_etusivu_page_attachments(array &$page) {
+function helfi_etusivu_page_attachments(array &$page): void {
   // Check if the current route matches the desired route.
   $route = \Drupal::routeMatch()->getRouteName();
+  if (!$route) {
+    return;
+  }
+
   $routeInformation = RouteInformationEnum::fromRoute($route);
 
   if ($routeInformation) {

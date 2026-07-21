@@ -87,6 +87,7 @@ drush-locale-update: drupal-create-folders ## Update translations.
 	$(call drush,locale:clear-status)
 	$(call drush,locale:check)
 	$(call drush,locale:update)
+	$(call drush,helfi:locale-import helfi_platform_config)
 	$(call drush,cr)
 
 DRUPAL_POST_INSTALL_TARGETS := drush-sanitize-database drush-deploy drush-locale-update drush-unblock drush-uli
@@ -116,7 +117,7 @@ drush-sanitize-database:
 
 PHONY += drush-create-dump
 drush-create-dump: ## Create database dump to dump.sql
-	$(call drush,sql-dump --structure-tables-key=common --extra-dump=--no-tablespaces --result-file=/app/dump.sql)
+	$(call drush,sql-dump --structure-tables-key=common --extra-dump='--no-tablespaces --skip-ssl' --result-file=/app/dump.sql)
 
 PHONY += open-db-gui
 open-db-gui: ## Open database with GUI tool
@@ -126,6 +127,12 @@ open-db-gui: ## Open database with GUI tool
 	$(eval DB_PASS ?= drupal)
 	@open mysql://$(DB_USER):$(DB_PASS)@$(shell docker compose port $(DB_SERVICE) 3306 | grep -v ::)/$(DB_NAME)
 
+ifeq ($(IS_CONTAINER),false)
 define drush
 	$(call docker_compose_exec,drush $(1),$(2))
 endef
+else
+define drush
+	@drush $(1) $(2)
+endef
+endif

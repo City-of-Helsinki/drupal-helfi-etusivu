@@ -19,7 +19,7 @@ class EventTest extends KernelTestBase {
    */
   protected static $modules = [
     'helfi_etusivu',
-    'big_pipe',
+    'helfi_api_base',
     'system',
   ];
 

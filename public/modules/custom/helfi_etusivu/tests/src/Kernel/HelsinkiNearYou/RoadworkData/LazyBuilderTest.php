@@ -29,8 +29,8 @@ class LazyBuilderTest extends KernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'helfi_api_base',
     'helfi_etusivu',
-    'big_pipe',
     'system',
   ];
 

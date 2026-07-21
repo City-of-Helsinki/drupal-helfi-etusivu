@@ -33,8 +33,16 @@ msgid "Discover city services, events and news near you."
 msgstr "Hitta stadens tjänster, evenemang och nyheter nära dig."
 
 msgctxt "Helsinki near you"
-msgid "Address"
-msgstr "Adress"
+msgid "Street address"
+msgstr "Gatuadress"
+
+msgctxt "Helsinki near you"
+msgid "Street address is required."
+msgstr "Gatuadress krävs."
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the street address"
+msgstr "Inga resultat hittades för gatuadressen"
 
 msgctxt "Helsinki near you"
 msgid "For example, Mannerheimintie 1"
@@ -250,10 +258,6 @@ msgctxt "Helsinki near you status label"
 msgid "Unknown"
 msgstr "Okänd"
 
-msgctxt "Helsinki near you"
-msgid "Address"
-msgstr "Adress"
-
 msgctxt "Helsinki near you title"
 msgid "Find feedback"
 msgstr "Sök respons"
@@ -297,6 +301,10 @@ msgstr[1] "@count responser nära adressen @address"
 msgctxt "Helsinki near you"
 msgid "No feedback was found near address @address"
 msgstr "Inga responser hittades på adressen @address"
+
+msgctxt "Helsinki near you"
+msgid "Results for @address"
+msgstr "Resultat för @address"
 
 msgid "Hiding the page"
 msgstr "Schemalagd döljning"
@@ -342,3 +350,10 @@ msgstr "Ukrainska"
 
 msgid "The news item is scheduled to become non-public 11 months after its publication. If necessary, you can change the time in the <strong>Hiding the page</strong> field."
 msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publiceringen. Vid behov kan du ändra tiden i fältet <strong>Schemalagd döljning</strong>."
+
+msgid "News"
+msgstr "Nyheter"
+
+msgctxt "Site search"
+msgid "Search this site"
+msgstr "Sök från webbplatsen"

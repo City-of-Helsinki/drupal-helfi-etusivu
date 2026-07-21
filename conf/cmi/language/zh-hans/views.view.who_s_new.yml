@@ -2,7 +2,7 @@ label: 新进用户
 description: 显示最新的用户账户的列表。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       title: 新进用户
       exposed_form:

@@ -2,7 +2,7 @@ label: Вміст
 description: 'Пошук матеріалів і керування ними.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: Вміст
       fields:

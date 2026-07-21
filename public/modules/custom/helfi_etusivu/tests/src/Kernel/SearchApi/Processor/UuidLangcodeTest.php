@@ -9,12 +9,14 @@ use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\search_api\Item\Field;
 use Drupal\Tests\search_api\Kernel\PostRequestIndexingTrait;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests the entity uuid+langcode property.
- *
- * @group helfi_etusivu
  */
+#[RunTestsInSeparateProcesses]
+#[Group('helfi_etusivu')]
 class UuidLangcodeTest extends ProcessorTestBase {
 
   use PostRequestIndexingTrait;
@@ -34,7 +36,7 @@ class UuidLangcodeTest extends ProcessorTestBase {
    * {@inheritdoc}
    */
   public function setUp($processor = NULL): void {
-    parent::setUp('entity_type');
+    parent::setUp('uuid_langcode');
 
     NodeType::create([
       'type' => 'test_node_bundle',

@@ -16,6 +16,7 @@
         "drupal/hdbt_admin": "^3.0",
         "drupal/helfi_azure_fs": "^2.0",
         "drupal/helfi_drupal_tools": "dev-main",
+        "drupal/helfi_hakuvahti": "^1.2.0",
         "drupal/helfi_navigation": "^2.0",
         "drupal/helfi_platform_config": "^5.0",
         "drupal/helfi_proxy": "^3.0",
@@ -36,7 +37,6 @@
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-        "dmore/chrome-mink-driver": "^2.8",
         "drupal/core-dev": "^10|^11",
         "jangregor/phpstan-prophecy": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.1",
@@ -54,10 +54,11 @@
             "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
+            "mglaman/composer-drupal-lenient": true,
             "php-http/discovery": false,
             "phpstan/extension-installer": true,
             "tbachert/spi": false,
-            "mglaman/composer-drupal-lenient": true
+            "symfony/runtime": true
         },
         "audit": {
             "abandoned": "report",

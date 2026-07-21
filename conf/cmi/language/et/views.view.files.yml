@@ -6,8 +6,6 @@ display:
     display_options:
       title: Failid
       fields:
-        fid:
-          label: Fid
         filename:
           label: Nimi
           separator: ', '
@@ -74,7 +72,6 @@ display:
           label: 'Registreerin moodulit'
         count:
           label: 'Kasutuse loendur'
-          format_plural_string: !!binary MQNAY291bnQ=
       pager:
         options:
           tags:

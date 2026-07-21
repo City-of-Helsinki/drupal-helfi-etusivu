@@ -6,7 +6,10 @@ namespace Drupal\helfi_etusivu\EventSubscriber;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\elasticsearch_connector\Event\AlterSettingsEvent;
-use Drupal\elasticsearch_connector\Event\QueryParamsEvent;
+use Drupal\elasticsearch_connector\Event\FieldMappingEvent;
+use Drupal\elasticsearch_connector\Event\IndexParamsEvent;
+use Drupal\elasticsearch_connector\Event\IndexPreCreateEvent;
+use Drupal\helfi_search\QueryBuilder;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -20,7 +23,9 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents(): array {
     return [
       AlterSettingsEvent::class => 'prepareIndices',
-      QueryParamsEvent::class => 'prepareQueryParams',
+      FieldMappingEvent::class => 'mapPromotionFields',
+      IndexPreCreateEvent::class => 'addPercolatorField',
+      IndexParamsEvent::class => 'addPromotionPercolatorQuery',
     ];
   }
 
@@ -52,35 +57,61 @@ class ElasticsearchEventSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Modify query to match the one we use in react app.
+   * Map the keywords field on the search_promotions index to text analyzers.
    *
-   * @param \Drupal\elasticsearch_connector\Event\QueryParamsEvent $event
-   *   The QueryParams event.
+   * @param \Drupal\elasticsearch_connector\Event\FieldMappingEvent $event
+   *   The FieldMapping event.
    */
-  public function prepareQueryParams(QueryParamsEvent $event): void {
-    $params = $event->getParams();
-
-    if ($event->getIndexName() !== 'news' || empty($params['body']['query']['bool']['must']['query_string'])) {
+  public function mapPromotionFields(FieldMappingEvent $event): void {
+    $field = $event->getField();
+    if ($field->getIndex()->id() !== 'search_promotions' || $field->getFieldIdentifier() !== 'keywords') {
       return;
     }
-
-    $must = $params['body']['query']['bool']['must'];
-    $query = $must['query_string']['query'];
-    $keyword = str_split($query, strlen($query) - 1)[0];
-
-    $params['body']['query']['bool']['should'] = [$must];
-    unset($params['body']['query']['bool']['must']);
-    $params['body']['query']['bool']['minimum_should_match'] = 1;
-    $params['body']['query']['bool']['should'][] = [
-      'wildcard' => [
-        'title.keyword' => '*' . $keyword . '*',
+    $event->setParam([
+      'type' => 'text',
+      'fields' => [
+        'fi' => ['type' => 'text', 'analyzer' => 'finnish'],
+        'sv' => ['type' => 'text', 'analyzer' => 'swedish'],
+        'en' => ['type' => 'text', 'analyzer' => 'english'],
       ],
-    ];
-
-    $event->setParams([
-      'index' => $event->getIndexName(),
-      'body' => $params['body'],
     ]);
+  }
+
+  /**
+   * Add the percolator field to the search_promotions index mapping.
+   */
+  public function addPercolatorField(IndexPreCreateEvent $event): void {
+    if ($event->getIndex()->id() !== 'search_promotions') {
+      return;
+    }
+    $params = $event->getParams();
+    $params['body']['mappings']['properties']['query'] = ['type' => 'percolator'];
+    $event->setParams($params);
+  }
+
+  /**
+   * Store a percolator query on each indexed promotion document.
+   *
+   * @param \Drupal\elasticsearch_connector\Event\IndexParamsEvent $event
+   *   The index params event.
+   */
+  public function addPromotionPercolatorQuery(IndexParamsEvent $event): void {
+    if ($event->getOriginalIndexId() !== 'search_promotions') {
+      return;
+    }
+    $params = $event->getParams();
+    // The bulk body alternates action lines (['index' => [...]]) with the
+    // document source; only the latter carry the indexed fields. Write to
+    // $params['body'][$i] directly: a `foreach (... ?? [] as &$line)` would
+    // iterate a temporary copy and the writes would never reach $params.
+    foreach ($params['body'] ?? [] as $i => $line) {
+      if (isset($line['index']) || empty($line['keywords'])) {
+        continue;
+      }
+      $language = $line['search_api_language'][0] ?? 'en';
+      $params['body'][$i]['query'] = QueryBuilder::buildPromotionPercolatorQuery($line['keywords'], $language);
+    }
+    $event->setParams($params);
   }
 
 }

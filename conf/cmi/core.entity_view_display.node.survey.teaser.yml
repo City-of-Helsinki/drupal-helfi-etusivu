@@ -33,6 +33,7 @@ content:
     weight: 100
     region: content
 hidden:
+  ai_summary: true
   field_publish_externally: true
   field_survey_content_pages: true
   field_survey_link: true

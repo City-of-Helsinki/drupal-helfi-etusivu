@@ -75,6 +75,9 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    */
   public function build() : array {
     $route = $this->routeMatch->getRouteName();
+    if (!$route) {
+      return [];
+    }
     $routeInformation = RouteInformationEnum::fromRoute($route);
     if (!$routeInformation) {
       return [];

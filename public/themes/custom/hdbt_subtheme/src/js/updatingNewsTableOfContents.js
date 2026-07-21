@@ -23,9 +23,7 @@ const newsHeadings = (headings) => {
       return false;
     }
 
-    const isNewsHeading = content.matches(
-      '.component--news-update .component__title',
-    );
+    const isNewsHeading = content.matches('.component--news-update .component__title');
     const hasTimeSibling = content.nextElementSibling?.tagName === 'TIME';
 
     return isNewsHeading && hasTimeSibling;
@@ -81,19 +79,12 @@ const createNewsListItem = ({ content, anchorName }) => {
     attach(context) {
       // Only run once when the full document is loaded, not during AJAX updates
       // or if we've already initialized the table of contents.
-      if (
-        context !== document ||
-        window.updatingNewsTableOfContentsInitialized
-      ) {
+      if (context !== document || window.updatingNewsTableOfContentsInitialized) {
         return;
       }
 
-      const tableOfContentsNewsUpdates = context.getElementById(
-        'helfi-toc-table-of-contents-news-updates',
-      );
-      const tableOfContentsList = context.querySelector(
-        '#helfi-toc-table-of-contents-list > ul',
-      );
+      const tableOfContentsNewsUpdates = context.getElementById('helfi-toc-table-of-contents-news-updates');
+      const tableOfContentsList = context.querySelector('#helfi-toc-table-of-contents-list > ul');
 
       // Stop if the required table of contents elements don't exist in the DOM.
       if (!tableOfContentsNewsUpdates || !tableOfContentsList) {
@@ -106,9 +97,7 @@ const createNewsListItem = ({ content, anchorName }) => {
       }
 
       // Get all news update headings that have a TIME element as next sibling.
-      const headings = newsHeadings(
-        Drupal.tableOfContents.getInjectedHeadings(),
-      );
+      const headings = newsHeadings(Drupal.tableOfContents.getInjectedHeadings());
 
       // Return if no news headings are found.
       if (!headings.length) {

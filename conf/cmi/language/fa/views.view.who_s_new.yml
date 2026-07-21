@@ -1,7 +1,7 @@
 label: 'کاربران جدید'
 display:
   default:
-    display_title: پیش‌فرض
+    display_title: Default
     display_options:
       title: 'کاربران جدید'
       exposed_form:

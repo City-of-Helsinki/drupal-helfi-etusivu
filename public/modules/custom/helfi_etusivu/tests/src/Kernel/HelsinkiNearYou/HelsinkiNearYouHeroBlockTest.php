@@ -25,7 +25,7 @@ class HelsinkiNearYouHeroBlockTest extends KernelTestBase {
     'system',
     'user',
     'block',
-    'big_pipe',
+    'helfi_api_base',
     'helfi_etusivu',
   ];
 

@@ -110,3 +110,85 @@ msgstr "Etäisyys"
 msgctxt "Helsinki near you"
 msgid "Something went wrong while getting the results. You may try searching again."
 msgstr "Tuloksien hakemisessa tapahtui virhe. Voit kokeilla hakea uudelleen."
+
+msgctxt "Site search"
+msgid "Search term or question"
+msgstr "Hakusana tai kysymys"
+
+msgctxt "Site search"
+msgid "Show only"
+msgstr "Näytä vain"
+
+msgctxt "Site search"
+msgid "News"
+msgstr "Uutiset"
+
+msgctxt "Site search"
+msgid "Pages"
+msgstr "Perussivut"
+
+msgctxt "Site search"
+msgid "Landing pages"
+msgstr "Laskeutumissivut"
+
+msgctxt "Site search"
+msgid "Other content"
+msgstr "Muut sisällöt"
+
+msgctxt "Site search"
+msgid "Filter search results"
+msgstr "Rajaa hakutuloksia"
+
+msgctxt "Site search submit"
+msgid "Filter search results"
+msgstr "Rajaa hakua"
+
+msgctxt "Site search"
+msgid "The search uses artificial intelligence."
+msgstr "Haku käyttää tekoälyä."
+
+msgctxt "Site search"
+msgid "Read about the use of artificial intelligence in search."
+msgstr "Lue tekoälyn käytöstä haussa."
+
+msgctxt "Site search"
+msgid "@count result"
+msgid_plural "@count results"
+msgstr[0] "@count hakutulos"
+msgstr[1] "@count hakutulosta"
+
+msgctxt "Site search"
+msgid "Published"
+msgstr "Julkaistu"
+
+msgctxt "Site search"
+msgid "Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information."
+msgstr "Valinnoillasi ei löytynyt tuloksia. Käytä erillisiä hakupalveluja, jos etsit avoimia työpaikkoja, tapahtumia, päätöksiä tai yhteystietoja."
+
+msgctxt "Site search"
+msgid "Looking for these search services?"
+msgstr "Etsitkö näitä hakupalveluja?"
+
+msgctxt "Site search"
+msgid "Open jobs"
+msgstr "Avoimet työpaikat"
+
+msgctxt "Site search"
+msgid "Events"
+msgstr "Tapahtumat"
+
+msgctxt "Site search"
+msgid "Decisions"
+msgstr "Päätökset"
+
+msgctxt "Site search"
+msgid "Contact information"
+msgstr "Yhteystiedot"
+
+msgctxt "Site search"
+msgid "Helsinki near you"
+msgstr "Helsinki lähelläsi"
+
+msgctxt "Site search"
+msgid "No results"
+msgstr "Ei hakutuloksia"

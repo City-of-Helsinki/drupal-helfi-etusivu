@@ -35,8 +35,11 @@ final readonly class Client {
    *
    * @return string
    *   Resulting api url with params a query string
+   *
+   * @throws \InvalidArgumentException
+   *   If the all_ongoing_AND filter is used.
    */
-  public function getUri(string $langcode, array $options, int $pageSize) : string {
+  public static function getUri(string $langcode, array $options, int $pageSize) : string {
     $defaultOptions = [
       'event_type' => 'General',
       'format' => 'json',
@@ -51,8 +54,13 @@ final readonly class Client {
 
     $options = array_merge($defaultOptions, $options);
 
-    if (!isset($options['all_ongoing_AND'])) {
-      $options['all_ongoing'] = 'true';
+    // Filter ongoing events for Helsinki.
+    $options['ongoing'] = 'true';
+    $options['division'] = 'kunta:helsinki';
+
+    // Do not allow the all_ongoing_AND filter.
+    if (isset($options['all_ongoing_AND'])) {
+      throw new \InvalidArgumentException('The all_ongoing_AND filter is not allowed. Use full_text instead.');
     }
 
     // Linked events URLs should end with '/' (URLs without '/' are redirect).
@@ -77,7 +85,7 @@ final readonly class Client {
     $map = [];
 
     try {
-      $data = $this->httpClient->request('GET', $this->getUri($langcode, $options, $limit), [
+      $data = $this->httpClient->request('GET', self::getUri($langcode, $options, $limit), [
         RequestOptions::TIMEOUT => 10,
       ]);
       $json = json_decode($data->getBody()->getContents(), TRUE);

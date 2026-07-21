@@ -4,7 +4,7 @@ display:
     display_options:
       use_more_text: 'Дивитися всі новини'
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: 'Останні новини'
       fields:

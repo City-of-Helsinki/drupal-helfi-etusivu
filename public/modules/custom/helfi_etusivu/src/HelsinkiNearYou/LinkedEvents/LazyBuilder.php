@@ -14,7 +14,7 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\DTO\TargetGroup;
 final readonly class LazyBuilder implements TrustedCallbackInterface {
 
   public function __construct(
-    private Client $httpClient,
+    private Client $client,
   ) {
   }
 
@@ -49,7 +49,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       'dwithin_metres' => 2000,
     ], TargetGroup::Adult->getQueryFilters());
 
-    $data = $this->httpClient
+    $data = $this->client
       ->get($query, $langcode, $limit);
 
     foreach ($data->items as $item) {

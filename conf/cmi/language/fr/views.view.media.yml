@@ -2,7 +2,7 @@ label: Média
 description: 'Trouver et gérer des media.'
 display:
   default:
-    display_title: 'Par défaut'
+    display_title: Default
     display_options:
       title: Média
       fields:

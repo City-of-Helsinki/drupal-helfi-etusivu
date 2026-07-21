@@ -1,10 +1,13 @@
 label: 'واژه طبقه‌بندی'
 display:
   default:
-    display_title: پیش‌فرض
+    display_title: Default
     display_options:
       pager:
         options:
+          tags:
+            next: Next
+            previous: Previous
           expose:
             items_per_page_label: 'آیتم‌ها در هر صفحه'
             items_per_page_options_all_label: '- همه -'

@@ -1,0 +1,32 @@
+uuid: 19c4ccaa-d94f-4591-8308-6e267f507254
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+    - image_style_quality
+_core:
+  default_config_hash: 7W0q7vrGjz2tHzHz3EMIXuY--W4V0kN5U8YWypeA5ts
+name: 1_5_352w_236h_lq
+label: 1.5_352w_236h_LQ
+effects:
+  79253509-4c85-4ce6-a29f-1af95a942779:
+    uuid: 79253509-4c85-4ce6-a29f-1af95a942779
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 352
+      height: 236
+      crop_type: focal_point
+  5fadec91-be4d-4835-9849-65694aab2989:
+    uuid: 5fadec91-be4d-4835-9849-65694aab2989
+    id: image_style_quality
+    weight: 2
+    data:
+      quality: 65
+  79a7c5b0-4e1e-437c-91ad-e7ca08d2e76a:
+    uuid: 79a7c5b0-4e1e-437c-91ad-e7ca08d2e76a
+    id: image_convert
+    weight: -10
+    data:
+      extension: webp

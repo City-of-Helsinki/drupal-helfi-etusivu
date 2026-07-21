@@ -19,7 +19,7 @@ display:
             format_custom_false: 'غير منشور'
             format_custom_true: منشور
         changed:
-          label: التحديث
+          label: 'تم التحديث'
         langcode:
           label: اللغة
           separator: ', '
@@ -34,7 +34,7 @@ display:
             last: 'الأخيرة »'
       exposed_form:
         options:
-          submit_button: انتقاء
+          submit_button: تصفية
           reset_button_label: 'إعادة الضبط'
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي

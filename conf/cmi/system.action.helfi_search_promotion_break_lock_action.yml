@@ -1,0 +1,11 @@
+uuid: a1d0e109-b932-4ebf-9469-a30b3e4518cc
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_lock
+id: helfi_search_promotion_break_lock_action
+label: 'Break lock helfi_search_promotion'
+type: helfi_search_promotion
+plugin: 'entity:break_lock:helfi_search_promotion'
+configuration: {  }

@@ -7,7 +7,7 @@ dependencies:
   module:
     - ckeditor5
 _core:
-  default_config_hash: CbXr91M60wTYziM5ZHPNPrGb9khkUYjzkVVdyE3re9o
+  default_config_hash: oE8ZPS7LMQvOJv0JDM2AJcGyPAti79fl6vzr3v-GWM0
 format: minimal
 editor: ckeditor5
 settings:
@@ -21,6 +21,8 @@ settings:
       - '|'
       - link
       - helfiLanguageSelector
+      - '|'
+      - aiToneCheck
       - '|'
       - sourceEditing
   plugins:
@@ -128,6 +130,16 @@ settings:
           weight: 18
           search: '<a name="[^"]*">(.*?)<\/a>'
           replace: $1
+        -
+          enabled: true
+          weight: 19
+          search: '(<a\b[^>]*?)\s+target\s*=\s*("_blank"|_blank)'
+          replace: $1
+        -
+          enabled: true
+          weight: 20
+          search: '&nbsp;'
+          replace: ' '
     ckeditor5_sourceEditing:
       allowed_tags:
         - '<p data-chat-trigger>'

@@ -4,6 +4,14 @@ global-styling:
     theme:
       dist/css/styles.min.css: {}
 
+site-search:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/site-search.min.js: { preprocess: false, minified: true }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
+
 updating-news-table-of-contents:
   js:
     dist/js/updatingNewsTableOfContents.min.js: {}

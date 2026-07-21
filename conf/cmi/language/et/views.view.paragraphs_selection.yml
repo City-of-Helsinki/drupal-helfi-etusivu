@@ -1,0 +1,31 @@
+display:
+  default:
+    display_title: Vaikimisi
+    display_options:
+      fields:
+        id:
+          separator: ', '
+        label:
+          separator: ', '
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page_label: 'Kirjeid lehel'
+            items_per_page_options_all_label: '- Kõik -'
+            offset_label: Nihe
+      exposed_form:
+        options:
+          submit_button: Rakenda
+          reset_button_label: Tühista
+          exposed_sorts_label: 'Sorteerimise alus'
+          sort_asc_label: Kasvav
+          sort_desc_label: Kahanev
+      filters:
+        label:
+          expose:
+            label: Pealkiri
+  entity_reference:
+    display_title: 'Olemi viide'

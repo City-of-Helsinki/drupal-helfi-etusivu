@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\helfi_hakuvahti\DrupalSettings;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -142,7 +143,7 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
       $variables['#attached']['drupalSettings']['helfi_react_search']['sentry_dsn_react'] = $sentry_dsn_react;
     }
 
-    $feed_base_url = Url::fromRoute('view.elastic_rss_feed.feed_1')->toString();
+    $feed_base_url = Url::fromRoute('rest.helfi_etusivu_news_rss.GET')->toString();
 
     if ($feed_base_url) {
       $feed_link = [
@@ -158,6 +159,19 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
 
       $variables['#attached']['html_head'][] = [$feed_link, 'feed_link'];
       $variables['#attached']['drupalSettings']['helfi_news_archive']['feed_base_url'] = $feed_base_url;
+    }
+
+    // Apply hakuvahti settings to expose them to the React frontend.
+    \Drupal::service(DrupalSettings::class)->applyTo($variables);
+
+    // Use the news_archive config entity so its texts are isolated
+    // from the shared 'default' entity.
+    if (!empty($variables['#attached']['drupalSettings']['hakuvahti'])) {
+      $variables['#attached']['drupalSettings']['hakuvahti']['apiUrl'] = Url::fromRoute(
+        'helfi_hakuvahti.subscribe',
+        [],
+        ['query' => ['config' => 'news_archive']],
+      )->toString();
     }
   }
 }
@@ -230,27 +244,4 @@ function hdbt_subtheme_preprocess_node__news_item(array &$variables): void {
   if ($variables['node']->get('field_news_item_updating_news')->getValue()) {
     $variables['updating_news'] = TRUE;
   }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_subtheme_preprocess_status_messages(&$variables): void {
-  // This is not something I am very proud of but these
-  // error messages require changes to the error message header.
-  $error_messages = [
-    'Make sure the address is written correctly. You can also search using a nearby street number.',
-    'Se till att adressen är skriven korrekt. Du kan också söka med ett närliggande gatunummer.',
-    'Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esimerkiksi viereisellä katunumerolla.',
-  ];
-
-  if (
-    !isset($variables['message_list']['error']) ||
-    count($variables['message_list']['error']) !== 1 ||
-    !in_array(current($variables['message_list']['error']), $error_messages)
-  ) {
-    return;
-  }
-
-  $variables['status_headings']['error'] = t('No results for the address entered', [], ['context' => 'Helsinki near you']);
 }

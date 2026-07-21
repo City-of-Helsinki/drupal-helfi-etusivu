@@ -91,4 +91,8 @@ display:
         uid:
           exception:
             title: Alle
+      empty:
+        area_text_custom:
+          content: 'Keine zeitgesteuerten Inhalte für den Benutzer {{ arguments.uid }}'
+      display_comment: 'Der Zugriff auf die Benutzeransicht wird über SchedulerRouteSubscriber::alterRoutes() gesteuert. Das High-Level-Recht "access content" wird hinzugefügt, um das security_review-Modul zu erfüllen'
     display_title: Benutzerprofil-Reiter

@@ -2,7 +2,7 @@ label: “在线用户”区块
 description: 显示最近活跃用户和活跃用户总数。
 display:
   default:
-    display_title: 默认
+    display_title: Default
     display_options:
       title: 在线用户
       exposed_form:
