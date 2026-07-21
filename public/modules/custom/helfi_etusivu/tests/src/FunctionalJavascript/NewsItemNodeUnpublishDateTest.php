@@ -368,9 +368,9 @@ JS;
         if (!document.getElementById('news-item-updating-news-widget')) {
           const wrap = document.createElement('div');
           wrap.id = 'news-item-updating-news-widget';
-          // Date input used by the behavior:
+          wrap.className = 'paragraph-type--news-update';
           const input = document.createElement('input');
-          input.type = 'date';
+          input.type = 'text';
           input.className = 'js-date';
           wrap.appendChild(input);
           // Add more button using the selector pattern listened by the behavior:
@@ -387,58 +387,31 @@ JS;
       })();
 JS;
     $this->getSession()->executeScript($js);
-    $assert_session->assertWaitOnAjaxRequest();
   }
 
   /**
-   * Set the date in the updating news widget and dispatch a trusted change.
+   * Set the date in the updating news widget with a trusted change.
    */
   private function setUpdatingWidgetDate(string $yyyy_mm_dd): void {
-    /** @var \Drupal\FunctionalJavascriptTests\JSWebAssert $assert_session */
     $assert_session = $this->assertSession();
-
-    $selector = '#news-item-updating-news-widget input[type="date"], #news-item-updating-news-widget input.js-date';
+    $selector = '#news-item-updating-news-widget input.js-date';
     $escaped = addslashes($selector);
-    $date = addslashes($yyyy_mm_dd);
 
     $this->getSession()->wait(5000, "document.querySelector('{$escaped}') !== null");
 
-    $input = $assert_session->elementExists('css', $selector);
-    $input->setValue($date);
-    $js = <<<JS
-      (function () {
-        const el = document.querySelector('{$escaped}');
-        if (!el) { return; }
-        const ev = new Event('change', { bubbles: true });
-        Object.defineProperty(ev, 'isTrusted', { get: function() { return true; } });
-        el.dispatchEvent(ev);
-      })();
-JS;
-    $this->getSession()->executeScript($js);
-    $assert_session->assertWaitOnAjaxRequest();
+    $assert_session->elementExists('css', $selector)->setValue($yyyy_mm_dd);
+    $assert_session->elementExists('css', 'input[name="title[0][value]"]')->click();
   }
 
   /**
    * Fire the mousedown on the "Add more" button.
    */
   private function triggerMouseDownOnAddMore(): void {
-    /** @var \Drupal\FunctionalJavascriptTests\JSWebAssert $assert_session */
-    $assert_session = $this->assertSession();
     $selector = 'input[name*="field_news_item_updating_news_news_update_add_more"]';
     $escaped = addslashes($selector);
 
     $this->getSession()->wait(5000, "document.querySelector('{$escaped}') !== null");
-    $js = <<<JS
-      (function () {
-        const btn = document.querySelector('{$escaped}');
-        if (!btn) { return; }
-        const ev = new MouseEvent('mousedown', { bubbles: true });
-        Object.defineProperty(ev, 'isTrusted', { get: function() { return true; } });
-        btn.dispatchEvent(ev);
-      })();
-JS;
-    $this->getSession()->executeScript($js);
-    $assert_session->assertWaitOnAjaxRequest();
+    $this->assertSession()->elementExists('css', $selector)->click();
   }
 
   /**
@@ -458,7 +431,6 @@ JS;
       })();
 JS;
     $this->getSession()->executeScript($js);
-    $assert_session->assertWaitOnAjaxRequest();
   }
 
   /**
