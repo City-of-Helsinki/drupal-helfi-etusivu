@@ -315,8 +315,9 @@ JS;
    * Helper function to assert an input value matches the expected value.
    */
   private function assertInputValue(string $selector, string $expected): void {
-    $element = $this->assertSession()->elementExists('css', $selector);
-    $this->assertSame($expected, (string) $element->getValue());
+    $value = $this->assertSession()->elementExists('css', $selector)->getValue();
+    $this->assertIsString($value);
+    $this->assertSame($expected, $value);
   }
 
   /**
@@ -324,7 +325,7 @@ JS;
    */
   private function assertCssHasClass(string $selector, string $class): void {
     $el = $this->assertSession()->elementExists('css', $selector);
-    $this->assertStringContainsString($class, (string) $el->getAttribute('class') ?? '');
+    $this->assertStringContainsString($class, (string) $el->getAttribute('class'));
   }
 
   /**
@@ -332,7 +333,7 @@ JS;
    */
   private function assertCssLacksClass(string $selector, string $class): void {
     $el = $this->assertSession()->elementExists('css', $selector);
-    $classes = (string) $el->getAttribute('class') ?? '';
+    $classes = (string) $el->getAttribute('class');
     $this->assertStringNotContainsString($class, $classes);
   }
 
