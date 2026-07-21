@@ -232,6 +232,8 @@ function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) : void {
 
 /**
  * Implements hook_preprocess_HOOK().
+ *
+ * @phpstan-param array<mixed> $variables
  */
 function hdbt_subtheme_preprocess_page(array &$variables): void {
   /** @var \Drupal\Core\Routing\AdminContext $admin_context */
