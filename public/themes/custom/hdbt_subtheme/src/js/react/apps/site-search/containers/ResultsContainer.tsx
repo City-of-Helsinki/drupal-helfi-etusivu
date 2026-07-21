@@ -79,7 +79,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   }
 
   if ((isLoading && !data) || isLoadingNewSearch) {
-    return <GhostList simple modifierClass={resultsClassName} count={Number(AppSettings.SIZE)} />;
+    return <GhostList variant='simple' modifierClass={resultsClassName} count={Number(AppSettings.SIZE)} />;
   }
 
   if (error) {
