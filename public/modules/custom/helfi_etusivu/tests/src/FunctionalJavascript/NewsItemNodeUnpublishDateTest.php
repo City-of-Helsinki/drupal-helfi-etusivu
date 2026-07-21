@@ -42,6 +42,15 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
+  protected static $configSchemaCheckerExclusions = [
+    'pathauto.pattern.news_item_en',
+    'pathauto.pattern.news_item_fi',
+    'pathauto.pattern.news_item_sv',
+  ];
+
+  /**
+   * {@inheritdoc}
+   */
   protected $defaultTheme = 'claro';
 
   /**
