@@ -121,9 +121,8 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
     $this->testInitialAutoSetWhenScheduled();
     $this->testStatusToggleClearsScheduleAndPrefills();
     $this->testPublishOnChangeIgnoredWhenPublished();
-    // The tests below will fail. They are not implemented yet.
-    // $this->testUpdatingWidgetOnlyMovesForwardAndShowsHint();
-    // $this->testAddMorePrefillAndManualClearHidesHint();
+    $this->testUpdatingWidgetOnlyMovesForwardAndShowsHint();
+    $this->testAddMorePrefillAndManualClearHidesHint();
   }
 
   /**
@@ -233,12 +232,6 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
 
     // Ensure the widget exists in DOM and behaviors are attached.
     $this->ensureUpdatingWidgetExists();
-
-    // @todo Remove.
-    $debug = $page->find('css', '[name="field_lead_in[0][value]"]');
-    var_dump([
-      'debug' => $debug ? $debug->getValue() : 'N/A',
-    ]);
 
     // Propose an earlier date via widget, the date should not change.
     $earlier = new \DateTimeImmutable('2024-12-01', new \DateTimeZone('UTC'));
@@ -354,11 +347,7 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
     $js = <<<JS
       (function () {
         const form = document.querySelector('form') || document;
-        const debug = form.querySelector('[name="field_lead_in[0][value]"]');
-        debug.value += 'Form: ' + form + '\\n';
         if (!document.getElementById('news-item-updating-news-widget')) {
-        debug.value += 'Reaches the widget creation' + form + '\\n';
-
           const wrap = document.createElement('div');
           wrap.id = 'news-item-updating-news-widget';
           // Date input used by the behavior:
@@ -373,8 +362,6 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
           addMore.value = 'Add more';
           form.appendChild(wrap);
           form.appendChild(addMore);
-        debug.value += 'Reaches the widget creation end: ' + form + '\\n';
-
         }
         if (typeof Drupal !== 'undefined' && Drupal.attachBehaviors) {
           Drupal.attachBehaviors(document, window.drupalSettings || {});
