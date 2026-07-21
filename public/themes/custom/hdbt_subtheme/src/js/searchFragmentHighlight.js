@@ -2,10 +2,9 @@
  * Highlight a content section when arriving from site search.
  *
  * Search result links append an ":hl" marker to the fragment
- * (e.g. #my-heading:hl). That marker is client-only (never sent to
- * Varnish). On arrival we strip it, scroll to the heading, and use the
- * CSS Highlight API from that heading through the end of the wrapping
- * .component__container.
+ * (e.g. #my-heading:hl). On arrival we strip the marker, scroll to
+ * the heading, and use the CSS Highlight API from that heading through the
+ * end of the wrapping .component__container.
  *
  * Runs after headingIdInjector has assigned IDs
  * (helfiHeadingIdsInjected event).
