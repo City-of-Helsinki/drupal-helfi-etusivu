@@ -215,16 +215,16 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
    */
   protected function testUpdatingWidgetOnlyMovesForwardAndShowsHint(): void {
     $this->drupalGet('node/add/news_item');
-    $page = $this->getSession()->getPage();
     $yesterday = new \DateTimeImmutable('yesterday', new \DateTimeZone('UTC'));
-    $yesterdayExpected = $this->addMonths($yesterday, 11)->format('Y-m-d');
+    // Match the 06:00 UTC anchor the handler uses for the publish date.
+    $yesterdayExpected = $this->addMonths($yesterday->setTime(6, 0, 0), 11)->format('Y-m-d');
 
     // Open the scheduling options.
     $this->openSchedulingOptions();
 
     // Fill in the published on date.
-    $page->fillField('publish_on[0][value][date]', $yesterday->format('m/d/Y'));
-    $page->fillField('publish_on[0][value][time]', $yesterday->format('H:i:s'));
+    $this->setScheduleValue('input[name="publish_on[0][value][date]"]', $yesterday->format('Y-m-d'));
+    $this->setScheduleValue('input[name="publish_on[0][value][time]"]', $yesterday->format('H:i:s'));
 
     // Check that the unpublish date is tomorrow + 11 months.
     $this->waitForInputValue('input[name="unpublish_on[0][value][date]"]', $yesterdayExpected);
@@ -281,6 +281,24 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
     $this->clearInputAndDispatch('input[name="unpublish_on[0][value][date]"]');
     $this->assertInputValue('input[name="unpublish_on[0][value][date]"]', '');
     $this->assertCssHasClass('.news-item-unpublish-hint', 'is-hidden');
+  }
+
+  /**
+   * Set a date or time input value regardless of browser locale.
+   */
+  private function setScheduleValue(string $selector, string $value): void {
+    $escaped = addslashes($selector);
+    $val = addslashes($value);
+    $js = <<<JS
+      (function () {
+        const el = document.querySelector('{$escaped}');
+        if (!el) { return; }
+        el.value = '{$val}';
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      })();
+JS;
+    $this->getSession()->executeScript($js);
   }
 
   /**
