@@ -13,7 +13,7 @@ display:
           label: مفعل
           separator: ', '
         created:
-          label: الإنشاء
+          label: 'تم الإنشاء'
       pager:
         options:
           tags:
@@ -27,7 +27,7 @@ display:
             offset_label: الإزاحة
       exposed_form:
         options:
-          submit_button: انتقاء
+          submit_button: تصفية
           reset_button_label: 'إعادة الضبط'
           exposed_sorts_label: 'الترتيب حسب'
           sort_asc_label: تصاعدي

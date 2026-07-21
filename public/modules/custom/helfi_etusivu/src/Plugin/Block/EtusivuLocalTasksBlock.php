@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Plugin\Block;
 
-use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Menu\Plugin\Block\LocalTasksBlock;
-use Drupal\Core\Session\AccountProxyInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\helfi_users\Plugin\Block\LocalTasksBlock;
 
 /**
  * Class to override core's LocalTaskBlock.
@@ -19,33 +16,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class EtusivuLocalTasksBlock extends LocalTasksBlock {
 
   /**
-   * Language-manager interface.
-   *
-   * @var \Drupal\Core\Language\LanguageManagerInterface
-   */
-  protected LanguageManagerInterface $languageManager;
-
-  /**
-   * The current user.
-   *
-   * @var \Drupal\Core\Session\AccountProxyInterface
-   */
-  protected AccountProxyInterface $currentUser;
-
-  /**
    * {@inheritDoc}
+   *
+   * @phpstan-return array<mixed>
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
-    $instance->languageManager = $container->get('language_manager');
-    $instance->currentUser = $container->get('current_user');
-    return $instance;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public function build() {
+  public function build(): array {
     $build = parent::build();
 
     if (!isset($build['#primary']) || !is_array($build['#primary'])) {

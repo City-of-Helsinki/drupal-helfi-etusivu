@@ -7,7 +7,7 @@ dependencies:
   module:
     - ckeditor5
 _core:
-  default_config_hash: UZ7ojJKs8sEbFs15e0Ub1i_p9w-K20fG40pkpotEWUw
+  default_config_hash: i1fLaAzni2rKBDARlCWA1xa79zo_RYF-8oQ3x9wxgfM
 format: full_html
 editor: ckeditor5
 settings:
@@ -32,6 +32,8 @@ settings:
       - '|'
       - undo
       - redo
+      - '|'
+      - aiToneCheck
       - '|'
       - sourceEditing
   plugins:
@@ -146,6 +148,16 @@ settings:
           weight: 18
           search: '<a name="[^"]*">(.*?)<\/a>'
           replace: $1
+        -
+          enabled: true
+          weight: 19
+          search: '(<a\b[^>]*?)\s+target\s*=\s*("_blank"|_blank)'
+          replace: $1
+        -
+          enabled: true
+          weight: 20
+          search: '&nbsp;'
+          replace: ' '
     ckeditor5_sourceEditing:
       allowed_tags:
         - '<figure tabindex>'

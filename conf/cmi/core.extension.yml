@@ -3,10 +3,11 @@ _core:
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
+  ai: 0
+  ai_provider_azure: 0
   allowed_formats: 0
   basic_auth: 0
   big_pipe: 0
-  big_pipe_sessionless: 0
   block: 0
   breakpoint: 0
   ckeditor5: 0
@@ -20,6 +21,7 @@ module:
   content_lock: 0
   crop: 0
   csp: 0
+  csp_log: 0
   datetime: 0
   diff: 0
   draggableviews: 0
@@ -46,6 +48,7 @@ module:
   hdbt_admin_tools: 0
   hdbt_cookie_banner: 0
   health_check: 0
+  helfi_ai: 0
   helfi_alt_lang_fallback: 0
   helfi_api_base: 0
   helfi_azure_fs: 0
@@ -55,7 +58,9 @@ module:
   helfi_etusivu_config: 0
   helfi_etusivu_entities: 0
   helfi_global_navigation: 0
+  helfi_hakuvahti: 0
   helfi_image_styles: 0
+  helfi_llms_txt: 0
   helfi_media: 0
   helfi_media_chart: 0
   helfi_media_map: 0
@@ -137,7 +142,6 @@ module:
   openapi_ui_redoc: 0
   openid_connect: 0
   options: 0
-  page_cache: 0
   paragraphs_asymmetric_translation_widgets: 0
   paragraphs_library: 0
   path: 0
@@ -166,7 +170,6 @@ module:
   social_media: 0
   sophron: 0
   stage_file_proxy: 0
-  stomp: 0
   system: 0
   taxonomy: 0
   telephone: 0
@@ -186,6 +189,8 @@ module:
   views_rss: 0
   views_rss_core: 0
   views_ui: 0
+  webp: 0
+  wpf: 0
   helfi_etusivu: 1
   helfi_navigation: 1
   pathauto: 1

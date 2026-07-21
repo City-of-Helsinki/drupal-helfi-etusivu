@@ -1,0 +1,25 @@
+uuid: 6cba9df6-40d7-4b00-b2cb-d824b2e1623c
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+_core:
+  default_config_hash: v7DvkKEMGcI0PPe9G18ZxpD04w46tcfGoZ-6VeQ9HUo
+name: 2_3_575w_250h
+label: 2.3_575w_250h
+effects:
+  e7da735e-aa35-463b-b99a-b61aba89a53f:
+    uuid: e7da735e-aa35-463b-b99a-b61aba89a53f
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 575
+      height: 250
+      crop_type: focal_point
+  79a7c5b0-4e1e-437c-91ad-e7ca08d2e76a:
+    uuid: 79a7c5b0-4e1e-437c-91ad-e7ca08d2e76a
+    id: image_convert
+    weight: -10
+    data:
+      extension: webp

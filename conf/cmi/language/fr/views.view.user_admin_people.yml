@@ -2,7 +2,7 @@ label: Personnes
 description: 'Trouver et gérer les personnes interagissant avec votre site.'
 display:
   default:
-    display_title: 'Par défaut'
+    display_title: Default
     display_options:
       title: Personnes
       fields:
@@ -19,9 +19,6 @@ display:
           label: Rôles
         created:
           label: 'Membre depuis'
-          settings:
-            future_format: '@interval'
-            past_format: '@interval'
         access:
           label: 'Dernier accès'
           settings:

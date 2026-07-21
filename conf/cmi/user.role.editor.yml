@@ -25,8 +25,8 @@ dependencies:
     - entity_usage
     - file
     - filter
+    - helfi_ai
     - helfi_api_base
-    - helfi_etusivu
     - locale
     - media
     - menu_link_attributes
@@ -64,7 +64,6 @@ permissions:
   - 'administer nodes'
   - 'administer paragraphs library'
   - 'administer redirects'
-  - 'administer search promotions'
   - 'administer url aliases'
   - 'cancel account'
   - 'change own username'
@@ -173,6 +172,8 @@ permissions:
   - 'update any media'
   - 'update content translations'
   - 'update media'
+  - 'use helfi ai title suggestion'
+  - 'use helfi ai tone check'
   - 'use menu link attributes'
   - 'use text format full_html'
   - 'use text format minimal'

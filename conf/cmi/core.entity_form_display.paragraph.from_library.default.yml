@@ -7,6 +7,7 @@ dependencies:
     - paragraphs.paragraphs_type.from_library
   module:
     - select2
+    - paragraphs_library
 _core:
   default_config_hash: Bea-FFbHlBuiYLW8Et0hLK6VNECewxpIchDbOtC7IDo
 id: paragraph.from_library.default
@@ -19,7 +20,8 @@ content:
     weight: 0
     region: content
     settings:
-      autocomplete: false
+      width: 100%
+      autocomplete: true
       match_operator: CONTAINS
       match_limit: 20
     third_party_settings: {  }

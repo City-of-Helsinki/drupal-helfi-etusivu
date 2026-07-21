@@ -2,7 +2,7 @@ label: Люди
 description: 'Пошук людей, які взаємодіють з сайтом, і керування ними.'
 display:
   default:
-    display_title: Базово
+    display_title: Default
     display_options:
       title: Люди
       fields:
@@ -19,9 +19,6 @@ display:
           label: Ролі
         created:
           label: 'Зареєстрований вже'
-          settings:
-            future_format: '@interval'
-            past_format: '@interval'
         access:
           label: 'Останній доступ'
           settings:

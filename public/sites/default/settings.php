@@ -12,6 +12,7 @@ else {
   ini_set('zend.enable_gc', 'Off');
 }
 
+$env = getenv('APP_ENV');
 
 if (!function_exists('drupal_get_env')) {
   /**
@@ -155,7 +156,7 @@ if ($blob_storage_name = getenv('AZURE_BLOB_STORAGE_NAME')) {
 
 // Make sure project name and app env are defined in GitHub actions too.
 if ($github_repository = getenv('GITHUB_REPOSITORY')) {
-  if (!getenv('APP_ENV')) {
+  if (!$env) {
     putenv('APP_ENV=ci');
   }
 
@@ -163,7 +164,7 @@ if ($github_repository = getenv('GITHUB_REPOSITORY')) {
     putenv('PROJECT_NAME=' . $github_repository);
   }
 }
-$config['helfi_api_base.environment_resolver.settings']['environment_name'] = getenv('APP_ENV');
+$config['helfi_api_base.environment_resolver.settings']['environment_name'] = $env;
 $config['helfi_api_base.environment_resolver.settings']['project_name'] = getenv('PROJECT_NAME');
 
 if ($varnish_host = getenv('DRUPAL_VARNISH_HOST')) {
@@ -172,7 +173,7 @@ if ($varnish_host = getenv('DRUPAL_VARNISH_HOST')) {
 
   $varnish_backend = parse_url($drush_options_uri, PHP_URL_HOST);
 
-  if (getenv('APP_ENV') === 'local') {
+  if ($env === 'local') {
     // Varnish backend is something like varnish-helfi-kymp.docker.so on
     // local env.
     $varnish_backend = 'varnish-' . $varnish_backend;
@@ -227,15 +228,6 @@ if ($varnish_host = getenv('DRUPAL_VARNISH_HOST')) {
     }
   }
 }
-$stage_file_proxy_origin = getenv('STAGE_FILE_PROXY_ORIGIN');
-$stage_file_proxy_dir = getenv('STAGE_FILE_PROXY_ORIGIN_DIR');
-
-if ($stage_file_proxy_origin || $stage_file_proxy_dir) {
-  $config['stage_file_proxy.settings']['origin'] = $stage_file_proxy_origin ?: 'https://stplattaprod.blob.core.windows.net';
-  $config['stage_file_proxy.settings']['origin_dir'] = $stage_file_proxy_dir;
-  $config['stage_file_proxy.settings']['hotlink'] = FALSE;
-  $config['stage_file_proxy.settings']['use_imagecache_root'] = FALSE;
-}
 
 if ($drupal_pubsub_vault = getenv('DRUPAL_PUBSUB_VAULT')) {
   $config['helfi_api_base.api_accounts']['vault'][] = [
@@ -256,42 +248,6 @@ if ($drupal_navigation_vault = getenv('DRUPAL_NAVIGATION_VAULT')) {
 // Override session suffix when present.
 if ($session_suffix = getenv('DRUPAL_SESSION_SUFFIX')) {
   $config['helfi_proxy.settings']['session_suffix'] = $session_suffix;
-}
-
-$amq_destination = drupal_get_env([
-  'PROJECT_NAME',
-]);
-$amq_brokers = getenv('AMQ_BROKERS');
-
-if ($amq_brokers && $amq_destination) {
-  $settings['stomp']['default'] = [
-    'clientId' => getenv('AMQ_CLIENT_ID') ?: 'client_ ' . $amq_destination,
-    'login' => getenv('AMQ_USER') ?: NULL,
-    'passcode' => getenv('AMQ_PASSWORD') ?: NULL,
-    'destination' => sprintf('/queue/%s', $amq_destination),
-    'brokers' => $amq_brokers,
-    'timeout' => ['read' => 12000],
-    'heartbeat' => [
-      'send' => 20000,
-      'receive' => 0,
-      'observers' => [
-        [
-          'class' => '\Stomp\Network\Observer\HeartbeatEmitter',
-        ],
-      ],
-    ],
-  ];
-
-  $queues = [
-    'helfi_navigation_menu_queue',
-    'helfi_api_base_revision',
-  ];
-  foreach ($queues as $queue) {
-    // $settings['queue_service_' . $queue] = 'queue.stomp.default';
-  }
-  // You must configure project specific queues manually in 'all.settings.php'
-  // file.
-  // @see https://github.com/City-of-Helsinki/drupal-helfi-platform/blob/main/documentation/queue.md
 }
 
 if (
@@ -330,6 +286,13 @@ if (
   // Register redis services to make sure we don't get a non-existent service
   // error while trying to enable the module.
   $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
+
+  // Support igbinary. We override redis services, so this *must* be loaded
+  // after redis.services.yml.
+  // @todo Remove this once Redis supports the new ObjectAwareSerializationInterface.
+  if (file_exists('modules/contrib/helfi_api_base/redis.services.yml')) {
+    $settings['container_yamls'][] = 'modules/contrib/helfi_api_base/redis.services.yml';
+  }
 }
 
 $settings['is_azure'] = FALSE;
@@ -379,7 +342,7 @@ if (getenv('ELASTICSEARCH_ETUSIVU_URL')) {
 }
 
 // Supported values: https://github.com/Seldaek/monolog/blob/main/doc/01-usage.md#log-levels.
-$default_log_level = getenv('APP_ENV') === 'production' ? 'info' : 'debug';
+$default_log_level = $env === 'production' ? 'info' : 'debug';
 $settings['helfi_api_base.log_level'] = getenv('LOG_LEVEL') ?: $default_log_level;
 
 // Turn sentry JS error tracking on if SENTRY_DSN_PUBLIC is defined.
@@ -401,9 +364,30 @@ if (getenv('OPENAI_KEY')) {
   $config['helfi_search.settings']['openai_model'] = getenv('OPENAI_MODEL');
 }
 
+// Azure OpenAI for Drupal AI module (ai_provider_azure).
+// API key is managed by the Key module entity 'helfi_azure_openai' which reads
+// AZURE_OPENAI_API_KEY from the environment directly.
+// See: https://helsinkisolutionoffice.atlassian.net/browse/UHF-13110.
+if (getenv('AZURE_OPENAI_ENDPOINT') && getenv('AZURE_OPENAI_DEPLOYMENT_NAME')) {
+  $deployment = getenv('AZURE_OPENAI_DEPLOYMENT_NAME');
+  $config['ai.settings']['default_providers']['chat']['model_id'] = $deployment;
+  $config['ai.settings']['default_providers']['embeddings']['model_id'] = $deployment;
+  $config['ai.settings']['models']['azure']['chat'][$deployment] = [
+    'endpoint' => getenv('AZURE_OPENAI_ENDPOINT'),
+    'api_key' => 'helfi_azure_openai',
+    'connect_header' => 'api-key',
+  ];
+}
+
+// Hakuvahti:
+if (getenv('HAKUVAHTI_URL')) {
+  $config['helfi_hakuvahti.settings']['base_url'] = getenv('HAKUVAHTI_URL');
+  $config['helfi_hakuvahti.settings']['api_key'] = getenv('HAKUVAHTI_API_KEY');
+}
+
 // E2E test users. We should never do this in production, so adding a failsafe
 // in case the environment variable would ever end up in production.
-if (getenv('APP_ENV') !== 'production' && $e2e_test_user = getenv('E2E_TEST_USER')) {
+if ($env !== 'production' && $e2e_test_user = getenv('E2E_TEST_USER')) {
   $e2e_test_user = json_decode($e2e_test_user, TRUE);
 
   // Make sure the user exists in Drupal.
@@ -416,13 +400,36 @@ if (getenv('APP_ENV') !== 'production' && $e2e_test_user = getenv('E2E_TEST_USER
   ]);
 }
 
+// Content Security Policy reporting URI.
+if ($csp_reporting_uri = getenv('CSP_REPORTING_URI')) {
+  $config['csp.settings']['enforce']['reporting']['options']['uri'] = $csp_reporting_uri;
+}
+
+if ($env !== 'production') {
+  $stage_file_proxy_origin = getenv('STAGE_FILE_PROXY_ORIGIN');
+  $stage_file_proxy_dir = getenv('STAGE_FILE_PROXY_ORIGIN_DIR');
+
+  // Always default to blob storage if configured.
+  if ($blob_storage_container = getenv('AZURE_BLOB_STORAGE_CONTAINER')) {
+    $stage_file_proxy_origin = 'https://stplattaprod.blob.core.windows.net';
+    // The container name uses the same naming convention across environments.
+    // Make sure the container name also points to production.
+    // For example: 'etusivu64e62test' -> 'etusivu64e62prod'.
+    $stage_file_proxy_dir = str_replace(['test', 'staging'], 'prod', $blob_storage_container);
+  }
+  $config['stage_file_proxy.settings']['origin'] = $stage_file_proxy_origin;
+  $config['stage_file_proxy.settings']['origin_dir'] = $stage_file_proxy_dir;
+  $config['stage_file_proxy.settings']['hotlink'] = FALSE;
+  $config['stage_file_proxy.settings']['use_imagecache_root'] = TRUE;
+}
+
 // Environment specific overrides.
 if (file_exists(__DIR__ . '/all.settings.php')) {
   // phpcs:ignore
   include_once __DIR__ . '/all.settings.php'; // NOSONAR
 }
 
-if ($env = getenv('APP_ENV')) {
+if ($env) {
   if (file_exists(__DIR__ . '/' . $env . '.settings.php')) {
     // phpcs:ignore
     include_once __DIR__ . '/' . $env . '.settings.php'; // NOSONAR
