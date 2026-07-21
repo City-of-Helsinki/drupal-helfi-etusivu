@@ -20,16 +20,20 @@ final class NewsItemNodeUnpublishDateTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'basic_auth',
     'datetime',
     'entity_reference_revisions',
     'field',
     'field_ui',
     'helfi_etusivu',
     'helfi_node_news_item',
+    'helfi_users',
     'node',
     'options',
     'paragraphs',
+    'rest',
     'scheduler',
+    'serialization',
     'system',
     'text',
     'user',
