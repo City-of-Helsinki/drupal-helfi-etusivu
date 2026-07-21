@@ -4,7 +4,7 @@ display:
     display_options:
       fields:
         node_bulk_form:
-          label: 'Node operations bulk form'
+          label: 'نموذج العمليات بالجملة للعقدة'
           action_title: إجراء
         title:
           label: العنوان
