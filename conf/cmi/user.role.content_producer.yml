@@ -129,6 +129,7 @@ permissions:
   - 'translate page node'
   - 'update media'
   - 'use helfi ai title suggestion'
+  - 'use helfi ai tone check'
   - 'use text format full_html'
   - 'use text format minimal'
   - 'view all media revisions'
