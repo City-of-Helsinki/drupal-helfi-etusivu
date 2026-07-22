@@ -1,7 +1,7 @@
 label: 'Suunatakse ümber'
 display:
   default:
-    display_title: Peamine
+    display_title: Vaikimisi
     display_options:
       title: 'Suunatakse ümber'
       fields:
