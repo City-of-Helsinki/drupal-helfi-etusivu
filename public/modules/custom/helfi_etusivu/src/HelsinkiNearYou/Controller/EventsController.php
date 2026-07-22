@@ -74,7 +74,8 @@ final class EventsController extends HtmxController {
       $helfiEventsSettings['etusivuBaseUrl'] = $etusivuEnvironment->getBaseUrl();
     }
     catch (\Exception) {
-      // Service unavailable — omit etusivuBaseUrl; the frontend falls back to image.url.
+      // Service unavailable — omit etusivuBaseUrl.
+      // Frontend falls back to image.url.
     }
 
     return [
