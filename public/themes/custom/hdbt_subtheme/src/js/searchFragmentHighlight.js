@@ -70,13 +70,18 @@
    */
   const highlightFragment = (id) => {
     const heading = document.getElementById(id);
-    const container = heading?.closest('.component__container');
-    if (!heading || !container) {
+    if (!heading) {
       return;
     }
 
     cleanHash(id);
     heading.scrollIntoView({ block: 'start' });
+
+    const container = heading.closest('.component__container');
+    if (!container) {
+      return;
+    }
+
     applyHighlight(heading, container);
   };
 
