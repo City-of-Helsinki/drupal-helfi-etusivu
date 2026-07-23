@@ -36,7 +36,7 @@ class EventsControllerTest extends KernelTestBase {
   /**
    * The mocked environment resolver.
    */
-  protected EnvironmentResolverInterface|MockObject $environmentResolver;
+  protected MockObject&EnvironmentResolverInterface $environmentResolver;
 
   /**
    * Builds a real Environment value object with the given base URL domain.
@@ -51,6 +51,7 @@ class EventsControllerTest extends KernelTestBase {
    */
   private function makeController(): EventsController {
     return new EventsController(
+      // @phpstan-ignore method.unresolvableReturnType (LazyBuilder is final; PHPStan cannot model MockObject&LazyBuilder)
       $this->createMock(LazyBuilder::class),
       $this->environmentResolver,
       $this->createMock(ServiceMapInterface::class),
@@ -90,7 +91,7 @@ class EventsControllerTest extends KernelTestBase {
   }
 
   /**
-   * Tests that etusivuBaseUrl falls back to prod when the current env is unknown.
+   * Tests that etusivuBaseUrl falls back to prod when the env is unknown.
    */
   public function testContentFallsBackToProdWhenEnvironmentNotFound(): void {
     $this->environmentResolver
