@@ -13,7 +13,9 @@ use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\EventsController;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder;
+use GuzzleHttp\ClientInterface;
 use Drupal\KernelTests\KernelTestBase;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -50,9 +52,13 @@ class EventsControllerTest extends KernelTestBase {
    * Builds a controller instance wired with the given resolver mock.
    */
   private function makeController(): EventsController {
+    // LazyBuilder and Client are final; construct real instances.
+    // content() never invokes build(), so the http client stays idle.
+    $lazyBuilder = new LazyBuilder(
+      new Client($this->createMock(ClientInterface::class)),
+    );
     return new EventsController(
-      // @phpstan-ignore method.unresolvableReturnType (LazyBuilder is final; PHPStan cannot model MockObject&LazyBuilder)
-      $this->createMock(LazyBuilder::class),
+      $lazyBuilder,
       $this->environmentResolver,
       $this->createMock(ServiceMapInterface::class),
       $this->container->get(FormBuilderInterface::class),
