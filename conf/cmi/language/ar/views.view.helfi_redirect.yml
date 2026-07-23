@@ -1,6 +1,6 @@
 display:
   default:
-    display_title: الرئيسي
+    display_title: الافتراضي
     display_options:
       fields:
         redirect_source__path:

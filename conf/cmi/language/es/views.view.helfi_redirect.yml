@@ -1,7 +1,7 @@
 label: Redirección
 display:
   default:
-    display_title: Máster
+    display_title: Default
     display_options:
       title: Redirección
       fields:
