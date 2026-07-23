@@ -1,7 +1,7 @@
 label: Переадресация
 display:
   default:
-    display_title: Основной
+    display_title: 'По умолчанию'
     display_options:
       title: Переадресация
       fields:
