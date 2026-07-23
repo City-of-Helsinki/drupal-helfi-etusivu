@@ -2,17 +2,25 @@ cancel_confirm:
   subject: 'طلب إلغاء الحساب لـ [user:display-name] على [site:name]'
 password_reset:
   subject: 'معلومات تسجيل الدخول البديلة لـ [user:display-name] في [site:name]'
+  body: "[user:display-name]،\r\n\r\nتم تلقي طلب لإعادة تعيين كلمة المرور للحساب الخاص بك في [site:name].\r\n\r\nيمكنك الآن تسجيل الدخول بالنقر على الرابط التالي أو نسخه ولصقه في متصفحك:\r\n\r\n[user:one-time-login-url]\r\n\r\nلا يمكن استخدام هذا الرابط إلا مرة واحدة لتسجيل الدخول، وسيأخذك إلى صفحة لتعيين كلمة المرور. ينتهي صلاحيته بعد يوم واحد، ولن يحدث شيء إن لم يُستخدم.\r\n\r\n-- فريق [site:name]"
 register_admin_created:
   subject: 'أنشأ مدير حساب لك في [site:name]'
+  body: "[user:display-name]،\r\n\r\nأنشأ أحد مشرفي الموقع في [site:name] حساباً لك. يمكنك الآن تسجيل الدخول بالنقر على الرابط التالي أو نسخه ولصقه في متصفحك:\r\n\r\n[user:one-time-login-url]\r\n\r\nلا يمكن استخدام هذا الرابط إلا مرة واحدة لتسجيل الدخول، وسيأخذك إلى صفحة لتعيين كلمة المرور.\r\n\r\nبعد تعيين كلمة المرور، يمكنك تسجيل الدخول في [site:login-url] باستخدام:\r\n\r\nاسم المستخدم: [user:name]\r\nكلمة المرور: كلمة المرور\r\n\r\n-- فريق [site:name]"
 register_no_approval_required:
   subject: 'تفاصيل الحساب لـ [user:display-name] في [site:name]'
+  body: "[user:display-name]،\r\n\r\nشكراً لتسجيلك في [site:name]. يمكنك الآن تسجيل الدخول بالنقر على الرابط التالي أو نسخه ولصقه في متصفحك:\r\n\r\n[user:one-time-login-url]\r\n\r\nلا يمكن استخدام هذا الرابط إلا مرة واحدة لتسجيل الدخول، وسيأخذك إلى صفحة لتعيين كلمة المرور.\r\n\r\nبعد تعيين كلمة المرور، يمكنك تسجيل الدخول في [site:login-url] باستخدام:\r\n\r\nاسم المستخدم: [user:name]\r\nكلمة المرور: كلمة مرورك\r\n\r\n-- فريق [site:name]"
 register_pending_approval:
   subject: 'تفاصيل الحساب لـ [user:display-name] على [site:name] (بانتظار موافقة الإدارة)'
   body: "[user:display-name]،\r\n\r\nشكرًا لتسجيلك في [site:name]. طلبك للحصول على حساب ما زال بانتظار الموافقة. بعد الموافقة، ستتلقى رسالة إلكترونية أخرى تحتوي على معلومات حول كيفية تسجيل الدخول، وتعيين كلمة المرور، وتفاصيل أخرى.\r\n\r\n-- فريق [site:name]"
 register_pending_approval_admin:
   subject: 'تفاصيل الحساب لـ [user:display-name] على [site:name] (بانتظار موافقة الإدارة)'
+  body: "تم تقديم طلب إنشاء حساب باسم [user:display-name].\r\n\r\n[user:edit-url]"
 status_activated:
   subject: 'تفاصيل الحساب لـ [user:display-name] في [site:name] (تم الموافقة عليه)'
+  body: "[user:display-name]،\r\n\r\nتم تفعيل حسابك في [site:name].\r\n\r\nيمكنك الآن تسجيل الدخول بالنقر على الرابط التالي أو نسخه ولصقه في متصفحك:\r\n\r\n[user:one-time-login-url]\r\n\r\nلا يمكن استخدام هذا الرابط إلا مرة واحدة لتسجيل الدخول، وسيأخذك إلى صفحة لتعيين كلمة المرور.\r\n\r\nبعد تعيين كلمة المرور، يمكنك تسجيل الدخول في [site:login-url] باستخدام:\r\n\r\nاسم المستخدم: [user:account-name]\r\nكلمة المرور: كلمة المرور\r\n\r\n-- فريق [site:name]"
 status_blocked:
   subject: 'تفاصيل الحساب لـ [user:display-name] في [site:name] (محظور)'
   body: "[user:display-name],\r\n\r\nحسابك على [site:name] قد تم حظره.\r\n\r\n--  [site:name] فريق"
+status_canceled:
+  subject: 'تفاصيل الحساب لـ [user:display-name] في [site:name] (تم إلغاؤه)'
+  body: "[user:display-name],\r\n\r\nحسابك في  [site:name] قد تم إلغاءه.\r\n\r\n--  [site:name] فريق"
