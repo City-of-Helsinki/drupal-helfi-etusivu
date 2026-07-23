@@ -2115,17 +2115,17 @@
         },
         {
             "name": "drupal/ai",
-            "version": "1.4.4",
+            "version": "1.4.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ai.git",
-                "reference": "1.4.4"
+                "reference": "1.4.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai-1.4.4.zip",
-                "reference": "1.4.4",
-                "shasum": "cb2188358266caa6365258cf61f316b019bb4c6a"
+                "url": "https://ftp.drupal.org/files/projects/ai-1.4.5.zip",
+                "reference": "1.4.5",
+                "shasum": "010157539fa0e91ad69a2fb05bf454d75336e950"
             },
             "require": {
                 "drupal/core": "^10.5 || ^11.2",
@@ -2155,8 +2155,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.4.4",
-                    "datestamp": "1783520097",
+                    "version": "1.4.5",
+                    "datestamp": "1784730304",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4047,17 +4047,17 @@
         },
         {
             "name": "drupal/entity_usage",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_usage.git",
-                "reference": "8.x-2.1"
+                "reference": "8.x-2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_usage-8.x-2.1.zip",
-                "reference": "8.x-2.1",
-                "shasum": "6e581d6f8444584e810219918b811c543dae6d03"
+                "url": "https://ftp.drupal.org/files/projects/entity_usage-8.x-2.2.zip",
+                "reference": "8.x-2.2",
+                "shasum": "1086b8893ed36602e7877f4fcf45232bf1504600"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11"
@@ -4079,8 +4079,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.1",
-                    "datestamp": "1782902223",
+                    "version": "8.x-2.2",
+                    "datestamp": "1784797651",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4668,16 +4668,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.17.40",
+            "version": "6.17.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "d1ee5e7e82dd19b1252db9b2f7b7ded7333b71fb"
+                "reference": "fe9e2b66fad857f3f574ab1f93672446d2fb860c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/d1ee5e7e82dd19b1252db9b2f7b7ded7333b71fb",
-                "reference": "d1ee5e7e82dd19b1252db9b2f7b7ded7333b71fb",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/fe9e2b66fad857f3f574ab1f93672446d2fb860c",
+                "reference": "fe9e2b66fad857f3f574ab1f93672446d2fb860c",
                 "shasum": ""
             },
             "require": {
@@ -4696,10 +4696,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.17.40",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.17.42",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-07-22T12:19:28+00:00"
+            "time": "2026-07-23T14:01:48+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
