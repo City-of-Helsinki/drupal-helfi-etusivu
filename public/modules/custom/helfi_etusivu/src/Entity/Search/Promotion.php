@@ -203,18 +203,20 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
   public function preSave(EntityStorageInterface $storage): void {
     parent::preSave($storage);
 
-    // Normalize titles and keywords on save.
+    // Normalize titles and keywords on save. Titles can contain
+    // unicode whitespace, most likely originating from Word document
+    // copy-paste.
     foreach ($this->getTranslationLanguages() as $langcode => $language) {
       $translation = $this->getTranslation($langcode);
 
       $title = $translation->get('title')->value;
-      if (is_string($title) && ($trimmed = self::trimWhitespace($title)) !== $title) {
+      if (is_string($title) && ($trimmed = mb_trim($title)) !== $title) {
         $translation->set('title', $trimmed);
       }
 
       $keywords = $translation->getKeywords();
       $trimmedKeywords = array_values(array_filter(
-        array_map(self::trimWhitespace(...), $keywords),
+        array_map(mb_trim(...), $keywords),
         static fn (string $keyword): bool => $keyword !== '',
       ));
       if ($trimmedKeywords !== $keywords) {
@@ -239,18 +241,6 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
     // cron run re-verifies the new URL instead of reusing prior results.
     $this->setLastChecked(0);
     $this->resetFailedCheckCount();
-  }
-
-  /**
-   * Trims ASCII and Unicode whitespace from both ends of a string.
-   *
-   * The regex is crafted to handle Unicode whitespace characters
-   * that we have detected in keyword titles, such as NO-BREAK SPACE
-   * (U+00A0) and NARROW NO-BREAK SPACE (U+202F). These most likely
-   * originate from Word document copy-paste.
-   */
-  private static function trimWhitespace(string $value): string {
-    return preg_replace('/^[\s\p{Z}\p{C}]+|[\s\p{Z}\p{C}]+$/u', '', $value) ?? trim($value);
   }
 
   /**
