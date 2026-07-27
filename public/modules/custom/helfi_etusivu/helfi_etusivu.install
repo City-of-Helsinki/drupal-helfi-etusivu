@@ -873,3 +873,18 @@ function helfi_etusivu_update_11010(): void {
     ->isNull('enable_link_check')
     ->execute();
 }
+
+/**
+ * Trim whitespace from search promotion titles and keywords.
+ */
+function helfi_etusivu_update_11011(): void {
+  $storage = \Drupal::entityTypeManager()
+    ->getStorage('helfi_search_promotion');
+
+ // Search promotions contain leading whitespace in titles
+ // Re-saving the entities lets Promotion::preSave() normalize
+ // the values.
+  foreach ($storage->loadMultiple() as $promotion) {
+    $promotion->save();
+  }
+}
