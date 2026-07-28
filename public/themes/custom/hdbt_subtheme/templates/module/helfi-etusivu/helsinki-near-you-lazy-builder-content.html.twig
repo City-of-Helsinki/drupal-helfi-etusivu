@@ -1,13 +1,21 @@
-{% if title %}
-  {{ attach_library('hdbt/search-helper') }}
-  <div class="hdbt-search__results__header">
-    <h3 class="hdbt-search__results__title">{{ title }}</h3>
-  </div>
-{% endif %}
-{% if content.pager %}
-  <div class="hdbt-search__results__content">
-    {{ content }}
-  </div>
+{% if has_error %}
+  {% include "@hdbt/misc/status-message.twig" with {
+    type: 'error',
+    title: 'An error occurred while loading the content'|t({}, {'context': 'React search'}),
+    messages: ['Please reload the page or try again later.'|t({}, {'context': 'React search'})],
+  } %}
 {% else %}
-  {{ content }}
+  {% if title %}
+    {{ attach_library('hdbt/search-helper') }}
+    <div class="hdbt-search__results__header">
+      <h3 class="hdbt-search__results__title">{{ title }}</h3>
+    </div>
+  {% endif %}
+  {% if content.pager %}
+    <div class="hdbt-search__results__content">
+      {{ content }}
+    </div>
+  {% else %}
+    {{ content }}
+  {% endif %}
 {% endif %}

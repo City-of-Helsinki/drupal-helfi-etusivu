@@ -98,7 +98,8 @@ final readonly class Client {
         $map[] = Event::createFromArray($langcode, $item);
       }
     }
-    catch (GuzzleException) {
+    catch (GuzzleException $e) {
+      throw $e;
     }
 
     return new Collection($numItems, $map);
