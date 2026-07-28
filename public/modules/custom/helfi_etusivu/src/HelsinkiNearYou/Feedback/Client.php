@@ -111,7 +111,8 @@ final readonly class Client {
         }
       }
     }
-    catch (GuzzleException) {
+    catch (GuzzleException $e) {
+      throw $e;
     }
 
     return new Collection($numItems, $map);
