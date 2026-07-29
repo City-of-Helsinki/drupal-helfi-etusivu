@@ -8,7 +8,6 @@ use Drupal\Core\Url;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\DTO\Event;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 
 /**
@@ -84,22 +83,17 @@ final readonly class Client {
     $numItems = 0;
     $map = [];
 
-    try {
-      $data = $this->httpClient->request('GET', self::getUri($langcode, $options, $limit), [
-        RequestOptions::TIMEOUT => 10,
-      ]);
-      $json = json_decode($data->getBody()->getContents(), TRUE);
+    $data = $this->httpClient->request('GET', self::getUri($langcode, $options, $limit), [
+      RequestOptions::TIMEOUT => 10,
+    ]);
+    $json = json_decode($data->getBody()->getContents(), TRUE);
 
-      if (isset($json['meta']['count'])) {
-        $numItems = (int) $json['meta']['count'];
-      }
-
-      foreach ($json['data'] ?? [] as $item) {
-        $map[] = Event::createFromArray($langcode, $item);
-      }
+    if (isset($json['meta']['count'])) {
+      $numItems = (int) $json['meta']['count'];
     }
-    catch (GuzzleException $e) {
-      throw $e;
+
+    foreach ($json['data'] ?? [] as $item) {
+      $map[] = Event::createFromArray($langcode, $item);
     }
 
     return new Collection($numItems, $map);
