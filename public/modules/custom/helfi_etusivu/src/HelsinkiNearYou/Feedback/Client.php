@@ -67,6 +67,8 @@ final readonly class Client {
    *
    * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Collection
    *   An array of feedback items.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function get(Request $request) : Collection {
     $numItems = 0;

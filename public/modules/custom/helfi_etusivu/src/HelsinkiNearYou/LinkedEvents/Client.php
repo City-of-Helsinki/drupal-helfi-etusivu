@@ -78,6 +78,8 @@ final readonly class Client {
    *
    * @return \Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\DTO\Collection
    *   A collection of events.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function get(array $options, string $langcode, int $limit) : Collection {
     $numItems = 0;
