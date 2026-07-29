@@ -14,6 +14,7 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 
@@ -63,7 +64,7 @@ class ClientTest extends UnitTestCase {
    * Tests that a failed API response throws an exception.
    */
   public function testFailedResponse() : void {
-    $this->expectException(\GuzzleHttp\Exception\GuzzleException::class);
+    $this->expectException(GuzzleException::class);
     $httpClient = $this->createMockHttpClient([
       new Response(400, body: ''),
     ]);
