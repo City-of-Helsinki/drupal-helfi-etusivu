@@ -7,6 +7,7 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\LinkedEvents;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
 
 /**
@@ -28,22 +29,28 @@ class ClientTest extends KernelTestBase {
   ];
 
   /**
-   * Tests API failures.
+   * Tests that an empty JSON response returns an empty collection.
    */
-  public function testFailedResponse() : void {
+  public function testEmptyJsonResponse() : void {
     $httpClient = $this->createMockHttpClient([
       new Response(200, body: ''),
+    ]);
+    $sut = new Client($httpClient);
+    $response = $sut->get([], 'fi', 3);
+    $this->assertEquals(0, $response->numItems);
+    $this->assertEmpty($response->items);
+  }
+
+  /**
+   * Tests that a failed API response throws an exception.
+   */
+  public function testFailedResponse() : void {
+    $this->expectException(GuzzleException::class);
+    $httpClient = $this->createMockHttpClient([
       new Response(400, body: ''),
     ]);
     $sut = new Client($httpClient);
-    // Test empty JSON response.
-    $response = $sut->get([], 'fi', 3);
-    $this->assertEquals(0, $response->numItems);
-    $this->assertEmpty($response->items);
-    // Test 400 error.
-    $response = $sut->get([], 'fi', 3);
-    $this->assertEquals(0, $response->numItems);
-    $this->assertEmpty($response->items);
+    $sut->get([], 'fi', 3);
   }
 
   /**

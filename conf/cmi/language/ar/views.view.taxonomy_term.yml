@@ -1,5 +1,5 @@
 label: 'مصطلح تصنيف'
-description: 'Content belonging to a certain taxonomy term.'
+description: 'محتوى ينتمي إلى مصطلح تصنيف معين.'
 display:
   default:
     display_title: الافتراضي

@@ -14,6 +14,7 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\UnitTestCase;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 
@@ -43,12 +44,11 @@ class ClientTest extends UnitTestCase {
   }
 
   /**
-   * Tests API failures.
+   * Tests that an empty JSON response returns an empty collection.
    */
-  public function testFailedResponse() : void {
+  public function testEmptyJsonResponse() : void {
     $httpClient = $this->createMockHttpClient([
       new Response(200, body: ''),
-      new Response(400, body: ''),
     ]);
     $sut = new Client($httpClient);
     $request = new Request(
@@ -56,12 +56,24 @@ class ClientTest extends UnitTestCase {
       lon: 1,
       radius: 0.5,
     );
-    // Test empty JSON response.
     $response = $sut->get($request);
     $this->assertEmpty($response->items);
-    // Test 400 error.
-    $response = $sut->get($request);
-    $this->assertEmpty($response->items);
+  }
+
+  /**
+   * Tests that a failed API response throws an exception.
+   */
+  public function testFailedResponse() : void {
+    $this->expectException(GuzzleException::class);
+    $httpClient = $this->createMockHttpClient([
+      new Response(400, body: ''),
+    ]);
+    $sut = new Client($httpClient);
+    $sut->get(new Request(
+      lat: 1,
+      lon: 1,
+      radius: 0.5,
+    ));
   }
 
   /**
