@@ -44,6 +44,8 @@ trait HtmxContainerTrait {
    *   The limit.
    * @param \Drupal\Core\Template\Attribute|null $attributes
    *   The preview attributes or null.
+   * @param string|null $searchingLabel
+   *   The label shown on ghost cards while loading, or null.
    *
    * @return array
    *   The htmx render array.
@@ -72,6 +74,8 @@ trait HtmxContainerTrait {
    *   The request.
    * @param int|null $limit
    *   The item limit.
+   * @param string|null $searchingLabel
+   *   The label shown on ghost cards while loading, or null.
    *
    * @return array
    *   The render array.
@@ -93,6 +97,8 @@ trait HtmxContainerTrait {
    *   The request.
    * @param int|null $limit
    *   The number of items to show.
+   * @param string|null $searchingLabel
+   *   The label shown on ghost cards while loading, or null.
    *
    * @return array
    *   The render array.
