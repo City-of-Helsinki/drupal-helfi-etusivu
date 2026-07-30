@@ -12,6 +12,13 @@ site-search:
     - core/drupalSettings
     - core/drupal
 
+helsinki-near-you-htmx-focus:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/helsinkiNearYouHtmxFocus.min.js: {}
+  dependencies:
+    - core/drupal
+
 updating-news-table-of-contents:
   js:
     dist/js/updatingNewsTableOfContents.min.js: {}

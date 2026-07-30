@@ -306,6 +306,10 @@ msgctxt "Helsinki near you"
 msgid "Results for @address"
 msgstr "Resultat för @address"
 
+msgctxt "Helsinki near you"
+msgid "Searching for results..."
+msgstr "Söker..."
+
 msgid "Hiding the page"
 msgstr "Schemalagd döljning"
 
