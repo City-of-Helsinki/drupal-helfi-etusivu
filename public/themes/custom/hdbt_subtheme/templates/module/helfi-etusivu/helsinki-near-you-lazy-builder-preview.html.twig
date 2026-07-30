@@ -2,6 +2,12 @@
 {% set cardModifierClass = num_items == 3 ? 'card--border' : '' %}
 
 <div class="hdbt-search__results__content" {{ attributes }}>
+  {% if searching_label %}
+    {{ attach_library('hdbt_subtheme/helsinki-near-you-htmx-focus') }}
+    <div class="hdbt-search__results__header">
+      <h3 class="hdbt-search__results__title hdbt-search__results__title--ghost-title" tabindex="-1">{{ searching_label }}</h3>
+    </div>
+  {% endif %}
   {% for i in range(1, cardAmount)%}
     <div class="card card--ghost {{ cardModifierClass }} {{ preview_attributes.class|join(' ') }}">
       <div class="card__image"></div>

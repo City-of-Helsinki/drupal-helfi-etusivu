@@ -1,13 +1,14 @@
+import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 import AppSettings from '../enum/AppSettings';
+import { getElasticUrlAtom } from '../store';
 import type { SearchResponse } from '../types/SearchResult';
 
 const fetcher = (url: string): Promise<SearchResponse> => fetch(url).then((res) => res.json());
 
 const useSearchQuery = (query: string, bundle?: string, page: number = 1) => {
-  const searchUrl = drupalSettings?.helfi_site_search?.search_url;
-  const url =
-    query.length >= AppSettings.MIN_QUERY_LENGTH && searchUrl ? new URL(searchUrl, window.location.origin) : null;
+  const searchUrl = useAtomValue(getElasticUrlAtom);
+  const url = query.length >= AppSettings.MIN_QUERY_LENGTH && searchUrl ? new URL(searchUrl) : null;
 
   url?.searchParams.set('q', query);
   bundle && url?.searchParams.set('bundle', bundle);
