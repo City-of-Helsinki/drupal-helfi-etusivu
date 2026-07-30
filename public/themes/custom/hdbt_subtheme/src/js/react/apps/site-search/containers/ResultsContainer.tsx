@@ -1,9 +1,8 @@
 import { Notification } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { Fragment, type SyntheticEvent, useEffect, useRef } from 'react';
+import { Fragment, type SyntheticEvent, useEffect } from 'react';
 import ExternalLink from '@/react/common/ExternalLink';
 import { GhostList } from '@/react/common/GhostList';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -26,8 +25,6 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const setPage = useSetAtom(setPageAtom);
   const links = drupalSettings?.helfi_site_search?.external_links;
   const { data, error, isLoading, isValidating } = useSearchQuery(query, bundle, page);
-  const resultsListRef = useRef<HTMLDivElement>(null);
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
 
   const totalHits = data?.total_hits ?? 0;
   const promotedCount = page === 1 ? (data?.promoted?.length ?? 0) : 0;
@@ -37,7 +34,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const resultsClassName = 'hdbt-search--react__results hdbt-search--react__results--site-search';
   const currentSearchKey = isValidQuery ? `${query}::${bundle ?? ''}::${page}` : '';
 
-  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
     isValidating,
     currentSearchKey,
     data,
@@ -64,7 +61,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
           resultText={Drupal.t('Searching for results...', {}, { context: 'Site search' })}
           ref={loadingHeaderRef}
         />
-        <GhostList simple count={Number(AppSettings.SIZE)} />
+        <GhostList variant='simple' count={Number(AppSettings.SIZE)} />
       </div>
     );
   }
@@ -120,8 +117,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
     e.preventDefault();
     setPage(newPage);
-    scrollToFirstItem();
-    skipResultsFocusRef.current = true;
+    onPageChange();
   };
 
   return (
