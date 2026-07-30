@@ -1,5 +1,7 @@
 import { atom } from 'jotai';
 
+declare const ELASTIC_DEV_URL: string | undefined;
+
 const params = new URLSearchParams(window.location.search);
 const initialQuery = params.get('s') ?? '';
 const initialBundles = params.get('bundles')?.split(',').filter(Boolean) ?? [];
@@ -72,3 +74,25 @@ export const setPageAtom = atom(null, (_get, set, page: number) => {
 
   window.history.pushState({}, '', newUrl);
 });
+
+/**
+ * Resolve the URL the search requests are sent to.
+ */
+const getElasticUrl = () => {
+  const devUrl = typeof ELASTIC_DEV_URL !== 'undefined' ? ELASTIC_DEV_URL : '';
+
+  if (devUrl?.length) {
+    // Site search doesn't use Elastic, but route requests to test server if dev url is set anyway
+    return new URL('https://www.test.hel.ninja/fi/api/v1/search', window.location.origin).toString();
+  }
+
+  const searchUrl = drupalSettings?.helfi_site_search?.search_url || '';
+
+  if (!searchUrl) {
+    return '';
+  }
+
+  return new URL(searchUrl, window.location.origin).toString();
+};
+
+export const getElasticUrlAtom = atom(getElasticUrl());
