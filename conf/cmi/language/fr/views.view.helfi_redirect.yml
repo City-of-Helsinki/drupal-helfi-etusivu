@@ -1,7 +1,7 @@
 label: Rediriger
 display:
   default:
-    display_title: Maître
+    display_title: Default
     display_options:
       title: Rediriger
       fields:

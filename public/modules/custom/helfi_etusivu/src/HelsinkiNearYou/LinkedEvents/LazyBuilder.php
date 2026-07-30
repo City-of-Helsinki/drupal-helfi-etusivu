@@ -49,8 +49,12 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       'dwithin_metres' => 2000,
     ], TargetGroup::Adult->getQueryFilters());
 
-    $data = $this->client
-      ->get($query, $langcode, $limit);
+    try {
+      $data = $this->client->get($query, $langcode, $limit);
+    }
+    catch (\Exception) {
+      return $build + ['#has_error' => TRUE];
+    }
 
     foreach ($data->items as $item) {
       $element = [

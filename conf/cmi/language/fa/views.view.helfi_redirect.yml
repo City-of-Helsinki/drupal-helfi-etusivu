@@ -1,6 +1,6 @@
 display:
   default:
-    display_title: مدیر
+    display_title: Default
     display_options:
       fields:
         redirect_source__path:

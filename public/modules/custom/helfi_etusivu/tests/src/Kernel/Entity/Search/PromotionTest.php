@@ -105,6 +105,26 @@ class PromotionTest extends EntityKernelTestBase {
   }
 
   /**
+   * Tests that titles and keywords are trimmed on save.
+   */
+  public function testWhitespaceIsTrimmedOnSave(): void {
+    $promotion = Promotion::create([
+      'bundle' => 'promotion',
+      'title' => '  Advisory services ',
+      'description' => 'Test description',
+      'link' => 'https://example.com',
+      // Includes Unicode whitespace: NARROW NO-BREAK SPACE (U+202F)
+      // and NO-BREAK SPACE (U+00A0).
+      'keywords' => [' Advisory services', "Advisory\u{202F}", "\u{00A0}", '  '],
+    ]);
+    $promotion->save();
+
+    $reloaded = Promotion::load($promotion->id());
+    $this->assertSame('Advisory services', $reloaded->label());
+    $this->assertSame(['Advisory services', 'Advisory'], $reloaded->getKeywords());
+  }
+
+  /**
    * Tests scheduled publishing and unpublishing of a promotion.
    */
   public function testSchedulerPublishAndUnpublish(): void {

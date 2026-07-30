@@ -56,8 +56,8 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       $limit = 10;
     }
 
-    $data = $this->httpClient
-      ->get(new Request(
+    try {
+      $data = $this->httpClient->get(new Request(
         lat: $address->location->lat,
         lon: $address->location->lon,
         radius: 2,
@@ -65,6 +65,10 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         offset: ($this->pagerManager->findPage() * $limit),
         start_date: new DrupalDateTime('-90 days'),
       ));
+    }
+    catch (\Exception) {
+      return $build + ['#has_error' => TRUE];
+    }
 
     foreach ($data->items as $item) {
       $build['#content'][] = [

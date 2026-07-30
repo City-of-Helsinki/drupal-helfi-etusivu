@@ -1,2 +1,2 @@
-label: 'Default long date'
+label: 'التاريخ الطويل الافتراضي'
 pattern: 'j.n.Y - H:i'
