@@ -192,3 +192,7 @@ msgstr "Helsinki lähelläsi"
 msgctxt "Site search"
 msgid "No results"
 msgstr "Ei hakutuloksia"
+
+msgctxt "Site search"
+msgid "Searching for results..."
+msgstr "Tuloksia haetaan..."

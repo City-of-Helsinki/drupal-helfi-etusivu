@@ -466,6 +466,7 @@ function helfi_etusivu_theme() : array {
       'variables' => [
         'title' => NULL,
         'content' => NULL,
+        'has_error' => FALSE,
       ],
     ],
     'helsinki_near_you_lazy_builder_preview' => [
@@ -473,6 +474,7 @@ function helfi_etusivu_theme() : array {
         'attributes' => NULL,
         'num_items' => NULL,
         'preview_attributes' => NULL,
+        'searching_label' => NULL,
       ],
     ],
     'news_item_unpublish_hint' => [

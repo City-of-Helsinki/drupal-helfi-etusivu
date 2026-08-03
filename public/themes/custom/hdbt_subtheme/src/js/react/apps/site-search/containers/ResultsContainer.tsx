@@ -1,8 +1,9 @@
 import { Notification } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { createRef, Fragment, type SyntheticEvent, useEffect, useRef } from 'react';
+import { Fragment, type SyntheticEvent, useEffect } from 'react';
 import ExternalLink from '@/react/common/ExternalLink';
 import { GhostList } from '@/react/common/GhostList';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
@@ -11,7 +12,7 @@ import DebugBlock from '../components/DebugBlock';
 import ResultCard from '../components/ResultCard';
 import AppSettings from '../enum/AppSettings';
 import useSearchQuery from '../hooks/useSearchQuery';
-import { pageAtom, queryAtom, setPageAtom } from '../store';
+import { pageAtom, queryAtom, setPageAtom, submitCountAtom } from '../store';
 
 type ResultsContainerProps = {
   bundle?: string;
@@ -20,12 +21,10 @@ type ResultsContainerProps = {
 const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const query = useAtomValue(queryAtom);
   const page = useAtomValue(pageAtom);
+  const submitCount = useAtomValue(submitCountAtom);
   const setPage = useSetAtom(setPageAtom);
   const links = drupalSettings?.helfi_site_search?.external_links;
   const { data, error, isLoading, isValidating } = useSearchQuery(query, bundle, page);
-  const scrollTarget = createRef<HTMLHeadingElement>();
-  const lastSeenKeyRef = useRef<string | null>(null);
-  const lastDataKeyRef = useRef<string | null>(null);
 
   const totalHits = data?.total_hits ?? 0;
   const promotedCount = page === 1 ? (data?.promoted?.length ?? 0) : 0;
@@ -33,39 +32,16 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const totalPages = Math.ceil(totalHits / AppSettings.SIZE);
   const isValidQuery = query.length >= AppSettings.MIN_QUERY_LENGTH;
   const resultsClassName = 'hdbt-search--react__results hdbt-search--react__results--site-search';
-  // Unique key for the current search state. Null when query is too short.
-  let currentSearchKey: string | null = null;
-  if (isValidQuery) {
-    const bundleSegment = bundle !== undefined ? bundle : '';
-    currentSearchKey = `${query}::${bundleSegment}::${page}`;
-  }
-  // isLoadingNewSearch is true when fetching results for a different search than what
-  // is currently displayed. The currentSearchKey comparison filters out background
-  // revalidations for the same search so ghost cards are shown only on actual new
-  // searches.
-  const isLoadingNewSearch = isValidating && currentSearchKey !== lastDataKeyRef.current;
+  const currentSearchKey = isValidQuery ? `${query}::${bundle ?? ''}::${page}` : '';
 
-  useEffect(() => {
-    if (data && currentSearchKey) {
-      lastDataKeyRef.current = currentSearchKey;
-    }
-  }, [data, currentSearchKey]);
-
-  useEffect(() => {
-    if (!isValidQuery || !data) {
-      return;
-    }
-    const currentKey = `${query}::${bundle ?? ''}::${data.page}`;
-    if (currentKey !== lastSeenKeyRef.current) {
-      const node = scrollTarget.current;
-      if (node) {
-        lastSeenKeyRef.current = currentKey;
-        node.setAttribute('tabindex', '-1');
-        node.focus({ preventScroll: true });
-        node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
-  }, [data, isValidQuery, query, scrollTarget]);
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
+    isValidating,
+    currentSearchKey,
+    data,
+    error,
+    submitCount,
+    false,
+  );
 
   useEffect(() => {
     if (!isValidQuery || isLoading || error) {
@@ -78,8 +54,16 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     return null;
   }
 
-  if ((isLoading && !data) || isLoadingNewSearch) {
-    return <GhostList variant='simple' modifierClass={resultsClassName} count={Number(AppSettings.SIZE)} />;
+  if ((isLoading && !data) || isSearching) {
+    return (
+      <div key='ghost' className={resultsClassName}>
+        <ResultsHeader
+          resultText={Drupal.t('Searching for results...', {}, { context: 'Site search' })}
+          ref={loadingHeaderRef}
+        />
+        <GhostList variant='simple' count={Number(AppSettings.SIZE)} />
+      </div>
+    );
   }
 
   if (error) {
@@ -133,39 +117,42 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
     e.preventDefault();
     setPage(newPage);
+    onPageChange();
   };
 
   return (
-    <div className={resultsClassName}>
+    <div key='results' className={resultsClassName}>
       {DEBUG_MODE && data?.debug && <DebugBlock label='DEBUG — backend response' data={data.debug} />}
       <ResultsHeader
         resultText={Drupal.formatPlural(totalHits, '@count result', '@count results', {}, { context: 'Site search' })}
         ref={scrollTarget}
       />
-      {promotedCount > 0 &&
-        data.promoted.map((item) => (
-          <ResultCard
-            key={item.url}
-            url={item.url}
-            title={item.title}
-            description={item.description}
-            cardModifierClass='card--site-search card--site-search--promoted'
-          />
-        ))}
-      {resultsCount > 0 &&
-        data.results.map((item, index) => (
-          <Fragment key={item.url}>
+      <div ref={resultsListRef}>
+        {promotedCount > 0 &&
+          data.promoted.map((item) => (
             <ResultCard
-              url={item.fragment ? `${item.url}#${item.fragment}` : item.url}
-              title={item.metatag_title || item.title}
-              description={item.content || undefined}
-              bundle={item.bundle}
-              publishDate={item.published_at}
-              cardModifierClass='card--site-search'
+              key={item.url}
+              url={item.url}
+              title={item.title}
+              description={item.description}
+              cardModifierClass='card--site-search card--site-search--promoted'
             />
-            {(index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && externalLinksNotification}
-          </Fragment>
-        ))}
+          ))}
+        {resultsCount > 0 &&
+          data.results.map((item, index) => (
+            <Fragment key={item.url}>
+              <ResultCard
+                url={item.fragment ? `${item.url}#${item.fragment}` : item.url}
+                title={item.metatag_title || item.title}
+                description={item.content || undefined}
+                bundle={item.bundle}
+                publishDate={item.published_at}
+                cardModifierClass='card--site-search'
+              />
+              {(index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && externalLinksNotification}
+            </Fragment>
+          ))}
+      </div>
       {totalPages > 1 && <Pagination currentPage={page} pages={5} totalPages={totalPages} updatePage={updatePage} />}
     </div>
   );

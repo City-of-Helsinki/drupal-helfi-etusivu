@@ -10,7 +10,6 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Collection;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Feedback;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Request;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 
 /**
@@ -68,50 +67,48 @@ final readonly class Client {
    *
    * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\DTO\Collection
    *   An array of feedback items.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function get(Request $request) : Collection {
     $numItems = 0;
     $map = [];
 
-    try {
-      $data = $this->httpClient->request('GET', $this->getUri($request), [
-        RequestOptions::TIMEOUT => 10,
-      ]);
+    $data = $this->httpClient->request('GET', $this->getUri($request), [
+      RequestOptions::TIMEOUT => 10,
+    ]);
 
-      // Calculate distance and sort by it.
-      $items = array_map(function (array $item) use ($request) {
-        $item['distance'] = 0;
+    // Calculate distance and sort by it.
+    $items = array_map(function (array $item) use ($request) {
+      $item['distance'] = 0;
 
-        if (isset($item['lat'], $item['long'])) {
-          $item['distance'] = Distance::calculateDistance(
-            $request->lat,
-            $request->lon,
-            (float) $item['lat'],
-            (float) $item['long'],
-          );
-        }
-        return $item;
-
-      }, json_decode($data->getBody()->getContents(), TRUE) ?? []);
-
-      usort($items, fn (array $a, array $b) => $a['distance'] <=> $b['distance']);
-
-      $numItems = count($items);
-
-      if ($request->limit) {
-        $items = array_slice($items, $request->offset, $request->limit);
+      if (isset($item['lat'], $item['long'])) {
+        $item['distance'] = Distance::calculateDistance(
+          $request->lat,
+          $request->lon,
+          (float) $item['lat'],
+          (float) $item['long'],
+        );
       }
+      return $item;
 
-      foreach ($items as $item) {
-        try {
-          $map[] = Feedback::createFromArray($item);
-        }
-        catch (\InvalidArgumentException) {
-          continue;
-        }
-      }
+    }, json_decode($data->getBody()->getContents(), TRUE) ?? []);
+
+    usort($items, fn (array $a, array $b) => $a['distance'] <=> $b['distance']);
+
+    $numItems = count($items);
+
+    if ($request->limit) {
+      $items = array_slice($items, $request->offset, $request->limit);
     }
-    catch (GuzzleException) {
+
+    foreach ($items as $item) {
+      try {
+        $map[] = Feedback::createFromArray($item);
+      }
+      catch (\InvalidArgumentException) {
+        continue;
+      }
     }
 
     return new Collection($numItems, $map);
