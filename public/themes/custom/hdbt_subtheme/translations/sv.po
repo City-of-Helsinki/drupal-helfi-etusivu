@@ -192,3 +192,7 @@ msgstr "Helsingfors nära dig"
 msgctxt "Site search"
 msgid "No results"
 msgstr "Inga sökresultat"
+
+msgctxt "Site search"
+msgid "Searching for results..."
+msgstr "Söker..."

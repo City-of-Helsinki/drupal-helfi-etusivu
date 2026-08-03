@@ -1,5 +1,7 @@
 import { atom } from 'jotai';
 
+declare const ELASTIC_DEV_URL: string | undefined;
+
 const params = new URLSearchParams(window.location.search);
 const initialQuery = params.get('s') ?? '';
 const initialBundles = params.get('bundles')?.split(',').filter(Boolean) ?? [];
@@ -14,6 +16,8 @@ export const committedBundlesAtom = atom<string[]>(initialBundles);
 
 export const pageAtom = atom<number>(initialPage);
 
+export const submitCountAtom = atom(0);
+
 export const submitAllSearchAtom = atom(null, (get, set) => {
   const query = get(stagedQueryAtom);
   const bundles = get(stagedBundlesAtom);
@@ -21,6 +25,7 @@ export const submitAllSearchAtom = atom(null, (get, set) => {
   set(queryAtom, query);
   set(committedBundlesAtom, bundles);
   set(pageAtom, 1);
+  set(submitCountAtom, get(submitCountAtom) + 1);
 
   const newUrl = new URL(window.location.toString());
   query ? newUrl.searchParams.set('s', query) : newUrl.searchParams.delete('s');
@@ -35,6 +40,7 @@ export const submitNewsSearchAtom = atom(null, (get, set) => {
 
   set(queryAtom, query);
   set(pageAtom, 1);
+  set(submitCountAtom, get(submitCountAtom) + 1);
 
   const newUrl = new URL(window.location.toString());
   query ? newUrl.searchParams.set('s', query) : newUrl.searchParams.delete('s');
@@ -68,3 +74,25 @@ export const setPageAtom = atom(null, (_get, set, page: number) => {
 
   window.history.pushState({}, '', newUrl);
 });
+
+/**
+ * Resolve the URL the search requests are sent to.
+ */
+const getElasticUrl = () => {
+  const devUrl = typeof ELASTIC_DEV_URL !== 'undefined' ? ELASTIC_DEV_URL : '';
+
+  if (devUrl?.length) {
+    // Site search doesn't use Elastic, but route requests to test server if dev url is set anyway
+    return new URL('https://www.test.hel.ninja/fi/api/v1/search', window.location.origin).toString();
+  }
+
+  const searchUrl = drupalSettings?.helfi_site_search?.search_url || '';
+
+  if (!searchUrl) {
+    return '';
+  }
+
+  return new URL(searchUrl, window.location.origin).toString();
+};
+
+export const getElasticUrlAtom = atom(getElasticUrl());

@@ -1,7 +1,7 @@
 label: 重定向
 display:
   default:
-    display_title: 主
+    display_title: Default
     display_options:
       title: 重定向
       fields:

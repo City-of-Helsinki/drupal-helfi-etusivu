@@ -194,6 +194,13 @@
         },
       );
 
+      // Hide the hint if the unpublish date is manually edited.
+      if (unpublishDateInput) {
+        unpublishDateInput.addEventListener('change', (e) => {
+          if (!e.programmatic) toggleUnpublishHint(false);
+        });
+      }
+
       // Only set initial unpublish date if it's not already set and there's
       // a published date or if the content is already published.
       if (unpublishDateInput && !unpublishDateInput.value) {
@@ -210,13 +217,6 @@
         // Set the initial unpublish date (11 months from publish date).
         const publishDateTime = new Date(`${publishDateInput.value}T${publishTimeInput.value}`);
         setUnpublishDate(publishDateTime, true);
-      }
-
-      // Hide the hint if the unpublish date is manually edited.
-      if (unpublishDateInput) {
-        unpublishDateInput.addEventListener('change', (e) => {
-          if (!e.programmatic) toggleUnpublishHint(false);
-        });
       }
     },
   };
