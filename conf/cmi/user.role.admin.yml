@@ -33,6 +33,7 @@ dependencies:
     - helfi_ai
     - helfi_api_base
     - helfi_etusivu
+    - helfi_hakuvahti
     - helfi_llms_txt
     - helfi_recommendations
     - locale
@@ -183,6 +184,7 @@ permissions:
   - 'revert news_item revisions'
   - 'revert page revisions'
   - 'schedule publishing of nodes'
+  - 'send hakuvahti broadcast'
   - 'send performance traces to sentry'
   - 'set announcement published on date'
   - 'set landing_page published on date'
