@@ -73,13 +73,12 @@ class ResidentParkingZoneServiceTest extends KernelTestBase {
   }
 
   /**
-   * A zone without boundary geometry yields an embed URL with no bbox.
+   * A zone without usable geometry resolves to NULL (nothing to show on a map).
    *
    * @covers ::getParkingZone
-   * @covers ::buildEmbedUrl
    * @covers ::boundaryToBbox
    */
-  public function testReturnsParkingZoneWithoutBoundary(): void {
+  public function testReturnsNullWhenZoneHasNoGeometry(): void {
     $response = new Response(200, [], (string) json_encode([
       'count' => 1,
       'results' => [
@@ -92,10 +91,7 @@ class ResidentParkingZoneServiceTest extends KernelTestBase {
     $zone = $this->createService($httpClient)
       ->getParkingZone(new Location(60.16, 24.93, 'Point'));
 
-    $this->assertNotNull($zone);
-    $this->assertSame('Kamppi', $zone->name);
-    $this->assertStringContainsString('/embed/area', $zone->embedUrl);
-    $this->assertStringNotContainsString('bbox=', $zone->embedUrl);
+    $this->assertNull($zone);
   }
 
   /**
