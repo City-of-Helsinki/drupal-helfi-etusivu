@@ -14,6 +14,8 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 use Drupal\helfi_api_base\ServiceMap\DTO\StreetName;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone\DTO\ParkingZone;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone\ResidentParkingZoneServiceInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
 use Drupal\helfi_api_base\ServiceMap\ServiceMap;
 use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
@@ -58,6 +60,13 @@ class ResultsControllerTest extends KernelTestBase {
   protected MockObject $roadworkDataService;
 
   /**
+   * The resident parking zone service.
+   *
+   * @var \PHPUnit\Framework\MockObject\MockObject
+   */
+  protected MockObject $residentParkingZoneService;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -66,10 +75,12 @@ class ResultsControllerTest extends KernelTestBase {
     $this->serviceMap = $this->createMock(ServiceMapInterface::class);
     $entityTypeManager = $this->createMock(EntityTypeManager::class);
     $this->roadworkDataService = $this->createMock(RoadworkDataServiceInterface::class);
+    $this->residentParkingZoneService = $this->createMock(ResidentParkingZoneServiceInterface::class);
 
     $this->controller = new ResultsController(
       $this->serviceMap,
       $this->roadworkDataService,
+      $this->residentParkingZoneService,
       $this->container->get(LanguageManagerInterface::class),
     );
 
@@ -148,6 +159,8 @@ class ResultsControllerTest extends KernelTestBase {
     $request->query = new InputBag([
       'home_address' => $validAddress,
     ]);
+    $this->residentParkingZoneService->method('getParkingZone')
+      ->willReturn(new ParkingZone('Kallio/Sörnäinen', 'https://palvelukartta.hel.fi/fi/embed/area'));
     $build = $this->controller->content($request);
 
     $this->assertIsArray($build);
@@ -157,6 +170,8 @@ class ResultsControllerTest extends KernelTestBase {
       $build['#attached']['drupalSettings']
     );
     $this->assertEquals(4, count($build['#service_groups']));
+    $this->assertInstanceOf(ParkingZone::class, $build['#parking_zone']);
+    $this->assertEquals('Kallio/Sörnäinen', $build['#parking_zone']->name);
   }
 
   /**
