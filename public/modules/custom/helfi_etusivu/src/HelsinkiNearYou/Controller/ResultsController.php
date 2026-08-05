@@ -14,6 +14,7 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\ServiceMapLink;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\helfi_paragraphs_news_list\Entity\ExternalEntity\Term;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone\ResidentParkingZoneServiceInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,6 +29,7 @@ final class ResultsController extends ControllerBase {
   public function __construct(
     private readonly ServiceMapInterface $serviceMap,
     private readonly RoadworkDataServiceInterface $roadworkDataService,
+    private readonly ResidentParkingZoneServiceInterface $residentParkingZoneService,
     LanguageManagerInterface $languageManager,
   ) {
     $this->languageManager = $languageManager;
@@ -99,6 +101,7 @@ final class ResultsController extends ControllerBase {
       ),
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName, $langcode),
+      '#parking_zone' => $this->residentParkingZoneService->getParkingZone($address->location),
       '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address, $langcode),
       '#roadwork_section' => $this->buildRoadworksHtmxContainer($request, 3),
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedback', options: [
