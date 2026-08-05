@@ -147,8 +147,8 @@
             cookie_consent_groups: ['bypass'],
           } %}
 
-          {# Load the map iframe via the shared embedded-content JS, matching how
-             other Helsinki map embeds render (bypass = no tracking cookies). #}
+          {# drupalSettings + library for the embedded-content JS that injects
+             the map iframe. 'bypass' loads it without a cookie-consent gate. #}
           {{ {
             '#attached': {
               'drupalSettings': {
