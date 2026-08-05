@@ -361,3 +361,19 @@ msgstr "Nyheter"
 msgctxt "Site search"
 msgid "Search this site"
 msgstr "Sök från webbplatsen"
+
+msgctxt "Helsinki near you"
+msgid "Your resident parking zone"
+msgstr "Ditt invånarparkeringsområde"
+
+msgctxt "Helsinki near you"
+msgid "Your resident parking zone is @zone."
+msgstr "Ditt invånarparkeringsområde är @zone."
+
+msgctxt "Helsinki near you"
+msgid "Your area has no resident parking."
+msgstr "Det finns ingen invånarparkering i ditt område."
+
+msgctxt "Helsinki near you"
+msgid "Resident parking zone map"
+msgstr "Karta över invånarparkeringsområdet"

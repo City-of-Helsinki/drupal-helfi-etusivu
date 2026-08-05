@@ -414,3 +414,19 @@ msgstr "Uutiset"
 msgctxt "Site search"
 msgid "Search this site"
 msgstr "Hae sivustolta"
+
+msgctxt "Helsinki near you"
+msgid "Your resident parking zone"
+msgstr "Asukaspysäköintialueesi"
+
+msgctxt "Helsinki near you"
+msgid "Your resident parking zone is @zone."
+msgstr "Asukaspysäköintialueesi on @zone."
+
+msgctxt "Helsinki near you"
+msgid "Your area has no resident parking."
+msgstr "Alueellasi ei ole asukaspysäköintiä."
+
+msgctxt "Helsinki near you"
+msgid "Resident parking zone map"
+msgstr "Asukaspysäköintialueen kartta"
