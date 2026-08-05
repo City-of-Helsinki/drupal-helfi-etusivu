@@ -33,6 +33,10 @@ services:
   # Alias for RoadworkDataService to support dependency injection by interface.
   Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService'
 
+  # Resident parking zone service (Servicemap administrative_division API).
+  Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone\ResidentParkingZoneService: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone\ResidentParkingZoneServiceInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone\ResidentParkingZoneService'
+
   Drupal\helfi_etusivu\HelsinkiNearYou\Breadcrumb\HelsinkiNearYouBreadcrumbBuilder:
     tags:
       - { name: breadcrumb_builder, priority: 1004 }
