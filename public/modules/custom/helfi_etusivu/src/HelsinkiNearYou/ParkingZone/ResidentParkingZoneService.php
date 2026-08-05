@@ -32,9 +32,7 @@ final class ResidentParkingZoneService implements ResidentParkingZoneServiceInte
   private const EMBED_LANGUAGES = ['fi', 'sv', 'en'];
 
   /**
-   * Fraction of the zone's size to pad the map bounding box with.
-   *
-   * Default zoom on the map is so wild that we need bboxing parameters.
+   * Fraction of the zone's size added as padding around the map bounding box.
    */
   private const BBOX_PADDING = 0.03;
 
@@ -71,59 +69,59 @@ final class ResidentParkingZoneService implements ResidentParkingZoneServiceInte
       return NULL;
     }
 
+    // No geometry means no map to frame, so treat the zone as absent.
+    $bbox = $this->boundaryToBbox($result['boundary']['coordinates'] ?? []);
+    if (!$bbox) {
+      return NULL;
+    }
+
     return new ParkingZone(
       // The Servicemap API only provides the zone name in Finnish.
       name: (string) ($result['name']['fi'] ?? ''),
-      embedUrl: $this->buildEmbedUrl($location, $result['boundary'] ?? NULL),
+      embedUrl: $this->buildEmbedUrl($location, $bbox),
     );
   }
 
   /**
-   * Builds the Palvelukartta embed URL, framed to the zone when possible.
+   * Builds the Palvelukartta embed URL framed to the given bounding box.
    *
    * @param \Drupal\helfi_api_base\ServiceMap\DTO\Location $location
-   *   The searched location.
-   * @param array<string, mixed>|null $boundary
-   *   The zone's GeoJSON geometry, or NULL when unavailable.
+   *   The searched location (map centre and marker).
+   * @param string $bbox
+   *   Bounding box as "minLat,minLng,maxLat,maxLng".
    *
    * @return string
    *   The Palvelukartta embed URL.
    */
-  private function buildEmbedUrl(Location $location, ?array $boundary): string {
+  private function buildEmbedUrl(Location $location, string $bbox): string {
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
     $language = in_array($langcode, self::EMBED_LANGUAGES, TRUE) ? $langcode : 'fi';
 
-    $query = [
-      'selected' => self::DIVISION_TYPE,
-      'lat' => $location->lat,
-      'lng' => $location->lon,
-      'map' => 'servicemap',
-    ];
-    if ($bbox = $this->boundaryToBbox($boundary)) {
-      $query['bbox'] = $bbox;
-    }
-
     return Url::fromUri(
       sprintf('%s/%s/embed/area', self::EMBED_BASE_URL, $language),
-      ['query' => $query],
+      [
+        'query' => [
+          'selected' => self::DIVISION_TYPE,
+          'lat' => $location->lat,
+          'lng' => $location->lon,
+          'map' => 'servicemap',
+          'bbox' => $bbox,
+        ],
+      ],
     )->toString();
   }
 
   /**
-   * Computes a padded bounding box from a GeoJSON geometry.
+   * Computes a padded bounding box from GeoJSON coordinates.
    *
-   * @param array<string, mixed>|null $boundary
-   *   A GeoJSON geometry with a 'coordinates' member.
+   * @param array<int, mixed> $coordinates
+   *   GeoJSON coordinates: nested arrays of [lon, lat] positions.
    *
    * @return string|null
-   *   Bounding box as "minLat,minLng,maxLat,maxLng", or NULL when the geometry
-   *   has no usable coordinates.
+   *   Bounding box as "minLat,minLng,maxLat,maxLng", or NULL when there are no
+   *   usable coordinates.
    */
-  private function boundaryToBbox(?array $boundary): ?string {
-    if (!is_array($boundary['coordinates'] ?? NULL)) {
-      return NULL;
-    }
-
+  private function boundaryToBbox(array $coordinates): ?string {
     $lons = $lats = [];
     $collect = function (array $node) use (&$collect, &$lons, &$lats): void {
       // A GeoJSON position is a numeric [lon, lat, ...] tuple; anything else is
@@ -139,7 +137,7 @@ final class ResidentParkingZoneService implements ResidentParkingZoneServiceInte
         }
       }
     };
-    $collect($boundary['coordinates']);
+    $collect($coordinates);
 
     if (!$lons || !$lats) {
       return NULL;
