@@ -36,6 +36,8 @@ class ResidentParkingZoneServiceTest extends KernelTestBase {
    * A location inside a zone resolves to a populated DTO with an embed URL.
    *
    * @covers ::getParkingZone
+   * @covers ::buildEmbedUrl
+   * @covers ::boundaryToBbox
    * @covers ::__construct
    */
   public function testReturnsParkingZone(): void {
@@ -68,6 +70,32 @@ class ResidentParkingZoneServiceTest extends KernelTestBase {
     $this->assertStringContainsString('/embed/area', $zone->embedUrl);
     $this->assertStringContainsString('selected=resident_parking_zone', $zone->embedUrl);
     $this->assertStringContainsString('bbox=', $zone->embedUrl);
+  }
+
+  /**
+   * A zone without boundary geometry yields an embed URL with no bbox.
+   *
+   * @covers ::getParkingZone
+   * @covers ::buildEmbedUrl
+   * @covers ::boundaryToBbox
+   */
+  public function testReturnsParkingZoneWithoutBoundary(): void {
+    $response = new Response(200, [], (string) json_encode([
+      'count' => 1,
+      'results' => [
+        ['type' => 'resident_parking_zone', 'name' => ['fi' => 'Kamppi']],
+      ],
+    ]));
+    $httpClient = $this->createMock(ClientInterface::class);
+    $httpClient->method('request')->willReturn($response);
+
+    $zone = $this->createService($httpClient)
+      ->getParkingZone(new Location(60.16, 24.93, 'Point'));
+
+    $this->assertNotNull($zone);
+    $this->assertSame('Kamppi', $zone->name);
+    $this->assertStringContainsString('/embed/area', $zone->embedUrl);
+    $this->assertStringNotContainsString('bbox=', $zone->embedUrl);
   }
 
   /**
