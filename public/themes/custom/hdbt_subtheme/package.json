@@ -33,8 +33,7 @@
     "@hdbt/theme-builder": "file:../../contrib/hdbt/theme-builder",
     "@sentry/react": "^10.46.0",
     "breakpoint-sass": "^3.0.0",
-    "glob": "^11.0.0",
-    "html-react-parser": "^5.2.17",
+    "glob": "^13.0.0",
     "npm-run-all2": "^8.0.4"
   },
   "browserslist": [
