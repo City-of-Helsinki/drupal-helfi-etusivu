@@ -19,8 +19,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
  * Resolves resident parking zones from the Servicemap API.
  *
  * Resident parking zones are administrative divisions in the Servicemap
- * backend (the same API that powers Palvelukartta), separate from the TPR
- * service point registry.
+ * backend
  */
 final class ResidentParkingZoneService implements ResidentParkingZoneServiceInterface {
 
@@ -30,13 +29,11 @@ final class ResidentParkingZoneService implements ResidentParkingZoneServiceInte
 
   private const DIVISION_TYPE = 'resident_parking_zone';
 
-  /**
-   * Languages supported by the Palvelukartta embed.
-   */
   private const EMBED_LANGUAGES = ['fi', 'sv', 'en'];
 
   /**
    * Fraction of the zone's size to pad the map bounding box with.
+   * Default zoom on the map is so wild that we need bboxing parameters.
    */
   private const BBOX_PADDING = 0.03;
 
