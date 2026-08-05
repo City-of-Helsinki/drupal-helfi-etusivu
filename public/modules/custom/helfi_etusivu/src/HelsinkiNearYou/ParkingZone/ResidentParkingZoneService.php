@@ -58,7 +58,7 @@ final class ResidentParkingZoneService implements ResidentParkingZoneServiceInte
           'lon' => $location->lon,
           'geometry' => 'true',
         ],
-        RequestOptions::TIMEOUT => 10,
+        RequestOptions::TIMEOUT => 3,
       ]);
     }
     catch (GuzzleException $e) {
