@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Search\Controller;
 
-use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
@@ -39,8 +38,6 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     $search_url = Url::fromRoute('helfi_search.semantic_search')->toString();
 
-    $site_search_config = $this->configFactoryService->get('helfi_search.settings');
-
     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
     $urls = GlobalUrls::get($langcode);
     $external_links = [
@@ -51,14 +48,14 @@ final class SearchPageController extends ControllerBase implements ContainerInje
       'helsinki_near_you' => $urls['helsinki_near_you_link_url'],
     ];
 
-    $build = [
+    return [
       '#theme' => 'helfi_etusivu_site_search',
       '#attached' => [
         'drupalSettings' => [
           'helfi_site_search' => [
             'search_url' => $search_url,
             'external_links' => $external_links,
-            'ai_register_url' => $site_search_config->get('ai_register_url'),
+            'ai_register_url' => $urls['ai_register_url'],
           ],
           'helfi_react_search' => [
             'sentry_dsn_react' => $sentry_dsn,
@@ -74,12 +71,6 @@ final class SearchPageController extends ControllerBase implements ContainerInje
         ],
       ],
     ];
-
-    $cache = new CacheableMetadata();
-    $cache->addCacheableDependency($site_search_config);
-    $cache->applyTo($build);
-
-    return $build;
   }
 
   /**
