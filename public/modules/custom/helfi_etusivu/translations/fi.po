@@ -410,7 +410,3 @@ msgstr "Lisää hakunosto"
 
 msgid "News"
 msgstr "Uutiset"
-
-msgctxt "Site search"
-msgid "Search this site"
-msgstr "Hae sivustolta"
