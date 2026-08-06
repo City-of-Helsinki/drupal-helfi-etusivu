@@ -7,13 +7,17 @@ namespace Drupal\helfi_etusivu\Search\Controller;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Url;
+use Drupal\hdbt\GlobalUrls;
 
 /**
  * Site search controller.
  */
 final class SearchPageController extends ControllerBase implements ContainerInjectionInterface {
+
+  use AutowireTrait;
 
   /**
    * Constructs a new instance.
@@ -37,13 +41,23 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     $site_search_config = $this->configFactoryService->get('helfi_search.settings');
 
+    $langcode = $this->languageManager()->getCurrentLanguage()->getId();
+    $urls = GlobalUrls::get($langcode);
+    $external_links = [
+      'jobs' => $urls['jobs_link_url'],
+      'events' => $urls['events_link_url'],
+      'decisions' => $urls['decisions_link_url'],
+      'contact' => $urls['contact_link_url'],
+      'helsinki_near_you' => $urls['helsinki_near_you_link_url'],
+    ];
+
     $build = [
       '#theme' => 'helfi_etusivu_site_search',
       '#attached' => [
         'drupalSettings' => [
           'helfi_site_search' => [
             'search_url' => $search_url,
-            'external_links' => $site_search_config->get('external_links'),
+            'external_links' => $external_links,
             'ai_register_url' => $site_search_config->get('ai_register_url'),
           ],
           'helfi_react_search' => [
