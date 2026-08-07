@@ -9,6 +9,8 @@ parameters:
   paths:
     - ./public/modules/custom
     - ./public/themes/custom
+  scanDirectories:
+    - ./public/themes/contrib/hdbt/src
   excludePaths:
     - vendor
   level: 7
