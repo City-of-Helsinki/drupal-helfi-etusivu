@@ -16,8 +16,6 @@ use Drupal\helfi_api_base\GlobalUrls;
  */
 final class SearchPageController extends ControllerBase implements ContainerInjectionInterface {
 
-  use AutowireTrait;
-
   /**
    * Constructs a new instance.
    */
