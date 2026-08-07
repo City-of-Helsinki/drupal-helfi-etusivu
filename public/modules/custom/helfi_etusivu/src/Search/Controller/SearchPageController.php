@@ -9,7 +9,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Url;
-use Drupal\hdbt\GlobalUrls;
+use Drupal\helfi_api_base\GlobalUrls;
 
 /**
  * Site search controller.
