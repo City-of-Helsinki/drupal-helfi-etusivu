@@ -357,7 +357,3 @@ msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publicerin
 
 msgid "News"
 msgstr "Nyheter"
-
-msgctxt "Site search"
-msgid "Search this site"
-msgstr "Sök från webbplatsen"
