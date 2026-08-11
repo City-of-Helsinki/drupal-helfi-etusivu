@@ -140,6 +140,14 @@ msgid "Filter search results"
 msgstr "Begränsa sökningen"
 
 msgctxt "Site search"
+msgid "The search uses artificial intelligence."
+msgstr "Sökningen använder artificiell intelligens."
+
+msgctxt "Site search"
+msgid "Read about the use of AI in search."
+msgstr "Läs om användningen av AI i sökningen."
+
+msgctxt "Site search"
 msgid "@count result"
 msgid_plural "@count results"
 msgstr[0] "@count sökresultat"
