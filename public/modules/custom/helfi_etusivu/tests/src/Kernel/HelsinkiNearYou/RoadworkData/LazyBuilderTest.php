@@ -82,9 +82,9 @@ class LazyBuilderTest extends KernelTestBase {
     $this->assertEquals(['max-age' => 0], $build['#cache']);
     $this->assertEquals('123', $build['#content'][0]['#title']);
 
-    // Error variable is set if API request fails.
+    // Error flag is set if API request fails.
     $build = $sut->build($address, 'fi');
-    $this->assertNotEmpty($build['#title']);
+    $this->assertTrue($build['#has_error']);
   }
 
 }

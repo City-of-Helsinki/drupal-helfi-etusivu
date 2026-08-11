@@ -31,10 +31,13 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const toggleBundle = (value: string, checked: boolean) =>
     setStagedBundles(checked ? [...stagedBundles, value] : stagedBundles.filter((b) => b !== value));
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.value && !e.nativeEvent) return;
-    setInputValue(e.target.value);
-  }, []);
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!e.target.value && !e.nativeEvent) return;
+      setInputValue(e.target.value);
+    },
+    [setInputValue],
+  );
 
   const handleSend = useCallback(() => {
     withBundleFilters ? submitAll() : submitNews();
@@ -44,6 +47,20 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     event.preventDefault();
     handleSend();
   };
+
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLFormElement>) => {
+      const isSearchField = (event.target as HTMLElement | null)?.getAttribute('type') === 'search';
+
+      if (event.key !== 'Enter' || !isSearchField || inputValue.trim()) {
+        return;
+      }
+
+      event.preventDefault();
+      handleSend();
+    },
+    [inputValue, handleSend],
+  );
 
   const [searchInputProps] = useState({
     className: 'hdbt-search--react__input hdbt-search__search-input',
@@ -60,6 +77,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       className='hdbt-search--react__form-container hdbt-search--react__form-container--site-search'
       role='search'
       onSubmit={onSubmit}
+      onKeyDown={handleKeyDown}
     >
       <Search {...searchInputProps} onChange={handleChange} onSend={handleSend} value={inputValue} />
       {withBundleFilters && (
