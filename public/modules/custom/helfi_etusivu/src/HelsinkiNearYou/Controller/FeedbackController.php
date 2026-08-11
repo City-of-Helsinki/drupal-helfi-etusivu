@@ -60,7 +60,11 @@ final class FeedbackController extends SearchPageControllerBase {
    */
   protected function buildFormResults(Address $address, string $langcode, Request $request): array {
     return [
-      '#content' => $this->buildFeedbackHtmxContainer($request),
+      '#content' => $this->buildFeedbackHtmxContainer(
+        $request,
+        NULL,
+        (string) $this->t('Searching for results...', [], ['context' => 'Helsinki near you']),
+      ),
       '#content_attributes' => ['classes' => ['components--helsinki-near-you-feedback-page']],
     ];
   }

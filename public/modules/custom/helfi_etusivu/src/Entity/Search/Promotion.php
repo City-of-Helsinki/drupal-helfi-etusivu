@@ -203,6 +203,27 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
   public function preSave(EntityStorageInterface $storage): void {
     parent::preSave($storage);
 
+    // Normalize titles and keywords on save. Titles can contain
+    // unicode whitespace, most likely originating from Word document
+    // copy-paste.
+    foreach ($this->getTranslationLanguages() as $langcode => $language) {
+      $translation = $this->getTranslation($langcode);
+
+      $title = $translation->get('title')->value;
+      if (is_string($title) && ($trimmed = mb_trim($title)) !== $title) {
+        $translation->set('title', $trimmed);
+      }
+
+      $keywords = $translation->getKeywords();
+      $trimmedKeywords = array_values(array_filter(
+        array_map(mb_trim(...), $keywords),
+        static fn (string $keyword): bool => $keyword !== '',
+      ));
+      if ($trimmedKeywords !== $keywords) {
+        $translation->set('keywords', $trimmedKeywords);
+      }
+    }
+
     $original = $this->original ?? NULL;
     if (!$original instanceof self) {
       return;

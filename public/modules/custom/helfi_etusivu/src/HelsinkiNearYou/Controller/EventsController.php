@@ -6,6 +6,9 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Controller;
 
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\helfi_api_base\Environment\EnvironmentEnum;
+use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
+use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client;
@@ -21,6 +24,7 @@ final class EventsController extends HtmxController {
    */
   public function __construct(
     private readonly LazyBuilder $lazyBuilder,
+    private readonly EnvironmentResolverInterface $environmentResolver,
     ServiceMapInterface $serviceMap,
     FormBuilderInterface $formBuilder,
     LanguageManagerInterface $languageManager,
@@ -53,11 +57,31 @@ final class EventsController extends HtmxController {
       ->getCurrentLanguage()
       ->getId();
 
+    $helfiEventsSettings = [
+      'baseUrl' => Client::BASE_URL,
+    ];
+
+    try {
+      try {
+        $etusivuEnvironment = $this->environmentResolver->getEnvironment(
+          Project::ETUSIVU,
+          $this->environmentResolver->getActiveEnvironmentName(),
+        );
+      }
+      catch (\InvalidArgumentException) {
+        $etusivuEnvironment = $this->environmentResolver->getEnvironment(Project::ETUSIVU, EnvironmentEnum::Prod->value);
+      }
+      $helfiEventsSettings['etusivuBaseUrl'] = $etusivuEnvironment->getBaseUrl();
+    }
+    catch (\Exception) {
+      // Service unavailable — omit etusivuBaseUrl.
+      // Frontend falls back to image.url.
+    }
+
     return [
       '#attached' => [
         'drupalSettings' => [
-          'helfi_events' => [
-            'baseUrl' => Client::BASE_URL,
+          'helfi_events' => $helfiEventsSettings + [
             'data' => [
               'helfi-coordinates-based-event-list' => [
                 'events_api_url' => Client::getUri($langcode, [], 3),
