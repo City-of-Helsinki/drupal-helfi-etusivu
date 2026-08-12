@@ -1,13 +1,13 @@
 label: Seitenabschnittsbibliothek
 display:
   default:
-    display_title: Master
+    display_title: Standard
     display_options:
       exposed_form:
         options:
           submit_button: Filter
           reset_button_label: Zurücksetzen
-          exposed_sorts_label: Sortierung
+          exposed_sorts_label: 'Sortieren nach'
           sort_asc_label: Aufsteigend
           sort_desc_label: Absteigend
       pager:
@@ -37,6 +37,8 @@ display:
           separator: ', '
         count:
           label: Verwendet
+          alter:
+            path: 'admin/content/entity-usage/paragraphs_library_item/{{ id }}'
           format_plural_string: !!binary QGNvdW50IFZlcndlbmR1bmcDQGNvdW50IFZlcndlbmR1bmdlbg==
         changed:
           label: Geändert

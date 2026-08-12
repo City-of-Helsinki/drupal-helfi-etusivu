@@ -29,7 +29,24 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    * Allowed image styles.
    */
   private const IMAGE_STYLES_ALLOWED = [
+    // Card responsive image style.
+    '1_5_176w_118h',
+    '1_5_220w_147h',
+    '1_5_294w_196h',
+    '1_5_304w_203h',
+    '1_5_352w_236h_lq',
+    '1_5_440w_294h_lq',
     '1_5_511w_341h',
+    '1_5_588w_392h_lq',
+    '1_5_608w_406w_lq',
+    '1_5_1022w_682h_lq',
+    // Card Teaser responsive image style.
+    '1_5_217w_145h',
+    '1_5_378w_252h',
+    '1_5_405w_270h',
+    '1_5_434w_290h_lq',
+    '1_5_756w_504h_lq',
+    '1_5_810w_540h_lq',
   ];
 
   /**

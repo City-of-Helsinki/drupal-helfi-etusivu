@@ -67,7 +67,11 @@ final class RoadworksController extends SearchPageControllerBase {
    */
   protected function buildFormResults(Address $address, string $langcode, Request $request): array {
     return [
-      '#content' => $this->buildRoadworksHtmxContainer($request),
+      '#content' => $this->buildRoadworksHtmxContainer(
+        $request,
+        NULL,
+        (string) $this->t('Searching for results...', [], ['context' => 'Helsinki near you']),
+      ),
       '#content_attributes' => ['classes' => ['components--helsinki-near-you-roadwork-page']],
     ];
   }
