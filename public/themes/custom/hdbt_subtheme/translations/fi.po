@@ -141,7 +141,6 @@ msgid "Filter search results"
 msgstr "Rajaa hakua"
 
 msgctxt "Site search"
-<<<<<<< HEAD
 msgid "The search uses artificial intelligence."
 msgstr "Haku käyttää tekoälyä."
 
@@ -150,8 +149,6 @@ msgid "Read about the use of AI in search."
 msgstr "Lue tekoälyn käytöstä haussa."
 
 msgctxt "Site search"
-=======
->>>>>>> 858405fa9661bf400c18d7690866a9a724730041
 msgid "@count result"
 msgid_plural "@count results"
 msgstr[0] "@count hakutulos"
