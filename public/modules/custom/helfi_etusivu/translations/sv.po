@@ -306,6 +306,10 @@ msgctxt "Helsinki near you"
 msgid "Results for @address"
 msgstr "Resultat för @address"
 
+msgctxt "Helsinki near you"
+msgid "Searching for results..."
+msgstr "Söker..."
+
 msgid "Hiding the page"
 msgstr "Schemalagd döljning"
 
@@ -353,7 +357,3 @@ msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publicerin
 
 msgid "News"
 msgstr "Nyheter"
-
-msgctxt "Site search"
-msgid "Search this site"
-msgstr "Sök från webbplatsen"

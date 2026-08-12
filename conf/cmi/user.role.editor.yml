@@ -23,9 +23,9 @@ dependencies:
     - content_translation
     - editoria11y
     - entity_usage
+    - external_entities
     - file
     - filter
-    - helfi_ai
     - helfi_api_base
     - locale
     - media
@@ -171,9 +171,8 @@ permissions:
   - 'translate remote_video media'
   - 'update any media'
   - 'update content translations'
+  - 'update linkedevents_event external entity'
   - 'update media'
-  - 'use helfi ai title suggestion'
-  - 'use helfi ai tone check'
   - 'use menu link attributes'
   - 'use text format full_html'
   - 'use text format minimal'
@@ -183,6 +182,8 @@ permissions:
   - 'view any unpublished content'
   - 'view editoria11y checker'
   - 'view landing_page revisions'
+  - 'view linkedevents_event external entity'
+  - 'view linkedevents_event external entity collection'
   - 'view news_article revisions'
   - 'view news_item revisions'
   - 'view own unpublished content'

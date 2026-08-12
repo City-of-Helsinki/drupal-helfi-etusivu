@@ -5,6 +5,7 @@ dependencies: {  }
 id: news_archive
 label: 'News Archive'
 site_id: etusivu
+sms_enabled: false
 confirm_success_title: ''
 confirm_success_body: |-
   You will receive an email with new search matches no more than once a day.
