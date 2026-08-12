@@ -26,7 +26,6 @@ dependencies:
     - external_entities
     - file
     - filter
-    - helfi_ai
     - helfi_api_base
     - locale
     - media
@@ -174,8 +173,6 @@ permissions:
   - 'update content translations'
   - 'update linkedevents_event external entity'
   - 'update media'
-  - 'use helfi ai title suggestion'
-  - 'use helfi ai tone check'
   - 'use menu link attributes'
   - 'use text format full_html'
   - 'use text format minimal'
