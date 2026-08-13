@@ -11,6 +11,7 @@ import ResultsHeader from '@/react/common/ResultsHeader';
 import DebugBlock from '../components/DebugBlock';
 import ResultCard from '../components/ResultCard';
 import AppSettings from '../enum/AppSettings';
+import { SearchRelevance } from '../enum/SearchRelevance';
 import useSearchQuery from '../hooks/useSearchQuery';
 import { pageAtom, queryAtom, setPageAtom, submitCountAtom } from '../store';
 
@@ -43,12 +44,33 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     false,
   );
 
+  const getRelevanceScore = (score: number) => {
+    const { search_relevance_thresholds: thresholds } = drupalSettings.helfi_site_search;
+
+    if (score >= thresholds.high) {
+      return SearchRelevance.HIGH;
+    } else if (score >= thresholds.medium) {
+      return SearchRelevance.MEDIUM;
+    }
+
+    return SearchRelevance.LOW;
+  };
+
   useEffect(() => {
     if (!isValidQuery || isLoading || error) {
       return;
     }
-    window._paq?.push(['trackSiteSearch', query, bundle || false, totalHits]);
-  }, [data, isLoading, error, isValidQuery, query, bundle, totalHits]);
+
+    // max_score only describes the top hit of the first page.
+    const maxScore = page === 1 ? data?.max_score : undefined;
+
+    const payload: MatomoCommand =
+      typeof maxScore === 'number'
+        ? ['trackSiteSearch', query, bundle || false, totalHits, { dimension10: getRelevanceScore(maxScore) }]
+        : ['trackSiteSearch', query, bundle || false, totalHits];
+
+    window._paq?.push(payload);
+  }, [data, isLoading, error, isValidQuery, query, bundle, totalHits, page]);
 
   if (!isValidQuery) {
     return null;
