@@ -1,6 +1,6 @@
 declare namespace drupalSettings {
   const helfi_site_search: {
-    search_url: string;
+    ai_register_url?: string;
     external_links?: {
       jobs: string;
       events: string;
@@ -8,6 +8,11 @@ declare namespace drupalSettings {
       contact: string;
       helsinki_near_you: string;
     };
-    ai_register_url?: string;
+    search_relevance_thresholds: {
+      low: number;
+      medium: number;
+      high: number;
+    };
+    search_url: string;
   };
 }

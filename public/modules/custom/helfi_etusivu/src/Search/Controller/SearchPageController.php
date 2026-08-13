@@ -35,6 +35,10 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     $search_url = Url::fromRoute('helfi_search.semantic_search')->toString();
 
+    $thresholds = $this->configFactoryService
+      ->get('helfi_search.settings')
+      ->get('search_relevance_thresholds') ?? [];
+
     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
     $urls = GlobalUrls::get($langcode);
     $external_links = [
@@ -53,6 +57,11 @@ final class SearchPageController extends ControllerBase implements ContainerInje
             'search_url' => $search_url,
             'external_links' => $external_links,
             'ai_register_url' => $urls['ai_register_url'],
+            'search_relevance_thresholds' => [
+              'low' => (float) ($thresholds['low'] ?? 0),
+              'medium' => (float) ($thresholds['medium'] ?? 0),
+              'high' => (float) ($thresholds['high'] ?? 0),
+            ],
           ],
           'helfi_react_search' => [
             'sentry_dsn_react' => $sentry_dsn,
