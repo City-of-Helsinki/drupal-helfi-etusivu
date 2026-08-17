@@ -3818,17 +3818,17 @@
         },
         {
             "name": "drupal/entity",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity.git",
-                "reference": "8.x-1.6"
+                "reference": "8.x-1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "dfb214fd45bd6ad79604d23a39a96b3d4c38f8e1"
+                "url": "https://ftp.drupal.org/files/projects/entity-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "d9c24749beb5bfeb398f503b8a31a676483cd182"
             },
             "require": {
                 "drupal/core": "^10.1 || ^11"
@@ -3836,8 +3836,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1740006812",
+                    "version": "8.x-1.7",
+                    "datestamp": "1786708365",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3868,6 +3868,10 @@
                 {
                     "name": "fago",
                     "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "klausi",
+                    "homepage": "https://www.drupal.org/user/262198"
                 },
                 {
                     "name": "mglaman",
@@ -4790,16 +4794,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.8.28",
+            "version": "2.8.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "12a3618b73a54d87b874ad4bf5b4c5829c21588a"
+                "reference": "fa211272d0d3db1f1f557730010a533ccaac6330"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/12a3618b73a54d87b874ad4bf5b4c5829c21588a",
-                "reference": "12a3618b73a54d87b874ad4bf5b4c5829c21588a",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/fa211272d0d3db1f1f557730010a533ccaac6330",
+                "reference": "fa211272d0d3db1f1f557730010a533ccaac6330",
                 "shasum": ""
             },
             "require": {
@@ -4841,10 +4845,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.28",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.29",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2026-08-10T09:25:29+00:00"
+            "time": "2026-08-17T10:28:38+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -6879,7 +6883,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-1.23",
-                    "datestamp": "1785907921",
+                    "datestamp": "1786629882",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -13194,16 +13198,16 @@
         },
         {
             "name": "phrity/websocket",
-            "version": "3.8.0",
+            "version": "3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sirn-se/websocket-php.git",
-                "reference": "f9547268715cc8b6d3dfd0aec74d095cdc9f8e6f"
+                "reference": "674caab6f35bfc476a75ec0748adca3fd6a2282a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sirn-se/websocket-php/zipball/f9547268715cc8b6d3dfd0aec74d095cdc9f8e6f",
-                "reference": "f9547268715cc8b6d3dfd0aec74d095cdc9f8e6f",
+                "url": "https://api.github.com/repos/sirn-se/websocket-php/zipball/674caab6f35bfc476a75ec0748adca3fd6a2282a",
+                "reference": "674caab6f35bfc476a75ec0748adca3fd6a2282a",
                 "shasum": ""
             },
             "require": {
@@ -13254,9 +13258,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sirn-se/websocket-php/issues",
-                "source": "https://github.com/sirn-se/websocket-php/tree/3.8.0"
+                "source": "https://github.com/sirn-se/websocket-php/tree/3.8.1"
             },
-            "time": "2026-08-08T15:38:51+00:00"
+            "time": "2026-08-15T14:09:44+00:00"
         },
         {
             "name": "proj4php/proj4php",
