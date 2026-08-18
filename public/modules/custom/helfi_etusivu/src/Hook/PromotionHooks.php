@@ -8,6 +8,7 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Link;
 use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
@@ -64,6 +65,21 @@ final class PromotionHooks {
         'contexts' => ['user.permissions'],
       ],
     ];
+  }
+
+  /**
+   * Implements hook_preprocess_HOOK().
+   *
+   * @phpstan-param array<string, mixed> $variables
+   */
+  #[Hook(hook: 'preprocess_helfi_search_promotion')]
+  public function preprocess(array &$variables): void {
+    $variables['promotion'] = $variables['elements']['#helfi_search_promotion'];
+    $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+    foreach (Element::children($variables['elements']) as $key) {
+      $variables['content'][$key] = $variables['elements'][$key];
+    }
   }
 
   /**
