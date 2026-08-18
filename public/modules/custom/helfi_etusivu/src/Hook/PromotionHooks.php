@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\Hook;
 
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Link;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
+use Drupal\helfi_etusivu\Entity\Search\Promotion;
 use Drupal\helfi_etusivu\Search\PromotionLinkChecker;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
@@ -35,6 +38,31 @@ final class PromotionHooks {
     return [
       'entity.helfi_search_promotion.add_form',
       'entity.helfi_search_promotion.edit_form',
+    ];
+  }
+
+  /**
+   * Implements hook_ENTITY_TYPE_view().
+   *
+   * @phpstan-param array<string, mixed> $build
+   */
+  #[Hook(hook: 'helfi_search_promotion_view')]
+  public function view(array &$build, Promotion $promotion, EntityViewDisplayInterface $display, string $viewMode): void {
+    if ($viewMode !== 'full') {
+      return;
+    }
+
+    $link = Link::fromTextAndUrl(
+      $this->t('Back to search promotions', options: ['context' => 'Helfi search']),
+      Url::fromRoute('entity.helfi_search_promotion.collection'),
+    );
+
+    $build['back_to_collection'] = $link->toRenderable() + [
+      '#access' => $link->getUrl()->access(),
+      '#weight' => 10,
+      '#cache' => [
+        'contexts' => ['user.permissions'],
+      ],
     ];
   }
 
