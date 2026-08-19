@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Kernel\Entity\Search;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\helfi_etusivu\Entity\Search\Promotion;
 use Drupal\helfi_etusivu\Entity\Search\PromotionType;
@@ -102,6 +104,19 @@ class PromotionTest extends EntityKernelTestBase {
       'update' => TRUE,
       'delete' => TRUE,
     ], $this->promotion, $account);
+
+    $this->setCurrentUser($account);
+
+    // Render search promotion.
+    $build = $this->container->get(EntityTypeManagerInterface::class)
+      ->getViewBuilder('helfi_search_promotion')
+      ->view($this->promotion);
+
+    $markup = (string) $this->container->get(RendererInterface::class)
+      ->renderInIsolation($build);
+
+    $this->assertStringContainsString('Test description', $markup);
+    $this->assertStringContainsString('Back to search promotions', $markup);
   }
 
   /**
