@@ -13,6 +13,8 @@ display:
         status:
           settings:
             format_custom_true: Almmuhuvvon
+        changed:
+          label: Ođastuvvon
       pager:
         options:
           tags:
