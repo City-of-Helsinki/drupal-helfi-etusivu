@@ -8,11 +8,6 @@ declare namespace drupalSettings {
       contact: string;
       helsinki_near_you: string;
     };
-    search_relevance_thresholds: {
-      low: number;
-      medium: number;
-      high: number;
-    };
     search_url: string;
   };
 }

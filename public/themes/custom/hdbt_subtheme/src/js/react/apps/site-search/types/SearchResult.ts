@@ -22,7 +22,7 @@ type SearchResponse = {
   debug?: {
     bundles: Record<string, number>;
   };
-  max_score: number;
+  low_relevance: boolean;
   page: number;
   promoted: Promotion[];
   results: SearchResult[];
