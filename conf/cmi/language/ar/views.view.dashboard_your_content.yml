@@ -31,7 +31,7 @@ display:
             format_custom_true: منشور
           separator: ', '
         changed:
-          label: 'تم التغير'
+          label: 'تم التحديث'
           separator: ', '
         operations:
           label: عمليات

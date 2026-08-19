@@ -30,7 +30,7 @@ display:
             format_custom_true: 'منتشر شده'
           separator: ', '
         changed:
-          label: 'تغییر یافته'
+          label: به‌روز
           separator: ', '
         operations:
           label: عملیات
