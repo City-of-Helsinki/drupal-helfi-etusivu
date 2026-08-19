@@ -31,7 +31,7 @@ display:
             format_custom_true: Veröffentlicht
           separator: ', '
         changed:
-          label: Geändert
+          label: Aktualisiert
           separator: ', '
         operations:
           label: Aktionen
