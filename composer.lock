@@ -4672,16 +4672,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.18.15",
+            "version": "6.18.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "f10dba0b84706853d86ffc87e56a4aa57abb53da"
+                "reference": "d5c2ecbb0e4e83a9f6685211ff8ae86d25aee0b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/f10dba0b84706853d86ffc87e56a4aa57abb53da",
-                "reference": "f10dba0b84706853d86ffc87e56a4aa57abb53da",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/d5c2ecbb0e4e83a9f6685211ff8ae86d25aee0b5",
+                "reference": "d5c2ecbb0e4e83a9f6685211ff8ae86d25aee0b5",
                 "shasum": ""
             },
             "require": {
@@ -4700,10 +4700,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.18.15",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.18.16",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-08-18T12:42:35+00:00"
+            "time": "2026-08-20T12:01:03+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -5037,16 +5037,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.1.112",
+            "version": "5.1.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "fd95edc218cb951b70c4487c43adc0072158217c"
+                "reference": "e88b8b511bdc7e2c3f3d8f7b564a65f6ef37208f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/fd95edc218cb951b70c4487c43adc0072158217c",
-                "reference": "fd95edc218cb951b70c4487c43adc0072158217c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/e88b8b511bdc7e2c3f3d8f7b564a65f6ef37208f",
+                "reference": "e88b8b511bdc7e2c3f3d8f7b564a65f6ef37208f",
                 "shasum": ""
             },
             "require": {
@@ -5171,10 +5171,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.112",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.1.113",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-08-19T12:38:11+00:00"
+            "time": "2026-08-20T12:01:09+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -12041,21 +12041,21 @@
         },
         {
             "name": "pear/archive_tar",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Archive_Tar.git",
-                "reference": "dc3285537f1832da8ddbbe45f5a007248b6cc00e"
+                "reference": "a0d2c458a2ff6ee8943ac4271b7f57d613529ae0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/dc3285537f1832da8ddbbe45f5a007248b6cc00e",
-                "reference": "dc3285537f1832da8ddbbe45f5a007248b6cc00e",
+                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/a0d2c458a2ff6ee8943ac4271b7f57d613529ae0",
+                "reference": "a0d2c458a2ff6ee8943ac4271b7f57d613529ae0",
                 "shasum": ""
             },
             "require": {
                 "pear/pear-core-minimal": "^1.10.0alpha2",
-                "php": ">=5.4.0"
+                "php": ">=5.6.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "*"
@@ -12068,7 +12068,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -12107,7 +12107,7 @@
                 "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Archive_Tar",
                 "source": "https://github.com/pear/Archive_Tar"
             },
-            "time": "2025-07-19T14:49:16+00:00"
+            "time": "2026-08-19T17:37:49+00:00"
         },
         {
             "name": "pear/console_getopt",
