@@ -47,8 +47,14 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     if (!isValidQuery || isLoading || error) {
       return;
     }
-    window._paq?.push(['trackSiteSearch', query, bundle || false, totalHits]);
-  }, [data, isLoading, error, isValidQuery, query, bundle, totalHits]);
+
+    const payload: MatomoCommand =
+      data?.low_relevance && data?.results?.length
+        ? ['trackSiteSearch', query, bundle || false, totalHits, { dimension10: query }]
+        : ['trackSiteSearch', query, bundle || false, totalHits];
+
+    window._paq?.push(payload);
+  }, [data, isLoading, error, isValidQuery, query, bundle, totalHits, page]);
 
   if (!isValidQuery) {
     return null;

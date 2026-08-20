@@ -1,32 +1,33 @@
 type SearchResult = {
-  id: string;
-  score: number;
-  entity_type: string;
   bundle: string;
-  url: string;
-  title: string;
+  content?: string;
+  entity_type: string;
+  fragment?: string | null;
+  id: string;
   metatag_title: string;
   published_at?: number;
-  content?: string;
-  fragment?: string | null;
+  score: number;
+  title: string;
+  url: string;
 };
 
 type Promotion = {
-  title: string;
   description: string;
-  url: string;
   score: number;
+  title: string;
+  url: string;
 };
 
 type SearchResponse = {
-  promoted: Promotion[];
-  results: SearchResult[];
-  page: number;
-  size: number;
-  total_hits: number;
   debug?: {
     bundles: Record<string, number>;
   };
+  low_relevance: boolean;
+  page: number;
+  promoted: Promotion[];
+  results: SearchResult[];
+  size: number;
+  total_hits: number;
 };
 
 export type { Promotion, SearchResponse, SearchResult };
