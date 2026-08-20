@@ -136,6 +136,11 @@ final class Promotion extends ContentEntityBase implements EntityPublishedInterf
         'link_type' => LinkItemInterface::LINK_GENERIC,
         'title' => LinkTitleVisibility::Disabled->value,
       ])
+      ->setDisplayOptions('view', [
+        'label' => 'inline',
+        'type' => 'link',
+        'weight' => 1,
+      ])
       ->setDisplayOptions('form', [
         'type' => 'link_default',
         'weight' => 5,

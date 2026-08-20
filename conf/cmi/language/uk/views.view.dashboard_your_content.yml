@@ -31,7 +31,7 @@ display:
             format_custom_true: Опубліковано
           separator: ', '
         changed:
-          label: Змінено
+          label: Оновлено
           separator: ', '
         operations:
           label: Операції

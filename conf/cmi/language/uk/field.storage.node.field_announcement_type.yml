@@ -1,4 +1,4 @@
 settings:
   allowed_values:
     2:
-      label: Застереження
+      label: Сповіщення
