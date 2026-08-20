@@ -31,7 +31,7 @@ display:
             format_custom_true: Avaldatud
           separator: ', '
         changed:
-          label: Muudetud
+          label: Uuendatud
           separator: ', '
         operations:
           label: Toimingud
