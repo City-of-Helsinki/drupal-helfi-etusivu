@@ -38,6 +38,7 @@ class PromotionLinkCheckTest extends KernelTestBase {
     'system',
     'content_lock',
     'helfi_api_base',
+    'diff',
     'helfi_etusivu',
   ];
 

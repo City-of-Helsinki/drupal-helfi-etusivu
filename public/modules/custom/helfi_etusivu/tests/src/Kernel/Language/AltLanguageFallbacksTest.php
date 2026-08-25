@@ -30,6 +30,7 @@ class AltLanguageFallbacksTest extends KernelTestBase {
   protected static $modules = [
     'helfi_language_negotiator_test',
     'helfi_api_base',
+    'diff',
     'helfi_etusivu',
     'menu_block_current_language',
     'content_translation',

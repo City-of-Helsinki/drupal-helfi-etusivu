@@ -26,6 +26,7 @@ class PromotionTest extends EntityKernelTestBase {
   protected static $modules = [
     'link',
     'helfi_api_base',
+    'diff',
     'text',
     'scheduler',
     'helfi_etusivu',
