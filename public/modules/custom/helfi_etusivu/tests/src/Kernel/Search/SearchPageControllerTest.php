@@ -17,6 +17,7 @@ class SearchPageControllerTest extends KernelTestBase {
   protected static $modules = [
     'helfi_etusivu',
     'helfi_api_base',
+    'diff',
     'helfi_search',
     'system',
   ];

@@ -32,6 +32,7 @@ class HelsinkiNearYouBreadcrumbBuilderTest extends KernelTestBase {
    */
   protected static $modules = [
     'helfi_api_base',
+    'diff',
     'helfi_platform_config',
     'helfi_etusivu',
     'config_rewrite',

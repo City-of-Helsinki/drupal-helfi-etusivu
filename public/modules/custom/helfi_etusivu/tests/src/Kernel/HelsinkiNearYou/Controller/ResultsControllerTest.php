@@ -35,6 +35,7 @@ class ResultsControllerTest extends KernelTestBase {
    */
   protected static $modules = [
     'helfi_api_base',
+    'diff',
     'external_entities',
     'helfi_etusivu',
     'system',
