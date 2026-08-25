@@ -47,6 +47,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
     'image',
     'imagecache_external',
     'helfi_api_base',
+    'diff',
     'helfi_etusivu',
     'system',
   ];

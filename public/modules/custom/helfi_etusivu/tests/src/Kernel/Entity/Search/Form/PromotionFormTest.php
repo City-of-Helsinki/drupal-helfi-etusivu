@@ -34,6 +34,7 @@ class PromotionFormTest extends EntityKernelTestBase {
     'content_translation',
     'link',
     'helfi_api_base',
+    'diff',
     'scheduler',
     'helfi_etusivu',
   ];

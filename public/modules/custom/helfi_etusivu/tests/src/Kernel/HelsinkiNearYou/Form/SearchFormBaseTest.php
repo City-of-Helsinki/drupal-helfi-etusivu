@@ -25,6 +25,7 @@ class SearchFormBaseTest extends KernelTestBase {
   protected static $modules = [
     'system',
     'helfi_api_base',
+    'diff',
     'helfi_etusivu',
   ];
 
