@@ -393,6 +393,10 @@ msgid "Search promotions"
 msgstr "Hakunostot"
 
 msgctxt "Helfi search"
+msgid "Back to search promotions"
+msgstr "Takaisin hakunostoihin"
+
+msgctxt "Helfi search"
 msgid "Last link check"
 msgstr "Viimeisin linkkitarkistus"
 

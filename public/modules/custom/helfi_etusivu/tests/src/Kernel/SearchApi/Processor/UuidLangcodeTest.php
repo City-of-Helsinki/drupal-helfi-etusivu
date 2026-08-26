@@ -28,6 +28,7 @@ class UuidLangcodeTest extends ProcessorTestBase {
     'serialization',
     'helfi_etusivu',
     'helfi_api_base',
+    'diff',
     'big_pipe',
     'helfi_react_search',
   ];

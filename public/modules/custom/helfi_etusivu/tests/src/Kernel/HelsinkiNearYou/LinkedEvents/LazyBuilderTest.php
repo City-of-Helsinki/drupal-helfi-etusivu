@@ -29,6 +29,7 @@ class LazyBuilderTest extends KernelTestBase {
    */
   protected static $modules = [
     'helfi_api_base',
+    'diff',
     'helfi_etusivu',
     'system',
   ];

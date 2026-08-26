@@ -126,11 +126,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
 
 		-
-			message: "#^Function helfi_etusivu_theme\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
-
-		-
 			message: "#^Function helfi_etusivu_theme_registry_alter\\(\\) has parameter \\$theme_registry with no type specified\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module

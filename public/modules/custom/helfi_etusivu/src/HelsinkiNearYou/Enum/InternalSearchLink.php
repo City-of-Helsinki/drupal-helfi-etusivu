@@ -43,9 +43,9 @@ enum InternalSearchLink {
   public function getLinkTranslations() : array {
     return match ($this) {
       InternalSearchLink::HealthStations => [
-        'fi' => 'https://www.hel.fi/fi/sosiaali-ja-terveyspalvelut/terveydenhoito/terveysasemat/etsi-oma-terveysasemasi',
-        'sv' => 'https://www.hel.fi/sv/social-och-halsovardstjanster/halsovard/halsostationer/sok-din-egen-halsostation',
-        'en' => 'https://www.hel.fi/en/health-and-social-services/health-care/health-stations/find-your-health-station',
+        'fi' => 'https://www.hel.fi/fi/sosiaali-ja-terveyspalvelut/terveydenhoito/terveysasemat/oma-terveysasemasi',
+        'sv' => 'https://www.hel.fi/sv/social-och-halsovardstjanster/halsovard/halsostationer/din-halsostation',
+        'en' => 'https://www.hel.fi/en/health-and-social-services/health-care/health-stations/your-local-health-station',
       ],
       InternalSearchLink::ChildHealthStations => [
         'fi' => 'https://www.hel.fi/fi/sosiaali-ja-terveyspalvelut/lasten-ja-perheiden-palvelut/aitiys-ja-lastenneuvolat',

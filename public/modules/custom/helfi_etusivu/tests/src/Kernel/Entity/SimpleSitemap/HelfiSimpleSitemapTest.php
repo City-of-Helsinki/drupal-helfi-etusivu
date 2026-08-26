@@ -25,6 +25,7 @@ class HelfiSimpleSitemapTest extends EntityKernelTestBase {
     'language',
     'simple_sitemap',
     'helfi_api_base',
+    'diff',
     'big_pipe',
     'helfi_etusivu',
   ];

@@ -8,7 +8,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Url;
-use Drupal\helfi_api_base\GlobalUrls;
+use Drupal\helfi_api_base\GlobalUrl;
 
 /**
  * Site search controller.
@@ -36,13 +36,12 @@ final class SearchPageController extends ControllerBase implements ContainerInje
     $search_url = Url::fromRoute('helfi_search.semantic_search')->toString();
 
     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
-    $urls = GlobalUrls::get($langcode);
     $external_links = [
-      'jobs' => $urls['jobs_link_url'],
-      'events' => $urls['events_link_url'],
-      'decisions' => $urls['decisions_link_url'],
-      'contact' => $urls['contact_link_url'],
-      'helsinki_near_you' => $urls['helsinki_near_you_link_url'],
+      'jobs' => GlobalUrl::JobsLink->url($langcode),
+      'events' => GlobalUrl::EventsLink->url($langcode),
+      'decisions' => GlobalUrl::DecisionsLink->url($langcode),
+      'contact' => GlobalUrl::ContactLink->url($langcode),
+      'helsinki_near_you' => GlobalUrl::HelsinkiNearYouLink->url($langcode),
     ];
 
     return [
@@ -52,7 +51,7 @@ final class SearchPageController extends ControllerBase implements ContainerInje
           'helfi_site_search' => [
             'search_url' => $search_url,
             'external_links' => $external_links,
-            'ai_register_url' => $urls['ai_register_url'],
+            'ai_register_url' => GlobalUrl::AiRegister->url($langcode),
           ],
           'helfi_react_search' => [
             'sentry_dsn_react' => $sentry_dsn,
