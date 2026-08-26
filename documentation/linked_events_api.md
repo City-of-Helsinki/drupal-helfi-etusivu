@@ -17,7 +17,7 @@ These are query parameters instead of route parameters due to special characters
 
 ## Response
 
-- On success: `\Drupal\Core\Cache\CacheableRedirectResponse` with status code 302
+- On success: `\Drupal\Core\Routing\TrustedRedirectResponse` with status code 302
 - On failure: `\Symfony\Component\HttpFoundation\Response` with status code 404
 
 ## What does it do?

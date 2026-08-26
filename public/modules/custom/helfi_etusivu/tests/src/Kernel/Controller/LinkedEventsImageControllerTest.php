@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Kernel\Controller;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Cache\CacheableRedirectResponse;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\helfi_etusivu\Controller\LinkedEventsImageController;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\ImageStyleInterface;
@@ -47,6 +47,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
     'image',
     'imagecache_external',
     'helfi_api_base',
+    'diff',
     'helfi_etusivu',
     'system',
   ];
@@ -120,7 +121,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
     $response = $this->callSut($image_id, $image_style, $time);
 
     if ($is_redirect) {
-      $this->assertInstanceOf(CacheableRedirectResponse::class, $response);
+      $this->assertInstanceOf(TrustedRedirectResponse::class, $response);
       $this->assertEquals(302, $response->getStatusCode());
       $this->assertStringContainsString('files/styles/1_5_511w_341h/public/externals/', $response->getTargetUrl());
     }
@@ -157,7 +158,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
       ]
     );
 
-    $this->assertInstanceOf(CacheableRedirectResponse::class, $response);
+    $this->assertInstanceOf(TrustedRedirectResponse::class, $response);
     $this->assertEquals(302, $response->getStatusCode());
     $this->assertStringContainsString('files/styles/1_5_511w_341h/public/externals/', $response->getTargetUrl());
   }
@@ -254,7 +255,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
     ]), $image_id);
 
     // Test last download url cache busting query parameter.
-    if ($response instanceof CacheableRedirectResponse) {
+    if ($response instanceof TrustedRedirectResponse) {
       assert($container[1]['request'] instanceof Psr7Request);
       $this->assertStringContainsString('time=', (string) $container[1]['request']->getUri());
     }

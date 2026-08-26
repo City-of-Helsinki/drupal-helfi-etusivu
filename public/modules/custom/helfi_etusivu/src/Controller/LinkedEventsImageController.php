@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Controller;
 
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Cache\CacheableRedirectResponse;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
 use Drupal\image\ImageStyleInterface;
 use GuzzleHttp\ClientInterface;
@@ -75,7 +75,7 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    * @param string $image_id
    *   The linked events image id.
    *
-   * @return \Drupal\Core\Cache\CacheableRedirectResponse|\Symfony\Component\HttpFoundation\Response
+   * @return \Drupal\Core\Routing\TrustedRedirectResponse|\Symfony\Component\HttpFoundation\Response
    *   The redirect response or not found response.
    */
   public function deliver(Request $request, string $image_id): Response {
@@ -92,8 +92,8 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
       return $this->notFoundResponse();
     }
 
-    // Return the image style url as a redirect response.
-    $response = new CacheableRedirectResponse($image_url, 302);
+    // Return the image style url as a trusted redirect response.
+    $response = new TrustedRedirectResponse($image_url, 302);
     $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts([
       'url',
     ]));
