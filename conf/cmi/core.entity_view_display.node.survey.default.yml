@@ -45,6 +45,7 @@ content:
     region: content
 hidden:
   ai_summary: true
+  changed_at: true
   field_publish_externally: true
   field_survey_content_pages: true
   langcode: true
