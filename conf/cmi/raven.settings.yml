@@ -44,4 +44,3 @@ error_embed_url: ''
 tunnel: false
 modules: false
 http_compression: true
-enable_logs: true
