@@ -98,7 +98,7 @@ final class PromotionHooks {
    */
   #[Hook(hook: 'user_login')]
   public function userLogin(AccountInterface $account): void {
-    if (!$account->hasPermission('administer search promotions')) {
+    if (!$account->hasPermission('administer search content')) {
       return;
     }
 

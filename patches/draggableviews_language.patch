@@ -1,8 +1,7 @@
 diff --git a/draggableviews.module b/draggableviews.module
-index eaba8c8..80d1491 100644
 --- a/draggableviews.module
 +++ b/draggableviews.module
-@@ -174,6 +174,7 @@ function draggableviews_views_submit(&$form, FormStateInterface $form_state) {
+@@ -179,6 +179,7 @@
  
    $connection = Database::getConnection();
    $transaction = $connection->startTransaction();
@@ -10,7 +9,7 @@ index eaba8c8..80d1491 100644
    try {
      foreach ($input['draggableviews'] as $item) {
        // Remove old data.
-@@ -182,6 +183,7 @@ function draggableviews_views_submit(&$form, FormStateInterface $form_state) {
+@@ -187,6 +188,7 @@
          ->condition('view_display', $view_display)
          ->condition('args', $view_args)
          ->condition('entity_id', $item['id'])
@@ -18,7 +17,7 @@ index eaba8c8..80d1491 100644
          ->execute();
  
        // Add new data.
-@@ -191,6 +193,7 @@ function draggableviews_views_submit(&$form, FormStateInterface $form_state) {
+@@ -196,6 +198,7 @@
          'args' => $view_args,
          'entity_id' => $item['id'],
          'weight' => $item['weight'],

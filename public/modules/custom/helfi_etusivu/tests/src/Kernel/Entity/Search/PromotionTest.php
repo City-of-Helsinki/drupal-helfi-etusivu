@@ -96,7 +96,7 @@ class PromotionTest extends EntityKernelTestBase {
    */
   public function testAdminAccess(): void {
     $account = $this->drupalCreateUser([
-      'administer search promotions',
+      'administer search content',
     ]);
 
     $this->assertInstanceOf(AccountInterface::class, $account);

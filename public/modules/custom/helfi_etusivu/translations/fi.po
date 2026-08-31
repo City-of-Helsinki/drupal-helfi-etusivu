@@ -414,3 +414,52 @@ msgstr "Lisää hakunosto"
 
 msgid "News"
 msgstr "Uutiset"
+
+msgctxt "Helfi search"
+msgid "Search"
+msgstr "Haku"
+
+msgctxt "Helfi search"
+msgid "Suggestions"
+msgstr "Hakuehdotukset"
+
+msgid "Organize search suggestions"
+msgstr "Järjestele hakuehdotuksia"
+
+msgid "Add search suggestion"
+msgstr "Lisää hakuehdotus"
+
+msgid "Administer search promotions and suggestions"
+msgstr "Ylläpidä hakunostoja ja hakuehdotuksia"
+
+msgctxt "Helfi search"
+msgid "Search suggestion"
+msgstr "Hakuehdotus"
+
+msgctxt "Helfi search"
+msgid "Search suggestions"
+msgstr "Hakuehdotukset"
+
+msgctxt "Helfi search"
+msgid "search suggestion"
+msgstr "hakuehdotus"
+
+msgctxt "Helfi search"
+msgid "search suggestions"
+msgstr "hakuehdotukset"
+
+msgctxt "Helfi search"
+msgid "Search term"
+msgstr "Hakusana"
+
+msgctxt "Helfi search"
+msgid "The example search term shown to users."
+msgstr "Käyttäjille näytettävä esimerkkihakusana."
+
+msgctxt "Helfi search"
+msgid "Search suggestion %label has been created."
+msgstr "Hakuehdotus %label on luotu."
+
+msgctxt "Helfi search"
+msgid "Search suggestion %label has been updated."
+msgstr "Hakuehdotus %label on päivitetty."

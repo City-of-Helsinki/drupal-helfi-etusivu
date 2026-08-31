@@ -69,6 +69,9 @@ function helfi_etusivu_install() : void {
   }
 
   _helfi_etusivu_apply_promotion_bundle_scheduler_defaults();
+
+  // Alter draggableviews table.
+  helfi_etusivu_update_9005();
 }
 
 /**
@@ -887,4 +890,15 @@ function helfi_etusivu_update_11011(): void {
   foreach ($storage->loadMultiple() as $promotion) {
     $promotion->save();
   }
+}
+
+/**
+ * UHF-13524: Install search suggestions.
+ */
+function helfi_etusivu_update_11012(): void {
+  $type = \Drupal::service(EntityTypeManagerInterface::class)
+    ->getDefinition('helfi_search_suggestion');
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installEntityType($type);
 }

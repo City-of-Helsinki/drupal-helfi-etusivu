@@ -1,0 +1,234 @@
+uuid: af154573-742e-48f2-9cbc-b5f4f57ad88a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.admin
+  module:
+    - draggableviews
+    - helfi_etusivu
+    - user
+id: search_suggestions
+label: 'Search suggestions'
+module: views
+description: 'Order the example search terms shown near search inputs'
+tag: ''
+base_table: helfi_search_suggestion_data
+base_field: id
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Organize search suggestions'
+      fields:
+        suggestion:
+          id: suggestion
+          table: helfi_search_suggestion_data
+          field: suggestion
+          relationship: none
+          entity_type: helfi_search_suggestion
+          entity_field: suggestion
+          plugin_id: field
+          label: 'Search term'
+          type: string
+          settings:
+            link_to_entity: false
+        draggableviews:
+          id: draggableviews
+          table: helfi_search_suggestion_data
+          field: draggableviews
+          relationship: none
+          entity_type: helfi_search_suggestion
+          plugin_id: draggable_views_field
+          label: ''
+          draggable_views_hierarchy: 0
+        operations:
+          id: operations
+          table: helfi_search_suggestion
+          field: operations
+          relationship: none
+          entity_type: helfi_search_suggestion
+          plugin_id: entity_operations
+          label: ''
+          destination: true
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 0
+      exposed_form:
+        type: basic
+        options: {  }
+      access:
+        type: perm
+        options:
+          perm: 'administer search content'
+      cache:
+        type: tag
+        options: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          plugin_id: text_custom
+          empty: true
+          content: 'There are no search suggestions in this language yet.'
+      sorts:
+        weight:
+          id: weight
+          table: draggableviews_structure
+          field: weight
+          relationship: none
+          group_type: group
+          plugin_id: draggable_views_sort_default
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: weight
+          exposed: false
+          draggable_views_reference: this
+          draggable_views_null_order: after
+          draggable_views_pass_arguments: 0
+      arguments: {  }
+      filters:
+        langcode:
+          id: langcode
+          table: helfi_search_suggestion_data
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: helfi_search_suggestion
+          entity_field: langcode
+          plugin_id: language
+          operator: in
+          value:
+            '***LANGUAGE_language_content***': '***LANGUAGE_language_content***'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: table
+        options:
+          columns:
+            suggestion: suggestion
+            draggableviews: draggableviews
+            operations: operations
+          default: '-1'
+          info:
+            suggestion:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            draggableviews:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            operations:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          sticky: false
+          empty_table: false
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      query:
+        type: views_query
+        options:
+          distinct: true
+      relationships: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          plugin_id: text
+          empty: false
+          content:
+            value: '<p>Arrange the example search terms in the order you want. Each language has its own order.</p>'
+            format: full_html
+          tokenize: false
+      rendering_language: '***LANGUAGE_language_content***'
+      display_extenders: {  }
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_interface'
+        - user.permissions
+      tags: {  }
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: admin/search/suggestions
+      menu:
+        type: normal
+        title: Suggestions
+        description: 'Administer search suggestions'
+        weight: 0
+        expanded: false
+        menu_name: admin
+        parent: helfi_etusivu.search
+        context: '0'
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - user.permissions
+      tags: {  }
