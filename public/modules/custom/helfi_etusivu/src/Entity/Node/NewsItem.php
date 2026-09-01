@@ -29,9 +29,6 @@ final class NewsItem extends Node {
       if ($latest = end($newsUpdates)) {
         assert($latest instanceof FieldableEntityInterface);
 
-        // PHPStan does not like $date property:
-        // https://www.drupal.org/project/drupal/issues/3425302.
-        // @phpstan-ignore-next-line
         $updateDate = $latest->get('field_news_update_date')->date;
 
         /**  @var \Drupal\Core\Datetime\DrupalDateTime $updateDate */
@@ -87,10 +84,6 @@ final class NewsItem extends Node {
 
     if ($first = reset($newsUpdates)) {
       assert($first instanceof FieldableEntityInterface);
-
-      // PHPStan does not like $date property:
-      // https://www.drupal.org/project/drupal/issues/3425302.
-      // @phpstan-ignore-next-line
       $updateDate = $first->get('field_news_update_date')->date->getTimestamp();
 
       return $updateDate;

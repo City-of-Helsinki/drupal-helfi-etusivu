@@ -38,8 +38,8 @@
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "drupal/core-dev": "^10|^11",
-        "jangregor/phpstan-prophecy": "^1.0",
-        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "jangregor/phpstan-prophecy": "^2",
+        "phpstan/phpstan-deprecation-rules": "^2",
         "weitzman/drupal-test-traits": "^2.0"
     },
     "conflict": {
