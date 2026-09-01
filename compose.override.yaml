@@ -1,0 +1,15 @@
+services:
+  elastic-crawler:
+    build:
+      context: ./docker/elastic-crawler
+    container_name: "${COMPOSE_PROJECT_NAME}-elastic-crawler"
+    entrypoint: ["bin/crawler", "crawl", "/config/crawler.yml"]
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./docker/elastic-crawler/crawler.yml:/config/crawler.yml:delegated
+    networks:
+      - internal
+      - stonehenge-network
+    profiles:
+      - search
