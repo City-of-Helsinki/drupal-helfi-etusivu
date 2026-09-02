@@ -89,25 +89,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
-
-		-
-			message: '#^Function helfi_etusivu_module_implements_alter\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
-
-		-
-			message: '#^Function helfi_etusivu_module_implements_alter\(\) has parameter \$hook with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
-
-		-
-			message: '#^Function helfi_etusivu_module_implements_alter\(\) has parameter \$implementations with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
-
 		-
 			message: '#^Function helfi_etusivu_page_attachments\(\) has parameter \$page with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
