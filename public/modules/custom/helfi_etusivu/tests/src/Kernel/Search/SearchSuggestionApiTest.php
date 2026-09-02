@@ -6,7 +6,6 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\Search;
 
 use Drupal\Core\Database\Connection;
 use Drupal\helfi_etusivu\Entity\Search\Suggestion;
-use Drupal\helfi_etusivu\Search\SearchSuggestionRepository;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
@@ -132,8 +131,8 @@ class SearchSuggestionApiTest extends KernelTestBase {
   private function setWeight(Suggestion $suggestion, string $langcode, int $weight): void {
     $this->container->get(Connection::class)->insert('draggableviews_structure')
       ->fields([
-        'view_name' => SearchSuggestionRepository::VIEW_ID,
-        'view_display' => SearchSuggestionRepository::VIEW_DISPLAY_ID,
+        'view_name' => 'search_suggestions',
+        'view_display' => 'search_suggestions',
         'args' => '[]',
         'entity_id' => $suggestion->id(),
         'weight' => $weight,

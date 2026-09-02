@@ -11,11 +11,6 @@ use Drupal\helfi_etusivu\Entity\Search\Suggestion;
 /**
  * Loads search suggestions in the order defined by the drag UI.
  *
- * The order is not a field on the entity. It lives in
- * {draggableviews_structure}, keyed by view name, view display, entity id and
- * language, and is written when an editor presses "Save order" on the
- * 'search_suggestions' view.
- *
  * This repository re-implements the ordering of
  * \Drupal\draggableviews\Plugin\views\sort\DraggableViewsSort::query() rather
  * than executing the view, so the API does not have to bootstrap Views on
@@ -27,17 +22,16 @@ final class SearchSuggestionRepository {
   /**
    * The view that owns the stored order.
    *
-   * Renaming the view or its display orphans every saved order, because the
-   * values are stored as literals in {draggableviews_structure}.
-   *
    * @see helfi_etusivu_views_query_alter()
    */
   public const string VIEW_ID = 'search_suggestions';
 
   /**
    * The display of self::VIEW_ID that owns the stored order.
+   *
+   * @see draggableviews_views_submit()
    */
-  public const string VIEW_DISPLAY_ID = 'page_1';
+  public const string VIEW_DISPLAY_ID = 'search_suggestions';
 
   /**
    * Hard upper bound for one API payload.
