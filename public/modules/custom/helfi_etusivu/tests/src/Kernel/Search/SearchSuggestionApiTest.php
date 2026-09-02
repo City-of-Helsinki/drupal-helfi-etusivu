@@ -64,7 +64,6 @@ class SearchSuggestionApiTest extends KernelTestBase {
 
     ConfigurableLanguage::createFromLangcode('fi')->save();
 
-    // The endpoint must be readable without an account.
     $role = Role::load(RoleInterface::ANONYMOUS_ID);
     $role->grantPermission('access content')->save();
 
