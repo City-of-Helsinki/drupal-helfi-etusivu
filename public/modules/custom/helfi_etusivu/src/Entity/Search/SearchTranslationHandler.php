@@ -20,7 +20,7 @@ class SearchTranslationHandler extends ContentTranslationHandler {
   /**
    * {@inheritdoc}
    *
-   * @phpstan-param array<string, mixed> $form
+   * @phpstan-param array<array-key, mixed> $form
    */
   #[\Override]
   public function entityFormAlter(array &$form, FormStateInterface $form_state, EntityInterface $entity): void {

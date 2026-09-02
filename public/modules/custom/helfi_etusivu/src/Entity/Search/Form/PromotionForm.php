@@ -19,7 +19,7 @@ final class PromotionForm extends ContentEntityForm {
   /**
    * Date formatter.
    */
-  private DateFormatterInterface $dateFormatter;
+  protected DateFormatterInterface $dateFormatter;
 
   /**
    * {@inheritdoc}

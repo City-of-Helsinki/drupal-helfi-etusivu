@@ -89,7 +89,7 @@ final class Suggestion extends ContentEntityBase {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields[$entity_type->getKey('label')] = BaseFieldDefinition::create('string')
+    $fields[(string) $entity_type->getKey('label')] = BaseFieldDefinition::create('string')
       ->setLabel(new TranslatableMarkup('Search term', options: ['context' => 'Helfi search']))
       ->setDescription(new TranslatableMarkup('The example search term shown to users.', options: ['context' => 'Helfi search']))
       ->setRequired(TRUE)
