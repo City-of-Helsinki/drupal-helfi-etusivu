@@ -362,12 +362,5 @@ msgctxt "Helfi search"
 msgid "Search"
 msgstr "Sök"
 
-msgctxt "Helfi search"
-msgid "Suggestions"
-msgstr "Sökförslag"
-
-msgid "Organize search suggestions"
-msgstr "Ordna sökförslagen"
-
 msgid "Add search suggestion"
 msgstr "Lägg till sökförslag"
