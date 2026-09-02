@@ -22,7 +22,7 @@ use Drupal\views\EntityViewsData;
  *
  * The ordering lives in the {draggableviews_structure} table.
  *
- * @see \Drupal\helfi_etusivu\Search\SearchSuggestionRepository
+ * @see \Drupal\helfi_etusivu\Search\Controller\SearchSuggestionsController
  */
 #[ContentEntityType(
   id: 'helfi_search_suggestion',

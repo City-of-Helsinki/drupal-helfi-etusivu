@@ -49,8 +49,6 @@ services:
     arguments:
       $contentLock: '@?content_lock'
 
-  Drupal\helfi_etusivu\Search\SearchSuggestionRepository: ~
-
   Drupal\helfi_etusivu\NewsRss\ContentTypeSubscriber: ~
   Drupal\helfi_etusivu\NewsRss\RssEncoder:
     tags:
