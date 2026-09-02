@@ -15,3 +15,8 @@ display:
       fields:
         suggestion:
           label: Hakusana
+  search_suggestions:
+    display_options:
+      menu:
+        title: Hakuehdotukset
+        description: 'Hallinnoi hakuehdotuksia'
