@@ -69,7 +69,7 @@ class SuggestionTest extends EntityKernelTestBase {
     );
 
     // Content translation automatically creates routes for entity types
-    // that have a canonical link, that search suggestions don't have.
+    // that have a canonical link, which search suggestions don't have.
     $access = $this->container->get('content_translation.overview_access')
       ->access($route_match, $this->drupalCreateUser([
         'administer search content',
