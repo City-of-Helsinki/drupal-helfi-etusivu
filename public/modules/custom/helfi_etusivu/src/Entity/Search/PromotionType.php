@@ -11,7 +11,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 /**
  * Bundle entity for the helfi_search_promotion content entity.
  *
- * Not needed anymore since https://www.drupal.org/i/3355087 is resolved.
+ * @fixme not needed anymore since https://www.drupal.org/i/3355087 is resolved.
  */
 #[ConfigEntityType(
   id: 'helfi_search_promotion_type',

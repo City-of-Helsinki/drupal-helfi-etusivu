@@ -12,16 +12,6 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Translation handler for the helfi search entities.
  *
- * Content translation's own "This translation is published" checkbox is
- * unwanted. Shared by \Drupal\helfi_etusivu\Entity\Search\Promotion and
- * \Drupal\helfi_etusivu\Entity\Search\Suggestion.
- *
- * For Promotion, which is publishable, the checkbox duplicates the native
- * status widget, so it is hidden and kept in sync with the entity's own
- * published status. Suggestion is not publishable at all, so the checkbox
- * (backed by content_translation's own metadata field) is hidden as
- * meaningless and left at its default.
- *
  * @see \Drupal\helfi_etusivu\Entity\Search\SuggestionTranslationHandler
  * @see \Drupal\node\NodeTranslationHandler
  */
