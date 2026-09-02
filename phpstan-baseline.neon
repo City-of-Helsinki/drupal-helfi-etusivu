@@ -186,11 +186,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/Entity/Node/Survey.php
 
 		-
-			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\Search\\\\Form\\\\PromotionForm\\:\\:save\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Form/PromotionForm.php
-
-		-
 			message: "#^Method Drupal\\\\helfi_etusivu\\\\Entity\\\\SimpleSitemap\\\\HelfiSimpleSitemap\\:\\:toUrl\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/Entity/SimpleSitemap/HelfiSimpleSitemap.php
