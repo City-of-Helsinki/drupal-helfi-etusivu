@@ -24,6 +24,29 @@ class BlockHooks {
   use AutowireTrait;
   use StringTranslationTrait;
 
+  /**
+   * List of routes where Askem should be visible.
+   *
+   * @var string[]
+   */
+  private array $allowedAskemRoutes = [
+    'helfi_etusivu.helsinki_near_you_results',
+    'helfi_etusivu.helsinki_near_you_feedback',
+    'helfi_etusivu.helsinki_near_you_events',
+    'helfi_etusivu.helsinki_near_you_roadworks',
+  ];
+
+  /**
+   * List of content types where Askem should be visible.
+   *
+   * @var string[]
+   */
+  private array $allowedAskemContentTypes = [
+    'page',
+    'news_item',
+    'news_article',
+  ];
+
   public function __construct(
     private readonly LanguageManagerInterface $languageManager,
     private readonly RouteMatchInterface $routeMatch,
@@ -65,20 +88,15 @@ class BlockHooks {
       return AccessResult::forbidden()->addCacheContexts($cacheContexts);
     }
 
-    // Show on Helsinki near you pages.
-    $routes = [
-      'helfi_etusivu.helsinki_near_you_results',
-      'helfi_etusivu.helsinki_near_you_feedback',
-      'helfi_etusivu.helsinki_near_you_events',
-      'helfi_etusivu.helsinki_near_you_roadworks',
-    ];
-    if (in_array($this->routeMatch->getRouteName(), $routes)) {
+    if (in_array($this->routeMatch->getRouteName(), $this->allowedAskemRoutes)) {
       return AccessResult::allowed()->addCacheContexts($cacheContexts);
     }
 
-    // Show on page and landing_page content types.
     $node = $this->routeMatch->getParameter('node');
-    if ($node instanceof NodeInterface && $node->bundle() === 'page') {
+    if (
+      $node instanceof NodeInterface &&
+      in_array($node->bundle(), $this->allowedAskemContentTypes)
+    ) {
       return AccessResult::allowed()
         ->addCacheContexts($cacheContexts)
         ->addCacheableDependency($node);
