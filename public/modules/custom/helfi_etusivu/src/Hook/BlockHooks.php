@@ -44,7 +44,7 @@ class BlockHooks {
   private array $allowedAskemContentTypes = [
     'page',
     'news_item',
-    'news_article'
+    'news_article',
   ];
 
   public function __construct(
