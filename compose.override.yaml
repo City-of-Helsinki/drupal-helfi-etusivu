@@ -3,13 +3,16 @@ services:
     build:
       context: ./docker/elastic-crawler
     container_name: "${COMPOSE_PROJECT_NAME}-elastic-crawler"
-    entrypoint: ["bin/crawler", "crawl", "/config/crawler.yml"]
+    entrypoint: ["bash", "/config/wait-for-elastic.sh", "bin/crawler", "crawl", "/config/crawler.yml"]
     stdin_open: true
     tty: true
     volumes:
       - ./docker/elastic-crawler/crawler.yml:/config/crawler.yml:delegated
+      - ./docker/elastic-crawler/wait-for-elastic.sh:/config/wait-for-elastic.sh:delegated
+    depends_on:
+      elastic:
+        condition: service_healthy
     networks:
       - internal
-      - stonehenge-network
     profiles:
       - search
