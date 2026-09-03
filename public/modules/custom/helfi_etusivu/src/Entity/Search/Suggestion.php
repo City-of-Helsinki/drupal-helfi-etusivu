@@ -70,9 +70,6 @@ use Drupal\views\EntityViewsData;
   base_table: 'helfi_search_suggestion',
   data_table: 'helfi_search_suggestion_data',
   translatable: TRUE,
-  // Normally set by content_translation for entity types that have a canonical
-  // link. ContentTranslationOverviewAccess reads it unconditionally, so the
-  // translation overview would fail without it.
   additional: [
     'translation' => [
       'content_translation' => [
