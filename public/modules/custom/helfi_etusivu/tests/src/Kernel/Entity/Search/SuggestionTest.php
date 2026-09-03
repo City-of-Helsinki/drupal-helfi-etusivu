@@ -26,7 +26,10 @@ class SuggestionTest extends EntityKernelTestBase {
    */
   protected static $modules = [
     'content_translation',
+    'diff',
+    'helfi_api_base',
     'helfi_etusivu',
+    'language',
   ];
 
   /**
