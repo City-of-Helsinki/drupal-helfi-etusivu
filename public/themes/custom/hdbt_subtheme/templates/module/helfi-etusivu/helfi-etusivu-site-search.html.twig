@@ -1,3 +1,13 @@
 <div class="site-search components components--computed">
-  <div id="helfi-etusivu-site-search" class="component component--react-search component--react-search--no-bg"></div>
+  <div id="helfi-etusivu-site-search" class="component component--react-search component--react-search--no-bg">
+    <div class="component__container">
+      <noscript class="js-remove">
+        <p>
+          {% trans with {'context': 'Site search'} %}
+              Search requires JavaScript. Enable JavaScript in your browser settings to use search.
+          {% endtrans %}
+        </p>
+      </noscript>
+    </div>
+  </div>
 </div>
