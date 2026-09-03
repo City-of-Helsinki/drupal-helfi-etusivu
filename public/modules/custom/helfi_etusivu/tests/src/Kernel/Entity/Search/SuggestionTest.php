@@ -5,32 +5,17 @@ declare(strict_types=1);
 namespace Drupal\Tests\helfi_etusivu\Kernel\Entity\Search;
 
 use Drupal\content_translation\ContentTranslationManagerInterface;
-use Drupal\Core\Routing\RouteBuilderInterface;
-use Drupal\Core\Routing\RouteMatch;
-use Drupal\Core\Routing\RouteProviderInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\helfi_etusivu\Entity\Search\Suggestion;
-use Drupal\language\Entity\ConfigurableLanguage;
-use Drupal\Tests\helfi_etusivu\Kernel\Entity\EntityKernelTestBase;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * Tests the search suggestion entity.
+ * Tests the search suggestion entity access.
  */
 #[Group('helfi_etusivu')]
 #[RunTestsInSeparateProcesses]
-class SuggestionTest extends EntityKernelTestBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'content_translation',
-    'diff',
-    'helfi_api_base',
-    'helfi_etusivu',
-    'language',
-  ];
+class SuggestionTest extends SearchEntityTestBase {
 
   /**
    * {@inheritdoc}
@@ -39,47 +24,20 @@ class SuggestionTest extends EntityKernelTestBase {
     parent::setUp();
 
     $this->installEntitySchema('helfi_search_suggestion');
-    $this->installConfig(['language']);
 
-    ConfigurableLanguage::create(['id' => 'sv', 'label' => 'Swedish'])->save();
-
-    // Create a dummy user so the actual test user is not UID 1.
-    $this->drupalCreateUser();
+    $this->container->get(ContentTranslationManagerInterface::class)
+      ->setEnabled('helfi_search_suggestion', 'helfi_search_suggestion', TRUE);
   }
 
   /**
-   * Tests that the translation overview works without a canonical route.
+   * {@inheritdoc}
    */
-  public function testTranslationOverviewRoute(): void {
-    $this->container->get(ContentTranslationManagerInterface::class)
-      ->setEnabled('helfi_search_suggestion', 'helfi_search_suggestion', TRUE);
-
-    $this->container->get(RouteBuilderInterface::class)->rebuild();
-
-    $route = $this->container->get(RouteProviderInterface::class)
-      ->getRouteByName('entity.helfi_search_suggestion.content_translation_overview');
-
-    $this->assertEquals('/admin/search/suggestions/{helfi_search_suggestion}/translations', $route->getPath());
-
+  protected function createTestEntity(): ContentEntityInterface {
     $suggestion = Suggestion::create(['suggestion' => 'blaa']);
+    $suggestion->addTranslation('sv', ['suggestion' => 'blaa sv']);
     $suggestion->save();
 
-    $route_match = new RouteMatch(
-      'entity.helfi_search_suggestion.content_translation_overview',
-      $route,
-      ['helfi_search_suggestion' => $suggestion],
-      ['helfi_search_suggestion' => $suggestion->id()],
-    );
-
-    // Content translation automatically creates routes for entity types
-    // that have a canonical link, which search suggestions don't have.
-    $access = $this->container->get('content_translation.overview_access')
-      ->access($route_match, $this->drupalCreateUser([
-        'administer search content',
-        'translate any entity',
-      ]), 'helfi_search_suggestion');
-
-    $this->assertTrue($access->isAllowed());
+    return $suggestion;
   }
 
 }

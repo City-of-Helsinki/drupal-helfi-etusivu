@@ -823,12 +823,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
 
 		-
-			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Drupal\\\\Core\\\\Session\\\\AccountInterface'' and Drupal\\user\\UserInterface will always evaluate to true\.$#'
-			identifier: method.alreadyNarrowedType
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
-
-		-
 			message: '#^Method Drupal\\helfi_etusivu\\Tests\\Kernel\\EventSubscriber\\ElasticsearchEventSubscriberTest\:\:testPrepareIndices\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
