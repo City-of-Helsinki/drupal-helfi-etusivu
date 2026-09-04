@@ -21,7 +21,7 @@ final readonly class PlatformConfig {
   public function permissions(): array {
     return [
       'admin' => [
-        'administer search promotions',
+        'administer search content',
       ],
     ];
   }
