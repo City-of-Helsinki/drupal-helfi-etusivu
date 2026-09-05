@@ -1,0 +1,22 @@
+label: Hakuehdotukset
+description: 'Järjestä hakukenttien yhteydessä näytettävät esimerkkihakusanat'
+display:
+  default:
+    display_options:
+      title: 'Järjestele hakuehdotuksia'
+      header:
+        area:
+          content:
+            value: '<p>Järjestä esimerkkihakusanat haluamaasi järjestykseen. Jokaiselle kielelle on oma järjestys.</p>'
+            format: full_html
+      empty:
+        area_text_custom:
+          content: 'Tällä kielellä ei ole vielä yhtään hakuehdotusta.'
+      fields:
+        suggestion:
+          label: Hakusana
+  search_suggestions:
+    display_options:
+      menu:
+        title: Hakuehdotukset
+        description: 'Hallinnoi hakuehdotuksia'

@@ -10,20 +10,17 @@ use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Translation handler for the search promotion entity.
+ * Translation handler for the helfi search entities.
  *
- * Content translation's own "This translation is published" checkbox is
- * redundant. Hide the checkbox and let the native widget own the translation
- * published status.
- *
+ * @see \Drupal\helfi_etusivu\Entity\Search\SuggestionTranslationHandler
  * @see \Drupal\node\NodeTranslationHandler
  */
-final class PromotionTranslationHandler extends ContentTranslationHandler {
+class SearchTranslationHandler extends ContentTranslationHandler {
 
   /**
    * {@inheritdoc}
    *
-   * @phpstan-param array<string, mixed> $form
+   * @phpstan-param array<array-key, mixed> $form
    */
   #[\Override]
   public function entityFormAlter(array &$form, FormStateInterface $form_state, EntityInterface $entity): void {
@@ -41,9 +38,8 @@ final class PromotionTranslationHandler extends ContentTranslationHandler {
    */
   #[\Override]
   public function entityFormEntityBuild($entity_type, EntityInterface $entity, array $form, FormStateInterface $form_state): void {
-    if ($form_state->hasValue('content_translation')) {
+    if ($form_state->hasValue('content_translation') && $entity instanceof EntityPublishedInterface) {
       $translation = &$form_state->getValue('content_translation');
-      assert($entity instanceof EntityPublishedInterface);
       $translation['status'] = $entity->isPublished();
     }
     parent::entityFormEntityBuild($entity_type, $entity, $form, $form_state);

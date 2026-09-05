@@ -14,10 +14,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 final class PromotionForm extends ContentEntityForm {
 
+  use SearchEntityFormTrait;
+
   /**
    * Date formatter.
    */
-  private DateFormatterInterface $dateFormatter;
+  protected DateFormatterInterface $dateFormatter;
 
   /**
    * {@inheritdoc}
@@ -99,30 +101,6 @@ final class PromotionForm extends ContentEntityForm {
     }
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function save(array $form, FormStateInterface $form_state): int {
-    $saved = parent::save($form, $form_state);
-
-    $options = [
-      '@type' => $this->getEntity()->getEntityType()->getLabel(),
-      '%label' => $this->getEntity()->toLink()->toString(),
-    ];
-
-    $this
-      ->messenger()
-      ->addStatus($saved === SAVED_NEW
-        ? $this->t('@type %label has been created.', $options)
-        : $this->t('@type %label has been updated.', $options),
-      );
-
-    // Redirect the user to the overview page.
-    $form_state->setRedirectUrl($this->getEntity()->toUrl('collection'));
-
-    return $saved;
   }
 
 }

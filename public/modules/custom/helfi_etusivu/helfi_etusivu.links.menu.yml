@@ -9,3 +9,10 @@ helfi_etusivu.ordered_news_articles:
   route_name: view.ordered_news_articles_list.ordered_news_articles
   parent: hdbt_admin_tools.overview
   weight: 99
+
+helfi_etusivu.search:
+  title: 'Search'
+  title_context: 'Helfi search'
+  route_name: entity.helfi_search_promotion.collection
+  parent: system.admin_content
+  weight: 100

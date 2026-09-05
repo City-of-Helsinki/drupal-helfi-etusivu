@@ -204,24 +204,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/Entity/Node/Survey.php
 
 		-
-			message: '#^Drupal\\Core\\DependencyInjection\\DependencySerializationTrait does not support private properties\.$#'
-			identifier: dependencySerializationTraitProperty.unsupportedPrivateProperty
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Form/PromotionForm.php
-
-		-
-			message: '#^Method Drupal\\helfi_etusivu\\Entity\\Search\\Form\\PromotionForm\:\:save\(\) has parameter \$form with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/Form/PromotionForm.php
-
-		-
-			message: '#^Parameter &\$form by\-ref type of method Drupal\\helfi_etusivu\\Entity\\Search\\PromotionTranslationHandler\:\:entityFormAlter\(\) expects array\<string, mixed\>, array given\.$#'
-			identifier: parameterByRef.type
-			count: 2
-			path: public/modules/custom/helfi_etusivu/src/Entity/Search/PromotionTranslationHandler.php
-
-		-
 			message: '#^Method Drupal\\helfi_etusivu\\Entity\\SimpleSitemap\\HelfiSimpleSitemap\:\:toUrl\(\) has parameter \$options with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -820,12 +802,6 @@ parameters:
 			identifier: property.notFound
 			count: 1
 			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Controller/LinkedEventsImageControllerTest.php
-
-		-
-			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Drupal\\\\Core\\\\Session\\\\AccountInterface'' and Drupal\\user\\UserInterface will always evaluate to true\.$#'
-			identifier: method.alreadyNarrowedType
-			count: 1
-			path: public/modules/custom/helfi_etusivu/tests/src/Kernel/Entity/Search/PromotionTest.php
 
 		-
 			message: '#^Method Drupal\\helfi_etusivu\\Tests\\Kernel\\EventSubscriber\\ElasticsearchEventSubscriberTest\:\:testPrepareIndices\(\) has no return type specified\.$#'
