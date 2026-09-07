@@ -156,7 +156,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
                 publishDate={item.published_at}
                 cardModifierClass='card--site-search'
               />
-              {(index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && externalLinksNotification}
+              {index === resultsCount - 1 && externalLinksNotification}
             </Fragment>
           ))}
       </div>
