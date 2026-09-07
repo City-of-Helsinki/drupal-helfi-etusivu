@@ -24,7 +24,6 @@ display:
         tid:
           exception:
             title: 全部
-          title: '{{ arguments.tid }}'
   feed_1:
     display_title: Feed
   page_1:
