@@ -168,3 +168,7 @@ msgstr "Inga sökresultat"
 msgctxt "Site search"
 msgid "Searching for results..."
 msgstr "Söker..."
+
+msgctxt "Site search"
+msgid "Search requires JavaScript. Enable JavaScript in your browser settings to use search."
+msgstr "Sökningen kräver JavaScript. Aktivera JavaScript i webbläsarens inställningar för att kunna använda sökningen."
