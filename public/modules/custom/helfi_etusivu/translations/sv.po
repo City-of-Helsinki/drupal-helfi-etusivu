@@ -357,3 +357,10 @@ msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publicerin
 
 msgid "News"
 msgstr "Nyheter"
+
+msgctxt "Helfi search"
+msgid "Search"
+msgstr "Sök"
+
+msgid "Add search suggestion"
+msgstr "Lägg till sökförslag"

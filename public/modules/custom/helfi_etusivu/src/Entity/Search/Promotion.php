@@ -54,7 +54,7 @@ use Drupal\views\EntityViewsData;
     'views_data' => EntityViewsData::class,
     'list_builder' => EntityListBuilder::class,
     'access' => EntityAccessControlHandler::class,
-    'translation' => PromotionTranslationHandler::class,
+    'translation' => SearchTranslationHandler::class,
     'form' => [
       'default' => PromotionForm::class,
       'add' => PromotionForm::class,
@@ -80,7 +80,7 @@ use Drupal\views\EntityViewsData;
   // The canonical path does not contain anything useful for
   // anonymous users. Anonymouse users should interact with
   // promotions through the helfi search.
-  admin_permission: "administer search promotions",
+  admin_permission: "administer search content",
   bundle_entity_type: 'helfi_search_promotion_type',
   bundle_label: new TranslatableMarkup('Promotion type', options: ['context' => 'Helfi search']),
   base_table: 'helfi_search_promotion',

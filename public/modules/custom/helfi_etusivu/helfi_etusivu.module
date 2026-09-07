@@ -150,6 +150,7 @@ function helfi_etusivu_views_query_alter(ViewExecutable $view, QueryPluginBase $
     'frontpage_news',
     'ordered_news_articles_list',
     'ordered_news_list',
+    'search_suggestions',
   ];
   if (in_array($view->id(), $draggable_views)) {
     assert($query instanceof Sql);

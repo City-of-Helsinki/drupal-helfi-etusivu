@@ -584,7 +584,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'administer search promotions'
+          perm: 'administer search content'
       cache:
         type: tag
         options: {  }

@@ -33,5 +33,13 @@ helfi_etusivu.site_search:
   requirements:
     _permission: 'access content'
 
+helfi_etusivu.search_suggestions:
+  path: '/api/v1/search-suggestions'
+  defaults:
+    _controller: '\Drupal\helfi_etusivu\Search\Controller\SearchSuggestionsController::content'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]
+
 route_callbacks:
   - '\Drupal\helfi_etusivu\HelsinkiNearYou\Routing\RouteProvider::routes'

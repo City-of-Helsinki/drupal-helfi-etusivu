@@ -95,7 +95,7 @@ class PromotionFormTest extends EntityKernelTestBase {
    */
   public function testFormStructure(): void {
     $this->drupalSetUpCurrentUser(permissions: [
-      'administer search promotions',
+      'administer search content',
     ]);
 
     // New (unsaved) entity: advanced + meta groups are present, but the
@@ -142,7 +142,7 @@ class PromotionFormTest extends EntityKernelTestBase {
       ->setEnabled('helfi_search_promotion', 'promotion', TRUE);
 
     $this->drupalSetUpCurrentUser(permissions: [
-      'administer search promotions',
+      'administer search content',
     ]);
 
     // Published promotion with two translations.
@@ -187,7 +187,7 @@ class PromotionFormTest extends EntityKernelTestBase {
    */
   public function testSaveRedirectsToCollectionAndAddsMessage(): void {
     $this->drupalSetUpCurrentUser(permissions: [
-      'administer search promotions',
+      'administer search content',
     ]);
 
     $entity = $this->createPromotion();
