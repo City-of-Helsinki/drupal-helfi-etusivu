@@ -6,3 +6,9 @@ helfi_etusivu.helfi_search_promotion.add:
   appears_on:
     - view.search_promotion.page_1
     - entity.helfi_search_promotion.collection
+
+helfi_etusivu.helfi_search_suggestion.add:
+  route_name: entity.helfi_search_suggestion.add_form
+  title: 'Add search suggestion'
+  appears_on:
+    - entity.helfi_search_suggestion.collection

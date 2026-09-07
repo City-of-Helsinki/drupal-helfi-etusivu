@@ -85,7 +85,7 @@ permissions:
   - 'administer paragraphs library'
   - 'administer pathauto'
   - 'administer redirects'
-  - 'administer search promotions'
+  - 'administer search content'
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'

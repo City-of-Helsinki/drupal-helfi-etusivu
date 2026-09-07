@@ -174,7 +174,7 @@ class PromotionLinkCheckTest extends KernelTestBase {
     $this->createPromotion();
     $checker->checkLinks();
 
-    $admin = $this->createUser(['administer search promotions']);
+    $admin = $this->createUser(['administer search content']);
     $this->assertInstanceOf(User::class, $admin);
 
     $hooks = $this->container->get(PromotionHooks::class);
