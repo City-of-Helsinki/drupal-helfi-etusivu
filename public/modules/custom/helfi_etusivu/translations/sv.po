@@ -143,8 +143,8 @@ msgid "Urban development"
 msgstr "Staden utvecklas"
 
 msgctxt "Helsinki near you"
-msgid "Street and park projects on the map"
-msgstr "Gatu- och parkprojekt på kartan"
+msgid "Upcoming street and park projects on the map"
+msgstr "Kommande gatu- och parkbyggande på kartan"
 
 msgctxt "Helsinki near you"
 msgid "Plans under preparation on the map"
