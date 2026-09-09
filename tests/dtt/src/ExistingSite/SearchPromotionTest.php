@@ -26,7 +26,7 @@ class SearchPromotionTest extends ExistingSiteTestBase {
 
     $this->drupalGetWithLanguage('/admin/content');
     $this->assertSession()->statusCodeEquals(200);
-    $this->clickLink('Search promotions');
+    $this->clickLink('Promotions');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->addressEquals('/en/admin/search');
 

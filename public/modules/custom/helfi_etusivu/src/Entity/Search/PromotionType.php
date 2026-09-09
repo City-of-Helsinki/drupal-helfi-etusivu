@@ -10,6 +10,8 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Bundle entity for the helfi_search_promotion content entity.
+ *
+ * @fixme not needed anymore since https://www.drupal.org/i/3355087 is resolved.
  */
 #[ConfigEntityType(
   id: 'helfi_search_promotion_type',
@@ -22,7 +24,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
     'id' => 'id',
     'label' => 'label',
   ],
-  admin_permission: 'administer search promotions',
+  admin_permission: 'administer search content',
   bundle_of: 'helfi_search_promotion',
   config_export: [
     'id',

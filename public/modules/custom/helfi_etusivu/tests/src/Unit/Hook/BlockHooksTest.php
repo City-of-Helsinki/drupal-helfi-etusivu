@@ -145,7 +145,7 @@ class BlockHooksTest extends UnitTestCase {
       'unsupported language ar' => ['view', 'ar', FALSE, NULL],
       'unsupported language it' => ['view', 'it', FALSE, NULL],
       'front page'              => ['view', 'fi', TRUE, NULL],
-      'other content type'      => ['view', 'fi', FALSE, 'news_item'],
+      'other content type'      => ['view', 'fi', FALSE, 'landing_page'],
       'route without a node'    => ['view', 'fi', FALSE, NULL],
     ];
   }

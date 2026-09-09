@@ -1,5 +1,11 @@
 helfi_etusivu.search_promotion.list:
-  title: 'Search promotions'
+  title: 'Promotions'
+  title_context: 'Helfi search'
   route_name: entity.helfi_search_promotion.collection
   base_route: entity.helfi_search_promotion.collection
   weight: -10
+
+helfi_etusivu.helfi_search_suggestion.edit_form:
+  title: 'Edit'
+  route_name: entity.helfi_search_suggestion.edit_form
+  base_route: entity.helfi_search_suggestion.edit_form

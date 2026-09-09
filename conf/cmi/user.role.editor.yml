@@ -27,6 +27,7 @@ dependencies:
     - file
     - filter
     - helfi_api_base
+    - helfi_hakuvahti
     - locale
     - media
     - menu_link_attributes
@@ -181,6 +182,7 @@ permissions:
   - 'view announcement revisions'
   - 'view any unpublished content'
   - 'view editoria11y checker'
+  - 'view hakuvahti statistics'
   - 'view landing_page revisions'
   - 'view linkedevents_event external entity'
   - 'view linkedevents_event external entity collection'
