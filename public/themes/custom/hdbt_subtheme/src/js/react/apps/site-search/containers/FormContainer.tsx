@@ -32,7 +32,6 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
 
   const { data: suggestions } = useSearchSuggestions(lang);
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const [suggestionsAnchor, setSuggestionsAnchor] = useState<HTMLElement | null>(null);
 
@@ -44,9 +43,10 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     inputValueRef.current = inputValue;
   }, [inputValue]);
 
-  // Search hides its real <input>, so we grab it once it's rendered. We use
-  // its parent element to position the suggestions list, and attach our own
-  // focus listener directly to it.
+  // Search hides its real <input>, so we grab it once it's rendered. Its
+  // parent element positions the suggestions list and also contains the
+  // input itself, so it doubles as the "are we still inside this feature"
+  // boundary for closing suggestions on blur.
   useLayoutEffect(() => {
     const input = inputWrapperRef.current?.querySelector<HTMLInputElement>('input[type="search"]');
     const anchor = input?.parentElement ?? null;
@@ -55,7 +55,8 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     }
     setSuggestionsAnchor(anchor);
 
-    if (!input) return;
+    if (!input || !anchor) return;
+
     const handleFocus = () => {
       // Suggestions only make sense for an empty input, whether that's on
       // focus, after clearing, or after typing something and deleting it.
@@ -64,7 +65,22 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       }
     };
     input.addEventListener('focus', handleFocus);
-    return () => input.removeEventListener('focus', handleFocus);
+
+    // Close once focus leaves both the input and the suggestions list
+    // (portaled into anchor), not just when it leaves the whole form.
+    const handleFocusOut = () => {
+      setTimeout(() => {
+        if (!anchor.contains(document.activeElement)) {
+          setSuggestionsOpen(false);
+        }
+      }, 10);
+    };
+    anchor.addEventListener('focusout', handleFocusOut);
+
+    return () => {
+      input.removeEventListener('focus', handleFocus);
+      anchor.removeEventListener('focusout', handleFocusOut);
+    };
   }, []);
 
   const toggleBundle = (value: string, checked: boolean) =>
@@ -93,23 +109,6 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     },
     [setInputValue, handleSend],
   );
-
-  // Close suggestions once focus leaves the form, mirroring hdbt's vanilla
-  // searchSuggestions.js behavior. The small delay lets focus land on
-  // whatever was clicked before.
-  useEffect(() => {
-    const form = formRef.current;
-    if (!form) return;
-    const handleFocusOut = () => {
-      setTimeout(() => {
-        if (!form.contains(document.activeElement)) {
-          setSuggestionsOpen(false);
-        }
-      }, 10);
-    };
-    form.addEventListener('focusout', handleFocusOut);
-    return () => form.removeEventListener('focusout', handleFocusOut);
-  }, []);
 
   const onSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -146,7 +145,6 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       role='search'
       onSubmit={onSubmit}
       onKeyDown={handleKeyDown}
-      ref={formRef}
     >
       <div className='hdbt-search--react__input-wrapper' ref={inputWrapperRef}>
         <Search {...searchInputProps} onChange={handleChange} onSend={handleSend} value={inputValue} />
@@ -156,7 +154,24 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
         suggestions &&
         suggestions.length > 0 &&
         createPortal(
-          <ul className='hdbt-search-suggestions'>
+          // Clicking blank space in the list (not a suggestion, not the
+          // scrollbar) closes it, so it doesn't stay open over whatever
+          // is behind it.
+          <ul
+            className='hdbt-search-suggestions'
+            onMouseDown={(e) => {
+              const target = e.target as HTMLElement;
+              const clickedScrollbar = target === e.currentTarget && e.nativeEvent.offsetX >= target.clientWidth;
+              if (clickedScrollbar) {
+                // Keep the input focused so Search doesn't close on this click.
+                e.preventDefault();
+                return;
+              }
+              if (!target.closest('button')) {
+                setSuggestionsOpen(false);
+              }
+            }}
+          >
             {suggestions.map(({ id, term }) => (
               <li key={id} className='hdbt-search-suggestions__option'>
                 <button
