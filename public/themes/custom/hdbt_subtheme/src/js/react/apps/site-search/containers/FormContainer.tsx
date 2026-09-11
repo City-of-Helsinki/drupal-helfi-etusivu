@@ -1,6 +1,6 @@
 import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, Search } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { type SyntheticEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { type SyntheticEvent, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import useSearchSuggestions from '../hooks/useSearchSuggestions';
@@ -33,7 +33,9 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const { data: suggestions } = useSearchSuggestions(lang);
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
+  const inputElRef = useRef<HTMLInputElement | null>(null);
   const [suggestionsAnchor, setSuggestionsAnchor] = useState<HTMLElement | null>(null);
+  const suggestionsId = useId();
 
   // Keeps the latest input value available to the focus listener below,
   // which is set up only once and would otherwise always see the value
@@ -56,6 +58,11 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     setSuggestionsAnchor(anchor);
 
     if (!input || !anchor) return;
+
+    inputElRef.current = input;
+    input.setAttribute('aria-haspopup', 'true');
+    input.setAttribute('aria-controls', suggestionsId);
+    input.setAttribute('aria-expanded', 'false');
 
     const handleFocus = () => {
       // Suggestions only make sense for an empty input, whether that's on
@@ -82,6 +89,11 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       anchor.removeEventListener('focusout', handleFocusOut);
     };
   }, []);
+
+  // Reflect open/closed state to assistive tech.
+  useEffect(() => {
+    inputElRef.current?.setAttribute('aria-expanded', suggestionsOpen ? 'true' : 'false');
+  }, [suggestionsOpen]);
 
   const toggleBundle = (value: string, checked: boolean) =>
     setStagedBundles(checked ? [...stagedBundles, value] : stagedBundles.filter((b) => b !== value));
@@ -117,6 +129,12 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLFormElement>) => {
+      if (event.key === 'Escape' && suggestionsOpen) {
+        setSuggestionsOpen(false);
+        event.stopPropagation();
+        return;
+      }
+
       const isSearchField = (event.target as HTMLElement | null)?.getAttribute('type') === 'search';
 
       if (event.key !== 'Enter' || !isSearchField || inputValue.trim()) {
@@ -126,7 +144,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       event.preventDefault();
       handleSend();
     },
-    [inputValue, handleSend],
+    [inputValue, handleSend, suggestionsOpen],
   );
 
   const [searchInputProps] = useState({
@@ -157,8 +175,12 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
           // Clicking blank space in the list (not a suggestion, not the
           // scrollbar) closes it, so it doesn't stay open over whatever
           // is behind it.
+          // biome-ignore lint/a11y/useSemanticElements: fieldset doesn't fit a floating suggestions list
           <ul
+            id={suggestionsId}
             className='hdbt-search-suggestions'
+            role='group'
+            aria-label={Drupal.t('Search suggestions', {}, { context: 'Site search' })}
             onMouseDown={(e) => {
               const target = e.target as HTMLElement;
               const clickedScrollbar = target === e.currentTarget && e.nativeEvent.offsetX >= target.clientWidth;
