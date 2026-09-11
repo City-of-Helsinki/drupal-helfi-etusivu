@@ -64,16 +64,16 @@ msgid "Send feedback"
 msgstr "Ge respons"
 
 msgctxt "Helsinki near you"
-msgid "Street and park projects"
-msgstr "Gatu- och parkprojekt"
+msgid "Street and park work"
+msgstr "Gatu- och parkarbeten"
 
 msgctxt "Helsinki near you roadworks search"
 msgid "See all street and park projects near you"
 msgstr "See all street and park projects near you"
 
 msgctxt "Helsinki near you"
-msgid "Find information on street and park projects near you."
-msgstr "Bekanta dig med gatu- och parkprojekt nära din adress."
+msgid "See street and park work near your address."
+msgstr "Bekanta dig med gatu- och parkarbeten nära din adress."
 
 msgctxt "Feedback close to you block"
 msgid "Feedback"
