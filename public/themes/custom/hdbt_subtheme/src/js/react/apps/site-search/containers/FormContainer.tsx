@@ -1,7 +1,9 @@
 import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, Search } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { type SyntheticEvent, useCallback, useState } from 'react';
+import { type SyntheticEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import useSearchSuggestions from '../hooks/useSearchSuggestions';
 import { stagedBundlesAtom, stagedQueryAtom, submitAllSearchAtom, submitNewsSearchAtom } from '../store';
 
 type FormContainerProps = {
@@ -28,6 +30,43 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
   const lang = drupalSettings?.path?.currentLanguage ?? 'fi';
   const aiRegisterUrl = drupalSettings?.helfi_site_search?.ai_register_url;
 
+  const { data: suggestions } = useSearchSuggestions(lang);
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const inputWrapperRef = useRef<HTMLDivElement>(null);
+  const [suggestionsAnchor, setSuggestionsAnchor] = useState<HTMLElement | null>(null);
+
+  // Keeps the latest input value available to the focus listener below,
+  // which is set up only once and would otherwise always see the value
+  // from when it was attached.
+  const inputValueRef = useRef(inputValue);
+  useEffect(() => {
+    inputValueRef.current = inputValue;
+  }, [inputValue]);
+
+  // Search hides its real <input>, so we grab it once it's rendered. We use
+  // its parent element to position the suggestions list, and attach our own
+  // focus listener directly to it.
+  useLayoutEffect(() => {
+    const input = inputWrapperRef.current?.querySelector<HTMLInputElement>('input[type="search"]');
+    const anchor = input?.parentElement ?? null;
+    if (anchor) {
+      anchor.style.position = 'relative';
+    }
+    setSuggestionsAnchor(anchor);
+
+    if (!input) return;
+    const handleFocus = () => {
+      // Suggestions only make sense for an empty input, whether that's on
+      // focus, after clearing, or after typing something and deleting it.
+      if (inputValueRef.current === '') {
+        setSuggestionsOpen(true);
+      }
+    };
+    input.addEventListener('focus', handleFocus);
+    return () => input.removeEventListener('focus', handleFocus);
+  }, []);
+
   const toggleBundle = (value: string, checked: boolean) =>
     setStagedBundles(checked ? [...stagedBundles, value] : stagedBundles.filter((b) => b !== value));
 
@@ -35,13 +74,42 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!e.target.value && !e.nativeEvent) return;
       setInputValue(e.target.value);
+      // Not autocomplete: typing closes the suggestions, clearing the
+      // input back to empty (or focusing an empty one) shows them again.
+      setSuggestionsOpen(e.target.value === '');
     },
     [setInputValue],
   );
 
   const handleSend = useCallback(() => {
+    setSuggestionsOpen(false);
     withBundleFilters ? submitAll() : submitNews();
   }, [withBundleFilters, submitAll, submitNews]);
+
+  const selectSuggestion = useCallback(
+    (term: string) => {
+      setInputValue(term);
+      handleSend();
+    },
+    [setInputValue, handleSend],
+  );
+
+  // Close suggestions once focus leaves the form, mirroring hdbt's vanilla
+  // searchSuggestions.js behavior. The small delay lets focus land on
+  // whatever was clicked before.
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const handleFocusOut = () => {
+      setTimeout(() => {
+        if (!form.contains(document.activeElement)) {
+          setSuggestionsOpen(false);
+        }
+      }, 10);
+    };
+    form.addEventListener('focusout', handleFocusOut);
+    return () => form.removeEventListener('focusout', handleFocusOut);
+  }, []);
 
   const onSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,8 +146,31 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       role='search'
       onSubmit={onSubmit}
       onKeyDown={handleKeyDown}
+      ref={formRef}
     >
-      <Search {...searchInputProps} onChange={handleChange} onSend={handleSend} value={inputValue} />
+      <div className='hdbt-search--react__input-wrapper' ref={inputWrapperRef}>
+        <Search {...searchInputProps} onChange={handleChange} onSend={handleSend} value={inputValue} />
+      </div>
+      {suggestionsAnchor &&
+        suggestionsOpen &&
+        suggestions &&
+        suggestions.length > 0 &&
+        createPortal(
+          <ul className='hdbt-search-suggestions'>
+            {suggestions.map(({ id, term }) => (
+              <li key={id} className='hdbt-search-suggestions__option'>
+                <button
+                  type='button'
+                  className='hdbt-search-suggestions__option__button'
+                  onClick={() => selectSuggestion(term)}
+                >
+                  {term}
+                </button>
+              </li>
+            ))}
+          </ul>,
+          suggestionsAnchor,
+        )}
       {withBundleFilters && (
         <div className='hdbt-search--react__filters-container hdbt-search--react__filters-container--site-search'>
           <Accordion
