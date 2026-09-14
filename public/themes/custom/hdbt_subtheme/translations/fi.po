@@ -173,3 +173,7 @@ msgstr "Tuloksia haetaan..."
 msgctxt "Site search"
 msgid "Search requires JavaScript. Enable JavaScript in your browser settings to use search."
 msgstr "Haku edellyttää JavaScriptin käyttöä. Ota JavaScript käyttöön selaimen asetuksista, jotta voit käyttää hakua."
+
+msgctxt "Site search"
+msgid "Search suggestions"
+msgstr "Hakuehdotukset"
