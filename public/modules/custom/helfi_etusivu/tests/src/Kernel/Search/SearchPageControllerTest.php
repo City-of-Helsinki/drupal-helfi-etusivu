@@ -20,6 +20,7 @@ class SearchPageControllerTest extends KernelTestBase {
     'diff',
     'helfi_search',
     'system',
+    'search_api',
   ];
 
   /**
