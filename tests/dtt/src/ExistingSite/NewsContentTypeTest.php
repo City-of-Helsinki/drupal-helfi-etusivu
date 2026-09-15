@@ -162,6 +162,84 @@ class NewsContentTypeTest extends ExistingSiteTestBase {
   }
 
   /**
+   * The rendered "Published" date must match the article:published_time metatag.
+   *
+   * A news item can have multiple 'field_news_item_updating_news' updates.
+   * NewsItem::preSave() copies the *latest* update's date into 'published_at',
+   * which is also what the article:published_time metatag ends up using (see
+   * helfi_etusivu_metatags_alter()) - so the rendered date, sourced from the
+   * same 'published_at' field, must always agree with the metatag.
+   */
+  public function testPublishedDateMatchesMetatag() : void {
+    $node = $this->createNode([
+      'type' => 'news_item',
+      'status' => 1,
+      'langcode' => 'fi',
+    ]);
+
+    foreach (['-2 days', 'tomorrow'] as $when) {
+      $updateTime = new DrupalDateTime($when, new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+      $update = Paragraph::create([
+        'type' => 'news_update',
+        'field_news_update_date' => $updateTime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      ]);
+      $update->save();
+      $this->markEntityForCleanup($update);
+
+      $node->get('field_news_item_updating_news')->appendItem([
+        'target_id' => $update->id(),
+        'target_revision_id' => $update->getRevisionId(),
+      ]);
+    }
+    $node->save();
+
+    $this->drupalGet($node->toUrl());
+    $page = $this->getSession()->getPage();
+
+    $metaContent = $page->find('css', 'meta[property="article:published_time"]')->getAttribute('content');
+    $publishedElement = $page->find('css', 'time.content-date__datetime--published');
+    $this->assertNotNull($publishedElement, 'Rendered published date element not found.');
+
+    // The metatag content carries seconds/offset the rendered element does
+    // not, so compare them as the same point in time rather than as strings.
+    $metaLocal = (new \DateTime($metaContent))->format('Y-m-d\TH:i');
+    $this->assertEquals($metaLocal, $publishedElement->getAttribute('datetime'));
+  }
+
+  /**
+   * The rendered "Updated" date must match the article:modified_time metatag.
+   */
+  public function testUpdatedDateMatchesMetatag() : void {
+    // Backdate creation/publication so the later 'changed_at' bump below is
+    // unambiguously "newer" and the "Updated" element actually renders (see
+    // hdbt_preprocess_node(), which hides it unless published_at < changed_at).
+    $node = $this->createNode([
+      'type' => 'news_item',
+      'status' => 1,
+      'langcode' => 'fi',
+      'created' => strtotime('-2 days'),
+      'published_at' => strtotime('-2 days'),
+    ]);
+
+    // Simulate what ChangedAtFieldHooks::updateChangedAt() does on a normal
+    // edit-form submit: bump 'changed_at' to the current request time. Saving
+    // the node also bumps core 'changed' (used by article:modified_time) to
+    // the same request time, so the two should always match when displayed.
+    $node->set('changed_at', \Drupal::time()->getRequestTime());
+    $node->save();
+
+    $this->drupalGet($node->toUrl());
+    $page = $this->getSession()->getPage();
+
+    $metaContent = $page->find('css', 'meta[property="article:modified_time"]')->getAttribute('content');
+    $updatedElement = $page->find('css', 'time.content-date__datetime--updated');
+    $this->assertNotNull($updatedElement, 'Rendered updated date element not found.');
+
+    $metaLocal = (new \DateTime($metaContent))->format('Y-m-d\TH:i');
+    $this->assertEquals($metaLocal, $updatedElement->getAttribute('datetime'));
+  }
+
+  /**
    * Token [node:short-title] should work with news_article.
    */
   public function testNewsArticleLeadInToken() : void {
