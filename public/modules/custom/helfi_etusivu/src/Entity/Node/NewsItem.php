@@ -73,23 +73,4 @@ final class NewsItem extends Node {
     }
   }
 
-  /**
-   * Gets the first updating news items publish date timestamp.
-   *
-   * @return int|null
-   *   The timestamp or null.
-   */
-  public function getFirstUpdatingNewsPublishDate() : ?int {
-    $newsUpdates = $this->getNewsUpdates();
-
-    if ($first = reset($newsUpdates)) {
-      assert($first instanceof FieldableEntityInterface);
-      $updateDate = $first->get('field_news_update_date')->date->getTimestamp();
-
-      return $updateDate;
-    }
-
-    return NULL;
-  }
-
 }

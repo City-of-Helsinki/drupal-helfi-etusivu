@@ -166,10 +166,6 @@ final class ResultsController extends ControllerBase {
             'link_url' => $this->getInternalSearchLink(InternalSearchLink::PlowingSchedules, ['address' => $addressName], $langcode, 'helfi-ploughing-schedule'),
           ],
           [
-            'link_label' => $this->t('Roadworks on the map', [], ['context' => 'Helsinki near you']),
-            'link_url' => ServiceMapLink::RoadworkEvents->getLink($addressName, $langcode),
-          ],
-          [
             'link_label' => $this->t('City bike stations and bikeracks on the map', [], ['context' => 'Helsinki near you']),
             'link_url' => ServiceMapLink::CityBikeStationsStands->getLink($addressName, $langcode),
           ],
@@ -179,7 +175,7 @@ final class ResultsController extends ControllerBase {
         'title' => $this->t('Urban development', [], ['context' => 'Helsinki near you']),
         'service_links' => [
           [
-            'link_label' => $this->t('Street and park projects on the map', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Upcoming street and park projects on the map', [], ['context' => 'Helsinki near you']),
             'link_url' => ServiceMapLink::StreetParkProjects->getLink($addressName, $langcode),
           ],
           [

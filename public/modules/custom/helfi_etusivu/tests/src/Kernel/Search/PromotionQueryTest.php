@@ -30,6 +30,7 @@ class PromotionQueryTest extends EtusivuElasticTestBase {
    */
   protected static $modules = [
     'helfi_search',
+    'search_api',
   ];
 
   /**

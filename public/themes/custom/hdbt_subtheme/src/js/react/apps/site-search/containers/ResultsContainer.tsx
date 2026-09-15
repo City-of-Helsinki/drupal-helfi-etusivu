@@ -64,6 +64,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     return (
       <div key='ghost' className={resultsClassName}>
         <ResultsHeader
+          headingLevel={2}
           resultText={Drupal.t('Searching for results...', {}, { context: 'Site search' })}
           ref={loadingHeaderRef}
         />
@@ -131,6 +132,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     <div key='results' className={resultsClassName}>
       {DEBUG_MODE && data?.debug && <DebugBlock label='DEBUG — backend response' data={data.debug} />}
       <ResultsHeader
+        headingLevel={2}
         resultText={Drupal.formatPlural(totalHits, '@count result', '@count results', {}, { context: 'Site search' })}
         ref={scrollTarget}
       />
@@ -156,7 +158,7 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
                 publishDate={item.published_at}
                 cardModifierClass='card--site-search'
               />
-              {(index === 2 || (index === resultsCount - 1 && resultsCount < 3)) && externalLinksNotification}
+              {index === resultsCount - 1 && externalLinksNotification}
             </Fragment>
           ))}
       </div>
