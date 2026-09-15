@@ -142,22 +142,6 @@ final readonly class Event {
       $item['uri'] = Url::fromUri(sprintf('%s/%s/%s/%s', Client::HOBBIES_BASE_URL, $langcode, $type, $data['id']));
     }
 
-    if ($item['isRemote']) {
-      $item['tags'][] = new Tag(
-        new TranslatableMarkup('Remote participation', options: ['context' => 'Label for remote events']),
-        'color',
-        'silver',
-      );
-    }
-
-    if ($item['isFree']) {
-      $item['tags'][] = new Tag(
-        new TranslatableMarkup('Free', options: ['context' => 'Label for free events']),
-        'color',
-        'silver',
-      );
-    }
-
     $timeProps = [
       'enrolmentStartDate' => 'enrolment_start_time',
       'enrolmentEndDate' => 'enrolment_end_time',

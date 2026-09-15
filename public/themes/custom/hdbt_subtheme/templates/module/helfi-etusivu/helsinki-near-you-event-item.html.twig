@@ -40,6 +40,11 @@
       label: 'Additional information'|t({}, {'context': 'Event additional information label'}),
       content: 'The event requires registration or a ticket.'|t({}, {'context': 'Event additional information value'}),
     },
+    object.isFree ? {
+      icon: 'ticket',
+      label: 'Price'|t({}, {'context': 'Event price label'}),
+      content: 'Free'|t({}, {'context': 'Label for free events'}),
+    },
   ],
   card_tags: all_tags
 } %}
