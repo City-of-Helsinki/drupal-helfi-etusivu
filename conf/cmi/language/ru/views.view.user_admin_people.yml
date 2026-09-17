@@ -31,8 +31,8 @@ display:
       pager:
         options:
           tags:
-            next: 'Следующий ›'
-            previous: '‹ Предыдущий'
+            next: 'Следующая ›'
+            previous: '‹ Предыдущая'
             first: '« Первая'
             last: 'Последняя »'
           expose:

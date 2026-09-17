@@ -9,7 +9,7 @@ display:
           label: От
           separator: ', '
         is_custom:
-          label: Собственная
+          label: Собственный
           separator: ', '
         enabled:
           label: Включено
@@ -19,7 +19,7 @@ display:
       pager:
         options:
           tags:
-            next: Вперёд
+            next: Далее
             previous: Назад
             first: Первый
             last: Последний
@@ -66,7 +66,7 @@ display:
             label: 'Язык оригинала'
         is_custom:
           expose:
-            label: Собственная
+            label: Собственный
         enabled:
           expose:
             label: Включено

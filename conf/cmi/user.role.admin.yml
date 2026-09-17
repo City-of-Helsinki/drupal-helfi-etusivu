@@ -20,6 +20,7 @@ dependencies:
     - taxonomy.vocabulary.news_neighbourhoods
     - taxonomy.vocabulary.news_tags
   module:
+    - ai
     - block
     - config_translation
     - content_lock
@@ -29,7 +30,6 @@ dependencies:
     - external_entities
     - file
     - filter
-    - hdbt_cookie_banner
     - helfi_ai
     - helfi_api_base
     - helfi_etusivu
@@ -77,7 +77,6 @@ permissions:
   - 'access toolbar'
   - 'access user profiles'
   - 'administer blocks'
-  - 'administer hdbt_cookie_banner'
   - 'administer helfi_search'
   - 'administer llms.txt'
   - 'administer menu'
@@ -86,6 +85,7 @@ permissions:
   - 'administer pathauto'
   - 'administer redirects'
   - 'administer search content'
+  - 'administer site configuration'
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'
@@ -177,6 +177,7 @@ permissions:
   - 'edit terms in news_group'
   - 'edit terms in news_neighbourhoods'
   - 'edit terms in news_tags'
+  - 'manage ai prompts'
   - 'mark as hidden in editoria11y'
   - 'rebuild node access permissions'
   - 'revert all revisions'
