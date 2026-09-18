@@ -34,7 +34,7 @@ final class StatisticsCommand extends DrushCommands {
    *
    * @param string $address
    *   The address to look up.
-   * @param array $options
+   * @param array<string, bool> $options
    *   The command options.
    *
    * @return int

@@ -20,7 +20,7 @@ trait DecodedResponseTrait {
    * @param \Drupal\helfi_api_base\ApiClient\ApiResponse $response
    *   The response.
    *
-   * @return array
+   * @return array<mixed>
    *   The response data.
    *
    * @throws \Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsException

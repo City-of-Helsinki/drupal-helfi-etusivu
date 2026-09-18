@@ -6,6 +6,7 @@ namespace Drupal\Tests\helfi_etusivu\Unit\HelsinkiNearYou\Statistics;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\MemoryBackend;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Tests\UnitTestCase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
@@ -53,7 +54,7 @@ abstract class StatisticsTestBase extends UnitTestCase {
    * @param mixed $value
    *   The cell value.
    *
-   * @return array
+   * @return array<mixed>
    *   The dataset.
    */
   protected function singleValueDataset(mixed $value) : array {
@@ -69,10 +70,10 @@ abstract class StatisticsTestBase extends UnitTestCase {
    *
    * @param string $variable
    *   The period variable code.
-   * @param array $values
+   * @param array<string> $values
    *   The period values, oldest first.
    *
-   * @return array
+   * @return array<mixed>
    *   The metadata.
    */
   protected function metadata(string $variable, array $values) : array {
@@ -83,6 +84,21 @@ abstract class StatisticsTestBase extends UnitTestCase {
         ['code' => $variable, 'text' => $variable, 'values' => $values],
       ],
     ];
+  }
+
+  /**
+   * Asserts a label is translatable and returns its source string.
+   *
+   * @param string|\Drupal\Core\StringTranslation\TranslatableMarkup|null $label
+   *   The label or unit.
+   *
+   * @return string
+   *   The untranslated source string.
+   */
+  protected function untranslated(string|TranslatableMarkup|null $label) : string {
+    $this->assertInstanceOf(TranslatableMarkup::class, $label);
+
+    return $label->getUntranslatedString();
   }
 
 }

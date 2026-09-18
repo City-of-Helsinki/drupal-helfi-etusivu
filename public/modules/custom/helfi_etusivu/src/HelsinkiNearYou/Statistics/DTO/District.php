@@ -29,7 +29,7 @@ final readonly class District {
    *
    * @param string $code
    *   The area code.
-   * @param array $names
+   * @param array<string, string> $names
    *   Names keyed by langcode. Must contain 'fi', the only language every
    *   source provides. These are place names rather than translations, and
    *   Helsinki districts have no English ones.

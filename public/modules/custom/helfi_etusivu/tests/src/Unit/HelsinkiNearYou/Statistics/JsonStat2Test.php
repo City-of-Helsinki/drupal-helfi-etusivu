@@ -93,8 +93,9 @@ class JsonStat2Test extends UnitTestCase {
     $sut = new JsonStat2($data);
 
     $categories = $sut->categories('A');
+    // assertSame is strict, so this also proves the keys are strings and not
+    // the integers PHP turned them into.
     $this->assertSame(['ALL', '2', '10'], $categories, 'categories follow the index, as strings');
-    $this->assertContainsOnlyString($categories);
 
     $this->assertSame([], $sut->categories('Nope'), 'unknown dimension has no categories');
 
@@ -125,14 +126,14 @@ class JsonStat2Test extends UnitTestCase {
   /**
    * Builds a cube where dimension A has 2 categories and B has 3.
    *
-   * @param array $id
+   * @param array<string> $id
    *   The dimension order.
-   * @param array $size
+   * @param array<int> $size
    *   The dimension lengths.
-   * @param array $values
+   * @param array<mixed> $values
    *   The flat values.
    *
-   * @return array
+   * @return array<mixed>
    *   The dataset.
    */
   private function cube(array $id, array $size, array $values) : array {

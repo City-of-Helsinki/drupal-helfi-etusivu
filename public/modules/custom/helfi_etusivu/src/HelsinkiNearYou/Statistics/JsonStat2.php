@@ -12,13 +12,19 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Statistics;
  */
 final readonly class JsonStat2 {
 
+  /**
+   * Constructs a new instance.
+   *
+   * @param array<mixed> $data
+   *   The decoded json-stat2 dataset.
+   */
   public function __construct(private array $data) {
   }
 
   /**
    * Returns the value at the given cube coordinates.
    *
-   * @param array $coordinates
+   * @param array<string, int> $coordinates
    *   Category indexes keyed by dimension name. Omitted dimensions default to
    *   index 0, which is what a dimension pinned to one value needs.
    *
@@ -72,7 +78,7 @@ final readonly class JsonStat2 {
    * The strides are derived from 'id' and 'size' so that this stays correct
    * if the API reorders dimensions.
    *
-   * @param array $coordinates
+   * @param array<string, int> $coordinates
    *   Category indexes keyed by dimension name.
    *
    * @return int
