@@ -1,5 +1,6 @@
 parameters:
   helfi_etusivu.news_rss_elastic_index: 'news'
+  helfi_etusivu.statistics_request_timeout: 15
 services:
   _defaults:
     autowire: true
@@ -36,6 +37,22 @@ services:
   Drupal\helfi_etusivu\HelsinkiNearYou\Breadcrumb\HelsinkiNearYouBreadcrumbBuilder:
     tags:
       - { name: breadcrumb_builder, priority: 1004 }
+
+  # Neighbourhood statistics services.
+  helfi_etusivu.statistics_api_client:
+    parent: helfi_api_base.api_client_base
+    arguments:
+      - '@logger.channel.helfi_etusivu'
+      - { timeout: '%helfi_etusivu.statistics_request_timeout%' }
+
+  Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DistrictResolver: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DistrictResolverInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DistrictResolver'
+
+  Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsClient: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsClientInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsClient'
+
+  Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsService: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsServiceInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsService'
 
   Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber: ~
 
