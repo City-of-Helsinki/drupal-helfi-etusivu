@@ -38,7 +38,7 @@ display:
       pager:
         options:
           tags:
-            next: Вперёд
+            next: Далее
             previous: Назад
             first: Первый
             last: Последний

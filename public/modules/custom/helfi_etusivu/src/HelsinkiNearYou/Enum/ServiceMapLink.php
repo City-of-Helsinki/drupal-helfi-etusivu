@@ -27,7 +27,7 @@ enum ServiceMapLink {
     return match($this) {
       ServiceMapLink::RoadworkEvents => 'eDAB7W',
       ServiceMapLink::CityBikeStationsStands => 'eRqwiU',
-      ServiceMapLink::StreetParkProjects => 'eDBTcc',
+      ServiceMapLink::StreetParkProjects => '0cTCP5S',
       ServiceMapLink::PlansInProcess => 'eDB7Rk',
     };
   }

@@ -108,12 +108,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
 
 		-
-			message: '#^Function helfi_etusivu_preprocess_node__news_item__full\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: public/modules/custom/helfi_etusivu/helfi_etusivu.module
-
-		-
 			message: '#^Function helfi_etusivu_preprocess_page\(\) has parameter \$variables with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
