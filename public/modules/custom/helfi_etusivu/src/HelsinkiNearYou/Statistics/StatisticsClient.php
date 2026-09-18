@@ -191,7 +191,7 @@ final readonly class StatisticsClient implements StatisticsClientInterface {
    *
    * @param string $table
    *   The table path.
-   * @param array $query
+   * @param array<int, array<string, mixed>> $query
    *   The query selections.
    *
    * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\JsonStat2
@@ -222,7 +222,7 @@ final readonly class StatisticsClient implements StatisticsClientInterface {
    * @param callable $callback
    *   Callback returning an ApiResponse.
    *
-   * @return array
+   * @return array<mixed>
    *   The decoded response.
    *
    * @throws \Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsException
@@ -248,12 +248,12 @@ final readonly class StatisticsClient implements StatisticsClientInterface {
    *
    * @param string $code
    *   The variable code.
-   * @param array $values
+   * @param array<string> $values
    *   The selected values.
    * @param string $filter
    *   The PxWeb filter, 'item' or 'all'.
    *
-   * @return array
+   * @return array<string, mixed>
    *   The selection.
    */
   private function selection(string $code, array $values, string $filter = 'item') : array {

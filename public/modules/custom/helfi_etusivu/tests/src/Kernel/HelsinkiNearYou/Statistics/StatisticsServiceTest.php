@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Statistics;
 
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
@@ -83,11 +84,26 @@ class StatisticsServiceTest extends KernelTestBase {
     $this->assertSame(
       ['Detached and semi-detached houses', 'Terraced houses', 'Blocks of flats', 'Other buildings'],
       array_map(
-        fn (Figure $figure) => $figure->label->getUntranslatedString(),
+        fn (Figure $figure) => $this->untranslated($figure->label),
         $dwellings->breakdown,
       ),
     );
     $this->assertSame(5898.0, $dwellings->breakdown[2]->value);
+  }
+
+  /**
+   * Asserts a label is translatable and returns its source string.
+   *
+   * @param string|\Drupal\Core\StringTranslation\TranslatableMarkup|null $label
+   *   The label or unit.
+   *
+   * @return string
+   *   The untranslated source string.
+   */
+  private function untranslated(string|TranslatableMarkup|null $label) : string {
+    $this->assertInstanceOf(TranslatableMarkup::class, $label);
+
+    return $label->getUntranslatedString();
   }
 
   /**
@@ -124,7 +140,7 @@ class StatisticsServiceTest extends KernelTestBase {
           'name' => ['fi' => 'Kalasatama'],
         ],
       ],
-    ]));
+    ], JSON_THROW_ON_ERROR));
   }
 
   /**
@@ -132,7 +148,7 @@ class StatisticsServiceTest extends KernelTestBase {
    *
    * @param string $variable
    *   The period variable.
-   * @param array $values
+   * @param array<string> $values
    *   The period values.
    *
    * @return \GuzzleHttp\Psr7\Response
@@ -142,7 +158,7 @@ class StatisticsServiceTest extends KernelTestBase {
     return new Response(200, body: json_encode([
       'title' => 'Test table',
       'variables' => [['code' => $variable, 'text' => $variable, 'values' => $values]],
-    ]));
+    ], JSON_THROW_ON_ERROR));
   }
 
   /**
@@ -159,7 +175,7 @@ class StatisticsServiceTest extends KernelTestBase {
       'id' => ['Alue', 'Vuosi', 'Tiedot'],
       'size' => [1, 1, 1],
       'value' => [$value],
-    ]));
+    ], JSON_THROW_ON_ERROR));
   }
 
   /**
@@ -199,7 +215,7 @@ class StatisticsServiceTest extends KernelTestBase {
         5898, 3842,
         4, 0,
       ],
-    ]));
+    ], JSON_THROW_ON_ERROR));
   }
 
 }

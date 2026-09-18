@@ -74,7 +74,7 @@ final readonly class DistrictResolver implements DistrictResolverInterface {
   /**
    * Builds a district from administrative division results.
    *
-   * @param array $results
+   * @param array<int, array<string, mixed>> $results
    *   The division results.
    *
    * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DTO\District|null

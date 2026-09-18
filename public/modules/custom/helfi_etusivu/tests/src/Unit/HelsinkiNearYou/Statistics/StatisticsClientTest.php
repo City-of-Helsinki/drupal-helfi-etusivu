@@ -25,7 +25,8 @@ class StatisticsClientTest extends StatisticsTestBase {
   public function testGetLatestPeriod() : void {
     $http = $this->createMockHttpClient([
       new Response(200, body: json_encode(
-        $this->metadata('Neljännesvuosi', ['2025Q4', '2026Q1', '2026Q2'])
+        $this->metadata('Neljännesvuosi', ['2025Q4', '2026Q1', '2026Q2']),
+        JSON_THROW_ON_ERROR,
       )),
     ]);
     $sut = new StatisticsClient($this->getApiClient($http));
@@ -33,7 +34,7 @@ class StatisticsClientTest extends StatisticsTestBase {
     $this->assertSame('2026Q2', $sut->getLatestPeriod('vrm/ennak/alu_ennak_001b.px', 'Neljännesvuosi'));
 
     $http = $this->createMockHttpClient([
-      new Response(200, body: json_encode($this->metadata('Vuosi', ['2024']))),
+      new Response(200, body: json_encode($this->metadata('Vuosi', ['2024']), JSON_THROW_ON_ERROR)),
     ]);
     $sut = new StatisticsClient($this->getApiClient($http));
 
@@ -52,8 +53,8 @@ class StatisticsClientTest extends StatisticsTestBase {
    */
   public function testSingleValueFigures() : void {
     $http = $this->createMockHttpClient([
-      new Response(200, body: json_encode($this->metadata('Neljännesvuosi', ['2026Q2']))),
-      new Response(200, body: json_encode($this->singleValueDataset(7465))),
+      new Response(200, body: json_encode($this->metadata('Neljännesvuosi', ['2026Q2']), JSON_THROW_ON_ERROR)),
+      new Response(200, body: json_encode($this->singleValueDataset(7465), JSON_THROW_ON_ERROR)),
     ]);
     $population = (new StatisticsClient($this->getApiClient($http)))->getPopulation('0911101010');
 
@@ -61,25 +62,25 @@ class StatisticsClientTest extends StatisticsTestBase {
     $this->assertSame(7465.0, $population->value);
     $this->assertSame('2026Q2', $population->period);
     $this->assertTrue($population->hasValue());
-    $this->assertSame('Preliminary population', $population->label->getUntranslatedString());
-    $this->assertSame('people', $population->unit->getUntranslatedString());
+    $this->assertSame('Preliminary population', $this->untranslated($population->label));
+    $this->assertSame('people', $this->untranslated($population->unit));
 
     $http = $this->createMockHttpClient([
-      new Response(200, body: json_encode($this->metadata('Vuosi', ['2023', '2024']))),
-      new Response(200, body: json_encode($this->singleValueDataset(66895.8))),
+      new Response(200, body: json_encode($this->metadata('Vuosi', ['2023', '2024']), JSON_THROW_ON_ERROR)),
+      new Response(200, body: json_encode($this->singleValueDataset(66895.8), JSON_THROW_ON_ERROR)),
     ]);
     $income = (new StatisticsClient($this->getApiClient($http)))->getAverageIncome('0911101010');
 
     $this->assertSame('income', $income->key);
     $this->assertSame(66895.8, $income->value);
     $this->assertSame('2024', $income->period);
-    $this->assertSame('State-taxable income, average', $income->label->getUntranslatedString());
-    $this->assertSame('euros', $income->unit->getUntranslatedString());
+    $this->assertSame('State-taxable income, average', $this->untranslated($income->label));
+    $this->assertSame('euros', $this->untranslated($income->unit));
 
     // A suppressed cell must read as "no data", not as zero.
     $http = $this->createMockHttpClient([
-      new Response(200, body: json_encode($this->metadata('Neljännesvuosi', ['2026Q2']))),
-      new Response(200, body: json_encode($this->singleValueDataset(NULL))),
+      new Response(200, body: json_encode($this->metadata('Neljännesvuosi', ['2026Q2']), JSON_THROW_ON_ERROR)),
+      new Response(200, body: json_encode($this->singleValueDataset(NULL), JSON_THROW_ON_ERROR)),
     ]);
     $suppressed = (new StatisticsClient($this->getApiClient($http)))->getPopulation('0911101010');
 
@@ -99,8 +100,8 @@ class StatisticsClientTest extends StatisticsTestBase {
     foreach ([FALSE, TRUE] as $transposed) {
       $case = $transposed ? 'transposed' : 'row major';
       $http = $this->createMockHttpClient([
-        new Response(200, body: json_encode($this->metadata('Vuosi', ['2025']))),
-        new Response(200, body: json_encode($this->dwellingsDataset($transposed))),
+        new Response(200, body: json_encode($this->metadata('Vuosi', ['2025']), JSON_THROW_ON_ERROR)),
+        new Response(200, body: json_encode($this->dwellingsDataset($transposed), JSON_THROW_ON_ERROR)),
       ]);
       $figure = (new StatisticsClient($this->getApiClient($http)))->getDwellings('0913301102');
 
@@ -109,7 +110,7 @@ class StatisticsClientTest extends StatisticsTestBase {
       $this->assertCount(4, $figure->breakdown, $case);
 
       $types = array_combine(
-        array_map(fn ($item) => $item->label->getUntranslatedString(), $figure->breakdown),
+        array_map(fn ($item) => $this->untranslated($item->label), $figure->breakdown),
         array_map(fn ($item) => $item->value, $figure->breakdown),
       );
       // Building types are mapped from the stable PxWeb values to our own
@@ -140,14 +141,14 @@ class StatisticsClientTest extends StatisticsTestBase {
     $dataset['value'] = [5938, 0, 11, 0, 25, 0, 5898, 0, 4, 0];
 
     $http = $this->createMockHttpClient([
-      new Response(200, body: json_encode($this->metadata('Vuosi', ['2025']))),
-      new Response(200, body: json_encode($dataset)),
+      new Response(200, body: json_encode($this->metadata('Vuosi', ['2025']), JSON_THROW_ON_ERROR)),
+      new Response(200, body: json_encode($dataset, JSON_THROW_ON_ERROR)),
     ]);
     $bucket = (new StatisticsClient($this->getApiClient($http)))
       ->getDwellings('0913301102')->breakdown[0]->breakdown[0];
 
     $this->assertSame('9999', $bucket->key);
-    $this->assertSame('Unknown', $bucket->label->getUntranslatedString());
+    $this->assertSame('Unknown', $this->untranslated($bucket->label));
   }
 
   /**
@@ -171,7 +172,7 @@ class StatisticsClientTest extends StatisticsTestBase {
    * @param bool $transposed
    *   Whether to declare Valmistumisvuosi before Talotyyppi.
    *
-   * @return array
+   * @return array<mixed>
    *   The json-stat2 dataset.
    */
   private function dwellingsDataset(bool $transposed = FALSE) : array {

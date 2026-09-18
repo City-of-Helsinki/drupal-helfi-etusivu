@@ -44,7 +44,7 @@ class DistrictResolverTest extends StatisticsTestBase {
             'name' => ['fi' => 'Kruununhaka'],
           ],
         ],
-      ])),
+      ], JSON_THROW_ON_ERROR)),
     ]);
     $sut = new DistrictResolver($this->getApiClient($http));
 
@@ -85,7 +85,7 @@ class DistrictResolverTest extends StatisticsTestBase {
     ];
 
     foreach ($cases as $name => $body) {
-      $http = $this->createMockHttpClient([new Response(200, body: json_encode($body))]);
+      $http = $this->createMockHttpClient([new Response(200, body: json_encode($body, JSON_THROW_ON_ERROR))]);
       $sut = new DistrictResolver($this->getApiClient($http));
 
       $this->assertNull($sut->resolve(new Location(60.0, 24.0, 'Point')), "case: $name");
