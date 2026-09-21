@@ -3,8 +3,10 @@ display:
     display_options:
       menu:
         title: Hakunostot
+        description: 'Hallinnoi hakunostoja'
   default:
     display_options:
+      title: Hakunostot
       fields:
         title:
           label: Otsikko

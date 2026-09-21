@@ -834,13 +834,13 @@ display:
       display_extenders: {  }
       path: admin/search/broken-links
       menu:
-        type: tab
+        type: normal
         title: 'Broken links'
         description: 'Lists promoted items with broken links'
-        weight: 0
+        weight: 1
         expanded: false
         menu_name: admin
-        parent: ''
+        parent: helfi_search.overview
         context: '0'
     cache_metadata:
       max-age: 0
