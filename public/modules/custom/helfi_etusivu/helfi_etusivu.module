@@ -350,12 +350,19 @@ function helfi_etusivu_first_paragraph_grey_alter(array &$paragraphs): void {
  */
 function helfi_etusivu_metatags_alter(array &$metatags, array &$context): void {
   $entity = $context['entity'];
-  if (!$entity instanceof NewsItem) {
-    return;
+  if ($entity instanceof NewsItem && !$entity->get('field_news_item_updating_news')->isEmpty()) {
+    $metatags['article_published_time'] = '[updating-news:changed:html_datetime]';
   }
 
-  if (!$entity->get('field_news_item_updating_news')->isEmpty()) {
-    $metatags['article_published_time'] = '[updating-news:changed:html_datetime]';
+  // Override the default og:image and twitter:image on the Helsinki near
+  // you pages.
+  $route = \Drupal::routeMatch()->getRouteName();
+  if ($route && RouteInformationEnum::fromRoute($route)) {
+    $theme_path = \Drupal::service('theme_handler')->getTheme('hdbt_subtheme')->getPath();
+    $image_path = \Drupal::service('file_url_generator')
+      ->generateString("$theme_path/src/images/walking_by_houses-1026x1026.png");
+    $metatags['og_image'] = $image_path;
+    $metatags['twitter_cards_image'] = $image_path;
   }
 }
 
