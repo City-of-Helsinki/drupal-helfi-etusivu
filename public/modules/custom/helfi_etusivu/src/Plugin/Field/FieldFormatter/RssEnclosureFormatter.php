@@ -53,7 +53,6 @@ class RssEnclosureFormatter extends FormatterBase implements ContainerFactoryPlu
         $item->entity->hasField('field_media_image')
       ) {
         $image_style = $storage->load('1_9_1200w_630h');
-        // @phpstan-ignore-next-line
         $image_entity = $item->entity->field_media_image;
 
         if ($image_entity && $image_entity->isEmpty()) {
