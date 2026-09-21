@@ -817,7 +817,7 @@ display:
         weight: 0
         expanded: false
         menu_name: admin
-        parent: helfi_etusivu.search
+        parent: helfi_search.overview
         context: '0'
       tab_options:
         type: none
