@@ -343,21 +343,6 @@ function helfi_etusivu_first_paragraph_grey_alter(array &$paragraphs): void {
 }
 
 /**
- * Implements hook_preprocess().
- */
-function helfi_etusivu_preprocess_node__news_item__full(array &$variables): void {
-  $node = $variables['node'];
-  assert($node instanceof NewsItem);
-  $updating_news_publish_date = $node->getFirstUpdatingNewsPublishDate();
-
-  // Change the published_at variable only if
-  // there is updating news on the news item.
-  if (!is_null($updating_news_publish_date)) {
-    $variables['published_at'] = $updating_news_publish_date;
-  }
-}
-
-/**
  * Implements hook_metatags_alter().
  *
  * UHF-11151 For updating news items, set the published time
@@ -365,12 +350,19 @@ function helfi_etusivu_preprocess_node__news_item__full(array &$variables): void
  */
 function helfi_etusivu_metatags_alter(array &$metatags, array &$context): void {
   $entity = $context['entity'];
-  if (!$entity instanceof NewsItem) {
-    return;
+  if ($entity instanceof NewsItem && !$entity->get('field_news_item_updating_news')->isEmpty()) {
+    $metatags['article_published_time'] = '[updating-news:changed:html_datetime]';
   }
 
-  if (!$entity->get('field_news_item_updating_news')->isEmpty()) {
-    $metatags['article_published_time'] = '[updating-news:changed:html_datetime]';
+  // Override the default og:image and twitter:image on the Helsinki near
+  // you pages.
+  $route = \Drupal::routeMatch()->getRouteName();
+  if ($route && RouteInformationEnum::fromRoute($route)) {
+    $theme_path = \Drupal::service('theme_handler')->getTheme('hdbt_subtheme')->getPath();
+    $image_path = \Drupal::service('file_url_generator')
+      ->generateString("$theme_path/src/images/walking_by_houses-1026x1026.png");
+    $metatags['og_image'] = $image_path;
+    $metatags['twitter_cards_image'] = $image_path;
   }
 }
 
