@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
 use Drupal\Core\Entity\EntityStorageException;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu as GlobalMenuEntity;
+use Drupal\rest\Attribute\RestResource;
 use Drupal\rest\ModifiedResourceResponse;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,16 +20,15 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * Represents Global menu records as resources.
- *
- * @RestResource(
- *   id = "helfi_global_menu",
- *   label = @Translation("Global menu"),
- *   uri_paths = {
- *     "canonical" = "/api/v1/global-menu/{entity}",
- *     "create" = "/api/v1/global-menu/{entity}",
- *   }
- * )
  */
+#[RestResource(
+  id: 'helfi_global_menu',
+  label: new TranslatableMarkup('Global menu'),
+  uri_paths: [
+    'canonical' => '/api/v1/global-menu/{entity}',
+    'create' => '/api/v1/global-menu/{entity}',
+  ],
+)]
 final class GlobalMenu extends GlobalMenuResourceBase {
 
   /**
