@@ -230,7 +230,6 @@ function hdbt_subtheme_preprocess_views_view_row_rss(&$variables) : void {
   }
 }
 
-
 /**
  * Implements hook_preprocess_HOOK().
  */
