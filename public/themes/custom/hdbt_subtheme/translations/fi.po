@@ -177,3 +177,11 @@ msgstr "Haku edellyttää JavaScriptin käyttöä. Ota JavaScript käyttöön se
 msgctxt "Site search"
 msgid "Search suggestions"
 msgstr "Hakuehdotukset"
+
+msgctxt "Site search"
+msgid "Show more"
+msgstr "Näytä lisää"
+
+msgctxt "Site search"
+msgid "Close"
+msgstr "Sulje"
