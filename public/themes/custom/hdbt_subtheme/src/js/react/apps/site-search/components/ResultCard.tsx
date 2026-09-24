@@ -59,7 +59,7 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
       cardDescription={description && isExpandable && !expanded ? toExcerpt(description) : description}
       cardModifierClass={cardModifierClass}
       cardTitleLevel={3}
-      {...(isExpandable && { customMetaRows: { bottom: [descriptionToggle] } })}
+      {...(isExpandable && { customMetaRows: { top: [descriptionToggle] } })}
       {...(isNewsItem &&
         formattedDate && {
           date: formattedDate,

@@ -122,6 +122,10 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
     &[aria-expanded='true']::before {
       transform: rotate(180deg);
     }
+
+    + .card__meta {
+      margin-block-start: $spacing-half;
+    }
   }
 }
 
