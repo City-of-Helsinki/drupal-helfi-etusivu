@@ -44,15 +44,6 @@ field_settings:
     datasource_id: 'entity:helfi_search_contact'
     property_path: organization_hierarchy
     type: object
-  organization_name:
-    label: Organization
-    datasource_id: 'entity:helfi_search_contact'
-    property_path: 'organization:entity:name'
-    type: text
-    dependencies:
-      module:
-        - helfi_etusivu
-        - taxonomy
   public_addresses:
     label: 'Public addresses'
     datasource_id: 'entity:helfi_search_contact'
