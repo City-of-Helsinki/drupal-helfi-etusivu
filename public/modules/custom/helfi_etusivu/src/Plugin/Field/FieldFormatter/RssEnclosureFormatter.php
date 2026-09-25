@@ -5,23 +5,22 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Field\Attribute\FieldFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\media\MediaInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin implementation to get image into enclosure in rss feed.
- *
- * @FieldFormatter(
- *   id = "rss_enclosure_formatter",
- *   label = @Translation("Rss enclosure formatter"),
- *   field_types = {
- *     "entity_reference",
- *   },
- * )
  */
+#[FieldFormatter(
+  id: 'rss_enclosure_formatter',
+  label: new TranslatableMarkup('Rss enclosure formatter'),
+  field_types: ['entity_reference'],
+)]
 class RssEnclosureFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
 
   /**
