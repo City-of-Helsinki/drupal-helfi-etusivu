@@ -10,6 +10,8 @@ dependencies:
   - drupal:link
   - drupal:text
   - drupal:image
+  - drupal:migrate
+  - drupal:taxonomy
   - entity:entity
   - draggableviews:draggableviews
   - search_api:search_api

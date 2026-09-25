@@ -902,3 +902,14 @@ function helfi_etusivu_update_11012(): void {
   \Drupal::entityDefinitionUpdateManager()
     ->installEntityType($type);
 }
+
+/**
+ * Install numerot.hel.fi contact details.
+ */
+function helfi_etusivu_update_11013(): void {
+  $type = \Drupal::service(EntityTypeManagerInterface::class)
+    ->getDefinition('helfi_search_contact');
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installEntityType($type);
+}

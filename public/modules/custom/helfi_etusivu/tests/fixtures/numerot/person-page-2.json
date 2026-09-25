@@ -1,0 +1,34 @@
+{
+  "jsonapi": {"version": "1.0"},
+  "data": [
+    {
+      "type": "node--person",
+      "id": "33333333-3333-4333-8333-333333333333",
+      "attributes": {
+        "drupal_internal__nid": 3,
+        "status": true,
+        "title": "Korhonen Kalle",
+        "created": "2024-01-01T10:00:00+00:00",
+        "changed": "2025-01-01T10:00:00+00:00",
+        "field_address": [],
+        "field_email_address": "kalle.korhonen@example.com",
+        "field_name_parts": ["Kalle", "Korhonen"],
+        "field_phone": [],
+        "field_puhelinpalveluajat": null,
+        "field_puhelinpalveluajat_en": null,
+        "field_puhelinpalveluajat_sv": null,
+        "field_title": "Johtaja",
+        "field_title_en": "Director",
+        "field_title_sv": "Direktör"
+      },
+      "relationships": {
+        "field_ou_ref": {
+          "data": {"type": "taxonomy_term--ou", "id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"}
+        }
+      }
+    }
+  ],
+  "links": {
+    "self": {"href": "https://numerot.hel.fi/fi/jsonapi/node/person?filter%5Bstatus%5D=1&page%5Boffset%5D=2&page%5Blimit%5D=2"}
+  }
+}

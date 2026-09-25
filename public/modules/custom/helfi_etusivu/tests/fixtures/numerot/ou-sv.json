@@ -1,0 +1,100 @@
+{
+  "jsonapi": {
+    "version": "1.1"
+  },
+  "data": [
+    {
+      "type": "taxonomy_term--ou",
+      "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "attributes": {
+        "langcode": "sv",
+        "name": "Testenhet",
+        "weight": 0
+      },
+      "relationships": {
+        "parent": {
+          "data": [
+            {
+              "type": "taxonomy_term--ou",
+              "id": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "meta": {
+                "drupal_internal__target_id": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "taxonomy_term--ou",
+      "id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "attributes": {
+        "langcode": "fi",
+        "name": "Toinen yksikkö",
+        "weight": 1
+      },
+      "relationships": {
+        "parent": {
+          "data": [
+            {
+              "type": "taxonomy_term--ou",
+              "id": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "meta": {
+                "drupal_internal__target_id": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "taxonomy_term--ou",
+      "id": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+      "attributes": {
+        "langcode": "fi",
+        "name": "Testipalvelu",
+        "weight": 0
+      },
+      "relationships": {
+        "parent": {
+          "data": [
+            {
+              "type": "taxonomy_term--ou",
+              "id": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "meta": {
+                "drupal_internal__target_id": 1
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "taxonomy_term--ou",
+      "id": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "attributes": {
+        "langcode": "sv",
+        "name": "Testsektorn",
+        "weight": 0
+      },
+      "relationships": {
+        "parent": {
+          "data": [
+            {
+              "type": "taxonomy_term--ou",
+              "id": "virtual",
+              "meta": {
+                "drupal_internal__target_id": 0
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "links": {
+    "self": {
+      "href": "https://numerot.hel.fi/sv/jsonapi/taxonomy_term/ou?filter%5Bstatus%5D=1&page%5Blimit%5D=50&fields%5Btaxonomy_term--ou%5D=name%2Cweight%2Cparent%2Clangcode"
+    }
+  }
+}
