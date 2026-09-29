@@ -9,6 +9,8 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\external_entities\Entity\Query\External\Query;
+use Drupal\helfi_api_base\Environment\ActiveServiceTrait;
+use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\InternalSearchLink;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\ServiceMapLink;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
@@ -23,11 +25,13 @@ use Symfony\Component\HttpFoundation\Request;
  */
 final class ResultsController extends ControllerBase {
 
+  use ActiveServiceTrait;
   use HtmxContainerTrait;
 
   public function __construct(
     private readonly ServiceMapInterface $serviceMap,
     private readonly RoadworkDataServiceInterface $roadworkDataService,
+    private readonly EnvironmentResolverInterface $environmentResolver,
     LanguageManagerInterface $languageManager,
   ) {
     $this->languageManager = $languageManager;
@@ -71,7 +75,7 @@ final class ResultsController extends ControllerBase {
       '#attached' => [
         'drupalSettings' => [
           'helfi_news_archive' => [
-            'elastic_proxy_url' => $this->config('elastic_proxy.settings')->get('elastic_proxy_url'),
+            'elastic_proxy_url' => $this->getPublicElasticProxy()?->getAddress(),
             'default_query' => http_build_query($newsQuery),
             'hide_form' => TRUE,
             'max_results' => 3,
