@@ -1,0 +1,16 @@
+uuid: 3105f0c2-3f8a-40ab-8894-a50e5ac86297
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.numerot_organization
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: taxonomy_term.numerot_organization
+target_entity_type_id: taxonomy_term
+target_bundle: numerot_organization
+default_langcode: fi
+language_alterable: false

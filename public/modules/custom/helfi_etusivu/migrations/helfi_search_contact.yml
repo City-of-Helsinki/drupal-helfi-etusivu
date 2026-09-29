@@ -1,0 +1,36 @@
+id: helfi_search_contact
+label: 'numerot.hel.fi contact details'
+migration_tags:
+  - helfi_search_numerot
+source:
+  plugin: helfi_numerot_contact_details
+  skip_count: true
+  track_changes: true
+process:
+  id: id
+  name_parts: name_parts
+  email: email
+  phones: phones
+  addresses: addresses
+  job_title: job_title
+  service_hours: service_hours
+  organization:
+    - plugin: skip_on_empty
+      method: process
+      source: organization_id
+    - plugin: migration_lookup
+      migration: helfi_search_organization
+      source:
+        - organization_id
+        - language
+      no_stub: true
+    - plugin: skip_on_empty
+      method: process
+    - plugin: extract
+      index:
+        - 0
+destination:
+  plugin: translatable_entity:helfi_search_contact
+migration_dependencies:
+  required:
+    - helfi_search_organization
