@@ -26,7 +26,7 @@ helfi_etusivu.linked_events_image:
     _maintenance_access: TRUE
 
 helfi_etusivu.site_search:
-  path: '/search/new'
+  path: '/search'
   defaults:
     _controller: '\Drupal\helfi_etusivu\Search\Controller\SearchPageController::content'
     _title_callback: '\Drupal\helfi_etusivu\Search\Controller\SearchPageController::getTitle'
