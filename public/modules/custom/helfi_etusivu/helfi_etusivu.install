@@ -42,6 +42,9 @@ function helfi_etusivu_install() : void {
       ])
         ->save();
     }
+
+    // Add translated path aliases for the site search page.
+    helfi_etusivu_update_11014();
   }
 
   if ($moduleHandler->moduleExists('consumer_image_styles')) {
@@ -912,4 +915,25 @@ function helfi_etusivu_update_11013(): void {
 
   \Drupal::entityDefinitionUpdateManager()
     ->installEntityType($type);
+}
+
+/**
+ * Add translated path aliases for the site search page.
+ */
+function helfi_etusivu_update_11014(): void {
+  $paths = [
+    [
+      'path' => '/search',
+      'alias' => '/haku',
+      'langcode' => 'fi',
+    ],
+    [
+      'path' => '/search',
+      'alias' => '/sok',
+      'langcode' => 'sv',
+    ],
+  ];
+  foreach ($paths as $path) {
+    PathAlias::create($path)->save();
+  }
 }
