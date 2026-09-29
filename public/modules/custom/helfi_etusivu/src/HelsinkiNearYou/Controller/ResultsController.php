@@ -31,8 +31,8 @@ final class ResultsController extends ControllerBase {
   public function __construct(
     private readonly ServiceMapInterface $serviceMap,
     private readonly RoadworkDataServiceInterface $roadworkDataService,
-    private readonly EnvironmentResolverInterface $environmentResolver,
     LanguageManagerInterface $languageManager,
+    protected readonly EnvironmentResolverInterface $environmentResolver,
   ) {
     $this->languageManager = $languageManager;
   }
