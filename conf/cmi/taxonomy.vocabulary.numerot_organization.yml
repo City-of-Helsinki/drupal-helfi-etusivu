@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - scheduler
-third_party_settings: {}
 name: 'Organizations (numerot.hel.fi)'
 vid: numerot_organization
 description: 'Organization tree imported from numerot.hel.fi.'
