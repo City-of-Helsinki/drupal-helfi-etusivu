@@ -6,6 +6,9 @@ display:
         views_bulk_operations_bulk_form:
           action_title: إجراء
         content_translation_outdated:
+          label: 'الترجمة قديمة'
+          settings:
+            format_custom_true: قديمة
           separator: ', '
         title:
           label: العنوان
