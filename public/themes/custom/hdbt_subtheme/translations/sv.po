@@ -176,3 +176,11 @@ msgstr "Sökningen kräver JavaScript. Aktivera JavaScript i webbläsarens inst�
 msgctxt "Site search"
 msgid "Search suggestions"
 msgstr "Sökförslag"
+
+msgctxt "Site search"
+msgid "Show more"
+msgstr "Visa mer"
+
+msgctxt "Site search"
+msgid "Close"
+msgstr "Stäng"

@@ -7,6 +7,11 @@
 
 // Sentry DSN for React.
 $config['react_search.settings']['sentry_dsn_react'] = getenv('SENTRY_DSN_REACT');
+
+// numerot.hel.fi API key.
+$config['helfi_etusivu.numerot']['app_id'] = getenv('NUMEROT_APP_ID');
+$config['helfi_etusivu.numerot']['api_key'] = getenv('NUMEROT_API_KEY');
+
 $config['openid_connect.client.tunnistamo']['settings']['ad_roles'] = [
   [
     'ad_role' => 'Drupal_Helfi_kaupunkitaso_paakayttajat',
@@ -52,6 +57,8 @@ $additionalEnvVars = [
   'ELASTIC_USER',
   'ELASTIC_PASSWORD',
   'SENTRY_DSN_REACT',
+  'NUMEROT_API_KEY',
+  'NUMEROT_APP_ID',
 ];
 foreach ($additionalEnvVars as $var) {
   $preflight_checks['environmentVariables'][] = $var;
