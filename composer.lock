@@ -2438,17 +2438,17 @@
         },
         {
             "name": "drupal/ai_provider_azure",
-            "version": "1.1.0-beta4",
+            "version": "1.1.0-beta5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ai_provider_azure.git",
-                "reference": "1.1.0-beta4"
+                "reference": "1.1.0-beta5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai_provider_azure-1.1.0-beta4.zip",
-                "reference": "1.1.0-beta4",
-                "shasum": "56d302f256a43117a0dd6bf8d7576eff7918c806"
+                "url": "https://ftp.drupal.org/files/projects/ai_provider_azure-1.1.0-beta5.zip",
+                "reference": "1.1.0-beta5",
+                "shasum": "3fc8c6430fced7b603e1f34e2f8bfd47950c0e64"
             },
             "require": {
                 "drupal/ai": "^1.1.0",
@@ -2459,8 +2459,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.1.0-beta4",
-                    "datestamp": "1782314778",
+                    "version": "1.1.0-beta5",
+                    "datestamp": "1790859767",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2608,8 +2608,8 @@
                     "version": "1.3.0",
                     "datestamp": "1782915000",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -4562,17 +4562,17 @@
         },
         {
             "name": "drupal/externalauth",
-            "version": "2.0.14",
+            "version": "2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/externalauth.git",
-                "reference": "2.0.14"
+                "reference": "2.0.15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/externalauth-2.0.14.zip",
-                "reference": "2.0.14",
-                "shasum": "b607fef852778a6bb0e81c5e15e817ef756ddb77"
+                "url": "https://ftp.drupal.org/files/projects/externalauth-2.0.15.zip",
+                "reference": "2.0.15",
+                "shasum": "20fe35b605b4c137505d6f3c882690e53f31cd5d"
             },
             "require": {
                 "drupal/core": "^10.1 || ^11"
@@ -4580,8 +4580,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.14",
-                    "datestamp": "1790796109",
+                    "version": "2.0.15",
+                    "datestamp": "1790861291",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4684,17 +4684,17 @@
         },
         {
             "name": "drupal/field_validation",
-            "version": "3.0.0-rc2",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/field_validation.git",
-                "reference": "3.0.0-rc2"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/field_validation-3.0.0-rc2.zip",
-                "reference": "3.0.0-rc2",
-                "shasum": "1441538325ce38268dfb09e981217e8274256b8f"
+                "url": "https://ftp.drupal.org/files/projects/field_validation-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "01cc1a1221bef003e2709e2ed455a4714d0805c0"
             },
             "require": {
                 "drupal/core": "^10.2 || ^11",
@@ -4705,11 +4705,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.0-rc2",
-                    "datestamp": "1789574788",
+                    "version": "3.0.0",
+                    "datestamp": "1790848976",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -4729,6 +4729,10 @@
                 {
                     "name": "manuel.adan",
                     "homepage": "https://www.drupal.org/user/516420"
+                },
+                {
+                    "name": "marcus_johansson",
+                    "homepage": "https://www.drupal.org/user/385947"
                 }
             ],
             "description": "Field validation allow you add constraint to field by UI.",
@@ -5491,16 +5495,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.2.6",
+            "version": "5.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "40d9e50ec8f639201f4855efbd400b5068d5f85c"
+                "reference": "146bea6b8fb66d7c9853e7c79f803bf3ff6d925d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/40d9e50ec8f639201f4855efbd400b5068d5f85c",
-                "reference": "40d9e50ec8f639201f4855efbd400b5068d5f85c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/146bea6b8fb66d7c9853e7c79f803bf3ff6d925d",
+                "reference": "146bea6b8fb66d7c9853e7c79f803bf3ff6d925d",
                 "shasum": ""
             },
             "require": {
@@ -5618,6 +5622,9 @@
                     "drupal/elasticsearch_connector": {
                         "deprecation causes tests to fail": "./public/modules/contrib/helfi_platform_config/patches/elasticsearch_connector_deprecation.patch"
                     },
+                    "drupal/external_entities": {
+                        "Creating external entity types in KernelTests no longer works (https://www.drupal.org/project/external_entities/issues/3549828)": "./public/modules/contrib/helfi_platform_config/patches/3549828.patch"
+                    },
                     "drupal/metatag": {
                         "Fix deprecation error which breaks everything https://www.drupal.org/project/metatag/issues/3563261": "./public/modules/contrib/helfi_platform_config/patches/3563261-14.patch"
                     },
@@ -5638,10 +5645,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.2.6",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.2.8",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-10-01T09:07:30+00:00"
+            "time": "2026-10-01T14:13:49+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -9424,17 +9431,17 @@
         },
         {
             "name": "drupal/views_bulk_operations",
-            "version": "4.4.8",
+            "version": "4.4.9",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_bulk_operations.git",
-                "reference": "4.4.8"
+                "reference": "4.4.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.4.8.zip",
-                "reference": "4.4.8",
-                "shasum": "81f6500e31a618546f201ad9f9c909d66de8a6cd"
+                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.4.9.zip",
+                "reference": "4.4.9",
+                "shasum": "462c9401ed32f77d5f38d0a5304782737c3d2ab3"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11"
@@ -9445,8 +9452,8 @@
             "require-dev": {
                 "drupal/search_api": "^1.35",
                 "drush/drush": "^12 || ^13",
-                "phpstan/phpstan-deprecation-rules": "^1",
-                "phpstan/phpstan-strict-rules": "^1"
+                "phpstan/phpstan-deprecation-rules": "^1 || ^2",
+                "phpstan/phpstan-strict-rules": "^1 || ^2"
             },
             "suggest": {
                 "drush/drush": "^12 || ^13"
@@ -9454,8 +9461,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.4.8",
-                    "datestamp": "1788861318",
+                    "version": "4.4.9",
+                    "datestamp": "1790863781",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -21863,16 +21870,16 @@
         },
         {
             "name": "phpstan/phpstan-phpunit",
-            "version": "2.0.20",
+            "version": "2.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-phpunit.git",
-                "reference": "ef0c8f5c5e01b2b1863043738d90fbde52559159"
+                "reference": "8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/ef0c8f5c5e01b2b1863043738d90fbde52559159",
-                "reference": "ef0c8f5c5e01b2b1863043738d90fbde52559159",
+                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441",
+                "reference": "8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441",
                 "shasum": ""
             },
             "require": {
@@ -21915,9 +21922,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-phpunit/issues",
-                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.0.20"
+                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.0.21"
             },
-            "time": "2026-09-30T14:50:48+00:00"
+            "time": "2026-10-01T11:59:29+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
