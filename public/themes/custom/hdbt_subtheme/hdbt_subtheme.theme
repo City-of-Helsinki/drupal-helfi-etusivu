@@ -9,6 +9,9 @@ declare(strict_types=1);
 
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\helfi_api_base\Environment\EnvironmentResolverException;
+use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
+use Drupal\helfi_api_base\Environment\ServiceEnum;
 use Drupal\helfi_hakuvahti\DrupalSettings;
 
 /**
@@ -133,9 +136,16 @@ function hdbt_subtheme_preprocess_paragraph(array &$variables) {
   }
 
   if ($paragraph_type == 'news_archive') {
-    $config = \Drupal::config('elastic_proxy.settings');
-    if ($config->get('elastic_proxy_url')) {
-      $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $config->get('elastic_proxy_url');
+    try {
+      $proxy = \Drupal::service(EnvironmentResolverInterface::class)
+        ->getActiveEnvironment()
+        ->getService(ServiceEnum::PublicElasticProxy);
+
+      if ($proxy) {
+        $variables['#attached']['drupalSettings']['helfi_news_archive']['elastic_proxy_url'] = $proxy->address->getAddress();
+      }
+    }
+    catch (EnvironmentResolverException) {
     }
 
     $react_search_config = \Drupal::config('react_search.settings');

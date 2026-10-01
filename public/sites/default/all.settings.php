@@ -5,9 +5,6 @@
  * Contains site specific overrides.
  */
 
-// Elastic proxy URL.
-$config['elastic_proxy.settings']['elastic_proxy_url'] = getenv('ELASTIC_PROXY_URL');
-
 // Sentry DSN for React.
 $config['react_search.settings']['sentry_dsn_react'] = getenv('SENTRY_DSN_REACT');
 
@@ -56,7 +53,6 @@ $additionalEnvVars = [
   'SENTRY_ENVIRONMENT',
   // Project specific variables.
   'DRUPAL_NAVIGATION_API_ACCOUNT',
-  'ELASTIC_PROXY_URL',
   'ELASTICSEARCH_URL',
   'ELASTIC_USER',
   'ELASTIC_PASSWORD',
