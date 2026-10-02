@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Form;
 
-use Drupal\Core\Form\FormStateInterface;
-
 /**
  * Search form for Feedback page.
  */
