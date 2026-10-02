@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "type": "node--person",
+      "id": "broken",
+      "attributes": {
+        "field_email_address": "  ",
+        "field_name_parts": ["", "Nimi", null],
+        "field_phone": [
+          "not an object",
+          {"type": "landline"},
+          {"value": " ", "type": "landline"},
+          {"value": " +358 9 123 ", "type": "", "info": " "},
+          {"value": "+358 40 123", "info": "SALAINEN"}
+        ],
+        "field_address": "not an array",
+        "field_title": {"not": "scalar"}
+      }
+    },
+    {
+      "type": "node--person",
+      "id": "empty"
+    }
+  ],
+  "links": {}
+}

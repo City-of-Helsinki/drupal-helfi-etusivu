@@ -14,8 +14,10 @@
       {% block component_content %}
         {# Hook React app to this div #}
         {{ attach_library('hdbt/event-list') }}
+        {# data-paragraph-id keys into drupalSettings.helfi_events.data, set by EventsController. #}
         <div
-          id="helfi-events-search"
+          class="helfi-events-search"
+          id="helfi-events-search--helfi-coordinates-based-event-list"
           data-paragraph-id="helfi-coordinates-based-event-list"
         >
         </div>

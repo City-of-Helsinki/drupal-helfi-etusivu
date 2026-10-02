@@ -5,11 +5,13 @@
  * Contains site specific overrides.
  */
 
-// Elastic proxy URL.
-$config['elastic_proxy.settings']['elastic_proxy_url'] = getenv('ELASTIC_PROXY_URL');
-
 // Sentry DSN for React.
 $config['react_search.settings']['sentry_dsn_react'] = getenv('SENTRY_DSN_REACT');
+
+// numerot.hel.fi API key.
+$config['helfi_etusivu.numerot']['app_id'] = getenv('NUMEROT_APP_ID');
+$config['helfi_etusivu.numerot']['api_key'] = getenv('NUMEROT_API_KEY');
+
 $config['openid_connect.client.tunnistamo']['settings']['ad_roles'] = [
   [
     'ad_role' => 'Drupal_Helfi_kaupunkitaso_paakayttajat',
@@ -51,11 +53,12 @@ $additionalEnvVars = [
   'SENTRY_ENVIRONMENT',
   // Project specific variables.
   'DRUPAL_NAVIGATION_API_ACCOUNT',
-  'ELASTIC_PROXY_URL',
   'ELASTICSEARCH_URL',
   'ELASTIC_USER',
   'ELASTIC_PASSWORD',
   'SENTRY_DSN_REACT',
+  'NUMEROT_API_KEY',
+  'NUMEROT_APP_ID',
 ];
 foreach ($additionalEnvVars as $var) {
   $preflight_checks['environmentVariables'][] = $var;

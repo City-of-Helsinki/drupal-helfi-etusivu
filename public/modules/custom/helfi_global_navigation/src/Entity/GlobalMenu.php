@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_global_navigation\Entity;
 
+use Drupal\Core\Entity\Attribute\ContentEntityType;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityPublishedInterface;
@@ -15,53 +16,51 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Defines global_menu entity class.
- *
- * @ContentEntityType(
- *   id = "global_menu",
- *   fieldable = FALSE,
- *   label = @Translation("HELfi Global menu"),
- *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\Core\Entity\EntityListBuilder",
- *     "access" = "Drupal\entity\EntityAccessControlHandler",
- *     "permission_provider" = "Drupal\entity\EntityPermissionProvider",
- *     "storage" = "Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage",
- *     "form" = {
- *       "default" = "Drupal\Core\Entity\ContentEntityForm",
- *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
- *       "overview" = "Drupal\helfi_global_navigation\Entity\Form\GlobalMenuOverviewForm",
- *     },
- *     "route_provider" = {
- *       "html" = "Drupal\helfi_global_navigation\Entity\Routing\GlobalMenuRouteProvider",
- *     },
- *     "local_action_provider" = {
- *       "collection" = "Drupal\entity\Menu\EntityCollectionLocalActionProvider",
- *     },
- *     "local_task_provider" = {
- *       "default" = "Drupal\entity\Menu\DefaultEntityLocalTaskProvider",
- *     },
- *   },
- *   base_table = "global_menu",
- *   data_table = "global_menu_field_data",
- *   entity_keys = {
- *     "id" = "project",
- *     "label" = "name",
- *     "uuid" = "uuid",
- *     "langcode" = "langcode",
- *     "published" = "status",
- *   },
- *   translatable = TRUE,
- *   admin_permission = "administer global_menu",
- *   links = {
- *     "canonical" = "/global_menu/{global_menu}",
- *     "add-form" = "/admin/content/integrations/global_menu/add",
- *     "edit-form" = "/admin/content/integrations/global_menu/{global_menu}/edit",
- *     "collection" = "/admin/content/integrations/global_menu",
- *     "delete-form" = "/admin/content/integrations/global_menu/{global_menu}/delete"
- *   },
- *   field_ui_base_route = "entity.global_menu.collection"
- * )
  */
+#[ContentEntityType(
+  id: 'global_menu',
+  label: new TranslatableMarkup('HELfi Global menu'),
+  handlers: [
+    'view_builder' => 'Drupal\Core\Entity\EntityViewBuilder',
+    'list_builder' => 'Drupal\Core\Entity\EntityListBuilder',
+    'access' => 'Drupal\entity\EntityAccessControlHandler',
+    'permission_provider' => 'Drupal\entity\EntityPermissionProvider',
+    'storage' => 'Drupal\helfi_global_navigation\Entity\Storage\GlobalMenuStorage',
+    'form' => [
+      'default' => 'Drupal\Core\Entity\ContentEntityForm',
+      'delete' => 'Drupal\Core\Entity\ContentEntityDeleteForm',
+      'overview' => 'Drupal\helfi_global_navigation\Entity\Form\GlobalMenuOverviewForm',
+    ],
+    'route_provider' => [
+      'html' => 'Drupal\helfi_global_navigation\Entity\Routing\GlobalMenuRouteProvider',
+    ],
+    'local_action_provider' => [
+      'collection' => 'Drupal\entity\Menu\EntityCollectionLocalActionProvider',
+    ],
+    'local_task_provider' => [
+      'default' => 'Drupal\entity\Menu\DefaultEntityLocalTaskProvider',
+    ],
+  ],
+  base_table: 'global_menu',
+  data_table: 'global_menu_field_data',
+  entity_keys: [
+    'id' => 'project',
+    'label' => 'name',
+    'uuid' => 'uuid',
+    'langcode' => 'langcode',
+    'published' => 'status',
+  ],
+  translatable: TRUE,
+  admin_permission: 'administer global_menu',
+  links: [
+    'canonical' => '/global_menu/{global_menu}',
+    'add-form' => '/admin/content/integrations/global_menu/add',
+    'edit-form' => '/admin/content/integrations/global_menu/{global_menu}/edit',
+    'collection' => '/admin/content/integrations/global_menu',
+    'delete-form' => '/admin/content/integrations/global_menu/{global_menu}/delete',
+  ],
+  field_ui_base_route: 'entity.global_menu.collection',
+)]
 final class GlobalMenu extends ContentEntityBase implements ContentEntityInterface, EntityPublishedInterface {
 
   use EntityPublishedTrait;

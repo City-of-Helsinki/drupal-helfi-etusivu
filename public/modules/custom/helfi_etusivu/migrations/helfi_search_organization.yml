@@ -1,0 +1,49 @@
+id: helfi_search_organization
+label: 'numerot.hel.fi organizations'
+migration_tags:
+  - helfi_search_numerot
+source:
+  plugin: helfi_numerot_organizations
+  skip_count: true
+  track_changes: true
+  constants:
+    default_language: fi
+process:
+  tid:
+    - plugin: migration_lookup
+      migration: helfi_search_organization
+      source:
+        - id
+        - constants/default_language
+      no_stub: true
+    - plugin: skip_on_empty
+      method: process
+    - plugin: extract
+      index:
+        - 0
+  vid:
+    plugin: default_value
+    default_value: numerot_organization
+  langcode: language
+  name: name
+  weight: weight
+  parent_id:
+    - plugin: skip_on_empty
+      method: process
+      source: parent_id
+    - plugin: migration_lookup
+      migration: helfi_search_organization
+      source:
+        - parent_id
+        - constants/default_language
+    - plugin: extract
+      index:
+        - 0
+  parent:
+    plugin: default_value
+    default_value: 0
+    source: '@parent_id'
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: numerot_organization
+  translations: true
