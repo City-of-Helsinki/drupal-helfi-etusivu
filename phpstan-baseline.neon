@@ -451,12 +451,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
 
 		-
-			message: '#^Parameter \#2 \$message of method Drupal\\Core\\Form\\FormStateInterface\:\:setErrorByName\(\) expects string\|Stringable, array\<int, Drupal\\Core\\StringTranslation\\TranslatableMarkup\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Form/SearchFormBase.php
-
-		-
 			message: '#^Unsafe usage of new static\(\)\.$#'
 			identifier: new.static
 			count: 1
