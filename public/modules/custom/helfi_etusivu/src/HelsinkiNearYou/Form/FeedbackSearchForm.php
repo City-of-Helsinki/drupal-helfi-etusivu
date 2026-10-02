@@ -18,15 +18,4 @@ class FeedbackSearchForm extends SearchFormBase {
     return 'helfi_etusivu.helsinki_near_you_feedback';
   }
 
-  /**
-   * The parent validateForm causes white screen.
-   *
-   * @param array $form
-   *   The form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The form state.
-   */
-  public function validateForm(array &$form, FormStateInterface $form_state): void {
-  }
-
 }
