@@ -2438,29 +2438,29 @@
         },
         {
             "name": "drupal/ai_provider_azure",
-            "version": "1.1.0-beta5",
+            "version": "1.2.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ai_provider_azure.git",
-                "reference": "1.1.0-beta5"
+                "reference": "1.2.0-beta1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai_provider_azure-1.1.0-beta5.zip",
-                "reference": "1.1.0-beta5",
-                "shasum": "3fc8c6430fced7b603e1f34e2f8bfd47950c0e64"
+                "url": "https://ftp.drupal.org/files/projects/ai_provider_azure-1.2.0-beta1.zip",
+                "reference": "1.2.0-beta1",
+                "shasum": "84248f54d43ae91b1839f8fb285575ced3328687"
             },
             "require": {
-                "drupal/ai": "^1.1.0",
-                "drupal/core": "^10.3 || ^11",
+                "drupal/ai": "^1.4.0",
+                "drupal/core": "^10.5 || ^11.2",
                 "drupal/key": "^1.18",
                 "openai-php/client": ">=v0.10.1"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.1.0-beta5",
-                    "datestamp": "1790859767",
+                    "version": "1.2.0-beta1",
+                    "datestamp": "1790877723",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -5122,7 +5122,7 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.19.1",
+            "version": "6.19.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
@@ -5150,7 +5150,7 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.19.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.19.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
             "time": "2026-10-01T06:13:11+00:00"
@@ -5495,16 +5495,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.2.8",
+            "version": "5.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "146bea6b8fb66d7c9853e7c79f803bf3ff6d925d"
+                "reference": "c930223c00820a1e37a9b8c55bceffd527150ebf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/146bea6b8fb66d7c9853e7c79f803bf3ff6d925d",
-                "reference": "146bea6b8fb66d7c9853e7c79f803bf3ff6d925d",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/c930223c00820a1e37a9b8c55bceffd527150ebf",
+                "reference": "c930223c00820a1e37a9b8c55bceffd527150ebf",
                 "shasum": ""
             },
             "require": {
@@ -5586,9 +5586,6 @@
             "type": "drupal-module",
             "extra": {
                 "patches": {
-                    "drupal/ai_provider_azure": {
-                        "[#3563730] Fix ai_provider_azure settings schema to match actual configuration structure": "https://www.drupal.org/files/issues/2025-12-17/3563730-ai-provider-azure-settings-schema-fix.patch"
-                    },
                     "drupal/core": {
                         "[#UHF-13177, #3569803] htmx:beforeSwap fails with TypeError requestAssetsLoaded.get(...) is undefined": "./public/modules/contrib/helfi_platform_config/patches/3569803.patch",
                         "[#UHF-12709] Patch 'Deleted and replaced ...' error messages": "./public/modules/contrib/helfi_platform_config/patches/UHF-12709-skip_deleted_and_replaced_log.patch",
@@ -5645,10 +5642,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.2.8",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.2.9",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-10-01T14:13:49+00:00"
+            "time": "2026-10-02T06:26:07+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
