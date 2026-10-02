@@ -23,8 +23,8 @@ class RoadworkSearchForm extends SearchFormBase {
    *
    * @param array $form
    *   The form.
-   * @param FormStateInterface $form_state
-   *   The form state.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
   }
