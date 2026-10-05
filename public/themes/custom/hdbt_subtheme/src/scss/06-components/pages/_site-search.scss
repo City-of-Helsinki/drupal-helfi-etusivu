@@ -103,16 +103,6 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
     display: inline-block;
     margin-block-end: $spacing;
     position: relative;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration-thickness: 3px;
-    }
-
-    &:focus {
-      outline: 3px solid var(--color-black);
-      outline-offset: 2px;
-    }
   }
 
   .card__description-toggle {
