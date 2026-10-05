@@ -184,3 +184,7 @@ msgstr "Visa mer"
 msgctxt "Site search"
 msgid "Close"
 msgstr "Stäng"
+
+msgctxt "Site search"
+msgid "Go to the search result on the page"
+msgstr "Gå till sökträffen på sidan"

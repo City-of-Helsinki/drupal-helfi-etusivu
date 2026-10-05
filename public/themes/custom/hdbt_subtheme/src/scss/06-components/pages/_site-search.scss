@@ -97,6 +97,14 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
     margin-block-end: 0;
   }
 
+  .card__fragment-link {
+    @include font(body);
+    color: var(--color-black);
+    display: inline-block;
+    margin-block-end: $spacing;
+    position: relative;
+  }
+
   .card__description-toggle {
     @include font('button');
     align-items: center;
