@@ -255,16 +255,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.399.0",
+            "version": "3.399.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3010fb79822bf331de82e9413eaa2c898aeb02ec"
+                "reference": "cd7cf43b7d42e49579bf3f09ab58d4724d64152c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3010fb79822bf331de82e9413eaa2c898aeb02ec",
-                "reference": "3010fb79822bf331de82e9413eaa2c898aeb02ec",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/cd7cf43b7d42e49579bf3f09ab58d4724d64152c",
+                "reference": "cd7cf43b7d42e49579bf3f09ab58d4724d64152c",
                 "shasum": ""
             },
             "require": {
@@ -346,9 +346,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.399.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.399.1"
             },
-            "time": "2026-10-01T18:15:12+00:00"
+            "time": "2026-10-02T18:16:16+00:00"
         },
         {
             "name": "azure-oss/identity",
@@ -5364,16 +5364,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.19.2",
+            "version": "6.19.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "a9bde858ca0738cabef155c179b56613b39639cc"
+                "reference": "8afc52661d0f7397ccc2df5140c4d3c891b2c8c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/a9bde858ca0738cabef155c179b56613b39639cc",
-                "reference": "a9bde858ca0738cabef155c179b56613b39639cc",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/8afc52661d0f7397ccc2df5140c4d3c891b2c8c4",
+                "reference": "8afc52661d0f7397ccc2df5140c4d3c891b2c8c4",
                 "shasum": ""
             },
             "require": {
@@ -5392,10 +5392,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.19.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.19.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-10-01T06:13:11+00:00"
+            "time": "2026-10-06T07:04:34+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -5485,16 +5485,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.8.39",
+            "version": "2.8.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "aa1e0b19c0bfe67b73ecd30660a114910c83851f"
+                "reference": "83f7a472e10eee44b2ef5c2cd4cd218a4e05a31b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/aa1e0b19c0bfe67b73ecd30660a114910c83851f",
-                "reference": "aa1e0b19c0bfe67b73ecd30660a114910c83851f",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/83f7a472e10eee44b2ef5c2cd4cd218a4e05a31b",
+                "reference": "83f7a472e10eee44b2ef5c2cd4cd218a4e05a31b",
                 "shasum": ""
             },
             "require": {
@@ -5538,10 +5538,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.39",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.40",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2026-10-01T06:00:07+00:00"
+            "time": "2026-10-06T06:30:53+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -22493,11 +22493,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.2.17",
+            "version": "2.3.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e676a49fa70cee9f5bf6ff4796186b928a08673f",
-                "reference": "e676a49fa70cee9f5bf6ff4796186b928a08673f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/b1f9890d9af53a25c58129e78f0aadd31f90d7f4",
+                "reference": "b1f9890d9af53a25c58129e78f0aadd31f90d7f4",
                 "shasum": ""
             },
             "require": {
@@ -22553,7 +22553,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-04T19:40:09+00:00"
+            "time": "2026-10-06T06:15:36+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
