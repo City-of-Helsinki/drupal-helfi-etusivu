@@ -84,8 +84,6 @@ abstract class SearchPageControllerBase extends HtmxController {
         ['context' => 'React search: Address required hint']
       );
 
-      // Prevent duplicate error.
-      $this->messenger()->deleteByType('error');
       return $build;
     }
 
@@ -98,8 +96,6 @@ abstract class SearchPageControllerBase extends HtmxController {
         ['context' => 'React search: Address not found hint']
       );
 
-      // Prevent duplicate error.
-      $this->messenger()->deleteByType('error');
       return $build;
     }
     $langcode = $this->languageManager
