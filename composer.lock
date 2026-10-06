@@ -452,51 +452,6 @@
             "time": "2026-09-04T05:57:32+00:00"
         },
         {
-            "name": "azure-oss/storage-blob-flysystem",
-            "version": "2.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-oss-for-azure/azure-storage-blob-flysystem-php.git",
-                "reference": "85ae64006ae9b49dcec432cbfb95591a4b1c199b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-oss-for-azure/azure-storage-blob-flysystem-php/zipball/85ae64006ae9b49dcec432cbfb95591a4b1c199b",
-                "reference": "85ae64006ae9b49dcec432cbfb95591a4b1c199b",
-                "shasum": ""
-            },
-            "require": {
-                "azure-oss/storage-blob": "^2.2",
-                "league/flysystem": "^3.28",
-                "php": "^8.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "AzureOss\\Storage\\BlobFlysystem\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brecht Vermeersch",
-                    "email": "brechtvermeersch@outlook.be"
-                },
-                {
-                    "name": "Pim Jansen",
-                    "email": "pimjansen@gmail.com"
-                }
-            ],
-            "description": "Flysystem adapter for Azure Storage PHP",
-            "support": {
-                "source": "https://github.com/php-oss-for-azure/azure-storage-blob-flysystem-php/tree/2.2.2"
-            },
-            "time": "2026-09-04T05:57:32+00:00"
-        },
-        {
             "name": "azure-oss/storage-common",
             "version": "2.2.1",
             "source": {
@@ -5590,26 +5545,25 @@
         },
         {
             "name": "drupal/helfi_azure_fs",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs.git",
-                "reference": "1a5d15a97004737f61562a67c096668bacc9f88b"
+                "reference": "bdcfeacfe485ec1358691ebd7f35f0c414cf9e13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-azure-fs/zipball/1a5d15a97004737f61562a67c096668bacc9f88b",
-                "reference": "1a5d15a97004737f61562a67c096668bacc9f88b",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-azure-fs/zipball/bdcfeacfe485ec1358691ebd7f35f0c414cf9e13",
+                "reference": "bdcfeacfe485ec1358691ebd7f35f0c414cf9e13",
                 "shasum": ""
             },
             "require": {
-                "azure-oss/storage-blob-flysystem": "^2.2",
+                "azure-oss/storage-blob": "^2.2",
                 "drupal/flysystem": "^3.0"
             },
             "conflict": {
                 "drupal/core": "<11.0",
-                "drupal/flysystem": "<3.0",
-                "league/flysystem": "<3.35.3"
+                "drupal/flysystem": "<3.0"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
@@ -5621,10 +5575,10 @@
             ],
             "description": "Helfi - Azure FS",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs/tree/3.0.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs/tree/3.1.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs/issues"
             },
-            "time": "2026-10-02T12:31:09+00:00"
+            "time": "2026-10-06T03:01:05+00:00"
         },
         {
             "name": "drupal/helfi_drupal_tools",
