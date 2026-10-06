@@ -5730,16 +5730,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.2.11",
+            "version": "5.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "02f21fa4f977df3ea15de3e131173512d6c33597"
+                "reference": "bc9f962295d36d122dcea1b88642ed35032627a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/02f21fa4f977df3ea15de3e131173512d6c33597",
-                "reference": "02f21fa4f977df3ea15de3e131173512d6c33597",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/bc9f962295d36d122dcea1b88642ed35032627a0",
+                "reference": "bc9f962295d36d122dcea1b88642ed35032627a0",
                 "shasum": ""
             },
             "require": {
@@ -5877,10 +5877,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.2.11",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.2.12",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-10-05T14:55:16+00:00"
+            "time": "2026-10-06T08:43:23+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -5978,21 +5978,24 @@
         },
         {
             "name": "drupal/helfi_tunnistamo",
-            "version": "3.2.1",
+            "version": "3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo.git",
-                "reference": "819a33cb1e404d34e30339e6c9df32179febaafc"
+                "reference": "ff4b2c75ad63d8f9d7baeaf8f12ba27281f1ff91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/819a33cb1e404d34e30339e6c9df32179febaafc",
-                "reference": "819a33cb1e404d34e30339e6c9df32179febaafc",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/ff4b2c75ad63d8f9d7baeaf8f12ba27281f1ff91",
+                "reference": "ff4b2c75ad63d8f9d7baeaf8f12ba27281f1ff91",
                 "shasum": ""
             },
             "require": {
                 "drupal/helfi_api_base": "*",
                 "drupal/openid_connect": "^3.0"
+            },
+            "conflict": {
+                "drush/drush": "<13.7"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
@@ -6004,10 +6007,10 @@
             ],
             "description": "Tunnistamo integration",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/3.2.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/3.2.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/issues"
             },
-            "time": "2026-09-01T03:45:08+00:00"
+            "time": "2026-10-06T08:12:57+00:00"
         },
         {
             "name": "drupal/image_style_quality",
@@ -22608,22 +22611,22 @@
         },
         {
             "name": "phpstan/phpstan-phpunit",
-            "version": "2.0.21",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-phpunit.git",
-                "reference": "8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441"
+                "reference": "a31e9dea4b5858dcad4a8dddd97f3384a90d46d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441",
-                "reference": "8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441",
+                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/a31e9dea4b5858dcad4a8dddd97f3384a90d46d1",
+                "reference": "a31e9dea4b5858dcad4a8dddd97f3384a90d46d1",
                 "shasum": ""
             },
             "require": {
                 "phar-io/version": "^3.2",
                 "php": "^7.4 || ^8.0",
-                "phpstan/phpstan": "^2.2.6"
+                "phpstan/phpstan": "^2.3.0"
             },
             "conflict": {
                 "phpunit/phpunit": "<7.0"
@@ -22660,9 +22663,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-phpunit/issues",
-                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.0.21"
+                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.0"
             },
-            "time": "2026-10-01T11:59:29+00:00"
+            "time": "2026-10-06T07:32:40+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
