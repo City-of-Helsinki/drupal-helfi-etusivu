@@ -108,6 +108,7 @@ module:
   image_style_quality: 0
   imagecache_external: 0
   imagemagick: 0
+  inline_form_errors: 0
   jquery_ui: 0
   jquery_ui_draggable: 0
   json_field: 0
