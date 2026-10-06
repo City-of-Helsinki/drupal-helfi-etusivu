@@ -185,3 +185,7 @@ msgstr "Näytä lisää"
 msgctxt "Site search"
 msgid "Close"
 msgstr "Sulje"
+
+msgctxt "Site search"
+msgid "Go to the search result on the page"
+msgstr "Siirry hakutulokseen sivulla"

@@ -160,6 +160,7 @@
         "copy-commit-message-script": "make copy-commit-message-script",
         "post-install-cmd": [
             "@copy-commit-message-script"
-        ]
+        ],
+        "pre-command-run": "bash tools/composer/require-container.sh"
     }
 }

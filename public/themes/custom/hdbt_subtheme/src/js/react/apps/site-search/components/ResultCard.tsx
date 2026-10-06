@@ -7,6 +7,7 @@ const EXCERPT_LENGTH = 300;
 
 type ResultCardProps = {
   url: string;
+  fragmentUrl?: string;
   title: string;
   description?: string;
   bundle?: string;
@@ -29,7 +30,15 @@ const toExcerpt = (text: string): string => {
   return `${text.slice(0, boundary > 0 ? boundary : EXCERPT_LENGTH)}...`;
 };
 
-const ResultCard = ({ url, title, description, bundle, publishDate, cardModifierClass }: ResultCardProps) => {
+const ResultCard = ({
+  url,
+  fragmentUrl,
+  title,
+  description,
+  bundle,
+  publishDate,
+  cardModifierClass,
+}: ResultCardProps) => {
   const isNewsItem = bundle === 'news_item';
   const parsedDate = publishDate ? parsePublishDate(publishDate) : null;
   const isOutdated = isNewsItem && parsedDate ? isOlderThanOneYear(parsedDate) : false;
@@ -52,6 +61,12 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
     </button>
   );
 
+  const fragmentLink = (
+    <a key='fragment-link' href={fragmentUrl} className='card__fragment-link'>
+      {Drupal.t('Go to the search result on the page', {}, { context: 'Site search' })}
+    </a>
+  );
+
   const cardItem = (
     <CardItem
       cardTitle={title}
@@ -59,7 +74,9 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
       cardDescription={description && isExpandable && !expanded ? toExcerpt(description) : description}
       cardModifierClass={cardModifierClass}
       cardTitleLevel={3}
-      {...(isExpandable && { customMetaRows: { top: [descriptionToggle] } })}
+      {...(isExpandable && {
+        customMetaRows: { top: expanded && fragmentUrl ? [fragmentLink, descriptionToggle] : [descriptionToggle] },
+      })}
       {...(isNewsItem &&
         formattedDate && {
           date: formattedDate,
@@ -85,7 +102,7 @@ const ResultCard = ({ url, title, description, bundle, publishDate, cardModifier
     return (
       <div>
         {cardItem}
-        <DebugBlock data={{ url, title, description, bundle, publishDate }} />
+        <DebugBlock data={{ url, fragmentUrl, title, description, bundle, publishDate }} />
       </div>
     );
   }
