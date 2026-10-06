@@ -64,6 +64,7 @@ abstract class SearchFormBase extends FormBase {
       '#attributes' => [
         'aria-describedby' => 'js-address-not-found-error js-address-mandatory-error js-locate-error',
       ],
+      '#error_no_message' => TRUE,
     ];
 
     $form['actions']['#type'] = 'actions';
