@@ -2,18 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Drupal\helfi_etusivu\Controller;
+namespace Drupal\helfi_etusivu\LinkedEvents\Controller;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\PageCache\ResponsePolicy\KillSwitch;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
+use Drupal\helfi_etusivu\LinkedEvents\DTO\StyledImage;
 use Drupal\image\ImageStyleInterface;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +31,7 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
   /**
    * Allowed image styles.
    */
-  private const IMAGE_STYLES_ALLOWED = [
+  private const array IMAGE_STYLES_ALLOWED = [
     // Card responsive image style.
     '1_5_176w_118h',
     '1_5_220w_147h',
@@ -58,12 +61,18 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    *   The HTTP client.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend.
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   The time service.
+   * @param \Drupal\Core\PageCache\ResponsePolicy\KillSwitch $pageCacheKillSwitch
+   *   The page cache kill switch.
    */
   public function __construct(
     protected readonly EntityTypeManagerInterface $entityTypeManager,
     protected readonly ClientInterface $httpClient,
     #[Autowire(service: 'cache.default')]
     protected readonly CacheBackendInterface $cache,
+    protected readonly TimeInterface $time,
+    protected readonly KillSwitch $pageCacheKillSwitch,
   ) {
   }
 
@@ -79,24 +88,28 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    *   The redirect response or not found response.
    */
   public function deliver(Request $request, string $image_id): Response {
-    // Get query parameter values for image style and time.
     $image_style = $request->query->get('style');
     $time = $request->query->get('time');
-    if (!$image_style || !$time) {
+
+    if (!$image_style || !$time || !$image = $this->getImageStyleUrl($image_id, $image_style, $time)) {
       return $this->notFoundResponse();
     }
 
-    // Get the image style url.
-    $image_url = $this->getImageStyleUrl($image_id, $image_style, $time);
-    if (!$image_url) {
-      return $this->notFoundResponse();
+    // The time is only used to bypass the caches when the image is updated.
+    // Don't let the page cache or the reverse proxy store the responses for
+    // other times: the URLs are arbitrary, and after an update the cached
+    // image is outdated until it's checked again. The kill switch also makes
+    // the response uncacheable with the Cache-Control header.
+    if ($image->lastModifiedTime !== $time) {
+      $this->pageCacheKillSwitch->trigger();
     }
 
     // Return the image style url as a trusted redirect response.
-    $response = new TrustedRedirectResponse($image_url, 302);
-    $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts([
-      'url',
-    ]));
+    $response = new TrustedRedirectResponse($image->url, 302);
+    $response->addCacheableDependency(
+      new CacheableMetadata()->addCacheContexts([
+        'url',
+      ]));
     return $response;
   }
 
@@ -108,17 +121,19 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
    * @param string $image_style
    *   The image style to deliver.
    * @param string $time
-   *   The time of the image.
+   *   The last modified time of the image.
    *
-   * @return string|false
-   *   The linked events image style url or false.
+   * @return \Drupal\helfi_etusivu\LinkedEvents\DTO\StyledImage|false
+   *   The image style derivative of the Linked Events image, or false.
    */
-  private function getImageStyleUrl(string $image_id, string $image_style, string $time): false|string {
-    $cache_key = "linked_events_image_style_url:{$image_id}:{$image_style}:{$time}";
+  private function getImageStyleUrl(string $image_id, string $image_style, string $time): false|StyledImage {
+    $cache_key = "linked_events_image_style_url:{$image_id}:{$image_style}";
+    $now = $this->time->getRequestTime();
 
-    // Try to get the image style url from cache first.
+    // Use the cached image style url if it's for the requested time. Otherwise
+    // check the image for updates at most once per interval.
     $cache = $this->cache->get($cache_key);
-    if ($cache) {
+    if ($cache && $cache->data instanceof StyledImage && ($cache->data->lastModifiedTime === $time || $cache->created > $now - 60)) {
       return $cache->data;
     }
 
@@ -128,8 +143,7 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
     }
 
     // Make sure the image style exists.
-    $imageStyle = $this->entityTypeManager->getStorage('image_style')->load($image_style);
-    if (!$imageStyle) {
+    if (!$imageStyle = $this->entityTypeManager->getStorage('image_style')->load($image_style)) {
       return FALSE;
     }
     assert($imageStyle instanceof ImageStyleInterface);
@@ -141,19 +155,20 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
       $response = $this->httpClient->request('GET', $api_url);
       $data = json_decode($response->getBody()->getContents(), TRUE);
     }
-    catch (RequestException $e) {
+    catch (GuzzleException) {
     }
 
     // Make sure the image url is set.
-    if (empty($data['url'])) {
+    if (!is_array($data) || empty($data['url']) || !is_string($data['url'])) {
       return FALSE;
     }
+    $last_modified_time = (string) ($data['last_modified_time'] ?? '');
 
     $image_url = Url::fromUri($data['url'], [
       'query' => [
         // Add time query parameter to the image url to make sure the original
         // is refetched if the image has updated.
-        'time' => $data['last_modified_time'] ?? '',
+        'time' => $last_modified_time,
       ],
       'absolute' => TRUE,
     ]);
@@ -165,9 +180,9 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
     }
 
     // Generate, cache and return the image style url.
-    $image_style_url = $imageStyle->buildUrl($uri);
-    $this->cache->set($cache_key, $image_style_url);
-    return $image_style_url;
+    $image = new StyledImage($imageStyle->buildUrl($uri), $last_modified_time);
+    $this->cache->set($cache_key, $image);
+    return $image;
   }
 
   /**
