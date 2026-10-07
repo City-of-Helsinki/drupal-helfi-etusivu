@@ -1,6 +1,5 @@
 display:
   default:
-    display_title: Default
     display_options:
       fields:
         views_bulk_operations_bulk_form:
@@ -28,9 +27,6 @@ display:
           settings:
             format_custom_false: 'منتشر نشده'
             format_custom_true: 'منتشر شده'
-          separator: ', '
-        changed:
-          label: به‌روز
           separator: ', '
         operations:
           label: عملیات
@@ -72,5 +68,6 @@ display:
         langcode:
           expose:
             label: زبان
+    display_title: Default
   your_content_block:
     display_title: بلوک

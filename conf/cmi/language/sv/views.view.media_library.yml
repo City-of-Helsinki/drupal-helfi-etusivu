@@ -104,7 +104,7 @@ display:
         uid:
           label: Författare
         changed:
-          label: Uppdaterad
+          label: Updated
       arguments:
         bundle:
           exception:

@@ -18,8 +18,6 @@ display:
           settings:
             format_custom_false: Avaldamata
             format_custom_true: Avaldatud
-        changed:
-          label: Uuendatud
         langcode:
           label: Keel
           separator: ', '
