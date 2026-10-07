@@ -104,7 +104,7 @@ display:
         uid:
           label: Kirjoittaja
         changed:
-          label: Päivitetty
+          label: Updated
       arguments:
         bundle:
           exception:

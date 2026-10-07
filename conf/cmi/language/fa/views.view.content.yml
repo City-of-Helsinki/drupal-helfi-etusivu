@@ -18,8 +18,6 @@ display:
           settings:
             format_custom_false: 'منتشر نشده'
             format_custom_true: 'منتشر شده'
-        changed:
-          label: به‌روز
         langcode:
           label: زبان
           separator: ', '

@@ -13,8 +13,6 @@ display:
         status:
           settings:
             format_custom_true: Almmuhuvvon
-        changed:
-          label: Ođastuvvon
         langcode:
           label: Giella
       exposed_form:
