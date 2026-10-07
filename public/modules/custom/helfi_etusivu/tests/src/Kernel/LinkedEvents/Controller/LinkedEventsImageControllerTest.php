@@ -2,17 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\helfi_etusivu\Kernel\Controller;
+namespace Drupal\Tests\helfi_etusivu\Kernel\LinkedEvents\Controller;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\PageCache\ResponsePolicy\KillSwitch;
 use Drupal\Core\Routing\TrustedRedirectResponse;
-use Drupal\helfi_etusivu\Controller\LinkedEventsImageController;
+use Drupal\helfi_etusivu\LinkedEvents\Controller\LinkedEventsImageController;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\ImageStyleInterface;
 use Drupal\image\ImageStyleStorageInterface;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\TestFileCreationTrait;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use GuzzleHttp\Psr7\Response as Psr7Response;
@@ -181,6 +184,104 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
   }
 
   /**
+   * Creates the controller.
+   *
+   * @param array<int, \Psr\Http\Message\ResponseInterface|\GuzzleHttp\Exception\GuzzleException> $responses
+   *   The HTTP responses.
+   * @param array<mixed> $history
+   *   The requests sent.
+   * @param int|null $requestTime
+   *   The request time, or NULL for the current time.
+   *
+   * @return \Drupal\helfi_etusivu\LinkedEvents\Controller\LinkedEventsImageController
+   *   The controller.
+   */
+  private function createSut(array $responses, array &$history, ?int $requestTime = NULL): LinkedEventsImageController {
+    $client = $this->createMockHistoryMiddlewareHttpClient($history, $responses);
+    $this->container->set('http_client', $client);
+
+    $time = $this->prophesize(TimeInterface::class);
+    $time->getRequestTime()->willReturn($requestTime ?? time());
+
+    return new LinkedEventsImageController(
+      $this->container->get('entity_type.manager'),
+      $this->container->get('http_client'),
+      $this->container->get('cache.default'),
+      $time->reveal(),
+      $this->container->get(KillSwitch::class),
+    );
+  }
+
+  /**
+   * Gets the responses for a successful image fetch.
+   *
+   * @return array<int, \GuzzleHttp\Psr7\Response>
+   *   The Linked Events API response and the image.
+   */
+  private function getSuccessResponses(): array {
+    /** @var \stdClass $image */
+    $image = array_first($this->getTestFiles('image'));
+
+    return [
+      new Psr7Response(body: (string) json_encode([
+        'url' => self::LINKED_EVENTS_IMAGE_URL,
+        'last_modified_time' => self::LINKED_EVENTS_IMAGE_LAST_MODIFIED_TIME,
+      ])),
+      new Psr7Response(body: (string) file_get_contents($image->uri)),
+    ];
+  }
+
+  /**
+   * Tests that arbitrary times don't fill the caches.
+   */
+  public function testArbitraryTime() : void {
+    $request = fn (string $time) => new Request([
+      'style' => self::SUPPORTED_IMAGE_STYLE,
+      'time' => $time,
+    ]);
+    $killSwitch = $this->container->get(KillSwitch::class);
+
+    $history = [];
+    $response = $this->createSut($this->getSuccessResponses(), $history)
+      ->deliver($request(self::LINKED_EVENTS_IMAGE_LAST_MODIFIED_TIME), '123');
+    $this->assertInstanceOf(TrustedRedirectResponse::class, $response);
+    $this->assertCount(2, $history);
+    $this->assertNull($killSwitch->check(new Response(), new Request()));
+    $url = $response->getTargetUrl();
+
+    // Other times are served from the same cache entry without requests and
+    // the responses are not stored in the page cache.
+    $history = [];
+    $response = $this->createSut([], $history, time() + 30)->deliver($request('random'), '123');
+    $this->assertInstanceOf(TrustedRedirectResponse::class, $response);
+    $this->assertSame($url, $response->getTargetUrl());
+    $this->assertCount(0, $history);
+    $this->assertSame(KillSwitch::DENY, $killSwitch->check(new Response(), new Request()));
+
+    // The image is checked for updates once the interval has passed.
+    $history = [];
+    $response = $this->createSut([$this->getSuccessResponses()[0]], $history, time() + 61)->deliver($request('other'), '123');
+    $this->assertInstanceOf(TrustedRedirectResponse::class, $response);
+    $this->assertSame($url, $response->getTargetUrl());
+    $this->assertCount(1, $history);
+  }
+
+  /**
+   * Tests that connection errors are handled.
+   */
+  public function testConnectionError() : void {
+    $history = [];
+    $response = $this->createSut([
+      new ConnectException('Timeout', new Psr7Request('GET', 'https://api.hel.fi/linkedevents/v1/image/123')),
+    ], $history)->deliver(new Request([
+      'style' => self::SUPPORTED_IMAGE_STYLE,
+      'time' => self::LINKED_EVENTS_IMAGE_LAST_MODIFIED_TIME,
+    ]), '123');
+
+    $this->assertEquals(404, $response->getStatusCode());
+  }
+
+  /**
    * Call sut.
    *
    * @param string $image_id
@@ -240,16 +341,7 @@ class LinkedEventsImageControllerTest extends KernelTestBase {
       );
     }
     $container = [];
-    $client = $this->createMockHistoryMiddlewareHttpClient($container, $responses);
-    $this->container->set('http_client', $client);
-
-    $sut = new LinkedEventsImageController(
-      $this->container->get('entity_type.manager'),
-      $this->container->get('http_client'),
-      $this->container->get('cache.default'),
-    );
-
-    $response = $sut->deliver(new Request([
+    $response = $this->createSut($responses, $container)->deliver(new Request([
       'style' => $image_style,
       'time' => $time,
     ]), $image_id);
