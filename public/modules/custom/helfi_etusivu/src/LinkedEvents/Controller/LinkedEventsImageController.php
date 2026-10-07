@@ -108,8 +108,8 @@ class LinkedEventsImageController implements ContainerInjectionInterface {
     $response = new TrustedRedirectResponse($image->url, 302);
     $response->addCacheableDependency(
       new CacheableMetadata()->addCacheContexts([
-      'url',
-    ]));
+        'url',
+      ]));
     return $response;
   }
 
