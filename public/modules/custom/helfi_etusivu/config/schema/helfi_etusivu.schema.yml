@@ -37,3 +37,14 @@ helfi_etusivu.helfi_search_promotion_type.*.third_party.scheduler:
       type: boolean
     unpublish_revision:
       type: boolean
+
+helfi_etusivu.numerot:
+  type: config_object
+  label: 'numerot.hel.fi settings'
+  mapping:
+    app_id:
+      type: string
+      label: 'App id'
+    api_key:
+      type: string
+      label: 'API key'

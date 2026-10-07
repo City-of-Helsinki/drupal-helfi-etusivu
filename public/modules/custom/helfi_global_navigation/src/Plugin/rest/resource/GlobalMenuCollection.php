@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_global_navigation\Entity\GlobalMenu;
+use Drupal\rest\Attribute\RestResource;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Represents Global menu records as resources.
- *
- * @RestResource(
- *   id = "helfi_global_menu_collection",
- *   label = @Translation("Global menu - Collection"),
- *   uri_paths = {
- *     "canonical" = "/api/v1/global-menu",
- *   }
- * )
  */
+#[RestResource(
+  id: 'helfi_global_menu_collection',
+  label: new TranslatableMarkup('Global menu - Collection'),
+  uri_paths: [
+    'canonical' => '/api/v1/global-menu',
+  ],
+)]
 final class GlobalMenuCollection extends GlobalMenuResourceBase {
 
   /**

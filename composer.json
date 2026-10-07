@@ -14,7 +14,7 @@
         "drupal/draggableviews": "^2.0",
         "drupal/hdbt": "^6.0",
         "drupal/hdbt_admin": "^3.0",
-        "drupal/helfi_azure_fs": "^2.0",
+        "drupal/helfi_azure_fs": "^3.0",
         "drupal/helfi_drupal_tools": "dev-main",
         "drupal/helfi_hakuvahti": "^1.2.0",
         "drupal/helfi_navigation": "^2.0",
@@ -62,7 +62,7 @@
         },
         "audit": {
             "abandoned": "report",
-            "ignore": ["GHSA-mg8j-w93w-xjgc"]
+            "ignore": ["CVE-2026-102601"]
         }
     },
     "extra": {
@@ -160,6 +160,7 @@
         "copy-commit-message-script": "make copy-commit-message-script",
         "post-install-cmd": [
             "@copy-commit-message-script"
-        ]
+        ],
+        "pre-command-run": "bash tools/composer/require-container.sh"
     }
 }

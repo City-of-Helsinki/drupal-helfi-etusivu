@@ -6,7 +6,9 @@ namespace Drupal\helfi_global_navigation\Plugin\rest\resource;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Routing\AccessAwareRouterInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_navigation\Menu\MenuTreeBuilder;
+use Drupal\rest\Attribute\RestResource;
 use Drupal\rest\ResourceResponse;
 use Drupal\system\Entity\Menu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -16,15 +18,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Represents Menu link content records as resources.
- *
- * @RestResource(
- *   id = "helfi_menu_link_collection",
- *   label = @Translation("Menu - Collection"),
- *   uri_paths = {
- *     "canonical" = "/api/v1/menu/{menu_name}",
- *   }
- * )
  */
+#[RestResource(
+  id: 'helfi_menu_link_collection',
+  label: new TranslatableMarkup('Menu - Collection'),
+  uri_paths: [
+    'canonical' => '/api/v1/menu/{menu_name}',
+  ],
+)]
 final class MenuLinkCollection extends MenuResourceBase {
 
   /**

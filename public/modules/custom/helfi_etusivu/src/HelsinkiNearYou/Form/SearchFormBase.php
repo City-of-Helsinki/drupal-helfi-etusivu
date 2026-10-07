@@ -64,6 +64,7 @@ abstract class SearchFormBase extends FormBase {
       '#attributes' => [
         'aria-describedby' => 'js-address-not-found-error js-address-mandatory-error js-locate-error',
       ],
+      '#error_no_message' => TRUE,
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -101,14 +102,11 @@ abstract class SearchFormBase extends FormBase {
     if ($address && !$this->serviceMap->getAddressData(urldecode($address))) {
       $form_state->setErrorByName(
         'home_address',
-        [
-          $this->t('No results were found for the street address', [], ['context' => 'Helsinki near you']),
-          $this->t(
-          'Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
+        $this->t(
+          'No results were found for the street address. Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
           [],
           ['context' => 'Address search error message']
-          ),
-        ]
+        )
       );
     }
   }

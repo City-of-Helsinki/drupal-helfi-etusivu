@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\external_entities\Entity\Query\External\Query;
+use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
@@ -72,6 +73,7 @@ class ResultsControllerTest extends KernelTestBase {
       $this->serviceMap,
       $this->roadworkDataService,
       $this->container->get(LanguageManagerInterface::class),
+      $this->container->get(EnvironmentResolverInterface::class),
     );
 
     $mockEntityQuery = $this->createMock(Query::class);
