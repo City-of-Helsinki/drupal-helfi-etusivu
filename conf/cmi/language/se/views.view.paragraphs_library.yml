@@ -5,6 +5,11 @@ display:
       exposed_form:
         options:
           exposed_sorts_label: Sirre
+      pager:
+        options:
+          tags:
+            previous: Previous
+            next: Next
       fields:
         type:
           label: Šládja
