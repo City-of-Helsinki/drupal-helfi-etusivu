@@ -30,8 +30,7 @@ display:
             format_custom_false: 'غير منشور'
             format_custom_true: منشور
           separator: ', '
-        changed:
-          label: 'تم التحديث'
+        changed_at:
           separator: ', '
         operations:
           label: عمليات

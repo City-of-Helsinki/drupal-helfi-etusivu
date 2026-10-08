@@ -18,8 +18,6 @@ display:
           settings:
             format_custom_false: 'Sin publicar'
             format_custom_true: Publicado
-        changed:
-          label: Actualizado
         langcode:
           label: Idioma
           separator: ', '

@@ -13,10 +13,15 @@ display:
         status:
           settings:
             format_custom_true: Almmuhuvvon
-        changed:
-          label: Ođastuvvon
         langcode:
           label: Giella
+      pager:
+        options:
+          tags:
+            next: Next
+            previous: Previous
+            first: First
+            last: Last
       exposed_form:
         options:
           exposed_sorts_label: Sirre

@@ -333,6 +333,40 @@ class NewsRssResourceTest extends EtusivuElasticTestBase {
   }
 
   /**
+   * Tests that the invalid input doesn't cause server errors.
+   */
+  #[Test]
+  public function testInvalidInput(): void {
+    $this->populateIndex();
+    $this->setUpCurrentUser(permissions: ['restful get helfi_etusivu_news_rss']);
+
+    $expected = [
+      // The query_string syntax is not parsed.
+      [['keyword' => 'title:"Title en 1" OR /.*/'], 200, 0],
+      [['keyword' => 'Title en 1)'], 200, 45],
+      [['keyword' => '*'], 200, NULL],
+      [['keyword' => 'Title?en\\'], 200, NULL],
+      // The last page within the result window.
+      [['page' => intdiv(10000 - NewsRssResource::PAGE_SIZE, NewsRssResource::PAGE_SIZE)], 200, 45],
+      [['page' => intdiv(10000 - NewsRssResource::PAGE_SIZE, NewsRssResource::PAGE_SIZE) + 1], 400, NULL],
+      [['page' => -1], 400, NULL],
+      [['page' => 'abc'], 400, NULL],
+      [['page' => '1.5'], 400, NULL],
+      [['topic' => [[103]]], 400, NULL],
+    ];
+
+    foreach ($expected as [$parameters, $status, $count]) {
+      $request = $this->getMockedRequest('/news/rss', parameters: $parameters);
+      $response = $this->processRequest($request);
+      $this->assertEquals($status, $response->getStatusCode(), (string) json_encode($parameters));
+
+      if ($count !== NULL) {
+        $this->assertEquals($count, $response->headers->get('X-Total-Count'), (string) json_encode($parameters));
+      }
+    }
+  }
+
+  /**
    * Tests RSS with invalid elastic values.
    */
   public function testEmptyFieldValues(): void {

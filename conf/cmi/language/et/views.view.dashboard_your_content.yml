@@ -30,8 +30,7 @@ display:
             format_custom_false: Avaldamata
             format_custom_true: Avaldatud
           separator: ', '
-        changed:
-          label: Uuendatud
+        changed_at:
           separator: ', '
         operations:
           label: Toimingud
