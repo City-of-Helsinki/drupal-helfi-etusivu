@@ -1,5 +1,6 @@
 display:
   default:
+    display_title: Default
     display_options:
       fields:
         views_bulk_operations_bulk_form:
@@ -28,6 +29,8 @@ display:
           settings:
             format_custom_false: 'Nicht veröffentlicht'
             format_custom_true: Veröffentlicht
+          separator: ', '
+        changed_at:
           separator: ', '
         operations:
           label: Aktionen
@@ -69,6 +72,5 @@ display:
         langcode:
           expose:
             label: Sprache
-    display_title: Default
   your_content_block:
     display_title: Block

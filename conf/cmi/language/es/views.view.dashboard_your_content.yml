@@ -1,5 +1,6 @@
 display:
   default:
+    display_title: Default
     display_options:
       fields:
         views_bulk_operations_bulk_form:
@@ -28,6 +29,8 @@ display:
           settings:
             format_custom_false: 'Sin publicar'
             format_custom_true: Publicado
+          separator: ', '
+        changed_at:
           separator: ', '
         operations:
           label: Operaciones
@@ -69,6 +72,5 @@ display:
         langcode:
           expose:
             label: Idioma
-    display_title: Default
   your_content_block:
     display_title: Bloque

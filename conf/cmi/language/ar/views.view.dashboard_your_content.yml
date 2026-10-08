@@ -1,5 +1,6 @@
 display:
   default:
+    display_title: الافتراضي
     display_options:
       fields:
         views_bulk_operations_bulk_form:
@@ -28,6 +29,8 @@ display:
           settings:
             format_custom_false: 'غير منشور'
             format_custom_true: منشور
+          separator: ', '
+        changed_at:
           separator: ', '
         operations:
           label: عمليات
@@ -69,6 +72,5 @@ display:
         langcode:
           expose:
             label: اللغة
-    display_title: الافتراضي
   your_content_block:
     display_title: صندوق
