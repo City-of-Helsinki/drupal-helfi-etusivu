@@ -39,6 +39,13 @@ final class NewsRssResource extends ResourceBase {
   public const int PAGE_SIZE = 15;
 
   /**
+   * The maximum number of results Elasticsearch pages through.
+   *
+   * @see https://www.elastic.co/docs/reference/elasticsearch/index-settings/index-modules#index-max-result-window
+   */
+  private const int MAX_RESULT_WINDOW = 10000;
+
+  /**
    * The Elastic client.
    *
    * @var \Elastic\Elasticsearch\Client
@@ -122,7 +129,9 @@ final class NewsRssResource extends ResourceBase {
           'minimum_should_match' => 1,
           'should' => [
             [
-              'query_string' => [
+              // Unlike 'query_string', this doesn't fail on invalid syntax or
+              // allow querying other fields.
+              'simple_query_string' => [
                 'fields' => [
                   'fulltext_title^2',
                   'field_lead_in^1.5',
@@ -132,7 +141,7 @@ final class NewsRssResource extends ResourceBase {
               ],
             ],
             [
-              'wildcard' => ['title.keyword' => "*$keyword*"],
+              'wildcard' => ['title.keyword' => '*' . addcslashes($keyword, '\\*?') . '*'],
             ],
           ],
         ],
@@ -161,12 +170,41 @@ final class NewsRssResource extends ResourceBase {
       if (count($queryValue) > 100) {
         throw new BadRequestException('Too many filters.');
       }
+      if (array_any($queryValue, fn (mixed $value) => !is_scalar($value))) {
+        throw new BadRequestException('Invalid filter.');
+      }
       $query['bool']['must'][] = [
         'terms' => [$elasticField => $queryValue],
       ];
     }
 
     return $query;
+  }
+
+  /**
+   * Gets the requested page.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
+   * @return int
+   *   The page number.
+   *
+   * @throws \Symfony\Component\HttpFoundation\Exception\BadRequestException
+   *   If the page is not a number or it's beyond the result window.
+   */
+  private function getPage(Request $request): int {
+    $page = filter_var($request->query->get('page', 0), FILTER_VALIDATE_INT, [
+      'options' => [
+        'min_range' => 0,
+        'max_range' => intdiv(self::MAX_RESULT_WINDOW - self::PAGE_SIZE, self::PAGE_SIZE),
+      ],
+    ]);
+
+    if ($page === FALSE) {
+      throw new BadRequestException('Invalid page.');
+    }
+    return $page;
   }
 
   /**
@@ -220,7 +258,7 @@ final class NewsRssResource extends ResourceBase {
       ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
       ->getId();
 
-    $currentPage = $request->query->get('page', 0);
+    $currentPage = $this->getPage($request);
 
     try {
       $results = $this->client->search([
