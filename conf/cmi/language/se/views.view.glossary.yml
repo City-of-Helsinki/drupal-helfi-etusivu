@@ -6,6 +6,11 @@ display:
           label: Bajilčala
         name:
           label: Čálli
+      pager:
+        options:
+          tags:
+            next: Next
+            previous: Previous
       exposed_form:
         options:
           exposed_sorts_label: Sirre

@@ -2689,7 +2689,7 @@
             "extra": {
                 "drupal": {
                     "version": "1.2.0-beta1",
-                    "datestamp": "1790877723",
+                    "datestamp": "1791462250",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -5732,16 +5732,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.2.17",
+            "version": "5.2.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "8dd038f4b34eafdac9c7cfc34db432e2d0e8d16a"
+                "reference": "76bb7fc962598ef07e6b3a72b5c89f66989b285a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/8dd038f4b34eafdac9c7cfc34db432e2d0e8d16a",
-                "reference": "8dd038f4b34eafdac9c7cfc34db432e2d0e8d16a",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/76bb7fc962598ef07e6b3a72b5c89f66989b285a",
+                "reference": "76bb7fc962598ef07e6b3a72b5c89f66989b285a",
                 "shasum": ""
             },
             "require": {
@@ -5859,6 +5859,9 @@
                     "drupal/external_entities": {
                         "Creating external entity types in KernelTests no longer works (https://www.drupal.org/project/external_entities/issues/3549828)": "./public/modules/contrib/helfi_platform_config/patches/3549828.patch"
                     },
+                    "drupal/imagecache_external": {
+                        "[#UHF-13679] Only save the fetched files that are images and limit the download size and time": "./public/modules/contrib/helfi_platform_config/patches/imagecache_external_fetch_hardening.patch"
+                    },
                     "drupal/metatag": {
                         "Fix deprecation error which breaks everything https://www.drupal.org/project/metatag/issues/3563261": "./public/modules/contrib/helfi_platform_config/patches/3563261-14.patch"
                     },
@@ -5879,10 +5882,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.2.17",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.2.18",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-10-08T10:39:44+00:00"
+            "time": "2026-10-08T14:56:55+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -6929,17 +6932,17 @@
         },
         {
             "name": "drupal/menu_link_attributes",
-            "version": "1.9.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/menu_link_attributes.git",
-                "reference": "8.x-1.9"
+                "reference": "8.x-1.10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/menu_link_attributes-8.x-1.9.zip",
-                "reference": "8.x-1.9",
-                "shasum": "91ff8bf42c77455e76bc07ce9e9e5ba4f6fdcf9a"
+                "url": "https://ftp.drupal.org/files/projects/menu_link_attributes-8.x-1.10.zip",
+                "reference": "8.x-1.10",
+                "shasum": "84cacbda3a6a3998aad5abd4ea2af99b9c310ced"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10 || ^11"
@@ -6947,8 +6950,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.9",
-                    "datestamp": "1791449072",
+                    "version": "8.x-1.10",
+                    "datestamp": "1791469291",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -15426,16 +15429,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.33.2",
+            "version": "4.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "8a0556ccb6cdcdce81f9af4ca8714c22cff2e003"
+                "reference": "3d8f4e56becb10ede64e2ac6f8077f6434715461"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/8a0556ccb6cdcdce81f9af4ca8714c22cff2e003",
-                "reference": "8a0556ccb6cdcdce81f9af4ca8714c22cff2e003",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/3d8f4e56becb10ede64e2ac6f8077f6434715461",
+                "reference": "3d8f4e56becb10ede64e2ac6f8077f6434715461",
                 "shasum": ""
             },
             "require": {
@@ -15464,7 +15467,7 @@
                 "open-telemetry/gen-otlp-protobuf": "^1.2.1",
                 "open-telemetry/sdk": "^1.1",
                 "open-telemetry/sem-conv": "^1.27",
-                "phpstan/phpstan": "^1.3",
+                "phpstan/phpstan": "^2.2",
                 "phpunit/phpunit": "^8.5.52|^9.6.34",
                 "spiral/roadrunner-http": "^3.6",
                 "spiral/roadrunner-worker": "^3.6"
@@ -15507,7 +15510,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.33.2"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.34.0"
             },
             "funding": [
                 {
@@ -15519,7 +15522,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-10-07T12:48:05+00:00"
+            "time": "2026-10-08T11:25:58+00:00"
         },
         {
             "name": "stomp-php/stomp-php",
