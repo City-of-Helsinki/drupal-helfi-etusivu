@@ -45,7 +45,7 @@ display:
             format_custom_true: Julkaistu
           separator: ', '
         changed:
-          label: Updated
+          label: Päivitetty
           separator: ', '
         operations:
           label: Toimenpiteet
