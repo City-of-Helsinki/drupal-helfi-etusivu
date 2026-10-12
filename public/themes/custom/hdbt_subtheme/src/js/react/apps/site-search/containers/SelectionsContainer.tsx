@@ -1,7 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
-import { committedBundlesAtom, removeBundleAtom, stagedBundlesAtom, submitAllSearchAtom } from '../store';
+import { clearBundlesAtom, committedBundlesAtom, removeBundleAtom } from '../store';
 
 const BUNDLE_LABELS: Record<string, string> = {
   news: Drupal.t('News', {}, { context: 'Site search' }),
@@ -13,19 +13,13 @@ const BUNDLE_LABELS: Record<string, string> = {
 const SelectionsContainer = () => {
   const committedBundles = useAtomValue(committedBundlesAtom);
   const removeBundle = useSetAtom(removeBundleAtom);
-  const setStagedBundles = useSetAtom(stagedBundlesAtom);
-  const submitAll = useSetAtom(submitAllSearchAtom);
-
-  const clearAll = () => {
-    setStagedBundles([]);
-    submitAll();
-  };
+  const clearBundles = useSetAtom(clearBundlesAtom);
 
   return (
     <SelectionsWrapper
       modifierClass='hdbt-search--react__selections--site-search'
       showClearButton={committedBundles.length > 0}
-      resetForm={clearAll}
+      resetForm={() => clearBundles()}
     >
       {committedBundles.map((bundle) => (
         <FilterButton
