@@ -18,6 +18,8 @@ class SearchPageControllerTest extends KernelTestBase {
     'helfi_etusivu',
     'helfi_api_base',
     'diff',
+    'helfi_platform_config',
+    'config_rewrite',
     'helfi_search',
     'system',
     'search_api',
