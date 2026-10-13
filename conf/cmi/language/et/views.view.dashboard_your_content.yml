@@ -1,5 +1,6 @@
 display:
   default:
+    display_title: Vaikimisi
     display_options:
       fields:
         views_bulk_operations_bulk_form:
@@ -28,6 +29,8 @@ display:
           settings:
             format_custom_false: Avaldamata
             format_custom_true: Avaldatud
+          separator: ', '
+        changed_at:
           separator: ', '
         operations:
           label: Toimingud
@@ -69,6 +72,5 @@ display:
         langcode:
           expose:
             label: Keel
-    display_title: Vaikimisi
   your_content_block:
     display_title: Plokk

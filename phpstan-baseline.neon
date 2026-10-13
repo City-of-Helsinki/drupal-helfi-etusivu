@@ -727,12 +727,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/src/Plugin/Field/FieldWidget/HelfiLinkitWidget.php
 
 		-
-			message: '#^Binary operation "\*" between 0\|string and 15 results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Plugin/rest/resource/NewsRssResource.php
-
-		-
 			message: '#^Call to an undefined method Elastic\\Elasticsearch\\Response\\Elasticsearch\|Http\\Promise\\Promise\:\:asArray\(\)\.$#'
 			identifier: method.notFound
 			count: 1

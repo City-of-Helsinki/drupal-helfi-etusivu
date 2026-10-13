@@ -45,7 +45,7 @@ display:
             format_custom_true: Publicerad
           separator: ', '
         changed:
-          label: Updated
+          label: Uppdaterad
           separator: ', '
         operations:
           label: Funktioner
