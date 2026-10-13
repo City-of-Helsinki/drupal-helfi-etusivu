@@ -1,0 +1,4 @@
+applies_admin_routes: true
+hide_single_home_item: false
+home_segment_title: Home
+include_home_segment: false
