@@ -24,7 +24,6 @@ display:
         tid:
           exception:
             title: Kõik
-          title: '{{ arguments.tid }}'
   feed_1:
     display_title: Andmevoog
   page_1:
