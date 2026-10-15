@@ -1,4 +1,4 @@
-import { atom } from 'jotai';
+import { atom, type Setter } from 'jotai';
 
 declare const ELASTIC_DEV_URL: string | undefined;
 
@@ -17,6 +17,10 @@ export const committedBundlesAtom = atom<string[]>(initialBundles);
 export const pageAtom = atom<number>(initialPage);
 
 export const submitCountAtom = atom(0);
+
+// Index of the selection tag that was removed, or 0 when all were cleared.
+// Read by useSelectionFocus to move focus once the search has settled.
+export const selectionFocusAtom = atom<number | null>(null);
 
 export const submitAllSearchAtom = atom(null, (get, set) => {
   const query = get(stagedQueryAtom);
@@ -49,12 +53,11 @@ export const submitNewsSearchAtom = atom(null, (get, set) => {
   window.history.pushState({}, '', newUrl);
 });
 
-export const removeBundleAtom = atom(null, (get, set, bundle: string) => {
-  const newBundles = get(committedBundlesAtom).filter((b) => b !== bundle);
-
+const setCommittedBundles = (set: Setter, newBundles: string[], removedIndex: number) => {
   set(stagedBundlesAtom, newBundles);
   set(committedBundlesAtom, newBundles);
   set(pageAtom, 1);
+  set(selectionFocusAtom, removedIndex);
 
   const newUrl = new URL(window.location.toString());
   newBundles.length > 0
@@ -63,7 +66,19 @@ export const removeBundleAtom = atom(null, (get, set, bundle: string) => {
   newUrl.searchParams.delete('page');
 
   window.history.pushState({}, '', newUrl);
+};
+
+export const removeBundleAtom = atom(null, (get, set, bundle: string) => {
+  const committedBundles = get(committedBundlesAtom);
+
+  setCommittedBundles(
+    set,
+    committedBundles.filter((b) => b !== bundle),
+    committedBundles.indexOf(bundle),
+  );
 });
+
+export const clearBundlesAtom = atom(null, (_get, set) => setCommittedBundles(set, [], 0));
 
 export const setPageAtom = atom(null, (_get, set, page: number) => {
   const clamped = Math.max(1, Math.floor(page));
