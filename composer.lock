@@ -255,16 +255,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.401.1",
+            "version": "3.401.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "4cdda6c2d836fa91a8177535530952c96a582f57"
+                "reference": "b1af9196bd0f94bcebdb6588a150dd85dc240758"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4cdda6c2d836fa91a8177535530952c96a582f57",
-                "reference": "4cdda6c2d836fa91a8177535530952c96a582f57",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/b1af9196bd0f94bcebdb6588a150dd85dc240758",
+                "reference": "b1af9196bd0f94bcebdb6588a150dd85dc240758",
                 "shasum": ""
             },
             "require": {
@@ -346,9 +346,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.401.1"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.401.2"
             },
-            "time": "2026-10-13T18:14:25+00:00"
+            "time": "2026-10-14T18:09:34+00:00"
         },
         {
             "name": "azure-oss/identity",
@@ -5373,16 +5373,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.20.0",
+            "version": "6.20.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "1c19bcc8312f3527f6f9a48f75a0286698a1a7b5"
+                "reference": "1283e9002f7e63b1ceaa2c09b4913fd1810a21ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/1c19bcc8312f3527f6f9a48f75a0286698a1a7b5",
-                "reference": "1c19bcc8312f3527f6f9a48f75a0286698a1a7b5",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/1283e9002f7e63b1ceaa2c09b4913fd1810a21ec",
+                "reference": "1283e9002f7e63b1ceaa2c09b4913fd1810a21ec",
                 "shasum": ""
             },
             "require": {
@@ -5401,10 +5401,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.20.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.20.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-10-13T09:06:05+00:00"
+            "time": "2026-10-15T08:10:39+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
