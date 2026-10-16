@@ -30,8 +30,7 @@ display:
             format_custom_false: 'Non publié'
             format_custom_true: Publié
           separator: ', '
-        changed:
-          label: 'Mis à jour'
+        changed_at:
           separator: ', '
         operations:
           label: Actions

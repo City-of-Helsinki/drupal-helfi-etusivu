@@ -11,7 +11,3 @@ content:
     settings:
       title: Абзац
       title_plural: Абзаци
-  field_sidebar_content:
-    settings:
-      title: Абзац
-      title_plural: Абзаци
