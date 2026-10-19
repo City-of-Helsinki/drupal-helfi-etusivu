@@ -1,15 +1,14 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import type { RefObject } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import {
+  clearSelectionsAtom,
   committedBundlesAtom,
+  QUERY_TAG_KEY,
   queryAtom,
-  queryResetCountAtom,
   removeBundleAtom,
   removeQueryAtom,
-  stagedBundlesAtom,
-  stagedQueryAtom,
-  submitAllSearchAtom,
 } from '../store';
 
 const BUNDLE_LABELS: Record<string, string> = {
@@ -19,33 +18,44 @@ const BUNDLE_LABELS: Record<string, string> = {
   others: Drupal.t('Other content', {}, { context: 'Site search' }),
 };
 
-const SelectionsContainer = () => {
+type SelectionsContainerProps = {
+  tagRefs: RefObject<Map<string, HTMLElement>>;
+};
+
+const SelectionsContainer = ({ tagRefs }: SelectionsContainerProps) => {
   const query = useAtomValue(queryAtom);
   const committedBundles = useAtomValue(committedBundlesAtom);
   const removeBundle = useSetAtom(removeBundleAtom);
   const removeQuery = useSetAtom(removeQueryAtom);
-  const setStagedQuery = useSetAtom(stagedQueryAtom);
-  const setStagedBundles = useSetAtom(stagedBundlesAtom);
-  const setQueryResetCount = useSetAtom(queryResetCountAtom);
-  const submitAll = useSetAtom(submitAllSearchAtom);
+  const clearSelections = useSetAtom(clearSelectionsAtom);
 
-  const clearAll = () => {
-    setStagedQuery('');
-    setQueryResetCount((count) => count + 1);
-    setStagedBundles([]);
-    submitAll();
+  const registerTag = (key: string) => (el: HTMLElement | null) => {
+    if (el) {
+      tagRefs.current.set(key, el);
+    }
+    return () => {
+      tagRefs.current.delete(key);
+    };
   };
 
   return (
     <SelectionsWrapper
       modifierClass='hdbt-search--react__selections--site-search'
       showClearButton={Boolean(query) || committedBundles.length > 0}
-      resetForm={clearAll}
+      resetForm={() => clearSelections()}
     >
-      {query && <FilterButton key={`query-${query}`} value={query} clearSelection={() => removeQuery()} />}
+      {query && (
+        <FilterButton
+          key={`query-${query}`}
+          ref={registerTag(QUERY_TAG_KEY)}
+          value={query}
+          clearSelection={() => removeQuery()}
+        />
+      )}
       {committedBundles.map((bundle) => (
         <FilterButton
           key={bundle}
+          ref={registerTag(bundle)}
           value={BUNDLE_LABELS[bundle] ?? bundle}
           clearSelection={() => removeBundle(bundle)}
         />
