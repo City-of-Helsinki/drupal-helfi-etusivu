@@ -1,13 +1,15 @@
 import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, Search } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { type SyntheticEvent, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { type Ref, type SyntheticEvent, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import useSearchSuggestions from '../hooks/useSearchSuggestions';
+import { FILTERS_CLOSE_BUTTON_CLASS } from '../hooks/useSelectionFocus';
 import { stagedBundlesAtom, stagedQueryAtom, submitAllSearchAtom, submitNewsSearchAtom } from '../store';
 
 type FormContainerProps = {
   withBundleFilters?: boolean;
+  filtersRef?: Ref<HTMLDivElement>;
 };
 
 const BUNDLE_OPTIONS = [
@@ -21,7 +23,7 @@ const BUNDLE_OPTIONS = [
   },
 ];
 
-const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
+const FormContainer = ({ withBundleFilters = false, filtersRef }: FormContainerProps) => {
   const [inputValue, setInputValue] = useAtom(stagedQueryAtom);
   const [stagedBundles, setStagedBundles] = useAtom(stagedBundlesAtom);
   const submitAll = useSetAtom(submitAllSearchAtom);
@@ -209,11 +211,15 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
           suggestionsAnchor,
         )}
       {withBundleFilters && (
-        <div className='hdbt-search--react__filters-container hdbt-search--react__filters-container--site-search'>
+        <div
+          className='hdbt-search--react__filters-container hdbt-search--react__filters-container--site-search'
+          ref={filtersRef}
+        >
           <Accordion
             border
             card
             className='hdbt-search--react__filters hdbt-search--react__filters--site-search'
+            closeButtonClassName={FILTERS_CLOSE_BUTTON_CLASS}
             heading={Drupal.t('Filter search results', {}, { context: 'Site search' })}
             headingLevel={2}
             initiallyOpen={false}

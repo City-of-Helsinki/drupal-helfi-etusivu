@@ -18,9 +18,9 @@ export const pageAtom = atom<number>(initialPage);
 
 export const submitCountAtom = atom(0);
 
-// Index of the selection tag that was removed, or 0 when all were cleared.
-// Read by useSelectionFocus to move focus once the search has settled.
-export const selectionFocusAtom = atom<number | null>(null);
+// Bundle whose selection tag should take focus once the search has settled,
+// or null to fall back to the filters. Read by useSelectionFocus.
+export const selectionFocusAtom = atom<{ bundle: string | null } | null>(null);
 
 export const submitAllSearchAtom = atom(null, (get, set) => {
   const query = get(stagedQueryAtom);
@@ -53,11 +53,11 @@ export const submitNewsSearchAtom = atom(null, (get, set) => {
   window.history.pushState({}, '', newUrl);
 });
 
-const setCommittedBundles = (set: Setter, newBundles: string[], removedIndex: number) => {
+const setCommittedBundles = (set: Setter, newBundles: string[], focusBundle: string | null) => {
   set(stagedBundlesAtom, newBundles);
   set(committedBundlesAtom, newBundles);
   set(pageAtom, 1);
-  set(selectionFocusAtom, removedIndex);
+  set(selectionFocusAtom, { bundle: focusBundle });
 
   const newUrl = new URL(window.location.toString());
   newBundles.length > 0
@@ -70,15 +70,16 @@ const setCommittedBundles = (set: Setter, newBundles: string[], removedIndex: nu
 
 export const removeBundleAtom = atom(null, (get, set, bundle: string) => {
   const committedBundles = get(committedBundlesAtom);
+  const index = committedBundles.indexOf(bundle);
 
   setCommittedBundles(
     set,
     committedBundles.filter((b) => b !== bundle),
-    committedBundles.indexOf(bundle),
+    committedBundles[index - 1] ?? committedBundles[index + 1] ?? null,
   );
 });
 
-export const clearBundlesAtom = atom(null, (_get, set) => setCommittedBundles(set, [], 0));
+export const clearBundlesAtom = atom(null, (_get, set) => setCommittedBundles(set, [], null));
 
 export const setPageAtom = atom(null, (_get, set, page: number) => {
   const clamped = Math.max(1, Math.floor(page));

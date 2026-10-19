@@ -2,15 +2,18 @@ import { useAtom } from 'jotai';
 import { type RefObject, useEffect, useRef } from 'react';
 import { selectionFocusAtom } from '../store';
 
-const TAG_SELECTOR = '.hdbt-search--react__selections--site-search .hdbt-search__remove-selection-button';
-const FILTERS_SELECTOR = '.hdbt-search--react__filters--site-search';
+export const FILTERS_CLOSE_BUTTON_CLASS = 'hdbt-search--react__filters-close-button';
+
+export type SelectionFocusRefs = {
+  tags: RefObject<Map<string, HTMLElement>>;
+  filters: RefObject<HTMLDivElement | null>;
+};
 
 // The HDS Accordion close button ("Close Filter search results") sits inside
 // the content region, which is hidden while the accordion is closed. Fall back
 // to the accordion toggle in that case.
-const getFiltersButton = () => {
-  const filters = document.querySelector(FILTERS_SELECTOR);
-  const closeButton = filters?.querySelector<HTMLElement>('[data-testid$="-closeButton"]');
+const getFiltersButton = (filters: HTMLElement | null) => {
+  const closeButton = filters?.querySelector<HTMLElement>(`.${FILTERS_CLOSE_BUTTON_CLASS}`);
 
   if (closeButton?.getClientRects().length) {
     return closeButton;
@@ -29,6 +32,7 @@ type SearchState = { data: unknown; error: unknown };
 // 4. the filters accordion button, if no tags are left
 const useSelectionFocus = (
   resultsHeadingRef: RefObject<HTMLElement | null>,
+  { tags, filters }: SelectionFocusRefs,
   {
     data,
     error,
@@ -41,7 +45,7 @@ const useSelectionFocus = (
     isValidQuery: boolean;
   },
 ) => {
-  const [removedIndex, setRemovedIndex] = useAtom(selectionFocusAtom);
+  const [pendingFocus, setPendingFocus] = useAtom(selectionFocusAtom);
   const previousRef = useRef<SearchState>({ data, error });
   const startRef = useRef<SearchState | null>(null);
 
@@ -49,7 +53,7 @@ const useSelectionFocus = (
     const previous = previousRef.current;
     previousRef.current = { data, error };
 
-    if (removedIndex === null) {
+    if (pendingFocus === null) {
       startRef.current = null;
       return;
     }
@@ -60,14 +64,15 @@ const useSelectionFocus = (
     // shown before the selection changed.
     startRef.current ??= previous;
     const isSettled =
-      !isValidQuery || (!isValidating && (data !== startRef.current.data || error !== startRef.current.error));
+      !isValidQuery ||
+      (!isValidating && (data !== startRef.current.data || (error !== undefined && error !== startRef.current.error)));
 
     if (!isSettled) {
       return;
     }
 
     startRef.current = null;
-    setRemovedIndex(null);
+    setPendingFocus(null);
 
     const heading = resultsHeadingRef.current;
 
@@ -77,11 +82,21 @@ const useSelectionFocus = (
       return;
     }
 
-    const tags = Array.from(document.querySelectorAll<HTMLElement>(TAG_SELECTOR));
-    const target = tags[removedIndex - 1] ?? tags[removedIndex] ?? getFiltersButton();
+    const tag = pendingFocus.bundle ? tags.current.get(pendingFocus.bundle) : undefined;
 
-    target?.focus();
-  }, [removedIndex, data, error, hasResults, isValidating, isValidQuery, resultsHeadingRef, setRemovedIndex]);
+    (tag ?? getFiltersButton(filters.current))?.focus();
+  }, [
+    pendingFocus,
+    data,
+    error,
+    hasResults,
+    isValidating,
+    isValidQuery,
+    resultsHeadingRef,
+    tags,
+    filters,
+    setPendingFocus,
+  ]);
 };
 
 export default useSelectionFocus;

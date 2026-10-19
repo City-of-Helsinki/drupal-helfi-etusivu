@@ -1,4 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import type { RefObject } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import { clearBundlesAtom, committedBundlesAtom, removeBundleAtom } from '../store';
@@ -10,7 +11,11 @@ const BUNDLE_LABELS: Record<string, string> = {
   others: Drupal.t('Other content', {}, { context: 'Site search' }),
 };
 
-const SelectionsContainer = () => {
+type SelectionsContainerProps = {
+  tagRefs: RefObject<Map<string, HTMLElement>>;
+};
+
+const SelectionsContainer = ({ tagRefs }: SelectionsContainerProps) => {
   const committedBundles = useAtomValue(committedBundlesAtom);
   const removeBundle = useSetAtom(removeBundleAtom);
   const clearBundles = useSetAtom(clearBundlesAtom);
@@ -24,6 +29,14 @@ const SelectionsContainer = () => {
       {committedBundles.map((bundle) => (
         <FilterButton
           key={bundle}
+          ref={(el) => {
+            if (el) {
+              tagRefs.current.set(bundle, el);
+            }
+            return () => {
+              tagRefs.current.delete(bundle);
+            };
+          }}
           value={BUNDLE_LABELS[bundle] ?? bundle}
           clearSelection={() => removeBundle(bundle)}
         />
