@@ -1,11 +1,17 @@
 import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, Search } from 'hds-react';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { type Ref, type SyntheticEvent, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import useSearchSuggestions from '../hooks/useSearchSuggestions';
 import { FILTERS_CLOSE_BUTTON_CLASS } from '../hooks/useSelectionFocus';
-import { stagedBundlesAtom, stagedQueryAtom, submitAllSearchAtom, submitNewsSearchAtom } from '../store';
+import {
+  queryResetCountAtom,
+  stagedBundlesAtom,
+  stagedQueryAtom,
+  submitAllSearchAtom,
+  submitNewsSearchAtom,
+} from '../store';
 
 type FormContainerProps = {
   withBundleFilters?: boolean;
@@ -26,6 +32,7 @@ const BUNDLE_OPTIONS = [
 const FormContainer = ({ withBundleFilters = false, filtersRef }: FormContainerProps) => {
   const [inputValue, setInputValue] = useAtom(stagedQueryAtom);
   const [stagedBundles, setStagedBundles] = useAtom(stagedBundlesAtom);
+  const queryResetCount = useAtomValue(queryResetCountAtom);
   const submitAll = useSetAtom(submitAllSearchAtom);
   const submitNews = useSetAtom(submitNewsSearchAtom);
 
@@ -90,7 +97,7 @@ const FormContainer = ({ withBundleFilters = false, filtersRef }: FormContainerP
       input.removeEventListener('focus', handleFocus);
       anchor.removeEventListener('focusout', handleFocusOut);
     };
-  }, []);
+  }, [queryResetCount]);
 
   // Reflect open/closed state to assistive tech.
   useEffect(() => {
@@ -167,7 +174,13 @@ const FormContainer = ({ withBundleFilters = false, filtersRef }: FormContainerP
       onKeyDown={handleKeyDown}
     >
       <div className='hdbt-search--react__input-wrapper' ref={inputWrapperRef}>
-        <Search {...searchInputProps} onChange={handleChange} onSend={handleSend} value={inputValue} />
+        <Search
+          key={queryResetCount}
+          {...searchInputProps}
+          onChange={handleChange}
+          onSend={handleSend}
+          value={inputValue}
+        />
       </div>
       {suggestionsAnchor &&
         suggestionsOpen &&

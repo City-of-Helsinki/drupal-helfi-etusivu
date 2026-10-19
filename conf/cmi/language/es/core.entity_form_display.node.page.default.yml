@@ -11,7 +11,3 @@ content:
     settings:
       title: Párrafo
       title_plural: Paragraphs
-  field_sidebar_content:
-    settings:
-      title: Párrafo
-      title_plural: Paragraphs

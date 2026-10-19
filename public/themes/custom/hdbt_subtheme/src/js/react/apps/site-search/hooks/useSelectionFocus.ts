@@ -82,7 +82,7 @@ const useSelectionFocus = (
       return;
     }
 
-    const tag = pendingFocus.bundle ? tags.current.get(pendingFocus.bundle) : undefined;
+    const tag = pendingFocus.tag ? tags.current.get(pendingFocus.tag) : undefined;
 
     (tag ?? getFiltersButton(filters.current))?.focus();
   }, [

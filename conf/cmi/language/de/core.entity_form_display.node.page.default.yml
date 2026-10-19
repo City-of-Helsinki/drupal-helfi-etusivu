@@ -11,7 +11,3 @@ content:
     settings:
       title: Seitenabschnitt
       title_plural: Seitenabschnitte
-  field_sidebar_content:
-    settings:
-      title: Seitenabschnitt
-      title_plural: Seitenabschnitte
