@@ -1,4 +1,4 @@
-import { atom } from 'jotai';
+import { atom, type Getter } from 'jotai';
 
 declare const ELASTIC_DEV_URL: string | undefined;
 
@@ -16,7 +16,23 @@ export const committedBundlesAtom = atom<string[]>(initialBundles);
 
 export const pageAtom = atom<number>(initialPage);
 
+export const queryResetCountAtom = atom(0);
+
 export const submitCountAtom = atom(0);
+
+export const QUERY_TAG_KEY = ':query';
+
+// Key of the selection tag (a bundle or QUERY_TAG_KEY) that should take focus
+// once the search has settled, or null to fall back to the filters. Read by
+// useSelectionFocus.
+export const selectionFocusAtom = atom<{ tag: string | null } | null>(null);
+
+const getNeighbourTag = (get: Getter, removedTag: string) => {
+  const tags = [...(get(queryAtom) ? [QUERY_TAG_KEY] : []), ...get(committedBundlesAtom)];
+  const index = tags.indexOf(removedTag);
+
+  return tags[index - 1] ?? tags[index + 1] ?? null;
+};
 
 export const submitAllSearchAtom = atom(null, (get, set) => {
   const query = get(stagedQueryAtom);
@@ -52,6 +68,7 @@ export const submitNewsSearchAtom = atom(null, (get, set) => {
 export const removeBundleAtom = atom(null, (get, set, bundle: string) => {
   const newBundles = get(committedBundlesAtom).filter((b) => b !== bundle);
 
+  set(selectionFocusAtom, { tag: getNeighbourTag(get, bundle) });
   set(stagedBundlesAtom, newBundles);
   set(committedBundlesAtom, newBundles);
   set(pageAtom, 1);
@@ -60,6 +77,37 @@ export const removeBundleAtom = atom(null, (get, set, bundle: string) => {
   newBundles.length > 0
     ? newUrl.searchParams.set('bundles', newBundles.join(','))
     : newUrl.searchParams.delete('bundles');
+  newUrl.searchParams.delete('page');
+
+  window.history.pushState({}, '', newUrl);
+});
+
+export const removeQueryAtom = atom(null, (get, set) => {
+  set(selectionFocusAtom, { tag: getNeighbourTag(get, QUERY_TAG_KEY) });
+  set(stagedQueryAtom, '');
+  set(queryResetCountAtom, (count) => count + 1);
+  set(queryAtom, '');
+  set(pageAtom, 1);
+
+  const newUrl = new URL(window.location.toString());
+  newUrl.searchParams.delete('s');
+  newUrl.searchParams.delete('page');
+
+  window.history.pushState({}, '', newUrl);
+});
+
+export const clearSelectionsAtom = atom(null, (_get, set) => {
+  set(stagedQueryAtom, '');
+  set(queryResetCountAtom, (count) => count + 1);
+  set(queryAtom, '');
+  set(stagedBundlesAtom, []);
+  set(committedBundlesAtom, []);
+  set(pageAtom, 1);
+  set(selectionFocusAtom, { tag: null });
+
+  const newUrl = new URL(window.location.toString());
+  newUrl.searchParams.delete('s');
+  newUrl.searchParams.delete('bundles');
   newUrl.searchParams.delete('page');
 
   window.history.pushState({}, '', newUrl);

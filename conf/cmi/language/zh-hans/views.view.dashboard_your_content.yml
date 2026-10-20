@@ -30,8 +30,7 @@ display:
             format_custom_false: 未发布
             format_custom_true: 已发布
           separator: ', '
-        changed:
-          label: 已更新
+        changed_at:
           separator: ', '
         operations:
           label: 操作

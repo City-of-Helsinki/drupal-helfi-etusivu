@@ -18,8 +18,6 @@ display:
           settings:
             format_custom_false: 未发布
             format_custom_true: 已发布
-        changed:
-          label: 已更新
         langcode:
           label: 语言
           separator: ', '

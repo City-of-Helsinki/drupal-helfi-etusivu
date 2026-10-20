@@ -1,13 +1,21 @@
 import { Accordion, AccordionSize, Button, ButtonVariant, Checkbox, Search } from 'hds-react';
-import { useAtom, useSetAtom } from 'jotai';
-import { type SyntheticEvent, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { type Ref, type SyntheticEvent, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import useSearchSuggestions from '../hooks/useSearchSuggestions';
-import { stagedBundlesAtom, stagedQueryAtom, submitAllSearchAtom, submitNewsSearchAtom } from '../store';
+import { FILTERS_CLOSE_BUTTON_CLASS } from '../hooks/useSelectionFocus';
+import {
+  queryResetCountAtom,
+  stagedBundlesAtom,
+  stagedQueryAtom,
+  submitAllSearchAtom,
+  submitNewsSearchAtom,
+} from '../store';
 
 type FormContainerProps = {
   withBundleFilters?: boolean;
+  filtersRef?: Ref<HTMLDivElement>;
 };
 
 const BUNDLE_OPTIONS = [
@@ -21,9 +29,10 @@ const BUNDLE_OPTIONS = [
   },
 ];
 
-const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
+const FormContainer = ({ withBundleFilters = false, filtersRef }: FormContainerProps) => {
   const [inputValue, setInputValue] = useAtom(stagedQueryAtom);
   const [stagedBundles, setStagedBundles] = useAtom(stagedBundlesAtom);
+  const queryResetCount = useAtomValue(queryResetCountAtom);
   const submitAll = useSetAtom(submitAllSearchAtom);
   const submitNews = useSetAtom(submitNewsSearchAtom);
 
@@ -88,7 +97,7 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       input.removeEventListener('focus', handleFocus);
       anchor.removeEventListener('focusout', handleFocusOut);
     };
-  }, []);
+  }, [queryResetCount]);
 
   // Reflect open/closed state to assistive tech.
   useEffect(() => {
@@ -165,7 +174,13 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
       onKeyDown={handleKeyDown}
     >
       <div className='hdbt-search--react__input-wrapper' ref={inputWrapperRef}>
-        <Search {...searchInputProps} onChange={handleChange} onSend={handleSend} value={inputValue} />
+        <Search
+          key={queryResetCount}
+          {...searchInputProps}
+          onChange={handleChange}
+          onSend={handleSend}
+          value={inputValue}
+        />
       </div>
       {suggestionsAnchor &&
         suggestionsOpen &&
@@ -209,11 +224,15 @@ const FormContainer = ({ withBundleFilters = false }: FormContainerProps) => {
           suggestionsAnchor,
         )}
       {withBundleFilters && (
-        <div className='hdbt-search--react__filters-container hdbt-search--react__filters-container--site-search'>
+        <div
+          className='hdbt-search--react__filters-container hdbt-search--react__filters-container--site-search'
+          ref={filtersRef}
+        >
           <Accordion
             border
             card
             className='hdbt-search--react__filters hdbt-search--react__filters--site-search'
+            closeButtonClassName={FILTERS_CLOSE_BUTTON_CLASS}
             heading={Drupal.t('Filter search results', {}, { context: 'Site search' })}
             headingLevel={2}
             initiallyOpen={false}

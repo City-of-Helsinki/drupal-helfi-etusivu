@@ -12,13 +12,15 @@ import DebugBlock from '../components/DebugBlock';
 import ResultCard from '../components/ResultCard';
 import AppSettings from '../enum/AppSettings';
 import useSearchQuery from '../hooks/useSearchQuery';
+import useSelectionFocus, { type SelectionFocusRefs } from '../hooks/useSelectionFocus';
 import { pageAtom, queryAtom, setPageAtom, submitCountAtom } from '../store';
 
 type ResultsContainerProps = {
   bundle?: string;
+  selectionFocusRefs: SelectionFocusRefs;
 };
 
-const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
+const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps) => {
   const query = useAtomValue(queryAtom);
   const page = useAtomValue(pageAtom);
   const submitCount = useAtomValue(submitCountAtom);
@@ -42,6 +44,14 @@ const ResultsContainer = ({ bundle }: ResultsContainerProps) => {
     submitCount,
     false,
   );
+
+  useSelectionFocus(scrollTarget, selectionFocusRefs, {
+    data,
+    error,
+    hasResults: isValidQuery && !error && totalHits > 0,
+    isValidating,
+    isValidQuery,
+  });
 
   useEffect(() => {
     if (!isValidQuery || isLoading || error) {
