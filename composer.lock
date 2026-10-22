@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fde361dac658d2084fe698a01f023929",
+    "content-hash": "2339cac2271714934d571fb1e3d03b10",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5748,16 +5748,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.3.7",
+            "version": "dev-UHF-13506",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "1775493434d3668292e93d8f6b149c448600869b"
+                "reference": "5691a1b40070f66b4ce70fed70a9088a71fd9ff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/1775493434d3668292e93d8f6b149c448600869b",
-                "reference": "1775493434d3668292e93d8f6b149c448600869b",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/5691a1b40070f66b4ce70fed70a9088a71fd9ff9",
+                "reference": "5691a1b40070f66b4ce70fed70a9088a71fd9ff9",
                 "shasum": ""
             },
             "require": {
@@ -5886,6 +5886,9 @@
                         "https://www.drupal.org/project/paragraphs/issues/2904705#comment-13836790": "./public/modules/contrib/helfi_platform_config/patches/2904705-115.patch",
                         "[#UHF-2059] Enhancements for the Admin UI": "./public/modules/contrib/helfi_platform_config/patches/helfi_customizations_for_paragraphs_widget_8.x-1.12.patch"
                     },
+                    "drupal/search_api": {
+                        "[#3527726, #UHF-13506] Parallel indexing": "./public/modules/contrib/helfi_platform_config/patches/3527726.patch"
+                    },
                     "drupal/view_unpublished": {
                         "[#UHF-9256] Fix missing dynamic permission dependencies.": "./public/modules/contrib/helfi_platform_config/patches/view_unpublished_permissions_missing_dependencies.patch"
                     },
@@ -5899,10 +5902,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.3.7",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/UHF-13506",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-10-20T08:17:37+00:00"
+            "time": "2026-10-21T07:05:26+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -25377,6 +25380,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/helfi_drupal_tools": 20,
+        "drupal/helfi_platform_config": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5,
         "drupal/ultimate_cron": 15,
