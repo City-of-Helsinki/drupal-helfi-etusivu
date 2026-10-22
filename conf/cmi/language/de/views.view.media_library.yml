@@ -31,6 +31,12 @@ display:
         created:
           expose:
             label: 'Neueste zuerst'
+        name:
+          expose:
+            label: 'Name (A-Z)'
+        name_1:
+          expose:
+            label: 'Name (Z-A)'
       filters:
         status:
           expose:
