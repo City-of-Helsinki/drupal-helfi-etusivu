@@ -44,6 +44,14 @@ msgctxt "Helsinki near you"
 msgid "No results were found for the street address"
 msgstr "Inga resultat hittades för gatuadressen"
 
+msgctxt "Address search error message"
+msgid "No results found for this street address"
+msgstr "Inga resultat hittades för gatuadressen"
+
+msgctxt "Address search error message"
+msgid "Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing."
+msgstr "Kontrollera adressen eller prova en annan adress i närheten. Sökningen föreslår alternativ när du börjar skriva in adressen."
+
 msgctxt "Helsinki near you"
 msgid "For example, Mannerheimintie 1"
 msgstr "T.ex. Mannerheimvägen 1"
