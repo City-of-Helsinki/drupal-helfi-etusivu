@@ -100,10 +100,15 @@ abstract class SearchFormBase extends FormBase {
     }
 
     if ($address && !$this->serviceMap->getAddressData(urldecode($address))) {
+      $form['home_address']['#error_title'] = $this->t(
+        'No results found for this street address',
+        [],
+        ['context' => 'Address search error message']
+      );
       $form_state->setErrorByName(
         'home_address',
         $this->t(
-          'No results found for this street address. Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing.',
+          'Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing.',
           [],
           ['context' => 'Address search error message']
         )
