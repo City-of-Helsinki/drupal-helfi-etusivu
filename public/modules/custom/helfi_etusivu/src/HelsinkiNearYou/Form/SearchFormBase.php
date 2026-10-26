@@ -108,7 +108,8 @@ abstract class SearchFormBase extends FormBase {
       $form_state->setErrorByName(
         'home_address',
         $this->t(
-          'Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing.',
+          'Please check that the address you entered is correct or try another nearby address. 
+          The search function suggests alternatives as you start typing.',
           [],
           ['context' => 'Address search error message']
         )
