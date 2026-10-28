@@ -62,6 +62,13 @@ class ResultsControllerTest extends KernelTestBase {
   protected MockObject $roadworkDataService;
 
   /**
+   * The parking zone service.
+   *
+   * @var \PHPUnit\Framework\MockObject\MockObject
+   */
+  protected MockObject $parkingZoneService;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -70,14 +77,14 @@ class ResultsControllerTest extends KernelTestBase {
     $this->serviceMap = $this->createMock(ServiceMapInterface::class);
     $entityTypeManager = $this->createMock(EntityTypeManager::class);
     $this->roadworkDataService = $this->createMock(RoadworkDataServiceInterface::class);
-    $this->residentParkingZoneService = $this->createMock(ResidentParkingZoneServiceInterface::class);
+    $this->parkingZoneService = $this->createMock(ResidentParkingZoneServiceInterface::class);
 
     $this->controller = new ResultsController(
       $this->serviceMap,
       $this->roadworkDataService,
       $this->container->get(LanguageManagerInterface::class),
       $this->container->get(EnvironmentResolverInterface::class),
-      $this->residentParkingZoneService,
+      $this->parkingZoneService,
     );
 
     $mockEntityQuery = $this->createMock(Query::class);
@@ -155,7 +162,7 @@ class ResultsControllerTest extends KernelTestBase {
     $request->query = new InputBag([
       'home_address' => $validAddress,
     ]);
-    $this->residentParkingZoneService->method('getParkingZone')
+    $this->parkingZoneService->method('getParkingZone')
       ->willReturn(new ParkingZone('Kallio/Sörnäinen', 'https://palvelukartta.hel.fi/fi/embed/area'));
     $build = $this->controller->content($request);
 
