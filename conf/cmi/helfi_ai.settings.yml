@@ -1,7 +1,7 @@
 _core:
-  default_config_hash: 7YlU1bOGnaSSl8x_KPAWYsEJtVJYtBMShbqXt7SbbBc
+  default_config_hash: yK7yRWn-H2DN8IHjVqvf6CFr6pTEY6GWSSWgu6YxZOo
 enable_seo_title: true
 enable_tone_check: true
-enable_ai_summary: true
 seo_title_bundles:
   - page
+enable_ai_summary: true
