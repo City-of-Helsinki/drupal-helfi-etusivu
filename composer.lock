@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fde361dac658d2084fe698a01f023929",
+    "content-hash": "b9ba3c945b33bdd456f0825a32a19974",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5500,16 +5500,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.8.46",
+            "version": "dev-UHF-13529",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "e5965b68603d932b5eba39c2668ed11cf79676ea"
+                "reference": "1a013999016fe0d3a621bc85676a663b49fbd2a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/e5965b68603d932b5eba39c2668ed11cf79676ea",
-                "reference": "e5965b68603d932b5eba39c2668ed11cf79676ea",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/1a013999016fe0d3a621bc85676a663b49fbd2a7",
+                "reference": "1a013999016fe0d3a621bc85676a663b49fbd2a7",
                 "shasum": ""
             },
             "require": {
@@ -5545,6 +5545,9 @@
                 "patches": {
                     "drupal/core": {
                         "[#3014514] Make igbinary the default serializer, if available": "./public/modules/contrib/helfi_api_base/patches/3014514.patch"
+                    },
+                    "drupal/redis": {
+                        "Catch Sentinel connection errors and make the Sentinel timeout configurable": "./public/modules/contrib/helfi_api_base/patches/redis-sentinel-timeout.patch"
                     }
                 }
             },
@@ -5553,10 +5556,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.8.46",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/UHF-13529",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2026-10-22T07:01:11+00:00"
+            "time": "2026-10-30T06:55:46+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -25383,6 +25386,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/helfi_api_base": 20,
         "drupal/helfi_drupal_tools": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5,
