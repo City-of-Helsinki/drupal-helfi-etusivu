@@ -107,7 +107,11 @@ final class ResultsController extends ControllerBase {
       '#service_groups' => $this->buildServiceGroups($addressName, $langcode),
       '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address, $langcode),
       '#roadwork_section' => $this->buildRoadworksHtmxContainer($request, 3),
-      '#vehicle_removal_archive_url' => $this->getInternalSearchLink(InternalSearchLink::VehicleRemoval, ['streets' => $cleanStreetName, 'page' => 1], $langcode),
+      '#vehicle_removal_archive_url' => $this->getInternalSearchLink(
+        InternalSearchLink::VehicleRemoval,
+        ['streets' => $cleanStreetName, 'page' => 1],
+        $langcode
+      ),
       '#vehicle_removal_section' => $this->buildVehicleRemovalHtmxContainer($request, 3),
       '#feedback_archive_url' => Url::fromRoute('helfi_etusivu.helsinki_near_you_feedback', options: [
         'query' => ['home_address' => $addressName],

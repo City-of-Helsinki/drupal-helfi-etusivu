@@ -30,10 +30,20 @@ final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
 
   /**
    * Get the mobile note data from kymp.
+   *
+   * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
+   *   The address.
+   * @param int $limit
+   *   The limit.
+   *
+   * @return array<mixed>
+   *   The mobobile note data items.
    */
-  public function getMobileNoteData(Address $address, $limit = 3): array {
+  public function getMobileNoteData(Address $address, int $limit = 3): array {
     $query = [
-      'address' => $address->streetName,
+      'streetname' => $address->streetName->fi,
+      'lon' => $address->location->lon,
+      'lat' => $address->location->lat,
     ];
 
     /** @var \Drupal\helfi_api_base\Environment\Environment $environment */
@@ -51,7 +61,7 @@ final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
           'timeout' => 30,
         ]);
     }
-    catch(\Exception $e) {
+    catch (\Exception $e) {
       $this->logger->error($e->getMessage());
       return [];
     }

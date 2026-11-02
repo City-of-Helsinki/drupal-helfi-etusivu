@@ -113,7 +113,7 @@ enum RouteInformationEnum {
   public function getFirstParagraphBg(): bool {
     return match($this) {
       self::Roadworks, self::Events, self::Feedback => TRUE,
-      self::Results, self::LandingPage => FALSE,
+      self::Results, self::LandingPage, self::VehicleRemoval => FALSE,
     };
   }
 

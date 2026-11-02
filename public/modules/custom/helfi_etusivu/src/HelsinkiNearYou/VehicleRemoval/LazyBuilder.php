@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\VehicleRemoval;
 
 use Drupal\Core\Security\TrustedCallbackInterface;
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\Utility\Error;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Psr\Log\LoggerInterface;
@@ -28,19 +27,13 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *
    * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
-   * @param string $langcode
-   *   The language code.
-   * @param int|null $limit
-   *   The number of items to show.
-   * @param \Drupal\Core\Template\Attribute|null $attributes
-   *   Array of attributes to pass to template.
    *
-   * @return array
+   * @return array<mixed>
    *   The render array.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function build(Address $address, string $langcode, ?int $limit = NULL, ?Attribute $attributes = NULL): array {
+  public function build(Address $address): array {
     $build = [
       '#cache' => [
         'max-age' => 0,
@@ -56,7 +49,6 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       return $build + ['#has_error' => TRUE];
     }
 
-    // Foreach ($data->items as $item) {.
     foreach ($data as $item) {
       $build['#content'][] = [
         '#theme' => 'helsinki_near_you_vehicle_removal_item',
