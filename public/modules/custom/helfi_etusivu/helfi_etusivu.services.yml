@@ -30,6 +30,9 @@ services:
   # Service for processing and formatting roadwork data.
   Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService: ~
 
+  Drupal\helfi_etusivu\HelsinkiNearYou\VehicleRemoval\LazyBuilder: ~
+  Drupal\helfi_etusivu\HelsinkiNearYou\VehicleRemoval\VehicleRemovalClient: ~
+
   # Alias for RoadworkDataService to support dependency injection by interface.
   Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataServiceInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\RoadworkData\RoadworkDataService'
 
