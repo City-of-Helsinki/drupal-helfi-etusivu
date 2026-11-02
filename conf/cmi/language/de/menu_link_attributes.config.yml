@@ -1,6 +1,8 @@
 attributes:
   container_class:
-    label: 'Container class(es)'
+    label: Containerklasse(n)
     description: 'CSS class for the menu list item (&lt;li&gt;). Separate multiple classes by space.'
+  class:
+    label: Link-Klasse(n)
   target:
     label: Link-Ziel

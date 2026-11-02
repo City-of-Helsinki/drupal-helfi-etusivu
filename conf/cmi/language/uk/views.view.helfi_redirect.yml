@@ -1,7 +1,7 @@
 label: Переспрямувати
 display:
   default:
-    display_title: Default
+    display_title: Базово
     display_options:
       title: Переспрямувати
       fields:
