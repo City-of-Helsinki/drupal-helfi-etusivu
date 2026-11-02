@@ -37,6 +37,7 @@ dependencies:
     - helfi_llms_txt
     - helfi_recommendations
     - helfi_search
+    - helfi_users
     - locale
     - media
     - menu_link_attributes
@@ -219,6 +220,7 @@ permissions:
   - 'update content translations'
   - 'update linkedevents_event external entity'
   - 'update media'
+  - 'use favorites'
   - 'use helfi ai summary'
   - 'use helfi ai title suggestion'
   - 'use helfi ai tone check'

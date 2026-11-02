@@ -24,6 +24,7 @@ dependencies:
     - file
     - filter
     - helfi_api_base
+    - helfi_users
     - media
     - menu_link_content
     - node
@@ -132,6 +133,7 @@ permissions:
   - 'translate page node'
   - 'update linkedevents_event external entity'
   - 'update media'
+  - 'use favorites'
   - 'use text format full_html'
   - 'use text format minimal'
   - 'view all media revisions'
