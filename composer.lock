@@ -5379,16 +5379,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.21.7",
+            "version": "6.21.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "9f9f8b0a3e3ac23b157ba97e9da1f14ff7c6583a"
+                "reference": "03cafd9f6adcfd421fa725f40a2bc347554fd471"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/9f9f8b0a3e3ac23b157ba97e9da1f14ff7c6583a",
-                "reference": "9f9f8b0a3e3ac23b157ba97e9da1f14ff7c6583a",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/03cafd9f6adcfd421fa725f40a2bc347554fd471",
+                "reference": "03cafd9f6adcfd421fa725f40a2bc347554fd471",
                 "shasum": ""
             },
             "require": {
@@ -5407,10 +5407,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.21.7",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.21.8",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-11-02T07:30:28+00:00"
+            "time": "2026-11-02T11:38:38+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -14142,16 +14142,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.57",
+            "version": "3.0.58",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "d17e0ddaeaf6f22f7e007cbb437d78792fe2a0e4"
+                "reference": "91f3a6436bb84040ac0cf49e761977f17d16a39b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d17e0ddaeaf6f22f7e007cbb437d78792fe2a0e4",
-                "reference": "d17e0ddaeaf6f22f7e007cbb437d78792fe2a0e4",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/91f3a6436bb84040ac0cf49e761977f17d16a39b",
+                "reference": "91f3a6436bb84040ac0cf49e761977f17d16a39b",
                 "shasum": ""
             },
             "require": {
@@ -14232,7 +14232,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.57"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.58"
             },
             "funding": [
                 {
@@ -14248,7 +14248,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-26T12:13:21+00:00"
+            "time": "2026-11-02T10:45:48+00:00"
         },
         {
             "name": "phrity/comparison",
