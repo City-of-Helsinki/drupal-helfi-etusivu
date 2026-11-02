@@ -7,6 +7,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Routing;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\EventsController;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\FeedbackController;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\RoadworksController;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\VehicleRemovalController;
 use Symfony\Component\Routing\Route;
 
 /**
@@ -25,6 +26,7 @@ final class RouteProvider {
       'roadworks' => RoadworksController::class,
       'feedback' => FeedbackController::class,
       'events' => EventsController::class,
+      'vehicle_removal' => VehicleRemovalController::class,
     ];
 
     $routes = [];
