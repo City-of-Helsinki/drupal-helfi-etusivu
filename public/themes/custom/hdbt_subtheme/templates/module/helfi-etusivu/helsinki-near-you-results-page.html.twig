@@ -148,30 +148,19 @@
       {% endblock component_content %}
     {% endembed %}
 
-    {# Vehicle removal #}
+    {# Vehicle removal Section #}
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [
-        'component--',
+        'component--vehicle-removal',
         'component--hardcoded',
       ],
-        component_title: 'Parking'|trans({}, {'context': 'Helsinki near you'}),
-        component_description: 'See vehicle removal requests in your parking zone.'|trans({}, {'context': 'Helsinki near you'}),
+        component_title: 'Vehicle removal requests'|trans({}, {'context': 'Helsinki near you'}),
         component_content_class: 'vehicle-removal-section',
       }
     %}
       {% block component_content %}
-        {% if vehicle_removal_section %}
-          {{ vehicle_removal_section }}
-        {% endif %}
-
-        <div class="see-all-button see-all-button--near-results">
-          {% include '@hdbt/navigation/link-button.html.twig' with {
-            type: 'primary',
-            label: 'See all vehicle removal requests near you'|t({}, {'context': 'Helsinki near you'}),
-            url: vehicle_removal_archive_url|default('https://www.hel.fi/fi/kaupunkiymparisto-ja-liikenne/pysakointi/ajoneuvojen-siirrot/ajoneuvojen-siirtokehotukset'),
-          } %}
-        </div>
+        {{ vehicle_removal_section }}
       {% endblock component_content %}
     {% endembed %}
 

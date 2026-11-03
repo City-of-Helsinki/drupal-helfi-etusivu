@@ -59,8 +59,10 @@ final class ThemeHooks {
       ],
       'helsinki_near_you_vehicle_removal_section' => [
         'variables' => [
-          'title' => NULL,
+          'description' => NULL,
           'items' => [],
+          'button_label' => NULL,
+          'button_url' => NULL,
         ],
         'template' => 'helsinki-near-you-vehicle-removal-section',
       ],

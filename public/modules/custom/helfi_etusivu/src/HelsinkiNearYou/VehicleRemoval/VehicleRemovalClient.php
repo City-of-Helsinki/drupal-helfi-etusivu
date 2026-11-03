@@ -9,9 +9,8 @@ use Drupal\helfi_api_base\Environment\EnvironmentResolver;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_etusivu\HelsinkiNearYou\VehicleRemoval\DTO\Item;
+use Drupal\helfi_etusivu\HelsinkiNearYou\VehicleRemoval\DTO\MobileNoteResult;
 use GuzzleHttp\ClientInterface;
-use Psr\Log\LoggerInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * A lazy builder for Vehicle removal data block.
@@ -21,8 +20,6 @@ final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
   const string API_ENDPOINT = '/api/v1/mobilenote';
 
   public function __construct(
-    #[Autowire(service: 'logger.channel.helfi_etusivu')]
-    private readonly LoggerInterface $logger,
     private readonly ClientInterface $httpClient,
     private readonly EnvironmentResolver $environmentResolver,
   ) {
@@ -36,10 +33,10 @@ final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
    * @param int $limit
    *   The limit.
    *
-   * @return array<mixed>
+   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\VehicleRemoval\DTO\MobileNoteResult
    *   The mobobile note data items.
    */
-  public function getMobileNoteData(Address $address, int $limit = 3): array {
+  public function getMobileNoteData(Address $address, int $limit = 3): MobileNoteResult {
     $query = [
       'streetname' => $address->streetName->fi,
       'lon' => $address->location->lon,
@@ -53,27 +50,20 @@ final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
     );
     $url = $environment->getInternalAddress('fi') . self::API_ENDPOINT;
 
-    try {
-      $response = $this->httpClient->request('GET', $url,
-        [
-          'query' => $query,
-          'limit' => $limit,
-          'timeout' => 30,
-        ]);
-    }
-    catch (\Exception $e) {
-      $this->logger->error($e->getMessage());
-      return [];
-    }
+    $response = $this->httpClient->request('GET', $url,
+      [
+        'query' => $query,
+        'limit' => $limit,
+        'timeout' => 30,
+      ]);
 
     $data = json_decode($response->getBody()->getContents(), TRUE);
-
-    $resultSet = [];
-    foreach ($data as $vehicleRemovalItem) {
+    $mobileNoteItems = [];
+    foreach ($data['results'] as $vehicleRemovalItem) {
       $validFrom = date('d.m.Y', $vehicleRemovalItem['_source']['valid_from'][0]);
       $validTo = date('d.m.Y', $vehicleRemovalItem['_source']['valid_to'][0]);
 
-      $resultSet[] = new Item(
+      $mobileNoteItems[] = new Item(
         $vehicleRemovalItem['_source']['address'][0],
         $vehicleRemovalItem['_source']['address'][0],
         "$validFrom - $validTo",
@@ -81,7 +71,13 @@ final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
         $vehicleRemovalItem['_source']['time_range'][0],
       );
     }
-    return $resultSet;
+
+    $postalCodes = isset($data['postalcodes']) ? explode(',', $data['postalcodes']) : NULL;
+    return new MobileNoteResult(
+      $data['parkingzone'] ?? NULL,
+      $postalCodes,
+      $mobileNoteItems,
+    );
   }
 
   /**
