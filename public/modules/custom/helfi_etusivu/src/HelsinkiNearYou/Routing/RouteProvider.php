@@ -26,6 +26,10 @@ final class RouteProvider {
       'roadworks' => RoadworksController::class,
       'feedback' => FeedbackController::class,
       'events' => EventsController::class,
+    ];
+
+    // Simple htmx-controller, no search page.
+    $htmxOnly = [
       'vehicle_removal' => VehicleRemovalController::class,
     ];
 
@@ -57,7 +61,64 @@ final class RouteProvider {
         ]
       );
     }
+
+    foreach ($htmxOnly as $name => $controller) {
+      $routes[$this->getRouteName($name) . '_htmx'] = $this->createHtmxRoute($name, $controller);
+    }
+
     return $routes;
+  }
+
+  /**
+   * Gets the route name for the given page.
+   *
+   * @param string $name
+   *   The page name.
+   *
+   * @return string
+   *   The route name.
+   */
+  private function getRouteName(string $name): string {
+    return sprintf('helfi_etusivu.helsinki_near_you_%s', $name);
+  }
+
+  /**
+   * Get the path for the given page.
+   *
+   * @param string $name
+   *   The page name.
+   *
+   * @return string
+   *   The path.
+   */
+  private function getPath(string $name): string {
+    return sprintf('/helsinki-near-you/%s', $name);
+  }
+
+  /**
+   * Create the HTMX route for the given controller.
+   *
+   * @param string $name
+   *   The page name.
+   * @param class-string $controller
+   *   The controller class.
+   *
+   * @return \Symfony\Component\Routing\Route
+   *   The route.
+   */
+  private function createHtmxRoute(string $name, string $controller): Route {
+    return new Route(
+      path: $this->getPath($name) . '/htmx',
+      defaults: [
+        '_controller' => $controller . '::htmx',
+      ],
+      requirements: [
+        '_permission' => 'access content',
+      ],
+      options: [
+        '_htmx_route' => 'TRUE',
+      ]
+    );
   }
 
 }
