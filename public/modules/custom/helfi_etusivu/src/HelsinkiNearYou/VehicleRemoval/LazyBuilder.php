@@ -110,10 +110,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     }
 
     $langcode = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-    $baseUrl = Url::fromUri(
-      InternalSearchLink::VehicleRemoval->getLinkTranslation($langcode),
-      ['query' => $queryParameters],
-    )->toString();
+    $baseUrl = Url::fromUri(InternalSearchLink::VehicleRemoval->getLinkTranslation($langcode))->toString();
 
     return [
       'description' => $description,

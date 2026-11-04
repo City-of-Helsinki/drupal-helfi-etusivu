@@ -65,7 +65,7 @@ class LazyBuilderTest extends KernelTestBase {
 
     $content = $build['#content'];
     $url = $content['#button_url'];
-    $description = $content['#description'];
+    $description = $content['#description']->getUntranslatedString();
 
     $baseUrl = InternalSearchLink::VehicleRemoval->getLinkTranslation('en');
     $this->assertNotEmpty($baseUrl);
@@ -97,7 +97,7 @@ class LazyBuilderTest extends KernelTestBase {
 
     $content = $build['#content'];
     $url = $content['#button_url'];
-    $description = $content['#description'];
+    $description = $content['#description']->getUntranslatedString();
 
     $baseUrl = InternalSearchLink::VehicleRemoval->getLinkTranslation('en');
     $this->assertNotEmpty($baseUrl);
