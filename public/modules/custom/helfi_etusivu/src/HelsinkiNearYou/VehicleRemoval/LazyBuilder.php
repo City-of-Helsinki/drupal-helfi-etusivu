@@ -98,19 +98,16 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
 
     if ($parkingZone) {
       $description = $this->translation->translate('See vehicle removal requests in your parking zone.', ['context' => 'Helsinki near you']);
-      $queryParameters = "?parkingZones=$parkingZone";
+      $queryParameters = "?parking_zones=$parkingZone";
     }
 
     if ($postalCodes) {
       $description = $this->translation->translate('See vehicle removal requests in your postal code area.', ['context' => 'Helsinki near you']);
       $queryParameters = '?';
       foreach ($postalCodes as $key => $postalCode) {
-        if ($key != 0) {
-          $queryParameters .= '&';
-        }
-        $queryParameters .= "postalCode=$postalCode";
+        $queryParameters .= $key == 0 ? '?' : '&';
+        $queryParameters .= "postal_code=$postalCode";
       }
-      $queryParameters = trim($queryParameters, '&');
     }
 
     $langcode = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
