@@ -1,5 +1,1 @@
 label: '403 доступ запрещен'
-tags:
-  robots: noindex
-  canonical_url: '[site:url]'
-  shortlink: '[site:url]'

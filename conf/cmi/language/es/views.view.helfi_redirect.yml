@@ -1,7 +1,7 @@
 label: Redirección
 display:
   default:
-    display_title: Default
+    display_title: 'Por defecto'
     display_options:
       title: Redirección
       fields:

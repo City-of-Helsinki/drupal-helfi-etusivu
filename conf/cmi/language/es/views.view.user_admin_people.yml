@@ -2,7 +2,7 @@ label: Usuarios
 description: 'Encuentre y gestione a las personas que interactúan con su sitio.'
 display:
   default:
-    display_title: Default
+    display_title: 'Por defecto'
     display_options:
       title: Usuarios
       fields:

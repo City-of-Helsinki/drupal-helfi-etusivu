@@ -38,15 +38,15 @@
     {{ label }}
   {% endif %}
   {% if errors %}
-    {% if errors is iterable %}
+    {% if element['#error_title'] %}
     <div class="hds-notification hds-notification--error" id="js-address-not-found-error">
       <div class="hds-notification__content">
         <div class="hds-notification__label">
           <span class="hds-icon hds-icon--error-fill" aria-hidden="true"></span>
-          <span>{{- errors.0 -}}</span>
+          <span>{{- element['#error_title'] -}}</span>
         </div>
         <div class="hds-notification__body">
-          {{- errors.1 -}}
+          {{- errors -}}
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ dependencies:
     - field.field.paragraph.list_of_links_item.field_list_of_links_link
     - paragraphs.paragraphs_type.list_of_links_item
   module:
-    - helfi_etusivu
+    - helfi_platform_config
     - media_library
   enforced:
     module:

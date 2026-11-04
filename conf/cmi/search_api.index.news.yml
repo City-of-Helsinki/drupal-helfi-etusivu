@@ -361,8 +361,9 @@ processor_settings:
   scored_reference_parent: {  }
   uuid_langcode: {  }
 tracker_settings:
-  default:
+  parallel:
     indexing_order: lifo
+    claim_timeout: 60
 options:
   cron_limit: 50
   delete_on_fail: true
