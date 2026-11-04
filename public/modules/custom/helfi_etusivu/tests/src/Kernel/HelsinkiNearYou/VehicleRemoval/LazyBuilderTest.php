@@ -15,12 +15,15 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests the vehicle removal lazy builder.
- *
- * @group helfi_etusivu
  */
+#[Group('helfi_etusivu')]
+#[RunTestsInSeparateProcesses]
 class LazyBuilderTest extends KernelTestBase {
 
   use ApiTestTrait;
@@ -47,6 +50,7 @@ class LazyBuilderTest extends KernelTestBase {
   /**
    * Tests the postal code result.
    */
+  #[RunInSeparateProcess]
   public function testPostalCodes(): void {
     $build = $this->build(new Response(200, body: (string) json_encode([
       'postalcodes' => '00100,00130',
@@ -71,6 +75,7 @@ class LazyBuilderTest extends KernelTestBase {
     $this->assertNotEmpty($baseUrl);
     $this->assertStringStartsWith($baseUrl, $url);
     $this->assertEquals('See vehicle removal requests in your postal code area.', $description);
+    $this->assertEquals('01.01.2026 - 04.01.2026', $content['#items'][0]['#date_range']);
     $this->assertTrue(str_contains($url, 'postal_code'));
     $this->assertTrue(str_contains($url, '00100'));
     $this->assertTrue(str_contains($url, '00130'));
@@ -79,6 +84,7 @@ class LazyBuilderTest extends KernelTestBase {
   /**
    * Tests the parkingzone result.
    */
+  #[RunInSeparateProcess]
   public function testParkingZone(): void {
     $build = $this->build(new Response(200, body: (string) json_encode([
       'parkingzone' => 'Kluuvi/Kruununhaka',

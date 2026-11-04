@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\VehicleRemoval;
 
-use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\helfi_api_base\Environment\EnvironmentResolver;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
@@ -15,7 +14,7 @@ use GuzzleHttp\ClientInterface;
 /**
  * A lazy builder for Vehicle removal data block.
  */
-final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
+final readonly class VehicleRemovalClient {
 
   const string API_ENDPOINT = '/api/v1/mobilenote';
 
@@ -60,8 +59,12 @@ final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
     $data = json_decode($response->getBody()->getContents(), TRUE);
     $mobileNoteItems = [];
     foreach ($data['results'] as $vehicleRemovalItem) {
-      $validFrom = date('d.m.Y', $vehicleRemovalItem['_source']['valid_from'][0]);
-      $validTo = date('d.m.Y', $vehicleRemovalItem['_source']['valid_to'][0]);
+      $validFrom = $vehicleRemovalItem['_source']['valid_from'][0];
+      $validTo = $vehicleRemovalItem['_source']['valid_to'][0];
+      $tz = new \DateTimeZone('Europe/Helsinki');
+
+      $validFrom = new \DateTimeImmutable("@$validFrom", $tz)->format('d.m.Y');
+      $validTo = new \DateTimeImmutable("@$validTo", $tz)->format('d.m.Y');
 
       $mobileNoteItems[] = new Item(
         $vehicleRemovalItem['_source']['address'][0],
@@ -78,13 +81,6 @@ final readonly class VehicleRemovalClient implements TrustedCallbackInterface {
       $postalCodes,
       $mobileNoteItems,
     );
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function trustedCallbacks() : array {
-    return ['build'];
   }
 
 }
