@@ -105,7 +105,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       $description = $this->translation->translate('See vehicle removal requests in your postal code.', ['context' => 'Helsinki near you']);
       foreach ($postalCodes as $key => $postalCode) {
         $queryParameters .= $key == 0 ? '?' : '&';
-        $queryParameters .= "postal_code=$postalCode";
+        $queryParameters .= "postal_codes=$postalCode";
       }
     }
 
