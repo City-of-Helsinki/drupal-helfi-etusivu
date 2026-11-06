@@ -64,6 +64,7 @@ final class ThemeHooks {
           'toc_enabled' => NULL,
           'toc_title' => NULL,
           'service_groups' => NULL,
+          'parking_zone' => NULL,
           'nearby_neighbourhoods' => NULL,
           'news_archive_url' => NULL,
           'roadwork_section' => NULL,
