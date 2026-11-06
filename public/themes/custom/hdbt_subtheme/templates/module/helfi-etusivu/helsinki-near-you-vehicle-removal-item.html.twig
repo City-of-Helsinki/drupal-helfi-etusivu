@@ -1,0 +1,20 @@
+{% embed '@hdbt/component/card.twig' with {
+  card_modifier_class: 'card--border',
+  card_title: title,
+  card_title_level: 'h4',
+  card_url: map_url,
+  card_url_external: true,
+  card_metas: [
+    {
+      icon: 'calendar',
+      label: 'Expiration time'|t({},{'context': 'Helsinki near you'}),
+      content: date_range,
+    },
+    {
+      icon: 'clock',
+      label: 'Time'|t({}, {'context': ''}),
+      content: time_range,
+    },
+  ]
+} %}
+{% endembed %}
