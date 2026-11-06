@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fde361dac658d2084fe698a01f023929",
+    "content-hash": "25264f170d938e948624628c099bc285",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5152,16 +5152,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.5.1",
+            "version": "dev-UHF-13531",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "e32865a9b65d1994030e4933492d634eb165aea5"
+                "reference": "1a092ad540f8c2304d1e0629d1928ba8410995c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/e32865a9b65d1994030e4933492d634eb165aea5",
-                "reference": "e32865a9b65d1994030e4933492d634eb165aea5",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/1a092ad540f8c2304d1e0629d1928ba8410995c2",
+                "reference": "1a092ad540f8c2304d1e0629d1928ba8410995c2",
                 "shasum": ""
             },
             "require": {
@@ -5302,10 +5302,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.5.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/UHF-13531",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-11-05T12:26:25+00:00"
+            "time": "2026-11-06T07:51:55+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -23823,6 +23823,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/helfi_drupal_tools": 20,
+        "drupal/helfi_platform_config": 20,
         "drupal/json_field": 5,
         "drupal/openapi_ui_redoc": 5,
         "drupal/ultimate_cron": 15,
