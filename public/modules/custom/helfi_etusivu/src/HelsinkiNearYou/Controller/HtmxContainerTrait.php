@@ -91,6 +91,26 @@ trait HtmxContainerTrait {
   }
 
   /**
+   * Constructs a render array for the resident parking zone.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
+   * @return array<string, mixed>
+   *   The render array.
+   */
+  protected function buildParkingZoneHtmxContainer(Request $request) : array {
+    return $this->buildHtmxRenderArray(
+      'helfi_etusivu.helsinki_near_you_parking_zone_htmx',
+      $request,
+      1,
+      new Attribute([
+        'class' => ['card--border'],
+      ]),
+    );
+  }
+
+  /**
    * Constructs a render array for roadwork items.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request

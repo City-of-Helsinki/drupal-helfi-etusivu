@@ -366,25 +366,41 @@ msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publicerin
 msgid "News"
 msgstr "Nyheter"
 
-msgctxt "Site search"
-msgid "Search this site"
-msgstr "Sök från webbplatsen"
+msgctxt "Helsinki near you"
+msgid "Parking"
+msgstr "Parkering"
 
 msgctxt "Helsinki near you"
-msgid "Your resident parking zone"
-msgstr "Ditt invånarparkeringsområde"
+msgid "Resident parking zone"
+msgstr "Boendeparkeringsområde"
 
 msgctxt "Helsinki near you"
-msgid "Your resident parking zone is @zone."
-msgstr "Ditt invånarparkeringsområde är @zone."
+msgid "See the resident parking zones in your area."
+msgstr "Bekanta dig med boendeparkeringsområdet i ditt område."
 
 msgctxt "Helsinki near you"
-msgid "Your area has no resident parking."
-msgstr "Det finns ingen invånarparkering i ditt område."
+msgid "There is no resident parking in your area. It is only available in the inner city."
+msgstr "Det finns ingen boendeparkering i ditt bostadsområde. Boendeparkering finns i stadskärnan."
 
 msgctxt "Helsinki near you"
-msgid "Resident parking zone map"
-msgstr "Karta över invånarparkeringsområdet"
+msgid "The permit allows you to park in your zone for a monthly fee."
+msgstr "Med ett boendeparkeringstillstånd parkerar du på boendeparkeringsplatserna i ditt bostadsområde mot en månadsavgift."
+
+msgctxt "Helsinki near you"
+msgid "Read more about resident parking"
+msgstr "Läs mer om boendeparkering"
+
+msgctxt "Helsinki near you"
+msgid "Resident parking zone @area_key, @name"
+msgstr "Boendeparkeringsområde @area_key, @name"
+
+msgctxt "Helsinki near you"
+msgid "Price"
+msgstr "Pris"
+
+msgctxt "Helsinki near you"
+msgid "€@price/month, fully electric vehicle €@electric_price/month"
+msgstr "@price €/månad, fullständigt eldrivet fordon @electric_price €/månad"
 
 msgctxt "Helfi search"
 msgid "Search"

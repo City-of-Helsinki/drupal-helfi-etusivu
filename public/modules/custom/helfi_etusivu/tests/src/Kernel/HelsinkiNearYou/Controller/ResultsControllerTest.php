@@ -11,8 +11,6 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\external_entities\Entity\Query\External\Query;
 use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
-use Drupal\helfi_api_base\ServiceMap\DTO\ParkingZone;
-use Drupal\helfi_api_base\ServiceMap\ResidentParkingZoneServiceInterface;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Controller\ResultsController;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
@@ -62,13 +60,6 @@ class ResultsControllerTest extends KernelTestBase {
   protected MockObject $roadworkDataService;
 
   /**
-   * The parking zone service.
-   *
-   * @var \PHPUnit\Framework\MockObject\MockObject
-   */
-  protected MockObject $parkingZoneService;
-
-  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -77,14 +68,12 @@ class ResultsControllerTest extends KernelTestBase {
     $this->serviceMap = $this->createMock(ServiceMapInterface::class);
     $entityTypeManager = $this->createMock(EntityTypeManager::class);
     $this->roadworkDataService = $this->createMock(RoadworkDataServiceInterface::class);
-    $this->parkingZoneService = $this->createMock(ResidentParkingZoneServiceInterface::class);
 
     $this->controller = new ResultsController(
       $this->serviceMap,
       $this->roadworkDataService,
       $this->container->get(LanguageManagerInterface::class),
       $this->container->get(EnvironmentResolverInterface::class),
-      $this->parkingZoneService,
     );
 
     $mockEntityQuery = $this->createMock(Query::class);
@@ -162,8 +151,6 @@ class ResultsControllerTest extends KernelTestBase {
     $request->query = new InputBag([
       'home_address' => $validAddress,
     ]);
-    $this->parkingZoneService->method('getParkingZone')
-      ->willReturn(new ParkingZone('Kallio/Sörnäinen', 'https://palvelukartta.hel.fi/fi/embed/area'));
     $build = $this->controller->content($request);
 
     $this->assertIsArray($build);
@@ -173,8 +160,8 @@ class ResultsControllerTest extends KernelTestBase {
       $build['#attached']['drupalSettings']
     );
     $this->assertEquals(4, count($build['#service_groups']));
-    $this->assertInstanceOf(ParkingZone::class, $build['#parking_zone']);
-    $this->assertEquals('Kallio/Sörnäinen', $build['#parking_zone']->name);
+    $this->assertEquals('helsinki_near_you_lazy_builder_preview', $build['#parking_zone_section']['#theme']);
+    $this->assertStringContainsString('/parking/resident-parking', $build['#parking_read_more_url']);
   }
 
   /**

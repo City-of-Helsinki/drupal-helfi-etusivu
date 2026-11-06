@@ -122,51 +122,39 @@
       {% endblock component_content %}
     {% endembed %}
 
-    {# Resident parking zone Section #}
+    {# Parking Section #}
     {% embed "@hdbt/misc/component.twig" with
       {
         component_classes: [
-        'component--resident-parking-zone',
-        'component--hardcoded',
-      ],
-        component_title: 'Your resident parking zone'|t({}, {'context': 'Helsinki near you'}),
-        component_description: parking_zone
-        ? 'Your resident parking zone is @zone.'|t({'@zone': parking_zone.name}, {'context': 'Helsinki near you'})
-        : 'Your area has no resident parking.'|t({}, {'context': 'Helsinki near you'}),
-        component_content_class: 'map',
+          'component--parking',
+          'component--hardcoded',
+        ],
+        component_title: 'Parking'|t({}, {'context': 'Helsinki near you'}),
       }
     %}
       {% block component_content %}
-        {% if parking_zone %}
-          {% set map_title = 'Resident parking zone map'|t({}, {'context': 'Helsinki near you'}) %}
-          {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
-            media_url: parking_zone.embedUrl,
-            media_id: 'resident-parking-zone',
-            media_iframe_title: map_title,
-            media_service_url: 'palvelukartta.hel.fi',
-            cookie_consent_groups: ['bypass'],
-          } %}
+        {% embed "@hdbt/misc/component.twig" with
+          {
+            component_classes: [
+              'component--resident-parking-zone',
+            ],
+            component_title_level: 'h3',
+            component_title: 'Resident parking zone'|t({}, {'context': 'Helsinki near you'}),
+            component_description: 'See the resident parking zones in your area.'|t({}, {'context': 'Helsinki near you'}),
+          }
+        %}
+          {% block component_content %}
+            {{ parking_zone_section }}
 
-          {# Load the map iframe via the shared embedded-content JS, matching how
-             other Helsinki map embeds render (bypass = no tracking cookies). #}
-          {{ {
-            '#attached': {
-              'drupalSettings': {
-                'embedded_media_attributes': {
-                  'resident-parking-zone': {
-                    'src': parking_zone.embedUrl,
-                    'title': map_title,
-                    'type': 'map',
-                    'skipLinkAfterId': 'resident-parking-zone-map-after',
-                    'skipLinkBeforeId': 'resident-parking-zone-map-before',
-                    'cookieConsentGroups': ['bypass'],
-                  },
-                },
-              },
-              'library': ['hdbt/embedded-content-cookie-compliance'],
-            },
-          } }}
-        {% endif %}
+            <div class="see-all-button see-all-button--near-results">
+              {% include '@hdbt/navigation/link-button.html.twig' with {
+                type: 'primary',
+                label: 'Read more about resident parking'|t({}, {'context': 'Helsinki near you'}),
+                url: parking_read_more_url,
+              } %}
+            </div>
+          {% endblock component_content %}
+        {% endembed %}
       {% endblock component_content %}
     {% endembed %}
 
