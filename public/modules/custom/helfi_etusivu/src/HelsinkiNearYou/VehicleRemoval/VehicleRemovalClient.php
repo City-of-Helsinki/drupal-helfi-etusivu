@@ -63,13 +63,13 @@ final readonly class VehicleRemovalClient {
       $validTo = $vehicleRemovalItem['_source']['valid_to'][0];
       $tz = new \DateTimeZone('Europe/Helsinki');
 
-      $validFrom = new \DateTimeImmutable("@$validFrom", $tz)->format('d.m.Y');
-      $validTo = new \DateTimeImmutable("@$validTo", $tz)->format('d.m.Y');
+      $validFrom = new \DateTimeImmutable("@$validFrom", $tz);
+      $validTo = new \DateTimeImmutable("@$validTo", $tz);
 
       $mobileNoteItems[] = new Item(
         $vehicleRemovalItem['_source']['address'][0],
         $vehicleRemovalItem['_source']['address'][0],
-        "$validFrom - $validTo",
+        $this->createDateRange($validFrom, $validTo),
         $vehicleRemovalItem['_source']['map_url'][0],
         $vehicleRemovalItem['_source']['time_range'][0],
       );
@@ -81,6 +81,41 @@ final readonly class VehicleRemovalClient {
       $postalCodes,
       $mobileNoteItems,
     );
+  }
+
+  /**
+   * Create the date range string.
+   *
+   * @param \DateTimeImmutable $from
+   *   The from date.
+   * @param \DateTimeImmutable $to
+   *   The to date.
+   *
+   * @return string
+   *   The date range string.
+   */
+  private function createDateRange(\DateTimeImmutable $from, \DateTimeImmutable $to): string {
+    // Same date, return the to-date.
+    if ($from->format('d.m.Y') === $to->format('d.m.Y')) {
+      return $to->format('d.m.Y');
+    }
+
+    // Different year, return all.
+    if ($from->format('Y') !== $to->format('Y')) {
+      return $from->format('d.m.Y') . '-' . $to->format('d.m.Y');
+    }
+
+    // Different month.
+    if ($from->format('m') !== $to->format('m')) {
+      return $from->format('d.m') . '-' . $to->format('d.m.Y');
+    }
+
+    // Different day.
+    if ($from->format('d') !== $to->format('d')) {
+      return $from->format('d') . '-' . $to->format('d.m.Y');
+    }
+
+    return $from->format('d.m.Y') . '-' . $to->format('d.m.Y');
   }
 
 }

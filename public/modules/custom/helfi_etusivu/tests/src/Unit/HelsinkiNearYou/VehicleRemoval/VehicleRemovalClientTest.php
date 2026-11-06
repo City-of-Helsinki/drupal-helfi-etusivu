@@ -63,7 +63,7 @@ class VehicleRemovalClientTest extends UnitTestCase {
     $this->assertInstanceOf(Item::class, $item);
     $this->assertEquals('Mannerheimintie 1', $item->title);
     $this->assertEquals('Mannerheimintie 1', $item->address);
-    $this->assertEquals(date('d.m.Y', 1767225600) . ' - ' . date('d.m.Y', 1767484800), $item->date_range);
+    $this->assertEquals(date('d', 1767225600) . '-' . date('d.m.Y', 1767484800), $item->date_range);
     $this->assertEquals('https://kartta.hel.fi/?id=1', $item->map_url);
     $this->assertEquals('8-18', $item->time_range);
   }
