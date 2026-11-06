@@ -63,8 +63,8 @@ final readonly class VehicleRemovalClient {
       $validTo = $vehicleRemovalItem['_source']['valid_to'][0];
       $tz = new \DateTimeZone('Europe/Helsinki');
 
-      $validFrom = new \DateTimeImmutable("@$validFrom", $tz);
-      $validTo = new \DateTimeImmutable("@$validTo", $tz);
+      $validFrom = new \DateTimeImmutable("@$validFrom")->setTimezone($tz);
+      $validTo = new \DateTimeImmutable("@$validTo")->setTimezone($tz);
 
       $mobileNoteItems[] = new Item(
         $vehicleRemovalItem['_source']['address'][0],
