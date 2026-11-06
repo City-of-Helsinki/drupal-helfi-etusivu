@@ -96,26 +96,26 @@ final readonly class VehicleRemovalClient {
    */
   private function createDateRange(\DateTimeImmutable $from, \DateTimeImmutable $to): string {
     // Same date, return the to-date.
-    if ($from->format('d.m.Y') === $to->format('d.m.Y')) {
+    if ($from->format('j.m.Y') === $to->format('d.m.Y')) {
       return $to->format('d.m.Y');
     }
 
     // Different year, return all.
     if ($from->format('Y') !== $to->format('Y')) {
-      return $from->format('d.m.Y') . '-' . $to->format('d.m.Y');
+      return $from->format('j.m.Y') . '-' . $to->format('d.m.Y');
     }
 
     // Different month.
     if ($from->format('m') !== $to->format('m')) {
-      return $from->format('d.m') . '-' . $to->format('d.m.Y');
+      return $from->format('j.m.') . '-' . $to->format('d.m.Y');
     }
 
     // Different day.
     if ($from->format('d') !== $to->format('d')) {
-      return $from->format('d') . '-' . $to->format('d.m.Y');
+      return $from->format('j.') . '-' . $to->format('d.m.Y');
     }
 
-    return $from->format('d.m.Y') . '-' . $to->format('d.m.Y');
+    return $from->format('j.m.Y') . '-' . $to->format('d.m.Y');
   }
 
 }
