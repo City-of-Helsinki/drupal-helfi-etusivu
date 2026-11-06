@@ -485,3 +485,11 @@ msgstr "Katso siirtokehotukset postinumeroalueellasi."
 msgctxt "Helsinki near you"
 msgid "See all vehicle removal requests near you"
 msgstr "Katso kaikki siirtokehotukset lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the search"
+msgstr "Haullasi ei löytynyt voimassa olevia siirtokehotuksia"
+
+msgctxt "Helsinki near you"
+msgid "Expiration time"
+msgstr "Voimassaoloaika"

@@ -404,3 +404,11 @@ msgstr "Se flyttningsuppmaningar i ditt postnummerområde."
 msgctxt "Helsinki near you"
 msgid "See all vehicle removal requests near you"
 msgstr "Se alla flyttningsuppmaningar nära dig"
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the search"
+msgstr "Inga resultat hittades"
+
+msgctxt "Helsinki near you"
+msgid "Expiration time"
+msgstr "Utgångstid"
