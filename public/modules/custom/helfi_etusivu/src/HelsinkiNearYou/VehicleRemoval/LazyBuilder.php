@@ -60,12 +60,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     foreach ($data->results as $item) {
       $items[] = [
         '#theme' => 'helsinki_near_you_vehicle_removal_item',
-        '#title' => $item->title,
-        '#address' => $item->address,
-        '#date_range' => $item->date_range,
-        '#map_url' => $item->map_url,
-        '#time_range' => $item->time_range,
-      ];
+      ] + $item->toArray();
     }
 
     $labels = $this->createComponentLabels($data->parkingZone, $data->postalCodes);

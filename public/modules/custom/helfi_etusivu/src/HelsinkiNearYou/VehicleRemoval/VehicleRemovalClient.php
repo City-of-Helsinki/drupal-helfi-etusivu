@@ -72,6 +72,7 @@ final readonly class VehicleRemovalClient {
         $this->createDateRange($validFrom, $validTo),
         $vehicleRemovalItem['_source']['map_url'][0],
         $vehicleRemovalItem['_source']['time_range'][0],
+        $vehicleRemovalItem['_source']['additional_text'][0] ?? NULL,
       );
     }
 

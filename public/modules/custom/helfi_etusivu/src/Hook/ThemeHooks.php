@@ -73,6 +73,7 @@ final class ThemeHooks {
           'date_range' => NULL,
           'map_url' => NULL,
           'time_range' => NULL,
+          'additional_text' => NULL,
         ],
         'template' => 'helsinki-near-you-vehicle-removal-item',
       ],

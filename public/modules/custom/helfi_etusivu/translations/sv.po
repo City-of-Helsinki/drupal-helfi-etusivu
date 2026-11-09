@@ -412,3 +412,11 @@ msgstr "Inga resultat hittades"
 msgctxt "Helsinki near you"
 msgid "Expiration time"
 msgstr "Utgångstid"
+
+msgctxt "Helsinki near you"
+msgid "Additional information"
+msgstr "Ytterligare upplysningar"
+
+msgctxt "Helsinki near you"
+msgid "Time"
+msgstr "Klockan"

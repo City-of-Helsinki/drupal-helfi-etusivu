@@ -493,3 +493,11 @@ msgstr "Haullasi ei löytynyt voimassa olevia siirtokehotuksia"
 msgctxt "Helsinki near you"
 msgid "Expiration time"
 msgstr "Voimassaoloaika"
+
+msgctxt "Helsinki near you"
+msgid "Additional information"
+msgstr "Lisätiedot"
+
+msgctxt "Helsinki near you"
+msgid "Time"
+msgstr "Kello"

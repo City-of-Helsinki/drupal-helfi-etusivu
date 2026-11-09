@@ -22,6 +22,8 @@ final readonly class Item {
    *   The url to the map.
    * @param string $time_range
    *   The time range when mobile note is active (for example 24h or 08-18)
+   * @param ?string $additional_text
+   *   More specific information about mobile note.
    */
   public function __construct(
     public string $title,
@@ -29,7 +31,25 @@ final readonly class Item {
     public string $date_range,
     public string $map_url,
     public string $time_range,
+    public ?string $additional_text,
   ) {
+  }
+
+  /**
+   * Return the items for render array.
+   *
+   * @return array
+   *   DTO values formatted for render array.
+   */
+  public function toArray(): array {
+    return [
+      '#title' => $this->title,
+      '#address' => $this->address,
+      '#date_range' => $this->date_range,
+      '#map_url' => $this->map_url,
+      '#time_range' => $this->time_range,
+      '#additional_text' => $this->additional_text,
+    ];
   }
 
 }
