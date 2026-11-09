@@ -133,6 +133,10 @@
       }
     %}
       {% block component_content %}
+        {# The parking zone section replaces the description when the address has no zone. #}
+        {% set resident_parking_zone_description %}
+          <p id="resident-parking-zone-description">{{ 'See the resident parking zones in your area.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+        {% endset %}
         {% embed "@hdbt/misc/component.twig" with
           {
             component_classes: [
@@ -140,6 +144,7 @@
             ],
             component_title_level: 'h3',
             component_title: 'Resident parking zone'|t({}, {'context': 'Helsinki near you'}),
+            component_description: resident_parking_zone_description,
           }
         %}
           {% block component_content %}
