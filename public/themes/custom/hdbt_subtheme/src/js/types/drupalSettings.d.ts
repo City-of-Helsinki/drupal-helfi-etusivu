@@ -9,5 +9,6 @@ declare namespace drupalSettings {
       helsinki_near_you: string;
     };
     search_url: string;
+    show_contacts?: boolean;
   };
 }

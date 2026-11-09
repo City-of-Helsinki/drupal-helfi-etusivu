@@ -46,12 +46,17 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     return [
       '#theme' => 'helfi_etusivu_site_search',
+      '#cache' => [
+        'contexts' => ['user.roles:authenticated'],
+      ],
       '#attached' => [
         'drupalSettings' => [
           'helfi_site_search' => [
             'search_url' => $search_url,
             'external_links' => $external_links,
             'ai_register_url' => GlobalUrl::AiRegister->url($langcode),
+            // The search API returns contacts only to logged-in users.
+            'show_contacts' => $this->currentUser()->isAuthenticated(),
           ],
           'helfi_react_search' => [
             'sentry_dsn_react' => $sentry_dsn,

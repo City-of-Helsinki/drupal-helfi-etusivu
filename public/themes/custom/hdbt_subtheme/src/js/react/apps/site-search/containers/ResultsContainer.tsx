@@ -30,6 +30,11 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
 
   const totalHits = data?.total_hits ?? 0;
   const promotedCount = page === 1 ? (data?.promoted?.length ?? 0) : 0;
+  // Without filters only the number of contacts is shown, in a notification.
+  // With the contacts filter the backend pages the contacts before the content
+  // results and includes them in total_hits.
+  const contactsTotal = !bundle && page === 1 ? (data?.contacts_total ?? 0) : 0;
+  const contactCards = bundle?.split(',').includes('contacts') ? (data?.contacts ?? []) : [];
   const resultsCount = data?.results?.length ?? 0;
   const totalPages = Math.ceil(totalHits / AppSettings.SIZE);
   const isValidQuery = query.length >= AppSettings.MIN_QUERY_LENGTH;
@@ -115,7 +120,7 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
     </Notification>
   );
 
-  if (!data || totalHits === 0) {
+  if (!data || (totalHits === 0 && contactsTotal === 0)) {
     return (
       <ResultsEmpty
         wrapperClass={`${resultsClassName} hdbt-search--react__results--no-results`}
@@ -146,6 +151,22 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
         resultText={Drupal.formatPlural(totalHits, '@count result', '@count results', {}, { context: 'Site search' })}
         ref={scrollTarget}
       />
+      {contactsTotal > 0 && (
+        <Notification
+          className='notification--site-search-contacts'
+          label={Drupal.formatPlural(
+            contactsTotal,
+            'The search returned 1 contact',
+            'The search returned @count contacts',
+            {},
+            { context: 'Site search' },
+          )}
+          type='info'
+          headingLevel={3}
+        >
+          {Drupal.t('Show all contact information', {}, { context: 'Site search' })}
+        </Notification>
+      )}
       <div ref={resultsListRef}>
         {promotedCount > 0 &&
           data.promoted.map((item) => (
@@ -157,6 +178,21 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
               cardModifierClass='card--site-search card--site-search--promoted'
             />
           ))}
+        {contactCards.map((item, index) => (
+          <ResultCard
+            key={`contact-${page}-${index}`}
+            title={item.name}
+            description={[
+              item.job_title,
+              item.organization_hierarchy.join(', '),
+              item.email,
+              ...item.phones.map((phone) => phone.value),
+            ]
+              .filter(Boolean)
+              .join(' | ')}
+            cardModifierClass='card--site-search card--site-search--contact'
+          />
+        ))}
         {resultsCount > 0 &&
           data.results.map((item, index) => (
             <Fragment key={item.url}>

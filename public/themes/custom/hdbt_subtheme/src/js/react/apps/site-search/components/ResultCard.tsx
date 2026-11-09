@@ -6,7 +6,7 @@ import DebugBlock from './DebugBlock';
 const EXCERPT_LENGTH = 300;
 
 type ResultCardProps = {
-  url: string;
+  url?: string;
   fragmentUrl?: string;
   title: string;
   description?: string;
