@@ -1,4 +1,5 @@
 {% if name %}
+  <p>{{ 'See the resident parking zones in your area.'|t({}, {'context': 'Helsinki near you'}) }}</p>
   {% embed '@hdbt/component/card.twig' with {
     card_modifier_class: 'card--border',
     card_image: map_image,

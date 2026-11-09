@@ -47,13 +47,11 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
    *
    * @param \Drupal\helfi_api_base\ServiceMap\DTO\Address $address
    *   The address.
-   * @param string $langcode
-   *   The language code.
    *
    * @return array<string, mixed>
    *   The render array.
    */
-  public function build(Address $address, string $langcode): array {
+  public function build(Address $address): array {
     $build = [
       '#cache' => [
         'max-age' => 0,
@@ -85,11 +83,11 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
 
     if ($prices = ResidentParkingPrice::get($zone->areaKey)) {
       [$price, $electricPrice] = array_map(
-        static fn (int|float $euros) => number_format($euros, is_int($euros) ? 0 : 2, $langcode === 'en' ? '.' : ',', ''),
+        static fn (int|float $euros) => number_format($euros, is_int($euros) ? 0 : 2, ',', ''),
         $prices,
       );
       $build['#content']['#price'] = new TranslatableMarkup(
-        '€@price/month, fully electric vehicle €@electric_price/month',
+        '@price €/month, fully electric vehicle @electric_price €/month',
         ['@price' => $price, '@electric_price' => $electricPrice],
         ['context' => 'Helsinki near you'],
       );
@@ -100,8 +98,13 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
         '#theme' => 'imagecache_external_responsive',
         '#uri' => $mapImageUrl,
         '#responsive_image_style_id' => 'card',
-        // The card title already names the zone, so the map is decorative.
-        '#alt' => '',
+        '#attributes' => [
+          'alt' => new TranslatableMarkup(
+            'Map of resident parking zone @area_key, @name',
+            ['@area_key' => $zone->areaKey, '@name' => $zone->name],
+            ['context' => 'Helsinki near you'],
+          ),
+        ],
       ];
     }
 

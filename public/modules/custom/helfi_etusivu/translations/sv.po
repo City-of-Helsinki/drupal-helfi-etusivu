@@ -395,11 +395,15 @@ msgid "Resident parking zone @area_key, @name"
 msgstr "Boendeparkeringsområde @area_key, @name"
 
 msgctxt "Helsinki near you"
+msgid "Map of resident parking zone @area_key, @name"
+msgstr "Karta över boendeparkeringsområde @area_key, @name"
+
+msgctxt "Helsinki near you"
 msgid "Price"
 msgstr "Pris"
 
 msgctxt "Helsinki near you"
-msgid "€@price/month, fully electric vehicle €@electric_price/month"
+msgid "@price €/month, fully electric vehicle @electric_price €/month"
 msgstr "@price €/månad, fullständigt eldrivet fordon @electric_price €/månad"
 
 msgctxt "Helfi search"

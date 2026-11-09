@@ -43,13 +43,11 @@ class LazyBuilderTest extends KernelTestBase {
    *
    * @param \Drupal\helfi_api_base\ServiceMap\DTO\ParkingZone|\Exception|null $result
    *   The zone to return, or an exception to throw.
-   * @param string $langcode
-   *   The language code.
    *
    * @return array<string, mixed>
    *   The render array.
    */
-  private function build(ParkingZone|\Exception|null $result, string $langcode = 'fi'): array {
+  private function build(ParkingZone|\Exception|null $result): array {
     $service = $this->createMock(ResidentParkingZoneServiceInterface::class);
     $method = $service->method('getParkingZone');
     $result instanceof \Exception ? $method->willThrowException($result) : $method->willReturn($result);
@@ -59,7 +57,7 @@ class LazyBuilderTest extends KernelTestBase {
     return $sut->build(new Address(
       StreetName::createFromArray(['fi' => 'Kolmas linja 10']),
       new Location(60.1849, 24.9496, 'Point'),
-    ), $langcode);
+    ));
   }
 
   /**
@@ -101,6 +99,7 @@ class LazyBuilderTest extends KernelTestBase {
       $this->assertEquals('https://palvelukartta.hel.fi/fi/area', $content['#map_url']);
       $this->assertEquals('imagecache_external_responsive', $content['#map_image']['#theme']);
       $this->assertEquals('card', $content['#map_image']['#responsive_image_style_id']);
+      $this->assertEquals('Map of resident parking zone J, Alppiharju', (string) $content['#map_image']['#attributes']['alt']);
       $this->assertStringStartsWith('https://kartta.hel.fi/ws/geoserver/avoindata/wms?', $content['#map_image']['#uri']);
 
       $query = $this->getMapImageQuery($build);
@@ -127,16 +126,13 @@ class LazyBuilderTest extends KernelTestBase {
       $this->assertArrayNotHasKey('#map_image', $build['#content'], "$areaKey $bbox");
     }
 
-    // The price of the zone is shown in the page language.
+    // Prices are shown with a decimal comma, whole euros without decimals.
     $price = $this->build(new ParkingZone(name: 'Ullanlinna', areaKey: 'C'))['#content']['#price'];
     $this->assertInstanceOf(TranslatableMarkup::class, $price);
-    $this->assertEquals(['@price' => '64,50', '@electric_price' => '48,40'], $price->getArguments());
+    $this->assertEquals('64,50 €/month, fully electric vehicle 48,40 €/month', (string) $price);
 
-    $price = $this->build(new ParkingZone(name: 'Kallio', areaKey: 'J'), 'en')['#content']['#price'];
-    $this->assertEquals(['@price' => '60', '@electric_price' => '45'], $price->getArguments());
-
-    $price = $this->build(new ParkingZone(name: 'Ullanlinna', areaKey: 'C'), 'en')['#content']['#price'];
-    $this->assertEquals(['@price' => '64.50', '@electric_price' => '48.40'], $price->getArguments());
+    $price = $this->build(new ParkingZone(name: 'Kallio', areaKey: 'J'))['#content']['#price'];
+    $this->assertEquals('60 €/month, fully electric vehicle 45 €/month', (string) $price);
 
     // Zones without a known price are shown without one.
     $build = $this->build(new ParkingZone(name: 'Unknown', areaKey: 'X'));

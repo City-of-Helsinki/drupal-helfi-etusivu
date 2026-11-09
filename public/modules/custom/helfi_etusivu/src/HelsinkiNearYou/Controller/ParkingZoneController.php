@@ -28,7 +28,7 @@ final class ParkingZoneController extends HtmxController {
    * {@inheritdoc}
    */
   protected function buildHtmxResults(Address $address, string $langcode, ?int $limit = NULL): array {
-    return $this->lazyBuilder->build($address, $langcode);
+    return $this->lazyBuilder->build($address);
   }
 
 }
