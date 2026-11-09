@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\Token;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\helfi_platform_config\Token\OGImageBuilderInterface;
+use Drupal\helfi_platform_config\Image\ImageBuilderInterface;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
  * OG image for nodes.
  */
-class NewsNodeImageBuilder implements OGImageBuilderInterface {
+class NewsNodeImageBuilder implements ImageBuilderInterface {
 
   /**
    * {@inheritDoc}

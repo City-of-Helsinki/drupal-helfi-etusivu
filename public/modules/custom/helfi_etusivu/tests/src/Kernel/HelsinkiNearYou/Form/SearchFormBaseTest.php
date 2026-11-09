@@ -85,6 +85,7 @@ class SearchFormBaseTest extends KernelTestBase {
 
     $errors = $formState->getErrors();
     $this->assertArrayHasKey('home_address', $errors);
+    $this->assertArrayNotHasKey('#error_title', $built['home_address']);
   }
 
   /**
@@ -105,6 +106,7 @@ class SearchFormBaseTest extends KernelTestBase {
 
     $errors = $formState->getErrors();
     $this->assertArrayHasKey('home_address', $errors);
+    $this->assertSame('No results found for this street address', (string) $built['home_address']['#error_title']);
   }
 
   /**

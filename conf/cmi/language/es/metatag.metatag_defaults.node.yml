@@ -1,5 +1,5 @@
-label: Contenido
 tags:
+  canonical_url: '[node:url]'
   title: '[node:title] | [site:name]'
   description: '[node:summary]'
-  canonical_url: '[node:url]'
+label: Contenido

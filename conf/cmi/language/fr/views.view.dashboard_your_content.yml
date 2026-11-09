@@ -1,6 +1,6 @@
 display:
   default:
-    display_title: Default
+    display_title: 'Par défaut'
     display_options:
       fields:
         views_bulk_operations_bulk_form:
