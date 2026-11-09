@@ -75,7 +75,7 @@ class LazyBuilderTest extends KernelTestBase {
     $this->assertNotEmpty($baseUrl);
     $this->assertStringStartsWith($baseUrl, $url);
     $this->assertEquals('See vehicle removal requests in your postal code.', $description);
-    $this->assertEquals('1.-04.01.2026', $content['#items'][0]['#date_range']);
+    $this->assertEquals('1.-4.01.2026', $content['#items'][0]['#date_range']);
     $this->assertTrue(str_contains($url, 'postal_code'));
     $this->assertTrue(str_contains($url, '00100'));
     $this->assertTrue(str_contains($url, '00130'));
