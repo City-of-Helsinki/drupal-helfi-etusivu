@@ -38,7 +38,7 @@ final readonly class Item {
   /**
    * Return the items for render array.
    *
-   * @return array
+   * @return array<mixed>
    *   DTO values formatted for render array.
    */
   public function toArray(): array {
