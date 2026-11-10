@@ -23,14 +23,14 @@ const BUNDLE_OPTIONS = [
     value: 'news',
     label: Drupal.t('News', {}, { context: 'Site search' }),
   },
-  {
-    value: 'others',
-    label: Drupal.t('Other content', {}, { context: 'Site search' }),
-  },
   // Contacts are only available to logged-in users.
   ...(drupalSettings?.helfi_site_search?.show_contacts
     ? [{ value: 'contacts', label: Drupal.t('Contacts', {}, { context: 'Site search' }) }]
     : []),
+  {
+    value: 'others',
+    label: Drupal.t('Other content', {}, { context: 'Site search' }),
+  },
 ];
 
 const FormContainer = ({ withBundleFilters = false, filtersRef }: FormContainerProps) => {

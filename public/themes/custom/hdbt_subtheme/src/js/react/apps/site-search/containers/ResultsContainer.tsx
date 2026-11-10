@@ -206,6 +206,8 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
             cardModifierClass='card--site-search card--site-search--contact'
           />
         ))}
+        {/* On pages with only contacts, there is no content result to show the notification after. */}
+        {contactCards.length > 0 && resultsCount === 0 && externalLinksNotification}
         {resultsCount > 0 &&
           data.results.map((item, index) => (
             <Fragment key={item.url}>
