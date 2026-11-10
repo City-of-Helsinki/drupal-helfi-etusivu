@@ -1,0 +1,25 @@
+{% if description and items %}
+  <div class="component__description user-edited-content">
+    {{ description }}
+  </div>
+{% endif %}
+
+{% if items %}
+  <div class="component__content vehicle-removal-list">
+    {{ items }}
+  </div>
+{% else %}
+  <p>
+    {{ 'No results were found for the search'|t({}, {'context': 'Helsinki near you'}) }}
+  </p>
+{% endif %}
+
+{% if button_url %}
+  <div class="see-all-button see-all-button--near-results">
+    {% include '@hdbt/navigation/link-button.html.twig' with {
+      type: 'primary',
+      label: button_label,
+      url: button_url,
+    } %}
+  </div>
+{% endif %}

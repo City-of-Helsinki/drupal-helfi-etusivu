@@ -1,6 +1,5 @@
 config_rewrite:
   replace: ['seo_title_bundles']
-enable_seo_title: true
 enable_tone_check: true
 seo_title_bundles:
   - page

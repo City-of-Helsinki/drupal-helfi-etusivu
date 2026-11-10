@@ -453,3 +453,59 @@ msgstr "Hakusana"
 msgctxt "Helfi search"
 msgid "The example search term shown to users."
 msgstr "Käyttäjille näytettävä esimerkkihakusana."
+
+msgctxt "Helsinki near you"
+msgid "Parking"
+msgstr "Pysäköinti"
+
+msgctxt "Helsinki near you"
+msgid "Resident parking zone"
+msgstr "Asukaspysäköintialue"
+
+msgctxt "Helsinki near you"
+msgid "See the resident parking zones in your area."
+msgstr "Tutustu alueesi asukaspysäköintialueeseen."
+
+msgctxt "Helsinki near you"
+msgid "There is no resident parking in your area. It is only available in the inner city."
+msgstr "Asuinalueellasi ei ole käytössä asukaspysäköintiä. Asukaspysäköinti on käytössä kantakaupungissa."
+
+msgctxt "Helsinki near you"
+msgid "The permit allows you to park in your zone for a monthly fee."
+msgstr "Asukaspysäköintitunnuksella pysäköit asuinalueesi asukaspysäköintipaikoilla kuukausimaksulla."
+
+msgctxt "Helsinki near you"
+msgid "Read more about resident parking"
+msgstr "Lue lisää asukaspysäköinnistä"
+
+msgctxt "Helsinki near you"
+msgid "Vehicle removal requests"
+msgstr "Ajoneuvojen siirtokehotukset"
+
+msgctxt "Helsinki near you"
+msgid "See vehicle removal requests in your parking zone."
+msgstr "Katso siirtokehotukset asukaspysäköintialueellasi."
+
+msgctxt "Helsinki near you"
+msgid "See vehicle removal requests in your postal code."
+msgstr "Katso siirtokehotukset postinumeroalueellasi."
+
+msgctxt "Helsinki near you"
+msgid "See all vehicle removal requests near you"
+msgstr "Katso kaikki siirtokehotukset lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the search"
+msgstr "Haullasi ei löytynyt voimassa olevia siirtokehotuksia"
+
+msgctxt "Helsinki near you"
+msgid "Expiration time"
+msgstr "Voimassaoloaika"
+
+msgctxt "Helsinki near you"
+msgid "Additional information"
+msgstr "Lisätiedot"
+
+msgctxt "Helsinki near you"
+msgid "Time"
+msgstr "Kello"

@@ -18,6 +18,7 @@ enum InternalSearchLink {
   case Daycares;
   case PlowingSchedules;
   case NewsArchive;
+  case VehicleRemoval;
 
   /**
    * Gets the translated link for given language.
@@ -76,6 +77,11 @@ enum InternalSearchLink {
         'fi' => 'https://www.hel.fi/fi/uutiset/etsi-uutisia',
         'sv' => 'https://www.hel.fi/sv/nyheter/sok-efter-nyheter',
         'en' => 'https://www.hel.fi/en/news/search-for-news',
+      ],
+      InternalSearchLink::VehicleRemoval => [
+        'fi' => 'https://www.hel.fi/fi/kaupunkiymparisto-ja-liikenne/pysakointi/ajoneuvojen-siirrot/ajoneuvojen-siirtokehotukset',
+        'sv' => 'https://www.hel.fi/sv/stadsmiljo-och-trafik/parkering/forflyttning-av-fordon/flyttningsuppmaningar-for-fordon',
+        'en' => 'https://www.hel.fi/en/urban-environment-and-traffic/parking/vehicle-removal/vehicle-removal-requests',
       ]
     };
   }
