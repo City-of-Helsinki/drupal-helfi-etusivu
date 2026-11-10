@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\ExistingSite;
 
-use Drupal\helfi_etusivu\Entity\Node\Announcement;
+use Drupal\helfi_node_announcement\Entity\Announcement;
 use Drupal\Tests\helfi_api_base\Functional\ExistingSiteTestBase;
 
 /**
@@ -18,7 +18,7 @@ class AnnouncementNodeTest extends ExistingSiteTestBase {
    * Tests 'field_publish_externally'.
    */
   public function testGlobalAnnouncementNodeCreation() : void {
-    /** @var \Drupal\helfi_etusivu\Entity\Node\Announcement $announcement */
+    /** @var \Drupal\helfi_node_announcement\Entity\Announcement $announcement */
     $announcement = $this->createNode([
       'type' => 'announcement',
       'title' => 'Test announcement',
@@ -28,7 +28,7 @@ class AnnouncementNodeTest extends ExistingSiteTestBase {
 
     $this->assertFalse($announcement->publishExternally());
 
-    /** @var \Drupal\helfi_etusivu\Entity\Node\Announcement $globalAnnouncement */
+    /** @var \Drupal\helfi_node_announcement\Entity\Announcement $globalAnnouncement */
     $globalAnnouncement = $this->createNode([
       'type' => 'announcement',
       'title' => 'Test global announcement',
