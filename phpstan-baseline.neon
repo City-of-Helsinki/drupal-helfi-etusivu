@@ -163,12 +163,6 @@ parameters:
 			path: public/modules/custom/helfi_etusivu/helfi_etusivu.tokens.inc
 
 		-
-			message: '#^Method Drupal\\helfi_etusivu\\Entity\\Node\\Announcement\:\:getExternalCacheTags\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/Entity/Node/Announcement.php
-
-		-
 			message: '#^Method Drupal\\helfi_etusivu\\Entity\\Node\\NewsItem\:\:getTaxonomyTermsWithArchiveLinks\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
