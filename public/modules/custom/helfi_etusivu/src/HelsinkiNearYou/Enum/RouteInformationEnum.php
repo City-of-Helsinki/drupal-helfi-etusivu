@@ -19,6 +19,7 @@ enum RouteInformationEnum {
   case Feedback;
   case Events;
   case Roadworks;
+  case VehicleRemoval;
 
   /**
    * Returns the hero title based on the route.
@@ -36,6 +37,7 @@ enum RouteInformationEnum {
       self::Feedback  => new TranslatableMarkup('Feedback related to your neighbourhood', [], ['context' => 'Helsinki near you']),
       self::Events => new TranslatableMarkup('Events near you', [], ['context' => 'Helsinki near you']),
       self::Roadworks => new TranslatableMarkup('Street and park projects near you', [], ['context' => 'Helsinki near you']),
+      self::VehicleRemoval => new TranslatableMarkup('Vehicle removal near you', [], ['context' => 'Helsinki near you']),
     };
   }
 
@@ -52,6 +54,7 @@ enum RouteInformationEnum {
       self::Feedback => new TranslatableMarkup('Browse feedback and fault reports that have been sent to the City of Helsinki from near you.', [], ['context' => 'Helsinki near you']),
       self::Events => new TranslatableMarkup('Find interesting events near you.', [], ['context' => 'Helsinki near you events search']),
       self::Roadworks => new TranslatableMarkup('Find information on street and park projects near you.', [], ['context' => 'Helsinki near you roadworks search']),
+      self::VehicleRemoval => new TranslatableMarkup('Find Vehicle removal near you', [], ['context' => 'Helsinki near you']),
     };
   }
 
@@ -92,6 +95,7 @@ enum RouteInformationEnum {
       'helfi_etusivu.helsinki_near_you_feedback' => self::Feedback,
       'helfi_etusivu.helsinki_near_you_events' => self::Events,
       'helfi_etusivu.helsinki_near_you_roadworks' => self::Roadworks,
+      'helfi_etusivu.helsinki_near_you_vehicle_removal' => self::VehicleRemoval,
       default => NULL,
     };
   }
@@ -109,7 +113,7 @@ enum RouteInformationEnum {
   public function getFirstParagraphBg(): bool {
     return match($this) {
       self::Roadworks, self::Events, self::Feedback => TRUE,
-      self::Results, self::LandingPage => FALSE,
+      self::Results, self::LandingPage, self::VehicleRemoval => FALSE,
     };
   }
 

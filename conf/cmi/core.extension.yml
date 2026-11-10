@@ -3,8 +3,6 @@ _core:
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
-  ai: 0
-  ai_provider_azure: 0
   allowed_formats: 0
   basic_auth: 0
   big_pipe: 0
