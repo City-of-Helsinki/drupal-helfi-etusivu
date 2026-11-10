@@ -13,7 +13,7 @@ import ResultCard from '../components/ResultCard';
 import AppSettings from '../enum/AppSettings';
 import useSearchQuery from '../hooks/useSearchQuery';
 import useSelectionFocus, { type SelectionFocusRefs } from '../hooks/useSelectionFocus';
-import { pageAtom, queryAtom, setPageAtom, submitCountAtom } from '../store';
+import { pageAtom, queryAtom, setPageAtom, showContactsAtom, submitCountAtom } from '../store';
 
 type ResultsContainerProps = {
   bundle?: string;
@@ -25,6 +25,7 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
   const page = useAtomValue(pageAtom);
   const submitCount = useAtomValue(submitCountAtom);
   const setPage = useSetAtom(setPageAtom);
+  const showContacts = useSetAtom(showContactsAtom);
   const links = drupalSettings?.helfi_site_search?.external_links;
   const { data, error, isLoading, isValidating } = useSearchQuery(query, bundle, page);
 
@@ -111,7 +112,7 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
           <ExternalLink href={links.decisions} title={Drupal.t('Decisions', {}, { context: 'Site search' })} />
         </li>
         <li>
-          <a href={links.contact}>{Drupal.t('Contact information', {}, { context: 'Site search' })}</a>
+          <ExternalLink href={links.contact} title={Drupal.t('Contact information', {}, { context: 'Site search' })} />
         </li>
         <li>
           <a href={links.helsinki_near_you}>{Drupal.t('Helsinki near you', {}, { context: 'Site search' })}</a>
@@ -127,7 +128,7 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
         ref={scrollTarget}
         resultText={Drupal.t('No results', {}, { context: 'Site search' })}
         bodyText={Drupal.t(
-          'Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information.',
+          'Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events or decisions.',
           {},
           { context: 'Site search' },
         )}
@@ -136,6 +137,13 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
       </ResultsEmpty>
     );
   }
+
+  const contactsUrl = () => {
+    const url = new URL(window.location.toString());
+    url.searchParams.set('bundles', 'contacts');
+    url.searchParams.delete('page');
+    return url.toString();
+  };
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
     e.preventDefault();
@@ -164,7 +172,15 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
           type='info'
           headingLevel={3}
         >
-          {Drupal.t('Show all contact information', {}, { context: 'Site search' })}
+          <a
+            href={contactsUrl()}
+            onClick={(e) => {
+              e.preventDefault();
+              showContacts();
+            }}
+          >
+            {Drupal.t('Show all contact information', {}, { context: 'Site search' })}
+          </a>
         </Notification>
       )}
       <div ref={resultsListRef}>
@@ -178,18 +194,15 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
               cardModifierClass='card--site-search card--site-search--promoted'
             />
           ))}
-        {contactCards.map((item, index) => (
+        {contactCards.map((item) => (
           <ResultCard
-            key={`contact-${page}-${index}`}
+            key={item.id}
             title={item.name}
-            description={[
-              item.job_title,
-              item.organization_hierarchy.join(', '),
-              item.email,
-              ...item.phones.map((phone) => phone.value),
-            ]
-              .filter(Boolean)
-              .join(' | ')}
+            contactPersonTitle={item.job_title ?? undefined}
+            contactPersonOrganisation={item.organization_hierarchy}
+            contactPersonNumbers={item.phones?.map((phone) => phone.value)}
+            contactPersonEmail={item.email ?? undefined}
+            contactPersonAddresses={item.addresses?.map((address) => address.value)}
             cardModifierClass='card--site-search card--site-search--contact'
           />
         ))}

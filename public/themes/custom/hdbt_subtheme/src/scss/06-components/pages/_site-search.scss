@@ -135,6 +135,46 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
       margin-block-start: $spacing-half;
     }
   }
+
+  .card__person-title {
+    @include font('body');
+  }
+
+  .card__person-organisation {
+    @include font('small');
+    color: $color-black-60;
+    margin-block-start: $spacing-half;
+
+    .card__person-organisation-item:not(:first-child) {
+      margin-inline-start: $spacing-quarter;
+    }
+
+    .card__person-organisation-item:not(:last-child)::after {
+      @include pseudo-icon('angle-right', $spacing, $color-black-90);
+      margin-inline-start: $spacing-quarter;
+      vertical-align: middle;
+    }
+  }
+
+  .card__person-links,
+  .card__persons-addresses {
+    margin-block-start: $spacing-half;
+  }
+
+  .card__person-link,
+  .card__person-address {
+    @include font('body');
+    margin-block-start: $spacing-half;
+  }
+
+  .card__person-link:first-child,
+  .card__person-address:first-child {
+    margin-block-start: 0;
+  }
+
+  .card__person-organisation + * {
+    margin-block-start: $spacing-and-half;
+  }
 }
 
 .card--site-search + .card--site-search {

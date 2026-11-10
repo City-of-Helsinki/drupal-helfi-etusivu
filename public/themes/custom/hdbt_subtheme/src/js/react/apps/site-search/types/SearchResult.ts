@@ -26,6 +26,7 @@ type ContactValue = {
 type Contact = {
   addresses: ContactValue[];
   email: string | null;
+  id: string;
   job_title: string | null;
   name: string;
   organization_hierarchy: string[];
