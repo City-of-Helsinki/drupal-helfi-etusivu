@@ -19,6 +19,7 @@ enum InternalSearchLink {
   case PlowingSchedules;
   case NewsArchive;
   case ResidentParking;
+  case VehicleRemoval;
 
   /**
    * Gets the translated link for given language.
@@ -83,6 +84,11 @@ enum InternalSearchLink {
         'sv' => 'https://www.hel.fi/sv/stadsmiljo-och-trafik/parkering/boendeparkering',
         'en' => 'https://www.hel.fi/en/urban-environment-and-traffic/parking/resident-parking',
       ],
+      InternalSearchLink::VehicleRemoval => [
+        'fi' => 'https://www.hel.fi/fi/kaupunkiymparisto-ja-liikenne/pysakointi/ajoneuvojen-siirrot/ajoneuvojen-siirtokehotukset',
+        'sv' => 'https://www.hel.fi/sv/stadsmiljo-och-trafik/parkering/forflyttning-av-fordon/flyttningsuppmaningar-for-fordon',
+        'en' => 'https://www.hel.fi/en/urban-environment-and-traffic/parking/vehicle-removal/vehicle-removal-requests',
+      ]
     };
   }
 

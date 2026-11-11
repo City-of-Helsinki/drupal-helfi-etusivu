@@ -188,6 +188,22 @@
       {% endblock component_content %}
     {% endembed %}
 
+    {# Vehicle removal Section #}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--vehicle-removal',
+        'component--hardcoded',
+      ],
+        component_title: 'Vehicle removal requests'|trans({}, {'context': 'Helsinki near you'}),
+        component_content_class: 'vehicle-removal-section',
+      }
+    %}
+      {% block component_content %}
+        {{ vehicle_removal_section }}
+      {% endblock component_content %}
+    {% endembed %}
+
     {# Feedback Section #}
     {% embed "@hdbt/misc/component.twig" with
       {

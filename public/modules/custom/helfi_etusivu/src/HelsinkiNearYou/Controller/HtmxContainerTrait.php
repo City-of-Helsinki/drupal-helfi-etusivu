@@ -135,4 +135,27 @@ trait HtmxContainerTrait {
     );
   }
 
+  /**
+   * Constructs a render array for vehicle removal items.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   * @param int|null $limit
+   *   The limit.
+   * @param string|null $searchingLabel
+   *   The label shown on ghost cards while loading, or null.
+   *
+   * @return array<mixed>
+   *   The render array.
+   */
+  protected function buildVehicleRemovalHtmxContainer(Request $request, ?int $limit = NULL, ?string $searchingLabel = NULL) : array {
+    return $this->buildHtmxRenderArray(
+      'helfi_etusivu.helsinki_near_you_vehicle_removal_htmx',
+      $request,
+      $limit,
+      NULL,
+      $searchingLabel,
+    );
+  }
+
 }

@@ -412,3 +412,59 @@ msgstr "Sök"
 
 msgid "Add search suggestion"
 msgstr "Lägg till sökförslag"
+
+msgctxt "Helsinki near you"
+msgid "Parking"
+msgstr "Parkering"
+
+msgctxt "Helsinki near you"
+msgid "Resident parking zone"
+msgstr "Boendeparkeringsområde"
+
+msgctxt "Helsinki near you"
+msgid "See the resident parking zones in your area."
+msgstr "Bekanta dig med boendeparkeringsområdet i ditt område."
+
+msgctxt "Helsinki near you"
+msgid "There is no resident parking in your area. It is only available in the inner city."
+msgstr "Det finns ingen boendeparkering i ditt bostadsområde. Boendeparkering finns i stadskärnan."
+
+msgctxt "Helsinki near you"
+msgid "The permit allows you to park in your zone for a monthly fee."
+msgstr "Med ett boendeparkeringstillstånd parkerar du på boendeparkeringsplatserna i ditt bostadsområde mot en månadsavgift."
+
+msgctxt "Helsinki near you"
+msgid "Read more about resident parking"
+msgstr "Läs mer om boendeparkering"
+
+msgctxt "Helsinki near you"
+msgid "Vehicle removal requests"
+msgstr "Flyttningsuppmaningar för fordon"
+
+msgctxt "Helsinki near you"
+msgid "See vehicle removal requests in your parking zone."
+msgstr "Se flyttningsuppmaningar i ditt boendeparkeringsområde."
+
+msgctxt "Helsinki near you"
+msgid "See vehicle removal requests in your postal code."
+msgstr "Se flyttningsuppmaningar i ditt postnummerområde."
+
+msgctxt "Helsinki near you"
+msgid "See all vehicle removal requests near you"
+msgstr "Se alla flyttningsuppmaningar nära dig"
+
+msgctxt "Helsinki near you"
+msgid "No results were found for the search"
+msgstr "Inga resultat hittades"
+
+msgctxt "Helsinki near you"
+msgid "Expiration time"
+msgstr "Utgångstid"
+
+msgctxt "Helsinki near you"
+msgid "Additional information"
+msgstr "Ytterligare upplysningar"
+
+msgctxt "Helsinki near you"
+msgid "Time"
+msgstr "Klockan"
