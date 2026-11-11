@@ -51,8 +51,8 @@ export const submitAllSearchAtom = atom(null, (get, set) => {
   window.history.pushState({}, '', newUrl);
 });
 
-// Re-runs the current search with only the contacts filter selected. Discards
-// unsubmitted changes in the form so the results match the shown contact count.
+// Searches again with only the Contacts filter on.
+// Ignores unsaved form changes, so the result count matches the notification.
 export const showContactsAtom = atom(null, (get, set) => {
   set(stagedQueryAtom, get(queryAtom));
   set(stagedBundlesAtom, ['contacts']);

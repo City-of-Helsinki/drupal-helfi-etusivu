@@ -31,9 +31,8 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
 
   const totalHits = data?.total_hits ?? 0;
   const promotedCount = page === 1 ? (data?.promoted?.length ?? 0) : 0;
-  // Without filters only the number of contacts is shown, in a notification.
-  // With the contacts filter the backend pages the contacts before the content
-  // results and includes them in total_hits.
+  // No filters: show only the contact count in a notification.
+  // Contacts filter: show the contact cards first, then the other results.
   const contactsTotal = !bundle && page === 1 ? (data?.contacts_total ?? 0) : 0;
   const contactCards = bundle?.split(',').includes('contacts') ? (data?.contacts ?? []) : [];
   const resultsCount = data?.results?.length ?? 0;
