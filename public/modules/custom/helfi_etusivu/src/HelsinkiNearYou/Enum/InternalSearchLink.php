@@ -18,6 +18,7 @@ enum InternalSearchLink {
   case Daycares;
   case PlowingSchedules;
   case NewsArchive;
+  case ResidentParking;
   case VehicleRemoval;
 
   /**
@@ -77,6 +78,11 @@ enum InternalSearchLink {
         'fi' => 'https://www.hel.fi/fi/uutiset/etsi-uutisia',
         'sv' => 'https://www.hel.fi/sv/nyheter/sok-efter-nyheter',
         'en' => 'https://www.hel.fi/en/news/search-for-news',
+      ],
+      InternalSearchLink::ResidentParking => [
+        'fi' => 'https://www.hel.fi/fi/kaupunkiymparisto-ja-liikenne/pysakointi/asukaspysakointi',
+        'sv' => 'https://www.hel.fi/sv/stadsmiljo-och-trafik/parkering/boendeparkering',
+        'en' => 'https://www.hel.fi/en/urban-environment-and-traffic/parking/resident-parking',
       ],
       InternalSearchLink::VehicleRemoval => [
         'fi' => 'https://www.hel.fi/fi/kaupunkiymparisto-ja-liikenne/pysakointi/ajoneuvojen-siirrot/ajoneuvojen-siirtokehotukset',

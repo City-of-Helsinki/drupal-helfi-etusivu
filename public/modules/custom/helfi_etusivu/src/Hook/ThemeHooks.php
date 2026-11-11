@@ -84,6 +84,8 @@ final class ThemeHooks {
           'toc_enabled' => NULL,
           'toc_title' => NULL,
           'service_groups' => NULL,
+          'parking_zone_section' => NULL,
+          'parking_read_more_url' => NULL,
           'nearby_neighbourhoods' => NULL,
           'news_archive_url' => NULL,
           'roadwork_section' => NULL,
@@ -117,6 +119,16 @@ final class ThemeHooks {
           'limit' => NULL,
         ],
         'template' => 'helsinki-near-you-feedback-item',
+      ],
+      'helsinki_near_you_parking_zone' => [
+        'variables' => [
+          'name' => NULL,
+          'area_key' => NULL,
+          'map_url' => NULL,
+          'map_image' => NULL,
+          'price' => NULL,
+        ],
+        'template' => 'helsinki-near-you-parking-zone',
       ],
       'helsinki_near_you_events' => [
         'variables' => [],

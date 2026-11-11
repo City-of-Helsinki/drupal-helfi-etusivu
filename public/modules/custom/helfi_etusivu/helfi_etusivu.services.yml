@@ -48,6 +48,8 @@ services:
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\Client: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\LinkedEvents\LazyBuilder: ~
 
+  Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone\LazyBuilder: ~
+
   Drupal\helfi_etusivu\Search\PromotionLinkChecker:
     arguments:
       $contentLock: '@?content_lock'

@@ -103,6 +103,8 @@ final class ResultsController extends ControllerBase {
       ),
       '#nearby_neighbourhoods' => $neighborhoods,
       '#service_groups' => $this->buildServiceGroups($addressName, $langcode),
+      '#parking_zone_section' => $this->buildParkingZoneHtmxContainer($request),
+      '#parking_read_more_url' => InternalSearchLink::ResidentParking->getLinkTranslation($langcode),
       '#roadwork_archive_url' => $this->roadworkDataService->getSeeAllUrl($address, $langcode),
       '#roadwork_section' => $this->buildRoadworksHtmxContainer($request, 3),
       '#vehicle_removal_section' => $this->buildVehicleRemovalHtmxContainer($request, 3),
