@@ -37,6 +37,7 @@ type Contact = {
 
 type SearchResponse = {
   // Contacts are only returned for logged-in users.
+  // @todo https://helsinkisolutionoffice.atlassian.net/browse/UHF-13957.
   contacts: Contact[];
   contacts_total: number;
   debug?: {

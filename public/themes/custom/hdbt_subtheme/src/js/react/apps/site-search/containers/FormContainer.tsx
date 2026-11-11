@@ -24,6 +24,7 @@ const BUNDLE_OPTIONS = [
     label: Drupal.t('News', {}, { context: 'Site search' }),
   },
   // Contacts are only available to logged-in users.
+  // @todo https://helsinkisolutionoffice.atlassian.net/browse/UHF-13957.
   ...(drupalSettings?.helfi_site_search?.show_contacts
     ? [{ value: 'contacts', label: Drupal.t('Contacts', {}, { context: 'Site search' }) }]
     : []),

@@ -46,6 +46,8 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     return [
       '#theme' => 'helfi_etusivu_site_search',
+      // Contacts are shown only to logged-in users.
+      // @todo https://helsinkisolutionoffice.atlassian.net/browse/UHF-13957.
       '#cache' => [
         'contexts' => ['user.roles:authenticated'],
       ],
@@ -56,6 +58,7 @@ final class SearchPageController extends ControllerBase implements ContainerInje
             'external_links' => $external_links,
             'ai_register_url' => GlobalUrl::AiRegister->url($langcode),
             // The search API returns contacts only to logged-in users.
+            // @todo https://helsinkisolutionoffice.atlassian.net/browse/UHF-13957.
             'show_contacts' => $this->currentUser()->isAuthenticated(),
           ],
           'helfi_react_search' => [
