@@ -145,13 +145,9 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
     color: $color-black-60;
     margin-block-start: $spacing-half;
 
-    .card__person-organisation-item:not(:first-child) {
-      margin-inline-start: $spacing-quarter;
-    }
-
     .card__person-organisation-item:not(:last-child)::after {
       @include pseudo-icon('angle-right', $spacing, $color-black-90);
-      margin-inline-start: $spacing-quarter;
+      margin-inline: $spacing-quarter;
       vertical-align: middle;
     }
   }
