@@ -142,14 +142,29 @@ const ResultCard = ({
     </div>
   ) : undefined;
 
+  const contactPersonTitleItem = contactPersonTitle ? (
+    <div className='card__person-title'>
+      <span className='label visually-hidden'>
+        {Drupal.t('Title', {}, { context: 'Contact card paragraph field labels' })}
+      </span>
+      {contactPersonTitle}
+    </div>
+  ) : undefined;
+
+  const contactDetails = (
+    <>
+      {contactPersonTitleItem}
+      {contactPersonOrganisationStructure}
+      {contactPersonLinksList}
+      {contactPersonAddressesList}
+    </>
+  );
+
   const cardItem = (
     <CardItem
       cardTitle={title}
       cardUrl={url}
-      cardContactPersonAddresses={contactPersonAddressesList}
-      cardContactPersonLinks={contactPersonLinksList}
-      cardContactPersonOrganisation={contactPersonOrganisationStructure}
-      cardContactPersonTitle={contactPersonTitle}
+      cardBody={contactDetails}
       cardDescription={description && isExpandable && !expanded ? toExcerpt(description) : description}
       cardModifierClass={cardModifierClass}
       cardTitleLevel={3}

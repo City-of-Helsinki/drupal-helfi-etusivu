@@ -197,3 +197,8 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
 .hdbt-search--react__results--no-results .notification--site-search::before {
   display: none;
 }
+
+// Notification that there are contact hits with the submitted search.
+.hdbt-search--react__results--site-search .notification--site-search-contacts {
+  margin-block-end: $spacing;
+}
