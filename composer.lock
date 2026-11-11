@@ -4850,16 +4850,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.22.2",
+            "version": "6.22.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "72337a1fff24df12d6547933ffbdab438e7e4ce0"
+                "reference": "e2b650f75dcf5900405d300ed3203d8f5af624b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/72337a1fff24df12d6547933ffbdab438e7e4ce0",
-                "reference": "72337a1fff24df12d6547933ffbdab438e7e4ce0",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/e2b650f75dcf5900405d300ed3203d8f5af624b1",
+                "reference": "e2b650f75dcf5900405d300ed3203d8f5af624b1",
                 "shasum": ""
             },
             "require": {
@@ -4878,10 +4878,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.22.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.22.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-11-11T08:32:12+00:00"
+            "time": "2026-11-11T15:31:11+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4972,16 +4972,16 @@
         },
         {
             "name": "drupal/helfi_api_base",
-            "version": "2.9.3",
+            "version": "2.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                "reference": "5c28db41c67d2dea62349e0161a562c1293da728"
+                "reference": "02e74f79978c822d2da89d9985d46f46c7d0dd6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/5c28db41c67d2dea62349e0161a562c1293da728",
-                "reference": "5c28db41c67d2dea62349e0161a562c1293da728",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/02e74f79978c822d2da89d9985d46f46c7d0dd6a",
+                "reference": "02e74f79978c822d2da89d9985d46f46c7d0dd6a",
                 "shasum": ""
             },
             "require": {
@@ -5025,10 +5025,10 @@
             ],
             "description": "Helfi - API Base",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.9.3",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.9.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2026-11-11T14:08:00+00:00"
+            "time": "2026-11-11T15:32:32+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -5220,16 +5220,16 @@
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.5.7",
+            "version": "5.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "ca460e3b65815825e2acbfc63a38ccbcd8c74722"
+                "reference": "8e117e34ca105b33b6293d452e628e332d20aa94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/ca460e3b65815825e2acbfc63a38ccbcd8c74722",
-                "reference": "ca460e3b65815825e2acbfc63a38ccbcd8c74722",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/8e117e34ca105b33b6293d452e628e332d20aa94",
+                "reference": "8e117e34ca105b33b6293d452e628e332d20aa94",
                 "shasum": ""
             },
             "require": {
@@ -5370,10 +5370,10 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.5.7",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.5.8",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-11-10T11:54:03+00:00"
+            "time": "2026-11-11T15:31:52+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -14641,16 +14641,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.36.0",
+            "version": "4.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "7df5eefacff197c0aae0925a4848e3f91719d37c"
+                "reference": "635a94908528ca5c4f0804640a0ec578e51639b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/7df5eefacff197c0aae0925a4848e3f91719d37c",
-                "reference": "7df5eefacff197c0aae0925a4848e3f91719d37c",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/635a94908528ca5c4f0804640a0ec578e51639b3",
+                "reference": "635a94908528ca5c4f0804640a0ec578e51639b3",
                 "shasum": ""
             },
             "require": {
@@ -14722,7 +14722,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.36.0"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.37.0"
             },
             "funding": [
                 {
@@ -14734,8 +14734,8 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-11-05T16:26:18+00:00",
-            "published-time": "2026-11-05T16:31:53+00:00"
+            "time": "2026-11-11T15:29:22+00:00",
+            "published-time": "2026-11-11T15:35:52+00:00"
         },
         {
             "name": "stomp-php/stomp-php",
