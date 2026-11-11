@@ -159,7 +159,7 @@ content:
     third_party_settings: {  }
   field_publish_externally:
     type: boolean_checkbox
-    weight: 14
+    weight: 11
     region: content
     settings:
       display_label: true
