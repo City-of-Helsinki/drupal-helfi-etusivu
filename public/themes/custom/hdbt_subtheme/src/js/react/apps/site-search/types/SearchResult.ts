@@ -18,7 +18,28 @@ type Promotion = {
   url: string;
 };
 
+type ContactValue = {
+  type: string | null;
+  value: string;
+};
+
+type Contact = {
+  addresses: ContactValue[];
+  email: string | null;
+  id: string;
+  job_title: string | null;
+  name: string;
+  organization_hierarchy: string[];
+  phones: ContactValue[];
+  score: number;
+  service_hours: string | null;
+};
+
 type SearchResponse = {
+  // Contacts are only returned for logged-in users.
+  // @todo https://helsinkisolutionoffice.atlassian.net/browse/UHF-13957.
+  contacts: Contact[];
+  contacts_total: number;
   debug?: {
     bundles: Record<string, number>;
   };
@@ -30,4 +51,4 @@ type SearchResponse = {
   total_hits: number;
 };
 
-export type { Promotion, SearchResponse, SearchResult };
+export type { Contact, Promotion, SearchResponse, SearchResult };
