@@ -420,6 +420,46 @@ msgstr "Lisää hakunosto"
 msgid "News"
 msgstr "Uutiset"
 
+msgctxt "Helsinki near you"
+msgid "Parking"
+msgstr "Pysäköinti"
+
+msgctxt "Helsinki near you"
+msgid "Resident parking zone"
+msgstr "Asukaspysäköintialue"
+
+msgctxt "Helsinki near you"
+msgid "See the resident parking zones in your area."
+msgstr "Tutustu alueesi asukaspysäköintialueeseen."
+
+msgctxt "Helsinki near you"
+msgid "There is no resident parking in your area. It is only available in the inner city."
+msgstr "Asuinalueellasi ei ole käytössä asukaspysäköintiä. Asukaspysäköinti on käytössä kantakaupungissa."
+
+msgctxt "Helsinki near you"
+msgid "The permit allows you to park in your zone for a monthly fee."
+msgstr "Asukaspysäköintitunnuksella pysäköit asuinalueesi asukaspysäköintipaikoilla kuukausimaksulla."
+
+msgctxt "Helsinki near you"
+msgid "Read more about resident parking"
+msgstr "Lue lisää asukaspysäköinnistä"
+
+msgctxt "Helsinki near you"
+msgid "Resident parking zone @area_key, @name"
+msgstr "Asukaspysäköintialue @area_key, @name"
+
+msgctxt "Helsinki near you"
+msgid "Map of resident parking zone @area_key, @name"
+msgstr "Kartta asukaspysäköintialueesta @area_key, @name"
+
+msgctxt "Helsinki near you"
+msgid "Price"
+msgstr "Hinta"
+
+msgctxt "Helsinki near you"
+msgid "@price €/month, fully electric vehicle @electric_price €/month"
+msgstr "@price €/kuukausi, täyssähköinen ajoneuvo @electric_price €/kuukausi"
+
 msgctxt "Helfi search"
 msgid "Search"
 msgstr "Haku"

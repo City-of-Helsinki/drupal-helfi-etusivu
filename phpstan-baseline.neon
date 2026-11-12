@@ -174,11 +174,6 @@ parameters:
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/Entity/SimpleSitemap/HelfiSimpleSitemap.php
 
-		-
-			message: '#^Method Drupal\\helfi_etusivu\\HelsinkiNearYou\\Controller\\EventsController\:\:buildHtmxResults\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/EventsController.php
 
 		-
 			message: '#^Method Drupal\\helfi_etusivu\\HelsinkiNearYou\\Controller\\EventsController\:\:content\(\) return type has no value type specified in iterable type array\.$#'
@@ -192,17 +187,7 @@ parameters:
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/FeedbackController.php
 
-		-
-			message: '#^Method Drupal\\helfi_etusivu\\HelsinkiNearYou\\Controller\\FeedbackController\:\:buildHtmxResults\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/FeedbackController.php
 
-		-
-			message: '#^Method Drupal\\helfi_etusivu\\HelsinkiNearYou\\Controller\\HtmxController\:\:buildHtmxResults\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/HtmxController.php
 
 		-
 			message: '#^Method Drupal\\helfi_etusivu\\HelsinkiNearYou\\Controller\\HtmxController\:\:htmx\(\) return type has no value type specified in iterable type array\.$#'
@@ -276,11 +261,6 @@ parameters:
 			count: 1
 			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/RoadworksController.php
 
-		-
-			message: '#^Method Drupal\\helfi_etusivu\\HelsinkiNearYou\\Controller\\RoadworksController\:\:buildHtmxResults\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: public/modules/custom/helfi_etusivu/src/HelsinkiNearYou/Controller/RoadworksController.php
 
 		-
 			message: '#^Method Drupal\\helfi_etusivu\\HelsinkiNearYou\\Controller\\SearchPageControllerBase\:\:buildEventsHtmxContainer\(\) return type has no value type specified in iterable type array\.$#'
