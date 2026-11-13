@@ -601,7 +601,7 @@ parameters:
 		-
 			message: '#^Drupal\\Core\\DependencyInjection\\DependencySerializationTrait does not support private properties\.$#'
 			identifier: dependencySerializationTraitProperty.unsupportedPrivateProperty
-			count: 4
+			count: 3
 			path: public/modules/custom/helfi_etusivu/src/Plugin/Block/HelsinkiNearYouHeroBlock.php
 
 		-

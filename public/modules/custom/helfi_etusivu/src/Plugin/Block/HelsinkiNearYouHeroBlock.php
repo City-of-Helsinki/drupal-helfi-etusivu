@@ -80,7 +80,10 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
 
     // Runtime options for the route.
     $options = match ($routeInformation) {
-      RouteInformationEnum::Roadworks, RouteInformationEnum::Events, RouteInformationEnum::Feedback => new HeroOptions(),
+      RouteInformationEnum::Roadworks, 
+      RouteInformationEnum::Events,
+      RouteInformationEnum::VehicleRemoval, 
+      RouteInformationEnum::Feedback => new HeroOptions(),
       RouteInformationEnum::Results => new HeroOptions(
         translationArguments: [
           // Get the address name from request attributes.
