@@ -259,16 +259,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.403.3",
+            "version": "3.403.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "50a3ac24774b729bf8a2ac28f2b469630aaff73a"
+                "reference": "6e52905dabd868c1bc7fd491e0deec6f78a0f7d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/50a3ac24774b729bf8a2ac28f2b469630aaff73a",
-                "reference": "50a3ac24774b729bf8a2ac28f2b469630aaff73a",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6e52905dabd868c1bc7fd491e0deec6f78a0f7d1",
+                "reference": "6e52905dabd868c1bc7fd491e0deec6f78a0f7d1",
                 "shasum": ""
             },
             "require": {
@@ -350,10 +350,10 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.403.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.403.5"
             },
-            "time": "2026-11-10T19:04:16+00:00",
-            "published-time": "2026-11-10T19:12:17+00:00"
+            "time": "2026-11-12T19:40:30+00:00",
+            "published-time": "2026-11-12T19:48:17+00:00"
         },
         {
             "name": "azure-oss/identity",
@@ -639,16 +639,16 @@
         },
         {
             "name": "chi-teck/drupal-code-generator",
-            "version": "4.x-dev",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Chi-teck/drupal-code-generator.git",
-                "reference": "ee02eb9373a534ab9a426eb7c9e9b75918785694"
+                "reference": "984dd69522b5839976df51470a00a51616a21f42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Chi-teck/drupal-code-generator/zipball/ee02eb9373a534ab9a426eb7c9e9b75918785694",
-                "reference": "ee02eb9373a534ab9a426eb7c9e9b75918785694",
+                "url": "https://api.github.com/repos/Chi-teck/drupal-code-generator/zipball/984dd69522b5839976df51470a00a51616a21f42",
+                "reference": "984dd69522b5839976df51470a00a51616a21f42",
                 "shasum": ""
             },
             "require": {
@@ -656,10 +656,10 @@
                 "php": ">=8.3.0",
                 "psr/event-dispatcher": "^1.0",
                 "psr/log": "^3.0",
-                "symfony/console": "^7.4 || ^8",
-                "symfony/dependency-injection": "^7.4 || ^8",
-                "symfony/filesystem": "^7.4 || ^8",
-                "symfony/string": "^7.4 || ^8",
+                "symfony/console": "^7.1",
+                "symfony/dependency-injection": "^7.1",
+                "symfony/filesystem": "^7.1",
+                "symfony/string": "^7.0",
                 "twig/twig": "^3.4"
             },
             "conflict": {
@@ -669,16 +669,15 @@
             "require-dev": {
                 "chi-teck/drupal-coder-extension": "^2.0.0-rc2",
                 "drupal/coder": "8.3.24",
-                "drupal/core": "11.x-dev || 12.x-dev",
+                "drupal/core": "11.x-dev",
                 "ext-simplexml": "*",
                 "phpspec/prophecy-phpunit": "^2.2",
                 "phpunit/phpunit": "^10.5",
                 "squizlabs/php_codesniffer": "^3.9",
-                "symfony/var-dumper": "^7.4 || ^8",
-                "symfony/yaml": "^7.4 || ^8",
+                "symfony/var-dumper": "^7.1",
+                "symfony/yaml": "^7.1",
                 "vimeo/psalm": "^5.24.0"
             },
-            "default-branch": true,
             "bin": [
                 "bin/dcg"
             ],
@@ -695,10 +694,10 @@
             "description": "Drupal code generator",
             "support": {
                 "issues": "https://github.com/Chi-teck/drupal-code-generator/issues",
-                "source": "https://github.com/Chi-teck/drupal-code-generator/tree/4.x"
+                "source": "https://github.com/Chi-teck/drupal-code-generator/tree/4.2.0"
             },
-            "time": "2026-03-29T17:10:39+00:00",
-            "published-time": "2026-03-29T17:10:43+00:00"
+            "time": "2025-06-01T13:48:30+00:00",
+            "published-time": "2025-06-01T13:59:00+00:00"
         },
         {
             "name": "chillerlan/php-qrcode",
@@ -974,7 +973,8 @@
                 "source": "https://github.com/City-of-Helsinki/php-logger-extra/tree/1.0.0",
                 "issues": "https://github.com/City-of-Helsinki/php-logger-extra/issues"
             },
-            "time": "2025-11-25T11:22:47+00:00"
+            "time": "2025-11-25T11:22:47+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "city-of-helsinki/php-resilient-logger",
@@ -1022,7 +1022,8 @@
                 "source": "https://github.com/City-of-Helsinki/php-resilient-logger/tree/2.0.3",
                 "issues": "https://github.com/City-of-Helsinki/php-resilient-logger/issues"
             },
-            "time": "2026-08-26T09:30:23+00:00"
+            "time": "2026-08-26T09:30:23+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "commerceguys/addressing",
@@ -1593,16 +1594,16 @@
         },
         {
             "name": "consolidation/robo",
-            "version": "5.1.1",
+            "version": "5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/robo.git",
-                "reference": "6d02c7d800b5e1a3a8977ae74d23bce723486025"
+                "reference": "78a541531cb613e9ce825b64ef3aa666d1e95598"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/robo/zipball/6d02c7d800b5e1a3a8977ae74d23bce723486025",
-                "reference": "6d02c7d800b5e1a3a8977ae74d23bce723486025",
+                "url": "https://api.github.com/repos/consolidation/robo/zipball/78a541531cb613e9ce825b64ef3aa666d1e95598",
+                "reference": "78a541531cb613e9ce825b64ef3aa666d1e95598",
                 "shasum": ""
             },
             "require": {
@@ -1610,15 +1611,16 @@
                 "consolidation/config": "^3",
                 "consolidation/log": "^3",
                 "consolidation/output-formatters": "^4.1.2",
+                "consolidation/self-update": "^3.2.0",
                 "league/container": "^3.3.1 || ^4.0",
                 "php": ">=8.2",
                 "phpowermove/docblock": "^4.0",
-                "symfony/console": "^6 || ^7",
-                "symfony/event-dispatcher": "^6 || ^7",
-                "symfony/filesystem": "^6 || ^7",
-                "symfony/finder": "^6 || ^7",
-                "symfony/process": "^6 || ^7",
-                "symfony/yaml": "^6 || ^7"
+                "symfony/console": "^6 || ^7 || ^8",
+                "symfony/event-dispatcher": "^6 || ^7 || ^8",
+                "symfony/filesystem": "^6 || ^7 || ^8",
+                "symfony/finder": "^6 || ^7 || ^8",
+                "symfony/process": "^6 || ^7 || ^8",
+                "symfony/yaml": "^6 || ^7 || ^8"
             },
             "conflict": {
                 "codegyre/robo": "*"
@@ -1632,7 +1634,6 @@
                 "yoast/phpunit-polyfills": "^0.2.0"
             },
             "suggest": {
-                "consolidation/self-update": "For self-updating a phar-based app built with Robo",
                 "natxet/cssmin": "For minifying CSS files in taskMinify",
                 "patchwork/jsqueeze": "For minifying JS files in taskMinify",
                 "pear/archive_tar": "Allows tar archives to be created and extracted in taskPack and taskExtract, respectively.",
@@ -1660,10 +1661,69 @@
             "description": "Modern task runner",
             "support": {
                 "issues": "https://github.com/consolidation/robo/issues",
-                "source": "https://github.com/consolidation/robo/tree/5.1.1"
+                "source": "https://github.com/consolidation/robo/tree/5.2.3"
             },
-            "time": "2025-11-14T23:30:05+00:00",
-            "published-time": "2025-11-14T23:30:25+00:00"
+            "time": "2026-11-12T17:53:46+00:00",
+            "published-time": "2026-11-12T17:54:12+00:00"
+        },
+        {
+            "name": "consolidation/self-update",
+            "version": "3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/consolidation/self-update.git",
+                "reference": "eb8e044f46e1a29a49eaaaa35a9f5f6b14408707"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/consolidation/self-update/zipball/eb8e044f46e1a29a49eaaaa35a9f5f6b14408707",
+                "reference": "eb8e044f46e1a29a49eaaaa35a9f5f6b14408707",
+                "shasum": ""
+            },
+            "require": {
+                "composer/semver": "^3.2",
+                "guzzlehttp/guzzle": "^7.9",
+                "kevinrob/guzzle-cache-middleware": "^5.1 || ^6",
+                "php": "^8.1",
+                "symfony/cache": "^5.4 || ^6.4 || ^7 || ^8",
+                "symfony/console": "^5.4 || ^6.4 || ^7 || ^8",
+                "symfony/filesystem": "^5.4 || ^6.4 || ^7 || ^8"
+            },
+            "bin": [
+                "scripts/release"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SelfUpdate\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Menk",
+                    "email": "menk@mestrona.net"
+                },
+                {
+                    "name": "Greg Anderson",
+                    "email": "greg.1.anderson@greenknowe.org"
+                }
+            ],
+            "description": "Provides a self:update command for Symfony Console applications.",
+            "support": {
+                "issues": "https://github.com/consolidation/self-update/issues",
+                "source": "https://github.com/consolidation/self-update/tree/3.2.1"
+            },
+            "time": "2026-11-10T19:11:51+00:00",
+            "published-time": "2026-11-10T19:12:57+00:00"
         },
         {
             "name": "consolidation/site-alias",
@@ -4850,16 +4910,16 @@
         },
         {
             "name": "drupal/hdbt",
-            "version": "6.22.4",
+            "version": "6.22.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                "reference": "e2b650f75dcf5900405d300ed3203d8f5af624b1"
+                "reference": "a2e89c3221d46bd9d1b2903c43bd580ccf2a8032"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/e2b650f75dcf5900405d300ed3203d8f5af624b1",
-                "reference": "e2b650f75dcf5900405d300ed3203d8f5af624b1",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/a2e89c3221d46bd9d1b2903c43bd580ccf2a8032",
+                "reference": "a2e89c3221d46bd9d1b2903c43bd580ccf2a8032",
                 "shasum": ""
             },
             "require": {
@@ -4878,10 +4938,11 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.22.4",
+                "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/6.22.5",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
             },
-            "time": "2026-11-11T15:31:11+00:00"
+            "time": "2026-11-13T10:29:06+00:00",
+            "published-time": "2026-11-13T11:31:32+00:00"
         },
         {
             "name": "drupal/hdbt_admin",
@@ -4917,7 +4978,8 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/tree/3.6.1",
                 "issues": "https://github.com/City-of-Helsinki/drupal-hdbt-admin/issues"
             },
-            "time": "2026-11-06T11:44:15+00:00"
+            "time": "2026-11-06T11:44:15+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/health_check",
@@ -5028,7 +5090,8 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/2.9.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
             },
-            "time": "2026-11-11T15:32:32+00:00"
+            "time": "2026-11-11T15:32:32+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -5065,7 +5128,8 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs/tree/3.2.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs/issues"
             },
-            "time": "2026-10-06T07:52:33+00:00"
+            "time": "2026-10-06T07:52:33+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/helfi_drupal_tools",
@@ -5073,12 +5137,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-tools.git",
-                "reference": "83e7e4847df7d3b12a59143709d1bc53f02c8161"
+                "reference": "e42331cce513dcf63d2d363bd440bd148b51474b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/83e7e4847df7d3b12a59143709d1bc53f02c8161",
-                "reference": "83e7e4847df7d3b12a59143709d1bc53f02c8161",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/e42331cce513dcf63d2d363bd440bd148b51474b",
+                "reference": "e42331cce513dcf63d2d363bd440bd148b51474b",
                 "shasum": ""
             },
             "require": {
@@ -5146,7 +5210,8 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/main",
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
-            "time": "2026-10-28T13:16:01+00:00"
+            "time": "2026-11-12T06:11:00+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/helfi_hakuvahti",
@@ -5182,7 +5247,8 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/tree/1.4.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-hakuvahti/issues"
             },
-            "time": "2026-10-15T09:08:36+00:00"
+            "time": "2026-10-15T09:08:36+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/helfi_navigation",
@@ -5216,20 +5282,21 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/tree/2.4.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-navigation/issues"
             },
-            "time": "2026-10-16T12:35:55+00:00"
+            "time": "2026-10-16T12:35:55+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/helfi_platform_config",
-            "version": "5.5.8",
+            "version": "5.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config.git",
-                "reference": "8e117e34ca105b33b6293d452e628e332d20aa94"
+                "reference": "2356bb215d5147928cba9dbd00a36d00f36947bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/8e117e34ca105b33b6293d452e628e332d20aa94",
-                "reference": "8e117e34ca105b33b6293d452e628e332d20aa94",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform-config/zipball/2356bb215d5147928cba9dbd00a36d00f36947bb",
+                "reference": "2356bb215d5147928cba9dbd00a36d00f36947bb",
                 "shasum": ""
             },
             "require": {
@@ -5370,10 +5437,11 @@
             ],
             "description": "HELfi platform config",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.5.8",
+                "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/tree/5.5.9",
                 "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform-config/issues"
             },
-            "time": "2026-11-11T15:31:52+00:00"
+            "time": "2026-11-13T10:55:18+00:00",
+            "published-time": "2026-11-13T10:56:42+00:00"
         },
         {
             "name": "drupal/helfi_proxy",
@@ -5419,7 +5487,8 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/tree/3.5.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-proxy/issues"
             },
-            "time": "2026-10-14T09:34:12+00:00"
+            "time": "2026-10-14T09:34:12+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/helfi_tpr",
@@ -5467,7 +5536,8 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/2.5.0",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/issues"
             },
-            "time": "2026-10-16T12:37:01+00:00"
+            "time": "2026-10-16T12:37:01+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/helfi_tunnistamo",
@@ -5503,7 +5573,8 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/tree/3.2.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/issues"
             },
-            "time": "2026-11-03T11:16:15+00:00"
+            "time": "2026-11-03T11:16:15+00:00",
+            "published-time": "2026-11-13T09:20:17+00:00"
         },
         {
             "name": "drupal/image_style_quality",
@@ -6503,17 +6574,17 @@
         },
         {
             "name": "drupal/metatag",
-            "version": "2.2.6",
+            "version": "2.2.7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/metatag.git",
-                "reference": "2.2.6"
+                "reference": "2.2.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/metatag-2.2.6.zip",
-                "reference": "2.2.6",
-                "shasum": "9cd10f4b3eecc038921ed6a16f84fb9d5946af4e"
+                "url": "https://ftp.drupal.org/files/projects/metatag-2.2.7.zip",
+                "reference": "2.2.7",
+                "shasum": "c7516fb9e396af39b4f8b1b962873558552e31d6"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11",
@@ -6533,11 +6604,15 @@
                 "drupal/redirect": "^1.0",
                 "ergebnis/composer-normalize": "*"
             },
+            "suggest": {
+                "drupal/token_browser": "A significantly improved token interface for Drupal 11.3+.",
+                "drupal/token_or": "Allows providing a fallback option for when a token is empty to use either another token or a fixed value."
+            },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.2.6",
-                    "datestamp": "1793891825",
+                    "version": "2.2.7",
+                    "datestamp": "1794448328",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6574,7 +6649,7 @@
                 "issues": "https://www.drupal.org/project/issues/metatag",
                 "docs": "https://www.drupal.org/docs/8/modules/metatag"
             },
-            "published-time": "2026-11-05T15:16:44+00:00"
+            "published-time": "2026-11-12T01:51:48+00:00"
         },
         {
             "name": "drupal/migrate_plus",
@@ -10623,16 +10698,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.13.2",
+            "version": "2.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "adee536f95101929f262b8c59e8a61472f347d58"
+                "reference": "6d3cd8285a97eaa352956a4ada92fa03ecce1c4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/adee536f95101929f262b8c59e8a61472f347d58",
-                "reference": "adee536f95101929f262b8c59e8a61472f347d58",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/6d3cd8285a97eaa352956a4ada92fa03ecce1c4e",
+                "reference": "6d3cd8285a97eaa352956a4ada92fa03ecce1c4e",
                 "shasum": ""
             },
             "require": {
@@ -10722,7 +10797,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.13.2"
+                "source": "https://github.com/guzzle/psr7/tree/2.13.3"
             },
             "funding": [
                 {
@@ -10738,8 +10813,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-17T23:49:46+00:00",
-            "published-time": "2026-10-17T23:51:00+00:00"
+            "time": "2026-11-12T15:57:42+00:00",
+            "published-time": "2026-11-12T15:58:42+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -10881,6 +10956,92 @@
             },
             "time": "2026-10-24T08:53:34+00:00",
             "published-time": "2026-10-24T08:53:38+00:00"
+        },
+        {
+            "name": "kevinrob/guzzle-cache-middleware",
+            "version": "6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kevinrob/guzzle-cache-middleware.git",
+                "reference": "61305ed694e763e887a04f61e71e2292bb4fbad1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kevinrob/guzzle-cache-middleware/zipball/61305ed694e763e887a04f61e71e2292bb4fbad1",
+                "reference": "61305ed694e763e887a04f61e71e2292bb4fbad1",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.9.2",
+                "guzzlehttp/promises": "^2.0.3",
+                "guzzlehttp/psr7": "^2.7.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "cache/array-adapter": "^0.4 || ^0.5 || ^1.0",
+                "cache/simple-cache-bridge": "^0.1 || ^1.0",
+                "doctrine/cache": "^1.10",
+                "illuminate/cache": "^5.0",
+                "league/flysystem": "^2.5",
+                "phpunit/phpunit": "^9.6.21",
+                "psr/cache": "^1.0",
+                "symfony/cache": "^4.4 || ^5.0",
+                "symfony/phpunit-bridge": "^7.1.4"
+            },
+            "suggest": {
+                "doctrine/cache": "This library has a lot of ready-to-use cache storage (to be used with Kevinrob\\GuzzleCache\\Storage\\DoctrineCacheStorage). Use only versions >=1.4.0 < 2.0.0",
+                "guzzlehttp/guzzle": "For using this library. It was created for Guzzle6 (but you can use it with any PSR-7 HTTP client).",
+                "laravel/framework": "To be used with Kevinrob\\GuzzleCache\\Storage\\LaravelCacheStorage",
+                "league/flysystem": "To be used with Kevinrob\\GuzzleCache\\Storage\\FlysystemStorage",
+                "psr/cache": "To be used with Kevinrob\\GuzzleCache\\Storage\\Psr6CacheStorage",
+                "psr/simple-cache": "To be used with Kevinrob\\GuzzleCache\\Storage\\Psr16CacheStorage"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kevinrob\\GuzzleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Robatel",
+                    "email": "kevinrob2@gmail.com",
+                    "homepage": "https://github.com/Kevinrob"
+                }
+            ],
+            "description": "A HTTP/1.1 Cache for Guzzle 6. It's a simple Middleware to be added in the HandlerStack. (RFC 7234)",
+            "homepage": "https://github.com/Kevinrob/guzzle-cache-middleware",
+            "keywords": [
+                "Etag",
+                "Flysystem",
+                "Guzzle",
+                "cache",
+                "cache-control",
+                "doctrine",
+                "expiration",
+                "guzzle6",
+                "handler",
+                "http",
+                "http 1.1",
+                "middleware",
+                "performance",
+                "php",
+                "promise",
+                "psr6",
+                "psr7",
+                "rfc7234",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/Kevinrob/guzzle-cache-middleware/issues",
+                "source": "https://github.com/Kevinrob/guzzle-cache-middleware/tree/6.0.0"
+            },
+            "time": "2024-10-17T09:11:54+00:00",
+            "published-time": "2024-11-28T09:55:03+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -14812,6 +14973,187 @@
             "published-time": "2026-01-12T10:01:26+00:00"
         },
         {
+            "name": "symfony/cache",
+            "version": "v8.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/cache.git",
+                "reference": "60b6bfd51e671219b1ab9066b94c617d1760d7cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/60b6bfd51e671219b1ab9066b94c617d1760d7cf",
+                "reference": "60b6bfd51e671219b1ab9066b94c617d1760d7cf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4.1",
+                "psr/cache": "^2.0|^3.0",
+                "psr/log": "^1.1|^2|^3",
+                "symfony/cache-contracts": "^3.6",
+                "symfony/service-contracts": "^2.5|^3",
+                "symfony/var-exporter": "^8.1.1"
+            },
+            "conflict": {
+                "ext-redis": "<6.1",
+                "ext-relay": "<0.12.1"
+            },
+            "provide": {
+                "psr/cache-implementation": "2.0|3.0",
+                "psr/simple-cache-implementation": "1.0|2.0|3.0",
+                "symfony/cache-implementation": "1.1|2.0|3.0"
+            },
+            "require-dev": {
+                "cache/integration-tests": "^1.0.3",
+                "doctrine/dbal": "^4.3",
+                "predis/predis": "^1.1|^2.0",
+                "psr/simple-cache": "^1.0|^2.0|^3.0",
+                "symfony/clock": "^7.4|^8.0",
+                "symfony/config": "^7.4|^8.0",
+                "symfony/dependency-injection": "^7.4|^8.0",
+                "symfony/filesystem": "^7.4|^8.0",
+                "symfony/http-kernel": "^7.4|^8.0",
+                "symfony/messenger": "^7.4|^8.0",
+                "symfony/var-dumper": "^7.4|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Cache\\": ""
+                },
+                "classmap": [
+                    "Traits/ValueWrapper.php"
+                ],
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides extended PSR-6, PSR-16 (and tags) implementations",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "caching",
+                "psr6"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/cache/tree/v8.1.11"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-11-01T22:27:46+00:00",
+            "published-time": "2026-11-04T11:31:57+00:00"
+        },
+        {
+            "name": "symfony/cache-contracts",
+            "version": "v3.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/cache-contracts.git",
+                "reference": "af26a91232085b7edd4e04be62f75e7c25159ece"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/cache-contracts/zipball/af26a91232085b7edd4e04be62f75e7c25159ece",
+                "reference": "af26a91232085b7edd4e04be62f75e7c25159ece",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "psr/cache": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
+                "branch-alias": {
+                    "dev-main": "3.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Contracts\\Cache\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Generic abstractions related to caching",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "abstractions",
+                "contracts",
+                "decoupling",
+                "interfaces",
+                "interoperability",
+                "standards"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/cache-contracts/tree/v3.8.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-09-26T07:05:14+00:00",
+            "published-time": "2026-11-04T11:25:38+00:00"
+        },
+        {
             "name": "symfony/console",
             "version": "v7.4.23",
             "source": {
@@ -17938,34 +18280,35 @@
         },
         {
             "name": "symfony/string",
-            "version": "v8.1.10",
+            "version": "v7.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "6c6110979c0150393bbb336170e286d51ab4d76c"
+                "reference": "8dff7da3a56638f1d189c5368183294102de4ced"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/6c6110979c0150393bbb336170e286d51ab4d76c",
-                "reference": "6c6110979c0150393bbb336170e286d51ab4d76c",
+                "url": "https://api.github.com/repos/symfony/string/zipball/8dff7da3a56638f1d189c5368183294102de4ced",
+                "reference": "8dff7da3a56638f1d189c5368183294102de4ced",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.4.1",
-                "symfony/polyfill-ctype": "^1.8",
-                "symfony/polyfill-intl-grapheme": "^1.33",
-                "symfony/polyfill-intl-normalizer": "^1.0",
-                "symfony/polyfill-mbstring": "^1.0"
+                "php": ">=8.2",
+                "symfony/deprecation-contracts": "^2.5|^3.0",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-intl-grapheme": "~1.33",
+                "symfony/polyfill-intl-normalizer": "~1.0",
+                "symfony/polyfill-mbstring": "~1.0"
             },
             "conflict": {
                 "symfony/translation-contracts": "<2.5"
             },
             "require-dev": {
-                "symfony/emoji": "^7.4|^8.0",
-                "symfony/http-client": "^7.4|^8.0",
-                "symfony/intl": "^7.4|^8.0",
+                "symfony/emoji": "^7.1|^8.0",
+                "symfony/http-client": "^6.4|^7.0|^8.0",
+                "symfony/intl": "^6.4|^7.0|^8.0",
                 "symfony/translation-contracts": "^2.5|^3.0",
-                "symfony/var-exporter": "^7.4|^8.0"
+                "symfony/var-exporter": "^6.4|^7.0|^8.0"
             },
             "type": "library",
             "autoload": {
@@ -18004,7 +18347,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v8.1.10"
+                "source": "https://github.com/symfony/string/tree/v7.4.22"
             },
             "funding": [
                 {
@@ -18024,8 +18367,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-23T17:06:53+00:00",
-            "published-time": "2026-10-28T18:24:27+00:00"
+            "time": "2026-10-23T16:51:52+00:00",
+            "published-time": "2026-10-28T18:21:18+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -21456,16 +21799,16 @@
         },
         {
             "name": "phpstan/phpstan-phpunit",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-phpunit.git",
-                "reference": "8d16b8478e523a47f8c02e83bce8981b5b5a3b03"
+                "reference": "ffff35d4f96c4642d7f41a3515d90afa0f58be62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/8d16b8478e523a47f8c02e83bce8981b5b5a3b03",
-                "reference": "8d16b8478e523a47f8c02e83bce8981b5b5a3b03",
+                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/ffff35d4f96c4642d7f41a3515d90afa0f58be62",
+                "reference": "ffff35d4f96c4642d7f41a3515d90afa0f58be62",
                 "shasum": ""
             },
             "require": {
@@ -21508,10 +21851,10 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-phpunit/issues",
-                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.1"
+                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.2"
             },
-            "time": "2026-10-06T18:12:32+00:00",
-            "published-time": "2026-10-07T04:59:27+00:00"
+            "time": "2026-11-12T15:27:53+00:00",
+            "published-time": "2026-11-12T16:07:51+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -21867,16 +22210,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "11.5.57",
+            "version": "11.5.58",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "36b75bf56a8535623f5b3e24b27ea1823759da1a"
+                "reference": "c14b3145a2fcfa5dd9b25ee999ce2ba5933adf6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/36b75bf56a8535623f5b3e24b27ea1823759da1a",
-                "reference": "36b75bf56a8535623f5b3e24b27ea1823759da1a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c14b3145a2fcfa5dd9b25ee999ce2ba5933adf6f",
+                "reference": "c14b3145a2fcfa5dd9b25ee999ce2ba5933adf6f",
                 "shasum": ""
             },
             "require": {
@@ -21949,7 +22292,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.5.57"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.5.58"
             },
             "funding": [
                 {
@@ -21957,8 +22300,8 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-10-05T05:47:54+00:00",
-            "published-time": "2026-10-05T05:48:42+00:00"
+            "time": "2026-11-13T11:08:08+00:00",
+            "published-time": "2026-11-13T11:09:01+00:00"
         },
         {
             "name": "ramsey/collection",
