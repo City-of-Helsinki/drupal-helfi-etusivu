@@ -8,13 +8,11 @@ use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\HeroOptions;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageSearchForm;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -27,11 +25,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
   admin_label: new TranslatableMarkup("Helsinki near you hero block"),
 )]
 final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFactoryPluginInterface {
-
-  /**
-   * The form builder.
-   */
-  private FormBuilderInterface $formBuilder;
 
   /**
    * The route match.
@@ -62,7 +55,6 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
       $plugin_id,
       $plugin_definition,
     );
-    $instance->formBuilder = $container->get(FormBuilderInterface::class);
     $instance->routeMatch = $container->get(RouteMatchInterface::class);
     $instance->requestStack = $container->get(RequestStack::class);
     $instance->languageManager = $container->get(LanguageManagerInterface::class);
@@ -79,15 +71,19 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
       return [];
     }
     $routeInformation = RouteInformationEnum::fromRoute($route);
-    if (!$routeInformation) {
+    // The landing page renders its own hero and search form.
+    if (!$routeInformation || $routeInformation === RouteInformationEnum::LandingPage) {
       return [];
     }
 
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
 
     // Runtime options for the route.
-    $routeOptions = fn (RouteInformationEnum|NULL $routeInformation) => match ($routeInformation) {
-      RouteInformationEnum::Roadworks, RouteInformationEnum::Events, RouteInformationEnum::Feedback => new HeroOptions(),
+    $options = match ($routeInformation) {
+      RouteInformationEnum::Roadworks,
+      RouteInformationEnum::Events,
+      RouteInformationEnum::VehicleRemoval,
+      RouteInformationEnum::Feedback => new HeroOptions(),
       RouteInformationEnum::Results => new HeroOptions(
         translationArguments: [
           // Get the address name from request attributes.
@@ -103,10 +99,9 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
         cache: (new CacheableMetadata())
           ->setCacheContexts(['url.query_args']),
       ),
-      RouteInformationEnum::LandingPage => new HeroOptions(form: $this->formBuilder->getForm(LandingPageSearchForm::class)),
     };
 
-    return $this->buildHero($routeInformation, $routeOptions($routeInformation));
+    return $this->buildHero($routeInformation, $options);
   }
 
   /**

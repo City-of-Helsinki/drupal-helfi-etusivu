@@ -162,8 +162,8 @@ msgid "Urban development"
 msgstr "Kaupunki kehittyy"
 
 msgctxt "Helsinki near you"
-msgid "Upcoming street and park projects on the map"
-msgstr "Tuleva katu- ja puistorakentaminen kartalla"
+msgid "Upcoming street and park work on the map"
+msgstr "Tuleva katu- ja puistotyöt kartalla"
 
 msgctxt "Helsinki near you"
 msgid "Plans under preparation on the map"
@@ -175,15 +175,15 @@ msgstr "Syötä osoite"
 
 msgctxt "Helsinki near you address label"
 msgid "Street works and events near the address @address"
-msgstr "Katu- ja puistohankkeet sekä tapahtumat lähellä osoitetta @address"
+msgstr "Katu- ja puistotyöt sekä tapahtumat lähellä osoitetta @address"
 
 msgctxt "Helsinki near you address label"
 msgid "City bike stations and bicycle racks near the address @address"
 msgstr "Kaupunkipyöräasemat ja pyörätelineet lähellä osoitetta @address"
 
 msgctxt "Helsinki near you address label"
-msgid "Street and park projects near the address @address"
-msgstr "Katu- ja puistohankkeet lähellä osoitetta @address"
+msgid "Street and park work near the address @address"
+msgstr "Katu- ja puistotyöt lähellä osoitetta @address"
 
 msgctxt "Helsinki near you address label"
 msgid "Plans under preparation near the address @address"
@@ -215,31 +215,23 @@ msgstr "Katso kaikki tapahtumat lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "Roadworks near you"
-msgstr "Katu- ja puistohankkeet lähelläsi"
-
-msgctxt "Helsinki near you title"
-msgid "Street and park projects near you"
-msgstr "Katu- ja puistohankkeet"
-
-msgctxt "Helsinki near you title"
-msgid "Street and park projects"
-msgstr "Katu- ja puistohankkeet lähelläsi"
+msgstr "Katu- ja puistotyöt lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "Browse roadworks near you or search for roadworks by location or date."
-msgstr "Selaa katu- ja puistohankkeita läheltäsi tai hae hankkeita sijainnin tai päivämäärän perusteella."
+msgstr "Selaa katu- ja puistotöitä läheltäsi tai hae hankkeita sijainnin tai päivämäärän perusteella."
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Find information on street and park projects near you."
-msgstr "Tutustu katu- ja puistohankkeisiin osoitteesi lähellä."
+msgid "Find information on street and park work near you."
+msgstr "Tutustu katu- ja puistotöihin osoitteesi lähellä."
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Search for street and park projects"
-msgstr "Etsi katu- ja puistohankkeita"
+msgid "Search for street and park work"
+msgstr "Etsi katu- ja puistotöitä"
 
 msgctxt "Helsinki near you roadworks search"
-msgid "Search for street and park projects by entering an address. The search will show the projects that are within two kilometres of the address you enter."
-msgstr "Voit etsiä katu- ja puistohankkeita osoitteen mukaan. Haku näyttää hankkeet enintään kahden kilometrin etäisyydeltä osoitteesta."
+msgid "You can search for street and park work by address. The search shows work within two kilometres of the address."
+msgstr "Voit etsiä katu- ja puistotöitä osoitteen mukaan. Haku näyttää hankkeet enintään kahden kilometrin etäisyydeltä osoitteesta."
 
 msgctxt "Roadworks default title"
 msgid "Work site"
@@ -298,14 +290,14 @@ msgid "Browse feedback and fault reports that have been sent to the City of Hels
 msgstr "Selaa Helsingille lähetettyjä palautteita ja vikailmoituksia läheltä osoitettasi."
 
 msgctxt "Helsinki near you"
-msgid "@count street and park project near address @address"
-msgid_plural "@count street and park projects near address @address"
-msgstr[0] "@count katu- ja puistohanke osoitteella @address"
-msgstr[1] "@count katu- ja puistohanketta osoitteella @address"
+msgid "@count street and park work item near @address"
+msgid_plural "@count street and park work items near @address"
+msgstr[0] "@count katu- ja puistotyö osoitteella @address"
+msgstr[1] "@count katu- ja puistotyötä osoitteella @address"
 
 msgctxt "Helsinki near you"
-msgid "No street and park projects were found near address @address"
-msgstr "Katu- ja puistohankkeita ei löytynyt osoitteella @address"
+msgid "No street and park work was found near address @address"
+msgstr "Katu- ja puistotöitä ei löytynyt osoitteella @address"
 
 msgctxt "Helsinki near you"
 msgid "@count feedback near address @address"
@@ -420,46 +412,6 @@ msgstr "Lisää hakunosto"
 msgid "News"
 msgstr "Uutiset"
 
-msgctxt "Helsinki near you"
-msgid "Parking"
-msgstr "Pysäköinti"
-
-msgctxt "Helsinki near you"
-msgid "Resident parking zone"
-msgstr "Asukaspysäköintialue"
-
-msgctxt "Helsinki near you"
-msgid "See the resident parking zones in your area."
-msgstr "Tutustu alueesi asukaspysäköintialueeseen."
-
-msgctxt "Helsinki near you"
-msgid "There is no resident parking in your area. It is only available in the inner city."
-msgstr "Asuinalueellasi ei ole käytössä asukaspysäköintiä. Asukaspysäköinti on käytössä kantakaupungissa."
-
-msgctxt "Helsinki near you"
-msgid "The permit allows you to park in your zone for a monthly fee."
-msgstr "Asukaspysäköintitunnuksella pysäköit asuinalueesi asukaspysäköintipaikoilla kuukausimaksulla."
-
-msgctxt "Helsinki near you"
-msgid "Read more about resident parking"
-msgstr "Lue lisää asukaspysäköinnistä"
-
-msgctxt "Helsinki near you"
-msgid "Resident parking zone @area_key, @name"
-msgstr "Asukaspysäköintialue @area_key, @name"
-
-msgctxt "Helsinki near you"
-msgid "Map of resident parking zone @area_key, @name"
-msgstr "Kartta asukaspysäköintialueesta @area_key, @name"
-
-msgctxt "Helsinki near you"
-msgid "Price"
-msgstr "Hinta"
-
-msgctxt "Helsinki near you"
-msgid "@price €/month, fully electric vehicle @electric_price €/month"
-msgstr "@price €/kuukausi, täyssähköinen ajoneuvo @electric_price €/kuukausi"
-
 msgctxt "Helfi search"
 msgid "Search"
 msgstr "Haku"
@@ -549,3 +501,11 @@ msgstr "Lisätiedot"
 msgctxt "Helsinki near you"
 msgid "Time"
 msgstr "Kello"
+
+msgctxt "Helsinki near you"
+msgid "Street and park work near you"
+msgstr "Katutyöt lähelläsi"
+
+msgctxt "Helsinki near you roadworks search"
+msgid "See all street and park work near you"
+msgstr "Katso kaikki katutyöt lähelläsi"

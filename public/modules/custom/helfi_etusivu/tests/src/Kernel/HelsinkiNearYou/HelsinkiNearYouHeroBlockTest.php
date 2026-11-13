@@ -44,29 +44,45 @@ class HelsinkiNearYouHeroBlockTest extends KernelTestBase {
    * Tests the build method.
    */
   public function testBuildMethod(): void {
-    $plugin_definition = [
-      'provider' => 'helfi_etusivu',
-    ];
-
-    $routeMatch = $this->prophesize(RouteMatchInterface::class);
-    $routeMatch->getRouteName()->willReturn('helfi_etusivu.helsinki_near_you');
-    $this->container->set(RouteMatchInterface::class, $routeMatch->reveal());
-    $block = HelsinkiNearYouHeroBlock::create($this->container, [], 'helsinki_near_you_hero_block', $plugin_definition);
-
-    $build = $block->build();
+    $build = $this->buildBlock('helfi_etusivu.helsinki_near_you_roadworks');
 
     $this->assertIsArray($build);
     $this->assertArrayHasKey('helsinki_near_you_hero_block', $build);
 
     $content = $build['helsinki_near_you_hero_block'];
-    $this->assertArrayHasKey('#form', $content);
     $this->assertArrayHasKey('#theme', $content);
     $this->assertEquals('helsinki_near_you_hero_block', $content['#theme']);
-    $this->assertEquals('Helsinki near you', (string) $content['#hero_title']);
-    $this->assertEquals(
-      'Discover city services, events and news near you. Start by entering your street address.',
-      (string) $content['#hero_description']
-    );
+    $this->assertNull($content['#form']);
+  }
+
+  /**
+   * Tests that the block is empty on the landing page and unknown routes.
+   */
+  public function testBuildIsEmpty(): void {
+    $this->assertEquals([], $this->buildBlock('helfi_etusivu.helsinki_near_you'));
+    $this->assertEquals([], $this->buildBlock('system.404'));
+  }
+
+  /**
+   * Builds the block for the given route.
+   *
+   * @param string $routeName
+   *   The route name.
+   *
+   * @return array
+   *   The block render array.
+   *
+   * @phpstan-return array<string, mixed>
+   */
+  private function buildBlock(string $routeName): array {
+    $routeMatch = $this->prophesize(RouteMatchInterface::class);
+    $routeMatch->getRouteName()->willReturn($routeName);
+    $this->container->set(RouteMatchInterface::class, $routeMatch->reveal());
+    $block = HelsinkiNearYouHeroBlock::create($this->container, [], 'helsinki_near_you_hero_block', [
+      'provider' => 'helfi_etusivu',
+    ]);
+
+    return $block->build();
   }
 
   /**

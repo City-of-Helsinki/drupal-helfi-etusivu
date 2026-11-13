@@ -16,10 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Controller for the Helsinki Near You Roadworks page.
  *
- * This controller handles the display of roadwork projects near a given
+ * This controller handles the display of road work near a given
  * location.
  * It provides methods for:
- * - Displaying roadwork projects near a user-specified address
+ * - Displaying road work near a user-specified address
  * - Handling address-based searches
  * - Formatting project data for display in the Helsinki Design System
  * - Managing error states and user feedback.
@@ -45,14 +45,14 @@ final class RoadworksController extends SearchPageControllerBase {
    *   The translated route title.
    */
   public function getTitle() : TranslatableMarkup {
-    return $this->t('Search for street and park projects', [], ['context' => 'Helsinki near you roadworks search']);
+    return $this->t('Search for street and park work', [], ['context' => 'Helsinki near you roadworks search']);
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getDescription(): TranslatableMarkup {
-    return $this->t('Search for street and park projects by entering an address. The search will show the projects that are within two kilometres of the address you enter.', [], ['context' => 'Helsinki near you roadworks search']);
+    return $this->t('You can search for street and park work by address. The search shows work within two kilometres of the address.', [], ['context' => 'Helsinki near you roadworks search']);
   }
 
   /**

@@ -68,3 +68,9 @@
 .components--helsinki-near-you-results .vehicle-removal-section {
   margin-top: $spacing;
 }
+
+.helfi-etusivu-near-you-form-heading {
+  @include breakpoint($breakpoint-m) {
+    margin-top: calc($spacing * 6);
+  }
+}

@@ -14,6 +14,16 @@ helfi_etusivu.helsinki_near_you_results:
   requirements:
     _permission: 'access content'
 
+helfi_etusivu.helsinki_near_you_images:
+  path: '/admin/tools/appearance-settings/helsinki-near-you'
+  defaults:
+    _form: '\Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageImagesForm'
+    _title: 'Helsinki near you images'
+  requirements:
+    _permission: 'administer helsinki near you images'
+  options:
+    _admin_route: TRUE
+    
 helfi_etusivu.helsinki_near_you_parking_zone_htmx:
   path: '/helsinki-near-you/parking-zone/htmx'
   defaults:

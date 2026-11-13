@@ -1,37 +1,116 @@
+{#
+/**
+ * @file
+ * Helsinki near you landing page.
+ *
+ * The hero, liftup and banners are hard-coded components that use the same
+ * markup as the corresponding paragraphs.
+ *
+ * Variables:
+ * - hero_image: Hero image media render array.
+ * - hero_image_author: Hero image photographer.
+ * - liftup_image: Liftup image media render array.
+ * - liftup_image_caption: Liftup image caption for image-with-caption.twig.
+ * - search_form: Address search form.
+ *
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\Controller\LandingPageController
+ */
+#}
+
 <article>
-  <div class="components components--computed">
-    {% embed "@hdbt/misc/component.twig" with
-      {
-        component_classes: [
-          'component--graphics',
-        ],
-        component_content_class: 'graphics',
-      }
-    %}
-      {% block component_content %}
-        <div class="graphics__text-container">
-          <h2 class="graphics__title">{{ title }}</h2>
-          <div class="graphics__description">
-            <p>{{ description }}</p>
+  {% set hero_description %}
+    <p>{{ 'Discover services, events and news near your address. You will see what is going on in your neighbourhood now and in the future.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+  {% endset %}
+  {% embed '@hdbt/component/hero.twig' with {
+    design: 'diagonal',
+    title: 'Helsinki near you'|t({}, {'context': 'Helsinki near you'}),
+    description: hero_description,
+    image: hero_image,
+    image_author: hero_image_author,
+  } %}
+  {% endembed %}
+
+  {% if search_form %}
+    <div class="components components--computed">
+      {% embed "@hdbt/misc/component.twig" %}
+        {% block component_content %}
+          <div class="hdbt-search__form-container" role="search">
+            <h2 class="helfi-etusivu-near-you-form-heading">{{ 'Search by address'|t({}, {'context': 'Helsinki near you'}) }}</h2>
+            <p>{{ 'Search for neighbourhood services, events and news on the basis of your street address. The search field will suggest addresses as you start typing.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+            {{ search_form }}
           </div>
-        </div>
-        <div class="graphics__illustration-container">
-          <figure>
-            {% if illustration %}
-              <img src="{{ illustration }}" data-photographer="{{ illustration_caption }}" alt class="graphics__illustration" />
-            {% else %}
-              <picture>
-                <source srcset="{{ illustration_url_1x }} 1x, {{ illustration_url_2x }} 2x" height="513" width="513" type="image/png" media="all and (min-width: 320px)" />
-                <img src="{{ illustration_url_1x }}" height="513" width="513" data-photographer="{{ illustration_caption }}" alt class="graphics__illustration">
-              </picture>
-            {% endif %}
-            {% embed '@hdbt/misc/caption.twig' with {
-              caption_identifier_class: 'graphics__illustration__caption',
-              credit: illustration_caption,
-            } %}
-            {% endembed %}
-          </figure>
-        </div>
+        {% endblock component_content %}
+      {% endembed %}
+    </div>
+  {% endif %}
+
+  <div class="components components--computed">
+    {% set liftup_description %}
+      <p>{{ 'Find events that interest you near your address.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+      <p><a href="{{ path('helfi_etusivu.helsinki_near_you_events') }}" data-hds-component="button">{{ 'Search for events near you'|t({}, {'context': 'Helsinki near you'}) }}</a></p>
+    {% endset %}
+
+    {# The paragraph template reads its values from the paragraph's fields. #}
+    {% include '@hdbt/paragraphs/paragraph--liftup-with-image.html.twig' with {
+      content: {
+        field_liftup_with_image_design: [{'#markup': 'image-on-right-secondary'}],
+        field_liftup_with_image_title: 'Events near you'|t({}, {'context': 'Helsinki near you'}),
+        field_liftup_with_image_desc: liftup_description,
+        field_liftup_with_image_image: liftup_image,
+      },
+      image_caption: liftup_image_caption,
+    } only %}
+
+    {% embed "@hdbt/misc/component.twig" with {
+      component_classes: [
+        'component--banner',
+        'component--banner-align-left',
+        'component--banner-has-icon',
+      ],
+      component_content_class: 'banner',
+    } %}
+      {% set banner_description %}
+        <p>{{ 'Find information on street and park work near your address.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+      {% endset %}
+      {% block component_content %}
+        {% embed "@hdbt/misc/banner.twig" with {
+          icon_name: 'hammers',
+          title: 'Street work near you'|t({}, {'context': 'Helsinki near you'}),
+          description: banner_description,
+          banner_desc_class: 'user-edited-content',
+          link: true,
+          link_type: 'primary',
+          link_text: 'Search for street work near you'|t({}, {'context': 'Helsinki near you'}),
+          link_url: 'route:helfi_etusivu.helsinki_near_you_roadworks',
+        } %}
+        {% endembed %}
+      {% endblock component_content %}
+    {% endembed %}
+
+    {% embed "@hdbt/misc/component.twig" with {
+      component_classes: [
+        'component--banner',
+        'component--banner-align-left',
+        'component--banner-secondary',
+        'component--banner-has-icon',
+      ],
+      component_content_class: 'banner',
+    } %}
+      {% set banner_description %}
+        <p>{{ 'Browse feedback and fault reports that residents have submitted to the city on the area near your address.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+      {% endset %}
+      {% block component_content %}
+        {% embed "@hdbt/misc/banner.twig" with {
+          icon_name: 'document-group',
+          title: 'Feedback and fault reports near you'|t({}, {'context': 'Helsinki near you'}),
+          description: banner_description,
+          banner_desc_class: 'user-edited-content',
+          link: true,
+          link_type: 'primary',
+          link_text: 'Search feedback near you'|t({}, {'context': 'Helsinki near you'}),
+          link_url: 'route:helfi_etusivu.helsinki_near_you_feedback',
+        } %}
+        {% endembed %}
       {% endblock component_content %}
     {% endembed %}
   </div>

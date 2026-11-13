@@ -21,12 +21,15 @@ final class ThemeHooks {
     return [
       'helsinki_near_you_landing_page' => [
         'variables' => [
-          'title' => NULL,
-          'description' => NULL,
           'illustration' => NULL,
           'illustration_url_1x' => NULL,
           'illustration_url_2x' => NULL,
           'illustration_caption' => NULL,
+          'hero_image' => NULL,
+          'hero_image_author' => NULL,
+          'liftup_image' => NULL,
+          'liftup_image_caption' => NULL,
+          'search_form' => NULL,
         ],
         'template' => 'helsinki-near-you-landing-page',
       ],

@@ -68,8 +68,8 @@ msgid "Street and park work"
 msgstr "Katu- ja puistotyöt"
 
 msgctxt "Helsinki near you roadworks search"
-msgid "See all street and park projects near you"
-msgstr "Katso kaikki katu- ja puistohankkeet lähelläsi"
+msgid "See all street and park work near you"
+msgstr "Katso kaikki katu- ja puistotyöt lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "See street and park work near your address."
@@ -203,3 +203,39 @@ msgstr "Sulje"
 msgctxt "Site search"
 msgid "Go to the search result on the page"
 msgstr "Siirry hakutulokseen sivulla"
+
+msgctxt "Helsinki near you"
+msgid "Discover services, events and news near your address. You will see what is going on in your neighbourhood now and in the future."
+msgstr "Tutustu palveluihin, tapahtumiin ja uutisiin osoitteesi lähellä. Näet kootusti, mitä lähialueellasi on, mitä siellä tapahtuu ja mitä sinne on tulossa."
+
+msgctxt "Helsinki near you"
+msgid "Search by address"
+msgstr "Hae osoitteella"
+
+msgctxt "Helsinki near you"
+msgid "Search for neighbourhood services, events and news on the basis of your street address. The search field will suggest addresses as you start typing."
+msgstr "Etsi lähialueesi palveluita, tapahtumia ja uutisia katuosoitteen perusteella. Haku ehdottaa osoitteita, kun alat kirjoittaa."
+
+msgctxt "Helsinki near you"
+msgid "Find events that interest you near your address."
+msgstr "Löydä sinua kiinnostavat tapahtumat osoitteesi läheltä."
+
+msgctxt "Helsinki near you"
+msgid "Search for events near you"
+msgstr "Etsi tapahtumia lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "Street work near you"
+msgstr "todo"
+
+msgctxt "Helsinki near you"
+msgid "Search for street work near you"
+msgstr "Katutyöt lähelläsi"
+
+msgctxt "Helsinki near you"
+msgid "Browse feedback and fault reports that residents have submitted to the city on the area near your address."
+msgstr "Selaa palautteita ja vikailmoituksia, joita kaupunkilaiset ovat lähettäneet kaupungille osoitteesi lähialueesta."
+
+msgctxt "Helsinki near you"
+msgid "Feedback and fault reports near you"
+msgstr "Palautteet ja vikailmoitukset lähelläsi"
