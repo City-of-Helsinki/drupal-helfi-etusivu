@@ -64,3 +64,9 @@
 .table-of-contents--helsinki-near-you-results .table-of-contents__container {
   max-width: 100%;
 }
+
+.helfi-etusivu-near-you-form-heading {
+  @include breakpoint($breakpoint-m) {
+    margin-top: calc($spacing * 6);
+  }
+}

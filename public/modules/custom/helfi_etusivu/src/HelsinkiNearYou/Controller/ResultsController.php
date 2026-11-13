@@ -179,7 +179,7 @@ final class ResultsController extends ControllerBase {
         'title' => $this->t('Urban development', [], ['context' => 'Helsinki near you']),
         'service_links' => [
           [
-            'link_label' => $this->t('Upcoming street and park projects on the map', [], ['context' => 'Helsinki near you']),
+            'link_label' => $this->t('Upcoming street and park work on the map', [], ['context' => 'Helsinki near you']),
             'link_url' => ServiceMapLink::StreetParkProjects->getLink($addressName, $langcode),
           ],
           [
