@@ -60,6 +60,26 @@ final class ThemeHooks {
         ],
         'template' => 'helsinki-near-you-roadwork-item',
       ],
+      'helsinki_near_you_vehicle_removal_section' => [
+        'variables' => [
+          'description' => NULL,
+          'items' => [],
+          'button_label' => NULL,
+          'button_url' => NULL,
+        ],
+        'template' => 'helsinki-near-you-vehicle-removal-section',
+      ],
+      'helsinki_near_you_vehicle_removal_item' => [
+        'variables' => [
+          'title' => NULL,
+          'address' => NULL,
+          'date_range' => NULL,
+          'map_url' => NULL,
+          'time_range' => NULL,
+          'additional_text' => NULL,
+        ],
+        'template' => 'helsinki-near-you-vehicle-removal-item',
+      ],
       'helsinki_near_you_results_page' => [
         'variables' => [
           'coordinates' => NULL,
@@ -67,10 +87,14 @@ final class ThemeHooks {
           'toc_enabled' => NULL,
           'toc_title' => NULL,
           'service_groups' => NULL,
+          'parking_zone_section' => NULL,
+          'parking_read_more_url' => NULL,
           'nearby_neighbourhoods' => NULL,
           'news_archive_url' => NULL,
           'roadwork_section' => NULL,
           'roadwork_archive_url' => NULL,
+          'vehicle_removal_section' => NULL,
+          'vehicle_removal_archive_url' => NULL,
           'feedback_section' => NULL,
           'feedback_archive_url' => NULL,
           'events_section' => NULL,
@@ -98,6 +122,16 @@ final class ThemeHooks {
           'limit' => NULL,
         ],
         'template' => 'helsinki-near-you-feedback-item',
+      ],
+      'helsinki_near_you_parking_zone' => [
+        'variables' => [
+          'name' => NULL,
+          'area_key' => NULL,
+          'map_url' => NULL,
+          'map_image' => NULL,
+          'price' => NULL,
+        ],
+        'template' => 'helsinki-near-you-parking-zone',
       ],
       'helsinki_near_you_events' => [
         'variables' => [],

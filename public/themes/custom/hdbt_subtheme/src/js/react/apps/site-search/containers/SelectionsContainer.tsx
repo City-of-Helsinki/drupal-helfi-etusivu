@@ -13,6 +13,7 @@ import {
 
 const BUNDLE_LABELS: Record<string, string> = {
   news: Drupal.t('News', {}, { context: 'Site search' }),
+  contacts: Drupal.t('Contacts', {}, { context: 'Site search' }),
   page: Drupal.t('Pages', {}, { context: 'Site search' }),
   landing_page: Drupal.t('Landing pages', {}, { context: 'Site search' }),
   others: Drupal.t('Other content', {}, { context: 'Site search' }),
