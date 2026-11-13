@@ -13,7 +13,7 @@ import ResultCard from '../components/ResultCard';
 import AppSettings from '../enum/AppSettings';
 import useSearchQuery from '../hooks/useSearchQuery';
 import useSelectionFocus, { type SelectionFocusRefs } from '../hooks/useSelectionFocus';
-import { pageAtom, queryAtom, setPageAtom, submitCountAtom } from '../store';
+import { pageAtom, queryAtom, setPageAtom, showContactsAtom, submitCountAtom } from '../store';
 
 type ResultsContainerProps = {
   bundle?: string;
@@ -25,11 +25,16 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
   const page = useAtomValue(pageAtom);
   const submitCount = useAtomValue(submitCountAtom);
   const setPage = useSetAtom(setPageAtom);
+  const showContacts = useSetAtom(showContactsAtom);
   const links = drupalSettings?.helfi_site_search?.external_links;
   const { data, error, isLoading, isValidating } = useSearchQuery(query, bundle, page);
 
   const totalHits = data?.total_hits ?? 0;
   const promotedCount = page === 1 ? (data?.promoted?.length ?? 0) : 0;
+  // No filters: show only the contact count in a notification.
+  // Contacts filter: show the contact cards first, then the other results.
+  const contactsTotal = !bundle && page === 1 ? (data?.contacts_total ?? 0) : 0;
+  const contactCards = bundle?.split(',').includes('contacts') ? (data?.contacts ?? []) : [];
   const resultsCount = data?.results?.length ?? 0;
   const totalPages = Math.ceil(totalHits / AppSettings.SIZE);
   const isValidQuery = query.length >= AppSettings.MIN_QUERY_LENGTH;
@@ -106,7 +111,7 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
           <ExternalLink href={links.decisions} title={Drupal.t('Decisions', {}, { context: 'Site search' })} />
         </li>
         <li>
-          <a href={links.contact}>{Drupal.t('Contact information', {}, { context: 'Site search' })}</a>
+          <ExternalLink href={links.contact} title={Drupal.t('Contact information', {}, { context: 'Site search' })} />
         </li>
         <li>
           <a href={links.helsinki_near_you}>{Drupal.t('Helsinki near you', {}, { context: 'Site search' })}</a>
@@ -115,14 +120,14 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
     </Notification>
   );
 
-  if (!data || totalHits === 0) {
+  if (!data || (totalHits === 0 && contactsTotal === 0)) {
     return (
       <ResultsEmpty
         wrapperClass={`${resultsClassName} hdbt-search--react__results--no-results`}
         ref={scrollTarget}
         resultText={Drupal.t('No results', {}, { context: 'Site search' })}
         bodyText={Drupal.t(
-          'Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information.',
+          'Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events or decisions.',
           {},
           { context: 'Site search' },
         )}
@@ -131,6 +136,13 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
       </ResultsEmpty>
     );
   }
+
+  const contactsUrl = () => {
+    const url = new URL(window.location.toString());
+    url.searchParams.set('bundles', 'contacts');
+    url.searchParams.delete('page');
+    return url.toString();
+  };
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
     e.preventDefault();
@@ -146,6 +158,30 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
         resultText={Drupal.formatPlural(totalHits, '@count result', '@count results', {}, { context: 'Site search' })}
         ref={scrollTarget}
       />
+      {contactsTotal > 0 && (
+        <Notification
+          className='notification--site-search-contacts'
+          label={Drupal.formatPlural(
+            contactsTotal,
+            'The search returned 1 contact',
+            'The search returned @count contacts',
+            {},
+            { context: 'Site search' },
+          )}
+          type='info'
+          headingLevel={3}
+        >
+          <a
+            href={contactsUrl()}
+            onClick={(e) => {
+              e.preventDefault();
+              showContacts();
+            }}
+          >
+            {Drupal.t('Show all contact information', {}, { context: 'Site search' })}
+          </a>
+        </Notification>
+      )}
       <div ref={resultsListRef}>
         {promotedCount > 0 &&
           data.promoted.map((item) => (
@@ -157,6 +193,20 @@ const ResultsContainer = ({ bundle, selectionFocusRefs }: ResultsContainerProps)
               cardModifierClass='card--site-search card--site-search--promoted'
             />
           ))}
+        {contactCards.map((item) => (
+          <ResultCard
+            key={item.id}
+            title={item.name}
+            contactPersonTitle={item.job_title ?? undefined}
+            contactPersonOrganisation={item.organization_hierarchy}
+            contactPersonNumbers={item.phones?.map((phone) => phone.value)}
+            contactPersonEmail={item.email ?? undefined}
+            contactPersonAddresses={item.addresses?.map((address) => address.value)}
+            cardModifierClass='card--site-search card--site-search--contact'
+          />
+        ))}
+        {/* On pages with only contacts, there is no content result to show the notification after. */}
+        {contactCards.length > 0 && resultsCount === 0 && externalLinksNotification}
         {resultsCount > 0 &&
           data.results.map((item, index) => (
             <Fragment key={item.url}>

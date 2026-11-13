@@ -160,6 +160,8 @@ class ResultsControllerTest extends KernelTestBase {
       $build['#attached']['drupalSettings']
     );
     $this->assertEquals(4, count($build['#service_groups']));
+    $this->assertEquals('helsinki_near_you_lazy_builder_preview', $build['#parking_zone_section']['#theme']);
+    $this->assertStringContainsString('/parking/resident-parking', $build['#parking_read_more_url']);
   }
 
   /**
