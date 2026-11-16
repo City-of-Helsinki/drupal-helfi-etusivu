@@ -43,7 +43,7 @@ msgctxt "News close to you block"
 msgid "See news related to the neighbourhoods of %neighbourhoods%"
 msgstr "Katso uutisia kaupunginosista %neighbourhoods%"
 
-msgctxt "News close to you block"
+msgctxt "News close to you block"7
 msgid "See all news near you"
 msgstr "Katso kaikki uutiset lähelläsi"
 
@@ -226,7 +226,7 @@ msgstr "Etsi tapahtumia lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "Street work near you"
-msgstr "todo"
+msgstr "Katutyöt lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "Search for street work near you"

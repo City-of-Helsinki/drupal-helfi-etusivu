@@ -3,12 +3,11 @@
  * @file
  * Helsinki near you landing page.
  *
- * The hero, liftup and banners are hard-coded components that use the same
- * markup as the corresponding paragraphs.
+ * The liftup and banners are hard-coded components that use the same markup
+ * as the corresponding paragraphs. The hero is rendered by the Helsinki near
+ * you hero block, see helsinki-near-you-landing-page-hero.html.twig.
  *
  * Variables:
- * - hero_image: Hero image media render array.
- * - hero_image_author: Hero image photographer.
  * - liftup_image: Liftup image media render array.
  * - liftup_image_caption: Liftup image caption for image-with-caption.twig.
  * - search_form: Address search form.
@@ -18,24 +17,12 @@
 #}
 
 <article>
-  {% set hero_description %}
-    <p>{{ 'Discover services, events and news near your address. You will see what is going on in your neighbourhood now and in the future.'|t({}, {'context': 'Helsinki near you'}) }}</p>
-  {% endset %}
-  {% embed '@hdbt/component/hero.twig' with {
-    design: 'diagonal',
-    title: 'Helsinki near you'|t({}, {'context': 'Helsinki near you'}),
-    description: hero_description,
-    image: hero_image,
-    image_author: hero_image_author,
-  } %}
-  {% endembed %}
-
   {% if search_form %}
     <div class="components components--computed">
       {% embed "@hdbt/misc/component.twig" %}
         {% block component_content %}
           <div class="hdbt-search__form-container" role="search">
-            <h2 class="helfi-etusivu-near-you-form-heading">{{ 'Search by address'|t({}, {'context': 'Helsinki near you'}) }}</h2>
+            <h2 class="helsinki-near-you-form__heading">{{ 'Search by address'|t({}, {'context': 'Helsinki near you'}) }}</h2>
             <p>{{ 'Search for neighbourhood services, events and news on the basis of your street address. The search field will suggest addresses as you start typing.'|t({}, {'context': 'Helsinki near you'}) }}</p>
             {{ search_form }}
           </div>

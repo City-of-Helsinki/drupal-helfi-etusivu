@@ -6,6 +6,7 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou;
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImages;
 use Drupal\helfi_etusivu\Plugin\Block\HelsinkiNearYouHeroBlock;
 use Symfony\Component\DependencyInjection\Loader\Configurator\Traits\PropertyTrait;
 
@@ -56,10 +57,22 @@ class HelsinkiNearYouHeroBlockTest extends KernelTestBase {
   }
 
   /**
-   * Tests that the block is empty on the landing page and unknown routes.
+   * Tests the landing page hero.
+   */
+  public function testLandingPageHero(): void {
+    $build = $this->buildBlock('helfi_etusivu.helsinki_near_you');
+
+    $content = $build['helsinki_near_you_hero_block'];
+    $this->assertEquals('helsinki_near_you_landing_page_hero', $content['#theme']);
+    $this->assertContains(LandingPageImages::CACHE_TAG, $content['#cache']['tags']);
+    // No hero image has been selected.
+    $this->assertArrayNotHasKey('#hero_image', $content);
+  }
+
+  /**
+   * Tests that the block is empty on unknown routes.
    */
   public function testBuildIsEmpty(): void {
-    $this->assertEquals([], $this->buildBlock('helfi_etusivu.helsinki_near_you'));
     $this->assertEquals([], $this->buildBlock('system.404'));
   }
 

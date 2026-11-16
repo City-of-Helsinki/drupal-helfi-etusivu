@@ -63,6 +63,11 @@ class ControllerTest extends KernelTestBase {
   protected LandingPageController $controller;
 
   /**
+   * The landing page images.
+   */
+  protected LandingPageImages $landingPageImages;
+
+  /**
    * The mocked file URL generator.
    *
    * @var \Drupal\Core\File\FileUrlGeneratorInterface|\PHPUnit\Framework\MockObject\MockObject
@@ -123,10 +128,11 @@ class ControllerTest extends KernelTestBase {
     $this->container->set('file_url_generator', $this->fileUrlGenerator);
     $this->container->set('theme_handler', $this->themeHandler);
 
-    $landingPageImages = new LandingPageImages(
+    $this->landingPageImages = $landingPageImages = new LandingPageImages(
       $this->container->get('state'),
       $this->container->get('entity_type.manager'),
       $this->container->get('cache_tags.invalidator'),
+      $this->container->get('entity.repository'),
     );
     $landingPageImages->setMediaIds([
       'hero' => (int) $this->media->id(),
@@ -136,7 +142,6 @@ class ControllerTest extends KernelTestBase {
     $this->controller = new LandingPageController(
       $this->fileUrlGenerator,
       $this->themeHandler,
-      $this->container->get('entity.repository'),
       $landingPageImages,
     );
   }
@@ -178,8 +183,8 @@ class ControllerTest extends KernelTestBase {
     $this->assertEquals($image_path . 'walking_by_houses-1026x1026.png', $build['#illustration_url_2x']);
     $this->assertEquals('Lille Santanen', (string) $build['#illustration_caption']);
 
-    $this->assertMediaImage($build['#hero_image'], 'hero', 'hero__diagonal');
-    $this->assertEquals('Vessi Hämäläinen', $build['#hero_image_author']);
+    // The hero is rendered by the hero block.
+    $this->assertArrayNotHasKey('#hero_image', $build);
 
     $this->assertEquals('helfi_etusivu_near_you', $build['#search_form']['#form_id']);
     $this->assertContains(LandingPageImages::CACHE_TAG, $build['#cache']['tags']);
@@ -190,9 +195,12 @@ class ControllerTest extends KernelTestBase {
       'credit' => 'Vessi Hämäläinen',
     ], $build['#liftup_image_caption']);
 
-    // Hero and liftup must not share the media object, as the altered image
-    // style is set on it and rendering happens later.
-    $this->assertNotSame($build['#hero_image']['#media'], $build['#liftup_image']['#media']);
+    // Usages of the same media must not share the media object, as the
+    // altered image style is set on it and rendering happens later.
+    $hero = $this->landingPageImages->buildMediaImage($this->media, 'hero', 'hero__diagonal');
+    $this->assertMediaImage($hero, 'hero', 'hero__diagonal');
+    $this->assertNotSame($hero['#media'], $build['#liftup_image']['#media']);
+    $this->assertEquals('liftup_left_right', $build['#liftup_image']['#media']->get('field_media_image')->first()->altered_image_style);
   }
 
   /**
@@ -212,8 +220,6 @@ class ControllerTest extends KernelTestBase {
 
     $build = $this->controller->content();
 
-    $this->assertArrayNotHasKey('#hero_image', $build);
-    $this->assertArrayNotHasKey('#hero_image_author', $build);
     $this->assertArrayNotHasKey('#liftup_image', $build);
     $this->assertArrayNotHasKey('#liftup_image_caption', $build);
     $this->assertArrayHasKey('#search_form', $build);

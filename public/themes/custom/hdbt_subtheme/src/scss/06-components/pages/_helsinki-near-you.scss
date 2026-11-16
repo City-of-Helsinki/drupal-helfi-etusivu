@@ -69,8 +69,6 @@
   margin-top: $spacing;
 }
 
-.helfi-etusivu-near-you-form-heading {
-  @include breakpoint($breakpoint-m) {
-    margin-top: calc($spacing * 6);
-  }
+.helsinki-near-you-form__heading {
+  margin-top: 0;
 }

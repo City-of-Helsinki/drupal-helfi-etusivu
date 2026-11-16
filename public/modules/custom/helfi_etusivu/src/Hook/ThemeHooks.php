@@ -25,8 +25,6 @@ final class ThemeHooks {
           'illustration_url_1x' => NULL,
           'illustration_url_2x' => NULL,
           'illustration_caption' => NULL,
-          'hero_image' => NULL,
-          'hero_image_author' => NULL,
           'liftup_image' => NULL,
           'liftup_image_caption' => NULL,
           'search_form' => NULL,
@@ -136,6 +134,13 @@ final class ThemeHooks {
       'helsinki_near_you_events' => [
         'variables' => [],
         'template' => 'helsinki-near-you-events',
+      ],
+      'helsinki_near_you_landing_page_hero' => [
+        'variables' => [
+          'hero_image' => NULL,
+          'hero_image_author' => NULL,
+        ],
+        'template' => 'helsinki-near-you-landing-page-hero',
       ],
       'helsinki_near_you_hero_block' => [
         'variables' => [

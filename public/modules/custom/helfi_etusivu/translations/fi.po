@@ -221,8 +221,8 @@ msgctxt "Helsinki near you"
 msgid "Browse roadworks near you or search for roadworks by location or date."
 msgstr "Selaa katu- ja puistotöitä läheltäsi tai hae hankkeita sijainnin tai päivämäärän perusteella."
 
-msgctxt "Helsinki near you roadworks search"
-msgid "Find information on street and park work near you."
+msgctxt "Helsinki near you"
+msgid "Find information on street and park work near your address."
 msgstr "Tutustu katu- ja puistotöihin osoitteesi lähellä."
 
 msgctxt "Helsinki near you roadworks search"
@@ -231,7 +231,7 @@ msgstr "Etsi katu- ja puistotöitä"
 
 msgctxt "Helsinki near you roadworks search"
 msgid "You can search for street and park work by address. The search shows work within two kilometres of the address."
-msgstr "Voit etsiä katu- ja puistotöitä osoitteen mukaan. Haku näyttää hankkeet enintään kahden kilometrin etäisyydeltä osoitteesta."
+msgstr "Voit etsiä katu- ja puistotöitä osoitteen mukaan. Haku näyttää ne enintään kahden kilometrin etäisyydeltä osoitteesta."
 
 msgctxt "Roadworks default title"
 msgid "Work site"
