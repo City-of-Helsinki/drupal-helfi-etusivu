@@ -46,9 +46,6 @@ final class SearchPageController extends ControllerBase implements ContainerInje
 
     return [
       '#theme' => 'helfi_etusivu_site_search',
-      '#cache' => [
-        'contexts' => ['user.roles:anonymous'],
-      ],
       '#attached' => [
         'drupalSettings' => [
           'helfi_site_search' => [
@@ -62,11 +59,6 @@ final class SearchPageController extends ControllerBase implements ContainerInje
         ],
         'library' => [
           'hdbt_subtheme/site-search',
-        ],
-        // @todo Prevent search engines from indexing search page until
-        // we are ready to replace the production search page.
-        'http_header' => [
-          ['X-Robots-Tag', 'noindex'],
         ],
       ],
     ];
