@@ -23,7 +23,7 @@ const BUNDLE_OPTIONS = [
     value: 'news',
     label: Drupal.t('News', {}, { context: 'Site search' }),
   },
-  [{ value: 'contacts', label: Drupal.t('Contacts', {}, { context: 'Site search' }) }],
+  { value: 'contacts', label: Drupal.t('Contacts', {}, { context: 'Site search' }) },
   {
     value: 'others',
     label: Drupal.t('Other content', {}, { context: 'Site search' }),
