@@ -133,6 +133,10 @@ msgid "Other content"
 msgstr "Muut sisällöt"
 
 msgctxt "Site search"
+msgid "Contacts"
+msgstr "Yhteystiedot"
+
+msgctxt "Site search"
 msgid "Filter search results"
 msgstr "Rajaa hakutuloksia"
 
@@ -155,12 +159,22 @@ msgstr[0] "@count hakutulos"
 msgstr[1] "@count hakutulosta"
 
 msgctxt "Site search"
+msgid "The search returned 1 contact"
+msgid_plural "The search returned @count contacts"
+msgstr[0] "Haulla löytyi 1 yhteystieto"
+msgstr[1] "Haulla löytyi @count yhteystietoa"
+
+msgctxt "Site search"
+msgid "Show all contact information"
+msgstr "Näytä kaikki yhteystiedot"
+
+msgctxt "Site search"
 msgid "Published"
 msgstr "Julkaistu"
 
 msgctxt "Site search"
-msgid "Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information."
-msgstr "Valinnoillasi ei löytynyt tuloksia. Käytä erillisiä hakupalveluja, jos etsit avoimia työpaikkoja, tapahtumia, päätöksiä tai yhteystietoja."
+msgid "Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events or decisions."
+msgstr "Valinnoillasi ei löytynyt tuloksia. Käytä erillisiä hakupalveluja, jos etsit avoimia työpaikkoja, tapahtumia tai päätöksiä."
 
 msgctxt "Site search"
 msgid "No results"

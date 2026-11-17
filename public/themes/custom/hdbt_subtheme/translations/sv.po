@@ -132,6 +132,10 @@ msgid "Other content"
 msgstr "Övrigt innehåll"
 
 msgctxt "Site search"
+msgid "Contacts"
+msgstr "Kontaktuppgifter"
+
+msgctxt "Site search"
 msgid "Filter search results"
 msgstr "Begränsa sökresultaten"
 
@@ -154,12 +158,22 @@ msgstr[0] "@count sökresultat"
 msgstr[1] "@count sökresultat"
 
 msgctxt "Site search"
+msgid "The search returned 1 contact"
+msgid_plural "The search returned @count contacts"
+msgstr[0] "Sökningen hittade 1 kontaktuppgift"
+msgstr[1] "Sökningen hittade @count kontaktuppgifter"
+
+msgctxt "Site search"
+msgid "Show all contact information"
+msgstr "Visa alla kontaktuppgifter"
+
+msgctxt "Site search"
 msgid "Published"
 msgstr "Publicerad"
 
 msgctxt "Site search"
-msgid "Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events, decisions or contact information."
-msgstr "Din sökning gav inga resultat. Använd de separata söktjänsterna om du letar efter lediga jobb, evenemang, beslut eller kontaktuppgifter."
+msgid "Your search did not yield any results. Please use the separate search services below if you are searching for open jobs, events or decisions."
+msgstr "Din sökning gav inga resultat. Använd de separata söktjänsterna om du letar efter lediga jobb, evenemang eller beslut."
 
 msgctxt "Site search"
 msgid "No results"

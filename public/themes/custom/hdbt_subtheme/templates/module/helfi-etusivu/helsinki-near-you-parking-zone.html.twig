@@ -1,0 +1,24 @@
+{% if name %}
+  {% embed '@hdbt/component/card.twig' with {
+    card_modifier_class: 'card--border',
+    card_image: map_image,
+    card_title_level: 'h4',
+    card_title: area_key
+      ? 'Resident parking zone @area_key, @name'|t({'@area_key': area_key, '@name': name}, {'context': 'Helsinki near you'})
+      : name,
+    card_url: map_url,
+    card_url_external: true,
+    card_description: 'The permit allows you to park in your zone for a monthly fee.'|t({}, {'context': 'Helsinki near you'}),
+    card_metas: price ? [
+      {
+        icon: 'glyph-euro',
+        label: 'Price'|t({}, {'context': 'Helsinki near you'}),
+        content: price,
+      },
+    ],
+  } %}
+  {% endembed %}
+{% else %}
+  {# Replaces the section description on the results page. #}
+  <p id="resident-parking-zone-description" data-hx-swap-oob="true">{{ 'There is no resident parking in your area. It is only available in the inner city.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+{% endif %}

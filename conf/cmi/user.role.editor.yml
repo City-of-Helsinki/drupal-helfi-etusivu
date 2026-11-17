@@ -181,6 +181,7 @@ permissions:
   - 'update media'
   - 'use favorites'
   - 'use helfi ai summary'
+  - 'use helfi ai title suggestion'
   - 'use menu link attributes'
   - 'use text format full_html'
   - 'use text format minimal'

@@ -1,2 +1,7 @@
-enable_seo_title: true
+config_rewrite:
+  replace: ['seo_title_bundles']
 enable_tone_check: true
+seo_title_bundles:
+  - page
+  - news_article
+  - news_item

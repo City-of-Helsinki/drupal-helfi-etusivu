@@ -122,6 +122,63 @@
       {% endblock component_content %}
     {% endembed %}
 
+    {# Parking Section #}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+          'component--parking',
+          'component--hardcoded',
+        ],
+        component_title: 'Parking'|t({}, {'context': 'Helsinki near you'}),
+      }
+    %}
+      {% block component_content %}
+        {# The parking zone section replaces the description when the address has no zone. #}
+        {% set resident_parking_zone_description %}
+          <p id="resident-parking-zone-description">{{ 'See the resident parking zones in your area.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+        {% endset %}
+        {% embed "@hdbt/misc/component.twig" with
+          {
+            component_classes: [
+              'component--resident-parking-zone',
+            ],
+            component_title_level: 'h3',
+            component_title: 'Resident parking zone'|t({}, {'context': 'Helsinki near you'}),
+            component_description: resident_parking_zone_description,
+          }
+        %}
+          {% block component_content %}
+            {{ parking_zone_section }}
+
+            <div class="see-all-button see-all-button--near-results">
+              {% include '@hdbt/navigation/link-button.html.twig' with {
+                type: 'primary',
+                label: 'Read more about resident parking'|t({}, {'context': 'Helsinki near you'}),
+                url: parking_read_more_url,
+              } %}
+            </div>
+          {% endblock component_content %}
+        {% endembed %}
+      {% endblock component_content %}
+    {% endembed %}
+
+    {# Vehicle removal Section #}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [
+        'component--vehicle-removal',
+        'component--hardcoded',
+      ],
+        component_title_level: 'h3',
+        component_title: 'Vehicle removal requests'|trans({}, {'context': 'Helsinki near you'}),
+        component_content_class: 'vehicle-removal-section',
+      }
+    %}
+      {% block component_content %}
+        {{ vehicle_removal_section }}
+      {% endblock component_content %}
+    {% endembed %}
+
     {# Roadwork Section #}
     {% embed "@hdbt/misc/component.twig" with
       {

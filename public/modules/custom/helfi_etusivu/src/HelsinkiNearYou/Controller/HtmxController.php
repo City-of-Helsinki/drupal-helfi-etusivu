@@ -54,7 +54,7 @@ abstract class HtmxController extends ControllerBase {
    * @param int|null $limit
    *   The limit.
    *
-   * @return array
+   * @return array<string, mixed>
    *   The render array.
    */
   abstract protected function buildHtmxResults(Address $address, string $langcode, ?int $limit = NULL) : array;
@@ -70,7 +70,13 @@ abstract class HtmxController extends ControllerBase {
    */
   public function htmx(Request $request): array {
     if (!$address = $this->getAddressForQuery($request)) {
-      return [];
+      // Without the query context, this empty response would be served from
+      // the dynamic page cache for every address.
+      return [
+        '#cache' => [
+          'contexts' => ['url.query_args'],
+        ],
+      ];
     }
 
     $langcode = $this->languageManager

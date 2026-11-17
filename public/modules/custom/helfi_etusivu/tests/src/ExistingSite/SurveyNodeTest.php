@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\helfi_etusivu\ExistingSite;
 
-use Drupal\helfi_etusivu\Entity\Node\Survey;
+use Drupal\helfi_node_survey\Entity\Survey;
 use Drupal\Tests\helfi_api_base\Functional\ExistingSiteTestBase;
 
 /**
@@ -18,7 +18,7 @@ class SurveyNodeTest extends ExistingSiteTestBase {
    * Tests 'field_publish_externally'.
    */
   public function testSurveyNodePublishExternallyField() : void {
-    /** @var \Drupal\helfi_etusivu\Entity\Node\Survey $survey */
+    /** @var \Drupal\helfi_node_survey\Entity\Survey $survey */
     $survey = $this->createNode([
       'type' => 'survey',
       'title' => 'Test survey',
@@ -28,7 +28,7 @@ class SurveyNodeTest extends ExistingSiteTestBase {
     $this->assertFalse($survey->publishExternally());
     $this->assertTrue($survey instanceof Survey);
 
-    /** @var \Drupal\helfi_etusivu\Entity\Node\Survey $globalSurvey */
+    /** @var \Drupal\helfi_node_survey\Entity\Survey $globalSurvey */
     $globalSurvey = $this->createNode([
       'type' => 'survey',
       'title' => 'Test global survey',

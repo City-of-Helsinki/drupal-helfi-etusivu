@@ -135,6 +135,42 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
       margin-block-start: $spacing-half;
     }
   }
+
+  .card__person-title {
+    @include font('body');
+  }
+
+  .card__person-organisation {
+    @include font('small');
+    color: $color-black-60;
+    margin-block-start: $spacing-half;
+
+    .card__person-organisation-item:not(:last-child)::after {
+      @include pseudo-icon('angle-right', $spacing, $color-black-90);
+      margin-inline: $spacing-quarter;
+      vertical-align: middle;
+    }
+  }
+
+  .card__person-links,
+  .card__persons-addresses {
+    margin-block-start: $spacing-half;
+  }
+
+  .card__person-link,
+  .card__person-address {
+    @include font('body');
+    margin-block-start: $spacing-half;
+  }
+
+  .card__person-link:first-child,
+  .card__person-address:first-child {
+    margin-block-start: 0;
+  }
+
+  .card__person-organisation + * {
+    margin-block-start: $spacing-and-half;
+  }
 }
 
 .card--site-search + .card--site-search {
@@ -160,4 +196,9 @@ $site-search-disclaimer-bottom-padding: $spacing-quarter;
 
 .hdbt-search--react__results--no-results .notification--site-search::before {
   display: none;
+}
+
+// Notification that there are contact hits with the submitted search.
+.hdbt-search--react__results--site-search .notification--site-search-contacts {
+  margin-block-end: $spacing;
 }

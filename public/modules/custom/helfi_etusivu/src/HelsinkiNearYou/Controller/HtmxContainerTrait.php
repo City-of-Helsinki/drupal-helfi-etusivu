@@ -91,6 +91,26 @@ trait HtmxContainerTrait {
   }
 
   /**
+   * Constructs a render array for the resident parking zone.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
+   * @return array<string, mixed>
+   *   The render array.
+   */
+  protected function buildParkingZoneHtmxContainer(Request $request) : array {
+    return $this->buildHtmxRenderArray(
+      'helfi_etusivu.helsinki_near_you_parking_zone_htmx',
+      $request,
+      1,
+      new Attribute([
+        'class' => ['card--border'],
+      ]),
+    );
+  }
+
+  /**
    * Constructs a render array for roadwork items.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
@@ -111,6 +131,29 @@ trait HtmxContainerTrait {
       new Attribute([
         'class' => ['card--ghost--no-image'],
       ]),
+      $searchingLabel,
+    );
+  }
+
+  /**
+   * Constructs a render array for vehicle removal items.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   * @param int|null $limit
+   *   The limit.
+   * @param string|null $searchingLabel
+   *   The label shown on ghost cards while loading, or null.
+   *
+   * @return array<mixed>
+   *   The render array.
+   */
+  protected function buildVehicleRemovalHtmxContainer(Request $request, ?int $limit = NULL, ?string $searchingLabel = NULL) : array {
+    return $this->buildHtmxRenderArray(
+      'helfi_etusivu.helsinki_near_you_vehicle_removal_htmx',
+      $request,
+      $limit,
+      NULL,
       $searchingLabel,
     );
   }
