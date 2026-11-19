@@ -5,19 +5,6 @@ display:
       fields:
         views_bulk_operations_bulk_form:
           action_title: عملکرد
-          selected_actions:
-            2:
-              preconfiguration:
-                label_override: 'حذف محتوا'
-            4:
-              preconfiguration:
-                label_override: 'انتشار محتوا'
-            5:
-              preconfiguration:
-                label_override: 'عدم انتشار محتوا'
-            6:
-              preconfiguration:
-                label_override: 'به‌روزرسانی آدرس مستعار'
         content_translation_outdated:
           settings:
             format_custom_true: منسوخ
