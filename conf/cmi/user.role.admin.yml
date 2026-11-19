@@ -90,6 +90,7 @@ permissions:
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'
+  - 'allow views bulk operations'
   - 'assign content_producer role'
   - 'assign editor role'
   - 'assign news_producer role'
