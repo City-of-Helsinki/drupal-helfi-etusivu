@@ -5,6 +5,22 @@ display:
       fields:
         views_bulk_operations_bulk_form:
           action_title: Дія
+          selected_actions:
+            2:
+              preconfiguration:
+                label_override: 'Видалити матеріал'
+            3:
+              preconfiguration:
+                label_override: 'Редагувати вміст'
+            4:
+              preconfiguration:
+                label_override: 'Публікувати матеріал'
+            5:
+              preconfiguration:
+                label_override: 'Зняти з публікації матеріал'
+            6:
+              preconfiguration:
+                label_override: 'Оновити синонім URL'
         content_translation_outdated:
           label: 'Переклад застарів'
           settings:
