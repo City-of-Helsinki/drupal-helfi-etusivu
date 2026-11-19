@@ -5,6 +5,22 @@ display:
       fields:
         views_bulk_operations_bulk_form:
           action_title: Tegevus
+          selected_actions:
+            2:
+              preconfiguration:
+                label_override: 'Kustuta sisu'
+            3:
+              preconfiguration:
+                label_override: 'Muuda sisu'
+            4:
+              preconfiguration:
+                label_override: 'Sisu avaldamine'
+            5:
+              preconfiguration:
+                label_override: 'Sisu muutmine mitteavaldatuks'
+            6:
+              preconfiguration:
+                label_override: 'Uuenda URLi alias'
         content_translation_outdated:
           label: 'Tõlge on aegunud'
           settings:

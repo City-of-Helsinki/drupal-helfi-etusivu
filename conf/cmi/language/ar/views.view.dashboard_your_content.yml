@@ -5,6 +5,16 @@ display:
       fields:
         views_bulk_operations_bulk_form:
           action_title: إجراء
+          selected_actions:
+            2:
+              preconfiguration:
+                label_override: 'حذف المحتوى'
+            4:
+              preconfiguration:
+                label_override: 'نشر المحتوى'
+            5:
+              preconfiguration:
+                label_override: 'إلغاء نشر المحتوى'
         content_translation_outdated:
           label: 'الترجمة قديمة'
           settings:

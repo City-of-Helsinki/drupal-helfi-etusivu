@@ -5,6 +5,22 @@ display:
       fields:
         views_bulk_operations_bulk_form:
           action_title: 动作
+          selected_actions:
+            2:
+              preconfiguration:
+                label_override: 删除内容
+            3:
+              preconfiguration:
+                label_override: 编辑内容
+            4:
+              preconfiguration:
+                label_override: 发布内容
+            5:
+              preconfiguration:
+                label_override: 取消内容发布
+            6:
+              preconfiguration:
+                label_override: 更新URL别名
         content_translation_outdated:
           label: 翻译过时
           settings:
