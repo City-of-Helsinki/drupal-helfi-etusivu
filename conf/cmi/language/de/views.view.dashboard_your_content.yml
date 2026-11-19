@@ -5,6 +5,22 @@ display:
       fields:
         views_bulk_operations_bulk_form:
           action_title: Aktion
+          selected_actions:
+            2:
+              preconfiguration:
+                label_override: 'Inhalt löschen'
+            3:
+              preconfiguration:
+                label_override: 'Inhalt bearbeiten'
+            4:
+              preconfiguration:
+                label_override: 'Inhalt veröffentlichen'
+            5:
+              preconfiguration:
+                label_override: 'Veröffentlichung des Inhalts zurücknehmen'
+            6:
+              preconfiguration:
+                label_override: 'URL-Alias aktualisieren'
         content_translation_outdated:
           label: 'Übersetzung veraltet'
           settings:
