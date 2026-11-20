@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Form;
 
-use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\WidgetInterface;
@@ -24,7 +23,6 @@ use Drupal\paragraphs\ParagraphInterface;
  * the field constraints are the same as when editing such a paragraph.
  */
 final class LandingPageImagesForm extends FormBase {
-  
   public function __construct(
     protected readonly LandingPageImages $landingPageImages,
     protected readonly EntityTypeManagerInterface $entityTypeManager,
