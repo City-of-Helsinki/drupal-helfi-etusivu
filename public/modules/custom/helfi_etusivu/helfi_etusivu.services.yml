@@ -41,6 +41,7 @@ services:
       - { name: breadcrumb_builder, priority: 1004 }
 
   Drupal\helfi_etusivu\EventSubscriber\ElasticsearchEventSubscriber: ~
+  Drupal\helfi_etusivu\EventSubscriber\HakuvahtiSubscriptionSubscriber: ~
   Drupal\helfi_etusivu\Hakuvahti\NewsSearchDescriptionBuilder: ~
 
   Drupal\helfi_etusivu\HelsinkiNearYou\Feedback\Client: ~
