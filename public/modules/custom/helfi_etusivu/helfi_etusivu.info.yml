@@ -19,6 +19,7 @@ dependencies:
   - search_api:search_api
   - elasticsearch_connector:elasticsearch_connector
   - helfi_api_base:helfi_api_base
+  - helfi_hakuvahti:helfi_hakuvahti
   - simple_sitemap:simple_sitemap
   - content_lock:content_lock
   - helfi_react_search:helfi_react_search
