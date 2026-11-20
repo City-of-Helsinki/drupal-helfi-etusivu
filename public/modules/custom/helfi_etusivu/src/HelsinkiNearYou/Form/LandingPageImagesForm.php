@@ -23,6 +23,7 @@ use Drupal\paragraphs\ParagraphInterface;
  * the field constraints are the same as when editing such a paragraph.
  */
 final class LandingPageImagesForm extends FormBase {
+
   public function __construct(
     protected readonly LandingPageImages $landingPageImages,
     protected readonly EntityTypeManagerInterface $entityTypeManager,
