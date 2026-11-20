@@ -8,14 +8,14 @@ use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_etusivu\HelsinkiNearYou\DTO\HeroOptions;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageSearchForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\LandingPageImage;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\RouteInformationEnum;
+use Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImages;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -27,11 +27,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
   admin_label: new TranslatableMarkup("Helsinki near you hero block"),
 )]
 final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFactoryPluginInterface {
-
-  /**
-   * The form builder.
-   */
-  private FormBuilderInterface $formBuilder;
 
   /**
    * The route match.
@@ -49,6 +44,11 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
   private LanguageManagerInterface $languageManager;
 
   /**
+   * The landing page images.
+   */
+  protected LandingPageImages $landingPageImages;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(
@@ -62,10 +62,10 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
       $plugin_id,
       $plugin_definition,
     );
-    $instance->formBuilder = $container->get(FormBuilderInterface::class);
     $instance->routeMatch = $container->get(RouteMatchInterface::class);
     $instance->requestStack = $container->get(RequestStack::class);
     $instance->languageManager = $container->get(LanguageManagerInterface::class);
+    $instance->landingPageImages = $container->get(LandingPageImages::class);
 
     return $instance;
   }
@@ -83,11 +83,18 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
       return [];
     }
 
+    if ($routeInformation === RouteInformationEnum::LandingPage) {
+      return $this->buildLandingPageHero();
+    }
+
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
 
     // Runtime options for the route.
-    $routeOptions = fn (RouteInformationEnum|NULL $routeInformation) => match ($routeInformation) {
-      RouteInformationEnum::Roadworks, RouteInformationEnum::Events, RouteInformationEnum::Feedback => new HeroOptions(),
+    $options = match ($routeInformation) {
+      RouteInformationEnum::Roadworks,
+      RouteInformationEnum::Events,
+      RouteInformationEnum::VehicleRemoval,
+      RouteInformationEnum::Feedback => new HeroOptions(),
       RouteInformationEnum::Results => new HeroOptions(
         translationArguments: [
           // Get the address name from request attributes.
@@ -103,10 +110,38 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
         cache: (new CacheableMetadata())
           ->setCacheContexts(['url.query_args']),
       ),
-      RouteInformationEnum::LandingPage => new HeroOptions(form: $this->formBuilder->getForm(LandingPageSearchForm::class)),
     };
 
-    return $this->buildHero($routeInformation, $routeOptions($routeInformation));
+    return $this->buildHero($routeInformation, $options);
+  }
+
+  /**
+   * Builds the landing page hero.
+   *
+   * Diagonal design with the image selected in
+   * \Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageImagesForm.
+   *
+   * @return array
+   *   The render array.
+   *
+   * @phpstan-return array<string, mixed>
+   */
+  private function buildLandingPageHero() : array {
+    $build['helsinki_near_you_hero_block'] = [
+      '#theme' => 'helsinki_near_you_landing_page_hero',
+      '#cache' => [
+        'tags' => [LandingPageImages::CACHE_TAG],
+      ],
+    ];
+
+    // Same media view mode and responsive image style as hero paragraphs, see
+    // hdbt_preprocess_paragraph__hero().
+    if ($heroImage = $this->landingPageImages->getMedia(LandingPageImage::Hero)) {
+      $build['helsinki_near_you_hero_block']['#hero_image'] = $this->landingPageImages->buildMediaImage($heroImage, 'hero', 'hero__diagonal');
+      $build['helsinki_near_you_hero_block']['#hero_image_author'] = $this->landingPageImages->getPhotographer($heroImage);
+    }
+
+    return $build;
   }
 
   /**

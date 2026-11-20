@@ -22,6 +22,7 @@ final readonly class PlatformConfig {
     return [
       'admin' => [
         'administer search content',
+        'administer helsinki near you images',
       ],
     ];
   }

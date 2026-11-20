@@ -72,7 +72,7 @@ enum ServiceMapLink {
     return match($this) {
       ServiceMapLink::RoadworkEvents => new TranslatableMarkup('Street works and events near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
       ServiceMapLink::CityBikeStationsStands => new TranslatableMarkup('City bike stations and bicycle racks near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
-      ServiceMapLink::StreetParkProjects => new TranslatableMarkup('Street and park projects near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
+      ServiceMapLink::StreetParkProjects => new TranslatableMarkup('Street and park work near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
       ServiceMapLink::PlansInProcess => new TranslatableMarkup('Plans under preparation near the address @address', ['@address' => $address], ['context' => 'Helsinki near you address label']),
     };
   }
