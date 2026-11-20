@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Helsinki near you landing page hero.
+ *
+ * Variables:
+ * - hero_image: Hero image media render array.
+ * - hero_image_author: Hero image photographer.
+ *
+ * @see \Drupal\helfi_etusivu\Plugin\Block\HelsinkiNearYouHeroBlock
+ */
+#}
+{% set hero_description %}
+  <p>{{ 'Discover services, events and news near your address. You will see what is going on in your neighbourhood now and in the future.'|t({}, {'context': 'Helsinki near you'}) }}</p>
+{% endset %}
+{% embed '@hdbt/component/hero.twig' with {
+  design: 'diagonal',
+  title: 'Helsinki near you'|t({}, {'context': 'Helsinki near you'}),
+  description: hero_description,
+  image: hero_image,
+  image_author: hero_image_author,
+} %}
+{% endembed %}

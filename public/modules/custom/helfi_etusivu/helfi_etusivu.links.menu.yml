@@ -16,3 +16,10 @@ helfi_etusivu.search:
   route_name: entity.helfi_search_promotion.collection
   parent: system.admin_content
   weight: 100
+
+helfi_etusivu.helsinki_near_you_images:
+  title: 'Helsinki near you images'
+  description: 'Select the images of the Helsinki near you landing page.'
+  route_name: helfi_etusivu.helsinki_near_you_images
+  parent: hdbt_admin_tools.site_settings
+  weight: -6

@@ -16,6 +16,13 @@ services:
 
   Drupal\helfi_etusivu\Language\AltLanguageFallbacks: ~
 
+  Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImages: ~
+
+  helfi_etusivu.media_library.opener.helsinki_near_you_images:
+    class: Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImagesMediaLibraryOpener
+    tags:
+      - { name: media_library.opener }
+
   # Roadwork data services
   Drupal\helfi_etusivu\HelsinkiNearYou\CoordinateConversionService: ~
 
