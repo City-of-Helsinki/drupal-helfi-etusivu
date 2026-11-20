@@ -55,7 +55,6 @@ class NewsSearchDescriptionBuilderTest extends KernelTestBase {
     $this->installEntitySchema('taxonomy_term');
     $this->installConfig(['language']);
 
-    // The weights in conf/cmi decide the translation fallback order.
     $this->config('language.entity.en')->set('weight', -8)->save();
     ConfigurableLanguage::create(['id' => 'fi', 'label' => 'Finnish', 'weight' => -10])->save();
     ConfigurableLanguage::create(['id' => 'sv', 'label' => 'Swedish', 'weight' => -9])->save();

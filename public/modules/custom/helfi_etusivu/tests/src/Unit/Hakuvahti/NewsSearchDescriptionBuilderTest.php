@@ -76,7 +76,6 @@ class NewsSearchDescriptionBuilderTest extends UnitTestCase {
       $this->storage->loadMultiple(Argument::any())->shouldNotBeCalled();
     }
     else {
-      // Keys in reverse order: the output order must not depend on them.
       $loaded = array_reverse(array_intersect_key($this->terms, array_flip($expectedIds)), TRUE);
       $this->storage->loadMultiple($expectedIds)->shouldBeCalledOnce()->willReturn($loaded);
     }
@@ -152,10 +151,15 @@ class NewsSearchDescriptionBuilderTest extends UnitTestCase {
         [1, 3, 4],
         'Traffic, Kallio, Families',
       ],
-      'must as an object' => [
-        self::query(['a' => ['terms' => ['news_tags' => [1]]]]),
+      'must as a single clause' => [
+        self::query(['terms' => ['news_tags' => [1]]]),
         [1],
         'Traffic',
+      ],
+      'must as a keyed map of clauses' => [
+        self::query(['a' => ['terms' => ['news_tags' => [1]]]]),
+        NULL,
+        '',
       ],
       'request order within a field' => [
         self::query([['terms' => ['news_tags' => [2, 1]]]]),
@@ -299,7 +303,6 @@ class NewsSearchDescriptionBuilderTest extends UnitTestCase {
     $builder = $this->getBuilder([6, 7, 1, 2, 3, 4, 5]);
     $description = $builder->build(self::query([['terms' => ['news_tags' => [6, 7, 1, 2, 3, 4, 5]]]]), 'fi');
 
-    // 255 + 2 + 232 + 2 + 255 + 2 + 255 = 1003 > 999, so three labels fit.
     $this->assertSame(implode(', ', [str_repeat('ä', 255), str_repeat('ö', 232), str_repeat('1', 255)]), $description);
     $this->assertLessThanOrEqual(NewsSearchDescriptionBuilder::MAX_LENGTH, mb_strlen($description));
   }

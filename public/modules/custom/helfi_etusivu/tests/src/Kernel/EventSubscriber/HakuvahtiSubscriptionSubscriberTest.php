@@ -19,7 +19,6 @@ use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -63,11 +62,9 @@ class HakuvahtiSubscriptionSubscriberTest extends KernelTestBase {
   ];
 
   /**
-   * Term ids by name.
-   *
-   * @var array<string, int>
+   * The id of the 'Traffic' news tag.
    */
-  private array $tids = [];
+  private int $trafficTid;
 
   /**
    * {@inheritdoc}
@@ -79,19 +76,14 @@ class HakuvahtiSubscriptionSubscriberTest extends KernelTestBase {
     $this->installSchema('user', ['users_data']);
     $this->installEntitySchema('taxonomy_term');
 
-    foreach (['traffic' => 'news_tags', 'kallio' => 'news_neighbourhoods'] as $name => $vid) {
-      Vocabulary::create(['vid' => $vid, 'name' => $vid])->save();
-      $term = Term::create(['vid' => $vid, 'name' => ucfirst($name)]);
-      $term->save();
-      $this->tids[$name] = (int) $term->id();
-    }
+    Vocabulary::create(['vid' => 'news_tags', 'name' => 'news_tags'])->save();
+    $term = Term::create(['vid' => 'news_tags', 'name' => 'Traffic']);
+    $term->save();
+    $this->trafficTid = (int) $term->id();
   }
 
   /**
    * Creates a request.
-   *
-   * @param string $elasticQuery
-   *   The base64-encoded elastic query.
    */
   private function createRequest(string $elasticQuery): HakuvahtiRequest {
     return new HakuvahtiRequest([
@@ -123,41 +115,18 @@ class HakuvahtiSubscriptionSubscriberTest extends KernelTestBase {
   }
 
   /**
-   * Data provider for testDescription().
-   *
-   * @return array<string, array{string, string}>
-   *   The terms clause as a placeholder name or raw ids, and the expected
-   *   description.
-   */
-  public static function descriptionProvider(): array {
-    return [
-      'valid query' => ['traffic', 'Traffic'],
-      'unexpected shape' => ['shape', ''],
-      'wrong vocabulary' => ['kallio', ''],
-      'non-int ids' => ['strings', ''],
-    ];
-  }
-
-  /**
    * Tests that the client description is replaced.
    */
-  #[DataProvider('descriptionProvider')]
-  public function testDescription(string $case, string $expected): void {
-    $query = match ($case) {
-      'shape' => ['query' => 'x'],
-      'strings' => ['query' => ['bool' => ['must' => [['terms' => ['news_tags' => [(string) $this->tids['traffic']]]]]]]],
-      default => ['query' => ['bool' => ['must' => [['terms' => ['news_tags' => [$this->tids[$case]]]]]]]],
-    };
+  public function testDescription(): void {
+    $query = ['query' => ['bool' => ['must' => [['terms' => ['news_tags' => [$this->trafficTid]]]]]]];
     $request = $this->createRequest(self::encode($query));
     $event = new SubscriptionAlterEvent($request, HakuvahtiSubscriptionSubscriber::CONFIG_ID);
 
     $this->dispatch($event);
 
-    $altered = $event->getHakuvahtiRequest();
-    $this->assertSame($expected, $altered->searchDescription);
     $this->assertEquals(
-      array_merge(get_object_vars($request), ['searchDescription' => $expected]),
-      get_object_vars($altered),
+      array_merge(get_object_vars($request), ['searchDescription' => 'Traffic']),
+      get_object_vars($event->getHakuvahtiRequest()),
     );
   }
 
@@ -199,7 +168,7 @@ class HakuvahtiSubscriptionSubscriberTest extends KernelTestBase {
     $this->container->set(HakuvahtiInterface::class, new Hakuvahti($client, $this->container->get(ConfigFactoryInterface::class)));
     $this->setUpCurrentUser(permissions: ['access content']);
 
-    $query = ['query' => ['bool' => ['must' => [['terms' => ['news_tags' => [$this->tids['traffic']]]]]]]];
+    $query = ['query' => ['bool' => ['must' => [['terms' => ['news_tags' => [$this->trafficTid]]]]]]];
     $body = [
       'email' => 'test@example.com',
       'query' => '/en/news?topic[0]=1',

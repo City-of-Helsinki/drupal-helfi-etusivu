@@ -9,13 +9,10 @@ use Drupal\helfi_hakuvahti\Event\SubscriptionAlterEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Builds the news archive search description on the backend.
+ * Sets the news archive search description from the Elasticsearch query.
  */
 readonly class HakuvahtiSubscriptionSubscriber implements EventSubscriberInterface {
 
-  /**
-   * The hakuvahti config the news archive search monitor uses.
-   */
   public const string CONFIG_ID = 'news_archive';
 
   public function __construct(private NewsSearchDescriptionBuilder $descriptionBuilder) {
@@ -32,9 +29,6 @@ readonly class HakuvahtiSubscriptionSubscriber implements EventSubscriberInterfa
 
   /**
    * Sets the search description of a news archive subscription.
-   *
-   * @throws \InvalidArgumentException
-   *   If the elastic query cannot be decoded.
    */
   public function onSubscriptionAlter(SubscriptionAlterEvent $event): void {
     if ($event->getConfigId() !== self::CONFIG_ID) {

@@ -11,19 +11,13 @@ use Drupal\taxonomy\TermInterface;
 
 /**
  * Builds a plain-text news search description from an Elasticsearch query.
- *
- * Filter labels come from published terms of the expected vocabularies, looked
- * up by the term ids in the query. The keyword is truncated.
  */
 class NewsSearchDescriptionBuilder {
 
   public const int MAX_LENGTH = 999;
-  public const int MAX_KEYWORD_LENGTH = 10;
+  private const int MAX_KEYWORD_LENGTH = 10;
   public const int MAX_TERMS_PER_FIELD = 50;
 
-  /**
-   * Index field => vocabulary, in the order the search monitor lists them.
-   */
   private const array TERM_FIELDS = [
     'news_tags' => 'news_tags',
     'neighbourhoods' => 'news_neighbourhoods',
@@ -43,9 +37,6 @@ class NewsSearchDescriptionBuilder {
    *   The decoded Elasticsearch query.
    * @param string $langcode
    *   The language of the labels.
-   *
-   * @return string
-   *   The description, or an empty string if the query has no known filters.
    */
   public function build(array $query, string $langcode): string {
     $must = $this->getMustClauses($query);
@@ -90,27 +81,22 @@ class NewsSearchDescriptionBuilder {
    *   The clauses.
    */
   private function getMustClauses(array $query): array {
-    $bool = is_array($query['query'] ?? NULL) ? ($query['query']['bool'] ?? NULL) : NULL;
-    $must = is_array($bool) ? ($bool['must'] ?? NULL) : NULL;
-    return is_array($must) ? array_values($must) : [];
+    $must = $query['query']['bool']['must'] ?? NULL;
+    if (!is_array($must)) {
+      return [];
+    }
+    return array_is_list($must) ? $must : [$must];
   }
 
   /**
    * Gets the keyword of the first keyword clause.
    *
-   * The wildcard clause keeps the keyword's original case, the
-   * simple_query_string clause has it lowercased with a trailing '~'. Control
-   * and format characters are replaced with spaces.
-   *
    * @param list<mixed> $must
    *   The must clauses.
-   *
-   * @return string
-   *   The keyword, or an empty string.
    */
   private function getKeyword(array $must): string {
     foreach ($must as $clause) {
-      $should = is_array($clause) && is_array($clause['bool'] ?? NULL) ? ($clause['bool']['should'] ?? NULL) : NULL;
+      $should = $clause['bool']['should'] ?? NULL;
       if (!is_array($should)) {
         continue;
       }
@@ -118,14 +104,13 @@ class NewsSearchDescriptionBuilder {
       $wildcard = NULL;
       $simpleQuery = NULL;
       foreach ($should as $item) {
-        if (!is_array($item)) {
-          continue;
+        $wildcardValue = $item['wildcard']['title.keyword'] ?? NULL;
+        if (is_string($wildcardValue)) {
+          $wildcard ??= preg_replace('/^\*|\*$/', '', $wildcardValue);
         }
-        if (is_array($item['wildcard'] ?? NULL) && is_string($item['wildcard']['title.keyword'] ?? NULL)) {
-          $wildcard ??= preg_replace('/^\*|\*$/', '', $item['wildcard']['title.keyword']);
-        }
-        if (is_array($item['simple_query_string'] ?? NULL) && is_string($item['simple_query_string']['query'] ?? NULL)) {
-          $simpleQuery ??= preg_replace('/~$/', '', $item['simple_query_string']['query']);
+        $simpleQueryValue = $item['simple_query_string']['query'] ?? NULL;
+        if (is_string($simpleQueryValue)) {
+          $simpleQuery ??= preg_replace('/~$/', '', $simpleQueryValue);
         }
       }
 
@@ -151,7 +136,7 @@ class NewsSearchDescriptionBuilder {
   private function getTermIds(array $must, string $field): array {
     $ids = [];
     foreach ($must as $clause) {
-      $values = is_array($clause) && is_array($clause['terms'] ?? NULL) ? ($clause['terms'][$field] ?? NULL) : NULL;
+      $values = $clause['terms'][$field] ?? NULL;
       if (!is_array($values)) {
         continue;
       }
@@ -172,9 +157,6 @@ class NewsSearchDescriptionBuilder {
    *
    * @param list<string> $parts
    *   The parts.
-   *
-   * @return string
-   *   The joined parts.
    */
   private function join(array $parts): string {
     $description = '';
