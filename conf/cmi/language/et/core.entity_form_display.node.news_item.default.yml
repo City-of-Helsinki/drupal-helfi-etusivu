@@ -4,3 +4,7 @@ third_party_settings:
       label: Lingid
     group_news_item_links_wrapper:
       label: Lingid
+content:
+  field_content:
+    settings:
+      title: Paragraph

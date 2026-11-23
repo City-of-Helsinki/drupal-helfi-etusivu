@@ -79,6 +79,7 @@ permissions:
   - 'access user profiles'
   - 'administer blocks'
   - 'administer helfi_search'
+  - 'administer helsinki near you images'
   - 'administer llms.txt'
   - 'administer menu'
   - 'administer nodes'
