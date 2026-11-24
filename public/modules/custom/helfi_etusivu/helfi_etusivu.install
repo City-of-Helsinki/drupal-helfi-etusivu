@@ -956,14 +956,4 @@ function helfi_etusivu_update_11016(): void {
     $source = new FileStorage($path . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY);
     $config->setData($source->read($name) ?: [])->save();
   }
-
-  // The images permission is now called the settings permission and it
-  // includes also the pricing permission.
-  foreach (Role::loadMultiple() as $role) {
-    if ($role->hasPermission('administer helsinki near you images')) {
-      $role->revokePermission('administer helsinki near you images')
-        ->grantPermission('administer helsinki near you settings')
-        ->save();
-    }
-  }
 }
