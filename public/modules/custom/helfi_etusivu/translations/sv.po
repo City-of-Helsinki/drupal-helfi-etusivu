@@ -16,10 +16,6 @@ msgctxt "Updating news"
 msgid "Latest updates"
 msgstr "Senaste uppdateringar"
 
-msgctxt "Updating news"
-msgid "News update published time"
-msgstr "Uppdatering publicerad tid"
-
 msgctxt "Helsinki near you"
 msgid "Helsinki near you"
 msgstr "Helsingfors nära dig"
@@ -310,9 +306,6 @@ msgctxt "Helsinki near you"
 msgid "Searching for results..."
 msgstr "Söker..."
 
-msgid "Hiding the page"
-msgstr "Schemalagd döljning"
-
 msgid "Arabic"
 msgstr "Arabiska"
 
@@ -357,30 +350,6 @@ msgstr "Nyheten schemaläggs att bli icke-offentlig 11 månader efter publicerin
 
 msgid "News"
 msgstr "Nyheter"
-
-msgctxt "Helsinki near you"
-msgid "Parking"
-msgstr "Parkering"
-
-msgctxt "Helsinki near you"
-msgid "Resident parking zone"
-msgstr "Boendeparkeringsområde"
-
-msgctxt "Helsinki near you"
-msgid "See the resident parking zones in your area."
-msgstr "Bekanta dig med boendeparkeringsområdet i ditt område."
-
-msgctxt "Helsinki near you"
-msgid "There is no resident parking in your area. It is only available in the inner city."
-msgstr "Det finns ingen boendeparkering i ditt bostadsområde. Boendeparkering finns i stadskärnan."
-
-msgctxt "Helsinki near you"
-msgid "The permit allows you to park in your zone for a monthly fee."
-msgstr "Med ett boendeparkeringstillstånd parkerar du på boendeparkeringsplatserna i ditt bostadsområde mot en månadsavgift."
-
-msgctxt "Helsinki near you"
-msgid "Read more about resident parking"
-msgstr "Läs mer om boendeparkering"
 
 msgctxt "Helsinki near you"
 msgid "Resident parking zone @area_key, @name"
