@@ -1,9 +1,5 @@
 /* Style the suffix for the parking zone price list to look nice. */
-.helsinki-near-you-settings__parking-zone-letter {
-  align-items: top;
-  display: flex;
-}
-
+td.helsinki-near-you-settings__parking-zone-letter,
 div.helsinki-near-you-settings__parking-zone-price {
   align-items: center;
   display: flex;
@@ -19,10 +15,14 @@ div.helsinki-near-you-settings__parking-zone-price .form-item__suffix {
   width: calc(10% - 8px); 
 }
 
+.helsinki-near-you-settings__parking-zone-letter .form-item__error-message,
 div.helsinki-near-you-settings__parking-zone-price .form-item__error-message {
   width: 100%;
 }
 
+.edit-resident-parking-prices tr {
+  vertical-align: top;
+}
 
 /* Styling for the image fields. */
 @media only screen and (min-width: 768px) {

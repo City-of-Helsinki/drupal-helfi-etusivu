@@ -72,7 +72,7 @@ final class SettingsForm extends FormBase {
     $form['resident_parking'] = [
       '#type' => 'details',
       '#title' => $this->t('Resident parking prices'),
-      '#description' => $this->t('Monthly resident parking permit prices by zone in euros. Zones without a price are shown without one. To remove a zone, empty its zone field.'),
+      '#description' => $this->t('Monthly resident parking permit prices by zone in euros. To remove a zone, empty its zone field.'),
       '#open' => TRUE,
     ];
     $form['resident_parking']['resident_parking_prices'] = [
