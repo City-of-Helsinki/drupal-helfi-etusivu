@@ -45,6 +45,13 @@ class SearchFormBaseTest extends KernelTestBase {
       /**
        * {@inheritdoc}
        */
+      protected function getSearchLandmarkLabel(): string {
+        return 'Test landmark';
+      }
+
+      /**
+       * {@inheritdoc}
+       */
       public function getFormId(): string {
         return 'test_search_form';
       }
@@ -67,6 +74,8 @@ class SearchFormBaseTest extends KernelTestBase {
     $this->assertArrayHasKey('submit', $built['actions']);
     $this->assertSame('submit', $built['actions']['submit']['#type']);
     $this->assertContains('novalidate', array_keys($built['#attributes']));
+    $this->assertSame('search', $built['#attributes']['role']);
+    $this->assertSame('Test landmark', $built['#attributes']['aria-label']);
   }
 
   /**

@@ -6,6 +6,7 @@ namespace Drupal\helfi_etusivu\HelsinkiNearYou\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\helfi_api_base\ServiceMap\ServiceMapInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -43,12 +44,26 @@ abstract class SearchFormBase extends FormBase {
   abstract protected function getRedirectRoute() : string;
 
   /**
+   * Gets the accessible name for the search landmark.
+   *
+   * Each form must provide a unique label so that screen reader users can
+   * tell multiple search landmarks on the same page apart. The label should
+   * not contain the word "search", as the role is announced already.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
+   *   The label.
+   */
+  abstract protected function getSearchLandmarkLabel() : TranslatableMarkup|string;
+
+  /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) : array {
     $form['#attributes'] = [
       'class' => ['hdbt-search__form helfi-etusivu-near-you-form'],
       'novalidate' => TRUE,
+      'role' => 'search',
+      'aria-label' => $this->getSearchLandmarkLabel(),
     ];
     $form['home_address'] = [
       '#placeholder' => $this->t('For example, Kotikatu 1', [], ['context' => 'Helsinki near you']),
