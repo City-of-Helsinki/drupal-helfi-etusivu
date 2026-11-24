@@ -13,11 +13,11 @@ use Drupal\media_library\MediaLibraryOpenerInterface;
 use Drupal\media_library\MediaLibraryState;
 
 /**
- * Opens the media library from the Helsinki near you images form.
+ * Opens the media library from the Helsinki near you settings form.
  *
  * The field widget opener grants access based on the entity the field
- * belongs to, but the images form only uses unsaved paragraphs to build its
- * widgets. Access is granted with the form's permission instead.
+ * belongs to, but the settings form only uses unsaved paragraphs to build its
+ * image widgets. Access is granted with the form's permission instead.
  */
 final class LandingPageImagesMediaLibraryOpener implements MediaLibraryOpenerInterface {
 
@@ -30,7 +30,7 @@ final class LandingPageImagesMediaLibraryOpener implements MediaLibraryOpenerInt
    * {@inheritdoc}
    */
   public function checkAccess(MediaLibraryState $state, AccountInterface $account): AccessResultInterface {
-    return AccessResult::allowedIfHasPermission($account, 'administer helsinki near you images')
+    return AccessResult::allowedIfHasPermission($account, 'administer helsinki near you settings')
       ->addCacheableDependency($state);
   }
 

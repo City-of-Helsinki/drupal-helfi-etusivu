@@ -8,9 +8,10 @@ use Drupal\Core\Form\FormState;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\LandingPageImage;
-use Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageImagesForm;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Form\SettingsForm;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImages;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImagesMediaLibraryOpener;
+use Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone\ResidentParkingPrice;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
@@ -19,11 +20,11 @@ use Drupal\Tests\TestFileCreationTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
 /**
- * Tests the Helsinki near you images form.
+ * Tests the Helsinki near you settings form.
  *
  * @group helfi_etusivu
  */
-class LandingPageImagesFormTest extends KernelTestBase {
+class SettingsFormTest extends KernelTestBase {
 
   use MediaTypeCreationTrait;
   use TestFileCreationTrait;
@@ -108,7 +109,7 @@ class LandingPageImagesFormTest extends KernelTestBase {
     ]);
 
     $this->setUpCurrentUser(permissions: [
-      'administer helsinki near you images',
+      'administer helsinki near you settings',
       'view media',
     ]);
 
@@ -140,7 +141,7 @@ class LandingPageImagesFormTest extends KernelTestBase {
    * Tests the route and its permission.
    */
   public function testAccess(): void {
-    $url = Url::fromRoute('helfi_etusivu.helsinki_near_you_images');
+    $url = Url::fromRoute('helfi_etusivu.helsinki_near_you_settings');
     $this->assertEquals('/admin/tools/appearance-settings/helsinki-near-you', $url->toString());
     $this->assertTrue($url->access());
     $this->assertFalse($url->access($this->createUser(['view media'])));
@@ -150,13 +151,13 @@ class LandingPageImagesFormTest extends KernelTestBase {
    * Tests that the fields use the paragraphs' image field widgets.
    */
   public function testBuildForm(): void {
-    $form = $this->container->get('form_builder')->getForm(LandingPageImagesForm::class);
+    $form = $this->container->get('form_builder')->getForm(SettingsForm::class);
 
-    $this->assertEquals('Hero image', (string) $form['field_hero_image']['widget']['#title']);
-    $this->assertEquals('Liftup image', (string) $form['field_liftup_with_image_image']['widget']['#title']);
+    $this->assertEquals('Hero image', (string) $form['images']['field_hero_image']['widget']['#title']);
+    $this->assertEquals('Liftup image', (string) $form['images']['field_liftup_with_image_image']['widget']['#title']);
 
     foreach (['field_hero_image', 'field_liftup_with_image_image'] as $fieldName) {
-      $widget = $form[$fieldName]['widget'];
+      $widget = $form['images'][$fieldName]['widget'];
       // Media library widget with the image media type, like the paragraphs.
       $this->assertArrayHasKey('open_button', $widget);
       $state = $widget['open_button']['#media_library_state'];
@@ -179,8 +180,8 @@ class LandingPageImagesFormTest extends KernelTestBase {
     }
 
     // Required like in the paragraphs.
-    $this->assertFalse($form['field_hero_image']['widget']['#required']);
-    $this->assertTrue($form['field_liftup_with_image_image']['widget']['#required']);
+    $this->assertFalse($form['images']['field_hero_image']['widget']['#required']);
+    $this->assertTrue($form['images']['field_liftup_with_image_image']['widget']['#required']);
   }
 
   /**
@@ -224,6 +225,65 @@ class LandingPageImagesFormTest extends KernelTestBase {
   }
 
   /**
+   * Tests the resident parking prices.
+   */
+  public function testResidentParkingPrices(): void {
+    $prices = $this->container->get(ResidentParkingPrice::class);
+    $prices->setAll(['J' => ['price' => 60, 'electric_price' => '45']]);
+    $this->assertSame(['price' => 60.0, 'electric_price' => 45.0], $prices->get('J'));
+    $this->assertNull($prices->get('X'));
+
+    // The stored zones are listed with an empty row for adding a zone.
+    $form = $this->container->get('form_builder')->getForm(SettingsForm::class);
+    $table = $form['resident_parking']['resident_parking_prices'];
+    $this->assertEquals('J', $table[0]['zone']['#default_value']);
+    $this->assertEquals(60, $table[0]['price']['#default_value']);
+    $this->assertEquals(45, $table[0]['electric_price']['#default_value']);
+    $this->assertEquals('', $table[1]['zone']['#default_value']);
+    $this->assertArrayNotHasKey(2, $table);
+
+    // The required image must be valid for the prices to be saved.
+    $this->container->get(LandingPageImages::class)->setMediaIds(['liftup' => (int) $this->image->id()]);
+    $values = ['field_liftup_with_image_image' => $this->selection($this->image)];
+
+    // Zones must be letters, and listed zones must have both prices.
+    $errors = $this->submitForm($values + [
+      'resident_parking_prices' => [
+        ['zone' => 'J1', 'price' => '60', 'electric_price' => '45'],
+        ['zone' => 'K', 'price' => '', 'electric_price' => '45'],
+      ],
+    ]);
+    $this->assertEquals([
+      'resident_parking_prices][0][zone',
+      'resident_parking_prices][1][price',
+    ], array_keys($errors));
+
+    // Zones are listed only once.
+    $errors = $this->submitForm($values + [
+      'resident_parking_prices' => [
+        ['zone' => 'K', 'price' => '60', 'electric_price' => '45'],
+        ['zone' => 'k', 'price' => '60', 'electric_price' => '45'],
+      ],
+    ]);
+    $this->assertEquals(['resident_parking_prices][1][zone'], array_keys($errors));
+    $this->assertEquals(['J'], array_keys($prices->getAll()));
+
+    // Zones are normalized to upper case and sorted. Emptying the zone of a
+    // row removes it.
+    $errors = $this->submitForm($values + [
+      'resident_parking_prices' => [
+        ['zone' => ' k ', 'price' => '60', 'electric_price' => '45'],
+        ['zone' => 'b', 'price' => '64.5', 'electric_price' => '48.4'],
+      ],
+    ]);
+    $this->assertEmpty($errors);
+    $this->assertSame([
+      'B' => ['price' => 64.5, 'electric_price' => 48.4],
+      'K' => ['price' => 60.0, 'electric_price' => 45.0],
+    ], $prices->getAll());
+  }
+
+  /**
    * Submits the form.
    *
    * @param array $values
@@ -237,7 +297,7 @@ class LandingPageImagesFormTest extends KernelTestBase {
    */
   private function submitForm(array $values = []): array {
     $formState = (new FormState())->setValues($values);
-    $this->container->get('form_builder')->submitForm(LandingPageImagesForm::class, $formState);
+    $this->container->get('form_builder')->submitForm(SettingsForm::class, $formState);
     return $formState->getErrors();
   }
 

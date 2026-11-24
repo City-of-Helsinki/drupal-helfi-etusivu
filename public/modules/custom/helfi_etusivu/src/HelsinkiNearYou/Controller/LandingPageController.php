@@ -19,7 +19,7 @@ use Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImages;
  * The liftup and banners are hard-coded in the page template. This controller
  * provides the liftup image as media, rendered the same way as in the
  * corresponding paragraph. The images are selected in
- * \Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageImagesForm.
+ * \Drupal\helfi_etusivu\HelsinkiNearYou\Form\SettingsForm.
  *
  * The hero is rendered by
  * \Drupal\helfi_etusivu\Plugin\Block\HelsinkiNearYouHeroBlock.

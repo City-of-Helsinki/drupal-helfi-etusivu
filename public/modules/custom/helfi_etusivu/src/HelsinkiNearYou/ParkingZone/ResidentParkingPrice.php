@@ -4,36 +4,46 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\ParkingZone;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+
 /**
  * Monthly resident parking permit prices by zone.
  *
- * No API provides the prices, so they are copied from
+ * No API provides the prices, so admins copy them from
  * https://www.hel.fi/fi/kaupunkiymparisto-ja-liikenne/pysakointi/asukaspysakointi
- * and must be updated by hand when the city changes them.
+ * to the Helsinki near you settings form when the city changes them.
+ *
+ * The prices are in config_ignore.settings, so that changes made in
+ * production are not reverted on deploy.
+ *
+ * @see \Drupal\helfi_etusivu\HelsinkiNearYou\Form\SettingsForm
  */
-final class ResidentParkingPrice {
+final readonly class ResidentParkingPrice {
 
   /**
-   * Prices in euros by zone letter: [price, fully electric vehicle price].
+   * The configuration name.
    */
-  private const PRICES = [
-    'A' => [60, 45],
-    'B' => [64.5, 48.4],
-    'C' => [64.5, 48.4],
-    'D' => [64.5, 48.4],
-    'DC' => [64.5, 48.4],
-    'E' => [60, 45],
-    'F' => [60, 45],
-    'H' => [60, 45],
-    'I' => [60, 45],
-    'J' => [60, 45],
-    'K' => [60, 45],
-    'L' => [60, 45],
-    'M' => [45, 37.5],
-    'N' => [45, 37.5],
-    'O' => [45, 37.5],
-    'P' => [45, 37.5],
-  ];
+  public const string CONFIG_NAME = 'helfi_etusivu.helsinki_near_you_settings';
+
+  /**
+   * The configuration key.
+   */
+  public const string CONFIG_KEY = 'resident_parking_prices';
+
+  public function __construct(
+    private ConfigFactoryInterface $configFactory,
+  ) {
+  }
+
+  /**
+   * Gets the prices of all zones.
+   *
+   * @return array<string, array{price: float, electric_price: float}>
+   *   The prices in euros keyed by zone letter.
+   */
+  public function getAll(): array {
+    return $this->configFactory->get(self::CONFIG_NAME)->get(self::CONFIG_KEY) ?? [];
+  }
 
   /**
    * Gets the prices of a zone.
@@ -41,11 +51,34 @@ final class ResidentParkingPrice {
    * @param string $areaKey
    *   The zone letter, for example "J".
    *
-   * @return array{int|float, int|float}|null
-   *   The price and the fully electric vehicle price, or NULL if not known.
+   * @return array{price: float, electric_price: float}|null
+   *   The price and the fully electric vehicle price in euros, or NULL if not
+   *   known.
    */
-  public static function get(string $areaKey): ?array {
-    return self::PRICES[$areaKey] ?? NULL;
+  public function get(string $areaKey): ?array {
+    return $this->getAll()[$areaKey] ?? NULL;
+  }
+
+  /**
+   * Replaces the prices of all zones.
+   *
+   * @param array<string, array{price: int|float|string, electric_price: int|float|string}> $prices
+   *   The prices in euros keyed by zone letter.
+   */
+  public function setAll(array $prices): void {
+    $stored = [];
+
+    foreach ($prices as $areaKey => $price) {
+      $stored[(string) $areaKey] = [
+        'price' => (float) $price['price'],
+        'electric_price' => (float) $price['electric_price'],
+      ];
+    }
+    ksort($stored, SORT_NATURAL);
+
+    $this->configFactory->getEditable(self::CONFIG_NAME)
+      ->set(self::CONFIG_KEY, $stored)
+      ->save();
   }
 
 }
