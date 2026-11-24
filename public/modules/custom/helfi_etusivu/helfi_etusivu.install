@@ -943,7 +943,7 @@ function helfi_etusivu_update_11015(): void {
 }
 
 /**
- * Add Helsinki near you settings with the resident parking prices.
+ * UHF-13994: Add Helsinki near you settings with the resident parking prices.
  */
 function helfi_etusivu_update_11016(): void {
   // The prices are ignored by config_ignore, so the configuration import
@@ -957,7 +957,8 @@ function helfi_etusivu_update_11016(): void {
     $config->setData($source->read($name) ?: [])->save();
   }
 
-  // The images permission is now the settings permission.
+  // The images permission is now called the settings permission and it
+  // includes also the pricing permission.
   foreach (Role::loadMultiple() as $role) {
     if ($role->hasPermission('administer helsinki near you images')) {
       $role->revokePermission('administer helsinki near you images')
