@@ -19,15 +19,16 @@
 <article>
   {% if search_form %}
     <div class="components components--computed">
-      {% embed "@hdbt/misc/component.twig" %}
+      {% embed "@hdbt/misc/component.twig" with {
+        component_title: 'Search by address'|t({}, {'context': 'Helsinki near you'}),
+        component_description: 'Search for neighbourhood services, events and news on the basis of your street address. The search field will suggest addresses as you start typing.'|t({}, {'context': 'Helsinki near you'}),
+      } %}
         {% block component_content %}
           <div class="hdbt-search__form-container" role="search">
-            <h2 class="helsinki-near-you-form__heading">{{ 'Search by address'|t({}, {'context': 'Helsinki near you'}) }}</h2>
-            <p>{{ 'Search for neighbourhood services, events and news on the basis of your street address. The search field will suggest addresses as you start typing.'|t({}, {'context': 'Helsinki near you'}) }}</p>
             {{ search_form }}
           </div>
         {% endblock component_content %}
-      {% endembed %}
+     {% endembed %}
     </div>
   {% endif %}
 

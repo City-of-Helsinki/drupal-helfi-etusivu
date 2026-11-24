@@ -275,7 +275,7 @@ msgstr "Etäisyys"
 
 msgctxt "Helsinki near you"
 msgid "Search feedback near you"
-msgstr "Etsi palautteita osoitteellasi"
+msgstr "Etsi palautteita lähelläsi"
 
 msgctxt "Helsinki near you"
 msgid "The search shows results within two kilometers from the address and from the past 90 days."
