@@ -9,8 +9,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Link;
-use Drupal\Core\Url;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Enum\LandingPageImage;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImages;
 use Drupal\helfi_etusivu\HelsinkiNearYou\LandingPageImagesMediaLibraryOpener;
@@ -26,11 +24,6 @@ use Drupal\paragraphs\ParagraphInterface;
  * the field constraints are the same as when editing such a paragraph.
  */
 final class SettingsForm extends FormBase {
-
-  /**
-   * The source of the resident parking prices.
-   */
-  private const string PRICES_URL = 'https://www.hel.fi/fi/kaupunkiymparisto-ja-liikenne/pysakointi/asukaspysakointi';
 
   public function __construct(
     protected readonly LandingPageImages $landingPageImages,
