@@ -23,12 +23,12 @@ final readonly class ResidentParkingPrice {
   /**
    * The configuration name.
    */
-  public const string CONFIG_NAME = 'helfi_etusivu.helsinki_near_you_settings';
+  private const string CONFIG_NAME = 'helfi_etusivu.helsinki_near_you_settings';
 
   /**
    * The configuration key.
    */
-  public const string CONFIG_KEY = 'resident_parking_prices';
+  private const string CONFIG_KEY = 'resident_parking_prices';
 
   public function __construct(
     private ConfigFactoryInterface $configFactory,
