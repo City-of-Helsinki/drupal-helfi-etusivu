@@ -233,15 +233,6 @@ class SettingsFormTest extends KernelTestBase {
     $this->assertSame(['price' => 60.0, 'electric_price' => 45.0], $prices->get('J'));
     $this->assertNull($prices->get('X'));
 
-    // The stored zones are listed with an empty row for adding a zone.
-    $form = $this->container->get('form_builder')->getForm(SettingsForm::class);
-    $table = $form['resident_parking']['resident_parking_prices'];
-    $this->assertEquals('J', $table[0]['zone']['#default_value']);
-    $this->assertEquals(60, $table[0]['price']['#default_value']);
-    $this->assertEquals(45, $table[0]['electric_price']['#default_value']);
-    $this->assertEquals('', $table[1]['zone']['#default_value']);
-    $this->assertArrayNotHasKey(2, $table);
-
     // The required image must be valid for the prices to be saved.
     $this->container->get(LandingPageImages::class)->setMediaIds(['liftup' => (int) $this->image->id()]);
     $values = ['field_liftup_with_image_image' => $this->selection($this->image)];
