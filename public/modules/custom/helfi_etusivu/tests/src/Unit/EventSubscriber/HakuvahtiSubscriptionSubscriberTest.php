@@ -33,9 +33,8 @@ class HakuvahtiSubscriptionSubscriberTest extends UnitTestCase {
       'siteId' => 'etusivu',
       'query' => '?topic=1',
       'elasticQuery' => $elasticQuery,
-      'searchDescription' => 'client',
       'email' => 'test@example.com',
-    ]), $configId);
+    ], 'client'), $configId);
   }
 
   /**

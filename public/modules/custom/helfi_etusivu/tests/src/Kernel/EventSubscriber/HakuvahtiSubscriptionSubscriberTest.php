@@ -93,8 +93,7 @@ class HakuvahtiSubscriptionSubscriberTest extends KernelTestBase {
       'query' => '/en/news?topic[0]=1',
       'elasticQuery' => $elasticQuery,
       'elasticQueryAtv' => FALSE,
-      'searchDescription' => self::CLIENT_DESCRIPTION,
-    ]);
+    ], self::CLIENT_DESCRIPTION);
   }
 
   /**
