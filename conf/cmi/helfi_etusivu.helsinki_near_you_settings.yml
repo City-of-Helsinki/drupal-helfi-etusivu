@@ -38,7 +38,7 @@ resident_parking_prices:
   M:
     price: 45.0
     electric_price: 37.5
-  'N':
+  N:
     price: 45.0
     electric_price: 37.5
   O:
