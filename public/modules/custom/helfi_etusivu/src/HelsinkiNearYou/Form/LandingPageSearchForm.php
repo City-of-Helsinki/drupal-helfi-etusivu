@@ -22,7 +22,7 @@ class LandingPageSearchForm extends SearchFormBase {
    * {@inheritdoc}
    */
   protected function getSearchLandmarkLabel(): TranslatableMarkup {
-    return $this->t('Search by address', [], ['context' => 'Helsinki near you']);
+    return $this->t('Helsinki near you', [], ['context' => 'Helsinki near you search aria-label']);
   }
 
 }

@@ -24,6 +24,10 @@ msgctxt "Helsinki near you"
 msgid "Helsinki near you"
 msgstr "Helsingfors nära dig"
 
+msgctxt "Helsinki near you search aria-label"
+msgid "Helsinki near you"
+msgstr "Helsingfors nära dig"
+
 msgctxt "Helsinki near you"
 msgid "Discover city services, events and news near you. Start by entering your street address."
 msgstr "Hitta stadens tjänster, evenemang och nyheter nära dig. Börja med att söka med din adress."

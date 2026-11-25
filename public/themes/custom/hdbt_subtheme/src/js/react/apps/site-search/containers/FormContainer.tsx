@@ -169,6 +169,7 @@ const FormContainer = ({ withBundleFilters = false, filtersRef }: FormContainerP
   return (
     // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
     <form
+      aria-label={Drupal.t('Site search', {}, { context: 'Site search section aria-label' })}
       className='hdbt-search--react__form-container hdbt-search--react__form-container--site-search'
       role='search'
       onSubmit={onSubmit}
