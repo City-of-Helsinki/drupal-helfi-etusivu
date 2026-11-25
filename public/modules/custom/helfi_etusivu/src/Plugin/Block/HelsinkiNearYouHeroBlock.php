@@ -119,7 +119,7 @@ final class HelsinkiNearYouHeroBlock extends BlockBase implements ContainerFacto
    * Builds the landing page hero.
    *
    * Diagonal design with the image selected in
-   * \Drupal\helfi_etusivu\HelsinkiNearYou\Form\LandingPageImagesForm.
+   * \Drupal\helfi_etusivu\HelsinkiNearYou\Form\SettingsForm.
    *
    * @return array
    *   The render array.

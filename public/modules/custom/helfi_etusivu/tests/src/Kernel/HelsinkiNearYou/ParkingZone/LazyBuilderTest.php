@@ -52,7 +52,13 @@ class LazyBuilderTest extends KernelTestBase {
     $method = $service->method('getParkingZone');
     $result instanceof \Exception ? $method->willThrowException($result) : $method->willReturn($result);
 
-    $sut = new LazyBuilder($service, $this->container->get('logger.channel.helfi_etusivu'));
+    $prices = $this->container->get(ResidentParkingPrice::class);
+    $prices->setAll([
+      'C' => ['price' => 64.5, 'electric_price' => 48.4],
+      'J' => ['price' => 60, 'electric_price' => 45],
+    ]);
+
+    $sut = new LazyBuilder($service, $prices, $this->container->get('logger.channel.helfi_etusivu'));
 
     return $sut->build(new Address(
       StreetName::createFromArray(['fi' => 'Kolmas linja 10']),

@@ -1,5 +1,5 @@
 'administer search content':
   title: 'Administer search promotions and suggestions'
-'administer helsinki near you images':
-  title: 'Administer Helsinki near you images'
-  description: 'Select the images of the Helsinki near you landing page.'
+'administer helsinki near you settings':
+  title: 'Administer Helsinki near you settings'
+  description: 'Select the images of the Helsinki near you landing page and set the resident parking prices.'

@@ -8,4 +8,5 @@ ignored_config_entities:
   - 'easy_breadcrumb.settings:home_segment_title'
   - 'hdbt_admin_tools.site_settings:footer_settings'
   - 'hdbt_admin_tools.site_settings:site_settings'
+  - 'helfi_etusivu.helsinki_near_you_settings:resident_parking_prices'
   - 'system.site:page.front'

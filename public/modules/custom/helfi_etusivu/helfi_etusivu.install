@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
@@ -937,5 +938,21 @@ function helfi_etusivu_update_11015(): void {
     $config->set('tracker_settings', [
       'parallel' => $settings['default'] + ['claim_timeout' => 60],
     ])->save();
+  }
+}
+
+/**
+ * UHF-13994: Add Helsinki near you settings with the resident parking prices.
+ */
+function helfi_etusivu_update_11016(): void {
+  // The prices are ignored by config_ignore, so the configuration import
+  // would not create them.
+  $name = 'helfi_etusivu.helsinki_near_you_settings';
+  $config = \Drupal::configFactory()->getEditable($name);
+
+  if ($config->isNew()) {
+    $path = \Drupal::service(ModuleExtensionList::class)->getPath('helfi_etusivu');
+    $source = new FileStorage($path . '/' . InstallStorage::CONFIG_INSTALL_DIRECTORY);
+    $config->setData($source->read($name) ?: [])->save();
   }
 }

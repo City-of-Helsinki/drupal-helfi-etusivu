@@ -3,6 +3,11 @@ views-styles:
     theme:
       assets/css/views.css: {}
 
+helsinki-near-you-settings-form:
+  css:
+    theme:
+      assets/css/helsinki-near-you-settings-form.css: {}
+
 news-item-unpublish-handler:
   version: 1.0.0
   js:

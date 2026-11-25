@@ -37,9 +37,24 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
 
   public function __construct(
     private ResidentParkingZoneServiceInterface $residentParkingZoneService,
+    private ResidentParkingPrice $residentParkingPrice,
     #[Autowire(service: 'logger.channel.helfi_etusivu')]
     private LoggerInterface $logger,
   ) {
+  }
+
+  /**
+   * Formats a price with a decimal comma, whole euros without decimals.
+   *
+   * @param float $euros
+   *   The price in euros.
+   *
+   * @return string
+   *   The formatted price.
+   */
+  private static function formatPrice(float $euros): string {
+    $decimals = round($euros, 2) === floor($euros) ? 0 : 2;
+    return number_format($euros, $decimals, ',', '');
   }
 
   /**
@@ -81,14 +96,13 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       '#map_url' => $zone->mapUrl,
     ];
 
-    if ($prices = ResidentParkingPrice::get($zone->areaKey)) {
-      [$price, $electricPrice] = array_map(
-        static fn (int|float $euros) => number_format($euros, is_int($euros) ? 0 : 2, ',', ''),
-        $prices,
-      );
+    if ($prices = $this->residentParkingPrice->get($zone->areaKey)) {
       $build['#content']['#price'] = new TranslatableMarkup(
         '@price €/month, fully electric vehicle @electric_price €/month',
-        ['@price' => $price, '@electric_price' => $electricPrice],
+        [
+          '@price' => self::formatPrice($prices['price']),
+          '@electric_price' => self::formatPrice($prices['electric_price']),
+        ],
         ['context' => 'Helsinki near you'],
       );
     }

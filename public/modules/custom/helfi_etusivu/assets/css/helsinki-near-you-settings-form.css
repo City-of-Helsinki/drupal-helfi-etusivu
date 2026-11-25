@@ -1,0 +1,42 @@
+/* Style the suffix for the parking zone price list to look nice. */
+td.helsinki-near-you-settings__parking-zone-letter,
+div.helsinki-near-you-settings__parking-zone-price {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.helsinki-near-you-settings__parking-zone-price input.form-element--type-number {
+  width: 90%;
+}
+
+div.helsinki-near-you-settings__parking-zone-price .form-item__suffix {
+  margin-inline-start: 8px;
+  width: calc(10% - 8px); 
+}
+
+.helsinki-near-you-settings__parking-zone-letter .form-item__error-message,
+div.helsinki-near-you-settings__parking-zone-price .form-item__error-message {
+  width: 100%;
+}
+
+.edit-resident-parking-prices tr {
+  vertical-align: top;
+}
+
+/* Styling for the image fields. */
+@media only screen and (min-width: 768px) {
+  .helsinki-near-you-settings__images .details-wrapper {
+    display: flex;
+    gap: 20px;
+  }
+
+  .helsinki-near-you-settings__images .field--type-entity-reference {
+    width: 50%;
+  }
+}
+
+.helsinki-near-you-settings__images .field--type-entity-reference .media-library-selection .media-library-item--grid {
+  max-width: 220px;
+  width: 100%;
+}
