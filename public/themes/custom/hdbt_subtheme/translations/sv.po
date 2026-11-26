@@ -111,6 +111,10 @@ msgctxt "Helsinki near you"
 msgid "Something went wrong while getting the results. You may try searching again."
 msgstr "Något gick fel när resultaten skulle hämtas. Du kan försöka söka igen."
 
+msgctxt "Site search section aria-label"
+msgid "Site search"
+msgstr "Sök på webbplatsen"
+
 msgctxt "Site search"
 msgid "Show only"
 msgstr "Visa endast"

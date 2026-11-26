@@ -36,6 +36,14 @@ msgid "Discover city services, events and news near you. Start by entering your 
 msgstr "Etsi kaupungin palveluita, tapahtumia ja uutisia osoitteesi perusteella. Aloita kirjoittamalla osoitteesi."
 
 msgctxt "Helsinki near you"
+msgid "Search by address"
+msgstr "Hae osoitteella"
+
+msgctxt "Helsinki near you search aria-label"
+msgid "Helsinki near you"
+msgstr "Helsinki lähelläsi"
+
+msgctxt "Helsinki near you"
 msgid "Discover city services, events and news near you."
 msgstr "Etsi kaupungin palveluita, tapahtumia ja uutisia osoitteesi perusteella."
 
