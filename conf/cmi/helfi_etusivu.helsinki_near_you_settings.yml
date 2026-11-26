@@ -1,0 +1,49 @@
+resident_parking_prices:
+  A:
+    price: 60.0
+    electric_price: 45.0
+  B:
+    price: 64.5
+    electric_price: 48.4
+  C:
+    price: 69.3
+    electric_price: 52
+  D:
+    price: 64.5
+    electric_price: 48.4
+  DC:
+    price: 64.5
+    electric_price: 48.4
+  E:
+    price: 60.0
+    electric_price: 45.0
+  F:
+    price: 60.0
+    electric_price: 45.0
+  H:
+    price: 60.0
+    electric_price: 45.0
+  I:
+    price: 60.0
+    electric_price: 45.0
+  J:
+    price: 60.0
+    electric_price: 45.0
+  K:
+    price: 60.0
+    electric_price: 45.0
+  L:
+    price: 60.0
+    electric_price: 45.0
+  M:
+    price: 45.0
+    electric_price: 37.5
+  'N':
+    price: 45.0
+    electric_price: 37.5
+  O:
+    price: 45.0
+    electric_price: 37.5
+  P:
+    price: 45.0
+    electric_price: 37.5

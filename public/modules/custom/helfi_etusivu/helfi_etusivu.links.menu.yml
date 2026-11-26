@@ -16,3 +16,10 @@ helfi_etusivu.search:
   route_name: entity.helfi_search_promotion.collection
   parent: system.admin_content
   weight: 100
+
+helfi_etusivu.helsinki_near_you_settings:
+  title: 'Helsinki near you settings'
+  description: 'Select the images of the Helsinki near you landing page and set the resident parking prices.'
+  route_name: helfi_etusivu.helsinki_near_you_settings
+  parent: hdbt_admin_tools.site_settings
+  weight: -6

@@ -68,8 +68,8 @@ msgid "Street and park work"
 msgstr "Gatu- och parkarbeten"
 
 msgctxt "Helsinki near you roadworks search"
-msgid "See all street and park projects near you"
-msgstr "See all street and park projects near you"
+msgid "See all street and park work near you"
+msgstr "Se alla gatu- och parkarbeten nära dig"
 
 msgctxt "Helsinki near you"
 msgid "See street and park work near your address."
@@ -202,3 +202,39 @@ msgstr "Stäng"
 msgctxt "Site search"
 msgid "Go to the search result on the page"
 msgstr "Gå till sökträffen på sidan"
+
+msgctxt "Helsinki near you"
+msgid "Discover services, events and news near your address. You will see what is going on in your neighbourhood now and in the future."
+msgstr "Bekanta dig med tjänster, evenemang och nyheter nära din adress. Här ser du vad som finns, händer och kommer att hända i ditt närområde."
+
+msgctxt "Helsinki near you"
+msgid "Search by address"
+msgstr "Sök med adress"
+
+msgctxt "Helsinki near you"
+msgid "Search for neighbourhood services, events and news on the basis of your street address. The search field will suggest addresses as you start typing."
+msgstr "Sök tjänster, evenemang och nyheter i ditt närområde utifrån gatuadress. Sökningen föreslår adresser när du börjar skriva."
+
+msgctxt "Helsinki near you"
+msgid "Find events that interest you near your address."
+msgstr "Hitta evenemang som intresserar dig nära din adress."
+
+msgctxt "Helsinki near you"
+msgid "Search for events near you"
+msgstr "Sök evenemang nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Street work near you"
+msgstr "Gatuarbeten nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Search for street work near you"
+msgstr "Sök gatuarbeten nära dig"
+
+msgctxt "Helsinki near you"
+msgid "Browse feedback and fault reports that residents have submitted to the city on the area near your address."
+msgstr "Bläddra bland den respons och de felanmälningar som stadsbor har skickat till staden i området nära din adress."
+
+msgctxt "Helsinki near you"
+msgid "Feedback and fault reports near you"
+msgstr "Respons och felanmälningar nära dig"

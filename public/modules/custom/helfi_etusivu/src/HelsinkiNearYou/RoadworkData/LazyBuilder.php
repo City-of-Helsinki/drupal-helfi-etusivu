@@ -63,7 +63,7 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
     }
 
     try {
-      // Fetch roadwork projects within a radius of the converted coordinates.
+      // Fetch roadwork work within a radius of the converted coordinates.
       $data = $this->roadworkDataService->getFormattedProjectsByCoordinates(
         $address->location->lat,
         $address->location->lon,
@@ -114,14 +114,14 @@ final readonly class LazyBuilder implements TrustedCallbackInterface {
       if ($data->numItems != 0) {
         $title = new PluralTranslatableMarkup(
           $data->numItems,
-          '@count street and park project near address @address',
-          '@count street and park projects near address @address',
+          '@count street and park work item near @address',
+          '@count street and park work items near @address',
           ['@address' => $address->streetName->getName($langcode)],
           ['context' => 'Helsinki near you'],
         );
       }
       else {
-        $title = new TranslatableMarkup('No street and park projects were found near address @address', ['@address' => $address->streetName->getName($langcode)], ['context' => 'Helsinki near you'],);
+        $title = new TranslatableMarkup('No street and park work was found near address @address', ['@address' => $address->streetName->getName($langcode)], ['context' => 'Helsinki near you'],);
       }
 
       $build['#title'] = $title;
