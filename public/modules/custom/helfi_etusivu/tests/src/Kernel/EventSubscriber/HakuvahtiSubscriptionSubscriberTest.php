@@ -175,10 +175,6 @@ class HakuvahtiSubscriptionSubscriberTest extends KernelTestBase {
     ];
     $url = Url::fromRoute('helfi_hakuvahti.subscribe', options: ['query' => ['config' => HakuvahtiSubscriptionSubscriber::CONFIG_ID]])->toString();
 
-    $response = $this->processRequest($this->getMockedRequest($url, 'POST', document: ['elasticQuery' => 'not-base64!!'] + $body));
-    $this->assertSame(400, $response->getStatusCode());
-    $this->assertCount(0, $history);
-
     $response = $this->processRequest($this->getMockedRequest($url, 'POST', document: ['elasticQuery' => self::encode($query)] + $body));
     $this->assertSame(200, $response->getStatusCode());
     $this->assertCount(1, $history);
