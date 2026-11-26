@@ -5,13 +5,9 @@ declare(strict_types=1);
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Statistics;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\helfi_api_base\ApiClient\ApiClient;
-use Drupal\helfi_api_base\ApiClient\CacheValue;
 use Drupal\helfi_api_base\Cache\CacheKeyTrait;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DTO\Figure;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * Fetches neighbourhood statistics from the Aluesarjat PxWeb API.
@@ -23,7 +19,6 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 final readonly class StatisticsClient implements StatisticsClientInterface {
 
   use CacheKeyTrait;
-  use DecodedResponseTrait;
 
   private const BASE_URL = 'https://stat.hel.fi/api/v1/fi/Aluesarjat/';
 
@@ -44,8 +39,7 @@ final readonly class StatisticsClient implements StatisticsClientInterface {
   private const CONTEXT = ['context' => 'Helsinki near you'];
 
   public function __construct(
-    #[Autowire(service: 'helfi_etusivu.statistics_api_client')]
-    private ApiClient $client,
+    private JsonClient $client,
   ) {
   }
 
@@ -168,7 +162,7 @@ final readonly class StatisticsClient implements StatisticsClientInterface {
    */
   public function getLatestPeriod(string $table, string $variable) : string {
     $key = $this->getCacheKey('helfi_etusivu:statistics:meta', [$table]);
-    $data = $this->request($key, fn () => $this->client->makeRequest('GET', self::BASE_URL . $table));
+    $data = $this->client->request($key, self::TTL, 'GET', self::BASE_URL . $table);
 
     foreach ($data['variables'] ?? [] as $candidate) {
       if (($candidate['code'] ?? NULL) !== $variable) {
@@ -207,40 +201,13 @@ final readonly class StatisticsClient implements StatisticsClientInterface {
     ];
     $key = $this->getCacheKey('helfi_etusivu:statistics:query', [$table, $query]);
 
-    return new JsonStat2($this->request($key, fn () => $this->client->makeRequest(
+    return new JsonStat2($this->client->request(
+      $key,
+      self::TTL,
       'POST',
       self::BASE_URL . $table,
       [RequestOptions::JSON => $body],
-    )));
-  }
-
-  /**
-   * Performs a cached request.
-   *
-   * @param string $key
-   *   The cache key.
-   * @param callable $callback
-   *   Callback returning an ApiResponse.
-   *
-   * @return array<mixed>
-   *   The decoded response.
-   *
-   * @throws \Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\StatisticsException
-   *   Thrown when the request fails.
-   */
-  private function request(string $key, callable $callback) : array {
-    try {
-      $value = $this->client->cache($key, fn () => new CacheValue(
-        $callback(),
-        $this->client->cacheMaxAge(self::TTL),
-        ['helfi_etusivu_statistics'],
-      ));
-    }
-    catch (GuzzleException | \JsonException $e) {
-      throw new StatisticsException($e->getMessage(), previous: $e);
-    }
-
-    return $value ? $this->toArray($value->response) : [];
+    ));
   }
 
   /**

@@ -29,14 +29,14 @@ class StatisticsClientTest extends StatisticsTestBase {
         JSON_THROW_ON_ERROR,
       )),
     ]);
-    $sut = new StatisticsClient($this->getApiClient($http));
+    $sut = new StatisticsClient($this->getJsonClient($http));
 
     $this->assertSame('2026Q2', $sut->getLatestPeriod('vrm/ennak/alu_ennak_001b.px', 'Neljännesvuosi'));
 
     $http = $this->createMockHttpClient([
       new Response(200, body: json_encode($this->metadata('Vuosi', ['2024']), JSON_THROW_ON_ERROR)),
     ]);
-    $sut = new StatisticsClient($this->getApiClient($http));
+    $sut = new StatisticsClient($this->getJsonClient($http));
 
     $this->expectException(StatisticsException::class);
     $sut->getLatestPeriod('tul/vatul/alu_vatul_011r.px', 'Neljännesvuosi');
@@ -56,7 +56,7 @@ class StatisticsClientTest extends StatisticsTestBase {
       new Response(200, body: json_encode($this->metadata('Neljännesvuosi', ['2026Q2']), JSON_THROW_ON_ERROR)),
       new Response(200, body: json_encode($this->singleValueDataset(7465), JSON_THROW_ON_ERROR)),
     ]);
-    $population = (new StatisticsClient($this->getApiClient($http)))->getPopulation('0911101010');
+    $population = (new StatisticsClient($this->getJsonClient($http)))->getPopulation('0911101010');
 
     $this->assertSame('population', $population->key);
     $this->assertSame(7465.0, $population->value);
@@ -69,7 +69,7 @@ class StatisticsClientTest extends StatisticsTestBase {
       new Response(200, body: json_encode($this->metadata('Vuosi', ['2023', '2024']), JSON_THROW_ON_ERROR)),
       new Response(200, body: json_encode($this->singleValueDataset(66895.8), JSON_THROW_ON_ERROR)),
     ]);
-    $income = (new StatisticsClient($this->getApiClient($http)))->getAverageIncome('0911101010');
+    $income = (new StatisticsClient($this->getJsonClient($http)))->getAverageIncome('0911101010');
 
     $this->assertSame('income', $income->key);
     $this->assertSame(66895.8, $income->value);
@@ -82,7 +82,7 @@ class StatisticsClientTest extends StatisticsTestBase {
       new Response(200, body: json_encode($this->metadata('Neljännesvuosi', ['2026Q2']), JSON_THROW_ON_ERROR)),
       new Response(200, body: json_encode($this->singleValueDataset(NULL), JSON_THROW_ON_ERROR)),
     ]);
-    $suppressed = (new StatisticsClient($this->getApiClient($http)))->getPopulation('0911101010');
+    $suppressed = (new StatisticsClient($this->getJsonClient($http)))->getPopulation('0911101010');
 
     $this->assertNull($suppressed->value);
     $this->assertFalse($suppressed->hasValue());
@@ -103,7 +103,7 @@ class StatisticsClientTest extends StatisticsTestBase {
         new Response(200, body: json_encode($this->metadata('Vuosi', ['2025']), JSON_THROW_ON_ERROR)),
         new Response(200, body: json_encode($this->dwellingsDataset($transposed), JSON_THROW_ON_ERROR)),
       ]);
-      $figure = (new StatisticsClient($this->getApiClient($http)))->getDwellings('0913301102');
+      $figure = (new StatisticsClient($this->getJsonClient($http)))->getDwellings('0913301102');
 
       // The 'ALL' row is the total and must not appear as a building type.
       $this->assertSame(5938.0, $figure->value, $case);
@@ -144,7 +144,7 @@ class StatisticsClientTest extends StatisticsTestBase {
       new Response(200, body: json_encode($this->metadata('Vuosi', ['2025']), JSON_THROW_ON_ERROR)),
       new Response(200, body: json_encode($dataset, JSON_THROW_ON_ERROR)),
     ]);
-    $bucket = (new StatisticsClient($this->getApiClient($http)))
+    $bucket = (new StatisticsClient($this->getJsonClient($http)))
       ->getDwellings('0913301102')->breakdown[0]->breakdown[0];
 
     $this->assertSame('9999', $bucket->key);
@@ -158,7 +158,7 @@ class StatisticsClientTest extends StatisticsTestBase {
    */
   public function testRequestFailure() : void {
     $http = $this->createMockHttpClient([new Response(500)]);
-    $sut = new StatisticsClient($this->getApiClient($http));
+    $sut = new StatisticsClient($this->getJsonClient($http));
 
     $this->expectException(StatisticsException::class);
     $sut->getPopulation('0911101010');

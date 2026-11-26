@@ -9,13 +9,9 @@ use Drupal\Core\Cache\MemoryBackend;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Tests\UnitTestCase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
-use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
-use Drupal\helfi_api_base\ApiClient\ApiClient;
-use Drupal\helfi_api_base\Environment\EnvironmentEnum;
-use Drupal\helfi_api_base\Environment\Project;
+use Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\JsonClient;
 use GuzzleHttp\ClientInterface;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Psr\Log\LoggerInterface;
 
 /**
  * Base class for statistics unit tests.
@@ -24,27 +20,29 @@ abstract class StatisticsTestBase extends UnitTestCase {
 
   use ApiTestTrait;
   use ProphecyTrait;
-  use EnvironmentResolverTrait;
 
   /**
-   * Constructs an ApiClient backed by the given HTTP client.
+   * Constructs a JSON client backed by the given HTTP client.
    *
    * @param \GuzzleHttp\ClientInterface $httpClient
    *   The HTTP client.
+   * @param \Drupal\Core\Cache\MemoryBackend|null $cache
+   *   The cache backend, or NULL for an empty one.
+   * @param int $requestTime
+   *   The request time.
    *
-   * @return \Drupal\helfi_api_base\ApiClient\ApiClient
-   *   The API client.
+   * @return \Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\JsonClient
+   *   The JSON client.
    */
-  protected function getApiClient(ClientInterface $httpClient) : ApiClient {
+  protected function getJsonClient(ClientInterface $httpClient, ?MemoryBackend $cache = NULL, int $requestTime = 1757980800) : JsonClient {
     $time = $this->prophesize(TimeInterface::class);
-    $time->getRequestTime()->willReturn(1757980800);
+    $time->getRequestTime()->willReturn($requestTime);
 
-    return new ApiClient(
+    return new JsonClient(
       $httpClient,
-      new MemoryBackend($time->reveal()),
+      $cache ?? new MemoryBackend($time->reveal()),
       $time->reveal(),
-      $this->getEnvironmentResolver(Project::ETUSIVU, EnvironmentEnum::Test),
-      $this->prophesize(LoggerInterface::class)->reveal(),
+      15,
     );
   }
 

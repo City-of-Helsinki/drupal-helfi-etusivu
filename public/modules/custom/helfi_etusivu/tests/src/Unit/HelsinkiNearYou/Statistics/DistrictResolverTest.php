@@ -46,7 +46,7 @@ class DistrictResolverTest extends StatisticsTestBase {
         ],
       ], JSON_THROW_ON_ERROR)),
     ]);
-    $sut = new DistrictResolver($this->getApiClient($http));
+    $sut = new DistrictResolver($this->getJsonClient($http));
 
     $district = $sut->resolve(new Location(60.16848194, 24.95161762, 'Point'));
 
@@ -86,7 +86,7 @@ class DistrictResolverTest extends StatisticsTestBase {
 
     foreach ($cases as $name => $body) {
       $http = $this->createMockHttpClient([new Response(200, body: json_encode($body, JSON_THROW_ON_ERROR))]);
-      $sut = new DistrictResolver($this->getApiClient($http));
+      $sut = new DistrictResolver($this->getJsonClient($http));
 
       $this->assertNull($sut->resolve(new Location(60.0, 24.0, 'Point')), "case: $name");
     }
@@ -99,7 +99,7 @@ class DistrictResolverTest extends StatisticsTestBase {
    */
   public function testRequestFailure() : void {
     $http = $this->createMockHttpClient([new Response(500)]);
-    $sut = new DistrictResolver($this->getApiClient($http));
+    $sut = new DistrictResolver($this->getJsonClient($http));
 
     $this->expectException(StatisticsException::class);
     $sut->resolve(new Location(60.1684819, 24.9516176, 'Point'));

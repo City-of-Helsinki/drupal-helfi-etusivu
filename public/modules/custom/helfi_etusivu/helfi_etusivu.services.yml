@@ -49,11 +49,7 @@ services:
       - { name: breadcrumb_builder, priority: 1004 }
 
   # Neighbourhood statistics services.
-  helfi_etusivu.statistics_api_client:
-    parent: helfi_api_base.api_client_base
-    arguments:
-      - '@logger.channel.helfi_etusivu'
-      - { timeout: '%helfi_etusivu.statistics_request_timeout%' }
+  Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\JsonClient: ~
 
   Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DistrictResolver: ~
   Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DistrictResolverInterface: '@Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DistrictResolver'

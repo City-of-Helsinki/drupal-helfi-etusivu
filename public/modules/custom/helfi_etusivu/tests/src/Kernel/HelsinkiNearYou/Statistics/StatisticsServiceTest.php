@@ -7,9 +7,6 @@ namespace Drupal\Tests\helfi_etusivu\Kernel\HelsinkiNearYou\Statistics;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\helfi_api_base\Traits\ApiTestTrait;
-use Drupal\Tests\helfi_api_base\Traits\EnvironmentResolverTrait;
-use Drupal\helfi_api_base\Environment\EnvironmentEnum;
-use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_api_base\ServiceMap\DTO\Address;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 use Drupal\helfi_api_base\ServiceMap\DTO\StreetName;
@@ -30,7 +27,6 @@ class StatisticsServiceTest extends KernelTestBase {
 
   use ProphecyTrait;
   use ApiTestTrait;
-  use EnvironmentResolverTrait;
 
   /**
    * {@inheritdoc}
@@ -41,16 +37,6 @@ class StatisticsServiceTest extends KernelTestBase {
     'helfi_etusivu',
     'system',
   ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() : void {
-    parent::setUp();
-
-    // ApiClient reads the active environment to decide on SSL verification.
-    $this->setActiveProject(Project::ETUSIVU, EnvironmentEnum::Test);
-  }
 
   /**
    * Tests resolving an address into every figure.

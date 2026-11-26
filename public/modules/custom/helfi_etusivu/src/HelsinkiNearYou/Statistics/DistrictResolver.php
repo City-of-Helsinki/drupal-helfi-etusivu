@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\helfi_etusivu\HelsinkiNearYou\Statistics;
 
-use Drupal\helfi_api_base\ApiClient\ApiClient;
-use Drupal\helfi_api_base\ApiClient\CacheValue;
 use Drupal\helfi_api_base\Cache\CacheKeyTrait;
 use Drupal\helfi_api_base\ServiceMap\DTO\Location;
 use Drupal\helfi_etusivu\HelsinkiNearYou\Statistics\DTO\District;
-use GuzzleHttp\Exception\GuzzleException;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use GuzzleHttp\RequestOptions;
 
 /**
  * Resolves coordinates into a statistical district via the Servicemap API.
@@ -22,7 +19,6 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 final readonly class DistrictResolver implements DistrictResolverInterface {
 
   use CacheKeyTrait;
-  use DecodedResponseTrait;
 
   private const API_URL = 'https://api.hel.fi/servicemap/v2/administrative_division/';
 
@@ -37,8 +33,7 @@ final readonly class DistrictResolver implements DistrictResolverInterface {
   private const TTL = 604800;
 
   public function __construct(
-    #[Autowire(service: 'helfi_etusivu.statistics_api_client')]
-    private ApiClient $client,
+    private JsonClient $client,
   ) {
   }
 
@@ -55,18 +50,9 @@ final readonly class DistrictResolver implements DistrictResolverInterface {
     ];
     $key = $this->getCacheKey('helfi_etusivu:statistics:district', $query);
 
-    try {
-      $value = $this->client->cache($key, fn () => new CacheValue(
-        $this->client->makeRequest('GET', self::API_URL, ['query' => $query]),
-        $this->client->cacheMaxAge(self::TTL),
-        ['helfi_etusivu_statistics'],
-      ));
-    }
-    catch (GuzzleException | \JsonException $e) {
-      throw new StatisticsException($e->getMessage(), previous: $e);
-    }
-
-    $data = $value ? $this->toArray($value->response) : [];
+    $data = $this->client->request($key, self::TTL, 'GET', self::API_URL, [
+      RequestOptions::QUERY => $query,
+    ]);
 
     return empty($data['results']) ? NULL : $this->toDistrict($data['results']);
   }
